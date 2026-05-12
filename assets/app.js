@@ -231,6 +231,10 @@ function hideRunStatus() {
 async function triggerWorkflow() {
   const pat = document.getElementById('pat-input').value.trim();
   if (!pat) { showRunStatus('error', '請輸入 GitHub PAT'); return; }
+  if (!/^[\x20-\x7E]+$/.test(pat)) {
+    showRunStatus('error', '❌ Token 包含無效字元，請重新複製貼上 GitHub PAT（只能包含英數字及符號）');
+    return;
+  }
 
   if (document.getElementById('remember-pat').checked) {
     localStorage.setItem(PAT_KEY, pat);
