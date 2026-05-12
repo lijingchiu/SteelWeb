@@ -253,36 +253,37 @@ async function triggerWorkflow() {
   };
 
   try {
-    // Step 1: verify PAT and find numeric workflow ID
+    // Step 1: verify PAT, get default branch, and find numeric workflow ID
     showRunStatus('loading', '⏳ 驗證 Token 並查詢 workflow...');
-    const listRes = await fetch(
-      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows`,
-      { headers: ghHeaders }
-    );
+    const [listRes, repoRes] = await Promise.all([
+      fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows`, { headers: ghHeaders }),
+      fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}`, { headers: ghHeaders }),
+    ]);
 
-    if (listRes.status === 401) { showRunStatus('error', '❌ PAT 無效或已過期，請重新確認 Token'); btn.disabled = false; return; }
-    if (listRes.status === 403) { showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限'); btn.disabled = false; return; }
+    if (listRes.status === 401 || repoRes.status === 401) { showRunStatus('error', '❌ PAT 無效或已過期，請重新確認 Token'); btn.disabled = false; return; }
+    if (listRes.status === 403 || repoRes.status === 403) { showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限'); btn.disabled = false; return; }
     if (!listRes.ok) {
       const b = await listRes.json().catch(() => ({}));
       showRunStatus('error', `❌ API 錯誤 ${listRes.status}：${b.message || '無法取得 workflow 列表'}`);
       btn.disabled = false; return;
     }
 
-    const listData = await listRes.json();
+    const [listData, repoData] = await Promise.all([listRes.json(), repoRes.json()]);
+    const defaultBranch = repoData.default_branch || 'main';
     const wf = (listData.workflows || []).find(w => w.path && w.path.endsWith(WORKFLOW));
     const workflowId = wf ? wf.id : WORKFLOW;
 
     if (!wf) {
-      showRunStatus('loading', `⏳ Workflow 未在列表中（共 ${listData.total_count ?? 0} 個），嘗試直接觸發...`);
+      showRunStatus('loading', `⏳ Workflow 未在列表中，嘗試直接觸發（分支：${defaultBranch}）...`);
     }
 
-    // Step 2: dispatch (no inputs body — force_run is optional)
+    // Step 2: dispatch to default branch (required by GitHub for workflow_dispatch)
     const dispatchRes = await fetch(
       `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${workflowId}/dispatches`,
       {
         method: 'POST',
         headers: ghHeaders,
-        body: JSON.stringify({ ref: 'main' }),
+        body: JSON.stringify({ ref: defaultBranch }),
       }
     );
 
@@ -296,12 +297,11 @@ async function triggerWorkflow() {
       showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限');
       btn.disabled = false;
     } else if (dispatchRes.status === 404) {
-      const paths = (listData.workflows || []).map(w => w.path).join(', ') || '（無）';
-      showRunStatus('error', `❌ GitHub 尚未識別此 workflow。請至 Actions 頁面手動執行一次以啟用。已知 workflows：${paths}`);
+      showRunStatus('error', `❌ GitHub 找不到 workflow（分支：${defaultBranch}），請至 Actions 頁面手動執行一次以啟用`);
       btn.disabled = false;
     } else if (dispatchRes.status === 422) {
       const body = await dispatchRes.json().catch(() => ({}));
-      showRunStatus('error', `❌ 請求被拒絕 (422)：${body.message || ''}`);
+      showRunStatus('error', `❌ 請求被拒絕 (422)：${body.message || ''} （ref: ${defaultBranch}）`);
       btn.disabled = false;
     } else {
       const body = await dispatchRes.json().catch(() => ({}));
