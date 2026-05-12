@@ -272,11 +272,12 @@ async function triggerWorkflow() {
 
     const listData = await listRes.json();
     const wf = (listData.workflows || []).find(
-      w => w.path === `.github/workflows/${WORKFLOW}`
+      w => w.path && w.path.endsWith(WORKFLOW)
     );
 
     if (!wf) {
-      showRunStatus('error', `❌ 找不到 workflow（${WORKFLOW}），請確認檔案已推送至 main 分支`);
+      const found = (listData.workflows || []).map(w => w.path).join(', ') || '（無）';
+      showRunStatus('error', `❌ 找不到 workflow（${WORKFLOW}）。已找到：${found}`);
       btn.disabled = false; return;
     }
 
