@@ -32,6 +32,7 @@
             <span id="last-updated-text">載入中...</span>
           </div>
           <div class="badge confidence-badge" id="confidence-badge">-</div>
+          <button class="run-btn" id="run-btn" onclick="openRunModal()">▶ 立即執行</button>
         </div>
       </div>
     </div>
@@ -202,10 +203,41 @@
       <p class="footer-meta">
         數據來源：<a href="https://steelnews.com.tw" target="_blank" rel="noopener">steelnews.com.tw</a>
         &nbsp;|&nbsp; 分析引擎：<span id="model-name">-</span>
-        &nbsp;|&nbsp; <a href="https://github.com/lijingchiu/steelweb" target="_blank" rel="noopener">GitHub ↗</a>
+        &nbsp;|&nbsp; <a href="https://github.com/lijingchiu/SteelWeb" target="_blank" rel="noopener">GitHub ↗</a>
       </p>
     </div>
   </footer>
+
+  <!-- Run Modal -->
+  <div id="run-modal" class="modal-overlay" style="display:none">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>⚡ 手動觸發分析</h3>
+        <button class="modal-close-btn" onclick="closeRunModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">
+          需要 GitHub Personal Access Token（PAT）來觸發 GitHub Actions。<br>
+          <a href="https://github.com/settings/tokens/new?scopes=workflow&description=SteelWeb+Trigger" target="_blank" rel="noopener">
+            點此建立 PAT（需勾選 workflow 權限）↗
+          </a>
+        </p>
+        <div class="modal-field">
+          <label for="pat-input">GitHub Personal Access Token</label>
+          <input type="password" id="pat-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" spellcheck="false">
+        </div>
+        <label class="modal-checkbox">
+          <input type="checkbox" id="remember-pat">
+          記住 Token（儲存於此瀏覽器，不會上傳至伺服器）
+        </label>
+      </div>
+      <div id="run-status" class="run-status" style="display:none"></div>
+      <div class="modal-footer">
+        <button class="modal-btn-secondary" onclick="closeRunModal()">取消</button>
+        <button class="modal-btn-primary" id="trigger-btn" onclick="triggerWorkflow()">▶ 執行分析</button>
+      </div>
+    </div>
+  </div>
 
   <script src="assets/app.js"></script>
 </body>
