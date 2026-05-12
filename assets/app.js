@@ -253,42 +253,9 @@ async function triggerWorkflow() {
   };
 
   try {
-    // Step 1: resolve numeric workflow ID (more reliable than filename)
-    showRunStatus('loading', '⏳ 查詢 workflow ID...');
-    const listRes = await fetch(
-      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows`,
-      { headers: ghHeaders }
-    );
-
-    if (listRes.status === 401) {
-      showRunStatus('error', '❌ PAT 無效或已過期，請重新確認 Token');
-      btn.disabled = false; return;
-    }
-    if (listRes.status === 403) {
-      showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限');
-      btn.disabled = false; return;
-    }
-    if (!listRes.ok) {
-      const b = await listRes.json().catch(() => ({}));
-      showRunStatus('error', `❌ 無法取得 workflow 列表（${listRes.status}）：${b.message || ''}`);
-      btn.disabled = false; return;
-    }
-
-    const listData = await listRes.json();
-    const wf = (listData.workflows || []).find(
-      w => w.path && w.path.endsWith(WORKFLOW)
-    );
-
-    if (!wf) {
-      const found = (listData.workflows || []).map(w => w.path).join(', ') || '（無）';
-      showRunStatus('error', `❌ 找不到 workflow（${WORKFLOW}）。已找到：${found}`);
-      btn.disabled = false; return;
-    }
-
-    // Step 2: dispatch using numeric ID
     showRunStatus('loading', '⏳ 觸發分析中...');
     const dispatchRes = await fetch(
-      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${wf.id}/dispatches`,
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${WORKFLOW}/dispatches`,
       {
         method: 'POST',
         headers: ghHeaders,
@@ -299,6 +266,15 @@ async function triggerWorkflow() {
     if (dispatchRes.status === 204) {
       showRunStatus('loading', '✅ 已成功觸發！分析執行中，約需 2-3 分鐘...');
       pollWorkflowStatus(pat);
+    } else if (dispatchRes.status === 401) {
+      showRunStatus('error', '❌ PAT 無效或已過期，請重新確認 Token');
+      btn.disabled = false;
+    } else if (dispatchRes.status === 403) {
+      showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限');
+      btn.disabled = false;
+    } else if (dispatchRes.status === 404) {
+      showRunStatus('error', '❌ 找不到 workflow，請至 GitHub 倉庫 Settings → Actions → General 確認 Actions 已啟用');
+      btn.disabled = false;
     } else if (dispatchRes.status === 422) {
       showRunStatus('error', '❌ 請求被拒絕，請確認 main 分支存在且 workflow 有 workflow_dispatch 觸發器');
       btn.disabled = false;
