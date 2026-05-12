@@ -72,11 +72,5 @@ jobs:
         run: |
           if [ -f data/latest.json ]; then
             echo "### Analysis Results" >> $GITHUB_STEP_SUMMARY
-            python3 -c "
-import json
-d = json.load(open('data/latest.json'))
-print('- **Date**: ' + d.get('date', '?'))
-print('- **Confidence**: ' + d.get('confidence', '?'))
-print('- **Model**: ' + d.get('model_used', '?'))
-" >> $GITHUB_STEP_SUMMARY
+            python3 -c "import json; d=json.load(open('data/latest.json')); print('- **Date**: ' + str(d.get('date','?'))); print('- **Confidence**: ' + str(d.get('confidence','?'))); print('- **Model**: ' + str(d.get('model_used','?')))" >> $GITHUB_STEP_SUMMARY
           fi
