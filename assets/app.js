@@ -240,37 +240,66 @@ async function triggerWorkflow() {
 
   const btn = document.getElementById('trigger-btn');
   btn.disabled = true;
-  showRunStatus('loading', '⏳ 送出請求中...');
+
+  const ghHeaders = {
+    'Authorization': `Bearer ${pat}`,
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+    'Content-Type': 'application/json',
+  };
 
   try {
-    const res = await fetch(
-      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${WORKFLOW}/dispatches`,
+    // Step 1: resolve numeric workflow ID (more reliable than filename)
+    showRunStatus('loading', '⏳ 查詢 workflow ID...');
+    const listRes = await fetch(
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows`,
+      { headers: ghHeaders }
+    );
+
+    if (listRes.status === 401) {
+      showRunStatus('error', '❌ PAT 無效或已過期，請重新確認 Token');
+      btn.disabled = false; return;
+    }
+    if (listRes.status === 403) {
+      showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限');
+      btn.disabled = false; return;
+    }
+    if (!listRes.ok) {
+      const b = await listRes.json().catch(() => ({}));
+      showRunStatus('error', `❌ 無法取得 workflow 列表（${listRes.status}）：${b.message || ''}`);
+      btn.disabled = false; return;
+    }
+
+    const listData = await listRes.json();
+    const wf = (listData.workflows || []).find(
+      w => w.path === `.github/workflows/${WORKFLOW}`
+    );
+
+    if (!wf) {
+      showRunStatus('error', `❌ 找不到 workflow（${WORKFLOW}），請確認檔案已推送至 main 分支`);
+      btn.disabled = false; return;
+    }
+
+    // Step 2: dispatch using numeric ID
+    showRunStatus('loading', '⏳ 觸發分析中...');
+    const dispatchRes = await fetch(
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${wf.id}/dispatches`,
       {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${pat}`,
-          'Accept': 'application/vnd.github+json',
-          'X-GitHub-Api-Version': '2022-11-28',
-          'Content-Type': 'application/json',
-        },
+        headers: ghHeaders,
         body: JSON.stringify({ ref: 'main', inputs: { force_run: 'true' } }),
       }
     );
-    if (res.status === 204) {
+
+    if (dispatchRes.status === 204) {
       showRunStatus('loading', '✅ 已成功觸發！分析執行中，約需 2-3 分鐘...');
       pollWorkflowStatus(pat);
-    } else if (res.status === 401) {
-      showRunStatus('error', '❌ PAT 無效或已過期，請重新確認 Token');
-      btn.disabled = false;
-    } else if (res.status === 403) {
-      showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限');
-      btn.disabled = false;
-    } else if (res.status === 422) {
-      showRunStatus('error', '❌ 請求格式錯誤，請確認 main 分支存在');
+    } else if (dispatchRes.status === 422) {
+      showRunStatus('error', '❌ 請求被拒絕，請確認 main 分支存在且 workflow 有 workflow_dispatch 觸發器');
       btn.disabled = false;
     } else {
-      const body = await res.json().catch(() => ({}));
-      showRunStatus('error', `❌ 錯誤 ${res.status}：${body.message || '未知錯誤'}`);
+      const body = await dispatchRes.json().catch(() => ({}));
+      showRunStatus('error', `❌ 錯誤 ${dispatchRes.status}：${body.message || '未知錯誤'}`);
       btn.disabled = false;
     }
   } catch (e) {
