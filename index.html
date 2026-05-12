@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>台灣鋼鐵市場每日分析</title>
+  <meta name="description" content="台灣廢鋼、鋼筋、型鋼每日價格分析與預測，結合國際市場觀點與匯率影響。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div id="loading-overlay">
+    <div class="spinner"></div>
+    <p>載入市場分析資料中...</p>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">
+          <div class="logo-icon">⚙</div>
+          <div class="logo-text">
+            <h1>台灣鋼鐵市場分析</h1>
+            <p>每日自動化 AI 價格分析報告</p>
+          </div>
+        </div>
+        <div class="header-badges">
+          <div class="badge" id="last-updated-badge">
+            <span class="badge-dot"></span>
+            <span id="last-updated-text">載入中...</span>
+          </div>
+          <div class="badge confidence-badge" id="confidence-badge">-</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Summary -->
+    <section class="card summary-card">
+      <div class="card-header">
+        <span class="card-icon">📋</span>
+        <h2 class="section-title">今日市場總結</h2>
+      </div>
+      <p id="summary-text" class="summary-text">分析資料載入中...</p>
+    </section>
+
+    <!-- Price Cards -->
+    <div class="price-grid">
+      <div class="price-card" id="card-scrap">
+        <div class="price-card-top">
+          <div class="price-meta">
+            <span class="price-icon">🏭</span>
+            <span class="price-type">廢鋼</span>
+            <span class="price-unit">元 / 公噸</span>
+          </div>
+          <div class="trend-badge" id="scrap-trend-badge">-</div>
+        </div>
+        <div class="price-main">
+          <div class="price-current" id="scrap-current">-</div>
+          <div class="price-change" id="scrap-change">-</div>
+        </div>
+        <div class="price-prediction-row">
+          <span class="pred-label">下週預測</span>
+          <span class="pred-value" id="scrap-prediction">-</span>
+        </div>
+        <div class="price-reason" id="scrap-reason">-</div>
+        <div class="trend-bar-track">
+          <div class="trend-bar-fill" id="scrap-trend-bar"></div>
+        </div>
+      </div>
+
+      <div class="price-card" id="card-rebar">
+        <div class="price-card-top">
+          <div class="price-meta">
+            <span class="price-icon">🔩</span>
+            <span class="price-type">鋼筋</span>
+            <span class="price-unit">元 / 公噸</span>
+          </div>
+          <div class="trend-badge" id="rebar-trend-badge">-</div>
+        </div>
+        <div class="price-main">
+          <div class="price-current" id="rebar-current">-</div>
+          <div class="price-change" id="rebar-change">-</div>
+        </div>
+        <div class="price-prediction-row">
+          <span class="pred-label">下週預測</span>
+          <span class="pred-value" id="rebar-prediction">-</span>
+        </div>
+        <div class="price-reason" id="rebar-reason">-</div>
+        <div class="trend-bar-track">
+          <div class="trend-bar-fill" id="rebar-trend-bar"></div>
+        </div>
+      </div>
+
+      <div class="price-card" id="card-structural">
+        <div class="price-card-top">
+          <div class="price-meta">
+            <span class="price-icon">🏗️</span>
+            <span class="price-type">型鋼</span>
+            <span class="price-unit">元 / 公噸</span>
+          </div>
+          <div class="trend-badge" id="structural-trend-badge">-</div>
+        </div>
+        <div class="price-main">
+          <div class="price-current" id="structural-current">-</div>
+          <div class="price-change" id="structural-change">-</div>
+        </div>
+        <div class="price-prediction-row">
+          <span class="pred-label">下週預測</span>
+          <span class="pred-value" id="structural-prediction">-</span>
+        </div>
+        <div class="price-reason" id="structural-reason">-</div>
+        <div class="trend-bar-track">
+          <div class="trend-bar-fill" id="structural-trend-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exchange Rate Banner -->
+    <div class="exchange-banner card">
+      <div class="exchange-item">
+        <div class="exchange-label">💱 USD / TWD 匯率</div>
+        <div class="exchange-value" id="exchange-rate">-</div>
+      </div>
+      <div class="exchange-divider"></div>
+      <div class="exchange-item exchange-impact-item">
+        <div class="exchange-label">匯率對鋼價影響</div>
+        <div class="exchange-impact" id="exchange-impact">-</div>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="card chart-card">
+      <div class="card-header">
+        <span class="card-icon">📈</span>
+        <h2 class="section-title">近期價格走勢</h2>
+        <div class="chart-legend">
+          <span class="legend-dot" style="background:#f0a500"></span><span>廢鋼</span>
+          <span class="legend-dot" style="background:#388bfd"></span><span>鋼筋</span>
+          <span class="legend-dot" style="background:#3fb950"></span><span>型鋼</span>
+        </div>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="price-chart"></canvas>
+      </div>
+    </div>
+
+    <!-- Analysis Grid -->
+    <div class="analysis-grid">
+      <div class="card analysis-card">
+        <div class="card-header">
+          <span class="card-icon">📊</span>
+          <h2 class="section-title">利差試算分析</h2>
+        </div>
+        <p id="spread-analysis" class="analysis-text">-</p>
+      </div>
+
+      <div class="card analysis-card">
+        <div class="card-header">
+          <span class="card-icon">🔮</span>
+          <h2 class="section-title">本週走勢預測</h2>
+        </div>
+        <p id="weekly-trend" class="analysis-text">-</p>
+      </div>
+
+      <div class="card analysis-card full-width">
+        <div class="card-header">
+          <span class="card-icon">🌐</span>
+          <h2 class="section-title">國際鋼鐵市場大局觀</h2>
+        </div>
+        <p id="international-outlook" class="analysis-text">-</p>
+      </div>
+
+      <div class="card analysis-card risk-card">
+        <div class="card-header">
+          <span class="card-icon">⚠️</span>
+          <h2 class="section-title">主要風險因素</h2>
+        </div>
+        <ul id="risk-factors" class="risk-list"></ul>
+      </div>
+    </div>
+
+    <!-- News Sources -->
+    <div class="card news-card">
+      <div class="card-header">
+        <span class="card-icon">📰</span>
+        <h2 class="section-title">本日參考新聞</h2>
+        <a href="https://steelnews.com.tw" target="_blank" rel="noopener" class="news-source-link">steelnews.com.tw ↗</a>
+      </div>
+      <div id="news-list" class="news-list"></div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p class="footer-disclaimer">⚠ 本報告由 AI 模型自動分析生成，僅供參考，不構成任何投資建議。實際交易請依官方公告為準。</p>
+      <p class="footer-meta">
+        數據來源：<a href="https://steelnews.com.tw" target="_blank" rel="noopener">steelnews.com.tw</a>
+        &nbsp;|&nbsp; 分析引擎：<span id="model-name">-</span>
+        &nbsp;|&nbsp; <a href="https://github.com/lijingchiu/steelweb" target="_blank" rel="noopener">GitHub ↗</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
