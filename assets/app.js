@@ -255,7 +255,7 @@ async function triggerWorkflow() {
   try {
     showRunStatus('loading', '⏳ 觸發分析中...');
     const dispatchRes = await fetch(
-      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${WORKFLOW}/dispatches`,
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${encodeURIComponent(WORKFLOW)}/dispatches`,
       {
         method: 'POST',
         headers: ghHeaders,
