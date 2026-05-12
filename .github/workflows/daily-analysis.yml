@@ -2,7 +2,6 @@ name: Daily Steel Price Analysis
 
 on:
   schedule:
-    # 00:00 UTC = 08:00 Taiwan Time (CST, UTC+8)
     - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
@@ -44,9 +43,8 @@ jobs:
         run: |
           DATE=$(TZ='Asia/Taipei' date +%Y-%m-%d)
           echo "today=$DATE" >> $GITHUB_OUTPUT
-          if [ -f "data/history/${DATE}.json" ] && [ "${{ github.event.inputs.force_run }}" != "true" ]; then
+          if [ -f "data/history/${DATE}.json" ] && [ "${{ inputs.force_run }}" != "true" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
-            echo "Analysis for ${DATE} already exists, skipping."
           else
             echo "skip=false" >> $GITHUB_OUTPUT
           fi
@@ -55,8 +53,7 @@ jobs:
         if: steps.check_today.outputs.skip != 'true'
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        run: |
-          python scripts/analyze.py
+        run: python scripts/analyze.py
 
       - name: Commit and push updated data
         if: steps.check_today.outputs.skip != 'true'
@@ -64,22 +61,17 @@ jobs:
           git config user.name "Steel Analysis Bot"
           git config user.email "steel-bot@users.noreply.github.com"
           git add data/
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "data: steel price analysis ${{ steps.check_today.outputs.today }}"
-            git push origin main
-          fi
+          git diff --cached --quiet || git commit -m "data: steel price analysis ${{ steps.check_today.outputs.today }}" && git push origin main
 
       - name: Summary
         run: |
-          echo "### Analysis Results" >> $GITHUB_STEP_SUMMARY
           if [ -f data/latest.json ]; then
-            DATE=$(python3 -c "import json; d=json.load(open('data/latest.json')); print(d.get('date','?'))")
-            CONF=$(python3 -c "import json; d=json.load(open('data/latest.json')); print(d.get('confidence','?'))")
-            echo "- **Date**: $DATE" >> $GITHUB_STEP_SUMMARY
-            echo "- **Confidence**: $CONF" >> $GITHUB_STEP_SUMMARY
-            echo "- **Model**: $(python3 -c "import json; d=json.load(open('data/latest.json')); print(d.get('model_used','?'))")" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "No data file found." >> $GITHUB_STEP_SUMMARY
+            echo "### Analysis Results" >> $GITHUB_STEP_SUMMARY
+            python3 -c "
+import json
+d = json.load(open('data/latest.json'))
+print(f\"- **Date**: {d.get('date','?')}\")
+print(f\"- **Confidence**: {d.get('confidence','?')}\")
+print(f\"- **Model**: {d.get('model_used','?')}\")
+" >> $GITHUB_STEP_SUMMARY
           fi

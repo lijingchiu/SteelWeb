@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', loadData);
 
 const GH_OWNER = 'lijingchiu';
 const GH_REPO  = 'SteelWeb';
-const WORKFLOW = 'daily-analysis.yml';
+const WORKFLOW = '.github/workflows/daily-analysis.yml';
 const PAT_KEY  = 'steel_gh_pat';
 
 function openRunModal() {
