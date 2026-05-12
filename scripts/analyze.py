@@ -15,7 +15,12 @@ from bs4 import BeautifulSoup
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-MODEL = "meta-llama/llama-3.3-70b-instruct:free"
+MODELS = [
+    "meta-llama/llama-3.3-70b-instruct:free",
+    "google/gemma-3-27b-it:free",
+    "deepseek/deepseek-r1:free",
+    "mistralai/mistral-7b-instruct:free",
+]
 TW_TZ = timezone(timedelta(hours=8))
 
 HEADERS = {
@@ -176,52 +181,61 @@ def call_openrouter(content: str, date_str: str) -> dict | None:
   "confidence": "<high|medium|low>"
 }}"""
 
-    req_body = {
-        "model": MODEL,
-        "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 2500,
-        "temperature": 0.25,
-    }
     req_headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://lijingchiu.github.io/steelweb",
+        "HTTP-Referer": "https://lijingchiu.github.io/SteelWeb",
         "X-Title": "Taiwan Steel Price Analysis",
     }
 
-    for attempt in range(3):
-        try:
-            log(f"Calling OpenRouter (attempt {attempt + 1}/3)...")
-            resp = requests.post(
-                OPENROUTER_URL,
-                headers=req_headers,
-                json=req_body,
-                timeout=90,
-            )
-            resp.raise_for_status()
-            data = resp.json()
+    for model in MODELS:
+        log(f"Trying model: {model}")
+        req_body = {
+            "model": model,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": 2500,
+            "temperature": 0.25,
+        }
+        for attempt in range(2):
+            try:
+                log(f"  Calling OpenRouter (attempt {attempt + 1}/2)...")
+                resp = requests.post(
+                    OPENROUTER_URL,
+                    headers=req_headers,
+                    json=req_body,
+                    timeout=90,
+                )
+                if resp.status_code == 429:
+                    retry_after = int(resp.headers.get("Retry-After", 15))
+                    wait = min(retry_after, 30)
+                    log(f"  429 rate limited, waiting {wait}s then trying next model")
+                    time.sleep(wait)
+                    break  # skip remaining attempts for this model
+                resp.raise_for_status()
+                data = resp.json()
 
-            raw = data["choices"][0]["message"]["content"].strip()
-            log(f"Got response ({len(raw)} chars)")
+                raw = data["choices"][0]["message"]["content"].strip()
+                log(f"  Got response ({len(raw)} chars) from {model}")
 
-            start = raw.find('{')
-            end = raw.rfind('}') + 1
-            if start >= 0 and end > start:
-                parsed = json.loads(raw[start:end])
-                return parsed
-            else:
-                log(f"Warning: no JSON found in response")
+                start = raw.find('{')
+                end = raw.rfind('}') + 1
+                if start >= 0 and end > start:
+                    parsed = json.loads(raw[start:end])
+                    parsed["model_used"] = model
+                    return parsed
+                else:
+                    log("  Warning: no JSON found in response")
 
-        except json.JSONDecodeError as e:
-            log(f"JSON parse error: {e}")
-        except Exception as e:
-            log(f"OpenRouter error: {e}")
+            except json.JSONDecodeError as e:
+                log(f"  JSON parse error: {e}")
+            except Exception as e:
+                log(f"  OpenRouter error: {e}")
 
-        if attempt < 2:
-            wait = 10 * (attempt + 1)
-            log(f"Retrying in {wait}s...")
-            time.sleep(wait)
+            if attempt == 0:
+                log("  Retrying in 10s...")
+                time.sleep(10)
 
+    log("FATAL: all models exhausted")
     return None
 
 
@@ -279,7 +293,7 @@ def main():
     output = {
         "generated_at": dt_str,
         "date": date_str,
-        "model_used": MODEL,
+        "model_used": analysis.pop("model_used", MODELS[0]),
         "news_count": len(articles),
         "news_sources": articles[:12],
         **analysis,
