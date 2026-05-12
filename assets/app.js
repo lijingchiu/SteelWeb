@@ -273,17 +273,16 @@ async function triggerWorkflow() {
     const workflowId = wf ? wf.id : WORKFLOW;
 
     if (!wf) {
-      // Workflow not in list — it may not be registered yet, try by filename anyway
       showRunStatus('loading', `⏳ Workflow 未在列表中（共 ${listData.total_count ?? 0} 個），嘗試直接觸發...`);
     }
 
-    // Step 2: dispatch
+    // Step 2: dispatch (no inputs body — force_run is optional)
     const dispatchRes = await fetch(
       `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${workflowId}/dispatches`,
       {
         method: 'POST',
         headers: ghHeaders,
-        body: JSON.stringify({ ref: 'main', inputs: { force_run: 'true' } }),
+        body: JSON.stringify({ ref: 'main' }),
       }
     );
 
@@ -301,7 +300,8 @@ async function triggerWorkflow() {
       showRunStatus('error', `❌ GitHub 尚未識別此 workflow。請至 Actions 頁面手動執行一次以啟用。已知 workflows：${paths}`);
       btn.disabled = false;
     } else if (dispatchRes.status === 422) {
-      showRunStatus('error', '❌ 請求被拒絕，請確認 main 分支存在且 workflow 有 workflow_dispatch 觸發器');
+      const body = await dispatchRes.json().catch(() => ({}));
+      showRunStatus('error', `❌ 請求被拒絕 (422)：${body.message || ''}`);
       btn.disabled = false;
     } else {
       const body = await dispatchRes.json().catch(() => ({}));
