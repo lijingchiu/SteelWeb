@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', loadData);
 
 const GH_OWNER = 'lijingchiu';
 const GH_REPO  = 'SteelWeb';
-const WORKFLOW = '.github/workflows/daily-analysis.yml';
+const WORKFLOW = 'daily-analysis.yml';
 const PAT_KEY  = 'steel_gh_pat';
 
 function openRunModal() {
@@ -253,9 +253,33 @@ async function triggerWorkflow() {
   };
 
   try {
-    showRunStatus('loading', '⏳ 觸發分析中...');
+    // Step 1: verify PAT and find numeric workflow ID
+    showRunStatus('loading', '⏳ 驗證 Token 並查詢 workflow...');
+    const listRes = await fetch(
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows`,
+      { headers: ghHeaders }
+    );
+
+    if (listRes.status === 401) { showRunStatus('error', '❌ PAT 無效或已過期，請重新確認 Token'); btn.disabled = false; return; }
+    if (listRes.status === 403) { showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限'); btn.disabled = false; return; }
+    if (!listRes.ok) {
+      const b = await listRes.json().catch(() => ({}));
+      showRunStatus('error', `❌ API 錯誤 ${listRes.status}：${b.message || '無法取得 workflow 列表'}`);
+      btn.disabled = false; return;
+    }
+
+    const listData = await listRes.json();
+    const wf = (listData.workflows || []).find(w => w.path && w.path.endsWith(WORKFLOW));
+    const workflowId = wf ? wf.id : WORKFLOW;
+
+    if (!wf) {
+      // Workflow not in list — it may not be registered yet, try by filename anyway
+      showRunStatus('loading', `⏳ Workflow 未在列表中（共 ${listData.total_count ?? 0} 個），嘗試直接觸發...`);
+    }
+
+    // Step 2: dispatch
     const dispatchRes = await fetch(
-      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${encodeURIComponent(WORKFLOW)}/dispatches`,
+      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${workflowId}/dispatches`,
       {
         method: 'POST',
         headers: ghHeaders,
@@ -273,7 +297,8 @@ async function triggerWorkflow() {
       showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限');
       btn.disabled = false;
     } else if (dispatchRes.status === 404) {
-      showRunStatus('error', '❌ 找不到 workflow，請至 GitHub 倉庫 Settings → Actions → General 確認 Actions 已啟用');
+      const paths = (listData.workflows || []).map(w => w.path).join(', ') || '（無）';
+      showRunStatus('error', `❌ GitHub 尚未識別此 workflow。請至 Actions 頁面手動執行一次以啟用。已知 workflows：${paths}`);
       btn.disabled = false;
     } else if (dispatchRes.status === 422) {
       showRunStatus('error', '❌ 請求被拒絕，請確認 main 分支存在且 workflow 有 workflow_dispatch 觸發器');
