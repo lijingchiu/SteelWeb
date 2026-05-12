@@ -7,7 +7,6 @@ import json
 import os
 import sys
 import time
-import re
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
@@ -74,11 +73,9 @@ def scrape_steelnews() -> tuple[list[dict], str]:
 
     soup = BeautifulSoup(html, 'lxml')
 
-    # Remove script/style noise
     for tag in soup(['script', 'style', 'nav', 'footer']):
         tag.decompose()
 
-    # Extract article links with titles
     seen = set()
     for tag in soup.find_all(['a', 'h1', 'h2', 'h3', 'h4', 'p']):
         text = tag.get_text(strip=True)
@@ -98,7 +95,6 @@ def scrape_steelnews() -> tuple[list[dict], str]:
 
         articles.append({'title': text, 'url': href})
 
-    # Try fetching 3 article pages for richer content
     article_pages_content = []
     for art in articles[:5]:
         if art['url'] and 'steelnews.com.tw' in art['url']:
@@ -113,13 +109,11 @@ def scrape_steelnews() -> tuple[list[dict], str]:
                 article_pages_content.append('\n'.join(relevant[:40]))
             time.sleep(0.5)
 
-    # Main page text
     main_text = soup.get_text(separator='\n', strip=True)
     lines = [l.strip() for l in main_text.split('\n') if len(l.strip()) > 5]
     relevant_main = [l for l in lines if any(k in l for k in STEEL_KEYWORDS)]
     content_lines.extend(relevant_main[:80])
 
-    # Add article pages
     for pc in article_pages_content:
         content_lines.append('\n--- 文章內容 ---\n' + pc)
 
@@ -210,7 +204,6 @@ def call_openrouter(content: str, date_str: str) -> dict | None:
             raw = data["choices"][0]["message"]["content"].strip()
             log(f"Got response ({len(raw)} chars)")
 
-            # Extract JSON block
             start = raw.find('{')
             end = raw.rfind('}') + 1
             if start >= 0 and end > start:
@@ -246,7 +239,6 @@ def update_chart_data(date_str: str, prices: dict):
         cd["rebar"].append(prices.get("rebar", {}).get("current_estimate"))
         cd["structural_steel"].append(prices.get("structural_steel", {}).get("current_estimate"))
 
-        # Keep last 90 days
         if len(cd["dates"]) > 90:
             cd["dates"] = cd["dates"][-90:]
             cd["scrap_steel"] = cd["scrap_steel"][-90:]
@@ -265,7 +257,6 @@ def main():
 
     log(f"=== Steel Price Analysis: {date_str} ===")
 
-    # Fetch news
     articles, content = scrape_steelnews()
     log(f"Scraped {len(articles)} articles, {len(content)} chars of content")
 
@@ -276,18 +267,15 @@ def main():
             "美元/台幣匯率等因素，進行合理推估與分析。"
         )
 
-    # Build final content string
     article_titles = "\n".join(f"  - {a['title']}" for a in articles)
     full_content = f"【新聞標題列表】\n{article_titles}\n\n【網頁擷取內容】\n{content}"
 
-    # Analyze
     analysis = call_openrouter(full_content, date_str)
 
     if not analysis:
         log("FATAL: Could not obtain analysis from OpenRouter")
         sys.exit(1)
 
-    # Build output
     output = {
         "generated_at": dt_str,
         "date": date_str,
@@ -297,24 +285,19 @@ def main():
         **analysis,
     }
 
-    # Ensure data directories
     Path("data/history").mkdir(parents=True, exist_ok=True)
 
-    # Save latest
     with open("data/latest.json", "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
     log("Saved data/latest.json")
 
-    # Save history
     hist_path = f"data/history/{date_str}.json"
     with open(hist_path, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
     log(f"Saved {hist_path}")
 
-    # Update chart data
     update_chart_data(date_str, analysis.get("prices", {}))
 
-    # Update history index
     idx_path = Path("data/history-index.json")
     try:
         index = json.loads(idx_path.read_text())

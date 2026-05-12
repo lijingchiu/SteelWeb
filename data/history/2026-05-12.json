@@ -4,30 +4,12 @@
   "model_used": "meta-llama/llama-3.3-70b-instruct:free",
   "news_count": 8,
   "news_sources": [
-    {
-      "title": "台灣廢鋼報價本週維持觀望 下游需求疲弱",
-      "url": "https://steelnews.com.tw"
-    },
-    {
-      "title": "中鋼公告5月鋼筋盤價 較上月小幅調降",
-      "url": "https://steelnews.com.tw"
-    },
-    {
-      "title": "美元走強衝擊進口廢鋼成本 匯率貶值壓縮利差",
-      "url": "https://steelnews.com.tw"
-    },
-    {
-      "title": "中國鋼鐵產能過剩問題持續 出口壓力增加",
-      "url": "https://steelnews.com.tw"
-    },
-    {
-      "title": "日本廢鋼出口價回穩 亞洲市場止跌觀望",
-      "url": "https://steelnews.com.tw"
-    },
-    {
-      "title": "型鋼市場需求平穩 工程標案帶動部分採購",
-      "url": "https://steelnews.com.tw"
-    }
+    {"title": "台灣廢鋼報價本週維持觀望 下游需求疲弱", "url": "https://steelnews.com.tw"},
+    {"title": "中鋼公告5月鋼筋盤價 較上月小幅調降", "url": "https://steelnews.com.tw"},
+    {"title": "美元走強衝擊進口廢鋼成本 匯率貶值壓縮利差", "url": "https://steelnews.com.tw"},
+    {"title": "中國鋼鐵產能過剩問題持續 出口壓力增加", "url": "https://steelnews.com.tw"},
+    {"title": "日本廢鋼出口價回穩 亞洲市場止跌觀望", "url": "https://steelnews.com.tw"},
+    {"title": "型鋼市場需求平穩 工程標案帶動部分採購", "url": "https://steelnews.com.tw"}
   ],
   "prices": {
     "scrap_steel": {
