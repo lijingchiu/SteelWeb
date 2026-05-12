@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 MODELS = [
-    "meta-llama/llama-3.3-70b-instruct:free",
+    "google/gemini-2.5-flash",
     "openai/gpt-4o-mini",
 ]
 TW_TZ = timezone(timedelta(hours=8))
@@ -208,7 +208,7 @@ def call_openrouter(content: str, date_str: str) -> dict | None:
                     wait = min(retry_after, 30)
                     log(f"  429 rate limited, waiting {wait}s then trying next model")
                     time.sleep(wait)
-                    break  # skip remaining attempts for this model
+                    break
                 resp.raise_for_status()
                 data = resp.json()
 
