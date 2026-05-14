@@ -8,7 +8,7 @@ on:
       force_run:
         description: 'Force re-run even if data already exists today'
         required: false
-        default: 'false'
+        default: 'true'
 
 permissions:
   contents: write
