@@ -44,7 +44,7 @@ METALTRADE_HEADERS = {
     ),
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
     "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-    "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Encoding": "gzip, deflate",
     "Connection": "keep-alive",
     "Upgrade-Insecure-Requests": "1",
     "Sec-Fetch-Dest": "document",
@@ -219,10 +219,13 @@ def fetch_metaltrade_series(session: requests.Session, series_id: int, period: s
         try:
             resp = session.get(url, headers=METALTRADE_HEADERS, timeout=25)
             log(f"    GET {url} -> HTTP {resp.status_code}")
+            log(f"    Content-Encoding: {resp.headers.get('Content-Encoding', '(none)')}")
+            log(f"    Content-Type: {resp.headers.get('Content-Type', '(none)')}")
             resp.raise_for_status()
             resp.encoding = resp.apparent_encoding or 'utf-8'
             html = resp.text
             log(f"    Response size: {len(html)} bytes")
+            log(f"    HTML preview: {repr(html[:200])}")
             break
         except Exception as e:
             log(f"    Warning: {url} failed: {e}")
@@ -323,9 +326,6 @@ def scrape_metaltrade_taiwan() -> dict:
 
     session = requests.Session()
     try:
-        r0 = session.get(f"{METALTRADE_BASE}/", headers=METALTRADE_HEADERS, timeout=15)
-        log(f"  Warm-up GET / -> HTTP {r0.status_code}")
-        time.sleep(0.8)
         r1 = session.get(f"{METALTRADE_BASE}/ste/domestic/9/6m/", headers=METALTRADE_HEADERS, timeout=15)
         log(f"  Warm-up GET /ste/domestic/9/6m/ -> HTTP {r1.status_code}")
         time.sleep(0.5)
