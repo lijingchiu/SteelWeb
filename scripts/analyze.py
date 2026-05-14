@@ -4,6 +4,8 @@ Taiwan Steel Price Analysis
 Fetches actual prices from chart.metaltrade.tw and news from steelnews.com.tw,
 then analyzes via OpenRouter API.
 """
+import ast
+import base64
 import json
 import os
 import re
@@ -82,10 +84,131 @@ def fetch_page(url: str, timeout: int = 15) -> str | None:
         return None
 
 
+def _parse_date_to_month(date_str: str) -> str | None:
+    """Convert various date formats to YYYY-MM string."""
+    for fmt in ("%Y-%m-%d", "%Y/%m/%d", "%Y-%m", "%Y/%m"):
+        try:
+            return datetime.strptime(date_str.strip(), fmt).strftime("%Y-%m")
+        except ValueError:
+            pass
+    m = re.search(r'(\d{4})[/\-年](\d{1,2})', date_str)
+    if m:
+        return f"{m.group(1)}-{m.group(2).zfill(2)}"
+    return None
+
+
+def _parse_page_data(html: str, series_id: int) -> tuple[str | None, float | None, float | None]:
+    """
+    Strategy 0 (primary): parse <script type="application/json" id="page-data">.
+    The payload["a"] field is a base64-encoded Python literal:
+      b'...' → strip b' and ' → base64.b64decode → ast.literal_eval
+    Returns {'X1': [dates], 'Y1': {'data': [values]}}
+    """
+    soup = BeautifulSoup(html, 'lxml')
+    tag = soup.find('script', {'type': 'application/json', 'id': 'page-data'})
+    if not tag:
+        log(f"    [page-data] script#page-data not found for series {series_id}")
+        return None, None, None
+
+    try:
+        payload = json.loads(tag.string or "")
+    except (json.JSONDecodeError, TypeError) as e:
+        log(f"    [page-data] json.loads failed: {e}")
+        return None, None, None
+
+    raw_a = payload.get("a", "")
+    if not raw_a:
+        log(f"    [page-data] 'a' field missing or empty")
+        return None, None, None
+
+    # Strip Python bytes repr wrapper: b'...' or b"..."
+    b64_str = raw_a
+    if (b64_str.startswith("b'") and b64_str.endswith("'")):
+        b64_str = b64_str[2:-1]
+    elif (b64_str.startswith('b"') and b64_str.endswith('"')):
+        b64_str = b64_str[2:-1]
+
+    try:
+        decoded = base64.b64decode(b64_str).decode("utf-8")
+    except Exception as e:
+        log(f"    [page-data] base64 decode failed: {e}")
+        return None, None, None
+
+    try:
+        data = ast.literal_eval(decoded)
+    except Exception as e:
+        log(f"    [page-data] ast.literal_eval failed: {e}")
+        log(f"    [page-data] decoded (first 300): {decoded[:300]}")
+        return None, None, None
+
+    try:
+        x1 = data["X1"]
+        y1_vals = data["Y1"]["data"]
+    except (KeyError, TypeError) as e:
+        log(f"    [page-data] X1/Y1.data not found: {e}, keys={list(data.keys()) if isinstance(data, dict) else type(data)}")
+        return None, None, None
+
+    if not x1 or not y1_vals:
+        log(f"    [page-data] X1 or Y1.data is empty")
+        return None, None, None
+
+    month_str = _parse_date_to_month(str(x1[-1]))
+    if not month_str:
+        log(f"    [page-data] cannot parse date: {x1[-1]}")
+        return None, None, None
+
+    try:
+        latest_val = float(y1_vals[-1])
+        prev_val = float(y1_vals[-2]) if len(y1_vals) >= 2 else None
+    except (ValueError, TypeError) as e:
+        log(f"    [page-data] value conversion failed: {e}")
+        return None, None, None
+
+    log(f"    [page-data] OK → {month_str} = {latest_val} (prev: {prev_val})")
+    return month_str, latest_val, prev_val
+
+
+def _parse_formula(html: str, series_id: int) -> tuple[str | None, float | None, float | None]:
+    """
+    Strategy 1 (fallback): parse <p id="formula"> plain-text description.
+    Examples:
+      2026年4月平均價格為新台幣10.2元/公斤
+      2026年2月臺灣粗鋼產量為111.1萬公噸
+    """
+    soup = BeautifulSoup(html, 'lxml')
+    formula = soup.find('p', id='formula')
+    if not formula:
+        log(f"    [formula] p#formula not found for series {series_id}")
+        return None, None, None
+
+    text = formula.get_text(strip=True)
+    log(f"    [formula] text: {text[:300]}")
+
+    m = re.search(r'(\d{4})年(\d{1,2})月[^0-9]*?([\d,]+\.?\d*)', text)
+    if m:
+        month_str = f"{m.group(1)}-{m.group(2).zfill(2)}"
+        try:
+            val = float(m.group(3).replace(',', ''))
+            log(f"    [formula] OK → {month_str} = {val}")
+            return month_str, val, None
+        except ValueError:
+            pass
+
+    log(f"    [formula] could not extract year/month/value")
+    return None, None, None
+
+
 def fetch_metaltrade_series(session: requests.Session, series_id: int, period: str = "3m") -> tuple[str | None, float | None, float | None]:
     """
     Fetches a single data series from metaltrade.tw.
     Returns (month_str, latest_value, prev_month_value) or (None, None, None) on failure.
+
+    Parse priority:
+      0. script#page-data  (base64 Python literal)
+      1. p#formula         (plain-text description)
+      2. HTML table rows
+      3. JS labels/data arrays
+      4. JSON-like date/value pairs in script tags
     """
     urls_to_try = [
         f"{METALTRADE_BASE}/ste/domestic/{series_id}/{period}/",
@@ -108,13 +231,19 @@ def fetch_metaltrade_series(session: requests.Session, series_id: int, period: s
         log(f"  Warning: all URLs failed for series {series_id}")
         return None, None, None
 
-    # Log a snippet to help debug page structure
-    snippet = html[:500].replace('\n', ' ').strip()
-    log(f"    HTML snippet: {snippet}")
+    # Strategy 0: script#page-data (primary — base64 Python literal)
+    result = _parse_page_data(html, series_id)
+    if result[0] is not None:
+        return result
+
+    # Strategy 1: p#formula plain-text
+    result = _parse_formula(html, series_id)
+    if result[0] is not None:
+        return result
 
     soup = BeautifulSoup(html, 'lxml')
 
-    # Strategy 1: find HTML tables with date + value pairs
+    # Strategy 2: HTML table rows
     data_rows = []
     for table in soup.find_all('table'):
         for row in table.find_all('tr'):
@@ -123,23 +252,21 @@ def fetch_metaltrade_series(session: requests.Session, series_id: int, period: s
                 continue
             date_text = cells[0].get_text(strip=True)
             val_text = cells[-1].get_text(strip=True).replace(',', '').replace(' ', '')
-            date_match = re.search(r'(\d{4})[/\-年](\d{1,2})', date_text)
-            if not date_match:
+            month_str = _parse_date_to_month(date_text)
+            if not month_str:
                 continue
             try:
-                val = float(val_text)
-                month_str = f"{date_match.group(1)}-{date_match.group(2).zfill(2)}"
-                data_rows.append((month_str, val))
+                data_rows.append((month_str, float(val_text)))
             except ValueError:
                 pass
-
     if data_rows:
         data_rows.sort(key=lambda x: x[0])
         latest_month, latest_val = data_rows[-1]
         prev_val = data_rows[-2][1] if len(data_rows) >= 2 else None
+        log(f"    [table] OK → {latest_month} = {latest_val}")
         return latest_month, latest_val, prev_val
 
-    # Strategy 2: extract from embedded JavaScript chart data
+    # Strategy 3: JS labels/data arrays in script tags
     for script in soup.find_all('script'):
         text = script.get_text()
         labels_m = re.search(r'["\']?labels["\']?\s*:\s*\[([^\]]+)\]', text, re.DOTALL)
@@ -151,40 +278,39 @@ def fetch_metaltrade_series(session: requests.Session, series_id: int, period: s
             raw_vals = [v.strip() for v in data_m.group(1).split(',') if v.strip()]
             pairs = []
             for lbl, v in zip(raw_labels, raw_vals):
-                date_match = re.search(r'(\d{4})[/\-年](\d{1,2})', lbl)
-                if date_match:
-                    month_str = f"{date_match.group(1)}-{date_match.group(2).zfill(2)}"
-                    pairs.append((month_str, float(v)))
+                ms = _parse_date_to_month(lbl)
+                if ms:
+                    pairs.append((ms, float(v)))
             if pairs:
                 pairs.sort(key=lambda x: x[0])
                 latest_month, latest_val = pairs[-1]
                 prev_val = pairs[-2][1] if len(pairs) >= 2 else None
+                log(f"    [js-array] OK → {latest_month} = {latest_val}")
                 return latest_month, latest_val, prev_val
         except (ValueError, IndexError):
             pass
 
-    # Strategy 3: look for JSON-like data arrays in any script tag
+    # Strategy 4: JSON-like [date, value] pairs in script tags
     for script in soup.find_all('script'):
         text = script.get_text()
-        pattern = r'\[\s*["\'](\d{4}[/\-]\d{1,2})["\'],\s*([\d.]+)\s*\]'
-        matches = re.findall(pattern, text)
+        matches = re.findall(r'\[\s*["\'](\d{4}[/\-]\d{1,2})["\'],\s*([\d.]+)\s*\]', text)
         if matches:
             pairs = []
             for lbl, v in matches:
-                try:
-                    lbl_clean = lbl.replace('/', '-')
-                    parts = lbl_clean.split('-')
-                    month_str = f"{parts[0]}-{parts[1].zfill(2)}"
-                    pairs.append((month_str, float(v)))
-                except (ValueError, IndexError):
-                    pass
+                ms = _parse_date_to_month(lbl)
+                if ms:
+                    try:
+                        pairs.append((ms, float(v)))
+                    except ValueError:
+                        pass
             if pairs:
                 pairs.sort(key=lambda x: x[0])
                 latest_month, latest_val = pairs[-1]
                 prev_val = pairs[-2][1] if len(pairs) >= 2 else None
+                log(f"    [json-pairs] OK → {latest_month} = {latest_val}")
                 return latest_month, latest_val, prev_val
 
-    log(f"  Warning: could not parse data for series {series_id}")
+    log(f"  Warning: all parse strategies failed for series {series_id}")
     return None, None, None
 
 
