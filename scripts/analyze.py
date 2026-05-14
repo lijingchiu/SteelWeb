@@ -52,12 +52,12 @@ METALTRADE_HEADERS = {
 }
 
 TAIWAN_CATEGORIES = [
-    {"id": 13, "key": "crude_steel_production", "name": "臺灣粗鋼產量",     "unit": "萬噸"},
-    {"id": 14, "key": "north_scrap_price",       "name": "北部廢鋼大盤收購價", "unit": "元/公斤"},
-    {"id": 15, "key": "billet_price",            "name": "小鋼胚中級出廠價",  "unit": "元/公噸"},
-    {"id": 16, "key": "fengxing_rebar_price",    "name": "豐興鋼筋盤價",      "unit": "元/公噸"},
-    {"id": 17, "key": "h_beam_price",            "name": "東鋼H型鋼流通價",   "unit": "元/公噸"},
-    {"id": 18, "key": "csc_wire_rod_price",      "name": "中鋼棒線盤價",      "unit": "元/公噸"},
+    {"id":  9, "period": "6m", "key": "crude_steel_production", "name": "臺灣粗鋼產量",     "unit": "萬噸"},
+    {"id": 10, "period": "3m", "key": "north_scrap_price",       "name": "北部廢鋼大盤收購價", "unit": "元/公斤"},
+    {"id": 11, "period": "3m", "key": "billet_price",            "name": "小鋼胚中級出廠價",  "unit": "元/公噸"},
+    {"id": 12, "period": "3m", "key": "fengxing_rebar_price",    "name": "豐興鋼筋盤價",      "unit": "元/公噸"},
+    {"id": 13, "period": "3m", "key": "h_beam_price",            "name": "東鋼H型鋼流通價",   "unit": "元/公噸"},
+    {"id": 14, "period": "3m", "key": "csc_wire_rod_price",      "name": "中鋼棒線盤價",      "unit": "元/公噸"},
 ]
 
 STEEL_KEYWORDS = [
@@ -82,20 +82,35 @@ def fetch_page(url: str, timeout: int = 15) -> str | None:
         return None
 
 
-def fetch_metaltrade_series(session: requests.Session, series_id: int) -> tuple[str | None, float | None, float | None]:
+def fetch_metaltrade_series(session: requests.Session, series_id: int, period: str = "3m") -> tuple[str | None, float | None, float | None]:
     """
     Fetches a single data series from metaltrade.tw.
     Returns (month_str, latest_value, prev_month_value) or (None, None, None) on failure.
     """
-    url = f"{METALTRADE_BASE}/ste/domestic/{series_id}/"
-    try:
-        resp = session.get(url, headers=METALTRADE_HEADERS, timeout=25)
-        resp.raise_for_status()
-        resp.encoding = resp.apparent_encoding or 'utf-8'
-        html = resp.text
-    except Exception as e:
-        log(f"  Warning: fetch series {series_id} failed: {e}")
+    urls_to_try = [
+        f"{METALTRADE_BASE}/ste/domestic/{series_id}/{period}/",
+        f"{METALTRADE_BASE}/ste/domestic/{series_id}/",
+    ]
+    html = None
+    for url in urls_to_try:
+        try:
+            resp = session.get(url, headers=METALTRADE_HEADERS, timeout=25)
+            log(f"    GET {url} -> HTTP {resp.status_code}")
+            resp.raise_for_status()
+            resp.encoding = resp.apparent_encoding or 'utf-8'
+            html = resp.text
+            log(f"    Response size: {len(html)} bytes")
+            break
+        except Exception as e:
+            log(f"    Warning: {url} failed: {e}")
+
+    if not html:
+        log(f"  Warning: all URLs failed for series {series_id}")
         return None, None, None
+
+    # Log a snippet to help debug page structure
+    snippet = html[:500].replace('\n', ' ').strip()
+    log(f"    HTML snippet: {snippet}")
 
     soup = BeautifulSoup(html, 'lxml')
 
@@ -151,7 +166,6 @@ def fetch_metaltrade_series(session: requests.Session, series_id: int) -> tuple[
     # Strategy 3: look for JSON-like data arrays in any script tag
     for script in soup.find_all('script'):
         text = script.get_text()
-        # Pattern: ["YYYY/MM", value] or ["YYYY-MM", value]
         pattern = r'\[\s*["\'](\d{4}[/\-]\d{1,2})["\'],\s*([\d.]+)\s*\]'
         matches = re.findall(pattern, text)
         if matches:
@@ -183,19 +197,21 @@ def scrape_metaltrade_taiwan() -> dict:
 
     session = requests.Session()
     try:
-        session.get(f"{METALTRADE_BASE}/", headers=METALTRADE_HEADERS, timeout=15)
+        r0 = session.get(f"{METALTRADE_BASE}/", headers=METALTRADE_HEADERS, timeout=15)
+        log(f"  Warm-up GET / -> HTTP {r0.status_code}")
         time.sleep(0.8)
-        session.get(f"{METALTRADE_BASE}/ste/domestic/13/", headers=METALTRADE_HEADERS, timeout=15)
+        r1 = session.get(f"{METALTRADE_BASE}/ste/domestic/9/6m/", headers=METALTRADE_HEADERS, timeout=15)
+        log(f"  Warm-up GET /ste/domestic/9/6m/ -> HTTP {r1.status_code}")
         time.sleep(0.5)
-    except Exception:
-        pass
+    except Exception as e:
+        log(f"  Warm-up failed: {e}")
 
     result = {}
     data_month = None
 
     for cat in TAIWAN_CATEGORIES:
         time.sleep(0.6)
-        month_str, latest_val, prev_val = fetch_metaltrade_series(session, cat["id"])
+        month_str, latest_val, prev_val = fetch_metaltrade_series(session, cat["id"], cat.get("period", "3m"))
         if month_str and latest_val is not None:
             mom_change = round(latest_val - prev_val, 4) if prev_val is not None else None
             result[cat["key"]] = {
