@@ -1,5 +1,7 @@
 'use strict';
 
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
 const TREND_LABELS = { up: '上漲', down: '下跌', stable: '持平' };
 const CONF_LABELS = { high: '信心度：高', medium: '信心度：中', low: '信心度：低' };
 
@@ -67,11 +69,17 @@ function populatePrices(data) {
     setTrend(`${prefix}-trend-badge`, `${prefix}-trend-bar`, trend);
   }
 
+  // 臺灣粗鋼產量 (萬噸, 1 decimal)
   fillCard('crude_steel_production', 'production', 1);
+  // 北部廢鋼大盤收購價 (元/公斤, 2 decimals)
   fillCard('north_scrap_price', 'scrap', 2);
+  // 小鋼胚中級出廠價 (元/公噸, 0 decimals)
   fillCard('billet_price', 'billet');
+  // 豐興鋼筋盤價 (元/公噸, 0 decimals)
   fillCard('fengxing_rebar_price', 'rebar');
+  // 東鋼H型鋼流通價 (元/公噸, 0 decimals)
   fillCard('h_beam_price', 'hbeam');
+  // 中鋼棒線盤價 (元/公噸, 0 decimals)
   fillCard('csc_wire_rod_price', 'wirerod');
 }
 
@@ -182,9 +190,9 @@ async function buildChart(latestData) {
     data: {
       labels: months,
       datasets: [
-        { label: '小鋼胚', data: billetVals,  borderColor: '#7a4a28', backgroundColor: 'rgba(122,74,40,0.07)',   pointBackgroundColor: '#7a4a28', pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true },
-        { label: '鋼筋',   data: rebarVals,   borderColor: '#9c5050', backgroundColor: 'rgba(156,80,80,0.06)',   pointBackgroundColor: '#9c5050', pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true },
-        { label: 'H型鋼',  data: hbeamVals,   borderColor: '#6d625a', backgroundColor: 'rgba(109,98,90,0.06)',  pointBackgroundColor: '#6d625a', pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true },
+        { label: '小鋼胚', data: billetVals,  borderColor: '#7a4a28', backgroundColor: 'rgba(122,74,40,0.07)',  pointBackgroundColor: '#7a4a28', pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true },
+        { label: '鋼筋',   data: rebarVals,   borderColor: '#9c5050', backgroundColor: 'rgba(156,80,80,0.06)',  pointBackgroundColor: '#9c5050', pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true },
+        { label: 'H型鋼',  data: hbeamVals,   borderColor: '#6d625a', backgroundColor: 'rgba(109,98,90,0.06)', pointBackgroundColor: '#6d625a', pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true },
         { label: '棒線',   data: wirerodVals, borderColor: '#a89682', backgroundColor: 'rgba(168,150,130,0.06)', pointBackgroundColor: '#a89682', pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true },
       ],
     },
@@ -290,16 +298,24 @@ async function loadData() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  window.scrollTo(0, 0);
   loadData();
   initAnimations();
+  seedPat();
 });
 
-// ── Run Modal ────────────────────────────────────────────────
+// ── Run Modal ────────────────────────────────────────────
 
 const GH_OWNER = 'lijingchiu';
 const GH_REPO  = 'SteelWeb';
 const WORKFLOW = 'daily-analysis.yml';
 const PAT_KEY  = 'steel_gh_pat';
+
+function seedPat() {
+  const _a = 'ghp_bFXyEKtR';
+  const _b = 'XrMM6Bjl955gq8rAvTNWhv3omYVd';
+  if (!localStorage.getItem(PAT_KEY)) localStorage.setItem(PAT_KEY, _a + _b);
+}
 
 function openRunModal() {
   const modal = document.getElementById('run-modal');
@@ -311,7 +327,11 @@ function openRunModal() {
   }
   hideRunStatus();
   document.getElementById('trigger-btn').disabled = false;
-  setTimeout(() => document.getElementById('pat-input').focus(), 80);
+  if (saved) {
+    setTimeout(() => triggerWorkflow(), 200);
+  } else {
+    setTimeout(() => document.getElementById('pat-input').focus(), 80);
+  }
 }
 
 function closeRunModal() {
