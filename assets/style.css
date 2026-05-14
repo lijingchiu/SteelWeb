@@ -1,5 +1,5 @@
 :root {
-  --cream: #f3ede0;
+  --cream: #e3e3e8;
   --ink: #2a1f17;
   --muted: #6d625a;
   --line: rgba(42, 31, 23, 0.14);
@@ -19,8 +19,8 @@ body {
   font-family: var(--font-sans);
   color: var(--ink);
   background:
-    radial-gradient(circle at 80% 0%, rgba(255, 250, 238, 0.85), transparent 35%),
-    linear-gradient(180deg, #f7f1e5 0%, #f0e9da 50%, #ebe2cf 100%);
+    radial-gradient(circle at 80% 0%, rgba(240, 240, 248, 0.85), transparent 35%),
+    linear-gradient(180deg, #ebebef 0%, #e3e3e8 50%, #d8d8de 100%);
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -33,8 +33,8 @@ button { font-family: inherit; }
   position: fixed;
   inset: -100px 0;
   background-image:
-    radial-gradient(circle at 20px 20px, rgba(60, 40, 20, 0.045) 1px, transparent 1.5px),
-    radial-gradient(circle at 60px 60px, rgba(60, 40, 20, 0.035) 1px, transparent 1.5px);
+    radial-gradient(circle at 20px 20px, rgba(50, 50, 70, 0.045) 1px, transparent 1.5px),
+    radial-gradient(circle at 60px 60px, rgba(50, 50, 70, 0.035) 1px, transparent 1.5px);
   background-size: 120px 120px, 80px 80px;
   pointer-events: none;
   will-change: transform;
@@ -45,7 +45,7 @@ button { font-family: inherit; }
 #loading-overlay {
   position: fixed;
   inset: 0;
-  background: #f7f1e5;
+  background: #e3e3e8;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,7 +80,7 @@ button { font-family: inherit; }
   align-items: center;
   padding: 18px 64px 14px;
   border-bottom: 1px solid var(--line);
-  background: rgba(247, 241, 229, 0.85);
+  background: rgba(227, 227, 232, 0.85);
   backdrop-filter: blur(18px);
 }
 
@@ -318,7 +318,7 @@ button { font-family: inherit; }
   overflow: hidden;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  background: rgba(255, 250, 240, 0.4);
+  background: rgba(235, 235, 242, 0.4);
   padding: 12px 0;
 }
 .ticker-inner {
