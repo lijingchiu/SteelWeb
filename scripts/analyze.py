@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
 Taiwan Steel Price Analysis
-Fetches news from steelnews.com.tw and analyzes via OpenRouter API.
+Fetches actual prices from chart.metaltrade.tw and news from steelnews.com.tw,
+then analyzes via OpenRouter API.
 """
 import json
 import os
+import re
 import sys
 import time
 from datetime import datetime, timezone, timedelta
@@ -31,6 +33,33 @@ HEADERS = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 }
 
+METALTRADE_BASE = "https://chart.metaltrade.tw"
+METALTRADE_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "same-origin",
+    "Referer": "https://chart.metaltrade.tw/",
+}
+
+TAIWAN_CATEGORIES = [
+    {"id": 13, "key": "crude_steel_production", "name": "臺灣粗鋼產量",     "unit": "萬噸"},
+    {"id": 14, "key": "north_scrap_price",       "name": "北部廢鋼大盤收購價", "unit": "元/公斤"},
+    {"id": 15, "key": "billet_price",            "name": "小鋼胚中級出廠價",  "unit": "元/公噸"},
+    {"id": 16, "key": "fengxing_rebar_price",    "name": "豐興鋼筋盤價",      "unit": "元/公噸"},
+    {"id": 17, "key": "h_beam_price",            "name": "東鋼H型鋼流通價",   "unit": "元/公噸"},
+    {"id": 18, "key": "csc_wire_rod_price",      "name": "中鋼棒線盤價",      "unit": "元/公噸"},
+]
+
 STEEL_KEYWORDS = [
     '鋼', '鐵', '廢鋼', '鋼筋', '型鋼', '鋼價', '鋼鐵', '報價', '行情',
     '噸', '廢料', 'USD', 'TWD', '匯率', '公告', '漲', '跌', '持平',
@@ -51,6 +80,143 @@ def fetch_page(url: str, timeout: int = 15) -> str | None:
     except Exception as e:
         log(f"Warning: fetch {url} failed: {e}")
         return None
+
+
+def fetch_metaltrade_series(session: requests.Session, series_id: int) -> tuple[str | None, float | None, float | None]:
+    """
+    Fetches a single data series from metaltrade.tw.
+    Returns (month_str, latest_value, prev_month_value) or (None, None, None) on failure.
+    """
+    url = f"{METALTRADE_BASE}/ste/domestic/{series_id}/"
+    try:
+        resp = session.get(url, headers=METALTRADE_HEADERS, timeout=25)
+        resp.raise_for_status()
+        resp.encoding = resp.apparent_encoding or 'utf-8'
+        html = resp.text
+    except Exception as e:
+        log(f"  Warning: fetch series {series_id} failed: {e}")
+        return None, None, None
+
+    soup = BeautifulSoup(html, 'lxml')
+
+    # Strategy 1: find HTML tables with date + value pairs
+    data_rows = []
+    for table in soup.find_all('table'):
+        for row in table.find_all('tr'):
+            cells = row.find_all(['td', 'th'])
+            if len(cells) < 2:
+                continue
+            date_text = cells[0].get_text(strip=True)
+            val_text = cells[-1].get_text(strip=True).replace(',', '').replace(' ', '')
+            date_match = re.search(r'(\d{4})[/\-年](\d{1,2})', date_text)
+            if not date_match:
+                continue
+            try:
+                val = float(val_text)
+                month_str = f"{date_match.group(1)}-{date_match.group(2).zfill(2)}"
+                data_rows.append((month_str, val))
+            except ValueError:
+                pass
+
+    if data_rows:
+        data_rows.sort(key=lambda x: x[0])
+        latest_month, latest_val = data_rows[-1]
+        prev_val = data_rows[-2][1] if len(data_rows) >= 2 else None
+        return latest_month, latest_val, prev_val
+
+    # Strategy 2: extract from embedded JavaScript chart data
+    for script in soup.find_all('script'):
+        text = script.get_text()
+        labels_m = re.search(r'["\']?labels["\']?\s*:\s*\[([^\]]+)\]', text, re.DOTALL)
+        data_m = re.search(r'["\']?data["\']?\s*:\s*\[([^\]]+)\]', text, re.DOTALL)
+        if not (labels_m and data_m):
+            continue
+        try:
+            raw_labels = [l.strip().strip('"\'') for l in labels_m.group(1).split(',') if l.strip()]
+            raw_vals = [v.strip() for v in data_m.group(1).split(',') if v.strip()]
+            pairs = []
+            for lbl, v in zip(raw_labels, raw_vals):
+                date_match = re.search(r'(\d{4})[/\-年](\d{1,2})', lbl)
+                if date_match:
+                    month_str = f"{date_match.group(1)}-{date_match.group(2).zfill(2)}"
+                    pairs.append((month_str, float(v)))
+            if pairs:
+                pairs.sort(key=lambda x: x[0])
+                latest_month, latest_val = pairs[-1]
+                prev_val = pairs[-2][1] if len(pairs) >= 2 else None
+                return latest_month, latest_val, prev_val
+        except (ValueError, IndexError):
+            pass
+
+    # Strategy 3: look for JSON-like data arrays in any script tag
+    for script in soup.find_all('script'):
+        text = script.get_text()
+        # Pattern: ["YYYY/MM", value] or ["YYYY-MM", value]
+        pattern = r'\[\s*["\'](\d{4}[/\-]\d{1,2})["\'],\s*([\d.]+)\s*\]'
+        matches = re.findall(pattern, text)
+        if matches:
+            pairs = []
+            for lbl, v in matches:
+                try:
+                    lbl_clean = lbl.replace('/', '-')
+                    parts = lbl_clean.split('-')
+                    month_str = f"{parts[0]}-{parts[1].zfill(2)}"
+                    pairs.append((month_str, float(v)))
+                except (ValueError, IndexError):
+                    pass
+            if pairs:
+                pairs.sort(key=lambda x: x[0])
+                latest_month, latest_val = pairs[-1]
+                prev_val = pairs[-2][1] if len(pairs) >= 2 else None
+                return latest_month, latest_val, prev_val
+
+    log(f"  Warning: could not parse data for series {series_id}")
+    return None, None, None
+
+
+def scrape_metaltrade_taiwan() -> dict:
+    """
+    Fetches the 6 Taiwan domestic steel price categories from metaltrade.tw.
+    Returns a dict with the data, or carries over previous data on failure.
+    """
+    log("Fetching Taiwan prices from chart.metaltrade.tw ...")
+
+    session = requests.Session()
+    try:
+        session.get(f"{METALTRADE_BASE}/", headers=METALTRADE_HEADERS, timeout=15)
+        time.sleep(0.8)
+        session.get(f"{METALTRADE_BASE}/ste/domestic/13/", headers=METALTRADE_HEADERS, timeout=15)
+        time.sleep(0.5)
+    except Exception:
+        pass
+
+    result = {}
+    data_month = None
+
+    for cat in TAIWAN_CATEGORIES:
+        time.sleep(0.6)
+        month_str, latest_val, prev_val = fetch_metaltrade_series(session, cat["id"])
+        if month_str and latest_val is not None:
+            mom_change = round(latest_val - prev_val, 4) if prev_val is not None else None
+            result[cat["key"]] = {
+                "value": latest_val,
+                "unit": cat["unit"],
+                "mom_change": mom_change,
+                "month": month_str,
+            }
+            if data_month is None or month_str > data_month:
+                data_month = month_str
+            log(f"  {cat['name']}: {latest_val} {cat['unit']} ({month_str})")
+        else:
+            result[cat["key"]] = {
+                "value": None,
+                "unit": cat["unit"],
+                "mom_change": None,
+                "month": None,
+            }
+            log(f"  {cat['name']}: no data retrieved")
+
+    return {"data_month": data_month, **result}
 
 
 def scrape_steelnews() -> tuple[list[dict], str]:
@@ -123,59 +289,59 @@ def scrape_steelnews() -> tuple[list[dict], str]:
     return articles[:15], '\n'.join(content_lines)
 
 
-def call_openrouter(content: str, date_str: str) -> dict | None:
+def format_taiwan_prices_for_prompt(taiwan_prices: dict) -> str:
+    lines = []
+    month = taiwan_prices.get("data_month", "未知")
+    lines.append(f"【台灣鋼鐵實際報價 - 資料月份：{month}】")
+    for cat in TAIWAN_CATEGORIES:
+        key = cat["key"]
+        item = taiwan_prices.get(key, {})
+        val = item.get("value")
+        unit = item.get("unit", "")
+        mom = item.get("mom_change")
+        if val is not None:
+            mom_str = f"（月變動：{'+' if mom and mom > 0 else ''}{mom} {unit}）" if mom is not None else ""
+            lines.append(f"  {cat['name']}：{val} {unit} {mom_str}")
+        else:
+            lines.append(f"  {cat['name']}：資料待取得")
+    return "\n".join(lines)
+
+
+def call_openrouter(news_content: str, date_str: str, taiwan_prices: dict) -> dict | None:
     if not OPENROUTER_API_KEY:
         log("ERROR: OPENROUTER_API_KEY not set")
         return None
 
-    prompt = f"""你是一位台灣鋼鐵市場的資深分析師，專精廢鋼、鋼筋（螺紋鋼）、型鋼之現貨市場。
+    prices_context = format_taiwan_prices_for_prompt(taiwan_prices)
+
+    prompt = f"""你是一位台灣鋼鐵市場的資深分析師，專精廢鋼、鋼筋、型鋼之現貨市場。
 今天日期：{date_str}（台灣時間）
+
+以下是最新的台灣鋼鐵官方統計數據（來源：台灣金屬行情網）：
+{prices_context}
 
 請根據以下台灣鋼鐵新聞及市場資訊，進行專業分析：
 
 ═══════════════════════════════
-{content[:6500]}
+{news_content[:6000]}
 ═══════════════════════════════
 
 請嚴格以 JSON 格式回覆，不要輸出任何其他文字：
 
 {{
-  "prices": {{
-    "scrap_steel": {{
-      "current_estimate": <整數，元/公噸>,
-      "prediction_next_week": <整數，元/公噸>,
-      "trend": "<up|down|stable>",
-      "change_amount": <整數，可為負值，預期本週變動>,
-      "reason": "<50字內說明>"
-    }},
-    "rebar": {{
-      "current_estimate": <整數>,
-      "prediction_next_week": <整數>,
-      "trend": "<up|down|stable>",
-      "change_amount": <整數>,
-      "reason": "<50字內說明>"
-    }},
-    "structural_steel": {{
-      "current_estimate": <整數>,
-      "prediction_next_week": <整數>,
-      "trend": "<up|down|stable>",
-      "change_amount": <整數>,
-      "reason": "<50字內說明>"
-    }}
-  }},
   "exchange_rate": {{
     "usd_twd_estimate": <浮點數，如 32.50>,
     "impact_on_steel": "<匯率影響說明，100字內>"
   }},
-  "spread_analysis": "<利差試算分析，說明廢鋼至鋼筋、型鋼之加工利差，含匯率影響，200字內>",
-  "weekly_trend": "<本週走勢完整預測，含漲跌理由與幅度預估，200字內>",
+  "spread_analysis": "<利差試算分析：說明廢鋼→鋼筋→型鋼之加工利差，含匯率影響，200字內>",
+  "monthly_trend": "<下月走勢完整預測，含漲跌理由與幅度預估，200字內>",
   "international_outlook": "<國際鋼鐵市場大局觀，含中國、日本、韓國、美國市場動態，300字內>",
   "risk_factors": [
     "<風險因素1>",
     "<風險因素2>",
     "<風險因素3>"
   ],
-  "summary": "<今日市場總結，150字內>",
+  "summary": "<今日市場總結（結合官方統計數據與最新新聞），150字內>",
   "confidence": "<high|medium|low>"
 }}"""
 
@@ -237,29 +403,56 @@ def call_openrouter(content: str, date_str: str) -> dict | None:
     return None
 
 
-def update_chart_data(date_str: str, prices: dict):
+def update_chart_data(data_month: str | None, taiwan_prices: dict):
     chart_path = Path("data/chart-data.json")
     try:
         with open(chart_path) as f:
             cd = json.load(f)
     except Exception:
-        cd = {"dates": [], "scrap_steel": [], "rebar": [], "structural_steel": []}
+        cd = {}
 
-    if date_str not in cd["dates"]:
-        cd["dates"].append(date_str)
-        cd["scrap_steel"].append(prices.get("scrap_steel", {}).get("current_estimate"))
-        cd["rebar"].append(prices.get("rebar", {}).get("current_estimate"))
-        cd["structural_steel"].append(prices.get("structural_steel", {}).get("current_estimate"))
+    if "months" not in cd:
+        cd = {
+            "months": [],
+            "billet_price": [],
+            "fengxing_rebar_price": [],
+            "h_beam_price": [],
+            "csc_wire_rod_price": [],
+            "north_scrap_price": [],
+            "crude_steel_production": [],
+        }
 
-        if len(cd["dates"]) > 90:
-            cd["dates"] = cd["dates"][-90:]
-            cd["scrap_steel"] = cd["scrap_steel"][-90:]
-            cd["rebar"] = cd["rebar"][-90:]
-            cd["structural_steel"] = cd["structural_steel"][-90:]
+    if data_month and data_month not in cd.get("months", []):
+        cd["months"].append(data_month)
+        cd["billet_price"].append(taiwan_prices.get("billet_price", {}).get("value"))
+        cd["fengxing_rebar_price"].append(taiwan_prices.get("fengxing_rebar_price", {}).get("value"))
+        cd["h_beam_price"].append(taiwan_prices.get("h_beam_price", {}).get("value"))
+        cd["csc_wire_rod_price"].append(taiwan_prices.get("csc_wire_rod_price", {}).get("value"))
+        cd["north_scrap_price"].append(taiwan_prices.get("north_scrap_price", {}).get("value"))
+        cd["crude_steel_production"].append(taiwan_prices.get("crude_steel_production", {}).get("value"))
+
+        if len(cd["months"]) > 36:
+            for key in cd:
+                if isinstance(cd[key], list):
+                    cd[key] = cd[key][-36:]
 
     with open(chart_path, "w", encoding="utf-8") as f:
         json.dump(cd, f, ensure_ascii=False)
-    log(f"Updated chart-data.json ({len(cd['dates'])} data points)")
+    log(f"Updated chart-data.json ({len(cd.get('months', []))} monthly data points)")
+
+
+def carry_over_taiwan_prices() -> dict:
+    """Load previous taiwan_prices from latest.json as fallback."""
+    try:
+        with open("data/latest.json") as f:
+            prev = json.load(f)
+        tp = prev.get("taiwan_prices", {})
+        if tp and tp.get("data_month"):
+            log("Using carried-over taiwan_prices from previous run")
+            return tp
+    except Exception:
+        pass
+    return {"data_month": None}
 
 
 def main():
@@ -268,6 +461,15 @@ def main():
     dt_str = now.isoformat()
 
     log(f"=== Steel Price Analysis: {date_str} ===")
+
+    taiwan_prices = scrape_metaltrade_taiwan()
+    fetched_any = any(
+        taiwan_prices.get(cat["key"], {}).get("value") is not None
+        for cat in TAIWAN_CATEGORIES
+    )
+    if not fetched_any:
+        log("Warning: metaltrade.tw fetch returned no data, carrying over previous prices")
+        taiwan_prices = carry_over_taiwan_prices()
 
     articles, content = scrape_steelnews()
     log(f"Scraped {len(articles)} articles, {len(content)} chars of content")
@@ -282,7 +484,7 @@ def main():
     article_titles = "\n".join(f"  - {a['title']}" for a in articles)
     full_content = f"【新聞標題列表】\n{article_titles}\n\n【網頁擷取內容】\n{content}"
 
-    analysis = call_openrouter(full_content, date_str)
+    analysis = call_openrouter(full_content, date_str, taiwan_prices)
 
     if not analysis:
         log("FATAL: Could not obtain analysis from OpenRouter")
@@ -294,6 +496,7 @@ def main():
         "model_used": analysis.pop("model_used", MODELS[0]),
         "news_count": len(articles),
         "news_sources": articles[:12],
+        "taiwan_prices": taiwan_prices,
         **analysis,
     }
 
@@ -308,7 +511,7 @@ def main():
         json.dump(output, f, ensure_ascii=False, indent=2)
     log(f"Saved {hist_path}")
 
-    update_chart_data(date_str, analysis.get("prices", {}))
+    update_chart_data(taiwan_prices.get("data_month"), taiwan_prices)
 
     idx_path = Path("data/history-index.json")
     try:

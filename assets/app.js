@@ -5,15 +5,24 @@ const CONF_LABELS = { high: '信心度：高', medium: '信心度：中', low: '
 
 let priceChart = null;
 
-function fmt(n) {
+function fmt(n, decimals) {
   if (typeof n !== 'number') return '-';
+  if (decimals !== undefined) return n.toFixed(decimals);
   return n.toLocaleString('zh-TW');
 }
 
-function fmtChange(n) {
+function fmtChange(n, decimals) {
   if (typeof n !== 'number') return '';
   const sign = n > 0 ? '+' : '';
+  if (decimals !== undefined) return `${sign}${n.toFixed(decimals)}`;
   return `${sign}${n.toLocaleString('zh-TW')}`;
+}
+
+function trendFromChange(change) {
+  if (typeof change !== 'number') return 'stable';
+  if (change > 0) return 'up';
+  if (change < 0) return 'down';
+  return 'stable';
 }
 
 function setTrend(badgeId, barId, trend) {
@@ -26,31 +35,50 @@ function setTrend(badgeId, barId, trend) {
   bar.style.width = trend === 'up' ? '75%' : trend === 'down' ? '25%' : '50%';
 }
 
-function setChange(el, changeAmt) {
+function setChange(el, changeAmt, unit, decimals) {
   if (!el) return;
-  if (typeof changeAmt !== 'number') { el.textContent = '-'; return; }
+  if (typeof changeAmt !== 'number') { el.textContent = '-'; el.className = 'price-change stable'; return; }
   const cls = changeAmt > 0 ? 'up' : changeAmt < 0 ? 'down' : 'stable';
-  el.textContent = fmtChange(changeAmt) + ' 元';
+  el.textContent = fmtChange(changeAmt, decimals) + ' ' + (unit || '元');
   el.className = `price-change ${cls}`;
 }
 
+function setDataMonth(el, monthStr) {
+  if (!el) return;
+  el.textContent = monthStr ? `資料月份：${monthStr}` : '資料月份：-';
+}
+
 function populatePrices(data) {
-  const prices = data.prices || {};
-  function fillCard(key, prefix) {
-    const p = prices[key] || {};
+  const tp = data.taiwan_prices || {};
+
+  function fillCard(key, prefix, decimals) {
+    const item = tp[key] || {};
     const cur = document.getElementById(`${prefix}-current`);
     const chg = document.getElementById(`${prefix}-change`);
-    const pred = document.getElementById(`${prefix}-prediction`);
-    const reason = document.getElementById(`${prefix}-reason`);
-    if (cur) cur.textContent = fmt(p.current_estimate);
-    setChange(chg, p.change_amount);
-    if (pred) pred.textContent = fmt(p.prediction_next_week);
-    if (reason) reason.textContent = p.reason || '-';
-    setTrend(`${prefix}-trend-badge`, `${prefix}-trend-bar`, p.trend || 'stable');
+    const monthEl = document.getElementById(`${prefix}-month`);
+    const val = item.value;
+    const mom = item.mom_change;
+    const unit = item.unit || '元';
+    const trend = trendFromChange(mom);
+
+    if (cur) cur.textContent = (val !== null && val !== undefined) ? fmt(val, decimals) : '-';
+    setChange(chg, mom, unit, decimals);
+    setDataMonth(monthEl, item.month);
+    setTrend(`${prefix}-trend-badge`, `${prefix}-trend-bar`, trend);
   }
-  fillCard('scrap_steel', 'scrap');
-  fillCard('rebar', 'rebar');
-  fillCard('structural_steel', 'structural');
+
+  // 臺灣粗鋼產量 (萬噸, 1 decimal)
+  fillCard('crude_steel_production', 'production', 1);
+  // 北部廢鋼大盤收購價 (元/公斤, 2 decimals)
+  fillCard('north_scrap_price', 'scrap', 2);
+  // 小鋼胚中級出廠價 (元/公噸, 0 decimals)
+  fillCard('billet_price', 'billet');
+  // 豐興鋼筋盤價 (元/公噸, 0 decimals)
+  fillCard('fengxing_rebar_price', 'rebar');
+  // 東鋼H型鋼流通價 (元/公噸, 0 decimals)
+  fillCard('h_beam_price', 'hbeam');
+  // 中鋼棒線盤價 (元/公噸, 0 decimals)
+  fillCard('csc_wire_rod_price', 'wirerod');
 }
 
 function populateExchange(data) {
@@ -65,7 +93,7 @@ function populateAnalysis(data) {
   const fields = {
     'summary-text': data.summary,
     'spread-analysis': data.spread_analysis,
-    'weekly-trend': data.weekly_trend,
+    'weekly-trend': data.monthly_trend || data.weekly_trend,
     'international-outlook': data.international_outlook,
     'model-name': data.model_used,
   };
@@ -102,11 +130,18 @@ function populateNews(data) {
 function populateMeta(data) {
   const updatedEl = document.getElementById('last-updated-text');
   const confBadge = document.getElementById('confidence-badge');
-  if (updatedEl && data.generated_at) {
-    try {
-      const d = new Date(data.generated_at);
-      updatedEl.textContent = `更新於 ${d.toLocaleDateString('zh-TW')} ${d.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' })}`;
-    } catch { updatedEl.textContent = data.date || '-'; }
+  const tp = data.taiwan_prices || {};
+  const dataMonth = tp.data_month;
+
+  if (updatedEl) {
+    if (dataMonth) {
+      updatedEl.textContent = `報價月份 ${dataMonth}`;
+    } else if (data.generated_at) {
+      try {
+        const d = new Date(data.generated_at);
+        updatedEl.textContent = `更新於 ${d.toLocaleDateString('zh-TW')} ${d.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' })}`;
+      } catch { updatedEl.textContent = data.date || '-'; }
+    }
   }
   if (confBadge) {
     const conf = data.confidence || 'medium';
@@ -119,33 +154,43 @@ async function buildChart(latestData) {
   const canvas = document.getElementById('price-chart');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  let dates = [], scrapVals = [], rebarVals = [], structVals = [];
+
+  let months = [], billetVals = [], rebarVals = [], hbeamVals = [], wirerodVals = [];
+
   try {
     const chartRes = await fetch('data/chart-data.json?t=' + Date.now());
     if (chartRes.ok) {
       const cd = await chartRes.json();
-      dates = cd.dates || []; scrapVals = cd.scrap_steel || [];
-      rebarVals = cd.rebar || []; structVals = cd.structural_steel || [];
+      months = cd.months || [];
+      billetVals = cd.billet_price || [];
+      rebarVals = cd.fengxing_rebar_price || [];
+      hbeamVals = cd.h_beam_price || [];
+      wirerodVals = cd.csc_wire_rod_price || [];
     }
   } catch (_) {}
-  if (dates.length === 0 && latestData) {
-    const p = latestData.prices || {};
-    dates = [latestData.date || '今日'];
-    scrapVals = [p.scrap_steel?.current_estimate ?? null];
-    rebarVals = [p.rebar?.current_estimate ?? null];
-    structVals = [p.structural_steel?.current_estimate ?? null];
+
+  if (months.length === 0 && latestData) {
+    const tp = latestData.taiwan_prices || {};
+    const m = tp.data_month || latestData.date || '本月';
+    months = [m];
+    billetVals = [tp.billet_price?.value ?? null];
+    rebarVals = [tp.fengxing_rebar_price?.value ?? null];
+    hbeamVals = [tp.h_beam_price?.value ?? null];
+    wirerodVals = [tp.csc_wire_rod_price?.value ?? null];
   }
+
   if (priceChart) priceChart.destroy();
   Chart.defaults.color = '#8b949e';
   Chart.defaults.borderColor = '#30363d';
   priceChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: dates,
+      labels: months,
       datasets: [
-        { label: '廢鋼', data: scrapVals, borderColor: '#f0a500', backgroundColor: 'rgba(240,165,0,0.08)', pointBackgroundColor: '#f0a500', pointRadius: 4, pointHoverRadius: 6, tension: 0.3, borderWidth: 2, fill: true },
-        { label: '鋼筋', data: rebarVals, borderColor: '#388bfd', backgroundColor: 'rgba(56,139,253,0.08)', pointBackgroundColor: '#388bfd', pointRadius: 4, pointHoverRadius: 6, tension: 0.3, borderWidth: 2, fill: true },
-        { label: '型鋼', data: structVals, borderColor: '#3fb950', backgroundColor: 'rgba(63,185,80,0.08)', pointBackgroundColor: '#3fb950', pointRadius: 4, pointHoverRadius: 6, tension: 0.3, borderWidth: 2, fill: true },
+        { label: '小鋼胚', data: billetVals, borderColor: '#f0a500', backgroundColor: 'rgba(240,165,0,0.08)', pointBackgroundColor: '#f0a500', pointRadius: 4, pointHoverRadius: 6, tension: 0.3, borderWidth: 2, fill: true },
+        { label: '鋼筋',   data: rebarVals,  borderColor: '#388bfd', backgroundColor: 'rgba(56,139,253,0.08)',  pointBackgroundColor: '#388bfd', pointRadius: 4, pointHoverRadius: 6, tension: 0.3, borderWidth: 2, fill: true },
+        { label: 'H型鋼',  data: hbeamVals,  borderColor: '#3fb950', backgroundColor: 'rgba(63,185,80,0.08)',   pointBackgroundColor: '#3fb950', pointRadius: 4, pointHoverRadius: 6, tension: 0.3, borderWidth: 2, fill: true },
+        { label: '棒線',   data: wirerodVals, borderColor: '#bc8cff', backgroundColor: 'rgba(188,140,255,0.08)', pointBackgroundColor: '#bc8cff', pointRadius: 4, pointHoverRadius: 6, tension: 0.3, borderWidth: 2, fill: true },
       ],
     },
     options: {
@@ -253,7 +298,6 @@ async function triggerWorkflow() {
   };
 
   try {
-    // Step 1: verify PAT, get default branch, and find numeric workflow ID
     showRunStatus('loading', '⏳ 驗證 Token 並查詢 workflow...');
     const [listRes, repoRes] = await Promise.all([
       fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows`, { headers: ghHeaders }),
@@ -277,7 +321,6 @@ async function triggerWorkflow() {
       showRunStatus('loading', `⏳ Workflow 未在列表中，嘗試直接觸發（分支：${defaultBranch}）...`);
     }
 
-    // Step 2: dispatch to default branch (required by GitHub for workflow_dispatch)
     const dispatchRes = await fetch(
       `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${workflowId}/dispatches`,
       {

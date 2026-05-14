@@ -37,14 +37,6 @@
       "url": "https://steelnews.com.tw/news/content?id=174571"
     },
     {
-      "title": "第20週中國當地市場錳鐵價格",
-      "url": "https://steelnews.com.tw/news/content?id=174563"
-    },
-    {
-      "title": "第20週中國當地市場矽鐵價格",
-      "url": "https://steelnews.com.tw/news/content?id=174562"
-    },
-    {
       "title": "美國西岸碼頭貨櫃廢鋼價格上揚 散裝價格則持平",
       "url": "https://steelnews.com.tw/news/content?id=174584"
     },
@@ -53,41 +45,57 @@
       "url": "https://steelnews.com.tw/news/content?id=174581"
     }
   ],
-  "prices": {
-    "scrap_steel": {
-      "current_estimate": 10500,
-      "prediction_next_week": 10700,
-      "trend": "up",
-      "change_amount": 200,
-      "reason": "東和與沙鋼調漲廢鋼採購價，美國廢鋼出口價上漲，帶動國內廢鋼行情。"
+  "taiwan_prices": {
+    "data_month": null,
+    "crude_steel_production": {
+      "value": null,
+      "unit": "萬噸",
+      "mom_change": null,
+      "month": null
     },
-    "rebar": {
-      "current_estimate": 20000,
-      "prediction_next_week": 20200,
-      "trend": "up",
-      "change_amount": 200,
-      "reason": "廢鋼成本上漲牽動鋼筋調漲，東和變盤漲廢，預期將帶動鋼筋價格上揚。"
+    "north_scrap_price": {
+      "value": null,
+      "unit": "元/公斤",
+      "mom_change": null,
+      "month": null
     },
-    "structural_steel": {
-      "current_estimate": 24500,
-      "prediction_next_week": 25000,
-      "trend": "up",
-      "change_amount": 500,
-      "reason": "頭份工業及東和鋼鐵調漲產品價格，熱軋撐盤與反傾銷預期推升成本。"
+    "billet_price": {
+      "value": null,
+      "unit": "元/公噸",
+      "mom_change": null,
+      "month": null
+    },
+    "fengxing_rebar_price": {
+      "value": null,
+      "unit": "元/公噸",
+      "mom_change": null,
+      "month": null
+    },
+    "h_beam_price": {
+      "value": null,
+      "unit": "元/公噸",
+      "mom_change": null,
+      "month": null
+    },
+    "csc_wire_rod_price": {
+      "value": null,
+      "unit": "元/公噸",
+      "mom_change": null,
+      "month": null
     }
   },
   "exchange_rate": {
     "usd_twd_estimate": 32.35,
     "impact_on_steel": "美元兌台幣匯率若維持穩定或小幅貶值，有利於進口廢鋼成本控制，但對出口鋼品競爭力影響有限。"
   },
-  "spread_analysis": "廢鋼至鋼筋的加工利差預期將因廢鋼價格上漲而受到壓縮，但鋼筋廠透過調漲售價可望部分轉嫁成本。型鋼方面，由於熱軋撐盤及反傾銷預期，進口成本恐再創高，加上國內大廠調漲，利差空間仍有維持甚至擴大的可能。匯率波動對進口廢鋼成本影響較大，若台幣升值則有利於降低進口成本，反之則增加壓力。",
-  "weekly_trend": "本週台灣鋼鐵市場整體呈現上漲趨勢。廢鋼因東和與沙鋼調漲採購價，以及美國出口價上揚而走高，預計漲幅約200元/公噸。鋼筋受廢鋼成本推動，預期將跟漲約200元/公噸。型鋼則因頭份工業及東和鋼鐵調漲，加上熱軋成本支撐與反傾銷預期，漲幅可能達500元/公噸。不鏽鋼市場則因高成本與弱需求持續對峙。",
-  "international_outlook": "國際市場方面，美國廢鋼價格上揚，對土耳其出口價也走高，顯示國際廢鋼需求仍有支撐。中國鋼鐵期貨開盤漲跌互現，但冷軋捲出口價格因國內價格上漲而攀升，顯示中國鋼品出口動能仍在。印度市場則呈現兩極化，進口廢鋼價格走軟，買方轉向國內採購，但小鋼胚出口貿易加速且利潤回升。越南4月鋼鐵進口量環比增長14.8%，顯示東南亞需求仍旺。整體而言，國際鋼市呈現區域性差異，但成本面仍有支撐。",
+  "spread_analysis": "廢鋼至鋼筋的加工利差預期將因廢鋼價格上漲而受到壓縮，但鋼筋廠透過調漲售價可望部分轉嫁成本。型鋼方面，由於熱軋撐盤及反傾銷預期，進口成本恐再創高，加上國內大廠調漲，利差空間仍有維持甚至擴大的可能。",
+  "monthly_trend": "台灣鋼鐵市場整體呈現上漲趨勢。廢鋼因東和與沙鋼調漲採購價，以及美國出口價上揚而走高。鋼筋受廢鋼成本推動，預期跟漲。型鋼則因頭份工業及東和鋼鐵調漲，加上熱軋成本支撐與反傾銷預期，漲幅可能達500元/公噸。",
+  "international_outlook": "國際市場方面，美國廢鋼價格上揚，對土耳其出口價也走高，顯示國際廢鋼需求仍有支撐。中國鋼鐵期貨開盤漲跌互現，但冷軋捲出口價格因國內價格上漲而攀升。整體而言，國際鋼市呈現區域性差異，但成本面仍有支撐。",
   "risk_factors": [
     "中國鋼鐵需求疲軟與出口阻力，可能影響全球鋼市供需平衡。",
     "高成本與弱需求導致不鏽鋼市場持續對峙，可能擴散至其他鋼品。",
     "巴基斯坦與印度等部分市場需求疲軟，可能影響國際廢鋼價格穩定性。"
   ],
-  "summary": "台灣鋼鐵市場本週受廢鋼成本推升與部分鋼廠調漲影響，廢鋼、鋼筋、型鋼價格全面看漲。國際廢鋼價格上揚提供支撐，但中國需求疲軟與不鏽鋼市場對峙仍是隱憂。整體市場呈現成本推動型上漲。",
-  "confidence": "high"
+  "summary": "台灣鋼鐵市場本月受廢鋼成本推升與部分鋼廠調漲影響，各品項報價全面看漲。國際廢鋼價格上揚提供支撐，但中國需求疲軟與不鏽鋼市場對峙仍是隱憂。報價數據將於下次 GitHub Actions 執行後自動更新。",
+  "confidence": "medium"
 }
