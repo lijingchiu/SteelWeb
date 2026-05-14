@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>台灣鋼鐵分析 · Steel Market Daily</title>
-  <meta name="description" content="台灣粗鋼產量、廢鋼、鋼胚、鋼筋、型鋼、棒線最新月度行情，AI 每日自動化分析報告。">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>台灣鋼鐵市場每日分析</title>
+  <meta name="description" content="台灣粗鋼產量、廢鋼、鋼胚、鋼筋、型鋼、棒線最新月度行情，結合國際市場觀點與匯率影響。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <div class="grain" id="grain"></div>
 
+  <!-- Parallax grain texture -->
+  <div class="grain" id="grain" aria-hidden="true"></div>
+
+  <!-- Loading overlay -->
   <div id="loading-overlay">
     <div class="spinner"></div>
-    <p>載入市場分析資料</p>
+    <p>載入市場分析資料中</p>
   </div>
 
   <!-- Masthead -->
@@ -21,188 +26,284 @@
     <div class="brand">
       <span class="brand-dot"></span>
       <div>
-        <div class="brand-main">台灣鋼鐵分析</div>
-        <div class="brand-sub">Steel Market Daily · AI Powered</div>
+        <div class="brand-main">台灣鋼鐵市場分析</div>
+        <div class="brand-sub">Steel Market · AI Daily Report</div>
       </div>
     </div>
-    <div class="meta-top">
-      <span id="meta-date">—</span>
-      <span class="meta-dot">·</span>
-      <span id="meta-data-month">—</span>
+    <div class="meta-top" id="last-updated-badge">
+      <span class="badge-dot"></span>
+      <span id="last-updated-text">載入中</span>
+      <span class="meta-sep">·</span>
+      <span class="confidence-badge" id="confidence-badge">-</span>
     </div>
-    <div class="nav-wrap">
-      <span class="conf-badge" id="conf-badge">信心度</span>
-      <button class="run-btn" onclick="openRunModal()">▶ 立即執行</button>
-    </div>
+    <nav class="nav-wrap" aria-label="Primary">
+      <a class="nav-link" href="#prices">報價</a>
+      <a class="nav-link" href="#chart">走勢</a>
+      <a class="nav-link" href="#analysis">分析</a>
+      <a class="nav-link" href="#news">新聞</a>
+      <button class="run-btn" id="run-btn" onclick="openRunModal()">▶ 執行</button>
+    </nav>
   </header>
 
   <!-- Hero -->
   <section class="hero">
     <div class="hero-left">
-      <div class="eyeline" id="hero-eyeline">VOL. I · 行情誌</div>
+      <div class="eyeline">AI ANALYSIS · 每日自動化分析報告</div>
       <h1 class="title">
         <span class="title-block">
           <span class="title-top">
             <span>T</span><span>O</span><span>D</span><span>A</span><span>Y</span>
           </span>
-          <span>鋼材報價</span>
+          <span class="title-main">鋼材報價</span>
         </span>
       </h1>
-      <p class="lead">AI 每日自動化分析報告，整合台灣主流鋼品月度行情、廢鋼採購價格、進出口觀察與國際市場動態。</p>
+      <p class="lead" id="summary-text">分析資料載入中...</p>
       <div class="hero-actions">
-        <button class="btn btn-solid" onclick="document.querySelector('.section-table').scrollIntoView({behavior:'smooth'})">完整行情 ↗</button>
-        <button class="btn btn-ghost" onclick="openRunModal()">立即更新</button>
+        <a class="btn btn-solid" href="#prices">查看完整報價 ↓</a>
+        <button class="btn btn-ghost" onclick="openRunModal()">▶ 立即執行分析</button>
       </div>
     </div>
 
-    <aside class="featured">
-      <div class="feat-tag">TODAY'S QUOTE · 焦點</div>
-      <div class="feat-name">鋼筋</div>
-      <div class="feat-spec">豐興鋼筋盤價</div>
+    <aside class="hero-right">
+      <div class="feat-tag">TODAY'S FOCUS · 焦點報價</div>
+      <div class="feat-name">豐興鋼筋盤價</div>
+      <div class="feat-spec">Fengxing Rebar · 元 / 公噸</div>
       <div class="feat-price-row">
         <span class="feat-currency">NT$</span>
-        <span class="feat-price" id="feat-price">—</span>
+        <span class="feat-price" id="feat-current">-</span>
       </div>
-      <div class="feat-unit">新台幣／公噸</div>
       <div class="feat-change-row">
-        <span class="feat-change" id="feat-change">—</span>
+        <span id="feat-change">-</span>
         <span class="feat-change-note">vs. 上月</span>
       </div>
-      <div class="feat-spark" id="feat-spark"></div>
-      <div class="feat-axis">
-        <span id="feat-month">—</span>
-        <span id="feat-updated">—</span>
-      </div>
+      <div class="feat-month" id="feat-month">-</div>
     </aside>
   </section>
 
-  <!-- Summary Strip -->
-  <div class="summary-strip">
-    <div class="summary-kicker">§ AI 市場總結</div>
-    <p class="summary-text" id="summary-text">分析資料載入中...</p>
-  </div>
-
   <!-- Ticker -->
-  <div class="ticker">
-    <div class="ticker-inner" id="ticker"></div>
+  <div class="ticker" aria-label="報價跑馬燈">
+    <div class="ticker-inner" id="ticker-inner">
+      <span class="ticker-item"><span class="ticker-label">載入中</span><span class="ticker-sep">※</span></span>
+    </div>
   </div>
 
-  <!-- Price Table -->
-  <section class="section section-table" data-fade>
-    <div class="section-head">
-      <div>
-        <div class="kicker">§ 01 · TODAY'S QUOTES</div>
-        <h2 class="h2">月度鋼材報價</h2>
-      </div>
-      <div class="section-meta" id="table-meta">資料月份　—　·　每日自動更新</div>
-    </div>
+  <!-- Main content area -->
+  <div id="content-area">
 
-    <div class="table">
-      <div class="thead">
-        <span class="td col-no">№</span>
-        <span class="td col-prod">商品</span>
-        <span class="td col-spec">來源</span>
-        <span class="td col-price">報價</span>
-        <span class="td col-chg">月漲跌</span>
-        <span class="td col-trend">趨勢</span>
-      </div>
-      <div id="table-body"></div>
-    </div>
-    <div class="table-footnote">元 · 現貨參考價，AI 自動整合分析 · 每日更新</div>
-  </section>
-
-  <!-- Chart -->
-  <section class="section section-chart" data-fade>
-    <div class="section-head">
-      <div>
-        <div class="kicker">§ 01.1 · PRICE HISTORY</div>
-        <h2 class="h2">近期價格走勢</h2>
-      </div>
-      <div id="chart-legend" class="section-meta chart-legend"></div>
-    </div>
-    <div class="chart-wrapper">
-      <canvas id="price-chart"></canvas>
-    </div>
-  </section>
-
-  <!-- Analysis -->
-  <section class="section section-analysis" data-fade>
-    <div class="section-head">
-      <div>
-        <div class="kicker">§ 02 · AI ANALYSIS</div>
-        <h2 class="h2">市場深度分析</h2>
-      </div>
-    </div>
-    <div class="analysis-grid">
-      <div class="analysis-col">
-        <div class="analysis-item">
-          <div class="analysis-title">利差試算分析</div>
-          <p class="analysis-text" id="spread-analysis">—</p>
+    <!-- § 01 Price Table -->
+    <section class="section section-table" id="prices" data-fade>
+      <div class="section-head">
+        <div>
+          <div class="kicker">§ 01 · TODAY'S QUOTES</div>
+          <h2 class="h2">全項鋼材報價</h2>
         </div>
-        <div class="analysis-item">
-          <div class="analysis-title">國際鋼鐵市場大局觀</div>
-          <p class="analysis-text" id="international-outlook">—</p>
+        <div class="section-meta">
+          資料來源：<a href="https://chart.metaltrade.tw/ste/domestic/13/" target="_blank" rel="noopener">台灣金屬行情網 ↗</a>
         </div>
       </div>
-      <div class="analysis-col">
-        <div class="analysis-item">
-          <div class="analysis-title">下月走勢預測</div>
-          <p class="analysis-text" id="weekly-trend">—</p>
-        </div>
-        <div class="analysis-item">
-          <div class="analysis-title">主要風險因素</div>
-          <ul class="risk-list" id="risk-factors"></ul>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Exchange Rate -->
-  <section class="section section-exchange" data-fade>
-    <div class="exchange-strip">
-      <div class="exchange-item">
-        <div class="exchange-label">💱 USD / TWD 匯率</div>
-        <div class="exchange-value" id="exchange-rate">—</div>
+      <!-- Exchange Rate -->
+      <div class="exchange-row">
+        <span class="exchange-label">USD / TWD</span>
+        <span class="exchange-value" id="exchange-rate">-</span>
+        <span class="exchange-sep">·</span>
+        <span class="exchange-impact" id="exchange-impact">-</span>
       </div>
-      <div class="exchange-divider"></div>
-      <div class="exchange-item exchange-item-wide">
-        <div class="exchange-label">匯率對鋼價影響</div>
-        <div class="exchange-impact" id="exchange-impact">—</div>
-      </div>
-    </div>
-  </section>
 
-  <!-- News -->
-  <section class="section section-news" data-fade>
-    <div class="section-head">
-      <div>
-        <div class="kicker">§ 03 · MARKET NEWS</div>
-        <h2 class="h2">本日市場新聞</h2>
+      <div class="table">
+        <div class="thead">
+          <span class="td col-no">№</span>
+          <span class="td col-prod">品名</span>
+          <span class="td col-unit">單位</span>
+          <span class="td col-price">報價</span>
+          <span class="td col-chg">月增</span>
+          <span class="td col-badge">趨勢</span>
+        </div>
+
+        <!-- Row 01 -->
+        <div class="tr" id="card-production" data-row style="transition-delay:0ms">
+          <span class="td col-no">01</span>
+          <span class="td col-prod">
+            <span class="prod-name">臺灣粗鋼產量</span>
+            <span class="prod-sub">Crude Steel Production</span>
+          </span>
+          <span class="td col-unit">萬噸</span>
+          <span class="td col-price" id="production-current">-</span>
+          <span class="td col-chg" id="production-change">-</span>
+          <span class="td col-badge">
+            <span class="trend-badge" id="production-trend-badge">-</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" id="production-trend-bar"></div></div>
+          </span>
+          <div style="display:none" id="production-month"></div>
+        </div>
+
+        <!-- Row 02 -->
+        <div class="tr" id="card-scrap" data-row style="transition-delay:60ms">
+          <span class="td col-no">02</span>
+          <span class="td col-prod">
+            <span class="prod-name">北部廢鋼大盤收購價</span>
+            <span class="prod-sub">N. Taiwan Scrap Purchase</span>
+          </span>
+          <span class="td col-unit">元 / 公斤</span>
+          <span class="td col-price" id="scrap-current">-</span>
+          <span class="td col-chg" id="scrap-change">-</span>
+          <span class="td col-badge">
+            <span class="trend-badge" id="scrap-trend-badge">-</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" id="scrap-trend-bar"></div></div>
+          </span>
+          <div style="display:none" id="scrap-month"></div>
+        </div>
+
+        <!-- Row 03 -->
+        <div class="tr" id="card-billet" data-row style="transition-delay:120ms">
+          <span class="td col-no">03</span>
+          <span class="td col-prod">
+            <span class="prod-name">小鋼胚中級出廠價</span>
+            <span class="prod-sub">Billet Ex-Factory</span>
+          </span>
+          <span class="td col-unit">元 / 公噸</span>
+          <span class="td col-price" id="billet-current">-</span>
+          <span class="td col-chg" id="billet-change">-</span>
+          <span class="td col-badge">
+            <span class="trend-badge" id="billet-trend-badge">-</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" id="billet-trend-bar"></div></div>
+          </span>
+          <div style="display:none" id="billet-month"></div>
+        </div>
+
+        <!-- Row 04 -->
+        <div class="tr" id="card-rebar" data-row style="transition-delay:180ms">
+          <span class="td col-no">04</span>
+          <span class="td col-prod">
+            <span class="prod-name">豐興鋼筋盤價</span>
+            <span class="prod-sub">Fengxing Rebar</span>
+          </span>
+          <span class="td col-unit">元 / 公噸</span>
+          <span class="td col-price" id="rebar-current">-</span>
+          <span class="td col-chg" id="rebar-change">-</span>
+          <span class="td col-badge">
+            <span class="trend-badge" id="rebar-trend-badge">-</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" id="rebar-trend-bar"></div></div>
+          </span>
+          <div style="display:none" id="rebar-month"></div>
+        </div>
+
+        <!-- Row 05 -->
+        <div class="tr" id="card-hbeam" data-row style="transition-delay:240ms">
+          <span class="td col-no">05</span>
+          <span class="td col-prod">
+            <span class="prod-name">東鋼H型鋼流通價</span>
+            <span class="prod-sub">H-Beam Circulation</span>
+          </span>
+          <span class="td col-unit">元 / 公噸</span>
+          <span class="td col-price" id="hbeam-current">-</span>
+          <span class="td col-chg" id="hbeam-change">-</span>
+          <span class="td col-badge">
+            <span class="trend-badge" id="hbeam-trend-badge">-</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" id="hbeam-trend-bar"></div></div>
+          </span>
+          <div style="display:none" id="hbeam-month"></div>
+        </div>
+
+        <!-- Row 06 -->
+        <div class="tr" id="card-wirerod" data-row style="transition-delay:300ms">
+          <span class="td col-no">06</span>
+          <span class="td col-prod">
+            <span class="prod-name">中鋼棒線盤價</span>
+            <span class="prod-sub">CSC Wire Rod</span>
+          </span>
+          <span class="td col-unit">元 / 公噸</span>
+          <span class="td col-price" id="wirerod-current">-</span>
+          <span class="td col-chg" id="wirerod-change">-</span>
+          <span class="td col-badge">
+            <span class="trend-badge" id="wirerod-trend-badge">-</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" id="wirerod-trend-bar"></div></div>
+          </span>
+          <div style="display:none" id="wirerod-month"></div>
+        </div>
       </div>
-      <div class="section-meta">
-        <a href="https://steelnews.com.tw" target="_blank" rel="noopener" style="color:var(--copper)">steelnews.com.tw ↗</a>
+
+      <div class="table-footnote">本表為月度參考價格 · 資料來源：台灣金屬行情網</div>
+    </section>
+
+    <!-- § 02 Chart -->
+    <section class="section section-chart" id="chart" data-fade>
+      <div class="section-head">
+        <div>
+          <div class="kicker">§ 02 · PRICE TREND</div>
+          <h2 class="h2">近期價格走勢</h2>
+        </div>
+        <div class="chart-legend">
+          <span class="legend-dot" style="background:#7a4a28"></span><span>小鋼胚</span>
+          <span class="legend-dot" style="background:#9c5050"></span><span>鋼筋</span>
+          <span class="legend-dot" style="background:#6d625a"></span><span>H型鋼</span>
+          <span class="legend-dot" style="background:#a89682"></span><span>棒線</span>
+        </div>
       </div>
-    </div>
-    <div class="news-grid" id="news-grid"></div>
-    <div class="end">— 本期完 —</div>
-  </section>
+      <div class="chart-wrapper">
+        <canvas id="price-chart"></canvas>
+      </div>
+    </section>
+
+    <!-- § 03 Market Analysis -->
+    <section class="section section-analysis" id="analysis" data-fade>
+      <div class="section-head">
+        <div>
+          <div class="kicker">§ 03 · MARKET ANALYSIS</div>
+          <h2 class="h2">市場深度分析</h2>
+        </div>
+      </div>
+
+      <div class="analysis-layout">
+        <div class="analysis-block">
+          <div class="kicker">利差試算分析</div>
+          <p id="spread-analysis" class="analysis-text">-</p>
+        </div>
+        <div class="analysis-block">
+          <div class="kicker">下月走勢預測</div>
+          <p id="weekly-trend" class="analysis-text">-</p>
+        </div>
+        <div class="analysis-block analysis-wide">
+          <div class="kicker">國際鋼鐵市場大局觀</div>
+          <p id="international-outlook" class="analysis-text">-</p>
+        </div>
+        <div class="analysis-block analysis-wide">
+          <div class="kicker">主要風險因素</div>
+          <ul id="risk-factors" class="risk-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- § 04 News -->
+    <section class="section section-news" id="news" data-fade>
+      <div class="section-head">
+        <div>
+          <div class="kicker">§ 04 · MARKET NOTES</div>
+          <h2 class="h2">本日參考新聞</h2>
+        </div>
+        <div class="section-meta news-sources">
+          <a href="https://steelnews.com.tw" target="_blank" rel="noopener" class="news-source-link">steelnews.com.tw ↗</a>
+          <a href="https://chart.metaltrade.tw/ste/domestic/13/" target="_blank" rel="noopener" class="news-source-link">台灣金屬行情網 ↗</a>
+        </div>
+      </div>
+      <div class="news-list" id="news-list"></div>
+      <div class="end">— 本期完 —</div>
+    </section>
+
+  </div><!-- /#content-area -->
 
   <!-- Footer -->
   <footer class="footer">
-    <span>© 2026 台灣鋼鐵分析 · Steel Market Daily</span>
-    <span class="footer-links">
-      報價：<a href="https://chart.metaltrade.tw/ste/domestic/13/" target="_blank" rel="noopener">台灣金屬行情網</a>
-      &nbsp;·&nbsp; 新聞：<a href="https://steelnews.com.tw" target="_blank" rel="noopener">steelnews.com.tw</a>
-      &nbsp;·&nbsp; <span id="model-name">—</span>
-      &nbsp;·&nbsp; <a href="https://github.com/lijingchiu/SteelWeb" target="_blank" rel="noopener">GitHub ↗</a>
-    </span>
+    <span>© 2026 台灣鋼鐵市場分析</span>
+    <span>⚠ 本報告由 AI 自動分析生成，不構成投資建議</span>
+    <span>引擎：<span id="model-name">-</span> &nbsp;·&nbsp; <a href="https://github.com/lijingchiu/SteelWeb" target="_blank" rel="noopener">GitHub ↗</a></span>
   </footer>
 
   <!-- Run Modal -->
   <div id="run-modal" class="modal-overlay" style="display:none">
     <div class="modal-box">
       <div class="modal-header">
-        <h3>立即執行分析</h3>
+        <h3>手動觸發分析</h3>
         <button class="modal-close-btn" onclick="closeRunModal()">✕</button>
       </div>
       <div class="modal-body">
