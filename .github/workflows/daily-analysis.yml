@@ -2,7 +2,7 @@ name: Daily Steel Price Analysis
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 21 * * *'
   workflow_dispatch:
     inputs:
       force_run:
