@@ -16,6 +16,11 @@ let priceChart = null;
 let toastTimer = null;
 let tickerGroupMarkup = '';
 let tickerResizeTimer = null;
+let tickerFrameId = null;
+let tickerLastTs = 0;
+let tickerOffset = 0;
+let tickerLoopWidth = 0;
+const TICKER_SPEED_PX_PER_SEC = 42;
 
 function fmt(n, decimals) {
   if (typeof n !== 'number') return '-';
@@ -283,11 +288,50 @@ function renderTicker() {
     <div class="ticker-group">${repeatedMarkup}</div>
     <div class="ticker-group" aria-hidden="true">${repeatedMarkup}</div>
   `;
+  tickerLoopWidth = inner.firstElementChild?.scrollWidth || 0;
+  tickerOffset = 0;
+  tickerLastTs = 0;
+  inner.style.transform = 'translate3d(0, 0, 0)';
+  startTickerAnimation();
+}
 
-  // Restart the CSS animation after rebuilding the repeated track.
-  inner.style.animation = 'none';
-  void inner.offsetWidth;
-  inner.style.animation = '';
+function stopTickerAnimation() {
+  if (tickerFrameId) {
+    window.cancelAnimationFrame(tickerFrameId);
+    tickerFrameId = null;
+  }
+}
+
+function startTickerAnimation() {
+  const inner = document.getElementById('ticker-inner');
+  if (!inner || !tickerLoopWidth) return;
+  stopTickerAnimation();
+
+  const tick = ts => {
+    if (!document.body.contains(inner)) {
+      stopTickerAnimation();
+      return;
+    }
+    if (document.hidden) {
+      tickerLastTs = ts;
+      tickerFrameId = window.requestAnimationFrame(tick);
+      return;
+    }
+
+    if (!tickerLastTs) tickerLastTs = ts;
+    const delta = Math.min((ts - tickerLastTs) / 1000, 0.05);
+    tickerLastTs = ts;
+
+    tickerOffset -= TICKER_SPEED_PX_PER_SEC * delta;
+    if (Math.abs(tickerOffset) >= tickerLoopWidth) {
+      tickerOffset += tickerLoopWidth;
+    }
+
+    inner.style.transform = `translate3d(${tickerOffset}px, 0, 0)`;
+    tickerFrameId = window.requestAnimationFrame(tick);
+  };
+
+  tickerFrameId = window.requestAnimationFrame(tick);
 }
 
 function initAnimations() {
@@ -642,6 +686,14 @@ window.addEventListener('resize', () => {
   if (!tickerGroupMarkup) return;
   if (tickerResizeTimer) clearTimeout(tickerResizeTimer);
   tickerResizeTimer = window.setTimeout(renderTicker, 120);
+});
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    tickerLastTs = 0;
+    return;
+  }
+  if (tickerGroupMarkup) startTickerAnimation();
 });
 
 window.addEventListener('load', () => {

@@ -328,7 +328,6 @@ button { font-family: inherit; }
   width: max-content;
   white-space: nowrap;
   will-change: transform;
-  animation: ticker-scroll 42s linear infinite;
 }
 .ticker-group {
   display: flex;
@@ -352,11 +351,6 @@ button { font-family: inherit; }
 }
 .ticker-chg { font-family: var(--font-mono); font-size: 11px; }
 .ticker-sep { color: var(--copper); opacity: 0.35; font-size: 14px; }
-
-@keyframes ticker-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
 
 /* ── Section base ── */
 .section {
