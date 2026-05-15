@@ -465,10 +465,10 @@ button { font-family: inherit; }
 
 .col-no    { flex: 0 0 32px; }
 .col-prod  { flex: 2; }
-.col-unit  { flex: 0.85; }
-.col-price { flex: 1.2; }
-.col-chg   { flex: 1; }
-.col-badge { flex: 0.85; }
+.col-unit  { flex: 0 0 120px; }
+.col-price { flex: 0 0 240px; }
+.col-chg   { flex: 0 0 120px; }
+.col-badge { flex: 0 0 92px; }
 
 .thead .col-no {
   color: #a89682;
@@ -480,9 +480,18 @@ button { font-family: inherit; }
 .thead .col-chg,
 .thead .col-badge {
   align-items: flex-end;
-  font-size: 10px;
+  font-size: 10px !important;
   font-weight: 500;
-  font-family: var(--font-sans);
+  font-family: var(--font-sans) !important;
+  line-height: 1.2;
+}
+.thead .col-price {
+  padding-right: 48px;
+  text-align: right;
+}
+.thead .col-chg {
+  padding-right: 12px;
+  text-align: right;
 }
 
 .tr .col-no {
@@ -497,7 +506,7 @@ button { font-family: inherit; }
 }
 .tr .col-price {
   align-items: flex-end;
-  padding-right: 28px;
+  padding-right: 48px;
   text-align: right;
   font-family: var(--font-mono);
   font-size: 26px;
@@ -506,7 +515,8 @@ button { font-family: inherit; }
 }
 .tr .col-chg {
   align-items: flex-end;
-  min-width: 112px;
+  padding-right: 12px;
+  min-width: 120px;
 }
 .tr .col-badge {
   align-items: flex-end;
@@ -540,6 +550,8 @@ button { font-family: inherit; }
   font-family: var(--font-mono);
   font-size: 12px;
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 .price-change.up     { color: var(--copper); }
 .price-change.down   { color: var(--down); }
@@ -891,8 +903,10 @@ button { font-family: inherit; }
   .tr { flex-wrap: wrap; gap: 6px; padding: 16px 0; }
   .col-no, .col-unit { display: none; }
   .col-prod  { flex: 1 0 100%; }
-  .tr .col-price { flex: 0 0 auto; font-size: 22px; padding-right: 14px; }
-  .tr .col-chg   { flex: 0 0 auto; min-width: 96px; }
+  .col-price { flex: 0 0 auto; }
+  .col-chg   { flex: 0 0 auto; }
+  .tr .col-price { font-size: 22px; padding-right: 18px; }
+  .tr .col-chg   { min-width: 96px; padding-right: 0; }
   .col-badge { flex: 0 0 auto; }
 
   .section-head { flex-direction: column; align-items: flex-start; gap: 10px; }

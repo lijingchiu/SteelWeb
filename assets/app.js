@@ -49,7 +49,7 @@ function setChange(el, changeAmt, unit, decimals) {
   if (!el) return;
   if (typeof changeAmt !== 'number') { el.textContent = '-'; el.className = 'price-change stable'; return; }
   const cls = changeAmt > 0 ? 'up' : changeAmt < 0 ? 'down' : 'stable';
-  el.textContent = fmtChange(changeAmt, decimals) + ' ' + (unit || '元');
+  el.textContent = fmtChange(changeAmt, decimals);
   el.className = `price-change ${cls}`;
 }
 
