@@ -15,12 +15,11 @@ const CONF_LABELS = { high: '信心度：高', medium: '信心度：中', low: '
 let priceChart = null;
 let toastTimer = null;
 let tickerGroupMarkup = '';
-let tickerResizeTimer = null;
 let tickerFrameId = null;
 let tickerLastTs = 0;
 let tickerOffset = 0;
 let tickerLoopWidth = 0;
-let tickerContainerWidth = 0;
+let tickerOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
 const TICKER_SPEED_PX_PER_SEC = 42;
 
 function fmt(n, decimals) {
@@ -272,16 +271,21 @@ function renderTicker() {
   const inner = document.getElementById('ticker-inner');
   if (!inner || !tickerGroupMarkup) return;
 
-  const containerWidth = inner.parentElement?.clientWidth || window.innerWidth || 0;
   const previousLoopWidth = tickerLoopWidth;
   const previousOffset = tickerOffset;
   let repeatedMarkup = tickerGroupMarkup;
+  const targetWidth = Math.max(
+    inner.parentElement?.clientWidth || 0,
+    window.innerWidth || 0,
+    window.screen?.width || 0,
+    1200,
+  );
 
   inner.innerHTML = `<div class="ticker-group">${repeatedMarkup}</div>`;
   let group = inner.firstElementChild;
   let guard = 0;
 
-  while (group && group.scrollWidth < containerWidth * 1.5 && guard < 6) {
+  while (group && group.scrollWidth < targetWidth * 2.5 && guard < 12) {
     repeatedMarkup += tickerGroupMarkup;
     group.innerHTML = repeatedMarkup;
     guard += 1;
@@ -291,7 +295,6 @@ function renderTicker() {
     <div class="ticker-group">${repeatedMarkup}</div>
     <div class="ticker-group" aria-hidden="true">${repeatedMarkup}</div>
   `;
-  tickerContainerWidth = containerWidth;
   tickerLoopWidth = inner.firstElementChild?.scrollWidth || 0;
   if (previousLoopWidth > 0 && tickerLoopWidth > 0) {
     const progress = ((-previousOffset % previousLoopWidth) + previousLoopWidth) % previousLoopWidth;
@@ -692,15 +695,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('resize', () => {
-  if (!tickerGroupMarkup) return;
-  if (tickerResizeTimer) clearTimeout(tickerResizeTimer);
-  tickerResizeTimer = window.setTimeout(() => {
-    const inner = document.getElementById('ticker-inner');
-    if (!inner) return;
-    const nextWidth = inner.parentElement?.clientWidth || window.innerWidth || 0;
-    if (Math.abs(nextWidth - tickerContainerWidth) < 2) return;
-    renderTicker();
-  }, 120);
+  const nextOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+  if (nextOrientation === tickerOrientation || !tickerGroupMarkup) return;
+  tickerOrientation = nextOrientation;
+  renderTicker();
 });
 
 document.addEventListener('visibilitychange', () => {
