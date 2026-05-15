@@ -2,6 +2,13 @@
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
+function forceScrollTop() {
+  try { window.scrollTo({ top: 0, behavior: 'instant' }); } catch (_) { window.scrollTo(0, 0); }
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+forceScrollTop();
+
 const TREND_LABELS = { up: '上漲', down: '下跌', stable: '持平' };
 const CONF_LABELS = { high: '信心度：高', medium: '信心度：中', low: '信心度：低' };
 
@@ -69,17 +76,11 @@ function populatePrices(data) {
     setTrend(`${prefix}-trend-badge`, `${prefix}-trend-bar`, trend);
   }
 
-  // 臺灣粗鋼產量 (萬噸, 1 decimal)
   fillCard('crude_steel_production', 'production', 1);
-  // 北部廢鋼大盤收購價 (元/公斤, 2 decimals)
   fillCard('north_scrap_price', 'scrap', 2);
-  // 小鋼胚中級出廠價 (元/公噸, 0 decimals)
   fillCard('billet_price', 'billet');
-  // 豐興鋼筋盤價 (元/公噸, 0 decimals)
   fillCard('fengxing_rebar_price', 'rebar');
-  // 東鋼H型鋼流通價 (元/公噸, 0 decimals)
   fillCard('h_beam_price', 'hbeam');
-  // 中鋼棒線盤價 (元/公噸, 0 decimals)
   fillCard('csc_wire_rod_price', 'wirerod');
 }
 
@@ -294,14 +295,25 @@ async function loadData() {
   } finally {
     const overlay = document.getElementById('loading-overlay');
     if (overlay) overlay.classList.add('hidden');
+    forceScrollTop();
+    requestAnimationFrame(forceScrollTop);
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.scrollTo(0, 0);
+  forceScrollTop();
+  requestAnimationFrame(forceScrollTop);
+  setTimeout(forceScrollTop, 100);
+  setTimeout(forceScrollTop, 300);
   loadData();
   initAnimations();
   seedPat();
+});
+
+window.addEventListener('load', () => {
+  forceScrollTop();
+  requestAnimationFrame(forceScrollTop);
+  setTimeout(forceScrollTop, 100);
 });
 
 // ── Run Modal ────────────────────────────────────────────
