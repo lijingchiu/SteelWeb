@@ -325,11 +325,19 @@ button { font-family: inherit; }
 }
 .ticker-inner {
   display: flex;
+  width: max-content;
   white-space: nowrap;
-  animation: ticker-scroll 50s linear infinite;
+  will-change: transform;
+  animation: ticker-scroll 42s linear infinite;
+}
+.ticker-group {
+  display: flex;
+  flex: 0 0 auto;
+  min-width: max-content;
 }
 .ticker-item {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: baseline;
   gap: 12px;
   padding: 0 24px;

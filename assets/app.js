@@ -256,7 +256,11 @@ function populateTicker(data) {
       <span class="ticker-sep">※</span>
     </span>`;
   };
-  inner.innerHTML = [...items, ...items].map(buildItem).join('');
+  const groupMarkup = items.map(buildItem).join('');
+  inner.innerHTML = `
+    <div class="ticker-group">${groupMarkup}</div>
+    <div class="ticker-group" aria-hidden="true">${groupMarkup}</div>
+  `;
 }
 
 function initAnimations() {

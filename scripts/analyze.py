@@ -62,6 +62,8 @@ TAIWAN_CATEGORIES = [
     {"id": 14, "period": "3m", "key": "csc_wire_rod_price",      "name": "中鋼棒線盤價",      "unit": "元/公噸"},
 ]
 
+CHART_HISTORY_LIMIT = 36
+
 STEEL_KEYWORDS = [
     '鋼', '鐵', '廢鋼', '鋼筋', '型鋼', '鋼價', '鋼鐵', '報價', '行情',
     '噸', '廢料', 'USD', 'TWD', '匯率', '公告', '漲', '跌', '持平',
@@ -104,22 +106,34 @@ def _parse_page_data(html: str, series_id: int) -> tuple[str | None, float | Non
       b'...' → strip b' and ' → base64.b64decode → ast.literal_eval
     Returns {'X1': [dates], 'Y1': {'data': [values]}}
     """
+    points = _extract_page_data_points(html, series_id)
+    if not points:
+        return None, None, None
+
+    month_str, latest_val = points[-1]
+    prev_val = points[-2][1] if len(points) >= 2 else None
+    log(f"    [page-data] OK → {month_str} = {latest_val} (prev: {prev_val})")
+    return month_str, latest_val, prev_val
+
+
+def _extract_page_data_points(html: str, series_id: int) -> list[tuple[str, float]]:
+    """Parse the embedded page-data payload into ordered monthly points."""
     soup = BeautifulSoup(html, 'lxml')
     tag = soup.find('script', {'type': 'application/json', 'id': 'page-data'})
     if not tag:
         log(f"    [page-data] script#page-data not found for series {series_id}")
-        return None, None, None
+        return []
 
     try:
         payload = json.loads(tag.string or "")
     except (json.JSONDecodeError, TypeError) as e:
         log(f"    [page-data] json.loads failed: {e}")
-        return None, None, None
+        return []
 
     raw_a = payload.get("a", "")
     if not raw_a:
         log(f"    [page-data] 'a' field missing or empty")
-        return None, None, None
+        return []
 
     # Strip Python bytes repr wrapper: b'...' or b"..."
     b64_str = raw_a
@@ -132,40 +146,42 @@ def _parse_page_data(html: str, series_id: int) -> tuple[str | None, float | Non
         decoded = base64.b64decode(b64_str).decode("utf-8")
     except Exception as e:
         log(f"    [page-data] base64 decode failed: {e}")
-        return None, None, None
+        return []
 
     try:
         data = ast.literal_eval(decoded)
     except Exception as e:
         log(f"    [page-data] ast.literal_eval failed: {e}")
         log(f"    [page-data] decoded (first 300): {decoded[:300]}")
-        return None, None, None
+        return []
 
     try:
         x1 = data["X1"]
         y1_vals = data["Y1"]["data"]
     except (KeyError, TypeError) as e:
         log(f"    [page-data] X1/Y1.data not found: {e}, keys={list(data.keys()) if isinstance(data, dict) else type(data)}")
-        return None, None, None
+        return []
 
     if not x1 or not y1_vals:
         log(f"    [page-data] X1 or Y1.data is empty")
-        return None, None, None
+        return []
 
-    month_str = _parse_date_to_month(str(x1[-1]))
-    if not month_str:
-        log(f"    [page-data] cannot parse date: {x1[-1]}")
-        return None, None, None
+    points_by_month: dict[str, float] = {}
+    for raw_date, raw_val in zip(x1, y1_vals):
+        month_str = _parse_date_to_month(str(raw_date))
+        if not month_str:
+            continue
+        try:
+            points_by_month[month_str] = round(float(raw_val), 4)
+        except (ValueError, TypeError):
+            continue
 
-    try:
-        latest_val = float(y1_vals[-1])
-        prev_val = float(y1_vals[-2]) if len(y1_vals) >= 2 else None
-    except (ValueError, TypeError) as e:
-        log(f"    [page-data] value conversion failed: {e}")
-        return None, None, None
-
-    log(f"    [page-data] OK → {month_str} = {latest_val} (prev: {prev_val})")
-    return month_str, latest_val, prev_val
+    points = sorted(points_by_month.items())
+    if not points:
+        log(f"    [page-data] no valid monthly points after parsing")
+    else:
+        log(f"    [page-data] parsed {len(points)} monthly points for series {series_id}")
+    return points
 
 
 def _parse_formula(html: str, series_id: int) -> tuple[str | None, float | None, float | None]:
@@ -317,7 +333,30 @@ def fetch_metaltrade_series(session: requests.Session, series_id: int, period: s
     return None, None, None
 
 
-def scrape_metaltrade_taiwan() -> dict:
+def fetch_metaltrade_history(session: requests.Session, series_id: int, period: str = "3m") -> list[tuple[str, float]]:
+    """Fetch the full historical monthly series from metaltrade.tw."""
+    urls_to_try = [
+        f"{METALTRADE_BASE}/ste/domestic/{series_id}/",
+        f"{METALTRADE_BASE}/ste/domestic/{series_id}/{period}/",
+    ]
+
+    for url in urls_to_try:
+        try:
+            resp = session.get(url, headers=METALTRADE_HEADERS, timeout=25)
+            log(f"    [history] GET {url} -> HTTP {resp.status_code}")
+            resp.raise_for_status()
+            resp.encoding = resp.apparent_encoding or 'utf-8'
+            points = _extract_page_data_points(resp.text, series_id)
+            if points:
+                return points
+        except Exception as e:
+            log(f"    [history] Warning: {url} failed: {e}")
+
+    log(f"    [history] no historical points found for series {series_id}")
+    return []
+
+
+def scrape_metaltrade_taiwan() -> tuple[dict, dict[str, list[tuple[str, float]]]]:
     """
     Fetches the 6 Taiwan domestic steel price categories from metaltrade.tw.
     Returns a dict with the data, or carries over previous data on failure.
@@ -333,11 +372,20 @@ def scrape_metaltrade_taiwan() -> dict:
         log(f"  Warm-up failed: {e}")
 
     result = {}
+    histories: dict[str, list[tuple[str, float]]] = {}
     data_month = None
 
     for cat in TAIWAN_CATEGORIES:
         time.sleep(0.6)
-        month_str, latest_val, prev_val = fetch_metaltrade_series(session, cat["id"], cat.get("period", "3m"))
+        history_points = fetch_metaltrade_history(session, cat["id"], cat.get("period", "3m"))
+        histories[cat["key"]] = history_points
+
+        if history_points:
+            month_str, latest_val = history_points[-1]
+            prev_val = history_points[-2][1] if len(history_points) >= 2 else None
+        else:
+            month_str, latest_val, prev_val = fetch_metaltrade_series(session, cat["id"], cat.get("period", "3m"))
+
         if month_str and latest_val is not None:
             mom_change = round(latest_val - prev_val, 4) if prev_val is not None else None
             result[cat["key"]] = {
@@ -358,7 +406,7 @@ def scrape_metaltrade_taiwan() -> dict:
             }
             log(f"  {cat['name']}: no data retrieved")
 
-    return {"data_month": data_month, **result}
+    return {"data_month": data_month, **result}, histories
 
 
 def scrape_steelnews() -> tuple[list[dict], str]:
@@ -545,41 +593,60 @@ def call_openrouter(news_content: str, date_str: str, taiwan_prices: dict) -> di
     return None
 
 
-def update_chart_data(data_month: str | None, taiwan_prices: dict):
+def update_chart_data(
+    data_month: str | None,
+    taiwan_prices: dict,
+    histories: dict[str, list[tuple[str, float]]] | None = None,
+):
     chart_path = Path("data/chart-data.json")
-    try:
-        with open(chart_path) as f:
-            cd = json.load(f)
-    except Exception:
-        cd = {}
+    base_cd = {
+        "months": [],
+        "billet_price": [],
+        "fengxing_rebar_price": [],
+        "h_beam_price": [],
+        "csc_wire_rod_price": [],
+        "north_scrap_price": [],
+        "crude_steel_production": [],
+    }
 
-    if "months" not in cd:
-        cd = {
-            "months": [],
-            "billet_price": [],
-            "fengxing_rebar_price": [],
-            "h_beam_price": [],
-            "csc_wire_rod_price": [],
-            "north_scrap_price": [],
-            "crude_steel_production": [],
+    has_histories = bool(histories and any(histories.get(cat["key"]) for cat in TAIWAN_CATEGORIES))
+    if has_histories:
+        month_set = {
+            month
+            for cat in TAIWAN_CATEGORIES
+            for month, _ in histories.get(cat["key"], [])
         }
+        months = sorted(month_set)[-CHART_HISTORY_LIMIT:]
+        cd = {"months": months}
+        for cat in TAIWAN_CATEGORIES:
+            series_map = dict(histories.get(cat["key"], []))
+            cd[cat["key"]] = [series_map.get(month) for month in months]
+    else:
+        try:
+            with open(chart_path) as f:
+                cd = json.load(f)
+        except Exception:
+            cd = {}
 
-    if data_month and data_month not in cd.get("months", []):
-        cd["months"].append(data_month)
-        cd["billet_price"].append(taiwan_prices.get("billet_price", {}).get("value"))
-        cd["fengxing_rebar_price"].append(taiwan_prices.get("fengxing_rebar_price", {}).get("value"))
-        cd["h_beam_price"].append(taiwan_prices.get("h_beam_price", {}).get("value"))
-        cd["csc_wire_rod_price"].append(taiwan_prices.get("csc_wire_rod_price", {}).get("value"))
-        cd["north_scrap_price"].append(taiwan_prices.get("north_scrap_price", {}).get("value"))
-        cd["crude_steel_production"].append(taiwan_prices.get("crude_steel_production", {}).get("value"))
+        if "months" not in cd:
+            cd = base_cd.copy()
 
-        if len(cd["months"]) > 36:
-            for key in cd:
-                if isinstance(cd[key], list):
-                    cd[key] = cd[key][-36:]
+        if data_month and data_month not in cd.get("months", []):
+            cd["months"].append(data_month)
+            cd["billet_price"].append(taiwan_prices.get("billet_price", {}).get("value"))
+            cd["fengxing_rebar_price"].append(taiwan_prices.get("fengxing_rebar_price", {}).get("value"))
+            cd["h_beam_price"].append(taiwan_prices.get("h_beam_price", {}).get("value"))
+            cd["csc_wire_rod_price"].append(taiwan_prices.get("csc_wire_rod_price", {}).get("value"))
+            cd["north_scrap_price"].append(taiwan_prices.get("north_scrap_price", {}).get("value"))
+            cd["crude_steel_production"].append(taiwan_prices.get("crude_steel_production", {}).get("value"))
+
+            if len(cd["months"]) > CHART_HISTORY_LIMIT:
+                for key in cd:
+                    if isinstance(cd[key], list):
+                        cd[key] = cd[key][-CHART_HISTORY_LIMIT:]
 
     with open(chart_path, "w", encoding="utf-8") as f:
-        json.dump(cd, f, ensure_ascii=False)
+        json.dump(cd, f, ensure_ascii=False, indent=2)
     log(f"Updated chart-data.json ({len(cd.get('months', []))} monthly data points)")
 
 
@@ -604,7 +671,7 @@ def main():
 
     log(f"=== Steel Price Analysis: {date_str} ===")
 
-    taiwan_prices = scrape_metaltrade_taiwan()
+    taiwan_prices, histories = scrape_metaltrade_taiwan()
     fetched_any = any(
         taiwan_prices.get(cat["key"], {}).get("value") is not None
         for cat in TAIWAN_CATEGORIES
@@ -612,6 +679,7 @@ def main():
     if not fetched_any:
         log("Warning: metaltrade.tw fetch returned no data, carrying over previous prices")
         taiwan_prices = carry_over_taiwan_prices()
+        histories = {}
 
     articles, content = scrape_steelnews()
     log(f"Scraped {len(articles)} articles, {len(content)} chars of content")
@@ -653,7 +721,7 @@ def main():
         json.dump(output, f, ensure_ascii=False, indent=2)
     log(f"Saved {hist_path}")
 
-    update_chart_data(taiwan_prices.get("data_month"), taiwan_prices)
+    update_chart_data(taiwan_prices.get("data_month"), taiwan_prices, histories)
 
     idx_path = Path("data/history-index.json")
     try:
