@@ -20,6 +20,7 @@ let tickerFrameId = null;
 let tickerLastTs = 0;
 let tickerOffset = 0;
 let tickerLoopWidth = 0;
+let tickerContainerWidth = 0;
 const TICKER_SPEED_PX_PER_SEC = 42;
 
 function fmt(n, decimals) {
@@ -272,6 +273,8 @@ function renderTicker() {
   if (!inner || !tickerGroupMarkup) return;
 
   const containerWidth = inner.parentElement?.clientWidth || window.innerWidth || 0;
+  const previousLoopWidth = tickerLoopWidth;
+  const previousOffset = tickerOffset;
   let repeatedMarkup = tickerGroupMarkup;
 
   inner.innerHTML = `<div class="ticker-group">${repeatedMarkup}</div>`;
@@ -288,10 +291,16 @@ function renderTicker() {
     <div class="ticker-group">${repeatedMarkup}</div>
     <div class="ticker-group" aria-hidden="true">${repeatedMarkup}</div>
   `;
+  tickerContainerWidth = containerWidth;
   tickerLoopWidth = inner.firstElementChild?.scrollWidth || 0;
-  tickerOffset = 0;
+  if (previousLoopWidth > 0 && tickerLoopWidth > 0) {
+    const progress = ((-previousOffset % previousLoopWidth) + previousLoopWidth) % previousLoopWidth;
+    tickerOffset = -((progress / previousLoopWidth) * tickerLoopWidth);
+  } else {
+    tickerOffset = 0;
+  }
   tickerLastTs = 0;
-  inner.style.transform = 'translate3d(0, 0, 0)';
+  inner.style.transform = `translate3d(${tickerOffset}px, 0, 0)`;
   startTickerAnimation();
 }
 
@@ -685,7 +694,13 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('resize', () => {
   if (!tickerGroupMarkup) return;
   if (tickerResizeTimer) clearTimeout(tickerResizeTimer);
-  tickerResizeTimer = window.setTimeout(renderTicker, 120);
+  tickerResizeTimer = window.setTimeout(() => {
+    const inner = document.getElementById('ticker-inner');
+    if (!inner) return;
+    const nextWidth = inner.parentElement?.clientWidth || window.innerWidth || 0;
+    if (Math.abs(nextWidth - tickerContainerWidth) < 2) return;
+    renderTicker();
+  }, 120);
 });
 
 document.addEventListener('visibilitychange', () => {
