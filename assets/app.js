@@ -14,6 +14,8 @@ const CONF_LABELS = { high: '信心度：高', medium: '信心度：中', low: '
 
 let priceChart = null;
 let toastTimer = null;
+let tickerGroupMarkup = '';
+let tickerResizeTimer = null;
 
 function fmt(n, decimals) {
   if (typeof n !== 'number') return '-';
@@ -256,11 +258,36 @@ function populateTicker(data) {
       <span class="ticker-sep">※</span>
     </span>`;
   };
-  const groupMarkup = items.map(buildItem).join('');
+  tickerGroupMarkup = items.map(buildItem).join('');
+  renderTicker();
+}
+
+function renderTicker() {
+  const inner = document.getElementById('ticker-inner');
+  if (!inner || !tickerGroupMarkup) return;
+
+  const containerWidth = inner.parentElement?.clientWidth || window.innerWidth || 0;
+  let repeatedMarkup = tickerGroupMarkup;
+
+  inner.innerHTML = `<div class="ticker-group">${repeatedMarkup}</div>`;
+  let group = inner.firstElementChild;
+  let guard = 0;
+
+  while (group && group.scrollWidth < containerWidth * 1.5 && guard < 6) {
+    repeatedMarkup += tickerGroupMarkup;
+    group.innerHTML = repeatedMarkup;
+    guard += 1;
+  }
+
   inner.innerHTML = `
-    <div class="ticker-group">${groupMarkup}</div>
-    <div class="ticker-group" aria-hidden="true">${groupMarkup}</div>
+    <div class="ticker-group">${repeatedMarkup}</div>
+    <div class="ticker-group" aria-hidden="true">${repeatedMarkup}</div>
   `;
+
+  // Restart the CSS animation after rebuilding the repeated track.
+  inner.style.animation = 'none';
+  void inner.offsetWidth;
+  inner.style.animation = '';
 }
 
 function initAnimations() {
@@ -609,6 +636,12 @@ document.addEventListener('DOMContentLoaded', () => {
   importPatFromHash();
   loadData();
   initAnimations();
+});
+
+window.addEventListener('resize', () => {
+  if (!tickerGroupMarkup) return;
+  if (tickerResizeTimer) clearTimeout(tickerResizeTimer);
+  tickerResizeTimer = window.setTimeout(renderTicker, 120);
 });
 
 window.addEventListener('load', () => {
