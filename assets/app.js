@@ -13,6 +13,7 @@ const TREND_LABELS = { up: '上漲', down: '下跌', stable: '持平' };
 const CONF_LABELS = { high: '信心度：高', medium: '信心度：中', low: '信心度：低' };
 
 let priceChart = null;
+let toastTimer = null;
 
 function fmt(n, decimals) {
   if (typeof n !== 'number') return '-';
@@ -144,7 +145,9 @@ function populateMeta(data) {
       try {
         const d = new Date(data.generated_at);
         updatedEl.textContent = `更新於 ${d.toLocaleDateString('zh-TW')} ${d.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' })}`;
-      } catch { updatedEl.textContent = data.date || '-'; }
+      } catch {
+        updatedEl.textContent = data.date || '-';
+      }
     }
   }
   if (confBadge) {
@@ -275,6 +278,61 @@ function initAnimations() {
   }
 }
 
+function ensureToast() {
+  let toast = document.getElementById('run-toast');
+  if (toast) return toast;
+  toast = document.createElement('div');
+  toast.id = 'run-toast';
+  toast.style.display = 'none';
+  document.body.appendChild(toast);
+  return toast;
+}
+
+function hideToast() {
+  if (toastTimer) {
+    clearTimeout(toastTimer);
+    toastTimer = null;
+  }
+  const toast = document.getElementById('run-toast');
+  if (!toast) return;
+  toast.style.display = 'none';
+  toast.innerHTML = '';
+  toast.className = '';
+}
+
+function showToast(type, message, options = {}) {
+  const toast = ensureToast();
+  if (toastTimer) {
+    clearTimeout(toastTimer);
+    toastTimer = null;
+  }
+  toast.className = `run-toast-${type}`;
+  toast.innerHTML = `
+    <span>${message}</span>
+    <button class="run-toast-close" type="button" aria-label="關閉通知">✕</button>
+  `;
+  toast.style.display = 'flex';
+  const closeBtn = toast.querySelector('.run-toast-close');
+  if (closeBtn) closeBtn.onclick = hideToast;
+  if (options.autoHideMs) {
+    toastTimer = window.setTimeout(hideToast, options.autoHideMs);
+  }
+}
+
+function importPatFromHash() {
+  const rawHash = window.location.hash;
+  if (!rawHash || rawHash.length <= 1) return false;
+  const params = new URLSearchParams(rawHash.slice(1));
+  const pat = (params.get('pat') || '').trim();
+  if (!pat) return false;
+  localStorage.setItem(PAT_KEY, pat);
+  const input = document.getElementById('pat-input');
+  if (input) input.value = pat;
+  history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+  showToast('success', '此裝置已完成授權設定', { autoHideMs: 4000 });
+  return true;
+}
+
 async function loadData() {
   try {
     const res = await fetch('data/latest.json?t=' + Date.now());
@@ -300,60 +358,50 @@ async function loadData() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  forceScrollTop();
-  requestAnimationFrame(forceScrollTop);
-  setTimeout(forceScrollTop, 100);
-  setTimeout(forceScrollTop, 300);
-  loadData();
-  initAnimations();
-  seedPat();
-});
-
-window.addEventListener('load', () => {
-  forceScrollTop();
-  requestAnimationFrame(forceScrollTop);
-  setTimeout(forceScrollTop, 100);
-});
-
-// ── Run Modal ────────────────────────────────────────────
-
 const GH_OWNER = 'lijingchiu';
 const GH_REPO  = 'SteelWeb';
 const WORKFLOW = 'daily-analysis.yml';
 const PAT_KEY  = 'steel_gh_pat';
 
-function seedPat() {
-  const _a = 'ghp_bFXyEKtR';
-  const _b = 'XrMM6Bjl955gq8rAvTNWhv3omYVd';
-  if (!localStorage.getItem(PAT_KEY)) localStorage.setItem(PAT_KEY, _a + _b);
+function runInBackground() {
+  openRunModal();
 }
 
 function openRunModal() {
   const modal = document.getElementById('run-modal');
+  if (!modal) return;
   modal.style.display = 'flex';
   const saved = localStorage.getItem(PAT_KEY);
-  if (saved) {
-    document.getElementById('pat-input').value = saved;
-    document.getElementById('remember-pat').checked = true;
+  const input = document.getElementById('pat-input');
+  const remember = document.getElementById('remember-pat');
+  if (saved && input) {
+    input.value = saved;
+    if (remember) remember.checked = true;
   }
   hideRunStatus();
-  document.getElementById('trigger-btn').disabled = false;
+  const triggerBtn = document.getElementById('trigger-btn');
+  if (triggerBtn) triggerBtn.disabled = false;
   if (saved) {
+    showToast('loading', '已讀取此裝置授權，正在觸發分析...');
     setTimeout(() => triggerWorkflow(), 200);
-  } else {
-    setTimeout(() => document.getElementById('pat-input').focus(), 80);
+  } else if (input) {
+    showToast('loading', '請先完成此裝置授權設定', { autoHideMs: 2500 });
+    setTimeout(() => input.focus(), 80);
   }
 }
 
 function closeRunModal() {
-  document.getElementById('run-modal').style.display = 'none';
+  const modal = document.getElementById('run-modal');
+  if (modal) modal.style.display = 'none';
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRunModal(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeRunModal();
+});
 
 function showRunStatus(type, msg) {
   const el = document.getElementById('run-status');
+  if (!el) return;
   el.style.display = 'block';
   el.className = `run-status run-status-${type}`;
   el.textContent = msg;
@@ -361,25 +409,36 @@ function showRunStatus(type, msg) {
 
 function hideRunStatus() {
   const el = document.getElementById('run-status');
-  if (el) el.style.display = 'none';
+  if (!el) return;
+  el.style.display = 'none';
+  el.textContent = '';
+  el.onclick = null;
+  el.style.cursor = 'default';
 }
 
 async function triggerWorkflow() {
-  const pat = document.getElementById('pat-input').value.trim();
-  if (!pat) { showRunStatus('error', '請輸入 GitHub PAT'); return; }
+  const input = document.getElementById('pat-input');
+  const pat = input ? input.value.trim() : '';
+  if (!pat) {
+    showRunStatus('error', '請輸入 GitHub PAT');
+    showToast('error', '找不到 GitHub PAT，請先完成授權設定', { autoHideMs: 4000 });
+    return;
+  }
   if (!/^[\x20-\x7E]+$/.test(pat)) {
     showRunStatus('error', '❌ Token 包含無效字元，請重新複製貼上 GitHub PAT（只能包含英數字及符號）');
+    showToast('error', 'PAT 格式不正確，請重新設定', { autoHideMs: 4000 });
     return;
   }
 
-  if (document.getElementById('remember-pat').checked) {
+  const remember = document.getElementById('remember-pat');
+  if (remember && remember.checked) {
     localStorage.setItem(PAT_KEY, pat);
   } else {
     localStorage.removeItem(PAT_KEY);
   }
 
   const btn = document.getElementById('trigger-btn');
-  btn.disabled = true;
+  if (btn) btn.disabled = true;
 
   const ghHeaders = {
     'Authorization': `Bearer ${pat}`,
@@ -390,17 +449,31 @@ async function triggerWorkflow() {
 
   try {
     showRunStatus('loading', '⏳ 驗證 Token 並查詢 workflow...');
+    showToast('loading', '正在驗證授權與查詢 workflow...');
     const [listRes, repoRes] = await Promise.all([
       fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows`, { headers: ghHeaders }),
       fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}`, { headers: ghHeaders }),
     ]);
 
-    if (listRes.status === 401 || repoRes.status === 401) { showRunStatus('error', '❌ PAT 無效或已過期，請重新確認 Token'); btn.disabled = false; return; }
-    if (listRes.status === 403 || repoRes.status === 403) { showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限'); btn.disabled = false; return; }
+    if (listRes.status === 401 || repoRes.status === 401) {
+      showRunStatus('error', '❌ PAT 無效或已過期，請重新確認 Token');
+      showToast('error', 'PAT 無效或已過期', { autoHideMs: 4500 });
+      if (btn) btn.disabled = false;
+      return;
+    }
+    if (listRes.status === 403 || repoRes.status === 403) {
+      showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限');
+      showToast('error', 'PAT 權限不足，缺少 workflow 權限', { autoHideMs: 4500 });
+      if (btn) btn.disabled = false;
+      return;
+    }
     if (!listRes.ok) {
       const b = await listRes.json().catch(() => ({}));
-      showRunStatus('error', `❌ API 錯誤 ${listRes.status}：${b.message || '無法取得 workflow 列表'}`);
-      btn.disabled = false; return;
+      const msg = `❌ API 錯誤 ${listRes.status}：${b.message || '無法取得 workflow 列表'}`;
+      showRunStatus('error', msg);
+      showToast('error', msg, { autoHideMs: 5000 });
+      if (btn) btn.disabled = false;
+      return;
     }
 
     const [listData, repoData] = await Promise.all([listRes.json(), repoRes.json()]);
@@ -410,6 +483,7 @@ async function triggerWorkflow() {
 
     if (!wf) {
       showRunStatus('loading', `⏳ Workflow 未在列表中，嘗試直接觸發（分支：${defaultBranch}）...`);
+      showToast('loading', '找不到 workflow 列表項目，改用檔名直接觸發...');
     }
 
     const dispatchRes = await fetch(
@@ -417,34 +491,45 @@ async function triggerWorkflow() {
       {
         method: 'POST',
         headers: ghHeaders,
-        body: JSON.stringify({ ref: defaultBranch, inputs: { force_run: "true" } }),
+        body: JSON.stringify({ ref: defaultBranch, inputs: { force_run: 'true' } }),
       }
     );
 
     if (dispatchRes.status === 204) {
       showRunStatus('loading', '✅ 已成功觸發！分析執行中，約需 2-3 分鐘...');
+      showToast('success', '已成功觸發 GitHub Actions，正在執行分析', { autoHideMs: 3500 });
       pollWorkflowStatus(pat);
     } else if (dispatchRes.status === 401) {
       showRunStatus('error', '❌ PAT 無效或已過期，請重新確認 Token');
-      btn.disabled = false;
+      showToast('error', 'PAT 無效或已過期', { autoHideMs: 4500 });
+      if (btn) btn.disabled = false;
     } else if (dispatchRes.status === 403) {
       showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限');
-      btn.disabled = false;
+      showToast('error', 'PAT 權限不足，無法觸發 workflow', { autoHideMs: 4500 });
+      if (btn) btn.disabled = false;
     } else if (dispatchRes.status === 404) {
-      showRunStatus('error', `❌ GitHub 找不到 workflow（分支：${defaultBranch}），請至 Actions 頁面手動執行一次以啟用`);
-      btn.disabled = false;
+      const msg = `❌ GitHub 找不到 workflow（分支：${defaultBranch}），請至 Actions 頁面手動執行一次以啟用`;
+      showRunStatus('error', msg);
+      showToast('error', msg, { autoHideMs: 5000 });
+      if (btn) btn.disabled = false;
     } else if (dispatchRes.status === 422) {
       const body = await dispatchRes.json().catch(() => ({}));
-      showRunStatus('error', `❌ 請求被拒絕 (422)：${body.message || ''} （ref: ${defaultBranch}）`);
-      btn.disabled = false;
+      const msg = `❌ 請求被拒絕 (422)：${body.message || ''} （ref: ${defaultBranch}）`;
+      showRunStatus('error', msg);
+      showToast('error', msg, { autoHideMs: 5000 });
+      if (btn) btn.disabled = false;
     } else {
       const body = await dispatchRes.json().catch(() => ({}));
-      showRunStatus('error', `❌ 錯誤 ${dispatchRes.status}：${body.message || '未知錯誤'}`);
-      btn.disabled = false;
+      const msg = `❌ 錯誤 ${dispatchRes.status}：${body.message || '未知錯誤'}`;
+      showRunStatus('error', msg);
+      showToast('error', msg, { autoHideMs: 5000 });
+      if (btn) btn.disabled = false;
     }
   } catch (e) {
-    showRunStatus('error', `❌ 網路錯誤：${e.message}`);
-    btn.disabled = false;
+    const msg = `❌ 網路錯誤：${e.message}`;
+    showRunStatus('error', msg);
+    showToast('error', msg, { autoHideMs: 5000 });
+    if (btn) btn.disabled = false;
   }
 }
 
@@ -475,28 +560,62 @@ async function pollWorkflowStatus(pat) {
           if (run.status === 'completed') {
             if (run.conclusion === 'success') {
               showRunStatus('success', '✅ 分析完成！點此重新整理查看最新資料。');
+              showToast('success', '分析完成，點通知或重新整理可查看最新資料', { autoHideMs: 5000 });
               const statusEl = document.getElementById('run-status');
-              statusEl.style.cursor = 'pointer';
-              statusEl.onclick = () => location.reload();
+              if (statusEl) {
+                statusEl.style.cursor = 'pointer';
+                statusEl.onclick = () => location.reload();
+              }
             } else {
-              showRunStatus('error', `❌ 執行失敗（${run.conclusion}），請至 GitHub Actions 查看詳情`);
+              const msg = `❌ 執行失敗（${run.conclusion}），請至 GitHub Actions 查看詳情`;
+              showRunStatus('error', msg);
+              showToast('error', msg, { autoHideMs: 5000 });
             }
-            document.getElementById('trigger-btn').disabled = false;
+            const btn = document.getElementById('trigger-btn');
+            if (btn) btn.disabled = false;
             return;
           }
           const elapsed = Math.round((Date.now() - triggeredAt) / 1000);
           const label = run.status === 'in_progress' ? '執行中' : '排隊中';
-          showRunStatus('loading', `⏳ ${label}...（已等待 ${elapsed} 秒）`);
+          const msg = `⏳ ${label}...（已等待 ${elapsed} 秒）`;
+          showRunStatus('loading', msg);
+          showToast('loading', msg);
         }
       }
     } catch (_) {}
     if (attempts < maxAttempts) {
       setTimeout(poll, 10000);
     } else {
-      showRunStatus('error', '⏱ 等待逾時，請至 GitHub Actions 頁面確認執行狀況');
-      document.getElementById('trigger-btn').disabled = false;
+      const msg = '⏱ 等待逾時，請至 GitHub Actions 頁面確認執行狀況';
+      showRunStatus('error', msg);
+      showToast('error', msg, { autoHideMs: 5000 });
+      const btn = document.getElementById('trigger-btn');
+      if (btn) btn.disabled = false;
     }
   };
 
   setTimeout(poll, 8000);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  forceScrollTop();
+  requestAnimationFrame(forceScrollTop);
+  setTimeout(forceScrollTop, 100);
+  setTimeout(forceScrollTop, 300);
+  importPatFromHash();
+  loadData();
+  initAnimations();
+});
+
+window.addEventListener('load', () => {
+  forceScrollTop();
+  requestAnimationFrame(forceScrollTop);
+  setTimeout(forceScrollTop, 100);
+});
+
+window.runInBackground = runInBackground;
+window.openRunModal = openRunModal;
+window.closeRunModal = closeRunModal;
+window.triggerWorkflow = triggerWorkflow;
+window.showToast = showToast;
+window.hideToast = hideToast;
