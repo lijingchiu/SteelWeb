@@ -463,12 +463,55 @@ button { font-family: inherit; }
 
 .td { display: flex; flex-direction: column; justify-content: center; }
 
-.col-no    { flex: 0 0 32px; color: #a89682; font-family: var(--font-mono); font-size: 11px; }
+.col-no    { flex: 0 0 32px; }
 .col-prod  { flex: 2; }
-.col-unit  { flex: 0.85; color: var(--muted); font-size: 12px; letter-spacing: 0.04em; }
-.col-price { flex: 1.2; text-align: right; font-family: var(--font-mono); font-size: 26px; font-weight: 500; font-variant-numeric: tabular-nums; align-items: flex-end; }
-.col-chg   { flex: 1; align-items: flex-end; }
-.col-badge { flex: 0.85; align-items: flex-end; gap: 6px; }
+.col-unit  { flex: 0.85; }
+.col-price { flex: 1.2; }
+.col-chg   { flex: 1; }
+.col-badge { flex: 0.85; }
+
+.thead .col-no {
+  color: #a89682;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.thead .col-unit,
+.thead .col-price,
+.thead .col-chg,
+.thead .col-badge {
+  align-items: flex-end;
+  font-size: 10px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+}
+
+.tr .col-no {
+  color: #a89682;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.tr .col-unit {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.tr .col-price {
+  align-items: flex-end;
+  padding-right: 28px;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.tr .col-chg {
+  align-items: flex-end;
+  min-width: 112px;
+}
+.tr .col-badge {
+  align-items: flex-end;
+  gap: 6px;
+}
 
 .prod-name {
   font-family: var(--font-serif);
@@ -848,8 +891,8 @@ button { font-family: inherit; }
   .tr { flex-wrap: wrap; gap: 6px; padding: 16px 0; }
   .col-no, .col-unit { display: none; }
   .col-prod  { flex: 1 0 100%; }
-  .col-price { flex: 0 0 auto; font-size: 22px; }
-  .col-chg   { flex: 0 0 auto; }
+  .tr .col-price { flex: 0 0 auto; font-size: 22px; padding-right: 14px; }
+  .tr .col-chg   { flex: 0 0 auto; min-width: 96px; }
   .col-badge { flex: 0 0 auto; }
 
   .section-head { flex-direction: column; align-items: flex-start; gap: 10px; }
