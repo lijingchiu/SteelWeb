@@ -70,6 +70,16 @@ STEEL_KEYWORDS = [
     '中鋼', '唐榮', '東和', '豐興', '宏鋼', '盛餘',
 ]
 
+ANALYSIS_KEYS = [
+    "exchange_rate",
+    "spread_analysis",
+    "monthly_trend",
+    "international_outlook",
+    "risk_factors",
+    "summary",
+    "confidence",
+]
+
 
 def log(msg: str):
     print(f"[{datetime.now(TW_TZ).strftime('%H:%M:%S')}] {msg}", flush=True)
@@ -497,6 +507,169 @@ def format_taiwan_prices_for_prompt(taiwan_prices: dict) -> str:
     return "\n".join(lines)
 
 
+def _iter_json_candidates(text: str) -> list[str]:
+    candidates = []
+    stripped = text.strip()
+    if stripped:
+        candidates.append(stripped)
+
+    fence_matches = re.findall(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.DOTALL | re.IGNORECASE)
+    candidates.extend(m.strip() for m in fence_matches if m.strip())
+
+    start = text.find("{")
+    if start >= 0:
+        depth = 0
+        in_string = False
+        escape = False
+        for idx in range(start, len(text)):
+            ch = text[idx]
+            if in_string:
+                if escape:
+                    escape = False
+                elif ch == "\\":
+                    escape = True
+                elif ch == '"':
+                    in_string = False
+            else:
+                if ch == '"':
+                    in_string = True
+                elif ch == "{":
+                    depth += 1
+                elif ch == "}":
+                    depth -= 1
+                    if depth == 0:
+                        candidates.append(text[start:idx + 1].strip())
+                        break
+    return candidates
+
+
+def _repair_json_candidate(candidate: str) -> list[str]:
+    repaired = [candidate]
+
+    normalized = (
+        candidate
+        .replace("“", '"')
+        .replace("”", '"')
+        .replace("’", "'")
+        .replace("‘", "'")
+    )
+    repaired.append(normalized)
+
+    trailing_commas_fixed = re.sub(r",\s*([}\]])", r"\1", normalized)
+    repaired.append(trailing_commas_fixed)
+
+    missing_key_commas_fixed = re.sub(
+        r'([0-9"\]}])\s*\n(\s*"(?:[^"\\]|\\.)+"\s*:)',
+        r"\1,\n\2",
+        trailing_commas_fixed,
+    )
+    repaired.append(missing_key_commas_fixed)
+
+    missing_array_commas_fixed = re.sub(
+        r'(".*?")\s*\n(\s*")',
+        r"\1,\n\2",
+        missing_key_commas_fixed,
+        flags=re.DOTALL,
+    )
+    repaired.append(missing_array_commas_fixed)
+
+    # Preserve order while removing duplicates.
+    return list(dict.fromkeys(s for s in repaired if s.strip()))
+
+
+def _coerce_analysis_schema(parsed: dict, model: str) -> dict:
+    exchange = parsed.get("exchange_rate")
+    if not isinstance(exchange, dict):
+        exchange = {}
+
+    usd_twd_estimate = exchange.get("usd_twd_estimate")
+    try:
+        usd_twd_estimate = float(usd_twd_estimate) if usd_twd_estimate is not None else 32.5
+    except (TypeError, ValueError):
+        usd_twd_estimate = 32.5
+
+    impact = str(exchange.get("impact_on_steel") or "近期匯率資訊有限，先以保守估計解讀對國內鋼價的成本支撐。").strip()
+
+    risk_factors = parsed.get("risk_factors")
+    if isinstance(risk_factors, list):
+        risk_factors = [str(x).strip() for x in risk_factors if str(x).strip()]
+    else:
+        risk_factors = [str(risk_factors).strip()] if risk_factors else []
+    while len(risk_factors) < 3:
+        risk_factors.append("需持續觀察原料、匯率與下游需求變化。")
+    risk_factors = risk_factors[:3]
+
+    confidence = str(parsed.get("confidence") or "medium").strip().lower()
+    if confidence not in {"high", "medium", "low"}:
+        confidence = "medium"
+
+    return {
+        "exchange_rate": {
+            "usd_twd_estimate": usd_twd_estimate,
+            "impact_on_steel": impact,
+        },
+        "spread_analysis": str(parsed.get("spread_analysis") or "本日利差分析以官方月度價格與新聞摘要為準，市場利差仍受廢鋼、半成品與型鋼報價連動影響。").strip(),
+        "monthly_trend": str(parsed.get("monthly_trend") or "短期走勢以區間整理看待，須觀察原料成本、需求與匯率變化。").strip(),
+        "international_outlook": str(parsed.get("international_outlook") or "國際市場仍需觀察中國出口政策、亞洲鋼價與美元走勢對台灣報價的傳導。").strip(),
+        "risk_factors": risk_factors,
+        "summary": str(parsed.get("summary") or "今日分析因模型輸出格式修復後整理，已保留主要價格與市場訊號。").strip(),
+        "confidence": confidence,
+        "model_used": model,
+    }
+
+
+def _parse_openrouter_response(raw: str, model: str) -> dict | None:
+    for candidate in _iter_json_candidates(raw):
+        for variant in _repair_json_candidate(candidate):
+            try:
+                parsed = json.loads(variant)
+                if isinstance(parsed, dict):
+                    return _coerce_analysis_schema(parsed, model)
+            except json.JSONDecodeError:
+                continue
+    return None
+
+
+def carry_over_analysis() -> dict | None:
+    try:
+        with open("data/latest.json") as f:
+            prev = json.load(f)
+        if all(k in prev for k in ANALYSIS_KEYS):
+            return {
+                "exchange_rate": prev.get("exchange_rate"),
+                "spread_analysis": prev.get("spread_analysis"),
+                "monthly_trend": prev.get("monthly_trend") or prev.get("weekly_trend"),
+                "international_outlook": prev.get("international_outlook"),
+                "risk_factors": prev.get("risk_factors"),
+                "summary": prev.get("summary"),
+                "confidence": prev.get("confidence", "medium"),
+                "model_used": f"{prev.get('model_used', 'previous')} (carried-over)",
+            }
+    except Exception:
+        pass
+    return None
+
+
+def build_fallback_analysis() -> dict:
+    return {
+        "exchange_rate": {
+            "usd_twd_estimate": 32.5,
+            "impact_on_steel": "模型輸出異常，本次以保守匯率估值保留資料發布，待下次自動分析更新。",
+        },
+        "spread_analysis": "模型輸出格式異常，暫以最新官方價格資料保留報表；利差仍需觀察廢鋼、鋼胚與成品報價聯動。",
+        "monthly_trend": "短期走勢暫以區間整理看待，後續仍需觀察原料成本、匯率與下游接單變化。",
+        "international_outlook": "國際鋼市觀察重點仍在中國出口政策、亞洲報價變化與美元走勢對台灣鋼價的傳導。",
+        "risk_factors": [
+            "原料價格波動可能改變鋼材加工利差。",
+            "美元與台幣匯率變動將影響進口成本。",
+            "下游需求與市場信心仍可能造成報價調整。",
+        ],
+        "summary": "本次 AI 分析模型輸出格式異常，系統先保留已成功抓取的官方價格資料與保守市場摘要，待下次執行自動更新。",
+        "confidence": "low",
+        "model_used": "fallback-local",
+    }
+
+
 def call_openrouter(news_content: str, date_str: str, taiwan_prices: dict) -> dict | None:
     if not OPENROUTER_API_KEY:
         log("ERROR: OPENROUTER_API_KEY not set")
@@ -549,6 +722,7 @@ def call_openrouter(news_content: str, date_str: str, taiwan_prices: dict) -> di
             "messages": [{"role": "user", "content": prompt}],
             "max_tokens": 2500,
             "temperature": 0.25,
+            "response_format": {"type": "json_object"},
         }
         for attempt in range(2):
             try:
@@ -570,15 +744,10 @@ def call_openrouter(news_content: str, date_str: str, taiwan_prices: dict) -> di
 
                 raw = data["choices"][0]["message"]["content"].strip()
                 log(f"  Got response ({len(raw)} chars) from {model}")
-
-                start = raw.find('{')
-                end = raw.rfind('}') + 1
-                if start >= 0 and end > start:
-                    parsed = json.loads(raw[start:end])
-                    parsed["model_used"] = model
+                parsed = _parse_openrouter_response(raw, model)
+                if parsed:
                     return parsed
-                else:
-                    log("  Warning: no JSON found in response")
+                log(f"  Warning: could not coerce model output into valid JSON. Raw preview: {raw[:400]!r}")
 
             except json.JSONDecodeError as e:
                 log(f"  JSON parse error: {e}")
@@ -589,8 +758,13 @@ def call_openrouter(news_content: str, date_str: str, taiwan_prices: dict) -> di
                 log("  Retrying in 10s...")
                 time.sleep(10)
 
-    log("FATAL: all models exhausted")
-    return None
+    carried = carry_over_analysis()
+    if carried:
+        log("Warning: all models exhausted, carrying over previous analysis block")
+        return carried
+
+    log("Warning: all models exhausted, using local fallback analysis")
+    return build_fallback_analysis()
 
 
 def update_chart_data(
@@ -695,10 +869,6 @@ def main():
     full_content = f"【新聞標題列表】\n{article_titles}\n\n【網頁擷取內容】\n{content}"
 
     analysis = call_openrouter(full_content, date_str, taiwan_prices)
-
-    if not analysis:
-        log("FATAL: Could not obtain analysis from OpenRouter")
-        sys.exit(1)
 
     output = {
         "generated_at": dt_str,
