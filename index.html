@@ -41,7 +41,7 @@
       <a class="nav-link" href="#chart">走勢</a>
       <a class="nav-link" href="#analysis">分析</a>
       <a class="nav-link" href="#news">新聞</a>
-      <button class="run-btn" id="run-btn" onclick="openRunModal()">▶ 執行</button>
+      <button class="run-btn" id="run-btn" onclick="runInBackground()">▶ 執行</button>
     </nav>
   </header>
 
@@ -60,7 +60,7 @@
       <p class="lead" id="summary-text">分析資料載入中...</p>
       <div class="hero-actions">
         <a class="btn btn-solid" href="#prices">查看完整報價 ↓</a>
-        <button class="btn btn-ghost" onclick="openRunModal()">▶ 立即執行分析</button>
+        <button class="btn btn-ghost" onclick="runInBackground()">▶ 立即執行分析</button>
       </div>
     </div>
 
@@ -120,7 +120,7 @@
           <span class="td col-badge">趨勢</span>
         </div>
 
-        <!-- Row 01 -->
+        <!-- Row 01: 臺灣粗鋼產量 -->
         <div class="tr" id="card-production" data-row style="transition-delay:0ms">
           <span class="td col-no">01</span>
           <span class="td col-prod">
@@ -137,7 +137,7 @@
           <div style="display:none" id="production-month"></div>
         </div>
 
-        <!-- Row 02 -->
+        <!-- Row 02: 北部廢鋼大盤收購價 -->
         <div class="tr" id="card-scrap" data-row style="transition-delay:60ms">
           <span class="td col-no">02</span>
           <span class="td col-prod">
@@ -154,7 +154,7 @@
           <div style="display:none" id="scrap-month"></div>
         </div>
 
-        <!-- Row 03 -->
+        <!-- Row 03: 小鋼胚中級出廠價 -->
         <div class="tr" id="card-billet" data-row style="transition-delay:120ms">
           <span class="td col-no">03</span>
           <span class="td col-prod">
@@ -171,7 +171,7 @@
           <div style="display:none" id="billet-month"></div>
         </div>
 
-        <!-- Row 04 -->
+        <!-- Row 04: 豐興鋼筋盤價 -->
         <div class="tr" id="card-rebar" data-row style="transition-delay:180ms">
           <span class="td col-no">04</span>
           <span class="td col-prod">
@@ -188,7 +188,7 @@
           <div style="display:none" id="rebar-month"></div>
         </div>
 
-        <!-- Row 05 -->
+        <!-- Row 05: 東鋼H型鋼流通價 -->
         <div class="tr" id="card-hbeam" data-row style="transition-delay:240ms">
           <span class="td col-no">05</span>
           <span class="td col-prod">
@@ -205,7 +205,7 @@
           <div style="display:none" id="hbeam-month"></div>
         </div>
 
-        <!-- Row 06 -->
+        <!-- Row 06: 中鋼棒線盤價 -->
         <div class="tr" id="card-wirerod" data-row style="transition-delay:300ms">
           <span class="td col-no">06</span>
           <span class="td col-prod">
@@ -299,7 +299,7 @@
     <span>引擎：<span id="model-name">-</span> &nbsp;·&nbsp; <a href="https://github.com/lijingchiu/SteelWeb" target="_blank" rel="noopener">GitHub ↗</a></span>
   </footer>
 
-  <!-- Run Modal -->
+  <!-- Run Modal (fallback for manual token entry) -->
   <div id="run-modal" class="modal-overlay" style="display:none">
     <div class="modal-box">
       <div class="modal-header">
