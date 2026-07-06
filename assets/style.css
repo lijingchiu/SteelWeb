@@ -459,7 +459,13 @@ button { font-family: inherit; }
 .col-no    { flex: 0 0 32px; color: #a89682; font-family: var(--font-mono); font-size: 11px; }
 .col-prod  { flex: 2; }
 .col-unit  { flex: 0.85; color: var(--muted); font-size: 12px; letter-spacing: 0.04em; }
-.col-price { flex: 1.2; text-align: right; font-family: var(--font-mono); font-size: 26px; font-weight: 500; font-variant-numeric: tabular-nums; align-items: flex-end; }
+.col-price { flex: 1.2; text-align: right; align-items: flex-end; }
+.tr .col-price {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
 .col-chg   { flex: 1; align-items: flex-end; }
 .col-badge { flex: 0.85; align-items: flex-end; gap: 6px; }
 
@@ -896,7 +902,7 @@ button { font-family: inherit; }
   .tr { flex-wrap: wrap; gap: 6px; padding: 16px 0; }
   .col-no, .col-unit { display: none; }
   .col-prod  { flex: 1 0 100%; }
-  .col-price { flex: 0 0 auto; font-size: 22px; }
+  .tr .col-price { flex: 0 0 auto; font-size: 22px; }
   .col-chg   { flex: 0 0 auto; }
   .col-badge { flex: 0 0 auto; }
 

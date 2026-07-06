@@ -48,10 +48,14 @@ function setTrend(badgeId, barId, trend) {
 
 function setChange(el, changeAmt, unit, decimals) {
   if (!el) return;
-  if (typeof changeAmt !== 'number') { el.textContent = '-'; el.className = 'price-change stable'; return; }
+  // Toggle classes instead of replacing className: the table cells carry
+  // layout classes (td col-chg) that must survive.
+  el.classList.add('price-change');
+  el.classList.remove('up', 'down', 'stable');
+  if (typeof changeAmt !== 'number') { el.textContent = '-'; el.classList.add('stable'); return; }
   const cls = changeAmt > 0 ? 'up' : changeAmt < 0 ? 'down' : 'stable';
   el.textContent = fmtChange(changeAmt, decimals) + ' ' + (unit || '元');
-  el.className = `price-change ${cls}`;
+  el.classList.add(cls);
 }
 
 function setDataMonth(el, monthStr) {
