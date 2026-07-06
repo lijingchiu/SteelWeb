@@ -13,14 +13,8 @@ const TREND_LABELS = { up: '上漲', down: '下跌', stable: '持平' };
 const CONF_LABELS = { high: '信心度：高', medium: '信心度：中', low: '信心度：低' };
 
 let priceChart = null;
-let toastTimer = null;
-let tickerGroupMarkup = '';
-let tickerFrameId = null;
-let tickerLastTs = 0;
-let tickerOffset = 0;
-let tickerLoopWidth = 0;
-let tickerOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
-const TICKER_SPEED_PX_PER_SEC = 42;
+let _tickerRAF = null;
+let _tickerX = 0;
 
 function fmt(n, decimals) {
   if (typeof n !== 'number') return '-';
@@ -56,7 +50,7 @@ function setChange(el, changeAmt, unit, decimals) {
   if (!el) return;
   if (typeof changeAmt !== 'number') { el.textContent = '-'; el.className = 'price-change stable'; return; }
   const cls = changeAmt > 0 ? 'up' : changeAmt < 0 ? 'down' : 'stable';
-  el.textContent = fmtChange(changeAmt, decimals);
+  el.textContent = fmtChange(changeAmt, decimals) + ' ' + (unit || '元');
   el.className = `price-change ${cls}`;
 }
 
@@ -96,8 +90,19 @@ function populateExchange(data) {
   const ex = data.exchange_rate || {};
   const rate = document.getElementById('exchange-rate');
   const impact = document.getElementById('exchange-impact');
-  if (rate) rate.textContent = ex.usd_twd_estimate ? ex.usd_twd_estimate.toFixed(2) : '-';
+  const source = document.getElementById('exchange-source');
+  const val = typeof ex.usd_twd === 'number' ? ex.usd_twd : ex.usd_twd_estimate;
+  if (rate) rate.textContent = typeof val === 'number' ? val.toFixed(2) : '-';
   if (impact) impact.textContent = ex.impact_on_steel || '-';
+  if (source) {
+    if (ex.source) {
+      const buySell = (typeof ex.spot_buy === 'number' && typeof ex.spot_sell === 'number')
+        ? ` · 即期買 ${ex.spot_buy.toFixed(2)} / 賣 ${ex.spot_sell.toFixed(2)}` : '';
+      source.textContent = `來源：${ex.source}${buySell}`;
+    } else {
+      source.textContent = '';
+    }
+  }
 }
 
 function populateAnalysis(data) {
@@ -152,9 +157,7 @@ function populateMeta(data) {
       try {
         const d = new Date(data.generated_at);
         updatedEl.textContent = `更新於 ${d.toLocaleDateString('zh-TW')} ${d.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' })}`;
-      } catch {
-        updatedEl.textContent = data.date || '-';
-      }
+      } catch { updatedEl.textContent = data.date || '-'; }
     }
   }
   if (confBadge) {
@@ -263,87 +266,68 @@ function populateTicker(data) {
       <span class="ticker-sep">※</span>
     </span>`;
   };
-  tickerGroupMarkup = items.map(buildItem).join('');
-  renderTicker();
+  inner.innerHTML = [...items, ...items].map(buildItem).join('');
+  startTicker();
 }
 
-function renderTicker() {
+function startTicker() {
   const inner = document.getElementById('ticker-inner');
-  if (!inner || !tickerGroupMarkup) return;
+  if (!inner) return;
+  if (_tickerRAF) { cancelAnimationFrame(_tickerRAF); _tickerRAF = null; }
+  _tickerX = 0;
+  inner.style.transform = 'translateX(0px)';
 
-  const previousLoopWidth = tickerLoopWidth;
-  const previousOffset = tickerOffset;
-  let repeatedMarkup = tickerGroupMarkup;
-  const targetWidth = Math.max(
-    inner.parentElement?.clientWidth || 0,
-    window.innerWidth || 0,
-    window.screen?.width || 0,
-    1200,
-  );
-
-  inner.innerHTML = `<div class="ticker-group">${repeatedMarkup}</div>`;
-  let group = inner.firstElementChild;
-  let guard = 0;
-
-  while (group && group.scrollWidth < targetWidth * 2.5 && guard < 12) {
-    repeatedMarkup += tickerGroupMarkup;
-    group.innerHTML = repeatedMarkup;
-    guard += 1;
-  }
-
-  inner.innerHTML = `
-    <div class="ticker-group">${repeatedMarkup}</div>
-    <div class="ticker-group" aria-hidden="true">${repeatedMarkup}</div>
-  `;
-  tickerLoopWidth = inner.firstElementChild?.scrollWidth || 0;
-  if (previousLoopWidth > 0 && tickerLoopWidth > 0) {
-    const progress = ((-previousOffset % previousLoopWidth) + previousLoopWidth) % previousLoopWidth;
-    tickerOffset = -((progress / previousLoopWidth) * tickerLoopWidth);
-  } else {
-    tickerOffset = 0;
-  }
-  tickerLastTs = 0;
-  inner.style.transform = `translate3d(${tickerOffset}px, 0, 0)`;
-  startTickerAnimation();
+  requestAnimationFrame(() => {
+    const half = inner.scrollWidth / 2;
+    if (half <= 0) return;
+    const tick = () => {
+      _tickerX -= 0.4;
+      if (_tickerX <= -half) _tickerX += half;
+      inner.style.transform = `translateX(${_tickerX}px)`;
+      _tickerRAF = requestAnimationFrame(tick);
+    };
+    _tickerRAF = requestAnimationFrame(tick);
+  });
 }
 
-function stopTickerAnimation() {
-  if (tickerFrameId) {
-    window.cancelAnimationFrame(tickerFrameId);
-    tickerFrameId = null;
+function populateForecast(data) {
+  const fc = data.tomorrow_forecast || {};
+  const DIR_LABELS = { up: '看漲', down: '看跌', stable: '持平' };
+  const items = [
+    { key: 'north_scrap_price',    prefix: 'scrap' },
+    { key: 'billet_price',         prefix: 'billet' },
+    { key: 'fengxing_rebar_price', prefix: 'rebar' },
+    { key: 'h_beam_price',         prefix: 'hbeam' },
+    { key: 'csc_wire_rod_price',   prefix: 'wirerod' },
+  ];
+
+  for (const { key, prefix } of items) {
+    const f = fc[key] || {};
+    const badge  = document.getElementById(`fc-${prefix}-badge`);
+    const est    = document.getElementById(`fc-${prefix}-est`);
+    const reason = document.getElementById(`fc-${prefix}-reason`);
+    const dir = ['up', 'down', 'stable'].includes(f.direction) ? f.direction : null;
+
+    if (badge) {
+      badge.textContent = dir ? DIR_LABELS[dir] : '-';
+      badge.className = `trend-badge ${dir || 'stable'}`;
+    }
+    if (est)    est.textContent = f.change_estimate || (dir ? '幅度：待估' : '-');
+    if (reason) reason.textContent = f.reason || '預測資料將於下次分析執行後產生';
   }
-}
 
-function startTickerAnimation() {
-  const inner = document.getElementById('ticker-inner');
-  if (!inner || !tickerLoopWidth) return;
-  stopTickerAnimation();
+  const overall = document.getElementById('fc-overall-basis');
+  if (overall) overall.textContent = fc.overall_basis || '預測資料將於下次分析執行後產生';
 
-  const tick = ts => {
-    if (!document.body.contains(inner)) {
-      stopTickerAnimation();
-      return;
-    }
-    if (document.hidden) {
-      tickerLastTs = ts;
-      tickerFrameId = window.requestAnimationFrame(tick);
-      return;
-    }
-
-    if (!tickerLastTs) tickerLastTs = ts;
-    const delta = Math.min((ts - tickerLastTs) / 1000, 0.05);
-    tickerLastTs = ts;
-
-    tickerOffset -= TICKER_SPEED_PX_PER_SEC * delta;
-    if (Math.abs(tickerOffset) >= tickerLoopWidth) {
-      tickerOffset += tickerLoopWidth;
-    }
-
-    inner.style.transform = `translate3d(${tickerOffset}px, 0, 0)`;
-    tickerFrameId = window.requestAnimationFrame(tick);
-  };
-
-  tickerFrameId = window.requestAnimationFrame(tick);
+  const dateEl = document.getElementById('forecast-date');
+  if (dateEl) {
+    try {
+      const base = data.generated_at ? new Date(data.generated_at) : new Date();
+      base.setDate(base.getDate() + 1);
+      const label = base.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' });
+      dateEl.textContent = `預測目標日：${label}`;
+    } catch (_) { dateEl.textContent = '預測目標日：明日'; }
+  }
 }
 
 function initAnimations() {
@@ -365,61 +349,6 @@ function initAnimations() {
   }
 }
 
-function ensureToast() {
-  let toast = document.getElementById('run-toast');
-  if (toast) return toast;
-  toast = document.createElement('div');
-  toast.id = 'run-toast';
-  toast.style.display = 'none';
-  document.body.appendChild(toast);
-  return toast;
-}
-
-function hideToast() {
-  if (toastTimer) {
-    clearTimeout(toastTimer);
-    toastTimer = null;
-  }
-  const toast = document.getElementById('run-toast');
-  if (!toast) return;
-  toast.style.display = 'none';
-  toast.innerHTML = '';
-  toast.className = '';
-}
-
-function showToast(type, message, options = {}) {
-  const toast = ensureToast();
-  if (toastTimer) {
-    clearTimeout(toastTimer);
-    toastTimer = null;
-  }
-  toast.className = `run-toast-${type}`;
-  toast.innerHTML = `
-    <span>${message}</span>
-    <button class="run-toast-close" type="button" aria-label="關閉通知">✕</button>
-  `;
-  toast.style.display = 'flex';
-  const closeBtn = toast.querySelector('.run-toast-close');
-  if (closeBtn) closeBtn.onclick = hideToast;
-  if (options.autoHideMs) {
-    toastTimer = window.setTimeout(hideToast, options.autoHideMs);
-  }
-}
-
-function importPatFromHash() {
-  const rawHash = window.location.hash;
-  if (!rawHash || rawHash.length <= 1) return false;
-  const params = new URLSearchParams(rawHash.slice(1));
-  const pat = (params.get('pat') || '').trim();
-  if (!pat) return false;
-  localStorage.setItem(PAT_KEY, pat);
-  const input = document.getElementById('pat-input');
-  if (input) input.value = pat;
-  history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
-  showToast('success', '此裝置已完成授權設定', { autoHideMs: 4000 });
-  return true;
-}
-
 async function loadData() {
   try {
     const res = await fetch('data/latest.json?t=' + Date.now());
@@ -431,6 +360,7 @@ async function loadData() {
     populateTicker(data);
     populateExchange(data);
     populateAnalysis(data);
+    populateForecast(data);
     populateNews(data);
     await buildChart(data);
   } catch (err) {
@@ -445,35 +375,104 @@ async function loadData() {
   }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  forceScrollTop();
+  requestAnimationFrame(forceScrollTop);
+  setTimeout(forceScrollTop, 100);
+  setTimeout(forceScrollTop, 300);
+  importPatFromHash();
+  loadData();
+  initAnimations();
+});
+
+window.addEventListener('load', () => {
+  forceScrollTop();
+  requestAnimationFrame(forceScrollTop);
+  setTimeout(forceScrollTop, 100);
+});
+
+// ── GitHub config ─────────────────────────────────────────
+
 const GH_OWNER = 'lijingchiu';
 const GH_REPO  = 'SteelWeb';
-const WORKFLOW = 'daily-analysis.yml';
-const PAT_KEY  = 'steel_gh_pat';
+const WORKFLOW  = 'daily-analysis.yml';
+const PAT_KEY   = 'steel_gh_pat';
 
-function runInBackground() {
-  openRunModal();
+// ── Toast ──────────────────────────────────────────────────
+
+let _toastTimer = null;
+
+function showToast(type, msg, duration) {
+  let el = document.getElementById('run-toast');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'run-toast';
+    document.body.appendChild(el);
+  }
+  clearTimeout(_toastTimer);
+  _toastTimer = null;
+  el.className = `run-toast-${type}`;
+  el.style.display = 'flex';
+  el.innerHTML = `<span>${msg}</span>` +
+    (type !== 'loading' ? `<button class="run-toast-close" onclick="window.hideToast()">✕</button>` : '');
+  // Auto-dismiss: success=5s, error=8s, loading=never
+  const ms = duration !== undefined ? duration
+    : type === 'success' ? 5000 : type === 'error' ? 8000 : 0;
+  if (ms > 0) _toastTimer = setTimeout(hideToast, ms);
 }
+
+function hideToast() {
+  clearTimeout(_toastTimer);
+  _toastTimer = null;
+  const el = document.getElementById('run-toast');
+  if (el) el.style.display = 'none';
+}
+
+// ── URL hash one-time token import ────────────────────────
+// Usage: open https://<site>/#pat=ghp_xxxxxx once to store token.
+// The hash is cleared immediately; subsequent visits use localStorage.
+
+function importPatFromHash() {
+  try {
+    if (!location.hash || !location.hash.includes('pat=')) return;
+    const m = location.hash.match(/[#&]?pat=([^&]+)/);
+    if (!m || !m[1]) return;
+    const token = decodeURIComponent(m[1]).trim();
+    if (!token) return;
+    localStorage.setItem(PAT_KEY, token);
+    history.replaceState(null, '', location.pathname + location.search);
+    showToast('success', '✅ 此裝置已完成授權設定，之後按按鈕即可自動執行分析');
+  } catch (e) {
+    console.error('importPatFromHash:', e);
+  }
+}
+
+// ── Run modal ──────────────────────────────────────────────
 
 function openRunModal() {
   const modal = document.getElementById('run-modal');
   if (!modal) return;
   modal.style.display = 'flex';
-  const saved = localStorage.getItem(PAT_KEY);
-  const input = document.getElementById('pat-input');
+
+  let saved = null;
+  try { saved = localStorage.getItem(PAT_KEY); } catch (_) {}
+
+  const input    = document.getElementById('pat-input');
   const remember = document.getElementById('remember-pat');
-  if (saved && input) {
-    input.value = saved;
-    if (remember) remember.checked = true;
-  }
+  const btn      = document.getElementById('trigger-btn');
+
   hideRunStatus();
-  const triggerBtn = document.getElementById('trigger-btn');
-  if (triggerBtn) triggerBtn.disabled = false;
+  if (btn) btn.disabled = false;
+
   if (saved) {
-    showToast('loading', '已讀取此裝置授權，正在觸發分析...');
-    setTimeout(() => triggerWorkflow(), 200);
-  } else if (input) {
-    showToast('loading', '請先完成此裝置授權設定', { autoHideMs: 2500 });
-    setTimeout(() => input.focus(), 80);
+    // Token already stored → auto-fill and auto-trigger
+    if (input)    input.value = saved;
+    if (remember) remember.checked = true;
+    setTimeout(triggerWorkflow, 400);
+  } else {
+    // No token → wait for manual input
+    if (input)    input.value = '';
+    if (remember) remember.checked = false;
   }
 }
 
@@ -482,9 +481,11 @@ function closeRunModal() {
   if (modal) modal.style.display = 'none';
 }
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeRunModal();
-});
+// runInBackground is the onclick target; it opens the modal which
+// handles the auto-trigger flow internally.
+function runInBackground() {
+  openRunModal();
+}
 
 function showRunStatus(type, msg) {
   const el = document.getElementById('run-status');
@@ -496,36 +497,25 @@ function showRunStatus(type, msg) {
 
 function hideRunStatus() {
   const el = document.getElementById('run-status');
-  if (!el) return;
-  el.style.display = 'none';
-  el.textContent = '';
-  el.onclick = null;
-  el.style.cursor = 'default';
+  if (el) el.style.display = 'none';
 }
+
+// ── Dispatch workflow ──────────────────────────────────────
 
 async function triggerWorkflow() {
   const input = document.getElementById('pat-input');
   const pat = input ? input.value.trim() : '';
-  if (!pat) {
-    showRunStatus('error', '請輸入 GitHub PAT');
-    showToast('error', '找不到 GitHub PAT，請先完成授權設定', { autoHideMs: 4000 });
-    return;
-  }
-  if (!/^[\x20-\x7E]+$/.test(pat)) {
-    showRunStatus('error', '❌ Token 包含無效字元，請重新複製貼上 GitHub PAT（只能包含英數字及符號）');
-    showToast('error', 'PAT 格式不正確，請重新設定', { autoHideMs: 4000 });
-    return;
-  }
+  if (!pat) { showRunStatus('error', '請輸入 GitHub PAT'); return; }
 
-  const remember = document.getElementById('remember-pat');
-  if (remember && remember.checked) {
-    localStorage.setItem(PAT_KEY, pat);
-  } else {
-    localStorage.removeItem(PAT_KEY);
-  }
+  try {
+    const remember = document.getElementById('remember-pat');
+    if (remember && remember.checked) localStorage.setItem(PAT_KEY, pat);
+    else localStorage.removeItem(PAT_KEY);
+  } catch (_) {}
 
-  const btn = document.getElementById('trigger-btn');
-  if (btn) btn.disabled = true;
+  closeRunModal();
+  document.querySelectorAll('#run-btn, .btn-ghost').forEach(b => b.disabled = true);
+  const enableBtns = () => document.querySelectorAll('#run-btn, .btn-ghost').forEach(b => b.disabled = false);
 
   const ghHeaders = {
     'Authorization': `Bearer ${pat}`,
@@ -535,32 +525,23 @@ async function triggerWorkflow() {
   };
 
   try {
-    showRunStatus('loading', '⏳ 驗證 Token 並查詢 workflow...');
-    showToast('loading', '正在驗證授權與查詢 workflow...');
+    showToast('loading', '⏳ 驗證 Token，查詢 workflow...');
     const [listRes, repoRes] = await Promise.all([
       fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows`, { headers: ghHeaders }),
       fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}`, { headers: ghHeaders }),
     ]);
 
-    if (listRes.status === 401 || repoRes.status === 401) {
-      showRunStatus('error', '❌ PAT 無效或已過期，請重新確認 Token');
-      showToast('error', 'PAT 無效或已過期', { autoHideMs: 4500 });
-      if (btn) btn.disabled = false;
-      return;
+    if (listRes.status === 401) {
+      showToast('error', '❌ Token 無效或已過期，請重新設定');
+      enableBtns(); return;
     }
-    if (listRes.status === 403 || repoRes.status === 403) {
-      showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限');
-      showToast('error', 'PAT 權限不足，缺少 workflow 權限', { autoHideMs: 4500 });
-      if (btn) btn.disabled = false;
-      return;
+    if (listRes.status === 403) {
+      showToast('error', '❌ 權限不足，請確認 PAT 有 workflow 權限');
+      enableBtns(); return;
     }
     if (!listRes.ok) {
-      const b = await listRes.json().catch(() => ({}));
-      const msg = `❌ API 錯誤 ${listRes.status}：${b.message || '無法取得 workflow 列表'}`;
-      showRunStatus('error', msg);
-      showToast('error', msg, { autoHideMs: 5000 });
-      if (btn) btn.disabled = false;
-      return;
+      showToast('error', `❌ GitHub API 錯誤 ${listRes.status}`);
+      enableBtns(); return;
     }
 
     const [listData, repoData] = await Promise.all([listRes.json(), repoRes.json()]);
@@ -568,59 +549,29 @@ async function triggerWorkflow() {
     const wf = (listData.workflows || []).find(w => w.path && w.path.endsWith(WORKFLOW));
     const workflowId = wf ? wf.id : WORKFLOW;
 
-    if (!wf) {
-      showRunStatus('loading', `⏳ Workflow 未在列表中，嘗試直接觸發（分支：${defaultBranch}）...`);
-      showToast('loading', '找不到 workflow 列表項目，改用檔名直接觸發...');
-    }
-
+    showToast('loading', '⏳ 觸發分析 workflow...');
     const dispatchRes = await fetch(
       `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${workflowId}/dispatches`,
-      {
-        method: 'POST',
-        headers: ghHeaders,
-        body: JSON.stringify({ ref: defaultBranch, inputs: { force_run: 'true' } }),
-      }
+      { method: 'POST', headers: ghHeaders, body: JSON.stringify({ ref: defaultBranch, inputs: { force_run: 'true' } }) }
     );
 
     if (dispatchRes.status === 204) {
-      showRunStatus('loading', '✅ 已成功觸發！分析執行中，約需 2-3 分鐘...');
-      showToast('success', '已成功觸發 GitHub Actions，正在執行分析', { autoHideMs: 3500 });
-      pollWorkflowStatus(pat);
-    } else if (dispatchRes.status === 401) {
-      showRunStatus('error', '❌ PAT 無效或已過期，請重新確認 Token');
-      showToast('error', 'PAT 無效或已過期', { autoHideMs: 4500 });
-      if (btn) btn.disabled = false;
-    } else if (dispatchRes.status === 403) {
-      showRunStatus('error', '❌ 權限不足，請確認 PAT 已勾選 workflow 權限');
-      showToast('error', 'PAT 權限不足，無法觸發 workflow', { autoHideMs: 4500 });
-      if (btn) btn.disabled = false;
-    } else if (dispatchRes.status === 404) {
-      const msg = `❌ GitHub 找不到 workflow（分支：${defaultBranch}），請至 Actions 頁面手動執行一次以啟用`;
-      showRunStatus('error', msg);
-      showToast('error', msg, { autoHideMs: 5000 });
-      if (btn) btn.disabled = false;
-    } else if (dispatchRes.status === 422) {
-      const body = await dispatchRes.json().catch(() => ({}));
-      const msg = `❌ 請求被拒絕 (422)：${body.message || ''} （ref: ${defaultBranch}）`;
-      showRunStatus('error', msg);
-      showToast('error', msg, { autoHideMs: 5000 });
-      if (btn) btn.disabled = false;
+      showToast('loading', '✅ 已觸發！分析執行中，約需 2–3 分鐘...');
+      pollWorkflow(pat, enableBtns);
     } else {
       const body = await dispatchRes.json().catch(() => ({}));
-      const msg = `❌ 錯誤 ${dispatchRes.status}：${body.message || '未知錯誤'}`;
-      showRunStatus('error', msg);
-      showToast('error', msg, { autoHideMs: 5000 });
-      if (btn) btn.disabled = false;
+      showToast('error', `❌ 觸發失敗 ${dispatchRes.status}：${body.message || '未知錯誤'}`);
+      enableBtns();
     }
   } catch (e) {
-    const msg = `❌ 網路錯誤：${e.message}`;
-    showRunStatus('error', msg);
-    showToast('error', msg, { autoHideMs: 5000 });
-    if (btn) btn.disabled = false;
+    showToast('error', `❌ 網路錯誤：${e.message}`);
+    enableBtns();
   }
 }
 
-async function pollWorkflowStatus(pat) {
+// ── Poll workflow completion ───────────────────────────────
+
+async function pollWorkflow(pat, enableBtns) {
   const maxAttempts = 36;
   let attempts = 0;
   const triggeredAt = Date.now();
@@ -630,13 +581,7 @@ async function pollWorkflowStatus(pat) {
     try {
       const res = await fetch(
         `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/runs?per_page=5`,
-        {
-          headers: {
-            'Authorization': `Bearer ${pat}`,
-            'Accept': 'application/vnd.github+json',
-            'X-GitHub-Api-Version': '2022-11-28',
-          },
-        }
+        { headers: { 'Authorization': `Bearer ${pat}`, 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' } }
       );
       if (res.ok) {
         const data = await res.json();
@@ -646,78 +591,35 @@ async function pollWorkflowStatus(pat) {
         if (run) {
           if (run.status === 'completed') {
             if (run.conclusion === 'success') {
-              showRunStatus('success', '✅ 分析完成！點此重新整理查看最新資料。');
-              showToast('success', '分析完成，點通知或重新整理可查看最新資料', { autoHideMs: 5000 });
-              const statusEl = document.getElementById('run-status');
-              if (statusEl) {
-                statusEl.style.cursor = 'pointer';
-                statusEl.onclick = () => location.reload();
-              }
+              showToast('success', '✅ 分析完成！正在重新整理頁面...', 3000);
+              setTimeout(() => location.reload(), 3000);
             } else {
-              const msg = `❌ 執行失敗（${run.conclusion}），請至 GitHub Actions 查看詳情`;
-              showRunStatus('error', msg);
-              showToast('error', msg, { autoHideMs: 5000 });
+              showToast('error', `❌ 執行失敗（${run.conclusion}），請至 GitHub Actions 查看`);
+              enableBtns();
             }
-            const btn = document.getElementById('trigger-btn');
-            if (btn) btn.disabled = false;
             return;
           }
           const elapsed = Math.round((Date.now() - triggeredAt) / 1000);
           const label = run.status === 'in_progress' ? '執行中' : '排隊中';
-          const msg = `⏳ ${label}...（已等待 ${elapsed} 秒）`;
-          showRunStatus('loading', msg);
-          showToast('loading', msg);
+          showToast('loading', `⏳ ${label}... 已等待 ${elapsed} 秒`);
         }
       }
     } catch (_) {}
-    if (attempts < maxAttempts) {
-      setTimeout(poll, 10000);
-    } else {
-      const msg = '⏱ 等待逾時，請至 GitHub Actions 頁面確認執行狀況';
-      showRunStatus('error', msg);
-      showToast('error', msg, { autoHideMs: 5000 });
-      const btn = document.getElementById('trigger-btn');
-      if (btn) btn.disabled = false;
-    }
+    if (attempts < maxAttempts) setTimeout(poll, 10000);
+    else { showToast('error', '⏱ 等待逾時，請至 GitHub Actions 確認執行狀況'); enableBtns(); }
   };
 
   setTimeout(poll, 8000);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  forceScrollTop();
-  requestAnimationFrame(forceScrollTop);
-  setTimeout(forceScrollTop, 100);
-  setTimeout(forceScrollTop, 300);
-  importPatFromHash();
-  loadData();
-  initAnimations();
-});
+// ── Keyboard: ESC closes modal ────────────────────────────
 
-window.addEventListener('resize', () => {
-  const nextOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
-  if (nextOrientation === tickerOrientation || !tickerGroupMarkup) return;
-  tickerOrientation = nextOrientation;
-  renderTicker();
-});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRunModal(); });
 
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) {
-    tickerLastTs = 0;
-    return;
-  }
-  if (tickerGroupMarkup) startTickerAnimation();
-});
+// ── Expose all functions to window for inline onclick ─────
 
-window.addEventListener('load', () => {
-  forceScrollTop();
-  requestAnimationFrame(forceScrollTop);
-  setTimeout(forceScrollTop, 100);
-});
-
-window.runInBackground = runInBackground;
-window.openRunModal = openRunModal;
-window.closeRunModal = closeRunModal;
+window.openRunModal    = openRunModal;
+window.closeRunModal   = closeRunModal;
 window.triggerWorkflow = triggerWorkflow;
-window.showToast = showToast;
-window.hideToast = hideToast;
+window.runInBackground = runInBackground;
+window.hideToast       = hideToast;

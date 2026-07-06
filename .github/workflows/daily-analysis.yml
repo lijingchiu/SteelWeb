@@ -2,7 +2,7 @@ name: Daily Steel Price Analysis
 
 on:
   schedule:
-    - cron: '0 21 * * *'
+    - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
       force_run:
@@ -65,7 +65,7 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "data: steel price analysis ${{ steps.check_today.outputs.today }}"
-            git push origin main
+            git push origin HEAD:${{ github.ref_name }}
           fi
 
       - name: Summary
