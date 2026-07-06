@@ -728,6 +728,11 @@ def call_openrouter(news_content: str, date_str: str, taiwan_prices: dict, excha
    - 原物料供需與產地事件（澳洲/巴西鐵礦砂、焦煤供應、日本H2廢鋼標售、美國HMS廢鋼出口、中國粗鋼限產或出口退稅政策、能源價格）
    - 總體與地緣因素（美元/台幣匯率、利率、貿易政策與關稅、戰爭或天災對供應鏈的衝擊、營建與製造業景氣）
 4. 禁止空泛理由（如「市場觀望」單獨成句）；每項 reason 至少要包含一個具體的因果推論鏈：事件 → 傳導路徑 → 對該材料明日價格的影響。
+   每項 reason 的長度必須在 100~200 字之間，內容應層次分明地涵蓋：
+   (a) 國際端或上游訊號（引用具體事件、市場或數據）
+   (b) 成本端與供需端的傳導邏輯（該訊號如何影響台灣廠商的成本、報價策略或買氣）
+   (c) 對明日行情的具體結論（方向、幅度依據，以及支撐此判斷的最關鍵因素）
+   寧可詳細也不要精簡；讀者是要依此判斷市場的專業人士，需要足夠的推理過程才能檢驗你的結論。
 5. "stable" 只能在你分析後認定多空力量確實互相抵銷時使用，且 reason 中必須同時列出多方與空方因素說明為何抵銷；絕不可把「持平」或「盤價未調整」當成缺乏資訊時的預設保守答案。
 6. 對每項預測要有明確立場：change_estimate 必須給出具體的幅度區間（即使是小幅變動也要量化），像分析師報告一樣敢於給出可被驗證的數字。
 7. overall_basis 要交代你整體參考了哪些時事與數據、多空力量的對比與權重、推論的先後邏輯，讓讀者能檢驗你的推理。
@@ -746,27 +751,27 @@ def call_openrouter(news_content: str, date_str: str, taiwan_prices: dict, excha
     "north_scrap_price": {{
       "direction": "<up|down|stable>",
       "change_estimate": "<幅度預估，如 +0.1~0.2 元/公斤 或 持平>",
-      "reason": "<具體依據與因果推論，100字內>"
+      "reason": "<詳細推論：國際端訊號 → 成本與供需傳導 → 明日結論，100~200字>"
     }},
     "billet_price": {{
       "direction": "<up|down|stable>",
       "change_estimate": "<幅度預估，如 +100~200 元/公噸 或 持平>",
-      "reason": "<具體依據與因果推論，100字內>"
+      "reason": "<詳細推論：國際端訊號 → 成本與供需傳導 → 明日結論，100~200字>"
     }},
     "fengxing_rebar_price": {{
       "direction": "<up|down|stable>",
       "change_estimate": "<幅度預估，元/公噸>",
-      "reason": "<具體依據與因果推論，100字內>"
+      "reason": "<詳細推論：國際端訊號 → 成本與供需傳導 → 明日結論，100~200字>"
     }},
     "h_beam_price": {{
       "direction": "<up|down|stable>",
       "change_estimate": "<幅度預估，元/公噸>",
-      "reason": "<具體依據與因果推論，100字內>"
+      "reason": "<詳細推論：國際端訊號 → 成本與供需傳導 → 明日結論，100~200字>"
     }},
     "csc_wire_rod_price": {{
       "direction": "<up|down|stable>",
       "change_estimate": "<幅度預估，元/公噸>",
-      "reason": "<具體依據與因果推論，100字內>"
+      "reason": "<詳細推論：國際端訊號 → 成本與供需傳導 → 明日結論，100~200字>"
     }},
     "overall_basis": "<綜合推論脈絡：列出你參考的時事、國際行情、原物料供需與產地事件，說明推理順序與權重，250字內>"
   }},
@@ -791,7 +796,7 @@ def call_openrouter(news_content: str, date_str: str, taiwan_prices: dict, excha
         req_body = {
             "model": model,
             "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": 4000,
+            "max_tokens": 6000,
             "temperature": 0.25,
         }
         for attempt in range(2):
