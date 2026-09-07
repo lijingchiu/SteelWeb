@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-11T06:46:08.224410+08:00",
+  "date": "2026-06-11",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "中鋼5月營收299.5億元月減3% 累計營收仍年減1.9%",
+      "url": "https://steelnews.com.tw/news/content?id=175968"
+    },
+    {
+      "title": "5月廢鋼進口量月增13%",
+      "url": "https://steelnews.com.tw/news/content?id=175965"
+    },
+    {
+      "title": "寶鋼7月內銷盤價僅調漲方向性電磁鋼，其餘平盤",
+      "url": "https://steelnews.com.tw/news/content?id=175962"
+    },
+    {
+      "title": "6月關東標跌幅低於預期  標案銷往孟加拉",
+      "url": "https://steelnews.com.tw/news/content?id=175958"
+    },
+    {
+      "title": "5月中國鋼胚市場震盪偏弱 庫存持續深度去化",
+      "url": "https://steelnews.com.tw/news/content?id=175980"
+    },
+    {
+      "title": "中國廢鋼供需維持緊平衡 價格短期窄幅運行",
+      "url": "https://steelnews.com.tw/news/content?id=175995"
+    },
+    {
+      "title": "需求淡季來襲 中國鋼價弱勢格局恐延續",
+      "url": "https://steelnews.com.tw/news/content?id=175994"
+    },
+    {
+      "title": "基建與製造業雙引擎發力 支撐中國鋼材需求成長",
+      "url": "https://steelnews.com.tw/news/content?id=175993"
+    },
+    {
+      "title": "中國鋼材出口降幅收窄 6月有望小幅回升",
+      "url": "https://steelnews.com.tw/news/content?id=175991"
+    },
+    {
+      "title": "墨西哥TYASA啟動該國特種鋼專案首期工程",
+      "url": "https://steelnews.com.tw/news/content?id=175982"
+    },
+    {
+      "title": "阿賽洛米塔爾穩坐全球第二大鋼鐵製造商寶座",
+      "url": "https://steelnews.com.tw/news/content?id=175981"
+    },
+    {
+      "title": "受新防衛措施影響 義大利鋼價預計於夏季上漲",
+      "url": "https://steelnews.com.tw/news/content?id=176001"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.3,
+    "impact_on_steel": "近期美元兌台幣匯率預計維持相對穩定，對進口廢鋼成本影響有限，但若美元走強，將增加進口成本，進而推升國內鋼價。"
+  },
+  "spread_analysis": "廢鋼方面，北部廢鋼大盤收購價月增0.2元/公斤，顯示成本端有支撐。小鋼胚中級出廠價月增270元/公噸，豐興鋼筋盤價持平，東鋼H型鋼流通價月增800元/公噸。廢鋼至小鋼胚的利差擴大，小鋼胚至鋼筋利差持平，至型鋼利差擴大。整體而言，加工利差在型鋼部分表現較佳，鋼筋則因盤價持平，利差受成本推升而壓縮。考量匯率穩定，成本壓力主要來自原料價格上漲。",
+  "monthly_trend": "預計下月鋼筋盤價可能小幅上漲100-300元/公噸，主要受廢鋼成本支撐及中國鋼材出口降幅收窄的預期影響。型鋼價格預計維持高檔震盪，漲幅可能收斂至200-500元/公噸，因基建需求仍有支撐。廢鋼價格在進口量增加及全球高波動期下，預計持平或小幅波動，漲跌幅在0.1-0.2元/公斤之間。",
+  "international_outlook": "中國市場因基建與製造業雙引擎發力，需求有支撐，但需求淡季來襲，鋼價恐弱勢延續，庫存持續去化。寶鋼7月內銷盤價除電磁鋼外其餘平盤，顯示大廠對後市看法保守。日本關東標跌幅低於預期，部分銷往孟加拉。美國提高鋼鐵關稅重塑貿易流向，但對投資拉動有限。歐洲市場受新防衛措施影響，義大利鋼價預計夏季上漲。全球廢鋼市場進入高波動期，地緣政治與運費是關鍵驅動因素。印度國內鋼筋價格因需求疲軟和庫存增加而下跌。",
+  "risk_factors": [
+    "中國鋼價持續弱勢，可能拖累亞洲鋼市氛圍。",
+    "全球廢鋼市場高波動性，地緣政治與運費變動可能影響成本。",
+    "國內營建需求若受連日大雨影響，可能導致鋼筋去化速度減緩。"
+  ],
+  "summary": "5月台灣粗鋼產量顯著增加，廢鋼收購價與小鋼胚、型鋼價格均呈上漲，鋼筋盤價持平。中鋼營收月減，但廢鋼進口量月增。國際市場中國鋼價面臨淡季壓力，但基建需求仍有支撐。全球廢鋼市場波動加劇，區域分化明顯。整體而言，台灣鋼市在成本端有支撐，但需求面仍需觀察。",
+  "confidence": "medium"
+}

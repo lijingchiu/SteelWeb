@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-05-21T06:18:41.748740+08:00",
+  "date": "2026-05-21",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "中鋼甩開連月低迷！4月獲利大翻身 單月轉盈近5億元",
+      "url": "https://steelnews.com.tw/news/content?id=174928"
+    },
+    {
+      "title": "6月鋼管牌價仍調漲",
+      "url": "https://steelnews.com.tw/news/content?id=174891"
+    },
+    {
+      "title": "廢鋼上漲後  出貨意願略增",
+      "url": "https://steelnews.com.tw/news/content?id=174890"
+    },
+    {
+      "title": "高雄新生代鋼鐵交流協會捐血送暖　募集近10萬CC熱血助血庫",
+      "url": "https://steelnews.com.tw/news/content?id=174877"
+    },
+    {
+      "title": "白沙屯媽祖醫院動土　新光鋼捐救護車助公益苗南醫療再升級",
+      "url": "https://steelnews.com.tw/news/content?id=174873"
+    },
+    {
+      "title": "泓德能源攜手澳洲Greensteel　布局綠鋼與儲能整合商機",
+      "url": "https://steelnews.com.tw/news/content?id=174862"
+    },
+    {
+      "title": "中國鋼鐵產能治理進入新階段　政策工具箱全面加碼",
+      "url": "https://steelnews.com.tw/news/content?id=174918"
+    },
+    {
+      "title": "中國鋼鐵業產能新規出爐 1.5：1置換比例全面實施",
+      "url": "https://steelnews.com.tw/news/content?id=174917"
+    },
+    {
+      "title": "中國廢鋼市場橫盤整理 高韌性低彈性格局延續",
+      "url": "https://steelnews.com.tw/news/content?id=174916"
+    },
+    {
+      "title": "成材回落壓縮利潤 中國廢鋼價格面臨下行壓力",
+      "url": "https://steelnews.com.tw/news/content?id=174915"
+    },
+    {
+      "title": "中國建材鋼價5月震盪走強 供需雙降支撐價格中樞",
+      "url": "https://steelnews.com.tw/news/content?id=174914"
+    },
+    {
+      "title": "海外需求回暖疊加供給缺口　中國鋼材出口維持高檔",
+      "url": "https://steelnews.com.tw/news/content?id=174913"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-04",
+    "crude_steel_production": {
+      "value": 111.1378,
+      "unit": "萬噸",
+      "mom_change": -33.3895,
+      "month": "2026-02"
+    },
+    "north_scrap_price": {
+      "value": 10.2,
+      "unit": "元/公斤",
+      "mom_change": 0.5,
+      "month": "2026-04"
+    },
+    "billet_price": {
+      "value": 15790.0,
+      "unit": "元/公噸",
+      "mom_change": -410.0,
+      "month": "2026-04"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 400.0,
+      "month": "2026-04"
+    },
+    "h_beam_price": {
+      "value": 35900.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-04"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 1000.0,
+      "month": "2026-04"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.2,
+    "impact_on_steel": "目前新聞未提及匯率變動，但若新台幣升值，將降低進口廢鋼成本，對國內鋼價形成支撐，反之則增加成本壓力。"
+  },
+  "spread_analysis": "根據最新數據，北部廢鋼大盤收購價為10.2元/公斤（10200元/公噸），小鋼胚中級出廠價為15790元/公噸，豐興鋼筋盤價為18900元/公噸，東鋼H型鋼流通價為35900元/公噸。廢鋼至小鋼胚的加工利差為5590元/公噸，小鋼胚至鋼筋的利差為3110元/公噸，鋼筋至H型鋼的利差為17000元/公噸。廢鋼上漲後出貨意願略增，顯示成本推動效應。中鋼獲利轉正，6月鋼管牌價調漲，反映成本轉嫁能力。整體利差尚屬合理，但需留意中國廢鋼價格面臨下行壓力可能影響台灣廢鋼成本，進而壓縮下游利潤。",
+  "monthly_trend": "預計下月鋼筋與型鋼價格將呈現震盪偏強格局，漲幅約在1-2%。主要理由為廢鋼價格上漲後出貨意願增加，顯示市場對成本的接受度提高，且中鋼4月獲利大翻身，6月鋼管牌價調漲，反映鋼廠對後市信心。然而，中國廢鋼市場橫盤整理且面臨下行壓力，可能對台灣廢鋼價格形成一定壓抑，限制漲幅。國際市場需求回暖與供給缺口也將提供支撐。",
+  "international_outlook": "中國鋼鐵市場進入產能治理新階段，1.5:1置換比例全面實施，政策工具箱加碼，旨在控制產能，長期有利於供需平衡。中國廢鋼市場橫盤整理，但成材回落壓縮利潤，廢鋼價格面臨下行壓力。然而，中國建材鋼價5月震盪走強，海外需求回暖疊加供給缺口，鋼材出口維持高檔。歐盟與英國的鋼鐵配額變更可能衝擊供應鏈，引發烏克蘭出口損失擔憂，並影響英國鋼鐵貿易。印度因國內替代品便宜，廢鋼進口量下滑。越南鋼鐵需求因基礎建設成長而上升。全球廢鋼市場受地緣政治與運費影響，進入高波動期。整體而言，國際市場呈現多空交織，但中國的產能控制與海外需求回暖為主要支撐。",
+  "risk_factors": [
+    "中國廢鋼價格下行壓力可能傳導至台灣市場，影響廢鋼成本。",
+    "歐盟與英國鋼鐵配額變更，可能引發國際貿易摩擦，影響全球鋼鐵供應鏈。",
+    "全球地緣政治不確定性及運費波動，持續影響廢鋼等原物料成本。"
+  ],
+  "summary": "台灣4月粗鋼產量下降，但北部廢鋼收購價上漲，帶動鋼筋與H型鋼盤價走高。中鋼4月獲利轉盈，6月鋼管牌價調漲，顯示市場信心回升。國際方面，中國加強產能治理，海外需求回暖，但廢鋼價格面臨下行壓力。整體市場呈現成本推動與需求支撐並存的局面。",
+  "confidence": "medium"
+}
