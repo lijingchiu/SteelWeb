@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-20T05:56:52.483005+08:00",
+  "date": "2026-06-20",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "日本今公告：初判中、台含鎳冷軋不鏽鋼反傾銷成立，調查案延至11月裁決",
+      "url": "https://steelnews.com.tw/news/content?id=176459"
+    },
+    {
+      "title": "慶欣欣端午節到下週一限收廢鋼",
+      "url": "https://steelnews.com.tw/news/content?id=176458"
+    },
+    {
+      "title": "南部鋼廠端午節期間停限收廢鋼",
+      "url": "https://steelnews.com.tw/news/content?id=176453"
+    },
+    {
+      "title": "南部鋼筋交易停滯  南部市場看跌",
+      "url": "https://steelnews.com.tw/news/content?id=176424"
+    },
+    {
+      "title": "6月18日中國鋼鐵期貨收盤全數下跌  焦煤跌超5%",
+      "url": "https://steelnews.com.tw/news/content?id=176430"
+    },
+    {
+      "title": "5月中國出口鋼鐵板材610萬噸  同比降3.7%",
+      "url": "https://steelnews.com.tw/news/content?id=176429"
+    },
+    {
+      "title": "海峽週五有望恢復通行 中國有色金屬漲跌參半",
+      "url": "https://steelnews.com.tw/news/content?id=176427"
+    },
+    {
+      "title": "需求淡季疊加礦價下探 中國鋼市震盪偏弱",
+      "url": "https://steelnews.com.tw/news/content?id=176419"
+    },
+    {
+      "title": "期貨上攻動能減弱 中國不鏽鋼市場轉入高位震盪",
+      "url": "https://steelnews.com.tw/news/content?id=176412"
+    },
+    {
+      "title": "亞洲小鋼胚出口價格持穩 焦煤、焦炭強勢支撐行情",
+      "url": "https://steelnews.com.tw/news/content?id=176410"
+    },
+    {
+      "title": "巴基斯坦進口廢鋼價格下跌 預期將進一步下滑",
+      "url": "https://steelnews.com.tw/news/content?id=176426"
+    },
+    {
+      "title": "美西散裝與貨櫃廢鋼價格維持平盤 因亞洲需求維持疲軟",
+      "url": "https://steelnews.com.tw/news/content?id=176422"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.3,
+    "impact_on_steel": "目前新聞未提及匯率變動，但若美元走強，將增加進口廢鋼成本，對國內鋼價形成支撐；反之則可能壓抑鋼價。"
+  },
+  "spread_analysis": "5月廢鋼收購價上漲，小鋼胚出廠價與豐興鋼筋盤價持平，東鋼H型鋼流通價上漲。廢鋼至小鋼胚利差因廢鋼漲幅較小鋼胚大而收窄，小鋼胚至鋼筋利差持平。型鋼利差因流通價上漲而擴大。整體而言，廢鋼成本上升對下游產品利潤形成壓力，但型鋼需求支撐其價格上揚。",
+  "monthly_trend": "預計下月廢鋼、鋼筋價格將呈現震盪偏弱走勢，跌幅約0.5-1%。主要受中國需求淡季、期貨下跌及國際廢鋼價格走軟影響。型鋼價格可能持穩或小幅下跌，因其需求相對較佳但整體市場氛圍不樂觀。不鏽鋼市場因反傾銷調查與需求疲軟，短期內難有起色。",
+  "international_outlook": "中國市場受需求淡季、礦價下探及期貨下跌影響，鋼市震盪偏弱，不鏽鋼市場高位震盪。日本、台灣含鎳冷軋不鏽鋼反傾銷調查延至11月裁決，為市場增添不確定性。國際廢鋼市場普遍疲軟，巴基斯坦、印度進口廢鋼價格下跌，美西廢鋼維持平盤，土耳其長材內銷與出口價格雙雙走跌。亞洲小鋼胚出口價格持穩，但印度出口商觀望。全球鋼鐵市場區域分化加劇，供需錯配成新常態。",
+  "risk_factors": [
+    "中國鋼鐵市場持續疲軟，影響亞洲整體鋼價。",
+    "國際廢鋼價格持續下跌，可能拖累台灣廢鋼行情。",
+    "日本對中台不鏽鋼反傾銷調查結果的不確定性。"
+  ],
+  "summary": "5月台灣粗鋼產量顯著增加，廢鋼收購價小幅上漲，小鋼胚與鋼筋盤價持平，型鋼流通價上揚。然而，國際市場普遍疲軟，中國鋼市震盪偏弱，國際廢鋼價格下跌。國內鋼筋交易停滯，南部市場看跌。整體市場面臨需求淡季與國際利空因素，預計短期內將承壓。",
+  "confidence": "medium"
+}

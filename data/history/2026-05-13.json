@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-05-13T10:39:28.361878+08:00",
+  "date": "2026-05-13",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "中鋼盤價一路漲高高 流通行情努力緊跟在後",
+      "url": "https://steelnews.com.tw/news/content?id=174535"
+    },
+    {
+      "title": "陸胚沒成交跡象  俄胚暫無報價",
+      "url": "https://steelnews.com.tw/news/content?id=174517"
+    },
+    {
+      "title": "亞洲熱軋撐盤 中鋼漲盤如何反應客戶頭痛！",
+      "url": "https://steelnews.com.tw/news/content?id=174534"
+    },
+    {
+      "title": "「鉬」中無人！漲勢不驚人不休 中國316L單日飆破千元人民幣、印青大漲200美元",
+      "url": "https://steelnews.com.tw/news/content?id=174533"
+    },
+    {
+      "title": "么壽哦！印青又漲 不鏽鋼廠和市場面臨反應之苦",
+      "url": "https://steelnews.com.tw/news/content?id=174532"
+    },
+    {
+      "title": "近期中國冷、熱軋捲板價格可能延續漲勢",
+      "url": "https://steelnews.com.tw/news/content?id=174516"
+    },
+    {
+      "title": "五一後中國廢鋼市場偏強　供需緊平衡支撐價格",
+      "url": "https://steelnews.com.tw/news/content?id=174515"
+    },
+    {
+      "title": "中國鋼市5月恐「先漲後跌」　PMI透露補庫動能",
+      "url": "https://steelnews.com.tw/news/content?id=174514"
+    },
+    {
+      "title": "中國寶武6月全面漲價　鋼市啟動淡季前補庫行情",
+      "url": "https://steelnews.com.tw/news/content?id=174513"
+    },
+    {
+      "title": "2026年第一季中國鋼市深度調整　供需失衡與高庫存壓力加劇",
+      "url": "https://steelnews.com.tw/news/content?id=174512"
+    },
+    {
+      "title": "中國冷軋板捲節後急漲 成本推升行情重啟",
+      "url": "https://steelnews.com.tw/news/content?id=174511"
+    },
+    {
+      "title": "烏克蘭Interpipe為北歐鐵路車輛製造商開發新款輪對",
+      "url": "https://steelnews.com.tw/news/content?id=174500"
+    }
+  ],
+  "prices": {
+    "scrap_steel": {
+      "current_estimate": 12500,
+      "prediction_next_week": 12700,
+      "trend": "up",
+      "change_amount": 200,
+      "reason": "中國廢鋼市場偏強，供需緊平衡支撐價格，美廢持平，日廢小漲。"
+    },
+    "rebar": {
+      "current_estimate": 20500,
+      "prediction_next_week": 20700,
+      "trend": "up",
+      "change_amount": 200,
+      "reason": "中鋼盤價上漲，流通行情努力跟進，成本推升，但需求面仍需觀察。"
+    },
+    "structural_steel": {
+      "current_estimate": 22000,
+      "prediction_next_week": 22200,
+      "trend": "up",
+      "change_amount": 200,
+      "reason": "中鋼盤價上漲帶動，但型鋼需求受建築業景氣影響，漲幅可能較為溫和。"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.35,
+    "impact_on_steel": "美元兌台幣匯率若維持穩定或小幅貶值，有利於進口廢鋼成本控制，但對出口競爭力影響有限。若升值則增加進口成本。"
+  },
+  "spread_analysis": "廢鋼至鋼筋的加工利差目前仍受中鋼盤價上漲支撐，但流通行情跟進速度是關鍵。考量廢鋼成本上漲，鋼筋廠的利潤空間可能受到擠壓。型鋼方面，中鋼盤價上漲雖有助於拉抬價格，但市場需求疲軟可能限制其漲幅，利差擴大不易。匯率穩定有助於成本預估，但整體利差仍需觀察終端需求能否有效承接。",
+  "weekly_trend": "本週台灣鋼鐵市場預計呈現小幅上漲趨勢。主要驅動力來自中鋼盤價的調漲，以及國際廢鋼市場的偏強走勢。廢鋼價格在中國市場偏強及日廢小漲帶動下，預計將有200元/噸左右的漲幅。鋼筋和型鋼受成本推升及中鋼盤價影響，預計也將有200元/噸左右的漲幅。然而，流通行情跟進速度及終端需求疲軟仍是潛在阻力，漲幅可能受限。",
+  "international_outlook": "中國鋼市呈現複雜局面，5月恐「先漲後跌」，PMI透露補庫動能，寶武6月全面漲價，顯示短期有補庫行情，但2026年第一季深度調整、供需失衡與高庫存壓力仍存，道富預期國內需求疲軟與出口阻力將形塑中國鋼鐵前景。印度則被Alexander Gordienko視為2026年全球鋼鐵需求最強勁的市場，JSW鋼鐵有限公司積極擴張，且印度大型鋼廠調漲5月份板材價格，顯示其市場動能較佳。烏克蘭生鐵產量減少，但Interpipe開發新款輪對，顯示其在特定領域仍有發展。越南4月鋼鐵進口量環比增長14.8%，顯示東南亞市場需求仍有支撐。整體而言，亞洲熱軋撐盤，但各國市場狀況差異大。",
+  "risk_factors": [
+    "中國鋼市「先漲後跌」的風險，可能影響亞洲整體鋼價走勢。",
+    "台灣流通行情跟進中鋼盤價的力道不足，導致市場價格無法有效反映成本。",
+    "全球經濟放緩及地緣政治不確定性，可能抑制終端需求。",
+    "不鏽鋼市場因鉬價飆漲及印青價格上揚，成本壓力巨大，可能影響整體鋼市情緒。"
+  ],
+  "summary": "台灣鋼鐵市場本週受中鋼盤價上漲及國際廢鋼偏強帶動，預計將小幅上漲。然而，中國市場的不確定性、國內需求疲軟以及流通行情跟進速度，仍是影響後市的關鍵因素。不鏽鋼成本壓力顯著，需密切關注。",
+  "confidence": "medium"
+}

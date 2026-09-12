@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-17T06:46:20.618254+08:00",
+  "date": "2026-06-17",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "中龍電爐A料盤元調漲1000元",
+      "url": "https://steelnews.com.tw/news/content?id=176274"
+    },
+    {
+      "title": "中鋼月盤價七連漲後打住 七月止漲轉跌、第三季季盤則全面續漲",
+      "url": "https://steelnews.com.tw/news/content?id=176272"
+    },
+    {
+      "title": "中鋼跌完中鴻跌 七月內銷僅鍍鋅平盤其餘調降 外銷續個別報價",
+      "url": "https://steelnews.com.tw/news/content?id=176271"
+    },
+    {
+      "title": "中鋼第3季棒線漲1000元/噸",
+      "url": "https://steelnews.com.tw/news/content?id=176270"
+    },
+    {
+      "title": "中鋼7月盤價開出跌盤 第三季盤價續漲",
+      "url": "https://steelnews.com.tw/news/content?id=176269"
+    },
+    {
+      "title": "南部鋼筋還是不明",
+      "url": "https://steelnews.com.tw/news/content?id=176268"
+    },
+    {
+      "title": "中國鋼市淡季不淡 原料強勢、成材承壓格局浮現",
+      "url": "https://steelnews.com.tw/news/content?id=176291"
+    },
+    {
+      "title": "寬鬆貨幣政策持續傳導 中國鋼市震盪磨底運行",
+      "url": "https://steelnews.com.tw/news/content?id=176290"
+    },
+    {
+      "title": "中國推鋼鐵節能降碳三年攻堅行動 產業迎全面轉型",
+      "url": "https://steelnews.com.tw/news/content?id=176289"
+    },
+    {
+      "title": "產能衝高累庫加速 中國生鐵價格難有上漲行情",
+      "url": "https://steelnews.com.tw/news/content?id=176287"
+    },
+    {
+      "title": "上海出口貨櫃運價指數連7漲",
+      "url": "https://steelnews.com.tw/news/content?id=176253"
+    },
+    {
+      "title": "歐洲回收協會、EEB與FEAD共同呼籲建立「綠色鋼鐵標章」",
+      "url": "https://steelnews.com.tw/news/content?id=176301"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "目前新聞未提及匯率相關資訊，故暫以近期平均匯率估算。若新台幣升值，將有利於進口廢鋼成本下降，但不利於鋼品出口競爭力。"
+  },
+  "spread_analysis": "根據最新數據，北部廢鋼大盤收購價為10.4元/公斤，換算為10400元/公噸。小鋼胚中級出廠價為16060元/公噸，加工利差約5660元/公噸。豐興鋼筋盤價為18900元/公噸，相較小鋼胚利差約2840元/公噸。東鋼H型鋼流通價為36700元/公噸，相較小鋼胚利差達20640元/公噸。H型鋼利差顯著，反映其加工複雜度與市場需求。匯率若波動，將直接影響進口廢鋼成本與出口鋼品收益，進而影響整體利差。",
+  "monthly_trend": "預計下月（7月）台灣鋼市將呈現「盤整偏弱」格局。中鋼7月盤價開出跌盤，顯示板材市場承壓，但第三季季盤續漲，棒線更漲1000元/噸，顯示長材相對有撐。廢鋼方面，雖然孟加拉進口回溫，但越南需求低迷，國際廢鋼市場波動大。考量中國市場淡季不淡但成材承壓，以及歐盟新規上路，預期廢鋼價格可能小幅震盪，鋼筋與型鋼價格在成本支撐下，跌幅有限或維持平盤，部分產品如棒線仍有上漲空間。",
+  "international_outlook": "中國鋼市呈現「淡季不淡，原料強勢、成材承壓」格局，寬鬆貨幣政策與節能降碳政策並行，但產能衝高導致生鐵價格難漲。印度熱軋捲需求疲軟，球團礦出口價格跌勢加速。歐洲鋼鐵業面臨高昂成本、進口壓力及美國關稅三重挑戰，歐盟7月新規上路將重塑市場競爭。全球廢鋼市場進入高波動期，地緣政治與運費是關鍵驅動因素。整體而言，全球鋼市區域分化加劇，供需錯配成新常態。",
+  "risk_factors": [
+    "中國鋼鐵政策（節能降碳、產能調控）對全球供應鏈的影響。",
+    "國際地緣政治衝突及航運成本波動對原料及成品運輸的衝擊。",
+    "歐盟CBAM等綠色鋼鐵政策對台灣鋼鐵出口的潛在影響。"
+  ],
+  "summary": "台灣5月粗鋼產量顯著增加，廢鋼收購價與小鋼胚、H型鋼價格均呈上漲。中鋼7月盤價雖有調降，但第三季季盤及棒線價格續漲，顯示長材市場相對穩健。國際市場方面，中國鋼市淡季不淡但成材承壓，歐洲面臨多重壓力，全球廢鋼市場波動加劇。整體而言，台灣鋼市在成本支撐與部分產品需求下，預計將呈現盤整偏弱。",
+  "confidence": "medium"
+}

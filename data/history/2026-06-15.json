@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-15T06:01:03.357758+08:00",
+  "date": "2026-06-15",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "東和高雄廠被民眾誤傳氣爆  結果是台電路旁電桿爆炸",
+      "url": "https://steelnews.com.tw/news/content?id=176160"
+    },
+    {
+      "title": "日本廢鋼商豐榮通商向法院申請破產",
+      "url": "https://steelnews.com.tw/news/content?id=176159"
+    },
+    {
+      "title": "下週鋼筋還是平低盤走勢",
+      "url": "https://steelnews.com.tw/news/content?id=176130"
+    },
+    {
+      "title": "南部鋼筋市場未有動靜",
+      "url": "https://steelnews.com.tw/news/content?id=176124"
+    },
+    {
+      "title": "本週(0605-0611)國際鋼材交易價格整理",
+      "url": "https://steelnews.com.tw/news/content?id=176127"
+    },
+    {
+      "title": "盛餘股東會通過配息0.6元 後市積極布局高值化烤鋼板及AI商機迎戰鋼市逆風",
+      "url": "https://steelnews.com.tw/news/content?id=176109"
+    },
+    {
+      "title": "5月巴西線材出口下降37%  進口量則大跌85%",
+      "url": "https://steelnews.com.tw/news/content?id=176138"
+    },
+    {
+      "title": "韓國敦促歐盟在新的鋼鐵進口關稅下確保韓國鋼鐵製造商獲得公平對待",
+      "url": "https://steelnews.com.tw/news/content?id=176137"
+    },
+    {
+      "title": "日本用鋼需求結構分化加劇  基建逆勢托底難掩地產開工暴跌",
+      "url": "https://steelnews.com.tw/news/content?id=176135"
+    },
+    {
+      "title": "日本粗鋼產量結束連12降  鋼市迎來供需「弱修復」拐點",
+      "url": "https://steelnews.com.tw/news/content?id=176134"
+    },
+    {
+      "title": "日本汽車產銷止跌回升  出口板塊區域分化顯著",
+      "url": "https://steelnews.com.tw/news/content?id=176133"
+    },
+    {
+      "title": "回應業界疑慮  英國正考慮修改鋼鐵進口限制",
+      "url": "https://steelnews.com.tw/news/content?id=176152"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.35,
+    "impact_on_steel": "目前無直接匯率變動資訊，但若新台幣升值，將有利於進口廢鋼成本下降，對國內鋼價形成壓力；反之則推升進口成本。"
+  },
+  "spread_analysis": "廢鋼收購價微幅上漲，小鋼胚出廠價亦有提升，但豐興鋼筋盤價持平，顯示鋼筋加工利差受到壓縮。東鋼H型鋼流通價上漲，反映型鋼市場需求相對穩健。考量國際鐵礦石與冶金煤價格上調，預期未來廢鋼成本仍有支撐，但鋼筋市場競爭激烈，利差擴大不易。若新台幣升值，將有助於緩解進口廢鋼成本壓力，對鋼筋利差有正面影響。",
+  "monthly_trend": "預計下月鋼筋市場仍將維持平低盤走勢，豐興鋼筋盤價可能持平或小幅下調50-100元/公噸，因市場需求未見明顯動能，且有威致、易昇停收廢鋼的短期壓力。廢鋼價格在國際原料成本支撐下，預計將維持盤整偏強格局，但漲幅有限。型鋼市場受惠於基礎建設需求，價格有望維持穩定或小幅上漲100-200元/公噸。",
+  "international_outlook": "全球鋼鐵市場區域分化加劇，供需錯配成新常態。日本粗鋼產量結束連12降，迎來「弱修復」拐點，汽車產銷回升，但地產開工暴跌，需求結構分化。韓國敦促歐盟確保公平對待其鋼鐵製造商，顯示貿易保護主義升溫。巴西線材出口下降，進口大跌，反映區域市場波動。惠譽上調鐵礦石與冶金煤價格預測，因供應中斷與成本上升，將對全球鋼鐵成本構成支撐。中國出口商尋求穩定東南亞小鋼胚價格，顯示其對區域市場的影響力。",
+  "risk_factors": [
+    "國際地緣政治與運費波動導致廢鋼市場高波動",
+    "全球貿易保護主義升溫，各國鋼鐵進口限制與關稅政策變化",
+    "日本等主要經濟體房地產市場疲軟，影響鋼材需求"
+  ],
+  "summary": "5月台灣粗鋼產量顯著增加，廢鋼與小鋼胚價格微漲，但鋼筋盤價持平，型鋼價格上揚。國際市場原料成本上漲，但鋼筋需求疲軟，預計下月鋼筋平低盤，廢鋼盤整偏強，型鋼穩健。全球市場分化加劇，貿易保護主義與原料成本波動為主要風險。",
+  "confidence": "medium"
+}

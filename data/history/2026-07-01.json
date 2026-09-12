@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-07-01T06:07:14.822765+08:00",
+  "date": "2026-07-01",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "燁輝7月內銷降300元、8月外銷跌20美元　反映亞洲鋼市轉弱與成本下修",
+      "url": "https://steelnews.com.tw/news/content?id=176966"
+    },
+    {
+      "title": "唐榮七月盤價也以平盤開出",
+      "url": "https://steelnews.com.tw/news/content?id=176965"
+    },
+    {
+      "title": "燁興七月盤價漲勢止住 黑白全平",
+      "url": "https://steelnews.com.tw/news/content?id=176964"
+    },
+    {
+      "title": "南部鋼筋價格不明",
+      "url": "https://steelnews.com.tw/news/content?id=176963"
+    },
+    {
+      "title": "中鋼8月AP板平盤、SN專案調漲",
+      "url": "https://steelnews.com.tw/news/content?id=176936"
+    },
+    {
+      "title": "中國鋼市陷兩極博弈 需求觸底但反彈動能有限",
+      "url": "https://steelnews.com.tw/news/content?id=177001"
+    },
+    {
+      "title": "成本高、需求弱 中國鋼鐵業進入結構性調整期",
+      "url": "https://steelnews.com.tw/news/content?id=176998"
+    },
+    {
+      "title": "中國鋼筋市場震盪下行　雨季需求疲弱拖累價格走勢",
+      "url": "https://steelnews.com.tw/news/content?id=176997"
+    },
+    {
+      "title": "綠色鋼鐵必須依據碳排放量進行評估",
+      "url": "https://steelnews.com.tw/news/content?id=177007"
+    },
+    {
+      "title": "英國鋼鐵防衛措施雖經更新 但仍持續面臨產業強烈反彈",
+      "url": "https://steelnews.com.tw/news/content?id=177006"
+    },
+    {
+      "title": "越南鋼協提議多項措施提振鋼材出口",
+      "url": "https://steelnews.com.tw/news/content?id=176990"
+    },
+    {
+      "title": "VinMetal與Primetals簽訂合約興建河靜鋼廠",
+      "url": "https://steelnews.com.tw/news/content?id=176988"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.25,
+    "impact_on_steel": "近期新聞未直接提及匯率變動，但亞洲鋼市轉弱與成本下修可能間接影響進口成本與出口競爭力，若台幣升值，進口成本壓力將減輕。"
+  },
+  "spread_analysis": "北部廢鋼收購價10.4元/公斤（10400元/公噸），小鋼胚中級出廠價16060元/公噸，豐興鋼筋盤價18900元/公噸。廢鋼到小鋼胚利差約5660元/公噸，小鋼胚到鋼筋利差約2840元/公噸。東鋼H型鋼流通價36700元/公噸。整體來看，鋼筋利差尚可，但H型鋼利差較大，顯示型鋼產品附加價值較高。若匯率波動，將直接影響進口廢鋼成本及出口鋼品報價，進而影響利差空間。",
+  "monthly_trend": "預計下月（8月）鋼筋盤價可能持平或小幅下跌，豐興7月已平盤，南部價格不明，中國市場震盪下行，雨季需求疲弱。型鋼價格可能持平或小幅上漲，東鋼7月已上漲800元，中鋼8月AP板平盤但SN專案調漲，顯示部分高階產品仍有支撐。廢鋼價格可能持平或小幅下跌，亞洲鋼市轉弱與成本下修壓力仍在。整體市場受中國需求疲弱與亞洲鋼市轉弱影響，上漲動能有限。",
+  "international_outlook": "中國鋼市陷入兩極博弈，需求觸底但反彈動能有限，成本高、需求弱導致產業進入結構性調整期，雨季需求疲弱拖累鋼筋價格震盪下行。亞洲鋼市整體轉弱，燁輝7月內銷降價、8月外銷跌價即為反映。越南鋼鐵產銷量上半年雙雙上升，下半年展望正向，VinMetal與Primetals簽訂合約興建河靜鋼廠，顯示越南市場仍具活力。全球鋼鐵貿易保護升溫，區域化浪潮成新常態，英國鋼鐵防衛措施持續面臨反彈，印度爭取英國出口配額，顯示國際貿易摩擦加劇。綠色鋼鐵與碳排放評估成為產業轉型重點，塔塔鋼鐵利用鋼爐渣開發綠色混凝土，波蘭WBB投資高毛利鋼板，顯示高附加價值與環保產品是未來趨勢。",
+  "risk_factors": [
+    "中國鋼鐵市場需求持續疲弱，影響亞洲整體鋼價。",
+    "全球貿易保護主義升溫，可能導致出口受阻及區域市場競爭加劇。",
+    "原物料成本波動，特別是廢鋼價格，可能壓縮鋼廠利潤。"
+  ],
+  "summary": "台灣鋼鐵市場在5月粗鋼產量顯著增加，廢鋼與小鋼胚價格微漲，豐興鋼筋持平，東鋼H型鋼上漲。然而，7月盤價普遍持平或下跌，反映亞洲鋼市轉弱與成本下修壓力。中國市場需求疲弱，國際貿易保護升溫，預計短期內市場上漲動能有限，需關注綠色鋼鐵轉型與國際市場變化。",
+  "confidence": "medium"
+}

@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-14T05:55:32.209325+08:00",
+  "date": "2026-06-14",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "日本廢鋼商豐榮通商向法院申請破產",
+      "url": "https://steelnews.com.tw/news/content?id=176159"
+    },
+    {
+      "title": "下週鋼筋還是平低盤走勢",
+      "url": "https://steelnews.com.tw/news/content?id=176130"
+    },
+    {
+      "title": "南部鋼筋市場未有動靜",
+      "url": "https://steelnews.com.tw/news/content?id=176124"
+    },
+    {
+      "title": "本週(0605-0611)國際鋼材交易價格整理",
+      "url": "https://steelnews.com.tw/news/content?id=176127"
+    },
+    {
+      "title": "盛餘股東會通過配息0.6元 後市積極布局高值化烤鋼板及AI商機迎戰鋼市逆風",
+      "url": "https://steelnews.com.tw/news/content?id=176109"
+    },
+    {
+      "title": "威致今下午起至下週一停收廢鋼  易昇停限收",
+      "url": "https://steelnews.com.tw/news/content?id=176108"
+    },
+    {
+      "title": "今(12)日下午唐山遷安普方胚價格上漲20元",
+      "url": "https://steelnews.com.tw/news/content?id=176158"
+    },
+    {
+      "title": "6月12日中國鋼鐵期貨收盤主流上漲",
+      "url": "https://steelnews.com.tw/news/content?id=176139"
+    },
+    {
+      "title": "中東戰事再次升級 日內中國有色金屬漲跌參半",
+      "url": "https://steelnews.com.tw/news/content?id=176123"
+    },
+    {
+      "title": "期鋼回吐漲幅 中國鋼市重回弱勢震盪",
+      "url": "https://steelnews.com.tw/news/content?id=176120"
+    },
+    {
+      "title": "中國鋼市進入累庫週期 淡季鋼價上漲動能不足",
+      "url": "https://steelnews.com.tw/news/content?id=176118"
+    },
+    {
+      "title": "歐洲不鏽鋼價格預計進一步走高",
+      "url": "https://steelnews.com.tw/news/content?id=176150"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "目前新聞未提供直接匯率資訊，但中東戰事升級可能推升美元避險需求，導致台幣相對貶值，進而增加進口廢鋼成本，對台灣鋼鐵價格形成支撐。"
+  },
+  "spread_analysis": "廢鋼收購價10.4元/公斤（10400元/公噸），豐興鋼筋盤價18900元/公噸，利差為8500元/公噸。東鋼H型鋼流通價36700元/公噸，與小鋼胚中級出廠價16060元/公噸相比，利差為20640元/公噸。廢鋼與鋼筋利差尚可，但鋼筋市場預期平低盤，顯示下游需求疲軟。型鋼利差較大，但需考量加工成本與市場競爭。若台幣貶值，進口廢鋼成本上升，將壓縮鋼筋利差，但有利於出口型鋼的競爭力。",
+  "monthly_trend": "預計下月廢鋼價格將持穩偏弱，因威致、易昇停收廢鋼，加上義大利、德國廢鋼市場疲軟，國際廢鋼價格恐有向下修正壓力。鋼筋市場預計維持平低盤走勢，南部市場無動靜，顯示需求不振。型鋼價格可能持穩，但上漲動能有限。整體而言，預計下月台灣鋼鐵市場將呈現盤整偏弱格局，漲跌幅度約在-1%至0%之間。",
+  "international_outlook": "中國鋼市受期鋼回吐漲幅、累庫週期及淡季影響，重回弱勢震盪，上漲動能不足。日本廢鋼商破產，顯示當地市場壓力。歐洲不鏽鋼價格預計進一步走高，但義大利、德國廢鋼市場疲軟，預期將向下修正。美國鋼筋與線材價格持平，鋼廠穩定定價以抑制進口。東南亞小鋼胚價格小幅走軟。全球廢鋼市場進入高波動期，地緣政治與運費是關鍵驅動因素。中東戰事升級可能影響全球供應鏈與原物料價格。",
+  "risk_factors": [
+    "中國鋼市持續弱勢震盪，影響台灣出口需求與市場信心。",
+    "國際廢鋼價格可能因多國市場疲軟而向下修正，壓縮台灣鋼廠利潤。",
+    "中東戰事升級，可能推升原物料價格及運費，增加生產成本。"
+  ],
+  "summary": "台灣鋼鐵市場五月粗鋼產量顯著增加，廢鋼收購價與小鋼胚、H型鋼價格微幅上漲，但豐興鋼筋盤價持平。近期新聞顯示，國內廢鋼收購受阻，鋼筋市場預期平低盤。國際市場方面，中國鋼市弱勢震盪，歐洲廢鋼市場疲軟，全球廢鋼市場波動加劇。整體而言，台灣鋼鐵市場面臨需求不振與國際市場下行壓力。",
+  "confidence": "medium"
+}

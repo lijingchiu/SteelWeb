@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-03T06:54:13.441590+08:00",
+  "date": "2026-06-03",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "財政部公告中、電磁鋼片初判 另自6月8日起課徵26.44~49.84%臨時反傾銷稅",
+      "url": "https://steelnews.com.tw/news/content?id=175551"
+    },
+    {
+      "title": "南部鋼筋價格繼續不明朗",
+      "url": "https://steelnews.com.tw/news/content?id=175543"
+    },
+    {
+      "title": "螺絲帽出口量跌至十年新低 李家丞:主要原因有二",
+      "url": "https://steelnews.com.tw/news/content?id=175535"
+    },
+    {
+      "title": "鋼鐵業PMI跌回收縮區間　6月中國鋼市面臨下行壓力",
+      "url": "https://steelnews.com.tw/news/content?id=175566"
+    },
+    {
+      "title": "中國結構鋼5月均價上漲　6月恐進入高位震盪調整",
+      "url": "https://steelnews.com.tw/news/content?id=175564"
+    },
+    {
+      "title": "供強需弱格局延續　6月中國生鐵市場恐先漲後跌",
+      "url": "https://steelnews.com.tw/news/content?id=175557"
+    },
+    {
+      "title": "供給收縮支撐煤價　中國動力煤漲勢面臨考驗",
+      "url": "https://steelnews.com.tw/news/content?id=175553"
+    },
+    {
+      "title": "墨西哥與歐盟協定可能可以提振鋼鐵貿易 但美國仍為墨西哥首選夥伴",
+      "url": "https://steelnews.com.tw/news/content?id=175572"
+    },
+    {
+      "title": "Interpipe執行長：歐盟縮減配額恐使烏克蘭鋼鐵危機雪上加霜",
+      "url": "https://steelnews.com.tw/news/content?id=175571"
+    },
+    {
+      "title": "印度JSW鋼鐵簽署30萬噸綠色甲醇專案協議",
+      "url": "https://steelnews.com.tw/news/content?id=175562"
+    },
+    {
+      "title": "銷量減少與總體經濟前景不佳 印度當地熱軋捲貿易價格小幅下跌",
+      "url": "https://steelnews.com.tw/news/content?id=175541"
+    },
+    {
+      "title": "印度當地冷軋捲價格微幅上漲 但前景依舊不看好",
+      "url": "https://steelnews.com.tw/news/content?id=175536"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "目前新聞未提供足夠資訊判斷匯率走勢，但若美元走強，將增加進口廢鋼成本，對國內鋼價形成支撐；反之則不利。"
+  },
+  "spread_analysis": "根據5月份數據，廢鋼至小鋼胚的加工利差為16060 - (10.4 * 1000) = 5660 元/公噸。小鋼胚至鋼筋的利差為18900 - 16060 = 2840 元/公噸。鋼筋至型鋼的利差為36700 - 18900 = 17800 元/公噸。廢鋼價格上漲0.2元/公斤，小鋼胚上漲270元/公噸，顯示上游成本壓力傳導。豐興鋼筋盤價持平，東鋼H型鋼上漲800元/公噸，顯示型鋼需求相對較好，利差擴大。若考量匯率波動，進口廢鋼成本將直接影響廢鋼收購價，進而影響整體利差結構。",
+  "monthly_trend": "預計6月份台灣鋼鐵市場將呈現震盪偏弱格局。廢鋼價格因全球高波動期及地緣政治影響，可能維持高檔震盪，但上漲空間有限。鋼筋價格受南部市場不明朗及中國需求疲軟影響，預計將持平或小幅下跌。型鋼價格在基礎建設需求支撐下，可能維持相對穩定，但漲幅有限。整體而言，供需失衡、中國市場下行壓力及國際貿易壁壘將是主要壓力。預估廢鋼持平，鋼筋小跌100-300元/公噸，型鋼持平。",
+  "international_outlook": "中國鋼市面臨下行壓力，PMI跌回收縮區間，結構鋼雖5月均價上漲但6月恐高位震盪調整，生鐵市場供強需弱，預計先漲後跌。煤價供給收縮支撐，但漲勢面臨考驗。印度市場熱軋捲價格下跌，冷軋捲微幅上漲但前景不佳。越南和發熱軋捲價格下調，亞洲鋼市神經緊繃。歐盟對烏克蘭鋼鐵配額縮減，恐加劇危機。美國調整部分鋼鋁銅產品進口關稅，日本鋼鐵出口量下滑。全球廢鋼市場受地緣政治與運費影響，進入高波動期。CBAM與綠色鋼鐵標準將重塑土耳其鋼鐵業。",
+  "risk_factors": [
+    "中國鋼市需求持續疲軟，對全球鋼價形成拖累。",
+    "國際地緣政治衝突及運費波動，導致廢鋼等原物料成本不確定性增加。",
+    "各國貿易保護主義升溫，反傾銷稅及關稅調整影響鋼鐵貿易流動。"
+  ],
+  "summary": "2026年5月台灣粗鋼產量顯著增加，廢鋼收購價與小鋼胚出廠價小幅上漲，豐興鋼筋盤價持平，東鋼H型鋼流通價上漲。然而，國際市場普遍面臨需求疲軟、貿易壁壘及成本壓力。中國鋼市下行壓力大，印度、越南市場價格走弱。台灣鋼筋市場南部價格不明朗，螺絲帽出口量創新低。預計6月市場將受國際情勢影響，呈現震盪偏弱。",
+  "confidence": "medium"
+}
