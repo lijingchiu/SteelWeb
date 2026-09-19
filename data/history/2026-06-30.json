@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-30T06:02:44.033033+08:00",
+  "date": "2026-06-30",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "華新麗華七月不鏽鋼盤元中止續漲，平盤開出",
+      "url": "https://steelnews.com.tw/news/content?id=176927"
+    },
+    {
+      "title": "燁聯盤價停止連漲 七月盤價全數平盤開出",
+      "url": "https://steelnews.com.tw/news/content?id=176900"
+    },
+    {
+      "title": "鋼筋平盤  上週價格繼續適用",
+      "url": "https://steelnews.com.tw/news/content?id=176896"
+    },
+    {
+      "title": "天氣放晴  本週可望有鋼筋訂單出現",
+      "url": "https://steelnews.com.tw/news/content?id=176887"
+    },
+    {
+      "title": "台鋼集團本週鋼筋平盤可議",
+      "url": "https://steelnews.com.tw/news/content?id=176883"
+    },
+    {
+      "title": "豐興本週鋼筋、廢鋼、型鋼全平",
+      "url": "https://steelnews.com.tw/news/content?id=176880"
+    },
+    {
+      "title": "中國鋼筋市場由盛轉弱 供需逆轉拖累鋼價下跌",
+      "url": "https://steelnews.com.tw/news/content?id=176918"
+    },
+    {
+      "title": "6月中國動力煤先漲後跌 7月旺季需求成關鍵",
+      "url": "https://steelnews.com.tw/news/content?id=176904"
+    },
+    {
+      "title": "歐盟全新鋼鐵法規於官方公報刊登 納入鎔鑄地認證要求與50%高額關稅",
+      "url": "https://steelnews.com.tw/news/content?id=176925"
+    },
+    {
+      "title": "英國放寬新型鋼鐵進口配額削減幅度 改為調降51%而非60%",
+      "url": "https://steelnews.com.tw/news/content?id=176924"
+    },
+    {
+      "title": "歐洲鋼鐵協會：2026年歐盟鋼鐵需求將溫和增長 產能利用率依舊低迷",
+      "url": "https://steelnews.com.tw/news/content?id=176923"
+    },
+    {
+      "title": "阿賽洛米塔爾呼籲將CBAM與貿易措施延伸至鋼鐵衍生品",
+      "url": "https://steelnews.com.tw/news/content?id=176922"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "目前新聞未提及匯率變動，但若新台幣升值，將降低進口廢鋼成本，有利於鋼廠利潤；若貶值則反之，可能推升鋼品價格。"
+  },
+  "spread_analysis": "廢鋼與鋼筋的價差在豐興平盤下維持穩定，但廢鋼收購價微漲0.2元/公斤，顯示成本端有輕微壓力。小鋼胚出廠價上漲270元/公噸，而豐興鋼筋盤價持平，壓縮了電爐廠的加工利潤。東鋼H型鋼流通價上漲800元/公噸，顯示型鋼市場需求相對較好，加工利潤空間可能擴大。整體而言，鋼筋利差受成本推升與售價持平影響，型鋼利差則因售價上漲而有所改善。",
+  "monthly_trend": "預計7月台灣鋼筋、廢鋼、型鋼市場將以平盤整理為主，部分鋼品可能小幅波動。鋼筋受需求淡季及中國市場疲軟影響，難有大漲空間，但天氣放晴可能帶來短期訂單。廢鋼因國際市場疲軟，預計持平或小幅下跌。型鋼則因需求相對穩定，可能維持平盤或微幅上漲。",
+  "international_outlook": "全球鋼鐵市場區域分化加劇，供需錯配成新常態。中國鋼筋市場由盛轉弱，供需逆轉拖累鋼價下跌，動力煤價格波動也增添不確定性。歐盟新鋼鐵法規（含50%高額關稅）及CBAM延伸至衍生品，將對全球貿易格局產生深遠影響，尤其對出口導向的亞洲鋼廠構成挑戰。歐洲鋼鐵需求溫和增長但產能利用率低迷，出口持續疲軟。印度尋求抑制中國不鏽鋼進口，越南廢鋼價格疲軟，日本東京製鐵調降廢鋼採購價，顯示亞洲市場面臨下行壓力。英國放寬進口配額削減幅度，但整體貿易保護主義抬頭。",
+  "risk_factors": [
+    "中國鋼鐵市場持續疲軟，可能拖累亞洲鋼價。",
+    "歐盟新鋼鐵法規及CBAM實施，增加出口成本與貿易壁壘。",
+    "全球經濟成長放緩，導致鋼鐵需求不如預期。"
+  ],
+  "summary": "台灣鋼鐵市場在5月粗鋼產量顯著增長後，6月底主要鋼品價格呈現平盤整理。廢鋼收購價微漲，小鋼胚與H型鋼價格上揚，但鋼筋盤價持平。國際市場受中國需求疲軟、歐盟貿易保護主義升溫影響，整體展望偏弱，預計7月台灣鋼市將維持盤整格局。",
+  "confidence": "medium"
+}

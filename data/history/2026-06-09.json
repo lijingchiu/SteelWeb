@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-09T06:18:15.828028+08:00",
+  "date": "2026-06-09",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "週初鋼筋詢問度很低",
+      "url": "https://steelnews.com.tw/news/content?id=175827"
+    },
+    {
+      "title": "易昇廢鋼本週分2階段調降價格",
+      "url": "https://steelnews.com.tw/news/content?id=175828"
+    },
+    {
+      "title": "梅雨季的鋼筋市場不易成交",
+      "url": "https://steelnews.com.tw/news/content?id=175820"
+    },
+    {
+      "title": "威致廢鋼調降300元/噸",
+      "url": "https://steelnews.com.tw/news/content?id=175817"
+    },
+    {
+      "title": "台鋼集團旗下鋼廠本週鋼筋調降",
+      "url": "https://steelnews.com.tw/news/content?id=175815"
+    },
+    {
+      "title": "豐興本週鋼筋、廢鋼下跌   型鋼平盤",
+      "url": "https://steelnews.com.tw/news/content?id=175813"
+    },
+    {
+      "title": "6月8日中國鋼鐵期貨收盤全數下跌",
+      "url": "https://steelnews.com.tw/news/content?id=175829"
+    },
+    {
+      "title": "需求淡季壓力浮現 中國無錫不鏽鋼市場弱勢整理",
+      "url": "https://steelnews.com.tw/news/content?id=175823"
+    },
+    {
+      "title": "成本博弈供需 中國鋼市震盪走弱",
+      "url": "https://steelnews.com.tw/news/content?id=175822"
+    },
+    {
+      "title": "需求有限且缺乏支撐因素 亞洲扁鋼胚出口價格回檔",
+      "url": "https://steelnews.com.tw/news/content?id=175816"
+    },
+    {
+      "title": "美國公布對土耳其進口大口徑焊接鋼管反補貼初審調查結果",
+      "url": "https://steelnews.com.tw/news/content?id=175826"
+    },
+    {
+      "title": "6月初歐洲廢鋼市場穩定",
+      "url": "https://steelnews.com.tw/news/content?id=175825"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "目前新聞未提及匯率變動，但若美元走強，將增加進口廢鋼成本，對國內鋼價形成支撐；反之則可能使進口成本降低，影響國內廢鋼收購價。"
+  },
+  "spread_analysis": "根據最新數據，北部廢鋼大盤收購價為10.4元/公斤（10400元/公噸），豐興鋼筋盤價為18900元/公噸。廢鋼到鋼筋的加工利差為8500元/公噸。東鋼H型鋼流通價為36700元/公噸。考量近期廢鋼價格下跌，鋼筋盤價持平，預計廢鋼至鋼筋的利差將擴大。型鋼價格上漲，顯示其需求相對穩定，利差表現較佳。若匯率波動，將直接影響進口廢鋼成本，進而影響整體利差結構。",
+  "monthly_trend": "預計下月台灣鋼鐵市場將呈現弱勢整理格局。廢鋼方面，易昇、威致及豐興本週皆調降價格，加上國際廢鋼市場走跌，預計下月北部廢鋼大盤收購價可能下跌0.3-0.5元/公斤。鋼筋受梅雨季及詢問度低迷影響，預計豐興鋼筋盤價可能下跌300-500元/公噸。型鋼雖本月持平，但在整體需求不振下，預計下月可能持平或小幅下跌200-300元/公噸。",
+  "international_outlook": "中國市場需求淡季壓力浮現，鋼鐵期貨全數下跌，無錫不鏽鋼市場弱勢整理，顯示中國鋼市震盪走弱。亞洲扁鋼胚出口價格因需求有限而回檔。越南進口廢鋼市場走跌，南韓亦取得較低價格，反映亞洲區域需求疲軟。歐洲廢鋼市場穩定，墨西哥國內廢鋼價格持平，但俄羅斯鹼性生鐵出口商儘管需求低迷仍維持價格堅挺，顯示部分區域市場存在支撐。美國對土耳其大口徑焊接鋼管反補貼調查結果將影響區域貿易流向。日本鋼鐵出口連跌6個月，對台出貨連5降，顯示其出口動能不足。",
+  "risk_factors": [
+    "梅雨季導致台灣國內鋼筋需求持續低迷",
+    "中國鋼鐵市場持續震盪走弱，影響亞洲鋼價",
+    "國際廢鋼價格持續下跌，壓縮國內廢鋼收購價"
+  ],
+  "summary": "台灣鋼鐵市場受梅雨季及需求淡季影響，鋼筋詢問度低迷，廢鋼價格普遍調降。國際市場方面，中國鋼市震盪走弱，亞洲扁鋼胚及廢鋼價格回檔。儘管粗鋼產量增加，但整體市場缺乏有力支撐，預計短期內將維持弱勢整理。",
+  "confidence": "high"
+}
