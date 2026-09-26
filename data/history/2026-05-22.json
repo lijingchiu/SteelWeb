@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-05-22T06:09:54.654578+08:00",
+  "date": "2026-05-22",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "週間大陸小鋼胚報價未有變化  不受出口管制影響",
+      "url": "https://steelnews.com.tw/news/content?id=174972"
+    },
+    {
+      "title": "燁聯鋼鐵取得國際EPD認證　搶進綠色鋼材供應鏈新門票",
+      "url": "https://steelnews.com.tw/news/content?id=174966"
+    },
+    {
+      "title": "市場頻傳印青降價 不鏽鋼交投只好一再觀望",
+      "url": "https://steelnews.com.tw/news/content?id=174935"
+    },
+    {
+      "title": "中國鋼胚出口踩煞車　全球鋼市供給警報再響",
+      "url": "https://steelnews.com.tw/news/content?id=174934"
+    },
+    {
+      "title": "第3季SN鋼板供給不確定性",
+      "url": "https://steelnews.com.tw/news/content?id=174927"
+    },
+    {
+      "title": "需求轉弱 進口K料小鋼胚報價小跌",
+      "url": "https://steelnews.com.tw/news/content?id=174933"
+    },
+    {
+      "title": "中國鋼市震盪走強　政策利多與成本支撐推升鋼價",
+      "url": "https://steelnews.com.tw/news/content?id=174995"
+    },
+    {
+      "title": "中國鋼筋期貨高檔震盪　價格恐階段性見頂",
+      "url": "https://steelnews.com.tw/news/content?id=174994"
+    },
+    {
+      "title": "日本製鐵將擠身歐盟鋼鐵製造龍頭之列",
+      "url": "https://steelnews.com.tw/news/content?id=174993"
+    },
+    {
+      "title": "日本神戶製鋼考慮在加古川製鐵所設置廢鋼熔煉爐以推動鋼鐵脫碳",
+      "url": "https://steelnews.com.tw/news/content?id=174992"
+    },
+    {
+      "title": "焦煤成本撐盤　中國焦炭第四輪漲價呼聲升溫",
+      "url": "https://steelnews.com.tw/news/content?id=174986"
+    },
+    {
+      "title": "阿聯酋鋼筋利潤率大幅擴大",
+      "url": "https://steelnews.com.tw/news/content?id=175001"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-04",
+    "crude_steel_production": {
+      "value": 111.1378,
+      "unit": "萬噸",
+      "mom_change": -33.3895,
+      "month": "2026-02"
+    },
+    "north_scrap_price": {
+      "value": 10.2,
+      "unit": "元/公斤",
+      "mom_change": 0.5,
+      "month": "2026-04"
+    },
+    "billet_price": {
+      "value": 15790.0,
+      "unit": "元/公噸",
+      "mom_change": -410.0,
+      "month": "2026-04"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 400.0,
+      "month": "2026-04"
+    },
+    "h_beam_price": {
+      "value": 35900.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-04"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 1000.0,
+      "month": "2026-04"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "新聞中未提及具體匯率資訊，但印度盧比貶值導致廢鋼進口受阻，顯示匯率波動對國際貿易有顯著影響。若新台幣走強，有利於台灣進口廢鋼，降低成本；若走弱，則增加進口成本，可能推升鋼價。"
+  },
+  "spread_analysis": "根據最新數據，北部廢鋼收購價為10.2元/公斤（10200元/公噸），豐興鋼筋盤價為18900元/公噸，東鋼H型鋼流通價為35900元/公噸。廢鋼至鋼筋的加工利差約為8700元/公噸，鋼筋至H型鋼的利差約為17000元/公噸。儘管廢鋼價格上漲，但小鋼胚價格下跌，顯示上游成本壓力部分轉嫁。中國鋼胚出口踩煞車，可能導致小鋼胚供給緊張，進而影響鋼筋成本。若新台幣升值，進口廢鋼成本降低，有助於擴大利差；反之則壓縮利差。整體而言，加工利差仍維持在合理區間，但上游原料價格波動與國際供給變化將持續影響利潤空間。",
+  "monthly_trend": "預計下月廢鋼價格可能持平或小幅上漲，受土耳其主導全球廢鋼貿易及地緣政治影響。鋼筋價格預計持平或小幅下跌，因中國鋼筋期貨高檔震盪且有見頂跡象，加上進口K料小鋼胚報價下跌。型鋼價格預計持平，儘管東鋼H型鋼上月上漲，但整體需求轉弱及中國鋼胚出口管制可能抑制漲勢。整體市場將受中國政策、國際廢鋼價格及能源成本影響，呈現震盪盤整格局。",
+  "international_outlook": "中國鋼市在政策利多與成本支撐下震盪走強，但鋼筋期貨價格恐階段性見頂，且鋼胚出口踩煞車，將影響全球供給。日本鋼廠積極推動脫碳，神戶製鋼考慮設置廢鋼熔煉爐，日本製鐵則將擴大在歐盟的影響力。土耳其廢鋼進口與定價持續主導全球廢鋼貿易，並受CBAM重塑。東南亞鋼廠面臨伊朗戰爭引發的能源短缺問題。印度因盧比貶值導致廢鋼進口受阻，但MSL積極拓展鋼管製造領域。全球廢鋼市場進入高波動期，地緣政治與運費是關鍵驅動因素。",
+  "risk_factors": [
+    "中國鋼胚出口管制政策變化",
+    "國際地緣政治衝突導致能源價格波動",
+    "全球廢鋼市場價格高波動性及運費影響"
+  ],
+  "summary": "台灣4月粗鋼產量下降，廢鋼收購價上漲，小鋼胚價格下跌，鋼筋與H型鋼盤價上漲。國際市場受中國鋼胚出口管制、土耳其廢鋼主導及地緣政治影響，供給警報再響。台灣鋼市面臨成本壓力與需求轉弱的雙重挑戰，綠色鋼材認證成為新趨勢。",
+  "confidence": "medium"
+}

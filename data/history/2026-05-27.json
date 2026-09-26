@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-05-27T06:14:38.593901+08:00",
+  "date": "2026-05-27",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "台灣鋼聯攜手雲科大啟動1+N碳管理示範體系",
+      "url": "https://steelnews.com.tw/news/content?id=175185"
+    },
+    {
+      "title": "南部鋼筋價格持續不明採議價",
+      "url": "https://steelnews.com.tw/news/content?id=175184"
+    },
+    {
+      "title": "東和6月H型鋼調漲400元/噸",
+      "url": "https://steelnews.com.tw/news/content?id=175175"
+    },
+    {
+      "title": "歐盟正式啟動ESPR鋼鐵門檻 全球銷歐鋼材撞「多重碳關卡」",
+      "url": "https://steelnews.com.tw/news/content?id=175154"
+    },
+    {
+      "title": "中國廢鋼市場震盪偏弱 供需緊平衡支撐底部價格",
+      "url": "https://steelnews.com.tw/news/content?id=175216"
+    },
+    {
+      "title": "中國鋼市面臨高成本與高供給 行情恐先強後弱",
+      "url": "https://steelnews.com.tw/news/content?id=175215"
+    },
+    {
+      "title": "中國鋼鐵業全面納入碳市場 減碳正式成為剛性成本",
+      "url": "https://steelnews.com.tw/news/content?id=175214"
+    },
+    {
+      "title": "中國廢鋼新規7月上路 散亂堆場與倒票模式加速出清",
+      "url": "https://steelnews.com.tw/news/content?id=175213"
+    },
+    {
+      "title": "韓國加稅打擊出口 中國鍍鋅鋼板面臨結構性下行",
+      "url": "https://steelnews.com.tw/news/content?id=175212"
+    },
+    {
+      "title": "山西煤礦停產引爆黑色系 焦煤焦炭飆漲為中國鋼價築底",
+      "url": "https://steelnews.com.tw/news/content?id=175211"
+    },
+    {
+      "title": "歐洲鋼市動能轉弱　熱軋與廢鋼價格漲勢暫歇",
+      "url": "https://steelnews.com.tw/news/content?id=175228"
+    },
+    {
+      "title": "全球鋼鐵業拚減碳 高爐減排技術成現階段主戰場",
+      "url": "https://steelnews.com.tw/news/content?id=175227"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-04",
+    "crude_steel_production": {
+      "value": 111.1378,
+      "unit": "萬噸",
+      "mom_change": -33.3895,
+      "month": "2026-02"
+    },
+    "north_scrap_price": {
+      "value": 10.2,
+      "unit": "元/公斤",
+      "mom_change": 0.5,
+      "month": "2026-04"
+    },
+    "billet_price": {
+      "value": 15790.0,
+      "unit": "元/公噸",
+      "mom_change": -410.0,
+      "month": "2026-04"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 400.0,
+      "month": "2026-04"
+    },
+    "h_beam_price": {
+      "value": 35900.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-04"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 1000.0,
+      "month": "2026-04"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.3,
+    "impact_on_steel": "近期美元兌台幣匯率預計維持相對穩定，對鋼鐵進出口成本影響有限，但若美元走強，將增加進口廢鋼成本，對國內廢鋼價格形成支撐。"
+  },
+  "spread_analysis": "北部廢鋼收購價10.2元/公斤，換算公噸為10200元。小鋼胚中級出廠價15790元/公噸，加工利差約5590元/公噸。豐興鋼筋盤價18900元/公噸，相較小鋼胚利差約3110元/公噸。東鋼H型鋼流通價35900元/公噸，與鋼筋價差較大，反映其加工複雜度與市場定位。整體而言，廢鋼至鋼筋的利差尚可，但鋼筋至型鋼的利差空間較大。匯率穩定下，進口廢鋼成本波動不大，有助於維持現有利差結構。",
+  "monthly_trend": "預計下月台灣鋼鐵市場將呈現「廢鋼持穩、鋼筋小漲、型鋼續漲」的趨勢。廢鋼受中國市場震盪偏弱影響，但國內供需緊平衡及進口成本支撐，預計持穩或小幅波動。鋼筋因南部市場議價空間仍在，但豐興盤價已調漲，預計將小幅上漲100-200元/公噸。型鋼受東和調漲帶動，且AI基建需求預期，預計續漲300-500元/公噸。整體市場受國際碳關卡及減碳成本影響，長期看漲。",
+  "international_outlook": "中國鋼市面臨高成本與高供給，行情恐先強後弱，廢鋼市場震盪偏弱，但新規上路將加速出清散亂堆場，有助於長期穩定。山西煤礦停產引爆焦煤焦炭飆漲，為中國鋼價築底。歐盟啟動ESPR鋼鐵門檻及CBAM，全球銷歐鋼材面臨多重碳關卡，歐洲鋼市動能轉弱，熱軋與廢鋼價格漲勢暫歇，德國鋼鐵業面臨需求疲軟與高能源成本的「轉折點」。美加鋼鋁關稅風暴延燒，加拿大鋼鐵業承受衝擊。印度有望成為低成本綠色鋼鐵中心，但4月已轉為成品鋼材淨進口國。韓國熱軋報價撞牆，降價壓力大。全球鋼鐵業普遍面臨減碳壓力與成本上升。",
+  "risk_factors": [
+    "全球地緣政治不確定性及運費波動對廢鋼價格的影響",
+    "歐盟CBAM及ESPR等碳關卡對台灣鋼材出口的衝擊",
+    "中國鋼市高成本、高供給及減碳政策對區域鋼價的傳導效應"
+  ],
+  "summary": "2026年4月台灣粗鋼產量下降，但北部廢鋼收購價、豐興鋼筋盤價及東鋼H型鋼流通價均呈現上漲。國際市場受碳關卡、減碳成本及中國市場震盪影響，呈現複雜局面。台灣鋼聯啟動碳管理示範體系，顯示產業積極應對綠色轉型。預計下月台灣鋼市將在成本支撐與需求預期下，呈現穩中偏漲格局。",
+  "confidence": "medium"
+}
