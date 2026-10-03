@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Steel Rebar Icon</title>
+  <rect width="64" height="64" rx="16" fill="#2a1f17"/>
+  <g transform="rotate(-18 32 32)">
+    <rect x="15" y="26" width="34" height="12" rx="6" fill="#b07a45"/>
+    <rect x="19" y="24" width="3" height="16" rx="1.5" fill="#e7c59d" opacity="0.9"/>
+    <rect x="27" y="24" width="3" height="16" rx="1.5" fill="#e7c59d" opacity="0.9"/>
+    <rect x="35" y="24" width="3" height="16" rx="1.5" fill="#e7c59d" opacity="0.9"/>
+    <rect x="43" y="24" width="3" height="16" rx="1.5" fill="#e7c59d" opacity="0.9"/>
+    <rect x="15" y="31" width="34" height="2" rx="1" fill="#8d5f35" opacity="0.7"/>
+  </g>
+</svg>

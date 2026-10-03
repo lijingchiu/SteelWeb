@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-16T06:53:57.429093+08:00",
+  "date": "2026-06-16",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "易昇、慶欣欣明天起限收廢鋼",
+      "url": "https://steelnews.com.tw/news/content?id=176216"
+    },
+    {
+      "title": "中部小型鋼板鐵材行傳出財務有狀況",
+      "url": "https://steelnews.com.tw/news/content?id=176205"
+    },
+    {
+      "title": "全台還在下大雨、本週工作天數少  都影響鋼筋交易",
+      "url": "https://steelnews.com.tw/news/content?id=176195"
+    },
+    {
+      "title": "台鋼集團本週鋼筋平盤",
+      "url": "https://steelnews.com.tw/news/content?id=176189"
+    },
+    {
+      "title": "豐興本週鋼筋、廢鋼、型鋼全平",
+      "url": "https://steelnews.com.tw/news/content?id=176188"
+    },
+    {
+      "title": "力拓與中國寶武完成使用皮爾巴拉混合鐵礦石的直接還原試驗",
+      "url": "https://steelnews.com.tw/news/content?id=176223"
+    },
+    {
+      "title": "法國Fives將向中國三寶集團供應電工鋼處理線",
+      "url": "https://steelnews.com.tw/news/content?id=176222"
+    },
+    {
+      "title": "雙焦回檔拖累情緒 中國鐵礦石維持區間震盪",
+      "url": "https://steelnews.com.tw/news/content?id=176220"
+    },
+    {
+      "title": "雙焦強勢、鐵礦偏弱 中國礦價續陷區間震盪",
+      "url": "https://steelnews.com.tw/news/content?id=176219"
+    },
+    {
+      "title": "中國焦炭第七輪提漲有望落地 焦煤成本續撐市場",
+      "url": "https://steelnews.com.tw/news/content?id=176218"
+    },
+    {
+      "title": "歐洲鋼鐵協會：歐盟部長會議取得進展 但規避、下游與出口漏洞依然存在",
+      "url": "https://steelnews.com.tw/news/content?id=176230"
+    },
+    {
+      "title": "哈薩克對歐盟的鋼鐵出口每年可能面臨超過1億歐元的CBAM成本",
+      "url": "https://steelnews.com.tw/news/content?id=176227"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "目前新聞未提及匯率變動，但若新台幣貶值，將增加進口廢鋼成本，推升國內鋼價；反之則有助於壓低成本。"
+  },
+  "spread_analysis": "根據最新數據，北部廢鋼大盤收購價為10.4元/公斤（10400元/公噸），豐興鋼筋盤價為18900元/公噸，小鋼胚中級出廠價為16060元/公噸。廢鋼加工成小鋼胚利差約為5660元/公噸，小鋼胚加工成鋼筋利差約為2840元/公噸。東鋼H型鋼流通價為36700元/公噸。考慮到廢鋼與鋼筋、型鋼的價差，目前加工利潤尚可，但廢鋼價格持平，鋼筋平盤，型鋼小漲，顯示下游需求仍有支撐，但上游成本壓力不大。若匯率波動，將直接影響進口廢鋼成本，進而影響整體利差。",
+  "monthly_trend": "預計下月台灣廢鋼、鋼筋價格將維持平盤或小幅震盪。理由是國內需求受雨季及工作天數少影響，鋼筋交易清淡，且豐興、台鋼集團本週均維持平盤。廢鋼方面，易昇、慶欣欣限收廢鋼，顯示市場供應充足，需求不振。型鋼方面，東和H型鋼盤價續漲，顯示其需求相對穩健。整體而言，在缺乏強勁需求帶動下，大幅上漲動能不足，但成本面有中國焦炭提漲支撐，預計跌幅有限。",
+  "international_outlook": "國際鋼鐵市場呈現區域分化。中國市場受雙焦回檔及鐵礦石偏弱影響，鐵礦石維持區間震盪，鋼胚市場承壓走弱，鋼筋出口價格平盤。印度球團礦出口價格跌勢加速，中國買家退場，前景轉負。越南受雨季影響，進口廢鋼需求低迷。孟加拉廢鋼進口活動回溫，但成交價較低。歐洲市場方面，CBAM成本對哈薩克出口造成壓力，義大利生鐵來源稀缺抑制需求，但歐盟本地熱軋捲市場看漲預期增強。美國熱軋價格續創高，顯示全球鋼市呈現東弱西強格局。",
+  "risk_factors": [
+    "國內雨季持續影響工程進度及鋼筋需求",
+    "國際廢鋼價格受地緣政治與運費影響，波動性高",
+    "中國鋼鐵市場需求疲弱，可能影響亞洲整體鋼價走勢"
+  ],
+  "summary": "台灣鋼市在5月粗鋼產量顯著增加，廢鋼、小鋼胚、型鋼價格小幅上漲，鋼筋與中鋼棒線盤價持平。近期受國內雨季、工作天數少影響，鋼筋交易清淡，廢鋼限收，豐興與台鋼集團鋼筋盤價均平盤。型鋼需求相對穩健。國際市場東弱西強，中國需求疲軟，歐洲CBAM影響持續，全球廢鋼市場波動性高。整體而言，短期內台灣鋼市將以盤整為主。",
+  "confidence": "medium"
+}
