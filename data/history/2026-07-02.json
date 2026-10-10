@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-07-02T06:11:36.680830+08:00",
+  "date": "2026-07-02",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "中龍7月H型鋼平盤",
+      "url": "https://steelnews.com.tw/news/content?id=177056"
+    },
+    {
+      "title": "不少鋼筋盤商已無鐵可載仍不進場",
+      "url": "https://steelnews.com.tw/news/content?id=177052"
+    },
+    {
+      "title": "中鋼AP板詢問度低",
+      "url": "https://steelnews.com.tw/news/content?id=177047"
+    },
+    {
+      "title": "價差不合理 中鋼下修熱、冷軋專案價",
+      "url": "https://steelnews.com.tw/news/content?id=177039"
+    },
+    {
+      "title": "今(1)日下午唐山遷安普方胚價格下跌20元",
+      "url": "https://steelnews.com.tw/news/content?id=177090"
+    },
+    {
+      "title": "7月1日中國鋼鐵期貨收盤全數下跌",
+      "url": "https://steelnews.com.tw/news/content?id=177083"
+    },
+    {
+      "title": "德信成品跟半成品價格都下跌",
+      "url": "https://steelnews.com.tw/news/content?id=177053"
+    },
+    {
+      "title": "7月1日沙鋼1期品種線指導價格持平",
+      "url": "https://steelnews.com.tw/news/content?id=177051"
+    },
+    {
+      "title": "沙鋼2026年7月上旬建材價格持平",
+      "url": "https://steelnews.com.tw/news/content?id=177049"
+    },
+    {
+      "title": "沙鋼7月熱軋價格持平",
+      "url": "https://steelnews.com.tw/news/content?id=177050"
+    },
+    {
+      "title": "阿聯酋確認中國產重型鋼進口造成實質損害",
+      "url": "https://steelnews.com.tw/news/content?id=177045"
+    },
+    {
+      "title": "歐盟委員會確認鋼鐵配額分配及自貿協定優惠待遇",
+      "url": "https://steelnews.com.tw/news/content?id=177043"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-06",
+    "crude_steel_production": {
+      "value": 166.4034,
+      "unit": "萬噸",
+      "mom_change": -2.5046,
+      "month": "2026-04"
+    },
+    "north_scrap_price": {
+      "value": 10.0,
+      "unit": "元/公斤",
+      "mom_change": -0.4,
+      "month": "2026-06"
+    },
+    "billet_price": {
+      "value": 15830.0,
+      "unit": "元/公噸",
+      "mom_change": -230.0,
+      "month": "2026-06"
+    },
+    "fengxing_rebar_price": {
+      "value": 18100.0,
+      "unit": "元/公噸",
+      "mom_change": -800.0,
+      "month": "2026-06"
+    },
+    "h_beam_price": {
+      "value": 37500.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-06"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-06"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "目前新聞未提及匯率變動，但若美元走強，將增加進口廢鋼成本，對國內鋼價形成支撐；反之則可能使進口成本降低，影響國內廢鋼價格。"
+  },
+  "spread_analysis": "根據最新數據，北部廢鋼收購價為10.0元/公斤（10000元/公噸），小鋼胚中級出廠價為15830元/公噸，豐興鋼筋盤價為18100元/公噸。廢鋼到小鋼胚的價差為5830元/公噸，小鋼胚到鋼筋的價差為2270元/公噸。廢鋼到鋼筋的總加工利差為8100元/公噸。目前廢鋼與小鋼胚價格下跌，顯示上游成本壓力減輕，但鋼筋盤價跌幅更大，壓縮了下游加工利潤。型鋼方面，東鋼H型鋼流通價上漲，與鋼筋走勢背離，可能反映不同產品線的供需狀況。整體來看，鋼筋加工利差受到擠壓，顯示市場需求疲軟。",
+  "monthly_trend": "預計下月鋼筋價格將持續承壓，可能呈現小幅下跌或持平。主要理由是廢鋼與小鋼胚價格下跌，中國鋼鐵期貨全數下跌，以及國內鋼筋盤商觀望不進場，顯示需求疲軟。中鋼下修熱、冷軋專案價也反映市場買氣不佳。型鋼方面，中龍H型鋼平盤，東鋼H型鋼流通價上漲，預計型鋼價格將相對穩定，甚至有小幅上漲空間，但漲幅有限。整體市場將呈現弱勢震盪格局。",
+  "international_outlook": "全球鋼鐵市場區域分化加劇，供需錯配成新常態。中國市場受淡季影響，鋼價低檔震盪，期貨全數下跌，唐山普方胚價格下跌，顯示需求疲軟。中鋼也指出中國減產與地緣政治緊張加劇全球供應吃緊，但短期內需求不振仍是主導因素。歐洲市場受下游疲軟影響，法國鋼鐵價格下跌。土耳其因廢鋼與小鋼胚價格下跌，國內線材價格走軟。印度當地鋼筋價格錯綜，零售買氣提供溫和支撐。阿聯酋確認中國重型鋼進口造成實質損害，歐盟也確認鋼鐵配額分配，顯示貿易保護主義升溫。整體國際市場需求疲軟，價格承壓。",
+  "risk_factors": [
+    "中國鋼鐵市場持續低迷，出口壓力增加，可能衝擊台灣市場。",
+    "全球貿易保護主義升溫，影響台灣鋼材出口。",
+    "國內營建業需求不振，鋼筋庫存壓力增加。"
+  ],
+  "summary": "2026年6月台灣粗鋼產量下降，廢鋼與小鋼胚價格下跌，豐興鋼筋盤價大幅下調，顯示市場需求疲軟。東鋼H型鋼逆勢上漲，但中龍H型鋼平盤。國際市場普遍承壓，中國鋼價下跌，歐美需求不振。整體而言，台灣鋼鐵市場面臨需求疲軟與國際價格下行的雙重壓力。",
+  "confidence": "medium"
+}

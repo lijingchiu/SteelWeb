@@ -12,71 +12,62 @@
 
 ## 快速設定
 
-### 1. Fork 或 Clone 此倉庫
+### 1. 設定 OpenRouter API Key（免費）
 
-```bash
-git clone https://github.com/lijingchiu/steelweb.git
-```
-
-### 2. 設定 OpenRouter API Key
-
-1. 前往 [openrouter.ai](https://openrouter.ai) 註冊帳號（免費）
+1. 前往 [openrouter.ai](https://openrouter.ai) 註冊帳號
 2. 取得 API Key
 3. 在 GitHub 倉庫 → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
 4. 名稱：`OPENROUTER_API_KEY`，值貼上你的 API Key
 
-### 3. 啟用 GitHub Pages
+### 2. 啟用 GitHub Pages
 
 1. 前往倉庫 **Settings** → **Pages**
 2. Source 選擇：**Deploy from a branch**
 3. Branch 選擇：`main`，目錄：`/ (root)`
 4. 點擊 **Save**
-5. 等待約 1 分鐘後，網站將發佈於 `https://<你的帳號>.github.io/steelweb/`
+5. 等待約 1 分鐘後，網站將發佈於 `https://lijingchiu.github.io/steelweb/`
 
-### 4. 手動觸發測試
+### 3. 手動觸發測試（選用）
 
 1. 前往 **Actions** → **Daily Steel Price Analysis**
 2. 點擊 **Run workflow** → **Run workflow**
 3. 等待約 2-3 分鐘完成
-4. 重新整理網站即可看到最新分析
+
+## 每日自動化流程
+
+```
+每天 08:00 台灣時間
+    ↓
+GitHub Actions 觸發
+    ↓
+爬取 steelnews.com.tw 新聞
+    ↓
+送交 OpenRouter (llama-3.3-70b-instruct:free)
+    ↓
+AI 分析回傳 JSON（價格預測、利差、走勢、國際觀）
+    ↓
+更新 data/latest.json + data/chart-data.json
+    ↓
+自動 commit + push → GitHub Pages 即時更新
+```
 
 ## 檔案結構
 
 ```
 ├── index.html                    # 主要儀表板頁面
 ├── assets/
-│   ├── style.css                 # 樣式（深色鋼鐵工業主題）
-│   └── app.js                    # 前端資料載入與圖表邏輯
+│   ├── style.css                 # 樣式
+│   └── app.js                    # 前端邏輯
 ├── data/
-│   ├── latest.json               # 最新分析結果（每日更新）
-│   ├── chart-data.json           # 歷史價格數據（用於圖表）
-│   ├── history-index.json        # 歷史日期索引
-│   └── history/
-│       └── YYYY-MM-DD.json       # 每日歷史存檔
+│   ├── latest.json               # 最新分析（每日更新）
+│   ├── chart-data.json           # 歷史圖表數據
+│   ├── history-index.json        # 歷史索引
+│   └── history/YYYY-MM-DD.json   # 每日存檔
 ├── scripts/
-│   ├── analyze.py                # 主要分析腳本
-│   └── requirements.txt          # Python 依賴套件
-└── .github/
-    └── workflows/
-        └── daily-analysis.yml    # GitHub Actions 排程工作流程
+│   ├── analyze.py                # 分析腳本
+│   └── requirements.txt
+└── .github/workflows/
+    └── daily-analysis.yml        # 排程工作流程
 ```
-
-## 分析內容說明
-
-| 項目 | 說明 |
-|------|------|
-| 廢鋼 | 電爐廢鋼收購報價估計與預測 |
-| 鋼筋 | 螺紋鋼（Rebar）現貨報價與走勢 |
-| 型鋼 | H 型鋼等結構型鋼報價 |
-| 利差試算 | 廢鋼→成品鋼加工利差分析 |
-| 本週走勢 | 未來 5-7 天價格預測 |
-| 國際大局觀 | 中、日、韓、美鋼鐵市場動態 |
-| 風險因素 | 需關注的市場風險提示 |
-
-## 使用的 AI 模型
-
-預設使用 OpenRouter 免費模型：`meta-llama/llama-3.3-70b-instruct:free`
-
-如需更換模型，修改 `scripts/analyze.py` 中的 `MODEL` 變數即可。
 
 > **免責聲明**：本報告由 AI 自動生成，僅供參考，不構成任何投資建議。

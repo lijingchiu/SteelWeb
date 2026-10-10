@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-05-28T06:24:27.543673+08:00",
+  "date": "2026-05-28",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "鋼板相關的進口半成品擾市",
+      "url": "https://steelnews.com.tw/news/content?id=175261"
+    },
+    {
+      "title": "第4季開始  中鋼開盤日訂於每月5日",
+      "url": "https://steelnews.com.tw/news/content?id=175260"
+    },
+    {
+      "title": "中鋼鋼板業者面臨半成品進口低價壓力",
+      "url": "https://steelnews.com.tw/news/content?id=175259"
+    },
+    {
+      "title": "豐興看好今年鋼市回穩　AI、基建與降息題材支撐後市需求",
+      "url": "https://steelnews.com.tw/news/content?id=175258"
+    },
+    {
+      "title": "普材陷全面虧損　中國鋼鐵業加速轉向高端化突圍",
+      "url": "https://steelnews.com.tw/news/content?id=175294"
+    },
+    {
+      "title": "冷熱價差再逼近成本線 中國板材市場醞釀修復行情",
+      "url": "https://steelnews.com.tw/news/content?id=175282"
+    },
+    {
+      "title": "廢鋼失去成本優勢 短期中國廢鋼價格窄幅震盪",
+      "url": "https://steelnews.com.tw/news/content?id=175281"
+    },
+    {
+      "title": "美國Cliffs成為北美唯一獲獎鋼廠 連續第九次獲得通用汽車供應商獎",
+      "url": "https://steelnews.com.tw/news/content?id=175296"
+    },
+    {
+      "title": "烏克蘭對四國鍍層鋼產品發起反傾銷調查",
+      "url": "https://steelnews.com.tw/news/content?id=175295"
+    },
+    {
+      "title": "瑞典SSAB在安全分析後將恢復呂勒奧新鋼廠之建設工作",
+      "url": "https://steelnews.com.tw/news/content?id=175286"
+    },
+    {
+      "title": "巴西鋼鐵進口配額使用率溫和增長",
+      "url": "https://steelnews.com.tw/news/content?id=175285"
+    },
+    {
+      "title": "越南4月粗鋼產量達210萬噸 首度躋身全球前十名鋼鐵生產國",
+      "url": "https://steelnews.com.tw/news/content?id=175292"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-04",
+    "crude_steel_production": {
+      "value": 111.1378,
+      "unit": "萬噸",
+      "mom_change": -33.3895,
+      "month": "2026-02"
+    },
+    "north_scrap_price": {
+      "value": 10.2,
+      "unit": "元/公斤",
+      "mom_change": 0.5,
+      "month": "2026-04"
+    },
+    "billet_price": {
+      "value": 15790.0,
+      "unit": "元/公噸",
+      "mom_change": -410.0,
+      "month": "2026-04"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 400.0,
+      "month": "2026-04"
+    },
+    "h_beam_price": {
+      "value": 35900.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-04"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 1000.0,
+      "month": "2026-04"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "目前無直接匯率數據，但若新台幣貶值，將有利於台灣鋼品出口競爭力，同時增加進口廢鋼成本，對國內鋼價形成支撐。"
+  },
+  "spread_analysis": "廢鋼收購價上漲0.5元/公斤，小鋼胚出廠價下跌410元/公噸，顯示廢鋼成本壓力增加，但小鋼胚利潤受擠壓。豐興鋼筋盤價上漲400元/公噸，東鋼H型鋼流通價上漲800元/公噸，顯示下游產品仍有轉嫁成本能力，且需求支撐。整體而言，廢鋼到鋼筋、型鋼的加工利差可能因廢鋼成本上升而略受壓縮，但下游需求仍提供一定支撐。",
+  "monthly_trend": "預計下月廢鋼價格將維持高檔震盪，因南部鋼廠檢修停收廢鋼，短期供應可能趨緊。鋼筋、型鋼價格在AI、基建與降息題材支撐下，需求有望回穩，預期將呈現小幅上漲或持平。中鋼盤價可能受進口半成品低價壓力影響，但整體市場氛圍偏向樂觀，漲幅約在1-2%。",
+  "international_outlook": "中國鋼鐵業面臨普材虧損，加速轉向高端化，板材市場醞釀修復行情，但廢鋼失去成本優勢，價格窄幅震盪。越南粗鋼產量躍居全球前十，顯示東南亞市場成長。歐美市場方面，綠色鋼鐵需求受汽車產業驅動，CBAM重塑土耳其鋼鐵業，全球廢鋼市場受地緣政治與運費影響波動加劇。美國Cliffs獲獎顯示其在高端鋼材領域的競爭力。",
+  "risk_factors": [
+    "中國鋼鐵產能過剩及低價出口對國際市場的衝擊",
+    "全球地緣政治不確定性及運費波動對廢鋼成本的影響",
+    "進口半成品低價擾亂台灣鋼板市場秩序"
+  ],
+  "summary": "台灣4月粗鋼產量顯著下滑，但廢鋼收購價上漲，鋼筋、型鋼盤價亦上揚，顯示下游需求仍有支撐。中鋼面臨進口半成品低價壓力，但豐興看好AI、基建與降息題材支撐後市需求。國際市場中國鋼鐵業轉型，越南產量躍升，綠色鋼鐵成為全球趨勢。",
+  "confidence": "medium"
+}
