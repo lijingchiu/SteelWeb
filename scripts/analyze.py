@@ -20,9 +20,13 @@ from bs4 import BeautifulSoup
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 MODELS = [
+    "openai/gpt-6-luna",
     "google/gemini-2.5-flash",
     "openai/gpt-4o-mini",
 ]
+MODEL_EXTRA_BODY = {
+    "openai/gpt-6-luna": {"reasoning": {"effort": "medium"}},
+}
 TW_TZ = timezone(timedelta(hours=8))
 
 HEADERS = {
@@ -796,8 +800,9 @@ def call_openrouter(news_content: str, date_str: str, taiwan_prices: dict, excha
         req_body = {
             "model": model,
             "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": 6000,
+            "max_tokens": 10000,
             "temperature": 0.25,
+            **MODEL_EXTRA_BODY.get(model, {}),
         }
         for attempt in range(2):
             try:
