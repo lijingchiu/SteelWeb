@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-05-20T17:45:56.653227+08:00",
+  "date": "2026-05-20",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "6月鋼管牌價仍調漲",
+      "url": "https://steelnews.com.tw/news/content?id=174891"
+    },
+    {
+      "title": "廢鋼上漲後  出貨意願略增",
+      "url": "https://steelnews.com.tw/news/content?id=174890"
+    },
+    {
+      "title": "高雄新生代鋼鐵交流協會捐血送暖　募集近10萬CC熱血助血庫",
+      "url": "https://steelnews.com.tw/news/content?id=174877"
+    },
+    {
+      "title": "白沙屯媽祖醫院動土　新光鋼捐救護車助公益苗南醫療再升級",
+      "url": "https://steelnews.com.tw/news/content?id=174873"
+    },
+    {
+      "title": "泓德能源攜手澳洲Greensteel　布局綠鋼與儲能整合商機",
+      "url": "https://steelnews.com.tw/news/content?id=174862"
+    },
+    {
+      "title": "中國工信部修訂鋼鐵產能置換辦法　全面收緊比例與跨企業流動",
+      "url": "https://steelnews.com.tw/news/content?id=174895"
+    },
+    {
+      "title": "5月20日中國鋼鐵期貨收盤漲跌互現",
+      "url": "https://steelnews.com.tw/news/content?id=174894"
+    },
+    {
+      "title": "中國鋼鐵產能置換新規出爐　全面收緊比例與跨企業流動限制",
+      "url": "https://steelnews.com.tw/news/content?id=174892"
+    },
+    {
+      "title": "中國不鏽鋼出口價格持穩 但印尼價格逐步調漲顯露謹慎樂觀",
+      "url": "https://steelnews.com.tw/news/content?id=174889"
+    },
+    {
+      "title": "中國鋼板出口價格小幅上揚 即使國內需求疲軟",
+      "url": "https://steelnews.com.tw/news/content?id=174887"
+    },
+    {
+      "title": "5月德國當地廢鋼市場上漲 前景穩定於高位",
+      "url": "https://steelnews.com.tw/news/content?id=174885"
+    },
+    {
+      "title": "美國東岸紐約與費城廢鋼碼頭價格又一週維持不變 而波士頓價格有所改善",
+      "url": "https://steelnews.com.tw/news/content?id=174874"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-04",
+    "crude_steel_production": {
+      "value": 111.1378,
+      "unit": "萬噸",
+      "mom_change": -33.3895,
+      "month": "2026-02"
+    },
+    "north_scrap_price": {
+      "value": 10.2,
+      "unit": "元/公斤",
+      "mom_change": 0.5,
+      "month": "2026-04"
+    },
+    "billet_price": {
+      "value": 15790.0,
+      "unit": "元/公噸",
+      "mom_change": -410.0,
+      "month": "2026-04"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 400.0,
+      "month": "2026-04"
+    },
+    "h_beam_price": {
+      "value": 35900.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-04"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 1000.0,
+      "month": "2026-04"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "新聞中未提及具體匯率資訊，但盧比重貶導致印度鋼材出口競爭力大增，可能間接影響台灣鋼材進口成本與出口競爭力。"
+  },
+  "spread_analysis": "廢鋼收購價月增0.5元/公斤，顯示成本端壓力增加。小鋼胚出廠價月減410元/公噸，但豐興鋼筋盤價月增400元/公噸，東鋼H型鋼流通價月增800元/公噸，中鋼棒線盤價月增1000元/公噸。這表示儘管上游小鋼胚價格下跌，但下游鋼筋、型鋼、棒線等產品價格仍持續上漲，顯示加工利差擴大。廢鋼成本上漲後，出貨意願略增，可能緩解部分成本壓力，但整體加工利潤仍佳。考量中鋼6月漲盤撐住熱、冷軋流通行情，預期利差將維持高檔。",
+  "monthly_trend": "預計下月鋼筋、型鋼價格將持續穩中偏漲。廢鋼價格因國際市場（德國、美國波士頓）上漲，且台灣廢鋼收購價已上揚，預期將支撐成本。鋼管牌價6月仍調漲，顯示下游需求仍有支撐。中鋼6月漲盤也為市場提供信心。然而，中國產能置換新規收緊及國內需求疲軟，可能對整體鋼材出口造成壓力，但台灣內需市場在建工程支撐下，預計仍能維持一定動能。漲幅預計在200-500元/公噸之間。",
+  "international_outlook": "中國市場面臨嚴峻挑戰，工信部修訂鋼鐵產能置換辦法，全面收緊比例與跨企業流動，旨在抑制產能過剩。儘管中國鋼板出口價格小幅上揚，但國內需求疲軟，期貨市場漲跌互現，整體前景受出口阻力影響。巴西鐵礦石價格因中國抑制產能計劃而下跌。歐盟議會高票通過新鋼鐵防衛措施，7月起配額外關稅將翻倍至50%，對鋼材出口至歐洲構成巨大障礙。印度在地鋼筋市場下行趨勢加劇，庫存上升且交易量下滑，但塔塔鋼鐵淨利暴增顯示部分企業表現強勁。東協鋼鐵業面臨日益加劇的進口壓力。全球綠色鋼鐵和CBAM（碳邊境調整機制）將重塑土耳其等國鋼鐵業，台灣鋼廠也積極布局綠鋼。",
+  "risk_factors": [
+    "中國鋼鐵產能政策收緊對全球供應鏈的影響",
+    "歐盟新鋼鐵防衛措施對台灣鋼材出口的衝擊",
+    "國際廢鋼價格波動對台灣成本的影響"
+  ],
+  "summary": "台灣4月粗鋼產量月減，但廢鋼、鋼筋、型鋼、棒線價格全面上漲，顯示市場需求仍有支撐，加工利差擴大。國際市場方面，中國產能收緊、歐盟關稅壁壘、印度市場下行等因素交織，全球鋼市面臨多重挑戰。台灣鋼市在內需支撐下，預計短期內仍將維持穩健。",
+  "confidence": "medium"
+}

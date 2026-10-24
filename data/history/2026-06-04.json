@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-04T06:56:56.715506+08:00",
+  "date": "2026-06-04",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "中鋼將與高雄鋼鐵經營協會溝通韓中冷軋反傾銷案",
+      "url": "https://steelnews.com.tw/news/content?id=175650"
+    },
+    {
+      "title": "裁剪製管業反映交期太慢  中鋼提前每月5日開盤解決",
+      "url": "https://steelnews.com.tw/news/content?id=175615"
+    },
+    {
+      "title": "裁剪製管業建議中鋼盤價緩漲",
+      "url": "https://steelnews.com.tw/news/content?id=175610"
+    },
+    {
+      "title": "鋼管、鋼捲裁剪業齊聲示警 中鋼第三季盤價應緩漲",
+      "url": "https://steelnews.com.tw/news/content?id=175606"
+    },
+    {
+      "title": "6月中國鋼市將震盪偏弱 鋼企利潤面臨再度收縮",
+      "url": "https://steelnews.com.tw/news/content?id=175638"
+    },
+    {
+      "title": "中國廢鋼市場窄幅走弱 期貨震盪拖累現貨成交",
+      "url": "https://steelnews.com.tw/news/content?id=175636"
+    },
+    {
+      "title": "土耳其鋼鐵出口商將斯洛伐克視為進軍中歐的戰略門戶",
+      "url": "https://steelnews.com.tw/news/content?id=175644"
+    },
+    {
+      "title": "德國鐵路網絡中斷威脅鋼鐵業生產",
+      "url": "https://steelnews.com.tw/news/content?id=175641"
+    },
+    {
+      "title": "TenarisSaudiSteelPipes榮獲沙烏地阿美1,700萬美元鋼管訂單",
+      "url": "https://steelnews.com.tw/news/content?id=175640"
+    },
+    {
+      "title": "KAM Holding啟動20萬噸直接還原鐵工廠投資項目",
+      "url": "https://steelnews.com.tw/news/content?id=175639"
+    },
+    {
+      "title": "南韓韓華與加拿大Algoma Steel簽署加拿大軍用級鋼鐵供應協議",
+      "url": "https://steelnews.com.tw/news/content?id=175633"
+    },
+    {
+      "title": "印度NMDC公司2026年5月鐵礦石產量增長20%　但銷量下滑7%",
+      "url": "https://steelnews.com.tw/news/content?id=175626"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "目前無直接匯率新聞，但若美元走強，將增加進口廢鋼成本，對國內鋼價形成支撐；反之則可能壓抑鋼價。"
+  },
+  "spread_analysis": "根據最新數據，北部廢鋼收購價為10.4元/公斤，小鋼胚中級出廠價為16060元/公噸（約16.06元/公斤），豐興鋼筋盤價為18900元/公噸（約18.9元/公斤）。廢鋼至小鋼胚的加工利差約為5.66元/公斤，小鋼胚至鋼筋的利差約為2.84元/公斤。東鋼H型鋼流通價為36700元/公噸。整體來看，廢鋼與鋼筋間的利差尚可，但鋼筋價格持平，顯示下游需求仍有壓力。若考量匯率波動，進口廢鋼成本將直接影響利差空間。",
+  "monthly_trend": "預計下月鋼市將呈現震盪偏弱格局。中國鋼市預期震盪偏弱，鋼企利潤面臨收縮，將影響亞洲整體氛圍。印度鋼筋價格下跌，熱軋出口低迷，顯示需求疲軟。國內中鋼盤價面臨裁剪製管業緩漲建議，豐興鋼筋盤價持平，顯示下游觀望氣氛濃厚。廢鋼價格雖小幅上漲，但國際市場高波動性，恐難持續支撐。預估鋼筋、型鋼價格可能持平或小幅下跌0-2%。",
+  "international_outlook": "中國鋼市6月預計震盪偏弱，鋼企利潤面臨收縮，廢鋼市場窄幅走弱，期貨震盪拖累現貨成交，對亞洲鋼市形成壓力。印度市場表現低迷，熱軋捲出口活動因買方出價低迷而歸於沉寂，當地鋼筋價格進一步下跌。土耳其鋼鐵出口商積極尋求中歐市場，並受綠色鋼鐵標準與CBAM影響。美國對定尺碳素鋼板發起反傾銷日落複審調查。南韓與加拿大簽署軍用級鋼鐵供應協議，顯示特定領域需求。全球廢鋼市場進入高波動期，地緣政治與運費是關鍵驅動因素。",
+  "risk_factors": [
+    "中國鋼市持續疲軟，影響亞洲整體鋼價走勢。",
+    "國際廢鋼市場高波動性，地緣政治與運費增加成本不確定性。",
+    "國內下游需求不振，中鋼盤價面臨壓力，恐傳導至現貨市場。"
+  ],
+  "summary": "2026年5月台灣粗鋼產量顯著增長，廢鋼與小鋼胚價格小幅上揚，但鋼筋盤價持平，型鋼價格微漲。國際市場方面，中國與印度鋼市表現疲軟，廢鋼市場波動加劇。國內裁剪製管業建議中鋼盤價緩漲，顯示下游需求仍有壓力。整體市場預計將受國際情勢影響，呈現震盪偏弱走勢。",
+  "confidence": "medium"
+}
