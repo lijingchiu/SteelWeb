@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-05-16T05:46:39.381699+08:00",
+  "date": "2026-05-16",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "韓國浦項熱軋來報 較前盤再漲20美元/噸以上",
+      "url": "https://steelnews.com.tw/news/content?id=174686"
+    },
+    {
+      "title": "已是週五  鋼筋成交不明顯",
+      "url": "https://steelnews.com.tw/news/content?id=174672"
+    },
+    {
+      "title": "今(15)日下午唐山遷安普方胚價格下跌10元",
+      "url": "https://steelnews.com.tw/news/content?id=174712"
+    },
+    {
+      "title": "5月上旬中國鋼重點鋼企粗鋼日產有所上升  鋼材庫存明顯上升",
+      "url": "https://steelnews.com.tw/news/content?id=174688"
+    },
+    {
+      "title": "5月15日中國鋼鐵期貨收盤全數下跌",
+      "url": "https://steelnews.com.tw/news/content?id=174687"
+    },
+    {
+      "title": "鋼廠控產保價　中國鋼市進入震盪修整期",
+      "url": "https://steelnews.com.tw/news/content?id=174683"
+    },
+    {
+      "title": "中國無錫不鏽鋼庫存月減近萬噸　市場進入修正階段",
+      "url": "https://steelnews.com.tw/news/content?id=174681"
+    },
+    {
+      "title": "本週(0508-0514)國際鋼材交易價格整理",
+      "url": "https://steelnews.com.tw/news/content?id=174684"
+    },
+    {
+      "title": "美國舊廢鋼價格橫盤 優質廢鋼上漲",
+      "url": "https://steelnews.com.tw/news/content?id=174678"
+    },
+    {
+      "title": "羅馬尼亞長材價格進一步上漲 市場對漲勢可持續性存疑",
+      "url": "https://steelnews.com.tw/news/content?id=174675"
+    },
+    {
+      "title": "美國長材價格穩中有漲 市場尚未全面接受漲價",
+      "url": "https://steelnews.com.tw/news/content?id=174674"
+    },
+    {
+      "title": "受運費調漲與供應商漲價影響 美國進口長材價格微幅攀升",
+      "url": "https://steelnews.com.tw/news/content?id=174673"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-04",
+    "crude_steel_production": {
+      "value": 111.1378,
+      "unit": "萬噸",
+      "mom_change": -33.3895,
+      "month": "2026-02"
+    },
+    "north_scrap_price": {
+      "value": 10.2,
+      "unit": "元/公斤",
+      "mom_change": 0.5,
+      "month": "2026-04"
+    },
+    "billet_price": {
+      "value": 15790.0,
+      "unit": "元/公噸",
+      "mom_change": -410.0,
+      "month": "2026-04"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 400.0,
+      "month": "2026-04"
+    },
+    "h_beam_price": {
+      "value": 35900.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-04"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 1000.0,
+      "month": "2026-04"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "近期新聞未提及匯率變動，但若美元走強，將增加進口廢鋼成本，對台灣鋼鐵價格形成支撐；反之則不利出口。"
+  },
+  "spread_analysis": "廢鋼收購價月增0.5元/公斤，小鋼胚出廠價月減410元/公噸，顯示廢鋼成本上升但小鋼胚價格下跌，壓縮了電爐廠的利潤空間。豐興鋼筋盤價月增400元/公噸，東鋼H型鋼流通價月增800元/公噸，顯示下游產品價格上漲，但廢鋼成本的增加可能部分抵銷了利潤。若廢鋼價格持續上漲，而小鋼胚價格未能同步反映，將對鋼筋和型鋼的加工利差造成壓力。美國進口長材價格因運費調漲微幅攀升，可能影響台灣進口長材成本，進而影響國內型鋼利差。",
+  "monthly_trend": "預計下月廢鋼價格將持穩或小幅上漲，受美國優質廢鋼上漲及台灣廢鋼收購價月增影響。鋼筋盤價預計平高盤，因國際長材價格穩中有漲，但國內成交不明顯。型鋼價格預計持穩，受中鋼熱軋撐盤及國際長材價格微幅攀升支撐。整體而言，預計台灣鋼鐵市場將呈現震盪偏強格局，漲幅約在1-2%之間，主要受國際市場成本推動。",
+  "international_outlook": "中國市場進入震盪修整期，粗鋼日產上升但庫存明顯增加，期貨全數下跌，唐山普方胚價格下跌，顯示需求疲軟與出口阻力。鋼廠控產保價，不鏽鋼庫存月減但價格承壓，鐵礦石價格波動。韓國浦項熱軋報價上漲，顯示亞洲熱軋市場仍有支撐。美國廢鋼價格橫盤，優質廢鋼上漲，長材價格穩中有漲，進口長材因運費調漲微幅攀升，顯示北美市場需求尚可。羅馬尼亞長材價格上漲但可持續性存疑。東協小鋼胚買家議價積極，部分價格漲幅獲接受。印度鋼鐵需求強勁，但燃料短缺已影響鋼筋市場，RINL再次招標小鋼胚出口。整體國際市場呈現分化，亞洲熱軋偏強，中國市場承壓，歐美長材穩中偏強。",
+  "risk_factors": [
+    "中國鋼鐵市場需求疲軟與庫存上升，可能對國際鋼價造成壓力。",
+    "國際運費持續調漲，增加進口鋼材成本。",
+    "印度燃料短缺影響鋼筋市場，可能導致區域性供應緊張或價格波動。"
+  ],
+  "summary": "台灣4月粗鋼產量大幅下降，但廢鋼收購價與鋼筋、型鋼盤價均呈現上漲，顯示成本推動與下游需求支撐。國際市場方面，中國鋼市進入震盪修整期，而韓國熱軋與美國長材價格穩中有漲。預計台灣鋼市下月將震盪偏強，但需留意中國市場的變化。",
+  "confidence": "medium"
+}

@@ -1,69 +1,93 @@
 {
-  "generated_at": "2026-05-12T08:00:00+08:00",
+  "generated_at": "2026-05-12T22:52:14.407724+08:00",
   "date": "2026-05-12",
-  "model_used": "meta-llama/llama-3.3-70b-instruct:free",
-  "news_count": 8,
+  "model_used": "openai/gpt-4o-mini",
+  "news_count": 15,
   "news_sources": [
     {
-      "title": "台灣廢鋼報價本週維持觀望 下游需求疲弱",
-      "url": "https://steelnews.com.tw"
+      "title": "中鋼6月內銷盤價「六連漲」  唯電磁鋼漲勢較弱",
+      "url": "https://steelnews.com.tw/news/content?id=174485"
     },
     {
-      "title": "中鋼公告5月鋼筋盤價 較上月小幅調降",
-      "url": "https://steelnews.com.tw"
+      "title": "中鋼6月內銷盤價再調漲500-1200元",
+      "url": "https://steelnews.com.tw/news/content?id=174484"
     },
     {
-      "title": "美元走強衝擊進口廢鋼成本 匯率貶值壓縮利差",
-      "url": "https://steelnews.com.tw"
+      "title": "中鴻6月盤價再漲高高 調漲1200-1500元",
+      "url": "https://steelnews.com.tw/news/content?id=174483"
     },
     {
-      "title": "中國鋼鐵產能過剩問題持續 出口壓力增加",
-      "url": "https://steelnews.com.tw"
+      "title": "南部鋼筋價格不明",
+      "url": "https://steelnews.com.tw/news/content?id=174480"
     },
     {
-      "title": "日本廢鋼出口價回穩 亞洲市場止跌觀望",
-      "url": "https://steelnews.com.tw"
+      "title": "豐興4月稅前淨利月減11.7%",
+      "url": "https://steelnews.com.tw/news/content?id=174463"
     },
     {
-      "title": "型鋼市場需求平穩 工程標案帶動部分採購",
-      "url": "https://steelnews.com.tw"
+      "title": "鞍鋼、本鋼、淩鋼2026年6月盤價全面調漲",
+      "url": "https://steelnews.com.tw/news/content?id=174527"
+    },
+    {
+      "title": "今(12)日下午唐山遷安普方胚價格下跌20元",
+      "url": "https://steelnews.com.tw/news/content?id=174526"
+    },
+    {
+      "title": "東京制鐵明起全廠廢鋼調漲1000日元/噸",
+      "url": "https://steelnews.com.tw/news/content?id=174487"
+    },
+    {
+      "title": "5月12日中國鋼鐵期貨收盤全數下跌",
+      "url": "https://steelnews.com.tw/news/content?id=174486"
+    },
+    {
+      "title": "日本關東鐵源5月出口標小漲",
+      "url": "https://steelnews.com.tw/news/content?id=174475"
+    },
+    {
+      "title": "能源漲價與製造業需求雙輪驅動 中國鋼市未現「見頂」訊號",
+      "url": "https://steelnews.com.tw/news/content?id=174474"
+    },
+    {
+      "title": "土耳其國內鋼筋現貨價格調整以抵消匯率波動",
+      "url": "https://steelnews.com.tw/news/content?id=174470"
     }
   ],
   "prices": {
     "scrap_steel": {
-      "current_estimate": 9100,
-      "prediction_next_week": 9000,
-      "trend": "down",
-      "change_amount": -100,
-      "reason": "下游鋼廠採購意願保守，日本廢鋼出口報價疲弱，預期本週小幅走跌。"
+      "current_estimate": 15000,
+      "prediction_next_week": 15500,
+      "trend": "up",
+      "change_amount": 500,
+      "reason": "日本廢鋼價格上漲，帶動市場情緒回暖。"
     },
     "rebar": {
-      "current_estimate": 17200,
-      "prediction_next_week": 17000,
-      "trend": "down",
-      "change_amount": -200,
-      "reason": "中鋼5月公告價下調，終端建案需求未見明顯回溫，短期承壓。"
+      "current_estimate": 22000,
+      "prediction_next_week": 23000,
+      "trend": "up",
+      "change_amount": 1000,
+      "reason": "中鋼及中鴻盤價調漲，需求穩定。"
     },
     "structural_steel": {
-      "current_estimate": 18600,
-      "prediction_next_week": 18500,
-      "trend": "stable",
-      "change_amount": -100,
-      "reason": "工業廠房及政府工程標案維持基本需求，型鋼相對抗跌。"
+      "current_estimate": 21000,
+      "prediction_next_week": 21500,
+      "trend": "up",
+      "change_amount": 500,
+      "reason": "國內市場需求增長，推動價格上升。"
     }
   },
   "exchange_rate": {
-    "usd_twd_estimate": 32.45,
-    "impact_on_steel": "台幣持續弱勢（USD/TWD 32.45），進口廢鋼成本上揚，但國內廢鋼供應量尚足。匯率貶值對進口原料不利，電爐鋼廠利差收窄約 200-300 元/噸。"
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "若台幣貶值，進口成本上升，可能推高鋼材價格，影響市場競爭力。"
   },
-  "spread_analysis": "當前廢鋼收購價約 9,100 元/噸，鋼筋出廠價 17,200 元/噸，毛利差約 8,100 元/噸。扣除電費（約 1,200 元）、人工製造成本（約 1,800 元）、運費（約 500 元），估計稅前利潤約 4,600 元/噸。然而受台幣貶值影響，進口廢鋼成本較年初增約 3%，若廠商依賴進口廢鋼，利差將進一步壓縮至約 4,000 元以下。型鋼利差略優，約 9,500 元/噸毛差，盈利能力相對穩健。",
-  "weekly_trend": "本週台灣鋼鐵市場整體偏空。廢鋼因中下游採購態度保守，加上中國廢鋼出口增加競爭，預計持續走跌。鋼筋受建築業景氣趨緩及中鋼調降公告價影響，預計本週跌幅在 100-300 元/噸之間。型鋼因工程訂單支撐，跌勢較為有限。建議採購商維持短期備貨策略，避免長期鎖量。",
-  "international_outlook": "國際鋼鐵市場本週呈現分化格局。中國方面，粗鋼產量持續高位，5月出口量預估維持高檔，對東南亞及台灣市場形成報價壓力。日本市場受日圓弱勢支撐出口競爭力，但國內需求復甦緩慢。韓國 POSCO 維持穩定生產，鋼板報價小幅回調。美國方面，鐵礦砂期貨在中國需求預期降溫下走弱，HRC 現貨報價承壓。整體而言，全球鋼鐵市場供過於求格局未有根本改變，中短期內難見強勁反彈。",
+  "spread_analysis": "目前廢鋼至鋼筋的加工利差約為7000元/公噸，考量匯率影響，若台幣貶值，利差可能擴大，促使鋼廠提高廢鋼採購價格以維持利潤。型鋼加工利差則相對穩定，約為5000元/公噸，顯示市場需求穩健。整體來看，加工利差仍具吸引力。 ",
+  "weekly_trend": "本週鋼材市場預計將持續上漲，主要因中鋼及中鴻的價格調漲，預計鋼筋價格將上漲1000元，型鋼價格也將上漲500元。市場需求穩定，加上國際市場的影響，將進一步推動價格上升。",
+  "international_outlook": "中國鋼鐵市場仍然受到能源價格上漲及製造業需求的雙重驅動，未見見頂跡象。日本廢鋼價格上漲，影響周邊市場。韓國鋼鐵需求穩定，出口表現良好。美國市場則因基建需求強勁，鋼材價格持穩，對台灣鋼材出口形成利好。整體而言，國際市場對台灣鋼鐵業有正面影響。",
   "risk_factors": [
-    "中國鋼鐵出口持續增加，可能壓低亞洲區域現貨報價",
-    "台幣進一步貶值將推升進口廢鋼成本，壓縮電爐廠利差",
-    "國內建案開工率不如預期，終端鋼筋需求恐低於估計"
+    "全球經濟不確定性",
+    "匯率波動影響進口成本",
+    "國內需求減弱風險"
   ],
-  "summary": "本週台灣鋼鐵市場整體偏弱，廢鋼與鋼筋均有下跌壓力，型鋼相對穩定。台幣貶值至 32.45 匯率水準，對依賴進口廢鋼的電爐鋼廠不利。建議短線觀望，等待市場信號明朗後再決定採購時機。",
-  "confidence": "medium"
+  "summary": "今日台灣鋼鐵市場持續上漲，中鋼及中鴻的價格調漲帶動市場情緒。廢鋼、鋼筋及型鋼價格均呈現上升趨勢，顯示需求穩定。國際市場動態亦對台灣鋼材市場形成支持，未來一週預期價格將持續上漲。",
+  "confidence": "high"
 }
