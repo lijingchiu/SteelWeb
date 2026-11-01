@@ -4,6 +4,10 @@ on:
   schedule:
     # 00:00 UTC = 08:00 Taiwan
     - cron: '0 0 * * *'
+  # Pushing a change to this file on main runs the analysis immediately.
+  push:
+    branches: [main]
+    paths: ['.github/trigger/run-analysis']
   workflow_dispatch:
     inputs:
       force_run:
@@ -48,7 +52,9 @@ jobs:
         run: |
           DATE=$(TZ='Asia/Taipei' date +%Y-%m-%d)
           echo "today=$DATE" >> $GITHUB_OUTPUT
-          if [ -f "data/history/${DATE}.json" ] && [ "${{ inputs.force_run }}" != "true" ]; then
+          FORCE="${{ inputs.force_run }}"
+          if [ "${{ github.event_name }}" = "push" ]; then FORCE=true; fi
+          if [ -f "data/history/${DATE}.json" ] && [ "$FORCE" != "true" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
           else
             echo "skip=false" >> $GITHUB_OUTPUT
