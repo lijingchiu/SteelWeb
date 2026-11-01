@@ -534,7 +534,8 @@ def build_prompt(date_str: str, week_label: str, week_range: str, targets: dict,
 - 不要被單一一則新聞標題左右。若方向與你最近一次預測不同，revision_note 必須說明是哪一則新資訊造成改變；沒有新資訊就不應該翻轉方向。
 - 參考你過去的命中率與誤判，修正判斷方式。
 - 注意各項資料的月份不同（例如粗鋼產量比鋼價晚兩個月），引用時必須寫出正確月份。
-- JSON 字串內不要使用 markdown 連結或引用標記。
+- 引用本提示提供的資料時，稱為「官方數據」或寫出來源名稱（例如台灣金屬行情網、主計總處），不要寫「題供」或「提示提供」。
+- JSON 字串內不要使用 markdown 連結或引用標記；你實際查閱過的網頁請列在 sources。
 
 請嚴格以 JSON 格式回覆，不要輸出任何其他文字：
 
@@ -555,7 +556,8 @@ def build_prompt(date_str: str, week_label: str, week_range: str, targets: dict,
   }},
   "risk_factors": ["<風險因素1>", "<風險因素2>", "<風險因素3>"],
   "summary": "<今日市場總結，150字內>",
-  "confidence": "<high|medium|low>"
+  "confidence": "<high|medium|low>",
+  "sources": [{{"title": "<你實際查閱的網頁標題>", "url": "<網址>"}}]
 }}"""
 
 
@@ -715,6 +717,10 @@ def main():
         )
 
     analysis, citations, model_label = run_analysis(build)
+    if analysis:
+        listed = [c for c in (analysis.pop("sources", None) or []) if isinstance(c, dict)
+                  and str(c.get("url", "")).startswith("http")]
+        citations = citations + [{"title": str(c.get("title") or c["url"]), "url": c["url"]} for c in listed]
     if not analysis:
         log("FATAL: no model returned a valid analysis; material data was still saved")
         sys.exit(1)

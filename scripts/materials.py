@@ -121,6 +121,9 @@ NEWS_QUERIES = [
     "廢鋼 價格", "水泥 價格", "預拌混凝土 價格", "砂石 價格", "鐵礦砂 價格",
 ]
 GOOGLE_NEWS_RSS = "https://news.google.com/rss/search"
+# Aggregator / PR outlets that surface generic global industry reports, not Taiwan market news.
+NEWS_SOURCE_BLOCKLIST = {"IndexBox", "TradingKey", "Funliday", "Reccessary", "NAI500", "Yahoo - 汽機車"}
+NEWS_TITLE_EXCLUDE = re.compile(r"市場展望20\d\d|市場規模|年複合成長率|CAGR")
 
 
 def log(msg: str):
@@ -524,6 +527,8 @@ def fetch_news_feed(session) -> list[dict]:
             log(f"  news query {q!r} failed: {e}")
             continue
         for n in parse_google_news(r.text, q):
+            if n["source"] in NEWS_SOURCE_BLOCKLIST or NEWS_TITLE_EXCLUDE.search(n["title"]):
+                continue
             key = re.sub(r"\s+", "", n["title"])
             if key not in seen:
                 seen.add(key)

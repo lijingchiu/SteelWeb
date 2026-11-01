@@ -25,3 +25,7 @@ try:
 except Exception as e:
     print("latest.json not produced:", e)
 a = json.load(open("data/accuracy.json")); print("== accuracy", a["overall"], "pending", a["pending"])
+import base64, gzip
+for name in ["latest.json", "materials.json", "chart-data.json", "accuracy.json"]:
+    blob = base64.b64encode(gzip.compress(open("data/" + name, "rb").read())).decode()
+    print(f"@@FILE {name} {blob} @@END")
