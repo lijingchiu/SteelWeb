@@ -1,0 +1,20 @@
+name: Probe price sources (temporary)
+
+on:
+  push:
+    branches: [claude/update-steel-prices-K2F8l]
+    paths: ['.github/probe/**', '.github/workflows/probe-sources.yml']
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install requests
+      - run: python .github/probe/probe_sources.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: probe-out, path: probe_out.json, if-no-files-found: ignore }
