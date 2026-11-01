@@ -15,6 +15,9 @@ jobs:
         with: { python-version: '3.11' }
       - run: pip install requests openpyxl
       - run: python .github/probe/probe_sources.py
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: probe-out, path: probe_out.json, if-no-files-found: ignore }
