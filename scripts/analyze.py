@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-Taiwan Steel Price Analysis
-Fetches actual prices from chart.metaltrade.tw and news from steelnews.com.tw,
-then analyzes via OpenRouter API.
+Taiwan Steel & Construction Materials Analysis.
+
+1. Fetches every material price series (scripts/materials.py) and the live
+   USD/TWD rate.
+2. Scores past forecasts against newly published monthly prices.
+3. Asks the model (OpenAI GPT-6.1 Terra with web search; OpenRouter as
+   fallback) for a weekly + next-month price forecast and market analysis.
 """
-import ast
-import base64
 import json
 import os
 import re
@@ -17,16 +19,22 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
+from materials import build_materials, taiwan_prices_from_materials, write_outputs
+
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+OPENAI_URL = "https://api.openai.com/v1/responses"
+OPENAI_MODEL = "gpt-6.1-terra"
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-MODELS = [
-    "openai/gpt-6-luna",
-    "google/gemini-2.5-flash",
-    "openai/gpt-4o-mini",
+# (provider, model, use web search). Tried in order until one returns a valid forecast.
+MODEL_CHAIN = [
+    ("openai",     OPENAI_MODEL,                True),
+    ("openrouter", "openai/gpt-6.1-terra",      True),
+    ("openrouter", "openai/gpt-6-luna",         True),
+    ("openrouter", "google/gemini-2.5-flash",   False),
 ]
-MODEL_EXTRA_BODY = {
-    "openai/gpt-6-luna": {"reasoning": {"effort": "medium"}},
-}
+REASONING_EFFORT = "medium"
+MAX_OUTPUT_TOKENS = 25000
 TW_TZ = timezone(timedelta(hours=8))
 
 HEADERS = {
@@ -39,365 +47,26 @@ HEADERS = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 }
 
-METALTRADE_BASE = "https://chart.metaltrade.tw"
-METALTRADE_HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/124.0.0.0 Safari/537.36"
-    ),
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-    "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-    "Accept-Encoding": "gzip, deflate",
-    "Connection": "keep-alive",
-    "Upgrade-Insecure-Requests": "1",
-    "Sec-Fetch-Dest": "document",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Site": "same-origin",
-    "Referer": "https://chart.metaltrade.tw/",
+FORECAST_ITEMS = [
+    ("north_scrap_price",    "北部廢鋼大盤收購價", "元/公斤"),
+    ("billet_price",         "小鋼胚中級出廠價",   "元/公噸"),
+    ("fengxing_rebar_price", "豐興鋼筋盤價",       "元/公噸"),
+    ("h_beam_price",         "東鋼H型鋼流通價",    "元/公噸"),
+    ("csc_wire_rod_price",   "中鋼棒線盤價",       "元/公噸"),
+]
+HEADLINE_NAMES = {
+    "crude_steel_production": "臺灣粗鋼產量",
+    **{k: n for k, n, _ in FORECAST_ITEMS},
 }
-
-TAIWAN_CATEGORIES = [
-    {"id":  9, "period": "6m", "key": "crude_steel_production", "name": "臺灣粗鋼產量",     "unit": "萬噸"},
-    {"id": 10, "period": "3m", "key": "north_scrap_price",       "name": "北部廢鋼大盤收購價", "unit": "元/公斤"},
-    {"id": 11, "period": "3m", "key": "billet_price",            "name": "小鋼胚中級出廠價",  "unit": "元/公噸"},
-    {"id": 12, "period": "3m", "key": "fengxing_rebar_price",    "name": "豐興鋼筋盤價",      "unit": "元/公噸"},
-    {"id": 13, "period": "3m", "key": "h_beam_price",            "name": "東鋼H型鋼流通價",   "unit": "元/公噸"},
-    {"id": 14, "period": "3m", "key": "csc_wire_rod_price",      "name": "中鋼棒線盤價",      "unit": "元/公噸"},
-]
-
-STEEL_KEYWORDS = [
-    '鋼', '鐵', '廢鋼', '鋼筋', '型鋼', '鋼價', '鋼鐵', '報價', '行情',
-    '噸', '廢料', 'USD', 'TWD', '匯率', '公告', '漲', '跌', '持平',
-    '中鋼', '唐榮', '東和', '豐興', '宏鋼', '盛餘',
-]
+ACCURACY_PATH = Path("data/accuracy.json")
+HISTORY_DIR = Path("data/history")
+# A published monthly change within ±0.3% counts as "stable" when scoring.
+STABLE_BAND_PCT = 0.3
+STEELNEWS_URL = "https://steelnews.com.tw/index.php"
 
 
 def log(msg: str):
     print(f"[{datetime.now(TW_TZ).strftime('%H:%M:%S')}] {msg}", flush=True)
-
-
-def fetch_page(url: str, timeout: int = 15) -> str | None:
-    try:
-        resp = requests.get(url, headers=HEADERS, timeout=timeout)
-        resp.raise_for_status()
-        resp.encoding = resp.apparent_encoding or 'utf-8'
-        return resp.text
-    except Exception as e:
-        log(f"Warning: fetch {url} failed: {e}")
-        return None
-
-
-def _parse_date_to_month(date_str: str) -> str | None:
-    """Convert various date formats to YYYY-MM string."""
-    for fmt in ("%Y-%m-%d", "%Y/%m/%d", "%Y-%m", "%Y/%m"):
-        try:
-            return datetime.strptime(date_str.strip(), fmt).strftime("%Y-%m")
-        except ValueError:
-            pass
-    m = re.search(r'(\d{4})[/\-年](\d{1,2})', date_str)
-    if m:
-        return f"{m.group(1)}-{m.group(2).zfill(2)}"
-    return None
-
-
-def _parse_page_data(html: str, series_id: int) -> tuple[str | None, float | None, float | None]:
-    """
-    Strategy 0 (primary): parse <script type="application/json" id="page-data">.
-    The payload["a"] field is a base64-encoded Python literal:
-      b'...' → strip b' and ' → base64.b64decode → ast.literal_eval
-    Returns {'X1': [dates], 'Y1': {'data': [values]}}
-    """
-    soup = BeautifulSoup(html, 'lxml')
-    tag = soup.find('script', {'type': 'application/json', 'id': 'page-data'})
-    if not tag:
-        log(f"    [page-data] script#page-data not found for series {series_id}")
-        return None, None, None
-
-    try:
-        payload = json.loads(tag.string or "")
-    except (json.JSONDecodeError, TypeError) as e:
-        log(f"    [page-data] json.loads failed: {e}")
-        return None, None, None
-
-    raw_a = payload.get("a", "")
-    if not raw_a:
-        log(f"    [page-data] 'a' field missing or empty")
-        return None, None, None
-
-    # Strip Python bytes repr wrapper: b'...' or b"..."
-    b64_str = raw_a
-    if (b64_str.startswith("b'") and b64_str.endswith("'")):
-        b64_str = b64_str[2:-1]
-    elif (b64_str.startswith('b"') and b64_str.endswith('"')):
-        b64_str = b64_str[2:-1]
-
-    try:
-        decoded = base64.b64decode(b64_str).decode("utf-8")
-    except Exception as e:
-        log(f"    [page-data] base64 decode failed: {e}")
-        return None, None, None
-
-    try:
-        data = ast.literal_eval(decoded)
-    except Exception as e:
-        log(f"    [page-data] ast.literal_eval failed: {e}")
-        log(f"    [page-data] decoded (first 300): {decoded[:300]}")
-        return None, None, None
-
-    try:
-        x1 = data["X1"]
-        y1_vals = data["Y1"]["data"]
-    except (KeyError, TypeError) as e:
-        log(f"    [page-data] X1/Y1.data not found: {e}, keys={list(data.keys()) if isinstance(data, dict) else type(data)}")
-        return None, None, None
-
-    if not x1 or not y1_vals:
-        log(f"    [page-data] X1 or Y1.data is empty")
-        return None, None, None
-
-    month_str = _parse_date_to_month(str(x1[-1]))
-    if not month_str:
-        log(f"    [page-data] cannot parse date: {x1[-1]}")
-        return None, None, None
-
-    try:
-        latest_val = float(y1_vals[-1])
-        prev_val = float(y1_vals[-2]) if len(y1_vals) >= 2 else None
-    except (ValueError, TypeError) as e:
-        log(f"    [page-data] value conversion failed: {e}")
-        return None, None, None
-
-    log(f"    [page-data] OK → {month_str} = {latest_val} (prev: {prev_val})")
-    return month_str, latest_val, prev_val
-
-
-def _parse_page_data_history(html: str, series_id: int) -> list[tuple[str, float]]:
-    """Extract all (month, value) pairs from page-data for historical seeding."""
-    soup = BeautifulSoup(html, 'lxml')
-    tag = soup.find('script', {'type': 'application/json', 'id': 'page-data'})
-    if not tag:
-        return []
-    try:
-        payload = json.loads(tag.string or "")
-        raw_a = payload.get("a", "")
-        if not raw_a:
-            return []
-        b64_str = raw_a
-        if b64_str.startswith("b'") and b64_str.endswith("'"):
-            b64_str = b64_str[2:-1]
-        elif b64_str.startswith('b"') and b64_str.endswith('"'):
-            b64_str = b64_str[2:-1]
-        decoded = base64.b64decode(b64_str).decode("utf-8")
-        data = ast.literal_eval(decoded)
-        x1 = data["X1"]
-        y1_vals = data["Y1"]["data"]
-    except Exception:
-        return []
-
-    pairs = []
-    for date_raw, val in zip(x1, y1_vals):
-        month_str = _parse_date_to_month(str(date_raw))
-        if not month_str:
-            continue
-        try:
-            pairs.append((month_str, float(val)))
-        except (ValueError, TypeError):
-            pass
-    return pairs
-
-
-def _parse_formula(html: str, series_id: int) -> tuple[str | None, float | None, float | None]:
-    """
-    Strategy 1 (fallback): parse <p id="formula"> plain-text description.
-    Examples:
-      2026年4月平均價格為新台幣10.2元/公斤
-      2026年2月臺灣粗鋼產量為111.1萬公噸
-    """
-    soup = BeautifulSoup(html, 'lxml')
-    formula = soup.find('p', id='formula')
-    if not formula:
-        log(f"    [formula] p#formula not found for series {series_id}")
-        return None, None, None
-
-    text = formula.get_text(strip=True)
-    log(f"    [formula] text: {text[:300]}")
-
-    m = re.search(r'(\d{4})年(\d{1,2})月[^0-9]*?([\d,]+\.?\d*)', text)
-    if m:
-        month_str = f"{m.group(1)}-{m.group(2).zfill(2)}"
-        try:
-            val = float(m.group(3).replace(',', ''))
-            log(f"    [formula] OK → {month_str} = {val}")
-            return month_str, val, None
-        except ValueError:
-            pass
-
-    log(f"    [formula] could not extract year/month/value")
-    return None, None, None
-
-
-def fetch_metaltrade_series(session: requests.Session, series_id: int, period: str = "3m") -> tuple[str | None, float | None, float | None]:
-    """
-    Fetches a single data series from metaltrade.tw.
-    Returns (month_str, latest_value, prev_month_value) or (None, None, None) on failure.
-
-    Parse priority:
-      0. script#page-data  (base64 Python literal)
-      1. p#formula         (plain-text description)
-      2. HTML table rows
-      3. JS labels/data arrays
-      4. JSON-like date/value pairs in script tags
-    """
-    urls_to_try = [
-        f"{METALTRADE_BASE}/ste/domestic/{series_id}/{period}/",
-        f"{METALTRADE_BASE}/ste/domestic/{series_id}/",
-    ]
-    html = None
-    for url in urls_to_try:
-        try:
-            resp = session.get(url, headers=METALTRADE_HEADERS, timeout=25)
-            log(f"    GET {url} -> HTTP {resp.status_code}")
-            log(f"    Content-Encoding: {resp.headers.get('Content-Encoding', '(none)')}")
-            log(f"    Content-Type: {resp.headers.get('Content-Type', '(none)')}")
-            resp.raise_for_status()
-            resp.encoding = resp.apparent_encoding or 'utf-8'
-            html = resp.text
-            log(f"    Response size: {len(html)} bytes")
-            log(f"    HTML preview: {repr(html[:200])}")
-            break
-        except Exception as e:
-            log(f"    Warning: {url} failed: {e}")
-
-    if not html:
-        log(f"  Warning: all URLs failed for series {series_id}")
-        return None, None, None
-
-    # Strategy 0: script#page-data (primary — base64 Python literal)
-    result = _parse_page_data(html, series_id)
-    if result[0] is not None:
-        return result
-
-    # Strategy 1: p#formula plain-text
-    result = _parse_formula(html, series_id)
-    if result[0] is not None:
-        return result
-
-    soup = BeautifulSoup(html, 'lxml')
-
-    # Strategy 2: HTML table rows
-    data_rows = []
-    for table in soup.find_all('table'):
-        for row in table.find_all('tr'):
-            cells = row.find_all(['td', 'th'])
-            if len(cells) < 2:
-                continue
-            date_text = cells[0].get_text(strip=True)
-            val_text = cells[-1].get_text(strip=True).replace(',', '').replace(' ', '')
-            month_str = _parse_date_to_month(date_text)
-            if not month_str:
-                continue
-            try:
-                data_rows.append((month_str, float(val_text)))
-            except ValueError:
-                pass
-    if data_rows:
-        data_rows.sort(key=lambda x: x[0])
-        latest_month, latest_val = data_rows[-1]
-        prev_val = data_rows[-2][1] if len(data_rows) >= 2 else None
-        log(f"    [table] OK → {latest_month} = {latest_val}")
-        return latest_month, latest_val, prev_val
-
-    # Strategy 3: JS labels/data arrays in script tags
-    for script in soup.find_all('script'):
-        text = script.get_text()
-        labels_m = re.search(r'["\']?labels["\']?\s*:\s*\[([^\]]+)\]', text, re.DOTALL)
-        data_m = re.search(r'["\']?data["\']?\s*:\s*\[([^\]]+)\]', text, re.DOTALL)
-        if not (labels_m and data_m):
-            continue
-        try:
-            raw_labels = [l.strip().strip('"\'') for l in labels_m.group(1).split(',') if l.strip()]
-            raw_vals = [v.strip() for v in data_m.group(1).split(',') if v.strip()]
-            pairs = []
-            for lbl, v in zip(raw_labels, raw_vals):
-                ms = _parse_date_to_month(lbl)
-                if ms:
-                    pairs.append((ms, float(v)))
-            if pairs:
-                pairs.sort(key=lambda x: x[0])
-                latest_month, latest_val = pairs[-1]
-                prev_val = pairs[-2][1] if len(pairs) >= 2 else None
-                log(f"    [js-array] OK → {latest_month} = {latest_val}")
-                return latest_month, latest_val, prev_val
-        except (ValueError, IndexError):
-            pass
-
-    # Strategy 4: JSON-like [date, value] pairs in script tags
-    for script in soup.find_all('script'):
-        text = script.get_text()
-        matches = re.findall(r'\[\s*["\'](\d{4}[/\-]\d{1,2})["\'],\s*([\d.]+)\s*\]', text)
-        if matches:
-            pairs = []
-            for lbl, v in matches:
-                ms = _parse_date_to_month(lbl)
-                if ms:
-                    try:
-                        pairs.append((ms, float(v)))
-                    except ValueError:
-                        pass
-            if pairs:
-                pairs.sort(key=lambda x: x[0])
-                latest_month, latest_val = pairs[-1]
-                prev_val = pairs[-2][1] if len(pairs) >= 2 else None
-                log(f"    [json-pairs] OK → {latest_month} = {latest_val}")
-                return latest_month, latest_val, prev_val
-
-    log(f"  Warning: all parse strategies failed for series {series_id}")
-    return None, None, None
-
-
-def scrape_metaltrade_taiwan() -> dict:
-    """
-    Fetches the 6 Taiwan domestic steel price categories from metaltrade.tw.
-    Returns a dict with the data, or carries over previous data on failure.
-    """
-    log("Fetching Taiwan prices from chart.metaltrade.tw ...")
-
-    session = requests.Session()
-    try:
-        r1 = session.get(f"{METALTRADE_BASE}/ste/domestic/9/6m/", headers=METALTRADE_HEADERS, timeout=15)
-        log(f"  Warm-up GET /ste/domestic/9/6m/ -> HTTP {r1.status_code}")
-        time.sleep(0.5)
-    except Exception as e:
-        log(f"  Warm-up failed: {e}")
-
-    result = {}
-    data_month = None
-
-    for cat in TAIWAN_CATEGORIES:
-        time.sleep(0.6)
-        month_str, latest_val, prev_val = fetch_metaltrade_series(session, cat["id"], cat.get("period", "3m"))
-        if month_str and latest_val is not None:
-            mom_change = round(latest_val - prev_val, 4) if prev_val is not None else None
-            result[cat["key"]] = {
-                "value": latest_val,
-                "unit": cat["unit"],
-                "mom_change": mom_change,
-                "month": month_str,
-            }
-            if data_month is None or month_str > data_month:
-                data_month = month_str
-            log(f"  {cat['name']}: {latest_val} {cat['unit']} ({month_str})")
-        else:
-            result[cat["key"]] = {
-                "value": None,
-                "unit": cat["unit"],
-                "mom_change": None,
-                "month": None,
-            }
-            log(f"  {cat['name']}: no data retrieved")
-
-    return {"data_month": data_month, **result}
 
 
 CATHAY_FX_URL = "https://accessibility.cathaybk.com.tw/exchange-rate-search.aspx"
@@ -600,92 +269,294 @@ def fetch_exchange_rate() -> dict:
     return {}
 
 
-def scrape_steelnews() -> tuple[list[dict], str]:
-    articles = []
-    content_lines = []
-
-    urls_to_try = [
-        "https://steelnews.com.tw/index.php",
-        "https://steelnews.com.tw/",
-        "https://steelnews.com.tw",
-    ]
-
-    html = None
-    for url in urls_to_try:
-        html = fetch_page(url)
-        if html:
-            log(f"Fetched steelnews from: {url}")
-            break
-
-    if not html:
-        log("Could not fetch steelnews.com.tw")
-        return [], ""
-
-    soup = BeautifulSoup(html, 'lxml')
-
-    for tag in soup(['script', 'style', 'nav', 'footer']):
-        tag.decompose()
-
-    seen = set()
-    for tag in soup.find_all(['a', 'h1', 'h2', 'h3', 'h4', 'p']):
-        text = tag.get_text(strip=True)
-        if len(text) < 8 or len(text) > 200:
+def scrape_steelnews_headlines() -> list[dict]:
+    """Public headline list from SNN. Article bodies are member-only, so only titles are used."""
+    try:
+        r = requests.get(STEELNEWS_URL, headers=HEADERS, timeout=25)
+        r.raise_for_status()
+        r.encoding = r.apparent_encoding or "utf-8"
+    except Exception as e:
+        log(f"Warning: steelnews fetch failed: {e}")
+        return []
+    soup = BeautifulSoup(r.text, "lxml")
+    seen, out = set(), []
+    for a in soup.select('a[href*="news/content?id="]'):
+        title = a.get_text(" ", strip=True)
+        if len(title) < 6 or title in seen:
             continue
-        if not any(k in text for k in STEEL_KEYWORDS):
+        seen.add(title)
+        href = a["href"]
+        url = href if href.startswith("http") else "https://steelnews.com.tw/" + href.lstrip("/")
+        out.append({"title": title, "url": url, "source": "SNN 環宇鋼鐵網", "date": ""})
+    log(f"steelnews: {len(out)} headlines")
+    return out[:30]
+
+
+# ── Forecast windows ──────────────────────────────────────
+
+def next_month(month: str) -> str:
+    y, m = map(int, month.split("-"))
+    return f"{y + (m == 12)}-{1 if m == 12 else m + 1:02d}"
+
+
+def forecast_week(now: datetime) -> tuple[str, str]:
+    """On weekends the forecast covers next week, otherwise the current week."""
+    monday = (now + timedelta(days=7 - now.weekday())) if now.weekday() >= 5 else (now - timedelta(days=now.weekday()))
+    sunday = monday + timedelta(days=6)
+    label = "下週" if now.weekday() >= 5 else "本週"
+    return label, f"{monday:%m/%d}–{sunday:%m/%d}"
+
+
+def forecast_targets(materials: dict) -> dict:
+    by_id = {it["id"]: it for it in materials.get("items", [])}
+    targets = {}
+    for key, _, _ in FORECAST_ITEMS:
+        it = by_id.get(key)
+        if it and it.get("period") and len(it["period"]) == 7:
+            targets[key] = {
+                "baseline_month": it["period"],
+                "baseline_value": it["value"],
+                "target_month": next_month(it["period"]),
+            }
+    return targets
+
+
+# ── Accuracy tracking ─────────────────────────────────────
+
+def direction_of(pct: float) -> str:
+    if pct > STABLE_BAND_PCT:
+        return "up"
+    if pct < -STABLE_BAND_PCT:
+        return "down"
+    return "stable"
+
+
+def score_accuracy(materials: dict, history_dir: Path = HISTORY_DIR) -> dict:
+    """Compare every stored next-month forecast with the monthly average published later."""
+    actual = {it["id"]: dict(it.get("history", [])) for it in materials.get("items", [])}
+    names = {k: n for k, n, _ in FORECAST_ITEMS}
+    records, pending = [], 0
+    for path in sorted(history_dir.glob("*.json")):
+        try:
+            d = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
             continue
-        if text in seen:
-            continue
-        seen.add(text)
-
-        href = ''
-        if tag.name == 'a':
-            href = tag.get('href', '')
-            if href and not href.startswith('http'):
-                href = 'https://steelnews.com.tw/' + href.lstrip('/')
-
-        articles.append({'title': text, 'url': href})
-
-    article_pages_content = []
-    for art in articles[:5]:
-        if art['url'] and 'steelnews.com.tw' in art['url']:
-            page_html = fetch_page(art['url'], timeout=10)
-            if page_html:
-                page_soup = BeautifulSoup(page_html, 'lxml')
-                for t in page_soup(['script', 'style']):
-                    t.decompose()
-                page_text = page_soup.get_text(separator='\n', strip=True)
-                page_lines = [l.strip() for l in page_text.split('\n') if len(l.strip()) > 8]
-                relevant = [l for l in page_lines if any(k in l for k in STEEL_KEYWORDS)]
-                article_pages_content.append('\n'.join(relevant[:40]))
-            time.sleep(0.5)
-
-    main_text = soup.get_text(separator='\n', strip=True)
-    lines = [l.strip() for l in main_text.split('\n') if len(l.strip()) > 5]
-    relevant_main = [l for l in lines if any(k in l for k in STEEL_KEYWORDS)]
-    content_lines.extend(relevant_main[:80])
-
-    for pc in article_pages_content:
-        content_lines.append('\n--- 文章內容 ---\n' + pc)
-
-    return articles[:15], '\n'.join(content_lines)
+        pf = d.get("price_forecast") or {}
+        for key, f in (pf.get("items") or {}).items():
+            tgt = (pf.get("targets") or {}).get(key)
+            pred = ((f or {}).get("next_month") or {}).get("direction")
+            if not tgt or pred not in ("up", "down", "stable"):
+                continue
+            real = actual.get(key, {}).get(tgt["target_month"])
+            base = tgt.get("baseline_value")
+            if real is None or not base:
+                pending += 1
+                continue
+            pct = (real - base) / base * 100
+            act = direction_of(pct)
+            records.append({
+                "date": d.get("date"), "key": key, "name": names.get(key, key),
+                "target_month": tgt["target_month"], "predicted": pred, "actual": act,
+                "actual_pct": round(pct, 2), "hit": pred == act,
+            })
+    per_item = {}
+    for key, name, _ in FORECAST_ITEMS:
+        rs = [r for r in records if r["key"] == key]
+        per_item[key] = {"name": name, "hits": sum(r["hit"] for r in rs), "total": len(rs)}
+    total = len(records)
+    return {
+        "updated_at": datetime.now(TW_TZ).isoformat(),
+        "method": f"每日的「下一期月均價」方向預測，與台灣金屬行情網日後公布的月均價比較；月變動在 ±{STABLE_BAND_PCT}% 內視為持平。",
+        "overall": {"hits": sum(r["hit"] for r in records), "total": total},
+        "per_item": per_item,
+        "pending": pending,
+        "recent": sorted(records, key=lambda r: (r["date"] or "", r["key"]), reverse=True)[:40],
+    }
 
 
-def format_taiwan_prices_for_prompt(taiwan_prices: dict) -> str:
-    lines = []
-    month = taiwan_prices.get("data_month", "未知")
-    lines.append(f"【台灣鋼鐵實際報價 - 資料月份：{month}】")
-    for cat in TAIWAN_CATEGORIES:
-        key = cat["key"]
-        item = taiwan_prices.get(key, {})
-        val = item.get("value")
-        unit = item.get("unit", "")
-        mom = item.get("mom_change")
-        if val is not None:
-            mom_str = f"（月變動：{'+' if mom and mom > 0 else ''}{mom} {unit}）" if mom is not None else ""
-            lines.append(f"  {cat['name']}：{val} {unit} {mom_str}")
-        else:
-            lines.append(f"  {cat['name']}：資料待取得")
+def accuracy_for_prompt(acc: dict) -> str:
+    o = acc.get("overall", {})
+    if not o.get("total"):
+        return f"【你過去預測的準確率】尚無可驗證的紀錄（{acc.get('pending', 0)} 筆預測等待官方月均價公布）。"
+    lines = [f"【你過去預測的準確率】下一期月均價方向命中 {o['hits']}/{o['total']}（{o['hits'] / o['total']:.0%}）"]
+    for v in acc["per_item"].values():
+        if v["total"]:
+            lines.append(f"  {v['name']}：{v['hits']}/{v['total']}")
+    misses = [r for r in acc.get("recent", []) if not r["hit"]][:5]
+    if misses:
+        lines.append("  最近的誤判（請檢討原因並避免重蹈）：")
+        for r in misses:
+            lines.append(f"    {r['date']} 預測 {r['name']} {r['target_month']} 為 {r['predicted']}，實際 {r['actual']}（{r['actual_pct']:+.2f}%）")
     return "\n".join(lines)
+
+
+# ── Forecast memory ───────────────────────────────────────
+
+def load_recent_forecasts(today: str, days: int = 7, history_dir: Path = HISTORY_DIR) -> list[dict]:
+    out = []
+    for path in sorted(history_dir.glob("*.json"), reverse=True):
+        if path.stem >= today:
+            continue
+        try:
+            d = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        pf = d.get("price_forecast") or {}
+        entry = {"date": d.get("date", path.stem), "items": {}}
+        for key, _, _ in FORECAST_ITEMS:
+            f = (pf.get("items") or {}).get(key)
+            if f:
+                entry["items"][key] = {
+                    "week": (f.get("week") or {}).get("direction"),
+                    "week_est": (f.get("week") or {}).get("change_estimate"),
+                    "next_month": (f.get("next_month") or {}).get("direction"),
+                }
+            elif (d.get("tomorrow_forecast") or {}).get(key):
+                old = d["tomorrow_forecast"][key]
+                entry["items"][key] = {"week": old.get("direction"), "week_est": old.get("change_estimate"), "next_month": None}
+        if entry["items"]:
+            out.append(entry)
+        if len(out) >= days:
+            break
+    return out
+
+
+def memory_for_prompt(memory: list[dict]) -> str:
+    if not memory:
+        return "【你最近的預測】無紀錄。"
+    names = {k: n for k, n, _ in FORECAST_ITEMS}
+    lines = ["【你最近 7 天的預測（新到舊）】"]
+    for e in memory:
+        parts = [f"{names[k]} 週:{v['week'] or '-'}({v['week_est'] or '-'}) 月:{v['next_month'] or '-'}"
+                 for k, v in e["items"].items()]
+        lines.append(f"  {e['date']}：" + "；".join(parts))
+    return "\n".join(lines)
+
+
+# ── Prompt ────────────────────────────────────────────────
+
+def fmt_num(v) -> str:
+    if v is None:
+        return "-"
+    return f"{v:,.2f}".rstrip("0").rstrip(".") if abs(v) < 1000 else f"{v:,.0f}"
+
+
+def materials_for_prompt(materials: dict) -> str:
+    groups = {g["id"]: g["name"] for g in materials.get("groups", [])}
+    trend_groups = {"tw_steel", "intl_steel", "production", "commodities"}
+    lines, current = [], None
+    for it in materials.get("items", []):
+        if it["group"] != current:
+            current = it["group"]
+            lines.append(f"\n《{groups.get(current, current)}》")
+        chg = f"，較前期 {it['change_pct']:+.2f}%" if it.get("change_pct") is not None else ""
+        stale = "〔來源暫時無法連線，沿用前次資料〕" if it.get("stale") else ""
+        region = f"（{it['region']}）" if it.get("region") and it["region"] not in it["name"] else ""
+        line = f"  {it['name']}{region}：{fmt_num(it['value'])} {it['unit']}（{it['period']}{chg}，{it['freq']}更新）{stale}"
+        if it["group"] in trend_groups and len(it.get("history", [])) >= 3:
+            tail = " → ".join(fmt_num(v) for _, v in it["history"][-6:])
+            line += f"\n      近期走勢：{tail}"
+        lines.append(line)
+    return "\n".join(lines).strip()
+
+
+def headline_prices_for_prompt(tp: dict) -> str:
+    lines = ["【台灣鋼材官方月均價（台灣金屬行情網）— 注意每項的資料月份不同】"]
+    for key, name in HEADLINE_NAMES.items():
+        it = tp.get(key) or {}
+        if it.get("value") is None:
+            lines.append(f"  {name}：資料待取得")
+            continue
+        mom = it.get("mom_change")
+        mom_s = f"，月變動 {mom:+,.2f}".rstrip("0").rstrip(".") if mom is not None else ""
+        lines.append(f"  {name}：{fmt_num(it['value'])} {it['unit']}（資料月份 {it['month']}{mom_s}）")
+    return "\n".join(lines)
+
+
+def news_for_prompt(feed: list[dict], headlines: list[dict]) -> str:
+    lines = ["【近 14 天公開新聞標題（Google 新聞）】"]
+    for n in feed[:60]:
+        lines.append(f"  {n.get('date', '')}｜{n.get('source', '')}｜{n['title']}")
+    if headlines:
+        lines.append("\n【SNN 環宇鋼鐵網 最新標題（內文為會員限定，只有標題）】")
+        lines.extend(f"  {h['title']}" for h in headlines)
+    return "\n".join(lines)
+
+
+def build_prompt(date_str: str, week_label: str, week_range: str, targets: dict, tp: dict,
+                 fx_text: str, materials: dict, news_text: str, memory_text: str,
+                 accuracy_text: str, web_search: bool) -> str:
+    target_lines = "\n".join(
+        f"  {n}：最新公布 {targets[k]['baseline_month']} 月均價 {fmt_num(targets[k]['baseline_value'])} {u}，"
+        f"「下一期月均價」= {targets[k]['target_month']}"
+        for k, n, u in FORECAST_ITEMS if k in targets
+    )
+    item_schema = ",\n".join(f'''      "{k}": {{
+        "week": {{"direction": "<up|down|stable>", "change_estimate": "<{week_label}實質成交行情變動幅度，{u}>", "reason": "<100~200字>"}},
+        "next_month": {{"direction": "<up|down|stable>", "change_estimate": "<{targets.get(k, {}).get('target_month', '下一期')} 月均價相對 {targets.get(k, {}).get('baseline_month', '最新一期')} 的變動，{u}>", "reason": "<100~200字>"}},
+        "revision_note": "<若方向與你最近一次預測不同，說明是哪一則新資訊造成改變；方向未變則寫「維持前次判斷」並簡述理由>"
+      }}''' for k, _, u in FORECAST_ITEMS)
+    search_rule = (
+        "你可以使用網路搜尋。請務必先搜尋並核對以下最新資訊再下判斷：豐興本週廢鋼與鋼筋盤價（金額）、"
+        "中鋼最新月盤／季盤、東和鋼鐵本月型鋼價格、威致或海光等鋼廠調價、美國與土耳其廢鋼價格、"
+        "中國螺紋鋼期貨與唐山鋼胚、鐵礦砂與焦煤價格。引用的數字必須來自你實際讀到的來源。"
+        if web_search else
+        "本次無法使用網路搜尋，只能依下方提供的資料與新聞標題判斷；無法確認的金額不要捏造。"
+    )
+    return f"""你是一位台灣鋼鐵與營建材料市場的資深分析師，像股票分析師分析個股一樣，對原物料行情做出有立場、可被驗證的判斷。
+今天日期：{date_str}（台灣時間，{"週末" if week_label == "下週" else "平日"}）
+
+{search_rule}
+
+{headline_prices_for_prompt(tp)}
+
+{fx_text}
+
+【完整營建材料與原物料資料（每一項都標明資料期間與更新頻率）】
+{materials_for_prompt(materials)}
+
+{news_text}
+
+{memory_text}
+
+{accuracy_text}
+
+═══════════════ 預測任務 ═══════════════
+請對五項台灣鋼材各做兩個預測：
+1. week：{week_label}（{week_range}）的實質市場成交行情，相對上週的方向與幅度。台灣鋼價多由豐興每週一開盤、中鋼與東和每月調價，所以要以「本週已公布或即將公布的盤價」與「市場實際成交」為核心依據。
+2. next_month：「下一期官方月均價」相對最新已公布月均價的方向與幅度。這是可以被驗證的預測，系統會在官方數據公布後自動計分：
+{target_lines}
+
+規則：
+- 每個 reason 100~200 字，依序寫出：(a) 具體的國際或上游訊號（引用事件、價格或數據）；(b) 這個訊號如何傳導到台灣廠商的成本、報價或買氣；(c) 結論與幅度依據，指出最關鍵的因素。
+- 禁止空泛理由。"stable" 只能在多空力量確實抵銷時使用，並在 reason 中同時列出多方與空方因素。
+- change_estimate 必須是具體數字區間。
+- 不要被單一一則新聞標題左右。若方向與你最近一次預測不同，revision_note 必須說明是哪一則新資訊造成改變；沒有新資訊就不應該翻轉方向。
+- 參考你過去的命中率與誤判，修正判斷方式。
+- 注意各項資料的月份不同（例如粗鋼產量比鋼價晚兩個月），引用時必須寫出正確月份。
+- JSON 字串內不要使用 markdown 連結或引用標記。
+
+請嚴格以 JSON 格式回覆，不要輸出任何其他文字：
+
+{{
+  "exchange_rate": {{
+    "usd_twd_estimate": <浮點數>,
+    "impact_on_steel": "<匯率影響說明，100字內>"
+  }},
+  "spread_analysis": "<利差試算：廢鋼→鋼胚→鋼筋→型鋼的加工利差，含匯率影響，200字內>",
+  "monthly_trend": "<未來一個月台灣鋼市展望，200字內>",
+  "international_outlook": "<國際鋼鐵與原物料大局觀，含中國、日本、韓國、美國、土耳其，300字內>",
+  "materials_outlook": "<營建材料觀察：依營造工程物價指數與原物料數據，說明水泥、砂石、瀝青、木材、機電、工資等的走勢與對工程成本的影響，200字內>",
+  "price_forecast": {{
+    "items": {{
+{item_schema}
+    }},
+    "overall_basis": "<綜合推論：參考了哪些時事與數據、多空力量對比與權重、推論順序，250字內>"
+  }},
+  "risk_factors": ["<風險因素1>", "<風險因素2>", "<風險因素3>"],
+  "summary": "<今日市場總結，150字內>",
+  "confidence": "<high|medium|low>"
+}}"""
 
 
 def format_exchange_rate_for_prompt(fx: dict) -> str:
@@ -701,319 +572,153 @@ def format_exchange_rate_for_prompt(fx: dict) -> str:
     return "".join(parts)
 
 
-def call_openrouter(news_content: str, date_str: str, taiwan_prices: dict, exchange_rate: dict | None = None) -> dict | None:
-    if not OPENROUTER_API_KEY:
-        log("ERROR: OPENROUTER_API_KEY not set")
+# ── Model calls ───────────────────────────────────────────
+
+def extract_json(text: str) -> dict | None:
+    text = re.sub(r"^```(?:json)?|```$", "", text.strip(), flags=re.M)
+    start, end = text.find("{"), text.rfind("}") + 1
+    if start < 0 or end <= start:
+        return None
+    try:
+        return json.loads(text[start:end])
+    except json.JSONDecodeError:
         return None
 
-    prices_context = format_taiwan_prices_for_prompt(taiwan_prices)
-    fx_context = format_exchange_rate_for_prompt(exchange_rate or {})
 
-    prompt = f"""你是一位台灣鋼鐵市場的資深分析師，專精廢鋼、鋼筋、型鋼之現貨市場。
-今天日期：{date_str}（台灣時間）
+def valid_forecast(parsed: dict | None) -> bool:
+    items = ((parsed or {}).get("price_forecast") or {}).get("items") or {}
+    good = sum(1 for k, _, _ in FORECAST_ITEMS
+               if (items.get(k) or {}).get("week", {}).get("direction") in ("up", "down", "stable")
+               and (items.get(k) or {}).get("next_month", {}).get("direction") in ("up", "down", "stable"))
+    return good >= 4
 
-以下是最新的台灣鋼鐵官方統計數據（來源：台灣金屬行情網）：
-{prices_context}
 
-{fx_context}
+def call_openai(prompt: str, model: str, web: bool) -> tuple[str, list[dict]]:
+    body = {
+        "model": model,
+        "input": prompt,
+        "reasoning": {"effort": REASONING_EFFORT},
+        "max_output_tokens": MAX_OUTPUT_TOKENS,
+    }
+    if web:
+        body["tools"] = [{"type": "web_search"}]
+    r = requests.post(OPENAI_URL, headers={"Authorization": f"Bearer {OPENAI_API_KEY}"}, json=body, timeout=600)
+    if not r.ok:
+        raise RuntimeError(f"OpenAI HTTP {r.status_code}: {r.text[:300]}")
+    j = r.json()
+    if j.get("status") not in (None, "completed"):
+        log(f"  OpenAI response status={j.get('status')} details={j.get('incomplete_details')}")
+    texts, cites = [], []
+    for item in j.get("output", []):
+        if item.get("type") != "message":
+            continue
+        for c in item.get("content", []):
+            if c.get("type") == "output_text":
+                texts.append(c.get("text", ""))
+                for a in c.get("annotations", []) or []:
+                    if a.get("type") == "url_citation" and a.get("url"):
+                        cites.append({"title": a.get("title") or a["url"], "url": a["url"]})
+    usage = j.get("usage") or {}
+    log(f"  OpenAI usage: in={usage.get('input_tokens')} out={usage.get('output_tokens')}")
+    return "".join(texts) or j.get("output_text", ""), cites
 
-請根據以下台灣鋼鐵新聞及市場資訊，進行專業分析：
 
-═══════════════════════════════
-{news_content[:6000]}
-═══════════════════════════════
-
-關於 tomorrow_forecast（明日走勢預測）的特別要求：
-1. 你在此段扮演主動做出判斷的原物料分析師（如同股票分析師分析個股），針對五項材料（北部廢鋼、小鋼胚、豐興鋼筋、東鋼H型鋼、中鋼棒線）分別對「明日的市場行情方向」做出積極預測。
-2. 預測對象是市場實質走勢（現貨成交行情、市場買氣、價格承受的多空壓力方向），而非官方牌價是否公告調整。即使今日沒有任何已確定的調價資訊，你也必須根據時事與市場邏輯推斷明日的漲跌方向與幅度，這正是分析師的價值所在。
-3. 每項的 reason 必須有理有據，具體引用可查證的依據，例如：
-   - 上方新聞中的具體事件（廠商調價公告、開盤動態、庫存變化、下游接單狀況）
-   - 國際市場變化（中國螺紋鋼期貨、唐山鋼胚、日韓出口報價、土耳其廢鋼進口價、美國廢鋼行情）
-   - 原物料供需與產地事件（澳洲/巴西鐵礦砂、焦煤供應、日本H2廢鋼標售、美國HMS廢鋼出口、中國粗鋼限產或出口退稅政策、能源價格）
-   - 總體與地緣因素（美元/台幣匯率、利率、貿易政策與關稅、戰爭或天災對供應鏈的衝擊、營建與製造業景氣）
-4. 禁止空泛理由（如「市場觀望」單獨成句）；每項 reason 至少要包含一個具體的因果推論鏈：事件 → 傳導路徑 → 對該材料明日價格的影響。
-   每項 reason 的長度必須在 100~200 字之間，內容應層次分明地涵蓋：
-   (a) 國際端或上游訊號（引用具體事件、市場或數據）
-   (b) 成本端與供需端的傳導邏輯（該訊號如何影響台灣廠商的成本、報價策略或買氣）
-   (c) 對明日行情的具體結論（方向、幅度依據，以及支撐此判斷的最關鍵因素）
-   寧可詳細也不要精簡；讀者是要依此判斷市場的專業人士，需要足夠的推理過程才能檢驗你的結論。
-5. "stable" 只能在你分析後認定多空力量確實互相抵銷時使用，且 reason 中必須同時列出多方與空方因素說明為何抵銷；絕不可把「持平」或「盤價未調整」當成缺乏資訊時的預設保守答案。
-6. 對每項預測要有明確立場：change_estimate 必須給出具體的幅度區間（即使是小幅變動也要量化），像分析師報告一樣敢於給出可被驗證的數字。
-7. overall_basis 要交代你整體參考了哪些時事與數據、多空力量的對比與權重、推論的先後邏輯，讓讀者能檢驗你的推理。
-
-請嚴格以 JSON 格式回覆，不要輸出任何其他文字：
-
-{{
-  "exchange_rate": {{
-    "usd_twd_estimate": <浮點數，如 32.50>,
-    "impact_on_steel": "<匯率影響說明，100字內>"
-  }},
-  "spread_analysis": "<利差試算分析：說明廢鋼→鋼筋→型鋼之加工利差，含匯率影響，200字內>",
-  "monthly_trend": "<下月走勢完整預測，含漲跌理由與幅度預估，200字內>",
-  "international_outlook": "<國際鋼鐵市場大局觀，含中國、日本、韓國、美國市場動態，300字內>",
-  "tomorrow_forecast": {{
-    "north_scrap_price": {{
-      "direction": "<up|down|stable>",
-      "change_estimate": "<幅度預估，如 +0.1~0.2 元/公斤 或 持平>",
-      "reason": "<詳細推論：國際端訊號 → 成本與供需傳導 → 明日結論，100~200字>"
-    }},
-    "billet_price": {{
-      "direction": "<up|down|stable>",
-      "change_estimate": "<幅度預估，如 +100~200 元/公噸 或 持平>",
-      "reason": "<詳細推論：國際端訊號 → 成本與供需傳導 → 明日結論，100~200字>"
-    }},
-    "fengxing_rebar_price": {{
-      "direction": "<up|down|stable>",
-      "change_estimate": "<幅度預估，元/公噸>",
-      "reason": "<詳細推論：國際端訊號 → 成本與供需傳導 → 明日結論，100~200字>"
-    }},
-    "h_beam_price": {{
-      "direction": "<up|down|stable>",
-      "change_estimate": "<幅度預估，元/公噸>",
-      "reason": "<詳細推論：國際端訊號 → 成本與供需傳導 → 明日結論，100~200字>"
-    }},
-    "csc_wire_rod_price": {{
-      "direction": "<up|down|stable>",
-      "change_estimate": "<幅度預估，元/公噸>",
-      "reason": "<詳細推論：國際端訊號 → 成本與供需傳導 → 明日結論，100~200字>"
-    }},
-    "overall_basis": "<綜合推論脈絡：列出你參考的時事、國際行情、原物料供需與產地事件，說明推理順序與權重，250字內>"
-  }},
-  "risk_factors": [
-    "<風險因素1>",
-    "<風險因素2>",
-    "<風險因素3>"
-  ],
-  "summary": "<今日市場總結（結合官方統計數據與最新新聞），150字內>",
-  "confidence": "<high|medium|low>"
-}}"""
-
-    req_headers = {
+def call_openrouter(prompt: str, model: str, web: bool) -> tuple[str, list[dict]]:
+    body = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": MAX_OUTPUT_TOKENS,
+        "reasoning": {"effort": REASONING_EFFORT},
+    }
+    if web:
+        body["plugins"] = [{"id": "web", "max_results": 8}]
+    r = requests.post(OPENROUTER_URL, json=body, timeout=600, headers={
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "Content-Type": "application/json",
         "HTTP-Referer": "https://lijingchiu.github.io/SteelWeb",
         "X-Title": "Taiwan Steel Price Analysis",
-    }
+    })
+    if not r.ok:
+        raise RuntimeError(f"OpenRouter HTTP {r.status_code}: {r.text[:300]}")
+    msg = r.json()["choices"][0]["message"]
+    cites = []
+    for a in msg.get("annotations", []) or []:
+        uc = a.get("url_citation") or {}
+        if uc.get("url"):
+            cites.append({"title": uc.get("title") or uc["url"], "url": uc["url"]})
+    return msg.get("content") or "", cites
 
-    for model in MODELS:
-        log(f"Trying model: {model}")
-        req_body = {
-            "model": model,
-            "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": 10000,
-            "temperature": 0.25,
-            **MODEL_EXTRA_BODY.get(model, {}),
-        }
+
+def run_analysis(build: callable) -> tuple[dict | None, list[dict], str | None]:
+    """build(web_search: bool) -> prompt. Returns (analysis, citations, model label)."""
+    for provider, model, web in MODEL_CHAIN:
+        key = OPENAI_API_KEY if provider == "openai" else OPENROUTER_API_KEY
+        if not key:
+            log(f"Skipping {provider}:{model} (no API key)")
+            continue
+        prompt = build(web)
         for attempt in range(2):
             try:
-                log(f"  Calling OpenRouter (attempt {attempt + 1}/2)...")
-                resp = requests.post(
-                    OPENROUTER_URL,
-                    headers=req_headers,
-                    json=req_body,
-                    timeout=90,
-                )
-                if resp.status_code == 429:
-                    retry_after = int(resp.headers.get("Retry-After", 15))
-                    wait = min(retry_after, 30)
-                    log(f"  429 rate limited, waiting {wait}s then trying next model")
-                    time.sleep(wait)
-                    break
-                resp.raise_for_status()
-                data = resp.json()
-
-                raw = data["choices"][0]["message"]["content"].strip()
-                log(f"  Got response ({len(raw)} chars) from {model}")
-
-                start = raw.find('{')
-                end = raw.rfind('}') + 1
-                if start >= 0 and end > start:
-                    parsed = json.loads(raw[start:end])
-                    parsed["model_used"] = model
-                    return parsed
-                else:
-                    log("  Warning: no JSON found in response")
-
-            except json.JSONDecodeError as e:
-                log(f"  JSON parse error: {e}")
+                log(f"Calling {provider}:{model} web={web} (attempt {attempt + 1}/2, prompt {len(prompt)} chars)")
+                t0 = time.time()
+                fn = call_openai if provider == "openai" else call_openrouter
+                text, cites = fn(prompt, model, web)
+                parsed = extract_json(text)
+                log(f"  {len(text)} chars, {len(cites)} citations in {time.time() - t0:.0f}s")
+                if valid_forecast(parsed):
+                    label = f"{model}（{'OpenAI API' if provider == 'openai' else 'OpenRouter'}）"
+                    return parsed, cites, label
+                log("  Response missing a valid price_forecast; retrying")
             except Exception as e:
-                log(f"  OpenRouter error: {e}")
-
-            if attempt == 0:
-                log("  Retrying in 10s...")
-                time.sleep(10)
-
-    log("FATAL: all models exhausted")
-    return None
+                log(f"  {provider}:{model} error: {e}")
+            time.sleep(10)
+    return None, [], None
 
 
-def update_chart_data(data_month: str | None, taiwan_prices: dict):
-    chart_path = Path("data/chart-data.json")
-    try:
-        with open(chart_path) as f:
-            cd = json.load(f)
-    except Exception:
-        cd = {}
+# ── Main ──────────────────────────────────────────────────
 
-    if "months" not in cd:
-        cd = {
-            "months": [],
-            "billet_price": [],
-            "fengxing_rebar_price": [],
-            "h_beam_price": [],
-            "csc_wire_rod_price": [],
-            "north_scrap_price": [],
-            "crude_steel_production": [],
-        }
-
-    if data_month and data_month not in cd.get("months", []):
-        cd["months"].append(data_month)
-        cd["billet_price"].append(taiwan_prices.get("billet_price", {}).get("value"))
-        cd["fengxing_rebar_price"].append(taiwan_prices.get("fengxing_rebar_price", {}).get("value"))
-        cd["h_beam_price"].append(taiwan_prices.get("h_beam_price", {}).get("value"))
-        cd["csc_wire_rod_price"].append(taiwan_prices.get("csc_wire_rod_price", {}).get("value"))
-        cd["north_scrap_price"].append(taiwan_prices.get("north_scrap_price", {}).get("value"))
-        cd["crude_steel_production"].append(taiwan_prices.get("crude_steel_production", {}).get("value"))
-
-        if len(cd["months"]) > 36:
-            for key in cd:
-                if isinstance(cd[key], list):
-                    cd[key] = cd[key][-36:]
-
-    with open(chart_path, "w", encoding="utf-8") as f:
-        json.dump(cd, f, ensure_ascii=False)
-    log(f"Updated chart-data.json ({len(cd.get('months', []))} monthly data points)")
-
-
-def seed_chart_history():
-    """Fetch up to 12 months of history for each series and bulk-insert into chart-data.json."""
-    log("Seeding historical chart data from metaltrade.tw ...")
-    session = requests.Session()
-    try:
-        session.get(f"{METALTRADE_BASE}/ste/domestic/9/6m/", headers=METALTRADE_HEADERS, timeout=15)
-        time.sleep(0.5)
-    except Exception:
-        pass
-
-    series_history: dict[str, list[tuple[str, float]]] = {}
-    for cat in TAIWAN_CATEGORIES:
-        time.sleep(0.6)
-        pairs: list[tuple[str, float]] = []
-        for period in ("12m", "6m", cat.get("period", "3m")):
-            url = f"{METALTRADE_BASE}/ste/domestic/{cat['id']}/{period}/"
-            try:
-                resp = session.get(url, headers=METALTRADE_HEADERS, timeout=25)
-                resp.raise_for_status()
-                resp.encoding = resp.apparent_encoding or 'utf-8'
-                pairs = _parse_page_data_history(resp.text, cat["id"])
-                if pairs:
-                    log(f"  {cat['name']} ({period}): {len(pairs)} months")
-                    break
-            except Exception as e:
-                log(f"  {cat['name']} {period} failed: {e}")
-        if not pairs:
-            log(f"  {cat['name']}: no historical data")
-        else:
-            series_history[cat["key"]] = pairs
-
-    if not series_history:
-        log("  No historical data retrieved, skipping seed")
-        return
-
-    chart_path = Path("data/chart-data.json")
-    try:
-        with open(chart_path) as f:
-            cd = json.load(f)
-    except Exception:
-        cd = {}
-
-    CHART_KEYS = ["billet_price", "fengxing_rebar_price", "h_beam_price",
-                  "csc_wire_rod_price", "north_scrap_price", "crude_steel_production"]
-
-    if "months" not in cd:
-        cd = {"months": [], **{k: [] for k in CHART_KEYS}}
-
-    # Build month→values map from existing chart data
-    existing: dict[str, dict] = {}
-    for i, m in enumerate(cd.get("months", [])):
-        existing[m] = {k: cd[k][i] if i < len(cd.get(k, [])) else None for k in CHART_KEYS}
-
-    # Merge historical pairs into existing map
-    new_months = 0
-    for key, pairs in series_history.items():
-        for month_str, val in pairs:
-            if month_str not in existing:
-                existing[month_str] = {k: None for k in CHART_KEYS}
-                new_months += 1
-            existing[month_str][key] = val
-
-    sorted_months = sorted(existing.keys())
-    if len(sorted_months) > 36:
-        sorted_months = sorted_months[-36:]
-
-    cd["months"] = sorted_months
-    for k in CHART_KEYS:
-        cd[k] = [existing[m].get(k) for m in sorted_months]
-
-    with open(chart_path, "w", encoding="utf-8") as f:
-        json.dump(cd, f, ensure_ascii=False)
-    log(f"Chart-data.json seeded: {new_months} new months added, {len(sorted_months)} total")
-
-
-def carry_over_taiwan_prices() -> dict:
-    """Load previous taiwan_prices from latest.json as fallback."""
-    try:
-        with open("data/latest.json") as f:
-            prev = json.load(f)
-        tp = prev.get("taiwan_prices", {})
-        if tp and tp.get("data_month"):
-            log("Using carried-over taiwan_prices from previous run")
-            return tp
-    except Exception:
-        pass
-    return {"data_month": None}
+def dedupe_citations(cites: list[dict]) -> list[dict]:
+    seen, out = set(), []
+    for c in cites:
+        u = c["url"].split("#")[0]
+        if u not in seen:
+            seen.add(u)
+            out.append({"title": c["title"][:120], "url": c["url"]})
+    return out[:20]
 
 
 def main():
     now = datetime.now(TW_TZ)
     date_str = now.strftime("%Y-%m-%d")
-    dt_str = now.isoformat()
-
-    log(f"=== Steel Price Analysis: {date_str} ===")
-
-    taiwan_prices = scrape_metaltrade_taiwan()
-    fetched_any = any(
-        taiwan_prices.get(cat["key"], {}).get("value") is not None
-        for cat in TAIWAN_CATEGORIES
-    )
-    if not fetched_any:
-        log("Warning: metaltrade.tw fetch returned no data, carrying over previous prices")
-        taiwan_prices = carry_over_taiwan_prices()
+    log(f"=== Steel & Materials Analysis: {date_str} ===")
 
     exchange_rate = fetch_exchange_rate()
+    materials = build_materials(exchange_rate)
+    write_outputs(materials)
+    taiwan_prices = taiwan_prices_from_materials(materials)
 
-    articles, content = scrape_steelnews()
-    log(f"Scraped {len(articles)} articles, {len(content)} chars of content")
+    accuracy = score_accuracy(materials)
+    ACCURACY_PATH.write_text(json.dumps(accuracy, ensure_ascii=False, indent=1), encoding="utf-8")
+    log(f"Accuracy: {accuracy['overall']['hits']}/{accuracy['overall']['total']} scored, {accuracy['pending']} pending")
 
-    if not content.strip():
-        content = (
-            f"今日（{date_str}）無法取得最新新聞。"
-            "請根據近期台灣鋼鐵市場趨勢、國際原物料行情、中國出口政策、"
-            "美元/台幣匯率等因素，進行合理推估與分析。"
+    headlines = scrape_steelnews_headlines()
+    feed = materials.get("news_feed", [])
+    week_label, week_range = forecast_week(now)
+    targets = forecast_targets(materials)
+
+    def build(web: bool) -> str:
+        return build_prompt(
+            date_str, week_label, week_range, targets, taiwan_prices,
+            format_exchange_rate_for_prompt(exchange_rate), materials,
+            news_for_prompt(feed, headlines),
+            memory_for_prompt(load_recent_forecasts(date_str)),
+            accuracy_for_prompt(accuracy), web,
         )
 
-    article_titles = "\n".join(f"  - {a['title']}" for a in articles)
-    full_content = f"【新聞標題列表】\n{article_titles}\n\n【網頁擷取內容】\n{content}"
-
-    analysis = call_openrouter(full_content, date_str, taiwan_prices, exchange_rate)
-
+    analysis, citations, model_label = run_analysis(build)
     if not analysis:
-        log("FATAL: Could not obtain analysis from OpenRouter")
+        log("FATAL: no model returned a valid analysis; material data was still saved")
         sys.exit(1)
 
-    # The real fetched rate always overrides the AI's number; the AI only
-    # contributes the impact commentary. Fall back to the AI estimate (and
-    # mark it as such) only when every fetch source failed.
     ai_fx = analysis.get("exchange_rate") or {}
     if exchange_rate.get("usd_twd"):
         merged_fx = {
@@ -1032,50 +737,36 @@ def main():
         merged_fx = {**ai_fx, "source": "AI 推估"}
     analysis["exchange_rate"] = merged_fx
 
+    pf = analysis.setdefault("price_forecast", {})
+    pf["week_label"], pf["week_range"], pf["targets"] = week_label, week_range, targets
+
+    news_sources = [{k: n.get(k, "") for k in ("title", "url", "source", "date")} for n in feed[:24]]
+    news_sources += headlines[:12]
     output = {
-        "generated_at": dt_str,
+        "generated_at": now.isoformat(),
         "date": date_str,
-        "model_used": analysis.pop("model_used", MODELS[0]),
-        "news_count": len(articles),
-        "news_sources": articles[:12],
+        "model_used": model_label,
+        "news_count": len(news_sources),
+        "news_sources": news_sources,
+        "web_citations": dedupe_citations(citations),
         "taiwan_prices": taiwan_prices,
         **analysis,
     }
 
-    Path("data/history").mkdir(parents=True, exist_ok=True)
-
-    with open("data/latest.json", "w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
-    log("Saved data/latest.json")
-
-    hist_path = f"data/history/{date_str}.json"
-    with open(hist_path, "w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
-    log(f"Saved {hist_path}")
-
-    chart_path = Path("data/chart-data.json")
-    try:
-        existing_chart = json.loads(chart_path.read_text())
-        needs_seed = len(existing_chart.get("months", [])) < 6
-    except Exception:
-        needs_seed = True
-    if needs_seed:
-        seed_chart_history()
-
-    update_chart_data(taiwan_prices.get("data_month"), taiwan_prices)
+    HISTORY_DIR.mkdir(parents=True, exist_ok=True)
+    Path("data/latest.json").write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+    (HISTORY_DIR / f"{date_str}.json").write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+    log("Saved data/latest.json and history")
 
     idx_path = Path("data/history-index.json")
     try:
         index = json.loads(idx_path.read_text())
     except Exception:
         index = []
-    if date_str not in index:
-        index.append(date_str)
-    index = sorted(set(index), reverse=True)[:90]
+    index = sorted(set(index) | {date_str}, reverse=True)[:90]
     idx_path.write_text(json.dumps(index, ensure_ascii=False))
-    log("Updated history-index.json")
 
-    log("=== Analysis complete! ===")
+    log(f"=== Analysis complete ({model_label}) ===")
 
 
 if __name__ == "__main__":

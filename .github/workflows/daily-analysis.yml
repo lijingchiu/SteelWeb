@@ -2,6 +2,7 @@ name: Daily Steel Price Analysis
 
 on:
   schedule:
+    # 00:00 UTC = 08:00 Taiwan
     - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
@@ -13,11 +14,15 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: data-writer-${{ github.ref_name }}
+  cancel-in-progress: false
+
 jobs:
   analyze:
     name: Fetch & Analyze Steel Prices
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
@@ -50,27 +55,38 @@ jobs:
           fi
 
       - name: Run steel price analysis
+        id: analyze
         if: steps.check_today.outputs.skip != 'true'
         env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: python scripts/analyze.py
 
+      # Runs even when the AI step fails, so freshly fetched prices are still published.
       - name: Commit and push updated data
-        if: steps.check_today.outputs.skip != 'true'
+        if: always() && steps.check_today.outputs.skip != 'true'
         run: |
           git config user.name "Steel Analysis Bot"
           git config user.email "steel-bot@users.noreply.github.com"
           git add data/
           if git diff --cached --quiet; then
             echo "No changes to commit"
-          else
-            git commit -m "data: steel price analysis ${{ steps.check_today.outputs.today }}"
-            git push origin HEAD:${{ github.ref_name }}
+            exit 0
           fi
+          git commit -m "data: steel price analysis ${{ steps.check_today.outputs.today }}"
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && exit 0
+            sleep $((i * 10))
+          done
+          exit 1
 
       - name: Summary
+        if: always()
         run: |
           if [ -f data/latest.json ]; then
             echo "### Analysis Results" >> $GITHUB_STEP_SUMMARY
             python3 -c "import json; d=json.load(open('data/latest.json')); print('- **Date**: ' + str(d.get('date','?'))); print('- **Confidence**: ' + str(d.get('confidence','?'))); print('- **Model**: ' + str(d.get('model_used','?')))" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f data/materials.json ]; then
+            python3 -c "import json; m=json.load(open('data/materials.json')); [print(f\"- {s['source']}: {'OK' if s['ok'] else 'FAILED'} ({s['items']} items) {s.get('error','')}\") for s in m['sources_status']]" >> $GITHUB_STEP_SUMMARY
           fi
