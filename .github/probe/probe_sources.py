@@ -1,110 +1,97 @@
-"""One-off probe: test candidate price sources from a GitHub runner (full internet)."""
-import json, re, sys, time
+"""Probe round 2: inspect contents of candidate sources."""
+import io, json, re
 import requests
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
       "Accept-Language": "zh-TW,zh;q=0.9,en;q=0.8"}
 S = requests.Session(); S.headers.update(UA)
-OUT = {}
 
-def get(url, **kw):
+def get(url, timeout=40, **kw):
     try:
-        r = S.get(url, timeout=30, **kw)
-        return r
+        return S.get(url, timeout=timeout, **kw)
     except Exception as e:
-        print(f"  ERR {url}: {e}")
-        return None
+        print(f"  ERR {url}: {e}"); return None
 
-def section(name):
-    print("\n" + "=" * 20 + f" {name} " + "=" * 20, flush=True)
+def sec(n): print("\n" + "=" * 18 + f" {n} " + "=" * 18, flush=True)
 
-# 1. data.gov.tw dataset metadata for candidate IDs
-section("data.gov.tw dataset metadata")
-ids = list(range(6575, 6583)) + list(range(6815, 6823)) + [21027, 21028, 21029, 13633]
-for i in ids:
+def show_csv(url, n_head=6, n_tail=4):
+    r = get(url)
+    if r is None: return
+    raw = r.content
+    for enc in ("utf-8-sig", "big5", "cp950"):
+        try: txt = raw.decode(enc); break
+        except Exception: continue
+    lines = txt.splitlines()
+    print(f"HTTP {r.status_code} bytes={len(raw)} lines={len(lines)} enc={enc}")
+    for l in lines[:n_head]: print("   H|", l[:220])
+    print("   ...")
+    for l in lines[-n_tail:]: print("   T|", l[:220])
+
+sec("PCC 大宗資材 CSVs")
+base = "https://pcic.pcc.gov.tw/pwc-web/api/service/opendata-file/document/"
+for name in ["鋼筋", "H型鋼", "鋼板", "預拌混凝土", "瀝青混凝土", "砂石"]:
+    print(f"\n--- {name}")
+    show_csv(base + name + ".csv", 8, 6)
+
+sec("data.gov.tw 7374 / 8246 / city CCI metadata")
+for i in [7374, 8246, 125690, 145784, 101850, 167838, 101001]:
     r = get(f"https://data.gov.tw/api/v2/rest/dataset/{i}")
     if r is None: continue
-    try:
-        j = r.json(); res = j.get("result", j)
-        title = res.get("title"); org = res.get("publisher") or res.get("organization")
-        freq = res.get("accrualPeriodicity") or res.get("updateFrequency")
-        print(f"[{i}] HTTP {r.status_code} | {title} | {org} | freq={freq} | modified={res.get('modified')}")
-        for d in (res.get("distribution") or [])[:6]:
-            print(f"     - {d.get('resourceFormat')} {d.get('resourceDescription','')[:40]} -> {d.get('resourceDownloadUrl')}")
-        OUT[f"dgt_{i}"] = res
-    except Exception as e:
-        print(f"[{i}] HTTP {r.status_code} non-json: {r.text[:200]!r}")
+    res = r.json().get("result", {})
+    print(f"[{i}] {res.get('title')} freq={res.get('accrualPeriodicity') or res.get('updateFrequency')}")
+    for d in (res.get("distribution") or [])[:4]:
+        u = d.get("resourceDownloadUrl"); fmt = d.get("resourceFormat")
+        print(f"   - {fmt} {u}")
+    dist = res.get("distribution") or []
+    pick = next((d for d in dist if (d.get("resourceFormat") or "").upper() in ("CSV", "JSON")), dist[0] if dist else None)
+    if pick:
+        u = pick["resourceDownloadUrl"]
+        if (pick.get("resourceFormat") or "").upper() == "CSV":
+            show_csv(u, 5, 4)
+        else:
+            rr = get(u)
+            if rr is not None: print(f"   HTTP {rr.status_code} {rr.text[:700]!r}")
 
-# 2. data.gov.tw keyword search (frontend API)
-section("data.gov.tw keyword search")
-for kw in ["大宗資材", "營造工程物價指數", "砂石價格", "預拌混凝土", "水泥價格", "營建物價", "鋼筋價格"]:
-    body = {"bool": [{"fulltext": {"value": kw}}], "filter": [], "page_num": 1, "page_limit": 15, "tids": [], "sort": "_score_desc"}
-    try:
-        r = S.post("https://data.gov.tw/api/front/dataset/list", json=body, timeout=30)
-        j = r.json()
-        items = (j.get("payload") or {}).get("search_result") or j.get("result") or []
-        print(f"[{kw}] HTTP {r.status_code}, {len(items)} hits")
-        for it in items[:15]:
-            print(f"     {it.get('nid') or it.get('identifier')} | {it.get('title')} | {it.get('agency_name') or it.get('publisher')} | {it.get('update_freq') or ''}")
-    except Exception as e:
-        print(f"[{kw}] search failed: {e}; body={getattr(r,'text','')[:200]!r}")
+sec("World Bank monthly xlsx")
+try:
+    import openpyxl
+    r = get("https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx", 60)
+    wb = openpyxl.load_workbook(io.BytesIO(r.content), read_only=True, data_only=True)
+    print("sheets:", wb.sheetnames)
+    ws = wb["Monthly Prices"]
+    rows = list(ws.iter_rows(values_only=True))
+    for i, row in enumerate(rows[:8]): print("  R", i, [c for c in row[:80] if c is not None][:80])
+    print("  last rows:")
+    for row in rows[-3:]: print("  L", row[:5], "...")
+    hdr = rows[4] if len(rows) > 4 else rows[0]
+    for kw in ["Iron ore", "Coal", "Copper", "Aluminum", "Zinc", "Nickel", "Crude oil, Brent", "Natural gas", "Steel", "Logs", "Sawnwood", "Urea", "Tin"]:
+        idx = [i for i, h in enumerate(hdr) if h and kw.lower() in str(h).lower()]
+        for i in idx: print(f"   col {i}: {hdr[i]!r} unit={rows[5][i] if len(rows)>5 else None} last={rows[-1][i]} ({rows[-1][0]})")
+except Exception as e:
+    print("WB parse failed:", repr(e))
 
-# 3. FRED CSV (no key)
-section("FRED fredgraph.csv")
-fred = ["DCOILBRENTEU","DCOILWTICO","DHHNGSP","PIORECRUSDM","PCOPPUSDM","PALUMUSDM","PZINCUSDM","PNICKUSDM","PCOALAUUSDM",
-        "WPU101","WPU1017","WPU133301","PCU327310327310","WPU1321","WPU0811","WPU13","WPU1073","WPU05810306","PCU331110331110","WPU101704"]
-for sid in fred:
-    r = get(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}")
-    if r is None: continue
-    lines = [l for l in r.text.strip().splitlines() if l]
-    t = get(f"https://fred.stlouisfed.org/series/{sid}")
-    title = ""
-    if t is not None:
-        m = re.search(r"<title>(.*?)</title>", t.text, re.S); title = (m.group(1).strip()[:90] if m else "")
-    print(f"[{sid}] HTTP {r.status_code} rows={len(lines)} last={lines[-2:] if len(lines)>1 else lines} | {title}")
+sec("FRED retry (60s)")
+for sid in ["DCOILBRENTEU", "WPU1017", "WPU133301"]:
+    r = get(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}", 60)
+    if r is not None: print(sid, r.status_code, r.text.strip().splitlines()[-2:])
 
-# 4. World Bank commodity markets page -> monthly xlsx link
-section("World Bank Pink Sheet")
-r = get("https://www.worldbank.org/en/research/commodity-markets")
-if r is not None:
-    links = sorted(set(re.findall(r'https?://[^"\']+?CMO-Historical-Data-Monthly\.xlsx', r.text)))
-    print("landing HTTP", r.status_code, "xlsx links:", links[:5])
-    if links:
-        x = get(links[0]); print("xlsx HTTP", x.status_code if x is not None else None, "bytes", len(x.content) if x is not None else 0)
+sec("stooq daily")
+for s in ["hg.f", "cl.f", "cb.f", "ng.f", "ali.f", "usdtwd"]:
+    r = get(f"https://stooq.com/q/d/l/?s={s}&i=d")
+    if r is not None: print(s, r.status_code, r.text.strip().splitlines()[:1], r.text.strip().splitlines()[-2:])
 
-# 5. steelnews: list page + search for 豐興 weekly price articles
-section("steelnews")
-r = get("https://steelnews.com.tw/")
+sec("steelnews index.php")
+r = get("https://steelnews.com.tw/index.php")
 if r is not None:
     r.encoding = r.apparent_encoding
-    print("home HTTP", r.status_code, "len", len(r.text))
-    arts = re.findall(r'href="([^"]*news/content\?id=\d+)"[^>]*>([^<]{6,80})<', r.text)
-    print("article links found:", len(arts))
-    for href, title in arts[:40]:
-        print("   ", href, "|", title.strip())
-    target = next(((h, t) for h, t in arts if any(k in t for k in ("豐興", "廢鋼", "鋼筋", "盤價"))), arts[0] if arts else None)
-    if target:
-        u = target[0] if target[0].startswith("http") else "https://steelnews.com.tw/" + target[0].lstrip("/")
-        a = get(u)
-        if a is not None:
-            a.encoding = a.apparent_encoding
-            txt = re.sub(r"<script.*?</script>|<style.*?</style>", "", a.text, flags=re.S)
-            txt = re.sub(r"<[^>]+>", "\n", txt); txt = re.sub(r"\n\s*\n+", "\n", txt)
-            print("ARTICLE", u, "len", len(txt)); print(txt[:2500])
-for q in ["豐興", "鋼筋", "廢鋼"]:
-    r = get(f"https://steelnews.com.tw/news/search?keyword={q}")
-    print(f"search {q}: HTTP {getattr(r,'status_code',None)} len {len(r.text) if r is not None else 0}")
-
-# 6. Other candidates
-section("misc")
-for u in ["https://rate.bot.com.tw/xrt/flcsv/0/day",
-          "https://www.cnyes.com/futures/basicmetal.aspx",
-          "https://stooq.com/q/d/l/?s=hg.f&i=d",
-          "https://www.dgbas.gov.tw/",
-          "https://nstatdb.dgbas.gov.tw/dgbasall/webMain.aspx?k=dgmain",
-          "https://www.gsmma.gov.tw/",
-          "https://pcces.pcc.gov.tw/",
-          "https://www.pcc.gov.tw/"]:
-    r = get(u); print(f"{getattr(r,'status_code',None)}  len={len(r.content) if r is not None else 0}  {u}")
-
-json.dump(OUT, open("probe_out.json", "w"), ensure_ascii=False, indent=1)
+    print("HTTP", r.status_code, "len", len(r.text))
+    arts = re.findall(r'href="([^"]*content\?id=\d+)"[^>]*>\s*([^<]{6,80})<', r.text)
+    print("links:", len(arts))
+    for h, t in arts[:30]: print("   ", h, "|", t.strip())
+    tgt = next(((h, t) for h, t in arts if "豐興" in t or "廢鋼" in t), arts[0] if arts else None)
+    if tgt:
+        u = tgt[0] if tgt[0].startswith("http") else "https://steelnews.com.tw/" + tgt[0].lstrip("/")
+        a = get(u); a.encoding = a.apparent_encoding
+        t = re.sub(r"<script.*?</script>|<style.*?</style>", "", a.text, flags=re.S)
+        t = re.sub(r"<[^>]+>", "\n", t); t = re.sub(r"\n\s*\n+", "\n", t)
+        i = t.find(tgt[1].strip()[:8]); print("ARTICLE", u); print(t[max(0, i):max(0, i) + 2000])
