@@ -16,6 +16,14 @@ let priceChart = null;
 let _tickerRAF = null;
 let _tickerX = 0;
 
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function safeUrl(u) {
+  return typeof u === 'string' && /^https?:\/\//.test(u) ? esc(u) : '#';
+}
+
 function fmt(n, decimals) {
   if (typeof n !== 'number') return '-';
   if (decimals !== undefined) return n.toFixed(decimals);
@@ -115,6 +123,7 @@ function populateAnalysis(data) {
     'spread-analysis': data.spread_analysis,
     'weekly-trend': data.monthly_trend || data.weekly_trend,
     'international-outlook': data.international_outlook,
+    'materials-outlook': data.materials_outlook,
     'model-name': data.model_used,
   };
   for (const [id, text] of Object.entries(fields)) {
@@ -123,29 +132,26 @@ function populateAnalysis(data) {
   }
   const riskList = document.getElementById('risk-factors');
   if (riskList && Array.isArray(data.risk_factors)) {
-    riskList.innerHTML = data.risk_factors.map(r => `<li>⚠ ${r}</li>`).join('');
+    riskList.innerHTML = data.risk_factors.map(r => `<li>⚠ ${esc(r)}</li>`).join('');
   }
 }
 
 function populateNews(data) {
   const list = document.getElementById('news-list');
   if (!list) return;
-  const sources = Array.isArray(data.news_sources) ? data.news_sources : [];
+  const sources = (Array.isArray(data.news_sources) ? data.news_sources : []).filter(n => n.title);
   if (sources.length === 0) {
     list.innerHTML = '<p class="no-news">暫無新聞來源資料</p>';
     return;
   }
-  list.innerHTML = sources
-    .filter(n => n.title)
-    .map((n, i) => {
-      const url = n.url && n.url.startsWith('http') ? n.url : '#';
-      return `<a class="news-item" href="${url}" target="_blank" rel="noopener">
+  list.innerHTML = sources.map((n, i) => {
+    const meta = [n.date, n.source].filter(Boolean).map(esc).join(' · ');
+    return `<a class="news-item" href="${safeUrl(n.url)}" target="_blank" rel="noopener">
         <span class="news-item-num">${String(i + 1).padStart(2, '0')}</span>
-        <span class="news-item-title">${n.title}</span>
+        <span class="news-item-title">${esc(n.title)}${meta ? `<span class="news-item-meta">${meta}</span>` : ''}</span>
         <span class="news-arrow">閱讀全文 →</span>
       </a>`;
-    })
-    .join('');
+  }).join('');
 }
 
 function populateMeta(data) {
@@ -173,7 +179,7 @@ function populateMeta(data) {
 
 async function buildChart(latestData) {
   const canvas = document.getElementById('price-chart');
-  if (!canvas) return;
+  if (!canvas || typeof Chart === 'undefined') return;
   const ctx = canvas.getContext('2d');
 
   let months = [], billetVals = [], rebarVals = [], hbeamVals = [], wirerodVals = [];
@@ -294,44 +300,225 @@ function startTicker() {
   });
 }
 
+const FC_ITEMS = [
+  { key: 'north_scrap_price',    name: '北部廢鋼大盤收購價', sub: 'N. Taiwan Scrap' },
+  { key: 'billet_price',         name: '小鋼胚中級出廠價',   sub: 'Billet Ex-Factory' },
+  { key: 'fengxing_rebar_price', name: '豐興鋼筋盤價',       sub: 'Fengxing Rebar' },
+  { key: 'h_beam_price',         name: '東鋼H型鋼流通價',    sub: 'H-Beam Circulation' },
+  { key: 'csc_wire_rod_price',   name: '中鋼棒線盤價',       sub: 'CSC Wire Rod' },
+];
+const DIR_LABELS = { up: '看漲', down: '看跌', stable: '持平' };
+
+function fcBlock(label, f) {
+  const dir = ['up', 'down', 'stable'].includes(f?.direction) ? f.direction : null;
+  return `<div class="fc-block">
+      <div class="fc-block-head">
+        <span class="fc-block-label">${esc(label)}</span>
+        <span class="trend-badge ${dir || 'stable'}">${dir ? DIR_LABELS[dir] : '-'}</span>
+      </div>
+      <div class="fc-est">${esc(f?.change_estimate || '-')}</div>
+      <p class="fc-reason">${esc(f?.reason || '預測資料將於下次分析執行後產生')}</p>
+    </div>`;
+}
+
 function populateForecast(data) {
-  const fc = data.tomorrow_forecast || {};
-  const DIR_LABELS = { up: '看漲', down: '看跌', stable: '持平' };
-  const items = [
-    { key: 'north_scrap_price',    prefix: 'scrap' },
-    { key: 'billet_price',         prefix: 'billet' },
-    { key: 'fengxing_rebar_price', prefix: 'rebar' },
-    { key: 'h_beam_price',         prefix: 'hbeam' },
-    { key: 'csc_wire_rod_price',   prefix: 'wirerod' },
-  ];
+  const grid = document.getElementById('fc-grid');
+  const dateEl = document.getElementById('forecast-date');
+  const pf = data.price_forecast;
+  const legacy = data.tomorrow_forecast;
+  if (!grid) return;
 
-  for (const { key, prefix } of items) {
-    const f = fc[key] || {};
-    const badge  = document.getElementById(`fc-${prefix}-badge`);
-    const est    = document.getElementById(`fc-${prefix}-est`);
-    const reason = document.getElementById(`fc-${prefix}-reason`);
-    const dir = ['up', 'down', 'stable'].includes(f.direction) ? f.direction : null;
-
-    if (badge) {
-      badge.textContent = dir ? DIR_LABELS[dir] : '-';
-      badge.className = `trend-badge ${dir || 'stable'}`;
-    }
-    if (est)    est.textContent = f.change_estimate || (dir ? '幅度：待估' : '-');
-    if (reason) reason.textContent = f.reason || '預測資料將於下次分析執行後產生';
+  if (pf && pf.items) {
+    const weekLabel = pf.week_label || '本週';
+    if (dateEl) dateEl.textContent = `${weekLabel} ${pf.week_range || ''} · 發布於 ${data.date || '-'}`;
+    grid.innerHTML = FC_ITEMS.map(({ key, name, sub }) => {
+      const f = pf.items[key] || {};
+      const tgt = (pf.targets || {})[key];
+      const monthLabel = tgt ? `下一期月均價 ${tgt.target_month}` : '下一期月均價';
+      const note = f.revision_note ? `<div class="fc-note">與前次比較：${esc(f.revision_note)}</div>` : '';
+      return `<div class="fc-card">
+          <div class="fc-head"><div><div class="fc-name">${name}</div><div class="fc-sub">${sub}</div></div></div>
+          ${fcBlock(`${weekLabel}行情 ${pf.week_range || ''}`, f.week)}
+          ${fcBlock(monthLabel, f.next_month)}
+          ${note}
+        </div>`;
+    }).join('');
+  } else if (legacy) {
+    if (dateEl) dateEl.textContent = `發布於 ${data.date || '-'}`;
+    grid.innerHTML = FC_ITEMS.map(({ key, name, sub }) => `<div class="fc-card">
+        <div class="fc-head"><div><div class="fc-name">${name}</div><div class="fc-sub">${sub}</div></div></div>
+        ${fcBlock('短期行情', legacy[key])}
+      </div>`).join('');
   }
 
   const overall = document.getElementById('fc-overall-basis');
-  if (overall) overall.textContent = fc.overall_basis || '預測資料將於下次分析執行後產生';
+  if (overall) overall.textContent = (pf || legacy || {}).overall_basis || '預測資料將於下次分析執行後產生';
 
-  const dateEl = document.getElementById('forecast-date');
-  if (dateEl) {
-    try {
-      const base = data.generated_at ? new Date(data.generated_at) : new Date();
-      base.setDate(base.getDate() + 1);
-      const label = base.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' });
-      dateEl.textContent = `預測目標日：${label}`;
-    } catch (_) { dateEl.textContent = '預測目標日：明日'; }
+  const cites = document.getElementById('fc-cites');
+  if (cites) {
+    const list = Array.isArray(data.web_citations) ? data.web_citations : [];
+    cites.innerHTML = list.length
+      ? `<div class="fc-cites-label">AI 搜尋引用來源</div>` + list.map(c =>
+          `<a href="${safeUrl(c.url)}" target="_blank" rel="noopener">${esc(c.title)}</a>`).join('')
+      : '';
   }
+}
+
+function populateAccuracy(acc) {
+  const el = document.getElementById('fc-accuracy');
+  if (!el || !acc) return;
+  const o = acc.overall || {};
+  const pct = o.total ? Math.round(o.hits / o.total * 100) : null;
+  const items = Object.values(acc.per_item || {}).filter(v => v.total)
+    .map(v => `<span class="fc-acc-item">${esc(v.name)} ${v.hits}/${v.total}</span>`).join('');
+  el.innerHTML = `<div class="fc-acc-main">
+      <span class="fc-acc-label">月均價方向命中率</span>
+      <span class="fc-acc-value">${pct === null ? '累積中' : pct + '%'}</span>
+      <span class="fc-acc-detail">${o.total ? `${o.hits}/${o.total} 次預測已驗證` : `${acc.pending || 0} 筆預測等待官方月均價公布`}</span>
+    </div>
+    ${items ? `<div class="fc-acc-items">${items}</div>` : ''}
+    <div class="fc-acc-method">${esc(acc.method || '')}</div>`;
+}
+
+// ── Construction materials ────────────────────────────────
+
+const matState = { q: '', group: 'all', freq: 'all', data: null, expanded: new Set() };
+const MAT_PREVIEW = 6;
+const MAT_QUIET_REGIONS = new Set(['全國', '國際', '臺灣']);
+
+function fmtValue(v) {
+  if (typeof v !== 'number') return '-';
+  const abs = Math.abs(v);
+  const d = abs >= 1000 ? 0 : abs >= 100 ? 1 : 2;
+  return v.toLocaleString('zh-TW', { minimumFractionDigits: 0, maximumFractionDigits: d });
+}
+
+function sparkline(history) {
+  const vals = (history || []).map(h => h[1]).filter(v => typeof v === 'number').slice(-24);
+  if (vals.length < 2) return '';
+  const w = 84, h = 24, min = Math.min(...vals), max = Math.max(...vals), span = max - min || 1;
+  const pts = vals.map((v, i) => `${(i / (vals.length - 1) * w).toFixed(1)},${(h - 2 - (v - min) / span * (h - 4)).toFixed(1)}`).join(' ');
+  const cls = vals[vals.length - 1] > vals[0] ? 'up' : vals[vals.length - 1] < vals[0] ? 'down' : 'stable';
+  return `<svg class="spark ${cls}" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-hidden="true"><polyline points="${pts}"/></svg>`;
+}
+
+function matMatches(it, tokens) {
+  if (matState.group !== 'all' && it.group !== matState.group) return false;
+  if (matState.freq !== 'all' && it.freq !== matState.freq) return false;
+  if (!tokens.length) return true;
+  const hay = [it.name, it.region, it.source, it.unit, it.note].join(' ').toLowerCase();
+  return tokens.every(t => hay.includes(t));
+}
+
+function renderMaterials() {
+  const m = matState.data;
+  const list = document.getElementById('mat-list');
+  if (!m || !list) return;
+  const groupsById = Object.fromEntries((m.groups || []).map(g => [g.id, g]));
+  const tokens = matState.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const items = (m.items || []).filter(it => matMatches(it, tokens));
+
+  const count = document.getElementById('mat-count');
+  if (count) count.textContent = `顯示 ${items.length} / ${(m.items || []).length} 項`;
+
+  if (!items.length) {
+    list.innerHTML = '<p class="mat-empty">找不到符合的品項，試試其他關鍵字。</p>';
+    return;
+  }
+  const browsing = !tokens.length && matState.group === 'all';
+  const perGroup = {};
+  items.forEach(it => { perGroup[it.group] = (perGroup[it.group] || 0) + 1; });
+  const shown = {};
+  let lastGroup = null;
+  const rows = [];
+  items.forEach(it => {
+    const n = (shown[it.group] = (shown[it.group] || 0) + 1);
+    const collapsed = browsing && !matState.expanded.has(it.group);
+    if (collapsed && n > MAT_PREVIEW) {
+      if (n === MAT_PREVIEW + 1) {
+        rows.push(`<button type="button" class="mat-more" data-g="${esc(it.group)}">展開全部 ${perGroup[it.group]} 項 ↓</button>`);
+      }
+      return;
+    }
+    rows.push(matRow(it, groupsById, it.group !== lastGroup));
+    lastGroup = it.group;
+  });
+  list.innerHTML = rows.join('');
+  list.onclick = e => {
+    const b = e.target.closest('.mat-more');
+    if (!b) return;
+    matState.expanded.add(b.dataset.g);
+    renderMaterials();
+  };
+}
+
+function matRow(it, groupsById, withHeader) {
+  {
+    const header = withHeader
+      ? `<div class="mat-group-head"><span>${esc(groupsById[it.group]?.name || it.group)}</span><span class="mat-group-desc">${esc(groupsById[it.group]?.desc || '')}</span></div>`
+      : '';
+    const pct = typeof it.change_pct === 'number' ? it.change_pct : null;
+    const cls = pct === null ? 'stable' : pct > 0 ? 'up' : pct < 0 ? 'down' : 'stable';
+    const arrow = pct === null ? '' : pct > 0 ? '▲' : pct < 0 ? '▼' : '—';
+    const chg = pct === null ? '-' : `${arrow} ${Math.abs(pct).toFixed(2)}%`;
+    const region = it.region && !MAT_QUIET_REGIONS.has(it.region) && !it.name.includes(it.region) ? `<span class="mat-tag">${esc(it.region)}</span>` : '';
+    const stale = it.stale ? '<span class="mat-tag mat-stale">過期</span>' : '';
+    return `${header}<div class="mat-row">
+        <div class="mat-name">${esc(it.name)}${region}${stale}</div>
+        <div class="mat-spark">${sparkline(it.history)}</div>
+        <div class="mat-value">${fmtValue(it.value)}<span class="mat-unit">${esc(it.unit)}</span></div>
+        <div class="mat-chg price-change ${cls}">${chg}</div>
+        <div class="mat-meta"><span class="mat-freq">${esc(it.freq)}</span>${esc(it.period)}
+          <a href="${safeUrl(it.source_url)}" target="_blank" rel="noopener">${esc(it.source)}</a></div>
+      </div>`;
+  }
+}
+
+function chipRow(el, options, key) {
+  if (!el) return;
+  el.innerHTML = options.map(o =>
+    `<button type="button" class="mat-chip${matState[key] === o.id ? ' active' : ''}" data-v="${esc(o.id)}">${esc(o.name)}</button>`).join('');
+  el.onclick = e => {
+    const b = e.target.closest('.mat-chip');
+    if (!b) return;
+    matState[key] = b.dataset.v;
+    el.querySelectorAll('.mat-chip').forEach(c => c.classList.toggle('active', c === b));
+    renderMaterials();
+  };
+}
+
+function populateMaterials(m) {
+  if (!m || !Array.isArray(m.items)) {
+    const upd = document.getElementById('mat-updated');
+    if (upd) upd.textContent = '行情資料將於下次排程更新後產生';
+    return;
+  }
+  matState.data = m;
+  const present = new Set(m.items.map(it => it.group));
+  chipRow(document.getElementById('mat-groups'),
+    [{ id: 'all', name: '全部' }, ...(m.groups || []).filter(g => present.has(g.id))], 'group');
+  const freqs = ['日', '週', '月'].filter(f => m.items.some(it => it.freq === f));
+  chipRow(document.getElementById('mat-freq'),
+    [{ id: 'all', name: '全部頻率' }, ...freqs.map(f => ({ id: f, name: `每${f}更新` }))], 'freq');
+
+  const search = document.getElementById('mat-search');
+  if (search) search.oninput = () => { matState.q = search.value; renderMaterials(); };
+
+  const upd = document.getElementById('mat-updated');
+  if (upd) {
+    const failed = (m.sources_status || []).filter(s => !s.ok).map(s => s.source);
+    let when = '';
+    try { when = new Date(m.updated_at).toLocaleString('zh-TW', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }); } catch (_) {}
+    upd.textContent = `更新於 ${when} · ${m.items.length} 項` + (failed.length ? ` · 暫時無法連線：${failed.join('、')}` : '');
+  }
+  renderMaterials();
+}
+
+async function fetchJson(path) {
+  try {
+    const r = await fetch(`${path}?t=${Date.now()}`);
+    return r.ok ? await r.json() : null;
+  } catch (_) { return null; }
 }
 
 function initAnimations() {
@@ -366,7 +553,10 @@ async function loadData() {
     populateAnalysis(data);
     populateForecast(data);
     populateNews(data);
-    await buildChart(data);
+    const [materials, accuracy] = await Promise.all([fetchJson('data/materials.json'), fetchJson('data/accuracy.json')]);
+    populateMaterials(materials);
+    populateAccuracy(accuracy);
+    try { await buildChart(data); } catch (e) { console.error('Chart failed:', e); }
   } catch (err) {
     console.error('Failed to load data:', err);
     const area = document.getElementById('content-area');

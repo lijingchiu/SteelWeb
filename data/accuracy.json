@@ -1,0 +1,37 @@
+{
+ "updated_at": "2026-11-01T23:30:40.083956+08:00",
+ "method": "每日的「下一期月均價」方向預測，與台灣金屬行情網日後公布的月均價比較；月變動在 ±0.3% 內視為持平。",
+ "overall": {
+  "hits": 0,
+  "total": 0
+ },
+ "per_item": {
+  "north_scrap_price": {
+   "name": "北部廢鋼大盤收購價",
+   "hits": 0,
+   "total": 0
+  },
+  "billet_price": {
+   "name": "小鋼胚中級出廠價",
+   "hits": 0,
+   "total": 0
+  },
+  "fengxing_rebar_price": {
+   "name": "豐興鋼筋盤價",
+   "hits": 0,
+   "total": 0
+  },
+  "h_beam_price": {
+   "name": "東鋼H型鋼流通價",
+   "hits": 0,
+   "total": 0
+  },
+  "csc_wire_rod_price": {
+   "name": "中鋼棒線盤價",
+   "hits": 0,
+   "total": 0
+  }
+ },
+ "pending": 0,
+ "recent": []
+}

@@ -468,7 +468,8 @@ def parse_twse(rows: list[dict]) -> list[dict]:
             "prev": prev, "prev_period": None, "change": chg,
             "change_pct": round(chg / prev * 100, 3) if prev else None,
             "freq": "日", "source": "臺灣證券交易所", "source_url": "https://openapi.twse.com.tw/",
-            "note": "", "history": [[date, close]], "stale": False,
+            "note": "水泥股" if code.startswith("11") else "鋼鐵股",
+            "history": [[date, close]], "stale": False,
         })
     return items
 

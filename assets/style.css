@@ -355,6 +355,7 @@ button { font-family: inherit; }
 
 .section-table    { padding: 80px 64px 56px; }
 .section-chart    { padding: 56px 64px 56px; }
+.section-materials { padding: 56px 64px 56px; }
 .section-analysis { padding: 56px 64px 56px; }
 .section-news     { padding: 56px 64px 80px; }
 
@@ -545,7 +546,116 @@ button { font-family: inherit; }
   margin-right: 2px;
 }
 
-/* ── Tomorrow Forecast ── */
+/* ── Construction materials ── */
+.mat-controls { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+.mat-search {
+  width: 100%;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 12px 20px;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.mat-search:focus { border-color: var(--copper); background: rgba(255, 255, 255, 0.85); }
+.mat-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.mat-chip {
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.mat-chip:hover { border-color: var(--ink); color: var(--ink); }
+.mat-chip.active { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+.mat-chips-freq .mat-chip { font-size: 11px; padding: 4px 12px; }
+.mat-count { font-size: 11px; color: var(--muted); letter-spacing: 0.12em; margin-bottom: 8px; }
+
+.mat-list { border-top: 1px solid var(--ink); }
+.mat-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 22px 0 8px;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+.mat-group-desc { font-family: var(--font-sans); font-size: 11px; font-weight: 400; color: var(--muted); letter-spacing: 0.06em; }
+.mat-row {
+  display: grid;
+  grid-template-columns: minmax(0, 2.4fr) 92px minmax(0, 1.4fr) 92px minmax(0, 1.5fr);
+  align-items: center;
+  gap: 14px;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s ease;
+}
+.mat-row:hover { background: rgba(122, 74, 40, 0.04); }
+.mat-name { font-size: 14px; color: var(--ink); line-height: 1.45; }
+.mat-tag {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 10px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 1px 8px;
+  vertical-align: 1px;
+}
+.mat-stale { color: var(--down); border-color: rgba(156, 80, 80, 0.35); }
+.mat-value {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.mat-unit { font-family: var(--font-sans); font-size: 10px; color: var(--muted); margin-left: 6px; }
+.mat-chg { text-align: right; }
+.mat-meta { font-size: 11px; color: var(--muted); line-height: 1.6; text-align: right; }
+.mat-meta a { color: var(--copper); margin-left: 8px; }
+.mat-freq {
+  font-size: 10px;
+  color: var(--copper);
+  border: 1px solid rgba(122, 74, 40, 0.3);
+  border-radius: 3px;
+  padding: 0 5px;
+  margin-right: 6px;
+}
+.spark { display: block; overflow: visible; }
+.spark polyline { fill: none; stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; }
+.spark.up polyline { stroke: var(--copper); }
+.spark.down polyline { stroke: var(--down); }
+.spark.stable polyline { stroke: var(--muted); }
+.mat-empty { padding: 28px 0; color: var(--muted); font-size: 13px; }
+.mat-more {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--copper);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+  cursor: pointer;
+  text-align: left;
+}
+.mat-more:hover { background: rgba(122, 74, 40, 0.04); }
+
+/* ── Price forecast ── */
 .section-forecast { padding: 56px 64px 56px; }
 
 .forecast-grid {
@@ -562,9 +672,42 @@ button { font-family: inherit; }
   gap: 12px;
 }
 .fc-overall {
-  grid-column: 1 / -1;
+  margin-top: 18px;
   background: rgba(42, 31, 23, 0.035);
 }
+.fc-block { display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid var(--line); }
+.fc-block-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.fc-block-label { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
+.fc-note {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  padding: 10px 12px;
+  background: rgba(42, 31, 23, 0.035);
+  border-left: 2px solid var(--copper);
+}
+.fc-cites { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11px; }
+.fc-cites:empty { display: none; }
+.fc-cites-label { flex-basis: 100%; color: var(--muted); letter-spacing: 0.1em; }
+.fc-cites a { color: var(--copper); max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.fc-accuracy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 28px;
+  padding: 16px 22px;
+  margin-bottom: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.32);
+}
+.fc-accuracy:empty { display: none; }
+.fc-acc-main { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fc-acc-label { font-size: 11px; color: var(--muted); letter-spacing: 0.12em; }
+.fc-acc-value { font-family: var(--font-mono); font-size: 24px; color: var(--ink); }
+.fc-acc-detail { font-size: 12px; color: var(--muted); }
+.fc-acc-items { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--ink); }
+.fc-acc-method { flex-basis: 100%; font-size: 11px; color: var(--muted); line-height: 1.6; }
 .fc-head {
   display: flex;
   justify-content: space-between;
@@ -654,6 +797,15 @@ button { font-family: inherit; }
   line-height: 1.5;
   letter-spacing: 0.01em;
   flex: 1;
+}
+.news-item-meta {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.06em;
 }
 .news-arrow {
   font-size: 10px;
@@ -860,6 +1012,7 @@ button { font-family: inherit; }
   .hero,
   .section-table,
   .section-chart,
+  .section-materials,
   .section-forecast,
   .section-analysis,
   .section-news,
@@ -882,6 +1035,7 @@ button { font-family: inherit; }
   .hero,
   .section-table,
   .section-chart,
+  .section-materials,
   .section-forecast,
   .section-analysis,
   .section-news,
@@ -915,4 +1069,18 @@ button { font-family: inherit; }
   .exchange-row { flex-wrap: wrap; gap: 10px; }
   .exchange-impact { flex: 1 0 100%; }
   .exchange-source { flex: 1 0 100%; white-space: normal; }
+
+  .mat-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "name value" "spark chg" "meta meta";
+    gap: 4px 12px;
+    padding: 12px 0;
+  }
+  .mat-name  { grid-area: name; }
+  .mat-value { grid-area: value; }
+  .mat-spark { grid-area: spark; }
+  .mat-chg   { grid-area: chg; }
+  .mat-meta  { grid-area: meta; text-align: left; }
+  .mat-meta a { margin-left: 6px; }
+  .fc-cites a { max-width: 100%; }
 }

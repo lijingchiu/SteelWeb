@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-  <link rel="stylesheet" href="assets/style.css?v=20260706b">
+  <link rel="stylesheet" href="assets/style.css?v=20261101a">
 </head>
 <body>
 
@@ -38,6 +38,7 @@
     </div>
     <nav class="nav-wrap" aria-label="Primary">
       <a class="nav-link" href="#prices">報價</a>
+      <a class="nav-link" href="#materials">行情</a>
       <a class="nav-link" href="#chart">走勢</a>
       <a class="nav-link" href="#forecast">預測</a>
       <a class="nav-link" href="#analysis">分析</a>
@@ -228,11 +229,34 @@
       <div class="table-footnote">本表為月度參考價格 · 資料來源：台灣金屬行情網</div>
     </section>
 
+    <!-- § 02 Construction materials -->
+    <section class="section section-materials" id="materials" data-fade>
+      <div class="section-head">
+        <div>
+          <div class="kicker">§ 02 · CONSTRUCTION MATERIALS</div>
+          <h2 class="h2">營建材料行情</h2>
+        </div>
+        <div class="section-meta" id="mat-updated">載入中</div>
+      </div>
+
+      <div class="mat-controls">
+        <input type="search" id="mat-search" class="mat-search" autocomplete="off"
+               placeholder="搜尋品項、地區或來源，例如：鋼筋、水泥、臺中、銅、中鋼">
+        <div class="mat-chips" id="mat-groups" role="group" aria-label="分類"></div>
+        <div class="mat-chips mat-chips-freq" id="mat-freq" role="group" aria-label="更新頻率"></div>
+      </div>
+      <div class="mat-count" id="mat-count"></div>
+      <div class="mat-list" id="mat-list"></div>
+      <div class="table-footnote" id="mat-sources">
+        資料來源：台灣金屬行情網、行政院主計總處、臺北市／新北市／臺中市政府主計處（政府資料開放授權條款）、World Bank Commodity Price Data（CC BY 4.0）、臺灣證券交易所 OpenAPI。標示「過期」的品項代表來源暫時無法連線，沿用前次資料。
+      </div>
+    </section>
+
     <!-- § 02 Chart -->
     <section class="section section-chart" id="chart" data-fade>
       <div class="section-head">
         <div>
-          <div class="kicker">§ 02 · PRICE TREND</div>
+          <div class="kicker">§ 03 · PRICE TREND</div>
           <h2 class="h2">近期價格走勢</h2>
         </div>
         <div class="chart-legend">
@@ -247,96 +271,39 @@
       </div>
     </section>
 
-    <!-- § 03 Tomorrow Forecast -->
+    <!-- § 04 Price forecast -->
     <section class="section section-forecast" id="forecast" data-fade>
       <div class="section-head">
         <div>
-          <div class="kicker">§ 03 · TOMORROW'S OUTLOOK</div>
-          <h2 class="h2">明日走勢預測</h2>
+          <div class="kicker">§ 04 · PRICE OUTLOOK</div>
+          <h2 class="h2">盤價走勢預測</h2>
         </div>
-        <div class="section-meta" id="forecast-date">預測目標日：-</div>
+        <div class="section-meta" id="forecast-date">-</div>
       </div>
 
-      <div class="forecast-grid">
-        <div class="fc-card">
-          <div class="fc-head">
-            <div>
-              <div class="fc-name">北部廢鋼大盤收購價</div>
-              <div class="fc-sub">N. Taiwan Scrap</div>
-            </div>
-            <span class="trend-badge stable" id="fc-scrap-badge">-</span>
+      <div class="fc-accuracy" id="fc-accuracy"></div>
+      <div class="forecast-grid" id="fc-grid">
+        <p class="fc-reason">預測資料將於下次分析執行後產生</p>
+      </div>
+      <div class="fc-card fc-overall">
+        <div class="fc-head">
+          <div>
+            <div class="fc-name">綜合推論依據</div>
+            <div class="fc-sub">Reasoning Basis · 時事 × 國際市場 × 原物料供需</div>
           </div>
-          <div class="fc-est" id="fc-scrap-est">-</div>
-          <p class="fc-reason" id="fc-scrap-reason">預測資料將於下次分析執行後產生</p>
         </div>
-
-        <div class="fc-card">
-          <div class="fc-head">
-            <div>
-              <div class="fc-name">小鋼胚中級出廠價</div>
-              <div class="fc-sub">Billet Ex-Factory</div>
-            </div>
-            <span class="trend-badge stable" id="fc-billet-badge">-</span>
-          </div>
-          <div class="fc-est" id="fc-billet-est">-</div>
-          <p class="fc-reason" id="fc-billet-reason">預測資料將於下次分析執行後產生</p>
-        </div>
-
-        <div class="fc-card">
-          <div class="fc-head">
-            <div>
-              <div class="fc-name">豐興鋼筋盤價</div>
-              <div class="fc-sub">Fengxing Rebar</div>
-            </div>
-            <span class="trend-badge stable" id="fc-rebar-badge">-</span>
-          </div>
-          <div class="fc-est" id="fc-rebar-est">-</div>
-          <p class="fc-reason" id="fc-rebar-reason">預測資料將於下次分析執行後產生</p>
-        </div>
-
-        <div class="fc-card">
-          <div class="fc-head">
-            <div>
-              <div class="fc-name">東鋼H型鋼流通價</div>
-              <div class="fc-sub">H-Beam Circulation</div>
-            </div>
-            <span class="trend-badge stable" id="fc-hbeam-badge">-</span>
-          </div>
-          <div class="fc-est" id="fc-hbeam-est">-</div>
-          <p class="fc-reason" id="fc-hbeam-reason">預測資料將於下次分析執行後產生</p>
-        </div>
-
-        <div class="fc-card">
-          <div class="fc-head">
-            <div>
-              <div class="fc-name">中鋼棒線盤價</div>
-              <div class="fc-sub">CSC Wire Rod</div>
-            </div>
-            <span class="trend-badge stable" id="fc-wirerod-badge">-</span>
-          </div>
-          <div class="fc-est" id="fc-wirerod-est">-</div>
-          <p class="fc-reason" id="fc-wirerod-reason">預測資料將於下次分析執行後產生</p>
-        </div>
-
-        <div class="fc-card fc-overall">
-          <div class="fc-head">
-            <div>
-              <div class="fc-name">綜合推論依據</div>
-              <div class="fc-sub">Reasoning Basis · 時事 × 國際市場 × 原物料供需</div>
-            </div>
-          </div>
-          <p class="fc-reason" id="fc-overall-basis">預測資料將於下次分析執行後產生</p>
-        </div>
+        <p class="fc-reason" id="fc-overall-basis">預測資料將於下次分析執行後產生</p>
+        <div class="fc-cites" id="fc-cites"></div>
       </div>
 
-      <div class="table-footnote">本預測由 AI 根據當日新聞、國際市場動態與原物料供需推論生成，僅供參考，不構成交易建議</div>
+      <div class="table-footnote">「本週／下週」預測市場實際成交行情；「下一期月均價」預測台灣金屬行情網下一次公布的月均價，公布後會自動計分。預測由 AI 依新聞、國際行情與原物料資料推論，僅供參考，不構成交易建議。</div>
     </section>
 
-    <!-- § 04 Market Analysis -->
+    <!-- § 05 Market Analysis -->
     <section class="section section-analysis" id="analysis" data-fade>
       <div class="section-head">
         <div>
-          <div class="kicker">§ 04 · MARKET ANALYSIS</div>
+          <div class="kicker">§ 05 · MARKET ANALYSIS</div>
           <h2 class="h2">市場深度分析</h2>
         </div>
       </div>
@@ -347,8 +314,12 @@
           <p id="spread-analysis" class="analysis-text">-</p>
         </div>
         <div class="analysis-block">
-          <div class="kicker">下月走勢預測</div>
+          <div class="kicker">未來一個月展望</div>
           <p id="weekly-trend" class="analysis-text">-</p>
+        </div>
+        <div class="analysis-block analysis-wide">
+          <div class="kicker">營建材料觀察</div>
+          <p id="materials-outlook" class="analysis-text">-</p>
         </div>
         <div class="analysis-block analysis-wide">
           <div class="kicker">國際鋼鐵市場大局觀</div>
@@ -361,11 +332,11 @@
       </div>
     </section>
 
-    <!-- § 05 News -->
+    <!-- § 06 News -->
     <section class="section section-news" id="news" data-fade>
       <div class="section-head">
         <div>
-          <div class="kicker">§ 05 · MARKET NOTES</div>
+          <div class="kicker">§ 06 · MARKET NOTES</div>
           <h2 class="h2">本日參考新聞</h2>
         </div>
         <div class="section-meta news-sources">
@@ -417,6 +388,6 @@
     </div>
   </div>
 
-  <script src="assets/app.js?v=20260706b"></script>
+  <script src="assets/app.js?v=20261101a"></script>
 </body>
 </html>
