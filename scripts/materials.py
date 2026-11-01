@@ -605,7 +605,9 @@ def build_materials(fx: dict | None = None) -> dict:
 
     try:
         news = fetch_news_feed(session)
-        status.append({"source": "Google 新聞", "ok": bool(news), "items": len(news)})
+        ok = bool(news)
+        news = news or prev.get("news_feed", [])
+        status.append({"source": "Google 新聞", "ok": ok, "items": len(news)})
     except Exception as e:
         news = prev.get("news_feed", [])
         status.append({"source": "Google 新聞", "ok": False, "items": len(news), "error": str(e)[:200]})
