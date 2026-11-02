@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261103f">
+  <link rel="stylesheet" href="assets/style.css?v=20261103g">
 </head>
 <body>
 
@@ -477,6 +477,55 @@
     </div>
   </div>
 
-  <script src="assets/app.js?v=20261103f"></script>
+  <!-- Site assistant -->
+  <button type="button" class="chat-fab" id="chat-fab" aria-label="開啟鋼市助理">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"/><path d="M8 9h8M8 12h5"/></svg>
+    <span>問助理</span>
+  </button>
+  <section class="chat-panel" id="chat-panel" role="dialog" aria-modal="false" aria-labelledby="chat-title" hidden>
+    <header class="chat-head">
+      <div>
+        <div class="chat-title" id="chat-title">鋼市助理</div>
+        <div class="chat-subtitle">只回答本站數據、鋼材行情與市場新聞</div>
+      </div>
+      <div class="chat-actions">
+        <span id="chat-key-menu" hidden>
+          <button type="button" class="chat-icon-btn" id="chat-new" title="新對話" aria-label="新對話">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 4v4h4"/></svg>
+          </button>
+          <button type="button" class="chat-icon-btn" id="chat-key-remove" title="移除此裝置的金鑰" aria-label="移除此裝置的金鑰">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="3.5"/><path d="M10.5 12.5L19 4M15.5 7.5l2.5 2.5M17.5 5.5l2 2"/></svg>
+          </button>
+        </span>
+        <button type="button" class="chat-icon-btn" id="chat-close" title="關閉" aria-label="關閉">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="chat-setup" id="chat-setup" hidden>
+      <p class="chat-setup-lead">這台裝置還沒啟用鋼市助理。</p>
+      <p>請貼上 OpenAI API 金鑰。金鑰只會存在這台裝置的瀏覽器裡，不會上傳到網站。也可以直接用家人給你的專屬連結打開網站，就會自動啟用。</p>
+      <form class="chat-key-form" id="chat-key-form" autocomplete="off">
+        <input type="password" id="chat-key-input" class="chat-key-input" placeholder="sk-..." aria-label="OpenAI API 金鑰" autocomplete="off" spellcheck="false">
+        <button type="submit" class="chat-key-save">啟用</button>
+      </form>
+      <p class="chat-key-msg" id="chat-key-msg" role="alert"></p>
+    </div>
+
+    <div class="chat-main" id="chat-main" hidden>
+      <div class="chat-log" id="chat-log" aria-live="polite"></div>
+      <form class="chat-form" id="chat-form">
+        <textarea id="chat-input" rows="1" maxlength="600" placeholder="問鋼價、行情或新聞…" aria-label="輸入問題"></textarea>
+        <button type="submit" class="chat-send" id="chat-send" aria-label="送出">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+        </button>
+      </form>
+      <p class="chat-foot">AI 依網站資料回答，可能有誤，重要決定請再確認。</p>
+    </div>
+  </section>
+
+  <script src="assets/app.js?v=20261103g"></script>
+  <script src="assets/chat.js?v=20261103g"></script>
 </body>
 </html>
