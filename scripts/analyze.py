@@ -676,6 +676,8 @@ def links_for_prompt(links: list[dict]) -> str:
 _MD_CITE = re.compile(r"\(\s*\[[^\]]*\]\([^)]*\)\s*\)")
 _MD_LINK = re.compile(r"\[([^\]]*)\]\((?:https?:)?[^)]*\)")
 _BARE_URL = re.compile(r"https?://\S+")
+# Leftover of a link cut off mid-URL, e.g. "([site](" once the URL itself is gone.
+_LINK_STUB = re.compile(r"\(?\s*\[[^\]]*\]\(\s*\)?\s*\)?")
 
 
 def plain_text(s) -> str:
@@ -683,6 +685,7 @@ def plain_text(s) -> str:
     s = _MD_CITE.sub("", str(s or ""))
     s = _MD_LINK.sub(r"\1", s)
     s = _BARE_URL.sub("", s)
+    s = _LINK_STUB.sub("", s)
     return re.sub(r"[ \t]{2,}", " ", s).strip()
 
 

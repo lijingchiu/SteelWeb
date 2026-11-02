@@ -2,6 +2,14 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('steel_theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>台灣鋼鐵市場每日分析</title>
   <meta name="description" content="台灣粗鋼產量、廢鋼、鋼胚、鋼筋、型鋼、棒線最新月度行情，結合國際市場觀點與匯率影響。">
@@ -16,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261103b">
+  <link rel="stylesheet" href="assets/style.css?v=20261103e">
 </head>
 <body>
 
@@ -49,6 +57,17 @@
       <a class="nav-link" href="#news">新聞</a>
       <a class="nav-link" href="#subscribe">訂閱</a>
     </nav>
+    <div class="theme-switch" role="radiogroup" aria-label="顯示模式">
+      <button type="button" class="theme-btn" data-theme-choice="light" role="radio" aria-checked="false" title="淺色模式" aria-label="淺色模式">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+      </button>
+      <button type="button" class="theme-btn" data-theme-choice="dark" role="radio" aria-checked="false" title="深色模式" aria-label="深色模式">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <button type="button" class="theme-btn" data-theme-choice="system" role="radio" aria-checked="true" title="跟隨裝置" aria-label="跟隨裝置">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4"/></svg>
+      </button>
+    </div>
   </header>
 
   <!-- Hero -->
@@ -265,10 +284,10 @@
           <h2 class="h2">近期價格走勢</h2>
         </div>
         <div class="chart-legend">
-          <span class="legend-dot" style="background:#7a4a28"></span><span>小鋼胚</span>
-          <span class="legend-dot" style="background:#9c5050"></span><span>鋼筋</span>
-          <span class="legend-dot" style="background:#6d625a"></span><span>H型鋼</span>
-          <span class="legend-dot" style="background:#a89682"></span><span>棒線</span>
+          <span class="legend-dot" style="background:var(--chart-1)"></span><span>小鋼胚</span>
+          <span class="legend-dot" style="background:var(--chart-2)"></span><span>鋼筋</span>
+          <span class="legend-dot" style="background:var(--chart-3)"></span><span>H型鋼</span>
+          <span class="legend-dot" style="background:var(--chart-4)"></span><span>棒線</span>
         </div>
       </div>
       <div class="chart-wrapper">
@@ -426,6 +445,6 @@
     </div>
   </div>
 
-  <script src="assets/app.js?v=20261103b"></script>
+  <script src="assets/app.js?v=20261103e"></script>
 </body>
 </html>

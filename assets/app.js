@@ -30,6 +30,7 @@ function plain(s) {
     .replace(/\(\s*\[[^\]]*\]\([^)]*\)\s*\)/g, '')
     .replace(/\[([^\]]*)\]\((?:https?:)?[^)]*\)/g, '$1')
     .replace(/https?:\/\/\S+/g, '')
+    .replace(/\(?\s*\[[^\]]*\]\(\s*\)?\s*\)?/g, '')
     .replace(/[ \t]{2,}/g, ' ')
     .trim();
 }
@@ -350,10 +351,21 @@ function populateMeta(data) {
   }
 }
 
+let chartSeries = null;
+
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+// Transparent fill for a chart line, from a hex colour token.
+function tint(hex, alpha) {
+  const m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+  return m ? `rgba(${parseInt(m[1], 16)}, ${parseInt(m[2], 16)}, ${parseInt(m[3], 16)}, ${alpha})` : hex;
+}
+
 async function buildChart(latestData) {
   const canvas = document.getElementById('price-chart');
   if (!canvas || typeof Chart === 'undefined') return;
-  const ctx = canvas.getContext('2d');
 
   let months = [], billetVals = [], rebarVals = [], hbeamVals = [], wirerodVals = [];
 
@@ -379,18 +391,35 @@ async function buildChart(latestData) {
     wirerodVals = [tp.csc_wire_rod_price?.value ?? null];
   }
 
+  chartSeries = { months, billetVals, rebarVals, hbeamVals, wirerodVals };
+  drawChart();
+}
+
+function drawChart() {
+  const canvas = document.getElementById('price-chart');
+  if (!canvas || !chartSeries || typeof Chart === 'undefined') return;
+  const ctx = canvas.getContext('2d');
+  const { months, billetVals, rebarVals, hbeamVals, wirerodVals } = chartSeries;
+  const c = [1, 2, 3, 4].map(i => cssVar(`--chart-${i}`));
+  const muted = cssVar('--muted');
+  const grid = cssVar('--chart-grid');
+  const line = (label, data, color) => ({
+    label, data, borderColor: color, backgroundColor: tint(color, 0.07), pointBackgroundColor: color,
+    pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true,
+  });
+
   if (priceChart) priceChart.destroy();
-  Chart.defaults.color = '#6d625a';
-  Chart.defaults.borderColor = 'rgba(42,31,23,0.12)';
+  Chart.defaults.color = muted;
+  Chart.defaults.borderColor = grid;
   priceChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: months,
       datasets: [
-        { label: '小鋼胚', data: billetVals,  borderColor: '#7a4a28', backgroundColor: 'rgba(122,74,40,0.07)',  pointBackgroundColor: '#7a4a28', pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true },
-        { label: '鋼筋',   data: rebarVals,   borderColor: '#9c5050', backgroundColor: 'rgba(156,80,80,0.06)',  pointBackgroundColor: '#9c5050', pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true },
-        { label: 'H型鋼',  data: hbeamVals,   borderColor: '#6d625a', backgroundColor: 'rgba(109,98,90,0.06)', pointBackgroundColor: '#6d625a', pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true },
-        { label: '棒線',   data: wirerodVals, borderColor: '#a89682', backgroundColor: 'rgba(168,150,130,0.06)', pointBackgroundColor: '#a89682', pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true },
+        line('小鋼胚', billetVals, c[0]),
+        line('鋼筋', rebarVals, c[1]),
+        line('H型鋼', hbeamVals, c[2]),
+        line('棒線', wirerodVals, c[3]),
       ],
     },
     options: {
@@ -399,14 +428,14 @@ async function buildChart(latestData) {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: 'rgba(247,241,229,0.96)', borderColor: 'rgba(42,31,23,0.14)', borderWidth: 1,
-          titleColor: '#2a1f17', bodyColor: '#6d625a',
-          callbacks: { label(c) { return ` ${c.dataset.label}：${c.parsed.y?.toLocaleString('zh-TW') ?? '-'} 元/噸`; } },
+          backgroundColor: cssVar('--tooltip-bg'), borderColor: cssVar('--line'), borderWidth: 1,
+          titleColor: cssVar('--ink'), bodyColor: muted,
+          callbacks: { label(item) { return ` ${item.dataset.label}：${item.parsed.y?.toLocaleString('zh-TW') ?? '-'} 元/噸`; } },
         },
       },
       scales: {
-        x: { grid: { color: 'rgba(42,31,23,0.06)' }, ticks: { maxRotation: 45, font: { size: 11 }, color: '#6d625a' } },
-        y: { grid: { color: 'rgba(42,31,23,0.06)' }, ticks: { font: { size: 11 }, color: '#6d625a', callback: v => v.toLocaleString('zh-TW') } },
+        x: { grid: { color: grid }, ticks: { maxRotation: 45, font: { size: 11 }, color: muted } },
+        y: { grid: { color: grid }, ticks: { font: { size: 11 }, color: muted, callback: v => v.toLocaleString('zh-TW') } },
       },
     },
   });
@@ -553,6 +582,15 @@ function fcSummary(pf, weekLabel) {
     </div>`;
 }
 
+// Two independent columns (cards 1,3,5 | 2,4) so opening or closing a card only moves
+// the cards below it in the same column. On phones the columns dissolve and the
+// inline order restores 1-5.
+function fcColumns(cards) {
+  const left = cards.filter((_, i) => i % 2 === 0).join('');
+  const right = cards.filter((_, i) => i % 2 === 1).join('');
+  return `<div class="fc-col">${left}</div><div class="fc-col">${right}</div>`;
+}
+
 function populateForecast(data) {
   const grid = document.getElementById('fc-grid');
   const dateEl = document.getElementById('forecast-date');
@@ -566,27 +604,27 @@ function populateForecast(data) {
     if (dateEl) dateEl.textContent = `${weekLabel} ${pf.week_range || ''} · 發布於 ${data.date || '-'}`;
     if (summary) summary.innerHTML = fcSummary(pf, weekLabel);
     const factsById = Object.fromEntries(((data.research || {}).facts || []).map(x => [x.id, x]));
-    grid.innerHTML = FC_ITEMS.map(({ key, name, sub }) => {
+    grid.innerHTML = fcColumns(FC_ITEMS.map(({ key, name, sub }, i) => {
       const f = pf.items[key] || {};
       const tgt = (pf.targets || {})[key];
       const monthLabel = tgt ? `下一期月均價 ${tgt.target_month}` : '下一期月均價';
       const note = f.revision_note
         ? `<details class="fc-why fc-note-wrap"${fcWide() ? ' open' : ''}><summary>與前次預測比較</summary><div class="fc-note">${esc(plain(f.revision_note))}</div></details>`
         : '';
-      return `<div class="fc-card" id="fc-${key}">
+      return `<div class="fc-card" id="fc-${key}" style="order:${i}">
           <div class="fc-head"><div><div class="fc-name">${name}</div><div class="fc-sub">${sub}</div></div></div>
           ${fcBlock(`${weekLabel}行情 ${pf.week_range || ''}`, f.week)}
           ${fcBlock(monthLabel, f.next_month, fcScenarios(f.next_month, f.ensemble))}
           ${fcRisk(f, factsById)}
           ${note}
         </div>`;
-    }).join('');
+    }));
   } else if (legacy) {
     if (dateEl) dateEl.textContent = `發布於 ${data.date || '-'}`;
-    grid.innerHTML = FC_ITEMS.map(({ key, name, sub }) => `<div class="fc-card">
+    grid.innerHTML = fcColumns(FC_ITEMS.map(({ key, name, sub }, i) => `<div class="fc-card" style="order:${i}">
         <div class="fc-head"><div><div class="fc-name">${name}</div><div class="fc-sub">${sub}</div></div></div>
         ${fcBlock('短期行情', legacy[key])}
-      </div>`).join('');
+      </div>`));
   }
 
   const overall = document.getElementById('fc-overall-basis');
@@ -849,7 +887,7 @@ async function loadData() {
   } catch (err) {
     console.error('Failed to load data:', err);
     const area = document.getElementById('content-area');
-    if (area) area.innerHTML = `<div class="error-state"><h3>資料載入失敗</h3><p>請確認 GitHub Actions 已成功執行每日分析，或稍後再試。</p><p style="font-size:12px;margin-top:10px;color:#a89682;">${err.message}</p></div>`;
+    if (area) area.innerHTML = `<div class="error-state"><h3>資料載入失敗</h3><p>請確認 GitHub Actions 已成功執行每日分析，或稍後再試。</p><p style="font-size:12px;margin-top:10px;color:var(--sand);">${esc(err.message)}</p></div>`;
   } finally {
     const overlay = document.getElementById('loading-overlay');
     if (overlay) overlay.classList.add('hidden');
@@ -863,6 +901,7 @@ document.addEventListener('DOMContentLoaded', () => {
   requestAnimationFrame(forceScrollTop);
   setTimeout(forceScrollTop, 100);
   setTimeout(forceScrollTop, 300);
+  initTheme();
   importPatFromHash();
   loadData();
   initSubscriptions();
@@ -874,6 +913,43 @@ window.addEventListener('load', () => {
   requestAnimationFrame(forceScrollTop);
   setTimeout(forceScrollTop, 100);
 });
+
+// ── Theme: light, dark, or follow the device ─────────────
+
+const THEME_KEY = 'steel_theme';
+const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+function themeChoice() {
+  try {
+    const t = localStorage.getItem(THEME_KEY);
+    return t === 'light' || t === 'dark' ? t : 'system';
+  } catch (_) { return 'system'; }
+}
+
+function applyTheme(choice) {
+  const root = document.documentElement;
+  if (choice === 'light' || choice === 'dark') root.setAttribute('data-theme', choice);
+  else root.removeAttribute('data-theme');
+  document.querySelectorAll('.theme-btn').forEach(b =>
+    b.setAttribute('aria-checked', String(b.dataset.themeChoice === choice)));
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', cssVar('--cream') || '#e3e3e8');
+  drawChart();
+}
+
+function initTheme() {
+  applyTheme(themeChoice());
+  document.querySelectorAll('.theme-btn').forEach(b => b.addEventListener('click', () => {
+    const choice = b.dataset.themeChoice;
+    try {
+      if (choice === 'system') localStorage.removeItem(THEME_KEY);
+      else localStorage.setItem(THEME_KEY, choice);
+    } catch (_) {}
+    applyTheme(choice);
+  }));
+  // While following the device, repaint when the device switches between light and dark.
+  darkQuery.addEventListener('change', () => { if (themeChoice() === 'system') applyTheme('system'); });
+}
 
 // ── Subscriptions: e-mail (Buttondown) and web push (OneSignal) ──
 
