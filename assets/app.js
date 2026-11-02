@@ -160,12 +160,17 @@ function closeBriefing() {
   document.body.classList.remove('brief-open');
 }
 
-function scrollToEl(el) {
+function scrollToEl(el, flash = true) {
   const header = document.querySelector('.masthead');
   const sticky = header && ['sticky', 'fixed'].includes(getComputedStyle(header).position);
   const offset = (sticky ? header.offsetHeight : 0) + 12;
-  const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+  // offsetTop ignores the fade-in transform, so a section that is still sliding
+  // into place lands where it will end up rather than where it is mid-animation.
+  let top = 0;
+  for (let n = el; n; n = n.offsetParent) top += n.offsetTop;
+  const y = Math.max(0, top - offset);
   try { window.scrollTo({ top: y, behavior: 'smooth' }); } catch (_) { window.scrollTo(0, y); }
+  if (!flash) return;
   el.classList.remove('brief-flash');
   void el.offsetWidth;
   el.classList.add('brief-flash');
@@ -896,12 +901,73 @@ async function loadData() {
   }
 }
 
+// ── Section navigation: smooth in-page jumps and the current-section highlight ──
+
+const NAV_SECTIONS = ['prices', 'materials', 'chart', 'forecast', 'analysis', 'news', 'subscribe'];
+
+function setActiveSection(id) {
+  document.querySelectorAll('.tab[data-sec], .nav-link[data-sec]').forEach(a => {
+    const on = a.dataset.sec === id;
+    a.classList.toggle('active', on);
+    if (on) a.setAttribute('aria-current', 'location');
+    else a.removeAttribute('aria-current');
+  });
+}
+
+// The current section is the last one whose top has passed a line 35% down the
+// screen; at the very bottom of the page the last section wins.
+function currentSection() {
+  const line = window.innerHeight * 0.35;
+  let current = null;
+  for (const id of NAV_SECTIONS) {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= line) current = id;
+  }
+  const atBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4;
+  return atBottom ? NAV_SECTIONS[NAV_SECTIONS.length - 1] : current;
+}
+
+function initNav() {
+  document.addEventListener('click', e => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = decodeURIComponent(a.getAttribute('href').slice(1));
+    const target = id && document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    _userInteracted = true;
+    const section = target.closest('.section');
+    if (section) section.classList.add('in');
+    target.classList.add('in');
+    // Section links just move; links to a single card also flash it so the eye finds it.
+    const isSection = NAV_SECTIONS.includes(id);
+    scrollToEl(target, !isSection);
+    if (isSection) setActiveSection(id);
+  });
+
+  let ticking = false;
+  const update = () => { ticking = false; setActiveSection(currentSection()); };
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+
+  // The on-screen keyboard pushes a fixed bottom bar up over the field being typed in.
+  document.addEventListener('focusin', e => {
+    if (e.target.matches('input, textarea, select')) document.body.classList.add('typing');
+  });
+  document.addEventListener('focusout', () => document.body.classList.remove('typing'));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   forceScrollTop();
   requestAnimationFrame(forceScrollTop);
   setTimeout(forceScrollTop, 100);
   setTimeout(forceScrollTop, 300);
   initTheme();
+  initNav();
   importPatFromHash();
   loadData();
   initSubscriptions();

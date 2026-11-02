@@ -1478,3 +1478,93 @@ a.fc-sum-row:hover { background: rgba(var(--copper-rgb), 0.04); }
   .fc-sum-cell { flex-direction: column; align-items: flex-start; gap: 4px; }
   .fc-sum-cell[data-label]::before { content: attr(data-label); font-size: 10px; letter-spacing: 0.12em; color: var(--muted); }
 }
+
+/* ── Section navigation ── */
+.nav-link.active { color: var(--ink); }
+.nav-link.active::after {
+  content: '';
+  display: block;
+  height: 1px;
+  margin-top: 3px;
+  background: var(--copper);
+}
+
+/* Phone tab bar: hidden on wide screens, where the masthead nav does the job. */
+.tabbar { display: none; }
+
+@media (max-width: 768px) {
+  /* The header scrolls away; the tab bar below stays within thumb reach. */
+  .masthead {
+    position: relative;
+    padding-top: calc(14px + env(safe-area-inset-top));
+  }
+  .section, .fc-card, .ts-item { scroll-margin-top: 16px; }
+
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+
+  .tabbar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 150;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    padding: 0 max(4px, env(safe-area-inset-left)) env(safe-area-inset-bottom) max(4px, env(safe-area-inset-right));
+    background: var(--cream);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.06);
+    transition: transform 200ms ease;
+  }
+  body.brief-open .tabbar,
+  body.typing .tabbar { transform: translateY(110%); }
+
+  .tab {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-height: 56px;
+    padding: 7px 0 6px;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .tab svg {
+    width: 22px; height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .tab::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 26%; right: 26%;
+    height: 2px;
+    border-radius: 0 0 2px 2px;
+    background: var(--copper);
+    transform: scaleX(0);
+    transition: transform 200ms ease;
+  }
+  .tab.active { color: var(--ink); font-weight: 600; }
+  .tab.active svg { stroke: var(--copper); }
+  .tab.active::before { transform: scaleX(1); }
+  .tab:active { opacity: 0.6; }
+
+  #run-toast { bottom: calc(76px + env(safe-area-inset-bottom)); }
+
+  /* Forecast summary rows jump to their card: say so. */
+  a.fc-sum-row > .fc-sum-name::after {
+    content: '看詳情 ›';
+    margin-left: 10px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--copper);
+  }
+}
