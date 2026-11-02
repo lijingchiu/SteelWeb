@@ -654,10 +654,12 @@ def extract_json(text: str) -> dict | None:
     text = re.sub(r"^```(?:json)?|```$", "", text.strip(), flags=re.M)
     start, end = text.find("{"), text.rfind("}") + 1
     if start < 0 or end <= start:
+        log(f"  No JSON object in response: {text[:200]!r}")
         return None
     try:
         return json.loads(text[start:end])
-    except json.JSONDecodeError:
+    except json.JSONDecodeError as e:
+        log(f"  JSON parse error: {e}; near {text[start:end][max(0, e.pos - 120):e.pos + 80]!r}")
         return None
 
 
@@ -669,13 +671,17 @@ def valid_forecast(parsed: dict | None) -> bool:
     return good >= 4
 
 
-def call_openai(prompt: str, model: str, web: bool) -> tuple[str, list[dict]]:
+def call_openai(prompt: str, model: str, web: bool, json_mode: bool = False,
+                effort: str = REASONING_EFFORT) -> tuple[str, list[dict]]:
     body = {
         "model": model,
         "input": prompt,
-        "reasoning": {"effort": REASONING_EFFORT},
+        "reasoning": {"effort": effort},
         "max_output_tokens": MAX_OUTPUT_TOKENS,
     }
+    # OpenAI rejects JSON mode together with web search, so it is only used for repairs.
+    if json_mode:
+        body["text"] = {"format": {"type": "json_object"}}
     if web:
         body["tools"] = [{"type": "web_search"}]
     r = requests.post(OPENAI_URL, headers={"Authorization": f"Bearer {OPENAI_API_KEY}"}, json=body, timeout=600)
@@ -724,6 +730,20 @@ def call_openrouter(prompt: str, model: str, web: bool) -> tuple[str, list[dict]
     return msg.get("content") or "", cites
 
 
+def repair_json(text: str, model: str) -> dict | None:
+    """Fix malformed JSON with a cheap JSON-mode call instead of redoing the web research."""
+    log("  Repairing malformed JSON (JSON mode, no web search)")
+    try:
+        fixed, _ = call_openai(
+            "下面這段文字應該是一個 JSON 物件，但格式有錯。請只修正 JSON 語法（例如引號、逗號、括號、跳脫字元），"
+            "保留所有欄位與文字內容原樣，輸出修正後的 JSON：\n\n" + text,
+            model, web=False, json_mode=True, effort="low")
+        return extract_json(fixed)
+    except Exception as e:
+        log(f"  JSON repair failed: {e}")
+        return None
+
+
 def run_analysis(build: callable) -> tuple[dict | None, list[dict], str | None]:
     """build(web_search: bool) -> prompt. Returns (analysis, citations, model label)."""
     for provider, model, web in MODEL_CHAIN:
@@ -740,6 +760,8 @@ def run_analysis(build: callable) -> tuple[dict | None, list[dict], str | None]:
                 text, cites = fn(prompt, model, web)
                 parsed = extract_json(text)
                 log(f"  {len(text)} chars, {len(cites)} citations in {time.time() - t0:.0f}s")
+                if parsed is None and text.strip() and OPENAI_API_KEY:
+                    parsed = repair_json(text, OPENAI_MODEL)
                 if valid_forecast(parsed):
                     label = f"{model}（{'OpenAI API' if provider == 'openai' else 'OpenRouter'}）"
                     return parsed, cites, label
