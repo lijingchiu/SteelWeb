@@ -777,6 +777,35 @@ body.brief-open { overflow: hidden; }
 @keyframes brief-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes brief-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
+/* ── Top stories in the news section ── */
+.ts-list:empty { display: none; }
+.ts-list { margin-bottom: 36px; }
+.ts-head { font-size: 11px; letter-spacing: 0.18em; color: var(--copper); padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
+.ts-item { padding: 20px 10px 18px; border-bottom: 1px solid var(--line); scroll-margin-top: 96px; }
+.ts-top { display: flex; gap: 14px; }
+.ts-num { font-family: var(--font-mono); font-size: 11px; color: var(--copper); padding-top: 5px; flex-shrink: 0; }
+.ts-headline { font-family: var(--font-serif); font-size: 19px; font-weight: 600; line-height: 1.45; color: var(--ink); }
+.ts-sub { font-size: 14px; color: var(--muted); line-height: 1.7; margin-top: 4px; }
+.ts-meta { font-size: 11px; color: var(--copper); letter-spacing: 0.06em; margin-top: 6px; }
+.ts-articles { list-style: none; margin: 12px 0 0 25px; border-left: 2px solid var(--line); }
+.ts-articles a { display: flex; justify-content: space-between; gap: 12px; padding: 7px 12px; color: var(--ink); text-decoration: none; font-size: 13px; line-height: 1.5; }
+.ts-articles a:hover { background: rgba(122, 74, 40, 0.05); }
+.ts-a-title { flex: 1; min-width: 0; }
+.ts-a-src { color: var(--muted); font-size: 11px; white-space: nowrap; }
+.ts-go {
+  margin: 12px 0 0 25px;
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--copper);
+  background: none;
+  border: 1px solid rgba(122, 74, 40, 0.35);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.ts-go:hover { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+
 /* ── Price forecast ── */
 .section-forecast { padding: 56px 64px 56px; }
 
@@ -1252,6 +1281,12 @@ a.fc-sum-row:hover { background: rgba(122, 74, 40, 0.04); }
   .sub-form .btn, #sub-push-btn { width: 100%; justify-content: center; }
   .hero-headline { font-size: 18px; }
   .brief-overlay { align-items: flex-end; padding: 0; }
+  .ts-item { padding: 18px 0 16px; }
+  .ts-headline { font-size: 17px; }
+  .ts-articles { margin-left: 0; }
+  .ts-articles a { flex-direction: column; gap: 2px; padding: 8px 10px; }
+  .ts-a-src { white-space: normal; }
+  .ts-go { margin-left: 0; width: 100%; padding: 10px 14px; }
   .brief-box { max-height: 88vh; padding: 20px 18px 18px; border-left: none; border-right: none; border-bottom: none; }
   .brief-title { font-size: 22px; }
   .brief-headline { font-size: 16px; }

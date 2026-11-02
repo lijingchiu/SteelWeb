@@ -527,6 +527,8 @@ def finalize_top_stories(raw, pool: list[dict]) -> list[dict]:
             "coverage": len(sources) or 1,
             "anchor": anchor,
             "search": str(st.get("search") or "").strip()[:20] if anchor == "materials" else "",
+            "articles": [{k: n[k] for k in ("title", "url", "source", "date")}
+                         for n in items if str(n["url"]).startswith("http")][:6],
             "_order": order,
         })
     stories.sort(key=lambda x: (-x["coverage"], x["_order"]))
@@ -540,7 +542,8 @@ def finalize_top_stories(raw, pool: list[dict]) -> list[dict]:
                 used.add(n["url"])
                 stories.append({"headline": n["title"][:40], "subheadline": " · ".join(x for x in (n["source"], n["date"]) if x),
                                  "url": n["url"], "source": n["source"], "date": n["date"], "coverage": 1,
-                                 "anchor": "news", "search": "", "_order": 99})
+                                 "anchor": "news", "search": "",
+                                 "articles": [{k: n[k] for k in ("title", "url", "source", "date")}], "_order": 99})
     for x in stories:
         x.pop("_order", None)
     return stories

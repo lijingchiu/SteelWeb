@@ -2,7 +2,14 @@
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
+// Scroll resets only apply until the visitor touches the page, so a late
+// load event can never pull them away from where they navigated.
+let _userInteracted = false;
+['pointerdown', 'touchstart', 'wheel', 'keydown'].forEach(ev =>
+  window.addEventListener(ev, () => { _userInteracted = true; }, { capture: true, passive: true, once: true }));
+
 function forceScrollTop() {
+  if (_userInteracted) return;
   try { window.scrollTo({ top: 0, behavior: 'instant' }); } catch (_) { window.scrollTo(0, 0); }
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
@@ -141,8 +148,20 @@ function closeBriefing() {
   document.body.classList.remove('brief-open');
 }
 
-function goToStory(anchor, search) {
-  closeBriefing();
+function scrollToEl(el) {
+  const header = document.querySelector('.masthead');
+  const sticky = header && ['sticky', 'fixed'].includes(getComputedStyle(header).position);
+  const offset = (sticky ? header.offsetHeight : 0) + 12;
+  const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+  try { window.scrollTo({ top: y, behavior: 'smooth' }); } catch (_) { window.scrollTo(0, y); }
+  el.classList.remove('brief-flash');
+  void el.offsetWidth;
+  el.classList.add('brief-flash');
+  setTimeout(() => el.classList.remove('brief-flash'), 2400);
+}
+
+function goToAnchor(anchor, search) {
+  _userInteracted = true;
   if (anchor === 'materials' && search) {
     const input = document.getElementById('mat-search');
     if (input) {
@@ -153,12 +172,51 @@ function goToStory(anchor, search) {
   }
   const target = document.getElementById(anchor) || document.getElementById('news');
   if (!target) return;
+  const section = target.closest('.section');
+  if (section) section.classList.add('in');
   target.classList.add('in');
-  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  target.classList.remove('brief-flash');
-  void target.offsetWidth;
-  target.classList.add('brief-flash');
-  setTimeout(() => target.classList.remove('brief-flash'), 2400);
+  // Wait for the modal to leave the layout before measuring.
+  requestAnimationFrame(() => requestAnimationFrame(() => scrollToEl(target)));
+}
+
+function goToStory(i) {
+  closeBriefing();
+  goToAnchor(document.getElementById(`story-${i}`) ? `story-${i}` : 'news');
+}
+
+const ANCHOR_LABELS = {
+  prices: '看鋼材報價', materials: '看營建材料行情', chart: '看價格走勢', forecast: '看盤價預測',
+  analysis: '看市場深度分析', news: '',
+};
+
+function populateTopStories(data) {
+  const el = document.getElementById('top-stories');
+  if (!el) return;
+  const stories = Array.isArray(data.top_stories) ? data.top_stories : [];
+  if (!stories.length) { el.innerHTML = ''; return; }
+  el.innerHTML = `<div class="ts-head">今日頭條 · 依報導媒體家數排序</div>` + stories.map((st, i) => {
+    const articles = Array.isArray(st.articles) && st.articles.length
+      ? st.articles
+      : (/^https?:\/\//.test(st.url || '') ? [{ title: st.headline, url: st.url, source: st.source, date: st.date }] : []);
+    const label = st.anchor && st.anchor.startsWith('fc-') ? '看相關盤價預測' : ANCHOR_LABELS[st.anchor] || '';
+    return `<article class="ts-item" id="story-${i}">
+        <div class="ts-top">
+          <span class="ts-num">${String(i + 1).padStart(2, '0')}</span>
+          <div class="ts-body">
+            <h3 class="ts-headline">${esc(st.headline)}</h3>
+            ${st.subheadline ? `<p class="ts-sub">${esc(st.subheadline)}</p>` : ''}
+            <div class="ts-meta">${st.coverage > 1 ? `${st.coverage} 家媒體報導` : '1 家媒體報導'}${st.date ? ` · ${esc(st.date)}` : ''}</div>
+          </div>
+        </div>
+        ${articles.length ? `<ul class="ts-articles">${articles.map(a => `<li><a href="${safeUrl(a.url)}" target="_blank" rel="noopener">
+            <span class="ts-a-title">${esc(a.title)}</span><span class="ts-a-src">${esc([a.source, a.date].filter(Boolean).join(' · '))} ↗</span></a></li>`).join('')}</ul>` : ''}
+        ${label ? `<button type="button" class="ts-go" data-anchor="${esc(st.anchor)}" data-search="${esc(st.search || '')}">${label} →</button>` : ''}
+      </article>`;
+  }).join('');
+  el.onclick = e => {
+    const b = e.target.closest('.ts-go');
+    if (b) goToAnchor(b.dataset.anchor, b.dataset.search);
+  };
 }
 
 function openBriefing(data) {
@@ -189,7 +247,7 @@ function openBriefing(data) {
           </li>`).join('')}
       </ol>
       <div class="brief-foot">
-        <span>點標題看網站內的分析，點 ↗ 開啟新聞原文</span>
+        <span>點標題看網站內的相關報導，點 ↗ 開啟新聞原文</span>
         <button type="button" class="btn btn-solid brief-continue">繼續瀏覽</button>
       </div>
     </div>`;
@@ -200,17 +258,13 @@ function openBriefing(data) {
     if (e.target === wrap || e.target.closest('.brief-close') || e.target.closest('.brief-continue')) { closeBriefing(); return; }
     if (e.target.closest('.brief-go')) return;
     const item = e.target.closest('.brief-item');
-    if (item) {
-      const st = stories[Number(item.dataset.i)];
-      goToStory(st.anchor, st.search);
-    }
+    if (item) goToStory(Number(item.dataset.i));
   });
   wrap.addEventListener('keydown', e => {
     const item = e.target.closest && e.target.closest('.brief-item');
     if (item && e.target === item && (e.key === 'Enter' || e.key === ' ')) {
       e.preventDefault();
-      const st = stories[Number(item.dataset.i)];
-      goToStory(st.anchor, st.search);
+      goToStory(Number(item.dataset.i));
     }
   });
   wrap.querySelector('.brief-box').focus({ preventScroll: true });
@@ -707,6 +761,7 @@ async function loadData() {
     populateAnalysis(data);
     populateForecast(data);
     populateNews(data);
+    populateTopStories(data);
     const [materials, accuracy] = await Promise.all([fetchJson('data/materials.json'), fetchJson('data/accuracy.json')]);
     populateMaterials(materials);
     populateAccuracy(accuracy);
