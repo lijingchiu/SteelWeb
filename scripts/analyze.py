@@ -5,7 +5,7 @@ Taiwan Steel & Construction Materials Analysis.
 1. Fetches every material price series (scripts/materials.py) and the live
    USD/TWD rate.
 2. Scores past forecasts against newly published monthly prices.
-3. Asks the model (OpenAI GPT-6.1 Sol with web search; OpenRouter as
+3. Asks the model (OpenAI GPT-6.1 Terra with web search; OpenRouter as
    fallback) for a weekly + next-month price forecast and market analysis.
 """
 import json
@@ -23,13 +23,13 @@ from materials import build_materials, taiwan_prices_from_materials, write_outpu
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 OPENAI_URL = "https://api.openai.com/v1/responses"
-OPENAI_MODEL = "gpt-6.1-sol"
+OPENAI_MODEL = "gpt-6.1-terra"
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 # (provider, model, use web search). Tried in order until one returns a valid forecast.
 MODEL_CHAIN = [
     ("openai",     OPENAI_MODEL,                True),
-    ("openrouter", "openai/gpt-6.1-sol",        True),
+    ("openrouter", "openai/gpt-6.1-terra",      True),
     ("openrouter", "openai/gpt-6-luna",         True),
     ("openrouter", "google/gemini-2.5-flash",   False),
 ]

@@ -309,21 +309,63 @@ const FC_ITEMS = [
 ];
 const DIR_LABELS = { up: '看漲', down: '看跌', stable: '持平' };
 
+const DIR_ARROWS = { up: '▲', down: '▼', stable: '◆' };
+
+function fcDir(f) {
+  return ['up', 'down', 'stable'].includes(f?.direction) ? f.direction : null;
+}
+
+function fcBadge(f) {
+  const dir = fcDir(f);
+  return `<span class="trend-badge fc-badge ${dir || 'stable'}">${dir ? `${DIR_ARROWS[dir]} ${DIR_LABELS[dir]}` : '-'}</span>`;
+}
+
+// On phones the long reasoning is collapsed behind a toggle; desktop shows it open.
+function fcWide() {
+  return window.matchMedia('(min-width: 769px)').matches;
+}
+
 function fcBlock(label, f) {
-  const dir = ['up', 'down', 'stable'].includes(f?.direction) ? f.direction : null;
+  const open = fcWide() ? ' open' : '';
   return `<div class="fc-block">
       <div class="fc-block-head">
         <span class="fc-block-label">${esc(label)}</span>
-        <span class="trend-badge ${dir || 'stable'}">${dir ? DIR_LABELS[dir] : '-'}</span>
+        ${fcBadge(f)}
       </div>
       <div class="fc-est">${esc(f?.change_estimate || '-')}</div>
-      <p class="fc-reason">${esc(f?.reason || '預測資料將於下次分析執行後產生')}</p>
+      <details class="fc-why"${open}>
+        <summary>看推論</summary>
+        <p class="fc-reason">${esc(f?.reason || '預測資料將於下次分析執行後產生')}</p>
+      </details>
+    </div>`;
+}
+
+function fcSummary(pf, weekLabel) {
+  const monthHead = (Object.values(pf.targets || {})[0] || {}).target_month;
+  const weekHead = `${weekLabel}行情`;
+  const monthLabel = monthHead ? `${monthHead} 月均價` : '下一期月均價';
+  const rows = FC_ITEMS.map(({ key, name }) => {
+    const f = pf.items[key] || {};
+    const cell = (g, cls, label) => `<div class="fc-sum-cell ${cls}" data-label="${esc(label)}">${fcBadge(g)}<span class="fc-sum-est">${esc(g?.change_estimate || '-')}</span></div>`;
+    return `<a class="fc-sum-row" href="#fc-${key}">
+        <span class="fc-sum-name">${esc(name)}</span>
+        ${cell(f.week, 'fc-sum-week', weekHead)}${cell(f.next_month, 'fc-sum-month', monthLabel)}
+      </a>`;
+  }).join('');
+  return `<div class="fc-summary">
+      <div class="fc-sum-row fc-sum-head">
+        <span class="fc-sum-name">品項</span>
+        <span class="fc-sum-cell">${esc(weekHead)}</span>
+        <span class="fc-sum-cell">${esc(monthLabel)}</span>
+      </div>
+      ${rows}
     </div>`;
 }
 
 function populateForecast(data) {
   const grid = document.getElementById('fc-grid');
   const dateEl = document.getElementById('forecast-date');
+  const summary = document.getElementById('fc-summary');
   const pf = data.price_forecast;
   const legacy = data.tomorrow_forecast;
   if (!grid) return;
@@ -331,12 +373,15 @@ function populateForecast(data) {
   if (pf && pf.items) {
     const weekLabel = pf.week_label || '本週';
     if (dateEl) dateEl.textContent = `${weekLabel} ${pf.week_range || ''} · 發布於 ${data.date || '-'}`;
+    if (summary) summary.innerHTML = fcSummary(pf, weekLabel);
     grid.innerHTML = FC_ITEMS.map(({ key, name, sub }) => {
       const f = pf.items[key] || {};
       const tgt = (pf.targets || {})[key];
       const monthLabel = tgt ? `下一期月均價 ${tgt.target_month}` : '下一期月均價';
-      const note = f.revision_note ? `<div class="fc-note">與前次比較：${esc(f.revision_note)}</div>` : '';
-      return `<div class="fc-card">
+      const note = f.revision_note
+        ? `<details class="fc-why fc-note-wrap"${fcWide() ? ' open' : ''}><summary>與前次預測比較</summary><div class="fc-note">${esc(f.revision_note)}</div></details>`
+        : '';
+      return `<div class="fc-card" id="fc-${key}">
           <div class="fc-head"><div><div class="fc-name">${name}</div><div class="fc-sub">${sub}</div></div></div>
           ${fcBlock(`${weekLabel}行情 ${pf.week_range || ''}`, f.week)}
           ${fcBlock(monthLabel, f.next_month)}
@@ -358,8 +403,8 @@ function populateForecast(data) {
   if (cites) {
     const list = Array.isArray(data.web_citations) ? data.web_citations : [];
     cites.innerHTML = list.length
-      ? `<div class="fc-cites-label">AI 搜尋引用來源</div>` + list.map(c =>
-          `<a href="${safeUrl(c.url)}" target="_blank" rel="noopener">${esc(c.title)}</a>`).join('')
+      ? `<details class="fc-why"${fcWide() ? ' open' : ''}><summary>AI 搜尋引用來源（${list.length}）</summary><div class="fc-cites-list">` +
+        list.map(c => `<a href="${safeUrl(c.url)}" target="_blank" rel="noopener">${esc(c.title)}</a>`).join('') + '</div></details>'
       : '';
   }
 }
