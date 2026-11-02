@@ -86,7 +86,8 @@ def build_push(d: dict, site_url: str) -> dict:
     head, sub = headline_of(d)
     date = d.get("date", "")
     title = f"鋼市快報 {date[5:].replace('-', '/')}" if date else "鋼市快報"
-    return {"title": title, "text": head, "subtitle": sub, "url": site_url}
+    # from=push makes the site open today's top-stories briefing on arrival.
+    return {"title": title, "text": head, "subtitle": sub, "url": site_url + "?from=push"}
 
 
 def build_email(d: dict, materials: dict, site_url: str) -> dict:
@@ -154,7 +155,7 @@ def send_push(app_id: str, key: str, push: dict, at: datetime | None) -> dict:
         "headings": {"en": push["title"], "zh-Hant": push["title"]},
         "contents": {"en": push["text"], "zh-Hant": push["text"]},
         "url": push["url"],
-        "chrome_web_icon": push["url"] + "assets/icon-192.png",
+        "chrome_web_icon": push["url"].split("?")[0] + "assets/icon-192.png",
     }
     if push.get("subtitle"):
         body["subtitle"] = {"en": push["subtitle"], "zh-Hant": push["subtitle"]}

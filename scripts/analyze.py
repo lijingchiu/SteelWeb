@@ -473,14 +473,77 @@ def headline_prices_for_prompt(tp: dict) -> str:
     return "\n".join(lines)
 
 
-def news_for_prompt(feed: list[dict], headlines: list[dict]) -> str:
-    lines = ["【近 14 天公開新聞標題（Google 新聞）】"]
+STORY_ANCHORS = (
+    ["prices", "materials", "chart", "forecast", "analysis", "news"]
+    + [f"fc-{k}" for k, _, _ in FORECAST_ITEMS]
+)
+TOP_STORIES_MIN, TOP_STORIES_MAX = 3, 5
+
+
+def news_pool(feed: list[dict], headlines: list[dict]) -> list[dict]:
+    """Every headline the model may cite, with a stable id (N1, N2, ...)."""
+    pool = []
     for n in feed[:60]:
-        lines.append(f"  {n.get('date', '')}｜{n.get('source', '')}｜{n['title']}")
-    if headlines:
-        lines.append("\n【SNN 環宇鋼鐵網 最新標題（內文為會員限定，只有標題）】")
-        lines.extend(f"  {h['title']}" for h in headlines)
+        pool.append({"title": n["title"], "url": n.get("url", ""), "source": n.get("source", ""), "date": n.get("date", "")})
+    for h in headlines:
+        pool.append({"title": h["title"], "url": h.get("url", ""), "source": h.get("source") or "SNN 環宇鋼鐵網", "date": h.get("date", "")})
+    for i, n in enumerate(pool, 1):
+        n["id"] = f"N{i}"
+    return pool
+
+
+def news_for_prompt(feed: list[dict], headlines: list[dict]) -> str:
+    lines = ["【近 14 天公開新聞標題（Google 新聞與 SNN 環宇鋼鐵網；SNN 內文為會員限定，只有標題）】",
+             "  格式：編號｜日期｜媒體｜標題"]
+    for n in news_pool(feed, headlines):
+        lines.append(f"  {n['id']}｜{n['date'] or '-'}｜{n['source'] or '-'}｜{n['title']}")
     return "\n".join(lines)
+
+
+def finalize_top_stories(raw, pool: list[dict]) -> list[dict]:
+    """
+    Turn the model's story picks into 3-5 verified entries. Attention is the number
+    of distinct outlets among the cited headlines, counted here from the real feed,
+    so the model cannot inflate it; links always come from the cited headlines.
+    """
+    by_id = {n["id"]: n for n in pool}
+    stories = []
+    for order, st in enumerate(raw if isinstance(raw, list) else []):
+        if not isinstance(st, dict):
+            continue
+        items = [by_id[i] for i in dict.fromkeys(str(x).strip() for x in st.get("ids") or []) if i in by_id]
+        head = str(st.get("headline") or "").strip()
+        if not items or not head:
+            continue
+        sources = list(dict.fromkeys(n["source"] for n in items if n["source"]))
+        link = next((n for n in items if str(n["url"]).startswith("http")), None)
+        anchor = st.get("anchor") if st.get("anchor") in STORY_ANCHORS else "news"
+        stories.append({
+            "headline": head[:40],
+            "subheadline": str(st.get("subheadline") or "").strip()[:60],
+            "url": link["url"] if link else "",
+            "source": link["source"] if link else (sources[0] if sources else ""),
+            "date": max((n["date"] for n in items if n["date"]), default=""),
+            "coverage": len(sources) or 1,
+            "anchor": anchor,
+            "search": str(st.get("search") or "").strip()[:20] if anchor == "materials" else "",
+            "_order": order,
+        })
+    stories.sort(key=lambda x: (-x["coverage"], x["_order"]))
+    stories = stories[:TOP_STORIES_MAX]
+    if len(stories) < TOP_STORIES_MIN:
+        used = {x["url"] for x in stories}
+        for n in pool:
+            if len(stories) >= TOP_STORIES_MIN:
+                break
+            if str(n["url"]).startswith("http") and n["url"] not in used:
+                used.add(n["url"])
+                stories.append({"headline": n["title"][:40], "subheadline": " · ".join(x for x in (n["source"], n["date"]) if x),
+                                 "url": n["url"], "source": n["source"], "date": n["date"], "coverage": 1,
+                                 "anchor": "news", "search": "", "_order": 99})
+    for x in stories:
+        x.pop("_order", None)
+    return stories
 
 
 def build_prompt(date_str: str, week_label: str, week_range: str, targets: dict, tp: dict,
@@ -534,6 +597,11 @@ def build_prompt(date_str: str, week_label: str, week_range: str, targets: dict,
 - 不要被單一一則新聞標題左右。若方向與你最近一次預測不同，revision_note 必須說明是哪一則新資訊造成改變；沒有新資訊就不應該翻轉方向。
 - 參考你過去的命中率與誤判，修正判斷方式。
 - 注意各項資料的月份不同（例如粗鋼產量比鋼價晚兩個月），引用時必須寫出正確月份。
+- top_stories 是讀者點開推播通知後第一眼看到的「今日鋼市頭條」。請從上方新聞清單中，找出最近 3 天內與台灣鋼鐵、營建材料市場相關、被最多家不同媒體報導（最多人關注）的事件，依關注程度排序列出 5～7 則。
+  每則的 ids 列出報導同一事件的所有新聞編號（例如 ["N1","N4","N7"]），系統會依不同媒體的家數計算熱度並重新排序，列錯或灌入不相關編號會被視為錯誤；
+  headline 是記者式主標題（14～28 字，含具體主體與數字），subheadline 是副標題（40 字內，補充影響或背景）；
+  anchor 指向本網站最相關的段落：prices（鋼材報價表）、materials（營建材料行情）、chart（價格走勢圖）、forecast（盤價預測總覽）、fc-north_scrap_price／fc-billet_price／fc-fengxing_rebar_price／fc-h_beam_price／fc-csc_wire_rod_price（各材料預測）、analysis（市場深度分析）、news（新聞列表）；
+  anchor 為 materials 時，search 填一個可在營建材料清單中搜尋的關鍵字（例如「鐵礦砂」「水泥」「銅」），其他情況留空。
 - headline 是今天推播通知與電子報的主標題，請像財經記者下新聞標題：18～32 字，點出今天最重要、最新且已查證的一則市場動態，盡量包含具體主體與數字（例如「豐興鋼筋每噸漲200元至18,500元 廢鋼成本推升」）；不要誇張、不要問句、不要用「震撼」「必看」之類字眼。headline_sub 用 40 字內補充第二重要的動態或對下週行情的判斷。
 - 引用本提示提供的資料時，稱為「官方數據」或寫出來源名稱（例如台灣金屬行情網、主計總處），不要寫「題供」或「提示提供」。
 - JSON 字串內不要使用 markdown 連結或引用標記；你實際查閱過的網頁請列在 sources。
@@ -556,6 +624,9 @@ def build_prompt(date_str: str, week_label: str, week_range: str, targets: dict,
     "overall_basis": "<綜合推論：參考了哪些時事與數據、多空力量對比與權重、推論順序，250字內>"
   }},
   "risk_factors": ["<風險因素1>", "<風險因素2>", "<風險因素3>"],
+  "top_stories": [
+    {{"ids": ["<新聞編號>", "..."], "headline": "<主標題>", "subheadline": "<副標題>", "anchor": "<段落代號>", "search": "<僅 materials 時填>"}}
+  ],
   "headline": "<記者式新聞標題，18～32字>",
   "headline_sub": "<副標，40字內>",
   "summary": "<今日市場總結，150字內>",
@@ -748,6 +819,9 @@ def main():
 
     pf = analysis.setdefault("price_forecast", {})
     pf["week_label"], pf["week_range"], pf["targets"] = week_label, week_range, targets
+
+    analysis["top_stories"] = finalize_top_stories(analysis.get("top_stories"), news_pool(feed, headlines))
+    log(f"Top stories: {[(x['coverage'], x['headline']) for x in analysis['top_stories']]}")
 
     news_sources = [{k: n.get(k, "") for k in ("title", "url", "source", "date")} for n in feed[:24]]
     news_sources += headlines[:12]

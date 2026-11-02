@@ -122,6 +122,107 @@ function populateHeadline(data) {
   if (!el) return;
   el.textContent = data.headline || '';
   el.hidden = !data.headline;
+  const hasStories = Array.isArray(data.top_stories) && data.top_stories.length > 0;
+  el.classList.toggle('clickable', hasStories);
+  if (hasStories) {
+    el.title = '查看今日鋼市頭條';
+    el.setAttribute('role', 'button');
+    el.tabIndex = 0;
+    el.onclick = () => openBriefing(data);
+    el.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBriefing(data); } };
+  }
+}
+
+// ── Today's top-stories briefing (opened from a push notification) ──
+
+function closeBriefing() {
+  const el = document.getElementById('briefing');
+  if (el) el.remove();
+  document.body.classList.remove('brief-open');
+}
+
+function goToStory(anchor, search) {
+  closeBriefing();
+  if (anchor === 'materials' && search) {
+    const input = document.getElementById('mat-search');
+    if (input) {
+      input.value = search;
+      matState.q = search;
+      renderMaterials();
+    }
+  }
+  const target = document.getElementById(anchor) || document.getElementById('news');
+  if (!target) return;
+  target.classList.add('in');
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  target.classList.remove('brief-flash');
+  void target.offsetWidth;
+  target.classList.add('brief-flash');
+  setTimeout(() => target.classList.remove('brief-flash'), 2400);
+}
+
+function openBriefing(data) {
+  const stories = Array.isArray(data.top_stories) ? data.top_stories : [];
+  if (!stories.length) return;
+  closeBriefing();
+  const date = (data.date || '').slice(5).replace('-', '/');
+  const wrap = document.createElement('div');
+  wrap.id = 'briefing';
+  wrap.className = 'brief-overlay';
+  wrap.innerHTML = `<div class="brief-box" role="dialog" aria-modal="true" aria-labelledby="brief-title" tabindex="-1">
+      <div class="brief-head">
+        <div>
+          <div class="kicker">TODAY'S HEADLINES · ${esc(date)}</div>
+          <h3 class="brief-title" id="brief-title">今日鋼市頭條</h3>
+        </div>
+        <button type="button" class="brief-close" aria-label="關閉">✕</button>
+      </div>
+      <ol class="brief-list">
+        ${stories.map((st, i) => `<li class="brief-item" role="button" tabindex="0" data-i="${i}">
+            <span class="brief-num">${String(i + 1).padStart(2, '0')}</span>
+            <div class="brief-text">
+              <div class="brief-headline">${esc(st.headline)}</div>
+              ${st.subheadline ? `<div class="brief-sub">${esc(st.subheadline)}</div>` : ''}
+            </div>
+            ${/^https?:\/\//.test(st.url || '') ? `<a class="brief-go" href="${safeUrl(st.url)}" target="_blank" rel="noopener"
+                 aria-label="開啟新聞原文：${esc(st.source || '新聞網站')}" title="開啟新聞原文${st.source ? '（' + esc(st.source) + '）' : ''}">↗</a>` : ''}
+          </li>`).join('')}
+      </ol>
+      <div class="brief-foot">
+        <span>點標題看網站內的分析，點 ↗ 開啟新聞原文</span>
+        <button type="button" class="btn btn-solid brief-continue">繼續瀏覽</button>
+      </div>
+    </div>`;
+  document.body.appendChild(wrap);
+  document.body.classList.add('brief-open');
+
+  wrap.addEventListener('click', e => {
+    if (e.target === wrap || e.target.closest('.brief-close') || e.target.closest('.brief-continue')) { closeBriefing(); return; }
+    if (e.target.closest('.brief-go')) return;
+    const item = e.target.closest('.brief-item');
+    if (item) {
+      const st = stories[Number(item.dataset.i)];
+      goToStory(st.anchor, st.search);
+    }
+  });
+  wrap.addEventListener('keydown', e => {
+    const item = e.target.closest && e.target.closest('.brief-item');
+    if (item && e.target === item && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      const st = stories[Number(item.dataset.i)];
+      goToStory(st.anchor, st.search);
+    }
+  });
+  wrap.querySelector('.brief-box').focus({ preventScroll: true });
+}
+
+function maybeOpenBriefingFromPush(data) {
+  const params = new URLSearchParams(location.search);
+  if (params.get('from') !== 'push') return;
+  params.delete('from');
+  const qs = params.toString();
+  history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+  openBriefing(data);
 }
 
 function populateAnalysis(data) {
@@ -609,6 +710,7 @@ async function loadData() {
     const [materials, accuracy] = await Promise.all([fetchJson('data/materials.json'), fetchJson('data/accuracy.json')]);
     populateMaterials(materials);
     populateAccuracy(accuracy);
+    maybeOpenBriefingFromPush(data);
     try { await buildChart(data); } catch (e) { console.error('Chart failed:', e); }
   } catch (err) {
     console.error('Failed to load data:', err);
@@ -991,7 +1093,7 @@ async function pollWorkflow(pat, enableBtns) {
 
 // ── Keyboard: ESC closes modal ────────────────────────────
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRunModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeRunModal(); closeBriefing(); } });
 
 // ── Expose all functions to window for inline onclick ─────
 

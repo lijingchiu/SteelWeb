@@ -687,6 +687,96 @@ button { font-family: inherit; }
 .sub-status.ok { color: #2f5a3e; }
 .sub-status.error { color: var(--down); }
 
+/* ── Top-stories briefing ── */
+.hero-headline.clickable { cursor: pointer; }
+.hero-headline.clickable::after { content: ' ›'; color: var(--copper); }
+.hero-headline.clickable:hover { color: var(--copper); }
+
+body.brief-open { overflow: hidden; }
+.brief-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(28, 21, 15, 0.48);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: brief-fade 0.2s ease;
+}
+.brief-box {
+  width: 100%;
+  max-width: 600px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--copper);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  padding: 26px 28px 22px;
+  animation: brief-rise 0.25s ease;
+}
+.brief-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.brief-title { font-family: var(--font-serif); font-size: 26px; font-weight: 700; color: var(--ink); margin-top: 6px; }
+.brief-close {
+  background: none; border: none; font-size: 18px; color: var(--muted);
+  cursor: pointer; padding: 4px 6px; line-height: 1;
+}
+.brief-close:hover { color: var(--ink); }
+.brief-box:focus { outline: none; }
+.brief-list { list-style: none; margin: 18px 0 0; border-top: 1px solid var(--ink); }
+.brief-item {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  padding: 16px 44px 16px 4px;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.brief-item:hover, .brief-item:focus-visible { background: rgba(122, 74, 40, 0.06); outline: none; }
+.brief-num { font-family: var(--font-mono); font-size: 11px; color: var(--copper); padding-top: 4px; flex-shrink: 0; }
+.brief-headline { font-family: var(--font-serif); font-size: 17px; font-weight: 600; line-height: 1.45; color: var(--ink); }
+.brief-sub { font-size: 13px; color: var(--muted); line-height: 1.7; margin-top: 4px; }
+.brief-go {
+  position: absolute;
+  top: 12px;
+  right: 2px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--copper);
+  font-size: 15px;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.4);
+  transition: all 0.2s ease;
+}
+.brief-go:hover { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+.brief-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.section, .fc-card { scroll-margin-top: 96px; }
+.brief-flash { animation: brief-flash 2.4s ease; }
+@keyframes brief-flash {
+  0%, 30% { box-shadow: inset 0 0 0 2px var(--copper); background-color: rgba(122, 74, 40, 0.08); }
+  100% { box-shadow: inset 0 0 0 2px transparent; }
+}
+@keyframes brief-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes brief-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
 /* ── Price forecast ── */
 .section-forecast { padding: 56px 64px 56px; }
 
@@ -1161,6 +1251,13 @@ a.fc-sum-row:hover { background: rgba(122, 74, 40, 0.04); }
   .sub-form { flex-direction: column; }
   .sub-form .btn, #sub-push-btn { width: 100%; justify-content: center; }
   .hero-headline { font-size: 18px; }
+  .brief-overlay { align-items: flex-end; padding: 0; }
+  .brief-box { max-height: 88vh; padding: 20px 18px 18px; border-left: none; border-right: none; border-bottom: none; }
+  .brief-title { font-size: 22px; }
+  .brief-headline { font-size: 16px; }
+  .brief-sub { font-size: 13px; }
+  .brief-foot { flex-direction: column-reverse; align-items: stretch; text-align: center; }
+  .brief-foot .btn { width: 100%; justify-content: center; }
   .forecast-grid { gap: 12px; }
   .fc-overall { margin-top: 12px; }
   .fc-name { font-size: 17px; }
