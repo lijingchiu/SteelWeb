@@ -487,7 +487,24 @@ function fcWide() {
   return window.matchMedia('(min-width: 769px)').matches;
 }
 
-function fcBlock(label, f) {
+const SCEN_LABELS = { up: '漲', stable: '持平', down: '跌' };
+
+// Probability bar for the three possible outcomes of the next monthly average.
+function fcScenarios(f, ens) {
+  const sc = f?.scenarios;
+  if (!sc) return '';
+  const probs = ['up', 'stable', 'down'].map(d => [d, Number(sc[d]?.prob) || 0]);
+  if (!probs.some(([, p]) => p > 0)) return '';
+  const bar = probs.map(([d, p]) => p > 0 ? `<span class="fc-scen-${d}" style="width:${p}%"></span>` : '').join('');
+  const legend = probs.map(([d, p]) => `<span class="fc-scen-key fc-scen-key-${d}">${SCEN_LABELS[d]} ${p}%</span>`).join('');
+  const agree = ens && ens.runs > 1 ? `<div class="fc-scen-note">${ens.runs} 次獨立分析中，${ens.month_agree} 次判斷方向相同</div>` : '';
+  return `<div class="fc-scen" title="各種結果的機率">
+      <div class="fc-scen-bar">${bar}</div>
+      <div class="fc-scen-legend">${legend}</div>${agree}
+    </div>`;
+}
+
+function fcBlock(label, f, extra = '') {
   const open = fcWide() ? ' open' : '';
   return `<div class="fc-block">
       <div class="fc-block-head">
@@ -495,6 +512,7 @@ function fcBlock(label, f) {
         ${fcBadge(f)}
       </div>
       <div class="fc-est">${esc(f?.change_estimate || '-')}</div>
+      ${extra}
       <details class="fc-why"${open}>
         <summary>看推論</summary>
         <p class="fc-reason">${esc(f?.reason || '預測資料將於下次分析執行後產生')}</p>
@@ -536,6 +554,7 @@ function populateForecast(data) {
     const weekLabel = pf.week_label || '本週';
     if (dateEl) dateEl.textContent = `${weekLabel} ${pf.week_range || ''} · 發布於 ${data.date || '-'}`;
     if (summary) summary.innerHTML = fcSummary(pf, weekLabel);
+    const factsById = Object.fromEntries(((data.research || {}).facts || []).map(x => [x.id, x]));
     grid.innerHTML = FC_ITEMS.map(({ key, name, sub }) => {
       const f = pf.items[key] || {};
       const tgt = (pf.targets || {})[key];
@@ -546,7 +565,8 @@ function populateForecast(data) {
       return `<div class="fc-card" id="fc-${key}">
           <div class="fc-head"><div><div class="fc-name">${name}</div><div class="fc-sub">${sub}</div></div></div>
           ${fcBlock(`${weekLabel}行情 ${pf.week_range || ''}`, f.week)}
-          ${fcBlock(monthLabel, f.next_month)}
+          ${fcBlock(monthLabel, f.next_month, fcScenarios(f.next_month, f.ensemble))}
+          ${fcRisk(f, factsById)}
           ${note}
         </div>`;
     }).join('');
@@ -560,6 +580,8 @@ function populateForecast(data) {
 
   const overall = document.getElementById('fc-overall-basis');
   if (overall) overall.textContent = (pf || legacy || {}).overall_basis || '預測資料將於下次分析執行後產生';
+  const research = document.getElementById('fc-research');
+  if (research) research.innerHTML = researchHtml(data.research);
 
   const cites = document.getElementById('fc-cites');
   if (cites) {
@@ -569,6 +591,52 @@ function populateForecast(data) {
         list.map(c => `<a href="${safeUrl(c.url)}" target="_blank" rel="noopener">${esc(c.title)}</a>`).join('') + '</div></details>'
       : '';
   }
+}
+
+function factLine(fx) {
+  const n = fx.source_count || (fx.sources || []).length;
+  const links = (fx.sources || []).map(s => `<a href="${safeUrl(s.url)}" target="_blank" rel="noopener">${esc(s.title || '來源')}</a>`).join('、');
+  return `<li class="rs-fact">
+      <span class="rs-type rs-type-${esc(fx.type)}">${esc(fx.type)}</span>
+      <span class="rs-text">${esc(fx.fact)}</span>
+      <span class="rs-meta">${fx.date ? esc(fx.date) + ' · ' : ''}${n >= 2 ? `${n} 個網站互相印證` : '只有 1 個來源'}${links ? ' · ' + links : ''}</span>
+    </li>`;
+}
+
+function fcRisk(f, factsById) {
+  const facts = (f.evidence || []).map(id => factsById[id]).filter(Boolean);
+  if (!f.counterpoint && !f.watch && !facts.length) return '';
+  const rows = [];
+  if (facts.length) rows.push(`<div class="fc-risk-k">主要根據的消息</div><ul class="rs-list">${facts.map(factLine).join('')}</ul>`);
+  if (f.counterpoint) rows.push(`<div class="fc-risk-k">可能看錯的地方</div><p class="fc-reason">${esc(f.counterpoint)}</p>`);
+  if (f.watch) rows.push(`<div class="fc-risk-k">接下來要留意</div><p class="fc-reason">${esc(f.watch)}</p>`);
+  return `<details class="fc-why fc-risk"${fcWide() ? ' open' : ''}><summary>根據與風險</summary>${rows.join('')}</details>`;
+}
+
+const CHAIN_STATUS = { '正在發生': 'on', '沒有發生': 'off', '尚待觀察': 'wait' };
+
+function researchHtml(r) {
+  if (!r || !(r.facts || []).length) return '';
+  const facts = [...r.facts].sort((a, b) => (b.source_count || 0) - (a.source_count || 0));
+  const checked = facts.filter(x => (x.source_count || 0) >= 2).length;
+  const parts = [`<div class="rs-sec"><div class="fc-risk-k">查證過的消息（${facts.length} 則，其中 ${checked} 則有兩個以上網站互相印證）</div><ul class="rs-list">${facts.map(factLine).join('')}</ul></div>`];
+  const links = (r.links || []).filter(x => x.strength !== '弱或不成立');
+  const chains = r.chains || [];
+  if (links.length || chains.length) {
+    const hist = links.map(x => `<li><b>${esc(x.cause_name)} → ${esc(x.effect_name)}</b>：過去${x.lag ? '前者先動、後者下個月才跟' : '同一個月一起漲跌'}，關聯${esc(x.strength)}</li>`).join('');
+    const now = chains.map(c => `<li><span class="rs-chain rs-chain-${CHAIN_STATUS[c.status] || 'wait'}">${esc(c.status)}</span> <b>${esc(c.chain)}</b>${c.note ? '：' + esc(c.note) : ''}</li>`).join('');
+    parts.push(`<div class="rs-sec"><div class="fc-risk-k">原物料連動核對</div>
+        ${hist ? `<p class="rs-sub">歷史上確實會一起動的組合：</p><ul class="rs-plain">${hist}</ul>` : ''}
+        ${now ? `<p class="rs-sub">這個月的狀況：</p><ul class="rs-plain">${now}</ul>` : ''}</div>`);
+  }
+  if ((r.conflicts || []).length) {
+    parts.push(`<div class="rs-sec"><div class="fc-risk-k">各家報導說法不一的地方</div><ul class="rs-plain">${r.conflicts.map(c =>
+      `<li><b>${esc(c.topic)}</b>：${esc(c.versions)}<br><span class="rs-judge">採用：${esc(c.judgment)}</span></li>`).join('')}</ul></div>`);
+  }
+  if ((r.gaps || []).length) {
+    parts.push(`<div class="rs-sec"><div class="fc-risk-k">查不到、尚未確認的</div><ul class="rs-plain">${r.gaps.map(g => `<li>${esc(g)}</li>`).join('')}</ul></div>`);
+  }
+  return `<details class="fc-why"><summary>研究底稿：查了哪些消息、怎麼判斷</summary>${parts.join('')}</details>`;
 }
 
 function populateAccuracy(acc) {

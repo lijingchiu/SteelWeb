@@ -19,6 +19,9 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
+from concurrent.futures import ThreadPoolExecutor
+
+import prompts
 from materials import build_materials, taiwan_prices_from_materials, write_outputs
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
@@ -549,93 +552,228 @@ def finalize_top_stories(raw, pool: list[dict]) -> list[dict]:
     return stories
 
 
+# ── Historical base rates ─────────────────────────────────
+
+def base_rates(materials: dict, targets: dict) -> dict:
+    """How each series has moved month to month, so forecasts start from history, not one headline."""
+    by_id = {it["id"]: it for it in materials.get("items", [])}
+    out = {}
+    for key, name, unit in FORECAST_ITEMS:
+        hist = [(p, v) for p, v in (by_id.get(key) or {}).get("history", []) if isinstance(v, (int, float))]
+        if len(hist) < 6:
+            continue
+        changes = [(hist[i][0], (hist[i][1] - hist[i - 1][1]) / hist[i - 1][1] * 100)
+                   for i in range(1, len(hist)) if hist[i - 1][1]]
+        dirs = [direction_of(c) for _, c in changes]
+        moves = sorted(abs(c) for _, c in changes if abs(c) > STABLE_BAND_PCT)
+        target_mm = (targets.get(key) or {}).get("target_month", "")[5:]
+        out[key] = {
+            "name": name, "unit": unit, "months": len(changes),
+            "up": dirs.count("up"), "down": dirs.count("down"), "stable": dirs.count("stable"),
+            "median_move_pct": round(moves[len(moves) // 2], 2) if moves else 0.0,
+            "recent": [(p, round(c, 2)) for p, c in changes[-3:]],
+            "same_month": [(p, round(c, 2)) for p, c in changes if target_mm and p[5:] == target_mm],
+        }
+    return out
+
+
+def base_rates_for_prompt(rates: dict) -> str:
+    if not rates:
+        return "【歷史基準率】資料不足。"
+    lines = [f"【歷史基準率：官方月均價過去的月變動（月變動在 ±{STABLE_BAND_PCT}% 內算持平）】"]
+    for r in rates.values():
+        recent = "、".join(f"{p} {c:+.2f}%" for p, c in r["recent"])
+        same = "、".join(f"{p} {c:+.2f}%" for p, c in r["same_month"]) or "無"
+        lines.append(
+            f"  {r['name']}：近 {r['months']} 個月中 上漲 {r['up']} 次、下跌 {r['down']} 次、持平 {r['stable']} 次；"
+            f"有變動時的幅度中位數 {r['median_move_pct']}%；最近三個月 {recent}；歷年同月份 {same}")
+    return "\n".join(lines)
+
+
+# ── Reasoning-chain validation ────────────────────────────
+# Candidate cause -> effect links between monthly series. Each is tested on the
+# stored history so the model only leans on links that actually held.
+CHAIN_CANDIDATES = [
+    ("north_scrap_price", "fengxing_rebar_price"),
+    ("north_scrap_price", "billet_price"),
+    ("billet_price", "fengxing_rebar_price"),
+    ("billet_price", "h_beam_price"),
+    ("billet_price", "csc_wire_rod_price"),
+    ("wb_iron_ore", "billet_price"),
+    ("wb_iron_ore", "csc_wire_rod_price"),
+    ("wb_coal_au", "billet_price"),
+    ("wb_brent", "north_scrap_price"),
+    ("cci_tw_04", "fengxing_rebar_price"),
+]
+CHAIN_MIN_POINTS = 12
+
+
+def _monthly_changes(item: dict) -> dict[str, float]:
+    pts = [(p, v) for p, v in item.get("history", []) if len(p) == 7 and isinstance(v, (int, float))]
+    return {pts[i][0]: (pts[i][1] - pts[i - 1][1]) / pts[i - 1][1] * 100
+            for i in range(1, len(pts)) if pts[i - 1][1]}
+
+
+def _shift_month(month: str, back: int) -> str:
+    y, m = map(int, month.split("-"))
+    m -= back
+    while m < 1:
+        m, y = m + 12, y - 1
+    return f"{y}-{m:02d}"
+
+
+def _corr(xs: list[float], ys: list[float]) -> float:
+    n = len(xs)
+    mx, my = sum(xs) / n, sum(ys) / n
+    vx = sum((x - mx) ** 2 for x in xs)
+    vy = sum((y - my) ** 2 for y in ys)
+    return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / (vx * vy) ** 0.5 if vx and vy else 0.0
+
+
+def chain_links(materials: dict) -> list[dict]:
+    """For each candidate link, the lag (0 or 1 month) with the strongest co-movement."""
+    by_id = {it["id"]: it for it in materials.get("items", []) if not it.get("stale")}
+    links = []
+    for cause, effect in CHAIN_CANDIDATES:
+        if cause not in by_id or effect not in by_id:
+            continue
+        ca, ce = _monthly_changes(by_id[cause]), _monthly_changes(by_id[effect])
+        best = None
+        for lag in (0, 1):
+            pairs = [(ca[_shift_month(m, lag)], ce[m]) for m in ce if _shift_month(m, lag) in ca]
+            if len(pairs) < CHAIN_MIN_POINTS:
+                continue
+            r = _corr([a for a, _ in pairs], [b for _, b in pairs])
+            moved = [(a, b) for a, b in pairs if abs(a) > STABLE_BAND_PCT]
+            effect_moved = sum(abs(b) > STABLE_BAND_PCT for _, b in moved)
+            same = sum((a > 0) == (b > 0) for a, b in moved if abs(b) > STABLE_BAND_PCT)
+            cand = {"cause": cause, "effect": effect, "cause_name": by_id[cause]["name"],
+                    "effect_name": by_id[effect]["name"], "lag": lag, "r": round(r, 2), "n": len(pairs),
+                    "cause_moves": len(moved), "effect_followed": effect_moved, "same_dir": same}
+            if best is None or abs(cand["r"]) > abs(best["r"]):
+                best = cand
+        if best:
+            r = best["r"]
+            best["strength"] = "強" if r >= 0.6 else "中等" if r >= 0.35 else "弱或不成立"
+            links.append(best)
+    links.sort(key=lambda x: -x["r"])
+    return links
+
+
+def links_for_prompt(links: list[dict]) -> str:
+    if not links:
+        return "歷史資料不足，無法驗證推理鏈。"
+    lines = [f"以下由過去約 36 個月的官方月資料計算（月變動在 ±{STABLE_BAND_PCT}% 內視為沒動）。"
+             "「同月」表示兩者在同一個月一起變動，「晚一個月」表示前者先動、後者下個月才跟。"]
+    for x in links:
+        when = "同月" if x["lag"] == 0 else "晚一個月"
+        follow = (f"前者有變動的 {x['cause_moves']} 個月裡，後者跟著變動 {x['effect_followed']} 次，其中同方向 {x['same_dir']} 次"
+                  if x["cause_moves"] else "前者幾乎沒變動")
+        lines.append(f"- {x['cause_name']} → {x['effect_name']}：{when}連動，相關係數 {x['r']:+.2f}（{x['strength']}）；{follow}。")
+    return "\n".join(lines)
+
+
+def _domain(url: str) -> str:
+    m = re.match(r"https?://([^/]+)", url or "")
+    host = (m.group(1) if m else "").lower()
+    return host[4:] if host.startswith("www.") else host
+
+
+def finalize_dossier(raw: dict | None) -> dict | None:
+    """Keep only facts backed by real URLs and count independent sources ourselves (distinct domains)."""
+    if not isinstance(raw, dict):
+        return None
+    facts = []
+    for f in raw.get("facts") or []:
+        if not isinstance(f, dict) or not str(f.get("fact") or "").strip():
+            continue
+        srcs = [{"title": str(x.get("title") or x.get("url"))[:120], "url": x["url"]}
+                for x in (f.get("sources") or []) if isinstance(x, dict) and str(x.get("url", "")).startswith("http")]
+        if not srcs:
+            continue
+        facts.append({
+            "id": str(f.get("id") or f"F{len(facts) + 1}"),
+            "fact": str(f["fact"]).strip()[:200],
+            "date": str(f.get("date") or "")[:10],
+            "type": f.get("type") if f.get("type") in ("公告", "成交", "報價", "預估", "傳聞") else "報價",
+            "materials": [m for m in (f.get("materials") or []) if isinstance(m, str)][:6],
+            "sources": srcs[:5],
+            "source_count": len({_domain(x["url"]) for x in srcs}),
+        })
+    if len(facts) < 3:
+        return None
+    ids = {f["id"] for f in facts}
+    drivers = {}
+    for key, _, _ in FORECAST_ITEMS:
+        rows = []
+        for d in ((raw.get("drivers") or {}).get(key) or []):
+            if not isinstance(d, dict) or not d.get("factor"):
+                continue
+            rows.append({
+                "dimension": d.get("dimension") if d.get("dimension") in prompts.DIMENSIONS else "市場情緒",
+                "factor": str(d["factor"])[:120],
+                "direction": d.get("direction") if d.get("direction") in ("up", "down", "neutral") else "neutral",
+                "strength": d.get("strength") if d.get("strength") in (1, 2, 3) else 1,
+                "horizon": d.get("horizon") if d.get("horizon") in ("week", "month") else "month",
+                "facts": [x for x in (d.get("facts") or []) if x in ids],
+            })
+        drivers[key] = rows
+    conflicts = [{k: str(c.get(k) or "")[:200] for k in ("topic", "versions", "judgment")}
+                 for c in (raw.get("conflicts") or []) if isinstance(c, dict) and c.get("topic")]
+    gaps = [str(g)[:120] for g in (raw.get("gaps") or []) if str(g).strip()][:10]
+    chains = [{"chain": str(c.get("chain"))[:80],
+               "status": c.get("status") if c.get("status") in ("正在發生", "沒有發生", "尚待觀察") else "尚待觀察",
+               "facts": [x for x in (c.get("facts") or []) if x in ids], "note": str(c.get("note") or "")[:150]}
+              for c in (raw.get("chains") or []) if isinstance(c, dict) and c.get("chain")][:10]
+    return {"facts": facts, "drivers": drivers, "conflicts": conflicts[:8], "chains": chains, "gaps": gaps}
+
+
+def dossier_for_prompt(d: dict) -> str:
+    names = {k: n for k, n, _ in FORECAST_ITEMS}
+    arrow = {"up": "偏漲", "down": "偏跌", "neutral": "中性"}
+    out = ["<facts>"]
+    for f in d["facts"]:
+        out.append(f'<fact id="{f["id"]}" date="{f["date"] or "不明"}" type="{f["type"]}" independent_sources="{f["source_count"]}">{f["fact"]}</fact>')
+    out.append("</facts>\n<chains>")
+    for c in d.get("chains", []):
+        out.append(f'<chain status="{c["status"]}" facts="{",".join(c["facts"])}">{c["chain"]}：{c["note"]}</chain>')
+    out.append("</chains>\n<drivers>")
+    for key, rows in d["drivers"].items():
+        for r in rows:
+            out.append(f'<driver material="{names[key]}" dimension="{r["dimension"]}" direction="{arrow[r["direction"]]}" '
+                       f'strength="{r["strength"]}" horizon="{"本週" if r["horizon"] == "week" else "下個月"}" facts="{",".join(r["facts"])}">{r["factor"]}</driver>')
+    out.append("</drivers>\n<conflicts>")
+    for c in d["conflicts"]:
+        out.append(f"<conflict topic=\"{c['topic']}\">各家說法：{c['versions']}｜判斷：{c['judgment']}</conflict>")
+    out.append("</conflicts>\n<gaps>")
+    out.extend(f"<gap>{g}</gap>" for g in d["gaps"])
+    out.append("</gaps>")
+    return "\n".join(out)
+
+
+def build_research_prompt(date_str, week_label, week_range, tp, fx_text, materials, news_text, rates_text, links_text):
+    return prompts.research_prompt(
+        date_str=date_str, week_label=week_label, week_range=week_range,
+        official_prices=headline_prices_for_prompt(tp), fx=fx_text, base_rates=rates_text,
+        links=links_text, materials=materials_for_prompt(materials), news=news_text)
+
+
 def build_prompt(date_str: str, week_label: str, week_range: str, targets: dict, tp: dict,
                  fx_text: str, materials: dict, news_text: str, memory_text: str,
-                 accuracy_text: str, web_search: bool) -> str:
+                 accuracy_text: str, web_search: bool, rates_text: str = "",
+                 links_text: str = "", dossier_text: str = "") -> str:
     target_lines = "\n".join(
         f"  {n}：最新公布 {targets[k]['baseline_month']} 月均價 {fmt_num(targets[k]['baseline_value'])} {u}，"
-        f"「下一期月均價」= {targets[k]['target_month']}"
+        f"下一期月均價 = {targets[k]['target_month']}"
         for k, n, u in FORECAST_ITEMS if k in targets
     )
-    item_schema = ",\n".join(f'''      "{k}": {{
-        "week": {{"direction": "<up|down|stable>", "change_estimate": "<{week_label}實質成交行情變動幅度，{u}>", "reason": "<100~200字>"}},
-        "next_month": {{"direction": "<up|down|stable>", "change_estimate": "<{targets.get(k, {}).get('target_month', '下一期')} 月均價相對 {targets.get(k, {}).get('baseline_month', '最新一期')} 的變動，{u}>", "reason": "<100~200字>"}},
-        "revision_note": "<若方向與你最近一次預測不同，說明是哪一則新資訊造成改變；方向未變則寫「維持前次判斷」並簡述理由>"
-      }}''' for k, _, u in FORECAST_ITEMS)
-    search_rule = (
-        "你可以使用網路搜尋。請務必先搜尋並核對以下最新資訊再下判斷：豐興本週廢鋼與鋼筋盤價（金額）、"
-        "中鋼最新月盤／季盤、東和鋼鐵本月型鋼價格、威致或海光等鋼廠調價、美國與土耳其廢鋼價格、"
-        "中國螺紋鋼期貨與唐山鋼胚、鐵礦砂與焦煤價格。引用的數字必須來自你實際讀到的來源。"
-        if web_search else
-        "本次無法使用網路搜尋，只能依下方提供的資料與新聞標題判斷；無法確認的金額不要捏造。"
-    )
-    return f"""你是一位台灣鋼鐵與營建材料市場的資深分析師，像股票分析師分析個股一樣，對原物料行情做出有立場、可被驗證的判斷。
-今天日期：{date_str}（台灣時間，{"週末" if week_label == "下週" else "平日"}）
-
-{search_rule}
-
-{headline_prices_for_prompt(tp)}
-
-{fx_text}
-
-【完整營建材料與原物料資料（每一項都標明資料期間與更新頻率）】
-{materials_for_prompt(materials)}
-
-{news_text}
-
-{memory_text}
-
-{accuracy_text}
-
-═══════════════ 預測任務 ═══════════════
-請對五項台灣鋼材各做兩個預測：
-1. week：{week_label}（{week_range}）的實質市場成交行情，相對上週的方向與幅度。台灣鋼價多由豐興每週一開盤、中鋼與東和每月調價，所以要以「本週已公布或即將公布的盤價」與「市場實際成交」為核心依據。
-2. next_month：「下一期官方月均價」相對最新已公布月均價的方向與幅度。這是可以被驗證的預測，系統會在官方數據公布後自動計分：
-{target_lines}
-
-規則：
-- 每個 reason 100~200 字，依序寫出：(a) 具體的國際或上游訊號（引用事件、價格或數據）；(b) 這個訊號如何傳導到台灣廠商的成本、報價或買氣；(c) 結論與幅度依據，指出最關鍵的因素。
-- 禁止空泛理由。"stable" 只能在多空力量確實抵銷時使用，並在 reason 中同時列出多方與空方因素。
-- change_estimate 必須是具體數字區間。
-- 不要被單一一則新聞標題左右。若方向與你最近一次預測不同，revision_note 必須說明是哪一則新資訊造成改變；沒有新資訊就不應該翻轉方向。
-- 參考你過去的命中率與誤判，修正判斷方式。
-- 注意各項資料的月份不同（例如粗鋼產量比鋼價晚兩個月），引用時必須寫出正確月份。
-- top_stories 是讀者點開推播通知後第一眼看到的「今日鋼市頭條」。請從上方新聞清單中，找出最近 3 天內與台灣鋼鐵、營建材料市場相關、被最多家不同媒體報導（最多人關注）的事件，依關注程度排序列出 5～7 則。
-  每則的 ids 列出報導同一事件的所有新聞編號（例如 ["N1","N4","N7"]），系統會依不同媒體的家數計算熱度並重新排序，列錯或灌入不相關編號會被視為錯誤；
-  headline 是記者式主標題（14～28 字，含具體主體與數字），subheadline 是副標題（40 字內，補充影響或背景）；
-  anchor 指向本網站最相關的段落：prices（鋼材報價表）、materials（營建材料行情）、chart（價格走勢圖）、forecast（盤價預測總覽）、fc-north_scrap_price／fc-billet_price／fc-fengxing_rebar_price／fc-h_beam_price／fc-csc_wire_rod_price（各材料預測）、analysis（市場深度分析）、news（新聞列表）；
-  anchor 為 materials 時，search 填一個可在營建材料清單中搜尋的關鍵字（例如「鐵礦砂」「水泥」「銅」），其他情況留空。
-- headline 是今天推播通知與電子報的主標題，請像財經記者下新聞標題：18～32 字，點出今天最重要、最新且已查證的一則市場動態，盡量包含具體主體與數字（例如「豐興鋼筋每噸漲200元至18,500元 廢鋼成本推升」）；不要誇張、不要問句、不要用「震撼」「必看」之類字眼。headline_sub 用 40 字內補充第二重要的動態或對下週行情的判斷。
-- 引用本提示提供的資料時，稱為「官方數據」或寫出來源名稱（例如台灣金屬行情網、主計總處），不要寫「題供」或「提示提供」。
-- JSON 字串內不要使用 markdown 連結或引用標記；你實際查閱過的網頁請列在 sources。
-
-請嚴格以 JSON 格式回覆，不要輸出任何其他文字：
-
-{{
-  "exchange_rate": {{
-    "usd_twd_estimate": <浮點數>,
-    "impact_on_steel": "<匯率影響說明，100字內>"
-  }},
-  "spread_analysis": "<利差試算：廢鋼→鋼胚→鋼筋→型鋼的加工利差，含匯率影響，200字內>",
-  "monthly_trend": "<未來一個月台灣鋼市展望，200字內>",
-  "international_outlook": "<國際鋼鐵與原物料大局觀，含中國、日本、韓國、美國、土耳其，300字內>",
-  "materials_outlook": "<營建材料觀察：依營造工程物價指數與原物料數據，說明水泥、砂石、瀝青、木材、機電、工資等的走勢與對工程成本的影響，200字內>",
-  "price_forecast": {{
-    "items": {{
-{item_schema}
-    }},
-    "overall_basis": "<綜合推論：參考了哪些時事與數據、多空力量對比與權重、推論順序，250字內>"
-  }},
-  "risk_factors": ["<風險因素1>", "<風險因素2>", "<風險因素3>"],
-  "top_stories": [
-    {{"ids": ["<新聞編號>", "..."], "headline": "<主標題>", "subheadline": "<副標題>", "anchor": "<段落代號>", "search": "<僅 materials 時填>"}}
-  ],
-  "headline": "<記者式新聞標題，18～32字>",
-  "headline_sub": "<副標，40字內>",
-  "summary": "<今日市場總結，150字內>",
-  "confidence": "<high|medium|low>",
-  "sources": [{{"title": "<你實際查閱的網頁標題>", "url": "<網址>"}}]
-}}"""
+    return prompts.forecast_prompt(
+        date_str=date_str, week_label=week_label, week_range=week_range, targets=target_lines,
+        official_prices=headline_prices_for_prompt(tp), fx=fx_text, base_rates=rates_text,
+        links=links_text, dossier=dossier_text, materials=materials_for_prompt(materials),
+        news=news_text, memory=memory_text, accuracy=accuracy_text,
+        item_schema=prompts.item_schema(FORECAST_ITEMS, targets, week_label),
+        mode="dossier" if dossier_text else ("web" if web_search else "offline"))
 
 
 def format_exchange_rate_for_prompt(fx: dict) -> str:
@@ -708,13 +846,15 @@ def call_openai(prompt: str, model: str, web: bool, json_mode: bool = False,
     return "".join(texts) or j.get("output_text", ""), cites
 
 
-def call_openrouter(prompt: str, model: str, web: bool) -> tuple[str, list[dict]]:
+def call_openrouter(prompt: str, model: str, web: bool, json_mode: bool = False) -> tuple[str, list[dict]]:
     body = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "max_tokens": MAX_OUTPUT_TOKENS,
         "reasoning": {"effort": REASONING_EFFORT},
     }
+    if json_mode:
+        body["response_format"] = {"type": "json_object"}
     if web:
         body["plugins"] = [{"id": "web", "max_results": 8}]
     r = requests.post(OPENROUTER_URL, json=body, timeout=600, headers={
@@ -747,32 +887,144 @@ def repair_json(text: str, model: str) -> dict | None:
         return None
 
 
-def run_analysis(build: callable) -> tuple[dict | None, list[dict], str | None]:
-    """build(web_search: bool) -> prompt. Returns (analysis, citations, model label)."""
-    for provider, model, web in MODEL_CHAIN:
+def run_stage(name: str, build: callable, accept: callable, web: bool | None,
+              json_mode: bool = False) -> tuple[dict | None, list[dict], str | None]:
+    """
+    Try each provider in MODEL_CHAIN until one returns a response that accept() approves.
+    build(web) -> prompt. web=None uses each provider's own web setting; True/False forces it
+    (forced True skips providers without web search).
+    """
+    for provider, model, can_web in MODEL_CHAIN:
         key = OPENAI_API_KEY if provider == "openai" else OPENROUTER_API_KEY
         if not key:
-            log(f"Skipping {provider}:{model} (no API key)")
             continue
-        prompt = build(web)
+        use_web = can_web if web is None else web
+        if use_web and not can_web:
+            continue
+        # JSON mode cannot be combined with web search.
+        jm = json_mode and not use_web
+        prompt = build(use_web)
         for attempt in range(2):
             try:
-                log(f"Calling {provider}:{model} web={web} (attempt {attempt + 1}/2, prompt {len(prompt)} chars)")
+                log(f"[{name}] {provider}:{model} web={use_web} json={jm} (attempt {attempt + 1}/2, prompt {len(prompt)} chars)")
                 t0 = time.time()
-                fn = call_openai if provider == "openai" else call_openrouter
-                text, cites = fn(prompt, model, web)
+                if provider == "openai":
+                    text, cites = call_openai(prompt, model, use_web, json_mode=jm)
+                else:
+                    text, cites = call_openrouter(prompt, model, use_web, json_mode=jm)
                 parsed = extract_json(text)
-                log(f"  {len(text)} chars, {len(cites)} citations in {time.time() - t0:.0f}s")
+                log(f"[{name}]   {len(text)} chars, {len(cites)} citations in {time.time() - t0:.0f}s")
                 if parsed is None and text.strip() and OPENAI_API_KEY:
                     parsed = repair_json(text, OPENAI_MODEL)
-                if valid_forecast(parsed):
-                    label = f"{model}（{'OpenAI API' if provider == 'openai' else 'OpenRouter'}）"
-                    return parsed, cites, label
-                log("  Response missing a valid price_forecast; retrying")
+                if accept(parsed):
+                    return parsed, cites, f"{model}（{'OpenAI API' if provider == 'openai' else 'OpenRouter'}）"
+                log(f"[{name}]   response rejected by validation; retrying")
             except Exception as e:
-                log(f"  {provider}:{model} error: {e}")
+                log(f"[{name}]   {provider}:{model} error: {e}")
             time.sleep(10)
     return None, [], None
+
+
+def run_analysis(build: callable) -> tuple[dict | None, list[dict], str | None]:
+    """Single-stage fallback: the forecast prompt with each provider's own web setting."""
+    return run_stage("forecast", build, valid_forecast, web=None)
+
+
+# ── Forecast ensemble ─────────────────────────────────────
+ENSEMBLE_RUNS = 3
+DIRS = ("up", "stable", "down")
+
+
+def scenario_probs(f: dict) -> dict | None:
+    sc = ((f or {}).get("next_month") or {}).get("scenarios") or {}
+    try:
+        vals = {d: max(0.0, float((sc.get(d) or {}).get("prob"))) for d in DIRS}
+    except (TypeError, ValueError):
+        return None
+    total = sum(vals.values())
+    return {d: v / total * 100 for d, v in vals.items()} if total > 0 else None
+
+
+def round_to_100(p: dict) -> dict:
+    floors = {d: int(p[d]) for d in DIRS}
+    rest = 100 - sum(floors.values())
+    for d in sorted(DIRS, key=lambda d: p[d] - floors[d], reverse=True)[:rest]:
+        floors[d] += 1
+    return floors
+
+
+def aggregate_forecasts(samples: list[dict]) -> dict:
+    """
+    Combine independent forecast runs: per material, the median probability of each
+    outcome (renormalised) decides the next-month direction, a majority vote decides
+    the week direction, and the wording comes from the run closest to that consensus.
+    """
+    if len(samples) == 1:
+        return samples[0]
+
+    def items_of(x):
+        return (x.get("price_forecast") or {}).get("items") or {}
+
+    merged_items, agree_score = {}, [0] * len(samples)
+    for key, _, _ in FORECAST_ITEMS:
+        cands = [(i, items_of(x).get(key)) for i, x in enumerate(samples) if items_of(x).get(key)]
+        if not cands:
+            continue
+        probs = [(i, scenario_probs(f)) for i, f in cands]
+        probs = [(i, p) for i, p in probs if p]
+        if probs:
+            med = {d: sorted(p[d] for _, p in probs)[len(probs) // 2] if len(probs) % 2 else
+                   sum(sorted(p[d] for _, p in probs)[len(probs) // 2 - 1:len(probs) // 2 + 1]) / 2 for d in DIRS}
+            total = sum(med.values()) or 1
+            consensus = round_to_100({d: v / total * 100 for d, v in med.items()})
+            month_dir = max(DIRS, key=lambda d: consensus[d])
+            pool = [(i, p) for i, p in probs if items_of(samples[i])[key]["next_month"].get("direction") == month_dir] or probs
+            pick = min(pool, key=lambda ip: sum(abs(ip[1][d] - consensus[d]) for d in DIRS))[0]
+        else:
+            consensus, pick = None, cands[0][0]
+            month_dir = items_of(samples[pick])[key]["next_month"].get("direction")
+        votes = [f["week"].get("direction") for _, f in cands if f.get("week")]
+        week_dir = max(set(votes), key=votes.count) if votes else None
+        chosen = json.loads(json.dumps(items_of(samples[pick])[key]))
+        if chosen.get("week", {}).get("direction") != week_dir:
+            alt = next((f for _, f in cands if f.get("week", {}).get("direction") == week_dir), None)
+            if alt:
+                chosen["week"] = alt["week"]
+        if consensus:
+            sc = chosen["next_month"].setdefault("scenarios", {})
+            for d in DIRS:
+                sc.setdefault(d, {})["prob"] = consensus[d]
+            chosen["next_month"]["direction"] = month_dir
+        chosen["ensemble"] = {
+            "runs": len(cands),
+            "month_agree": sum(1 for _, f in cands if f["next_month"].get("direction") == month_dir),
+            "week_agree": votes.count(week_dir) if week_dir else 0,
+        }
+        merged_items[key] = chosen
+        for i, f in cands:
+            agree_score[i] += (f["next_month"].get("direction") == month_dir) + (f.get("week", {}).get("direction") == week_dir)
+
+    base = json.loads(json.dumps(samples[max(range(len(samples)), key=lambda i: agree_score[i])]))
+    base.setdefault("price_forecast", {})["items"] = merged_items
+    sources = []
+    for x in samples:
+        sources.extend(x.get("sources") or [])
+    base["sources"] = sources
+    return base
+
+
+def run_forecast_ensemble(build: callable, runs: int = ENSEMBLE_RUNS):
+    """Run the no-tools forecast stage several times in parallel and aggregate."""
+    with ThreadPoolExecutor(max_workers=runs) as pool:
+        futures = [pool.submit(run_stage, f"forecast#{i + 1}", build, valid_forecast, False, True) for i in range(runs)]
+        results = [f.result() for f in futures]
+    ok = [(a, c, l) for a, c, l in results if a]
+    log(f"Forecast ensemble: {len(ok)}/{runs} runs succeeded")
+    if not ok:
+        return None, [], None
+    cites = [c for _, cs, _ in ok for c in cs]
+    label = ok[0][2]
+    return aggregate_forecasts([a for a, _, _ in ok]), cites, label
 
 
 # ── Main ──────────────────────────────────────────────────
@@ -784,7 +1036,7 @@ def dedupe_citations(cites: list[dict]) -> list[dict]:
         if u not in seen:
             seen.add(u)
             out.append({"title": c["title"][:120], "url": c["url"]})
-    return out[:20]
+    return out[:40]
 
 
 def main():
@@ -806,20 +1058,53 @@ def main():
     week_label, week_range = forecast_week(now)
     targets = forecast_targets(materials)
 
-    def build(web: bool) -> str:
-        return build_prompt(
-            date_str, week_label, week_range, targets, taiwan_prices,
-            format_exchange_rate_for_prompt(exchange_rate), materials,
-            news_for_prompt(feed, headlines),
-            memory_for_prompt(load_recent_forecasts(date_str)),
-            accuracy_for_prompt(accuracy), web,
-        )
+    fx_text = format_exchange_rate_for_prompt(exchange_rate)
+    news_text = news_for_prompt(feed, headlines)
+    rates_text = base_rates_for_prompt(base_rates(materials, targets))
+    links = chain_links(materials)
+    links_text = links_for_prompt(links)
+    memory_text = memory_for_prompt(load_recent_forecasts(date_str))
+    accuracy_text = accuracy_for_prompt(accuracy)
 
-    analysis, citations, model_label = run_analysis(build)
+    # Stage 1: researcher with web search builds a verified dossier.
+    raw_dossier, research_cites, _ = run_stage(
+        "research",
+        lambda web: build_research_prompt(date_str, week_label, week_range, taiwan_prices, fx_text,
+                                          materials, news_text, rates_text, links_text),
+        lambda parsed: finalize_dossier(parsed) is not None, web=True)
+    dossier = finalize_dossier(raw_dossier)
+    if dossier:
+        log(f"Dossier: {len(dossier['facts'])} facts "
+            f"({sum(f['source_count'] >= 2 for f in dossier['facts'])} cross-checked), "
+            f"{len(dossier['conflicts'])} conflicts, {len(dossier['chains'])} chains, {len(dossier['gaps'])} gaps")
+        for f in dossier["facts"]:
+            research_cites.extend(f["sources"])
+
+    def build(web: bool) -> str:
+        return build_prompt(date_str, week_label, week_range, targets, taiwan_prices, fx_text, materials,
+                            news_text, memory_text, accuracy_text, web, rates_text, links_text,
+                            dossier_for_prompt(dossier) if dossier else "")
+
+    # Stage 2: independent forecast runs without tools, aggregated; single-stage fallback otherwise.
+    if dossier:
+        analysis, citations, model_label = run_forecast_ensemble(build)
+    else:
+        analysis, citations, model_label = None, [], None
+    if not analysis:
+        log("Falling back to single-stage analysis with web search")
+        analysis, citations, model_label = run_analysis(build)
+    citations = research_cites + citations
     if analysis:
         listed = [c for c in (analysis.pop("sources", None) or []) if isinstance(c, dict)
                   and str(c.get("url", "")).startswith("http")]
         citations = citations + [{"title": str(c.get("title") or c["url"]), "url": c["url"]} for c in listed]
+        if dossier:
+            fact_ids = {f["id"] for f in dossier["facts"]}
+            for item in (analysis.get("price_forecast") or {}).get("items", {}).values():
+                item["evidence"] = [x for x in (item.get("evidence") or []) if x in fact_ids]
+            analysis["research"] = {**dossier, "links": links}
+        else:
+            analysis["research"] = {"facts": [], "drivers": {}, "conflicts": [], "chains": [], "gaps": [], "links": links}
     if not analysis:
         log("FATAL: no model returned a valid analysis; material data was still saved")
         sys.exit(1)

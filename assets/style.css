@@ -777,6 +777,38 @@ body.brief-open { overflow: hidden; }
 @keyframes brief-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes brief-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
+/* ── Forecast scenarios, evidence and research dossier ── */
+.fc-scen { display: flex; flex-direction: column; gap: 6px; }
+.fc-scen-bar { display: flex; height: 8px; border-radius: 999px; overflow: hidden; background: var(--line); }
+.fc-scen-bar span { display: block; height: 100%; }
+.fc-scen-up { background: var(--copper); }
+.fc-scen-stable { background: #a89682; }
+.fc-scen-down { background: var(--down); }
+.fc-scen-legend { display: flex; gap: 14px; font-family: var(--font-mono); font-size: 12px; }
+.fc-scen-key-up { color: var(--copper); }
+.fc-scen-key-stable { color: var(--muted); }
+.fc-scen-key-down { color: var(--down); }
+.fc-scen-note { font-size: 11px; color: var(--muted); }
+.fc-risk { padding-top: 10px; border-top: 1px solid var(--line); }
+.fc-risk-k { font-size: 11px; letter-spacing: 0.1em; color: var(--copper); margin: 12px 0 4px; }
+.fc-research:empty { display: none; }
+.fc-research { padding-top: 6px; }
+.rs-sec { margin-top: 8px; }
+.rs-sub { font-size: 12px; color: var(--muted); margin: 6px 0 2px; }
+.rs-list, .rs-plain { list-style: none; margin: 0; padding: 0; }
+.rs-fact { padding: 8px 0; border-bottom: 1px dashed var(--line); font-size: 13px; line-height: 1.7; color: var(--ink); }
+.rs-type { display: inline-block; font-size: 10px; padding: 0 7px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); margin-right: 6px; vertical-align: 1px; }
+.rs-type-公告 { color: var(--copper); border-color: rgba(122, 74, 40, 0.4); }
+.rs-type-傳聞, .rs-type-預估 { color: var(--down); border-color: rgba(156, 80, 80, 0.35); }
+.rs-meta { display: block; font-size: 11px; color: var(--muted); }
+.rs-meta a { color: var(--copper); }
+.rs-plain li { font-size: 13px; line-height: 1.75; color: var(--ink); padding: 4px 0; }
+.rs-judge { font-size: 12px; color: var(--muted); }
+.rs-chain { display: inline-block; font-size: 10px; padding: 0 7px; border-radius: 999px; border: 1px solid var(--line); }
+.rs-chain-on { color: var(--copper); border-color: rgba(122, 74, 40, 0.4); }
+.rs-chain-off { color: var(--muted); }
+.rs-chain-wait { color: #8a7a68; border-style: dashed; }
+
 /* ── Top stories in the news section ── */
 .ts-list:empty { display: none; }
 .ts-list { margin-bottom: 36px; }
