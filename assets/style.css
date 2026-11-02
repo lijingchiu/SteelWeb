@@ -356,6 +356,7 @@ button { font-family: inherit; }
 .section-table    { padding: 80px 64px 56px; }
 .section-chart    { padding: 56px 64px 56px; }
 .section-materials { padding: 56px 64px 56px; }
+.section-subscribe { padding: 56px 64px 72px; border-top: 1px solid var(--line); }
 .section-analysis { padding: 56px 64px 56px; }
 .section-news     { padding: 56px 64px 80px; }
 
@@ -654,6 +655,37 @@ button { font-family: inherit; }
   text-align: left;
 }
 .mat-more:hover { background: rgba(122, 74, 40, 0.04); }
+
+/* ── Subscribe ── */
+.hero-headline {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 22px 0 14px;
+  padding-left: 14px;
+  border-left: 3px solid var(--copper);
+}
+.sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.sub-card {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.32);
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+.sub-name { font-family: var(--font-serif); font-size: 18px; font-weight: 600; color: var(--ink); }
+.sub-desc { font-size: 13px; color: var(--muted); line-height: 1.85; }
+.sub-form { display: flex; gap: 10px; width: 100%; }
+.sub-input { flex: 1; min-width: 0; }
+.sub-card .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.sub-status { font-size: 13px; line-height: 1.7; color: var(--muted); }
+.sub-status:empty { display: none; }
+.sub-status.ok { color: #2f5a3e; }
+.sub-status.error { color: var(--down); }
 
 /* ── Price forecast ── */
 .section-forecast { padding: 56px 64px 56px; }
@@ -1053,6 +1085,7 @@ a.fc-sum-row:hover { background: rgba(122, 74, 40, 0.04); }
   .section-forecast,
   .section-analysis,
   .section-news,
+  .section-subscribe,
   .footer { padding-left: 32px; padding-right: 32px; }
 
   .masthead { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -1076,6 +1109,7 @@ a.fc-sum-row:hover { background: rgba(122, 74, 40, 0.04); }
   .section-forecast,
   .section-analysis,
   .section-news,
+  .section-subscribe,
   .footer { padding-left: 20px; padding-right: 20px; }
 
   .forecast-grid { grid-template-columns: 1fr; }
@@ -1122,6 +1156,11 @@ a.fc-sum-row:hover { background: rgba(122, 74, 40, 0.04); }
   .fc-cites a { max-width: 100%; }
 
   .fc-card { padding: 18px 16px; gap: 10px; }
+  .sub-grid { grid-template-columns: 1fr; gap: 12px; }
+  .sub-card { padding: 20px 16px; }
+  .sub-form { flex-direction: column; }
+  .sub-form .btn, #sub-push-btn { width: 100%; justify-content: center; }
+  .hero-headline { font-size: 18px; }
   .forecast-grid { gap: 12px; }
   .fc-overall { margin-top: 12px; }
   .fc-name { font-size: 17px; }

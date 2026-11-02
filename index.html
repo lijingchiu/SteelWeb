@@ -8,7 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-  <link rel="stylesheet" href="assets/style.css?v=20261102a">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="鋼市快報">
+  <meta name="theme-color" content="#2a1f17">
+  <link rel="stylesheet" href="assets/style.css?v=20261102b">
 </head>
 <body>
 
@@ -43,6 +48,7 @@
       <a class="nav-link" href="#forecast">預測</a>
       <a class="nav-link" href="#analysis">分析</a>
       <a class="nav-link" href="#news">新聞</a>
+      <a class="nav-link" href="#subscribe">訂閱</a>
       <button class="run-btn" id="run-btn" onclick="runInBackground()">▶ 執行</button>
     </nav>
   </header>
@@ -59,10 +65,12 @@
           <span class="title-main">鋼材報價</span>
         </span>
       </h1>
+      <p class="hero-headline" id="hero-headline" hidden></p>
       <p class="lead" id="summary-text">分析資料載入中...</p>
       <div class="hero-actions">
         <a class="btn btn-solid" href="#prices">查看完整報價 ↓</a>
         <button class="btn btn-ghost" onclick="runInBackground()">▶ 立即執行分析</button>
+        <a class="btn btn-ghost" href="#subscribe">訂閱每日快報</a>
       </div>
     </div>
 
@@ -351,6 +359,36 @@
 
   </div><!-- /#content-area -->
 
+  <!-- § 07 Subscribe (outside #content-area so it survives a data load failure) -->
+  <section class="section section-subscribe in" id="subscribe">
+    <div class="section-head">
+      <div>
+        <div class="kicker">§ 07 · DAILY BRIEFING</div>
+        <h2 class="h2">訂閱每日快報</h2>
+      </div>
+      <div class="section-meta" id="sub-time">每天早上自動送達</div>
+    </div>
+
+    <div class="sub-grid">
+      <div class="sub-card">
+        <div class="sub-name">Email 每日快報</div>
+        <p class="sub-desc">每天早上寄送當日頭條、盤價預測、最新行情與新聞標題。送出後請到信箱點擊確認連結才會開始寄送，每封信底部都能一鍵退訂。</p>
+        <form class="sub-form" id="sub-email-form" novalidate>
+          <input type="email" id="sub-email" class="mat-search sub-input" placeholder="your@email.com" autocomplete="email" required>
+          <button type="submit" class="btn btn-solid" id="sub-email-btn">訂閱</button>
+        </form>
+        <div class="sub-status" id="sub-email-status" role="status"></div>
+      </div>
+
+      <div class="sub-card">
+        <div class="sub-name">手機／電腦通知</div>
+        <p class="sub-desc">每天早上推播當日最重要的鋼市新聞標題，點一下通知就會開啟網站。可隨時在這裡或瀏覽器設定中關閉。</p>
+        <button type="button" class="btn btn-solid" id="sub-push-btn" disabled>開啟每日通知</button>
+        <div class="sub-status" id="sub-push-status" role="status"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <span>© 2026 台灣鋼鐵市場分析</span>
@@ -389,6 +427,6 @@
     </div>
   </div>
 
-  <script src="assets/app.js?v=20261102a"></script>
+  <script src="assets/app.js?v=20261102b"></script>
 </body>
 </html>

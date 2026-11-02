@@ -117,6 +117,13 @@ function populateExchange(data) {
   }
 }
 
+function populateHeadline(data) {
+  const el = document.getElementById('hero-headline');
+  if (!el) return;
+  el.textContent = data.headline || '';
+  el.hidden = !data.headline;
+}
+
 function populateAnalysis(data) {
   const fields = {
     'summary-text': data.summary,
@@ -591,6 +598,7 @@ async function loadData() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     populateMeta(data);
+    populateHeadline(data);
     populatePrices(data);
     populateFeatured(data);
     populateTicker(data);
@@ -621,6 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(forceScrollTop, 300);
   importPatFromHash();
   loadData();
+  initSubscriptions();
   initAnimations();
 });
 
@@ -629,6 +638,135 @@ window.addEventListener('load', () => {
   requestAnimationFrame(forceScrollTop);
   setTimeout(forceScrollTop, 100);
 });
+
+// ── Subscriptions: e-mail (Buttondown) and web push (OneSignal) ──
+
+const ONESIGNAL_SDK = 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';
+
+function setSubStatus(id, text, kind) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = text;
+  el.className = `sub-status${kind ? ' ' + kind : ''}`;
+}
+
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
+function isStandalone() {
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
+function initEmailSubscribe(cfg) {
+  const form = document.getElementById('sub-email-form');
+  const input = document.getElementById('sub-email');
+  const btn = document.getElementById('sub-email-btn');
+  if (!form) return;
+  if (!cfg.buttondown_username) {
+    input.disabled = btn.disabled = true;
+    setSubStatus('sub-email-status', 'Email 訂閱即將開放。');
+    return;
+  }
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = input.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setSubStatus('sub-email-status', '請輸入正確的 Email 地址。', 'error');
+      return;
+    }
+    btn.disabled = true;
+    setSubStatus('sub-email-status', '送出中…');
+    try {
+      const body = new FormData();
+      body.append('email', email);
+      body.append('embed', '1');
+      await fetch(`https://buttondown.com/api/emails/embed-subscribe/${encodeURIComponent(cfg.buttondown_username)}`,
+        { method: 'POST', body, mode: 'no-cors' });
+      setSubStatus('sub-email-status', `已送出！請到 ${email} 收信並點擊確認連結，完成後每天早上就會收到快報（沒看到請檢查垃圾郵件）。`, 'ok');
+      input.value = '';
+    } catch (err) {
+      setSubStatus('sub-email-status', `送出失敗：${err.message}，請稍後再試。`, 'error');
+    } finally {
+      btn.disabled = false;
+    }
+  });
+}
+
+function initPushSubscribe(cfg) {
+  const btn = document.getElementById('sub-push-btn');
+  if (!btn) return;
+  const status = (t, k) => setSubStatus('sub-push-status', t, k);
+  if (!cfg.onesignal_app_id) { status('通知功能即將開放。'); return; }
+  if (isIOS() && !isStandalone()) {
+    status('iPhone／iPad：請先點 Safari 下方的「分享」→「加入主畫面」，再從主畫面的「鋼市快報」圖示開啟網站，回到這裡按「開啟每日通知」（需 iOS 16.4 以上）。');
+    return;
+  }
+  if (!('Notification' in window) || !('serviceWorker' in navigator)) {
+    status('這個瀏覽器不支援通知（LINE、Facebook 等 App 內建瀏覽器常見）。請改用 Chrome、Safari 或 Edge 開啟本網站。', 'error');
+    return;
+  }
+
+  const base = location.pathname.replace(/[^/]*$/, '');
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  const script = document.createElement('script');
+  script.src = ONESIGNAL_SDK;
+  script.defer = true;
+  script.onerror = () => status('通知服務載入失敗，請稍後重新整理。', 'error');
+  document.head.appendChild(script);
+
+  window.OneSignalDeferred.push(async OneSignal => {
+    await OneSignal.init({
+      appId: cfg.onesignal_app_id,
+      serviceWorkerPath: `${base}push/onesignal/OneSignalSDKWorker.js`,
+      serviceWorkerParam: { scope: `${base}push/onesignal/` },
+      notifyButton: { enable: false },
+      autoResubscribe: true,
+    });
+    const sub = OneSignal.User.PushSubscription;
+    const refresh = () => {
+      const denied = Notification.permission === 'denied';
+      btn.disabled = denied;
+      if (denied) {
+        btn.textContent = '開啟每日通知';
+        status('瀏覽器已封鎖本網站的通知。請到瀏覽器的網站設定，把「通知」改成允許後重新整理。', 'error');
+      } else if (sub.optedIn) {
+        btn.textContent = '關閉每日通知';
+        status(`已開啟，每天 ${cfg.delivery_time || '08:00'} 左右會收到當日頭條通知。`, 'ok');
+      } else {
+        btn.textContent = '開啟每日通知';
+        status('');
+      }
+    };
+    sub.addEventListener('change', refresh);
+    btn.onclick = async () => {
+      btn.disabled = true;
+      try {
+        if (sub.optedIn) {
+          await sub.optOut();
+        } else if (Notification.permission !== 'granted') {
+          await OneSignal.Notifications.requestPermission();
+          if (Notification.permission === 'granted' && !sub.optedIn) await sub.optIn();
+        } else {
+          await sub.optIn();
+        }
+      } catch (err) {
+        status(`設定失敗：${err.message}`, 'error');
+      } finally {
+        refresh();
+      }
+    };
+    refresh();
+  });
+}
+
+async function initSubscriptions() {
+  const cfg = (await fetchJson('notify-config.json')) || {};
+  const t = document.getElementById('sub-time');
+  if (t) t.textContent = `每天 ${cfg.delivery_time || '08:00'}（台灣時間）送達`;
+  initEmailSubscribe(cfg);
+  initPushSubscribe(cfg);
+}
 
 // ── GitHub config ─────────────────────────────────────────
 

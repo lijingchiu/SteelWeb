@@ -2,8 +2,10 @@ name: Daily Steel Price Analysis
 
 on:
   schedule:
-    # 00:00 UTC = 08:00 Taiwan
-    - cron: '0 0 * * *'
+    # 21:17 UTC = 05:17 Taiwan. Off the top of the hour: the old 00:00 UTC slot
+    # started 2-3.5 hours late every day. Notifications are scheduled for the
+    # delivery time in notify-config.json, so they still arrive at a fixed time.
+    - cron: '17 21 * * *'
   # Pushing a change to this file on main runs the analysis immediately.
   push:
     branches: [main]
@@ -67,6 +69,14 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: python scripts/analyze.py
+
+      - name: Send subscriber notifications
+        if: success() && steps.check_today.outputs.skip != 'true'
+        continue-on-error: true
+        env:
+          ONESIGNAL_REST_API_KEY: ${{ secrets.ONESIGNAL_REST_API_KEY }}
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: python scripts/notify.py
 
       # Runs even when the AI step fails, so freshly fetched prices are still published.
       - name: Commit and push updated data
