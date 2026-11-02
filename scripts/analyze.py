@@ -673,6 +673,28 @@ def links_for_prompt(links: list[dict]) -> str:
     return "\n".join(lines)
 
 
+_MD_CITE = re.compile(r"\(\s*\[[^\]]*\]\([^)]*\)\s*\)")
+_MD_LINK = re.compile(r"\[([^\]]*)\]\((?:https?:)?[^)]*\)")
+_BARE_URL = re.compile(r"https?://\S+")
+
+
+def plain_text(s) -> str:
+    """Drop citation markup and URLs from model prose; links live in the sources lists."""
+    s = _MD_CITE.sub("", str(s or ""))
+    s = _MD_LINK.sub(r"\1", s)
+    s = _BARE_URL.sub("", s)
+    return re.sub(r"[ \t]{2,}", " ", s).strip()
+
+
+def clean_prose(obj, skip=("url", "sources", "web_citations", "news_sources", "articles", "source_url")):
+    """Recursively apply plain_text to every string in model output, except link fields."""
+    if isinstance(obj, dict):
+        return {k: (v if k in skip else clean_prose(v, skip)) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [clean_prose(v, skip) for v in obj]
+    return plain_text(obj) if isinstance(obj, str) else obj
+
+
 def _domain(url: str) -> str:
     m = re.match(r"https?://([^/]+)", url or "")
     host = (m.group(1) if m else "").lower()
@@ -693,7 +715,7 @@ def finalize_dossier(raw: dict | None) -> dict | None:
             continue
         facts.append({
             "id": str(f.get("id") or f"F{len(facts) + 1}"),
-            "fact": str(f["fact"]).strip()[:200],
+            "fact": plain_text(f["fact"])[:200],
             "date": str(f.get("date") or "")[:10],
             "type": f.get("type") if f.get("type") in ("公告", "成交", "報價", "預估", "傳聞") else "報價",
             "materials": [m for m in (f.get("materials") or []) if isinstance(m, str)][:6],
@@ -1093,6 +1115,8 @@ def main():
     if not analysis:
         log("Falling back to single-stage analysis with web search")
         analysis, citations, model_label = run_analysis(build)
+    if analysis:
+        analysis = clean_prose(analysis)
     citations = research_cites + citations
     if analysis:
         listed = [c for c in (analysis.pop("sources", None) or []) if isinstance(c, dict)

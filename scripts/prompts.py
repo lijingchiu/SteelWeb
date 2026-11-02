@@ -93,6 +93,7 @@ def research_prompt(*, date_str: str, week_label: str, week_range: str, official
 - 用繁體中文、完整的白話短句，專有名詞第一次出現時用括號簡短解釋。
 - 提到下方提供的資料時，寫「官方數據」或來源名稱（例如台灣金屬行情網、國泰世華牌價），不要寫「題目提供」「使用者提供」「系統提供」「指定門檻」這類字眼。
 - 提到 ±0.3% 這條線時，寫成「變動不到 0.3%，算是持平」。
+- fact、note、versions、judgment 等文字欄位裡不要放網址、markdown 連結或引用標記；網址只放在 sources。
 </wording_rules>
 
 <output_format>

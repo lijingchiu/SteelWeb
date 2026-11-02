@@ -23,6 +23,17 @@ let priceChart = null;
 let _tickerRAF = null;
 let _tickerX = 0;
 
+// Model-written text sometimes carries citation markup like "([site](https://...))";
+// links belong in the source lists, so drop them from prose.
+function plain(s) {
+  return String(s ?? '')
+    .replace(/\(\s*\[[^\]]*\]\([^)]*\)\s*\)/g, '')
+    .replace(/\[([^\]]*)\]\((?:https?:)?[^)]*\)/g, '$1')
+    .replace(/https?:\/\/\S+/g, '')
+    .replace(/[ \t]{2,}/g, ' ')
+    .trim();
+}
+
 function esc(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
@@ -515,7 +526,7 @@ function fcBlock(label, f, extra = '') {
       ${extra}
       <details class="fc-why"${open}>
         <summary>看推論</summary>
-        <p class="fc-reason">${esc(f?.reason || '預測資料將於下次分析執行後產生')}</p>
+        <p class="fc-reason">${esc(plain(f?.reason) || '預測資料將於下次分析執行後產生')}</p>
       </details>
     </div>`;
 }
@@ -560,7 +571,7 @@ function populateForecast(data) {
       const tgt = (pf.targets || {})[key];
       const monthLabel = tgt ? `下一期月均價 ${tgt.target_month}` : '下一期月均價';
       const note = f.revision_note
-        ? `<details class="fc-why fc-note-wrap"${fcWide() ? ' open' : ''}><summary>與前次預測比較</summary><div class="fc-note">${esc(f.revision_note)}</div></details>`
+        ? `<details class="fc-why fc-note-wrap"${fcWide() ? ' open' : ''}><summary>與前次預測比較</summary><div class="fc-note">${esc(plain(f.revision_note))}</div></details>`
         : '';
       return `<div class="fc-card" id="fc-${key}">
           <div class="fc-head"><div><div class="fc-name">${name}</div><div class="fc-sub">${sub}</div></div></div>
@@ -579,7 +590,7 @@ function populateForecast(data) {
   }
 
   const overall = document.getElementById('fc-overall-basis');
-  if (overall) overall.textContent = (pf || legacy || {}).overall_basis || '預測資料將於下次分析執行後產生';
+  if (overall) overall.textContent = plain((pf || legacy || {}).overall_basis) || '預測資料將於下次分析執行後產生';
   const research = document.getElementById('fc-research');
   if (research) research.innerHTML = researchHtml(data.research);
 
@@ -598,7 +609,7 @@ function factLine(fx) {
   const links = (fx.sources || []).map(s => `<a href="${safeUrl(s.url)}" target="_blank" rel="noopener">${esc(s.title || '來源')}</a>`).join('、');
   return `<li class="rs-fact">
       <span class="rs-type rs-type-${esc(fx.type)}">${esc(fx.type)}</span>
-      <span class="rs-text">${esc(fx.fact)}</span>
+      <span class="rs-text">${esc(plain(fx.fact))}</span>
       <span class="rs-meta">${fx.date ? esc(fx.date) + ' · ' : ''}${n >= 2 ? `${n} 個網站互相印證` : '只有 1 個來源'}${links ? ' · ' + links : ''}</span>
     </li>`;
 }
@@ -608,8 +619,8 @@ function fcRisk(f, factsById) {
   if (!f.counterpoint && !f.watch && !facts.length) return '';
   const rows = [];
   if (facts.length) rows.push(`<div class="fc-risk-k">主要根據的消息</div><ul class="rs-list">${facts.map(factLine).join('')}</ul>`);
-  if (f.counterpoint) rows.push(`<div class="fc-risk-k">可能看錯的地方</div><p class="fc-reason">${esc(f.counterpoint)}</p>`);
-  if (f.watch) rows.push(`<div class="fc-risk-k">接下來要留意</div><p class="fc-reason">${esc(f.watch)}</p>`);
+  if (f.counterpoint) rows.push(`<div class="fc-risk-k">可能看錯的地方</div><p class="fc-reason">${esc(plain(f.counterpoint))}</p>`);
+  if (f.watch) rows.push(`<div class="fc-risk-k">接下來要留意</div><p class="fc-reason">${esc(plain(f.watch))}</p>`);
   return `<details class="fc-why fc-risk"${fcWide() ? ' open' : ''}><summary>根據與風險</summary>${rows.join('')}</details>`;
 }
 
@@ -624,17 +635,17 @@ function researchHtml(r) {
   const chains = r.chains || [];
   if (links.length || chains.length) {
     const hist = links.map(x => `<li><b>${esc(x.cause_name)} → ${esc(x.effect_name)}</b>：過去${x.lag ? '前者先動、後者下個月才跟' : '同一個月一起漲跌'}，關聯${esc(x.strength)}</li>`).join('');
-    const now = chains.map(c => `<li><span class="rs-chain rs-chain-${CHAIN_STATUS[c.status] || 'wait'}">${esc(c.status)}</span> <b>${esc(c.chain)}</b>${c.note ? '：' + esc(c.note) : ''}</li>`).join('');
+    const now = chains.map(c => `<li><span class="rs-chain rs-chain-${CHAIN_STATUS[c.status] || 'wait'}">${esc(c.status)}</span> <b>${esc(c.chain)}</b>${c.note ? '：' + esc(plain(c.note)) : ''}</li>`).join('');
     parts.push(`<div class="rs-sec"><div class="fc-risk-k">原物料連動核對</div>
         ${hist ? `<p class="rs-sub">歷史上確實會一起動的組合：</p><ul class="rs-plain">${hist}</ul>` : ''}
         ${now ? `<p class="rs-sub">這個月的狀況：</p><ul class="rs-plain">${now}</ul>` : ''}</div>`);
   }
   if ((r.conflicts || []).length) {
     parts.push(`<div class="rs-sec"><div class="fc-risk-k">各家報導說法不一的地方</div><ul class="rs-plain">${r.conflicts.map(c =>
-      `<li><b>${esc(c.topic)}</b>：${esc(c.versions)}<br><span class="rs-judge">採用：${esc(c.judgment)}</span></li>`).join('')}</ul></div>`);
+      `<li><b>${esc(plain(c.topic))}</b>：${esc(plain(c.versions))}<br><span class="rs-judge">採用：${esc(plain(c.judgment))}</span></li>`).join('')}</ul></div>`);
   }
   if ((r.gaps || []).length) {
-    parts.push(`<div class="rs-sec"><div class="fc-risk-k">查不到、尚未確認的</div><ul class="rs-plain">${r.gaps.map(g => `<li>${esc(g)}</li>`).join('')}</ul></div>`);
+    parts.push(`<div class="rs-sec"><div class="fc-risk-k">查不到、尚未確認的</div><ul class="rs-plain">${r.gaps.map(g => `<li>${esc(plain(g))}</li>`).join('')}</ul></div>`);
   }
   return `<details class="fc-why"><summary>研究底稿：查了哪些消息、怎麼判斷</summary>${parts.join('')}</details>`;
 }
