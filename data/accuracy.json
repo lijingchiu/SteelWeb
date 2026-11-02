@@ -1,89 +1,39 @@
 {
- "updated_at": "2026-11-02T22:55:40.194855+08:00",
+ "updated_at": "2026-11-02T23:34:11.777999+08:00",
  "method": "每日的「下一期月均價」方向預測，與台灣金屬行情網日後公布的月均價比較；月變動在 ±0.3% 內視為持平。",
  "overall": {
-  "hits": 8,
-  "total": 10
+  "hits": 4,
+  "total": 5
  },
  "per_item": {
   "north_scrap_price": {
    "name": "北部廢鋼大盤收購價",
-   "hits": 2,
-   "total": 2
+   "hits": 1,
+   "total": 1
   },
   "billet_price": {
    "name": "小鋼胚中級出廠價",
    "hits": 0,
-   "total": 2
+   "total": 1
   },
   "fengxing_rebar_price": {
    "name": "豐興鋼筋盤價",
-   "hits": 2,
-   "total": 2
+   "hits": 1,
+   "total": 1
   },
   "h_beam_price": {
    "name": "東鋼H型鋼流通價",
-   "hits": 2,
-   "total": 2
+   "hits": 1,
+   "total": 1
   },
   "csc_wire_rod_price": {
    "name": "中鋼棒線盤價",
-   "hits": 2,
-   "total": 2
+   "hits": 1,
+   "total": 1
   }
  },
- "pending": 0,
+ "pending": 5,
  "recent": [
-  {
-   "date": "2026-11-02",
-   "key": "north_scrap_price",
-   "name": "北部廢鋼大盤收購價",
-   "target_month": "2026-10",
-   "predicted": "up",
-   "actual": "up",
-   "actual_pct": 0.98,
-   "hit": true
-  },
-  {
-   "date": "2026-11-02",
-   "key": "h_beam_price",
-   "name": "東鋼H型鋼流通價",
-   "target_month": "2026-10",
-   "predicted": "up",
-   "actual": "up",
-   "actual_pct": 2.67,
-   "hit": true
-  },
-  {
-   "date": "2026-11-02",
-   "key": "fengxing_rebar_price",
-   "name": "豐興鋼筋盤價",
-   "target_month": "2026-10",
-   "predicted": "up",
-   "actual": "up",
-   "actual_pct": 1.09,
-   "hit": true
-  },
-  {
-   "date": "2026-11-02",
-   "key": "csc_wire_rod_price",
-   "name": "中鋼棒線盤價",
-   "target_month": "2026-10",
-   "predicted": "stable",
-   "actual": "stable",
-   "actual_pct": 0.0,
-   "hit": true
-  },
-  {
-   "date": "2026-11-02",
-   "key": "billet_price",
-   "name": "小鋼胚中級出廠價",
-   "target_month": "2026-10",
-   "predicted": "down",
-   "actual": "stable",
-   "actual_pct": 0.16,
-   "hit": false
-  },
   {
    "date": "2026-11-01",
    "key": "north_scrap_price",
