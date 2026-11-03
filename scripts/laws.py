@@ -163,23 +163,30 @@ def log(msg: str):
 
 
 def download(kind: str, url: str) -> list[dict]:
-    """The files are large (the regulations file is ~25 MB); curl resumes broken transfers."""
+    """The files are large (the regulations file is ~25 MB): curl resumes broken
+    transfers, and a response that is not a valid archive is fetched again."""
     path = Path(tempfile.gettempdir()) / f"moj-{kind}.zip"
-    path.unlink(missing_ok=True)
-    for attempt in range(6):
-        rc = subprocess.run(["curl", "-sSL", "--retry", "5", "--retry-all-errors", "--max-time", "600",
-                             "-C", "-", "-o", str(path), url]).returncode
-        if rc == 0:
-            break
-        log(f"{kind}: curl exit {rc}, retrying ({attempt + 1})")
-    raw = path.read_bytes()
-    if raw[:2] == b"PK":
-        z = zipfile.ZipFile(io.BytesIO(raw))
-        name = next(n for n in z.namelist() if n.lower().endswith(".json"))
-        raw = z.read(name)
-    data = json.loads(raw.decode("utf-8-sig"))
-    log(f"{kind}: {len(data.get('Laws') or [])} items, source updated {data.get('UpdateDate')}")
-    return data.get("Laws") or [], data.get("UpdateDate")
+    for full_try in range(4):
+        path.unlink(missing_ok=True)
+        for attempt in range(6):
+            rc = subprocess.run(["curl", "-sSL", "--retry", "5", "--retry-all-errors", "--max-time", "600",
+                                 "-C", "-", "-o", str(path), url]).returncode
+            if rc == 0:
+                break
+            log(f"{kind}: curl exit {rc}, retrying ({attempt + 1})")
+        try:
+            raw = path.read_bytes()
+            if raw[:2] == b"PK":
+                z = zipfile.ZipFile(io.BytesIO(raw))
+                raw = z.read(next(n for n in z.namelist() if n.lower().endswith(".json")))
+            data = json.loads(raw.decode("utf-8-sig"))
+            log(f"{kind}: {len(data.get('Laws') or [])} items, source updated {data.get('UpdateDate')}")
+            return data.get("Laws") or [], data.get("UpdateDate")
+        except Exception as e:
+            size = path.stat().st_size if path.exists() else 0
+            log(f"{kind}: bad download ({type(e).__name__}, {size} bytes), fetching again")
+            subprocess.run(["sleep", str(30 * (full_try + 1))])
+    raise RuntimeError(f"{kind}: could not download a valid file")
 
 
 ART_NO = re.compile(r"第\s*(\d+)(?:\s*-\s*(\d+))?\s*條")
