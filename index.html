@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261103j">
+  <link rel="stylesheet" href="assets/style.css?v=20261103k">
 </head>
 <body>
 
@@ -521,16 +521,25 @@
     <div class="chat-main" id="chat-main" hidden>
       <div class="chat-log" id="chat-log" aria-live="polite"></div>
       <form class="chat-form" id="chat-form">
+        <button type="button" class="chat-mic" id="chat-mic" aria-label="語音對話" title="語音對話" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3.5" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.5"/></svg>
+        </button>
         <textarea id="chat-input" rows="1" maxlength="600" placeholder="問鋼價、行情或營建問題…" aria-label="輸入問題"></textarea>
         <button type="submit" class="chat-send" id="chat-send" aria-label="送出">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
         </button>
       </form>
+      <div class="voice-bar" id="voice-bar" data-state="connecting" hidden>
+        <span class="voice-orb" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="voice-status" id="voice-status" role="status" aria-live="polite">連線中…</span>
+        <button type="button" class="voice-stop" id="voice-stop">結束語音</button>
+      </div>
+      <audio id="voice-audio" autoplay playsinline hidden></audio>
       <p class="chat-foot">AI 依網站資料回答，可能有誤，重要決定請再確認。</p>
     </div>
   </section>
 
-  <script src="assets/app.js?v=20261103j"></script>
-  <script src="assets/chat.js?v=20261103j"></script>
+  <script src="assets/app.js?v=20261103k"></script>
+  <script src="assets/chat.js?v=20261103k"></script>
 </body>
 </html>

@@ -1838,3 +1838,74 @@ body.brief-open .chat-fab { opacity: 0; pointer-events: none; transform: scale(0
   .report-dl { justify-self: end; padding: 6px 12px 6px 9px; font-size: 12px; }
   .report-dl-meta { display: none; }
 }
+
+/* ── Assistant voice mode ── */
+.chat-mic {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px; height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+.chat-mic[hidden] { display: none; }
+.chat-mic:hover { border-color: var(--copper); color: var(--copper); }
+.chat-mic:disabled { opacity: 0.4; cursor: default; }
+.chat-mic svg {
+  width: 21px; height: 21px;
+  fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+}
+.chat-form[hidden] { display: none; }
+
+.voice-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px 6px 16px;
+  border-top: 1px solid var(--line);
+}
+.voice-bar[hidden] { display: none; }
+.voice-orb { display: inline-flex; align-items: center; gap: 4px; height: 28px; }
+.voice-orb i {
+  width: 5px; height: 10px;
+  border-radius: 3px;
+  background: var(--muted);
+  transition: background 200ms ease;
+}
+.voice-bar[data-state="listening"] .voice-orb i { background: var(--ok); animation: voice-wave 1s ease-in-out infinite; }
+.voice-bar[data-state="speaking"] .voice-orb i { background: var(--copper); animation: voice-wave 0.7s ease-in-out infinite; }
+.voice-bar[data-state="thinking"] .voice-orb i,
+.voice-bar[data-state="connecting"] .voice-orb i { animation: voice-pulse 1.2s ease-in-out infinite; }
+.voice-orb i:nth-child(2) { animation-delay: 0.15s !important; }
+.voice-orb i:nth-child(3) { animation-delay: 0.3s !important; }
+@keyframes voice-wave { 0%, 100% { height: 8px; } 50% { height: 24px; } }
+@keyframes voice-pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+.voice-status { flex: 1; min-width: 0; font-size: 14px; color: var(--ink); }
+.voice-stop {
+  flex-shrink: 0;
+  padding: 9px 16px;
+  border: none;
+  border-radius: 999px;
+  background: var(--down);
+  color: #fff;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chat-voice-tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 0 6px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  font-size: 10.5px;
+  opacity: 0.7;
+  vertical-align: 1px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .voice-orb i { animation: none !important; }
+}
