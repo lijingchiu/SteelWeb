@@ -9,12 +9,15 @@ CANDS = """營造業法 營造業法施行細則 建築法 建築師法 技師�
 關稅法 鋼鐵業燒結工場空氣污染物排放標準 電弧爐煉鋼業空氣污染物排放標準 鋼鐵業集塵灰 高溫作業勞工作息時間標準 勞工作業環境監測實施辦法
 起重升降機具安全規則 施工架 模板 公共工程 採購契約 營建剩餘土石方 營造業承攬工程造價限額工程規模範圍申報淨值及一定期間承攬總額認定辦法
 營造業專業工程特定施工項目應置之技術士種類比率或人數標準表 建築物耐震 無障礙 綠建築 碳費收費辦法 公寓大廈管理條例 毒性及關注化學物質管理法""".split()
-for kind in ("Law", "Order"):
-    for url in (f"https://law.moj.gov.tw/api/Ch/{kind}/JSON", f"https://law.moj.gov.tw/api/ch/{kind.lower()}/json"):
-        r = requests.get(url, timeout=180)
-        print(kind, url, r.status_code, r.headers.get("content-type"), len(r.content))
-        if r.ok: break
-    raw = r.content
+import subprocess
+for kind in ("Order",):
+    url = f"https://law.moj.gov.tw/api/Ch/{kind}/JSON"
+    for attempt in range(6):
+        rc = subprocess.run(["curl", "-sSL", "--retry", "5", "--retry-all-errors", "-C", "-", "-o", f"{kind}.zip", url]).returncode
+        print(kind, "curl rc", rc)
+        if rc == 0: break
+    raw = open(f"{kind}.zip", "rb").read()
+    print(kind, "bytes", len(raw))
     if raw[:2] == b"PK":
         z = zipfile.ZipFile(io.BytesIO(raw)); print(" zip:", z.namelist()); raw = z.read(z.namelist()[0])
     data = json.loads(raw.decode("utf-8-sig"))
@@ -33,3 +36,5 @@ for kind in ("Law", "Order"):
         else:
             near = [n for n in names if c in n][:6]
             if near: print(f"  NEAR  {kind} {c} -> {near}")
+
+# rerun
