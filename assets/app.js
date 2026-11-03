@@ -869,6 +869,21 @@ function initAnimations() {
   }
 }
 
+// Daily newsletter deck: download button in the masthead.
+function populateReport(report, data) {
+  const a = document.getElementById('report-dl');
+  if (!a || !report || !report.file || !/^reports\/[\w.-]+\.pptx$/.test(report.file)) return;
+  a.href = report.file;
+  a.setAttribute('download', report.file.split('/').pop());
+  const md = String(report.date || '').slice(5).replace('-', '/');
+  const label = a.querySelector('.report-dl-label');
+  if (label) label.textContent = report.date === (data && data.date) ? '今日電子報' : '最新電子報';
+  const meta = document.getElementById('report-dl-meta');
+  if (meta) meta.textContent = `${md} · ${report.slides || ''} 頁`;
+  a.title = `下載 ${report.date} 電子報簡報（PPTX，${report.slides || ''} 頁）`;
+  a.hidden = false;
+}
+
 async function loadData() {
   try {
     const res = await fetch('data/latest.json?t=' + Date.now());
@@ -884,7 +899,9 @@ async function loadData() {
     populateForecast(data);
     populateNews(data);
     populateTopStories(data);
-    const [materials, accuracy] = await Promise.all([fetchJson('data/materials.json'), fetchJson('data/accuracy.json')]);
+    const [materials, accuracy, report] = await Promise.all([
+      fetchJson('data/materials.json'), fetchJson('data/accuracy.json'), fetchJson('data/report.json')]);
+    populateReport(report, data);
     populateMaterials(materials);
     populateAccuracy(accuracy);
     maybeOpenBriefingFromPush(data);

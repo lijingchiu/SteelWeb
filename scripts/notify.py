@@ -23,6 +23,7 @@ CONFIG_PATH = Path("notify-config.json")
 STATE_PATH = Path("data/notify-state.json")
 LATEST_PATH = Path("data/latest.json")
 MATERIALS_PATH = Path("data/materials.json")
+REPORT_PATH = Path("data/report.json")
 ONESIGNAL_URL = "https://api.onesignal.com/notifications"
 BUTTONDOWN_URL = "https://api.buttondown.com/v1/emails"
 
@@ -90,7 +91,7 @@ def build_push(d: dict, site_url: str) -> dict:
     return {"title": title, "text": head, "subtitle": sub, "url": site_url + "?from=push"}
 
 
-def build_email(d: dict, materials: dict, site_url: str) -> dict:
+def build_email(d: dict, materials: dict, site_url: str, report: dict | None = None) -> dict:
     head, sub = headline_of(d)
     date = d.get("date", "")
     lines = [f"# {head}"]
@@ -99,6 +100,9 @@ def build_email(d: dict, materials: dict, site_url: str) -> dict:
     lines.append(f"{date} · 台灣鋼鐵市場每日快報")
     if d.get("summary"):
         lines += ["## 今日重點", d["summary"]]
+    if report and report.get("date") == date and report.get("file"):
+        deck_url = site_url.rstrip("/") + "/" + report["file"]
+        lines.append(f"[下載今日電子報簡報（PPTX，{report.get('slides', '')} 頁）→]({deck_url})")
 
     pf = d.get("price_forecast") or {}
     items = pf.get("items") or {}
@@ -216,7 +220,8 @@ def main(now: datetime | None = None) -> int:
             if ch == "push":
                 result = send_push(public_id, key, build_push(d, site_url), at)
             else:
-                result = send_email(key, build_email(d, load_json(MATERIALS_PATH, {}), site_url), at)
+                result = send_email(key, build_email(d, load_json(MATERIALS_PATH, {}), site_url,
+                                                     load_json(REPORT_PATH, {})), at)
             state[ch] = {"date": today, "sent_at": now.isoformat(), **result}
             log(f"{ch}: OK {result}")
         except Exception as e:

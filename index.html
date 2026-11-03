@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261103h">
+  <link rel="stylesheet" href="assets/style.css?v=20261103i">
 </head>
 <body>
 
@@ -48,6 +48,11 @@
       <span class="badge-dot"></span>
       <span id="last-updated-text">載入中</span>
     </div>
+    <a class="report-dl" id="report-dl" href="#" download hidden title="下載今日電子報簡報（PPTX）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8.5L19 8v12.5H6z"/><path d="M14 3.5V8.5h5M12.5 11v6M9.8 14.5l2.7 2.7 2.7-2.7"/></svg>
+      <span class="report-dl-label">今日電子報</span>
+      <span class="report-dl-meta" id="report-dl-meta">PPTX</span>
+    </a>
     <nav class="nav-wrap" aria-label="Primary">
       <a class="nav-link" href="#prices" data-sec="prices">報價</a>
       <a class="nav-link" href="#materials" data-sec="materials">行情</a>
@@ -505,7 +510,7 @@
 
     <div class="chat-setup" id="chat-setup" hidden>
       <p class="chat-setup-lead">這台裝置還沒啟用鋼市助理。</p>
-      <p>請貼上 OpenAI API 金鑰。金鑰只會存在這台裝置的瀏覽器裡，不會上傳到網站。也可以直接用家人給你的專屬連結打開網站，就會自動啟用。</p>
+      <p>請貼上 OpenAI API 金鑰。金鑰只會存在這台裝置的瀏覽器裡，不會上傳到網站。</p>
       <form class="chat-key-form" id="chat-key-form" autocomplete="off">
         <input type="password" id="chat-key-input" class="chat-key-input" placeholder="sk-..." aria-label="OpenAI API 金鑰" autocomplete="off" spellcheck="false">
         <button type="submit" class="chat-key-save">啟用</button>
@@ -525,7 +530,7 @@
     </div>
   </section>
 
-  <script src="assets/app.js?v=20261103h"></script>
-  <script src="assets/chat.js?v=20261103h"></script>
+  <script src="assets/app.js?v=20261103i"></script>
+  <script src="assets/chat.js?v=20261103i"></script>
 </body>
 </html>

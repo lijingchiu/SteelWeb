@@ -68,7 +68,7 @@
     if (d) {
       add('資料日期', `今天是 ${new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' })}；分析發布日 ${d.date || '-'}；產生時間 ${d.generated_at || '-'}`);
       add('今日重點', [d.headline, d.headline_sub, clean(d.summary)]);
-      add('台灣鋼材主要行情（月資料）', Object.entries(d.taiwan_prices || {}).map(([k, v]) =>
+      add('台灣鋼材主要行情（月資料）', Object.entries(d.taiwan_prices || {}).filter(([, v]) => v && typeof v === 'object').map(([k, v]) =>
         `${NAMES[k] || k}：${num(v.value)} ${v.unit || ''}（${v.month || '-'}，較前月 ${v.mom_change > 0 ? '+' : ''}${num(v.mom_change)}）${v.stale ? '［資料較舊］' : ''}`));
       const fx = d.exchange_rate;
       if (fx) add('匯率', `美元兌新台幣 ${fx.usd_twd}（${fx.source || ''}，即期買 ${fx.spot_buy ?? '-'}／賣 ${fx.spot_sell ?? '-'}）。${clean(fx.impact_on_steel)}`);
