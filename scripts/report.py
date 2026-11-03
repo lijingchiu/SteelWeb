@@ -159,7 +159,7 @@ def build_source(d: dict, m: dict, acc: dict) -> str:
             lines.append(f"  後續觀察：{plain(f['watch'])}")
     if pf.get("overall_basis"):
         lines.append(f"綜合推論：{plain(pf['overall_basis'])}")
-    add("盤價預測（AI 預估）", lines)
+    add("盤價預測", lines)
 
     if acc and acc.get("overall"):
         o = acc["overall"]
@@ -213,7 +213,8 @@ def writer_prompt(source: str, feedback: str = "") -> str:
 - 引用數字時照抄 <source> 的寫法並帶單位，例如「每公噸18,500元」。
 - 每個欄位都有字數上限（括號內），寧可短，不可超過。每一則只講一件事。
 - 不要使用 markdown、網址、英文句子、事實編號（如 F1）。
-- 預測要說明是預估；不確定或只有單一來源的事要明說。
+- 不要寫任何免責或提醒字句，例如「AI 預估」「不是保證」「預測不保證」「僅供參考」「請自行判斷」。簡報最後一頁已在固定位置統一說明，重複寫會干擾閱讀。說到預測時直接講方向、幅度和機率，例如「11月鋼筋月均價看漲，約每公噸+60至+300元，上漲機率42%」。
+- 不確定或只有單一來源的事要明說。
 </rules>
 
 {WRITING_RULES}
@@ -245,6 +246,7 @@ def writer_prompt(source: str, feedback: str = "") -> str:
 再次提醒：只用 <source> 的資訊，遵守字數上限，只輸出 JSON。"""
 
 
+DISCLAIMER = re.compile(r"AI\s*預估|AI\s*預測|不是保證|並非保證|不保證|僅供參考|請自行判斷")
 NUM = re.compile(r"\d[\d,]*(?:\.\d+)?")
 
 
@@ -314,6 +316,8 @@ def check(content: dict, source: str) -> list[str]:
             problems.append(f"{path} 有 {len(text)} 字，超過上限 {limit} 字：「{text}」")
         if re.search(r"https?://|www\.|\*\*|\[[^\]]*\]\(|^#", text):
             problems.append(f"{path} 含有網址或 markdown：「{text}」")
+        if DISCLAIMER.search(text):
+            problems.append(f"{path} 含有免責字句（如「AI 預估」「不是保證」），請刪除後直接講結論：「{text}」")
         if re.search(r"\bF\d+\b", text):
             problems.append(f"{path} 含有事實編號：「{text}」")
         bad = sorted(v for v in numbers_in(text)
@@ -700,7 +704,7 @@ def forecast_reasons(deck: Deck, d: dict, c: dict):
              [[("月均價  ", {"color": COPPER, "bold": True, "size": 10.5}), (notes.get("month", ""), {})]], size=12, color=INK, line=1.3)
         y += row_h
         hline(s, MX, y - Inches(0.12), W - 2 * MX)
-    text(s, MX, y + Inches(0.02), W - 2 * MX, Inches(0.3), "以上為 AI 依公開資料所做的預估，不是保證；機率與區間請見前頁。", size=10.5, color=MUTED)
+    text(s, MX, y + Inches(0.02), W - 2 * MX, Inches(0.3), "機率與區間請見前頁。", size=10.5, color=MUTED)
 
 
 def construction_movers(m: dict) -> list[dict]:

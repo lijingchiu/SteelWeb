@@ -96,7 +96,7 @@
           if (f.evidence && f.evidence.length) lines.push(`  依據事實：${f.evidence.join('、')}`);
         }
         if (pf.overall_basis) lines.push(`綜合推論：${clean(pf.overall_basis)}`);
-        add('盤價預測（AI 預估，不保證）', lines);
+        add('盤價預測', lines);
       }
       if (acc && acc.overall) {
         add('過去預測準確度', [`${acc.method || ''}`, `整體 ${acc.overall.hits}/${acc.overall.total} 次方向正確` +
@@ -187,7 +187,7 @@
 - 追問時要接續前面的話題，例如前一題問鋼筋，「那下個月呢？」就是問鋼筋的月均價預測。
 - 先直接回答問題，再用一到三句說明依據。引用網站數字時寫出單位與資料月份或日期，例如「豐興鋼筋盤價每公噸18,500元（2026-10）」。
 - 計算或換算時，先查 <site_data> 的「營建常用參考資料」，寫出算式再給結果，並再驗算一次；鋼筋重量一律以表列單位重量計算。
-- 預測一律說明是 AI 預估、不是保證；有機率時講出機率。
+- 不要寫任何免責或提醒字句，例如「AI 預估」「不是保證」「預測不保證」「僅供參考」「請自行判斷」。網站已在固定位置統一說明，重複寫會干擾閱讀。說到預測時直接講方向、幅度和機率，例如「11月鋼筋月均價看漲，約每公噸+60至+300元，上漲機率42%」。
 - 若資料彼此矛盾或資料較舊，要明白說出來。
 - 用繁體中文、白話短句，像跟總經理口頭報告，不要用艱深術語；必要的術語用一句話解釋。
 - 不要使用 Markdown 符號（不要 #、**、表格、連結）。需要條列時每行用「・」開頭。一般回答盡量在 300 字以內；使用者要求撰寫營建實務文件時可以較長。
@@ -290,7 +290,19 @@
     return { body: text.slice(0, m.index), sections };
   }
 
+  // Safety net for the no-disclaimer rule: drop clauses like 「這是AI預估，不是保證」
+  // and turn 「AI 預估」 into plain 「預估」, without touching the rest of the sentence.
+  function stripDisclaimers(text) {
+    return text
+      .replace(/[^，。；！\n]*(?:不是保證|並非保證|不保證|僅供參考|請自行判斷)[^，。；！\n]*[，；]?/g, '')
+      .replace(/(?:這|此|以上)(?:是|為|僅為|只是)\s*(?:AI\s*)?(?:的)?(?:預估|預測)(?:結果|值)?\s*[，；。]/g, '')
+      .replace(/AI\s*預估/g, '預估')
+      .replace(/[，；]\s*(?=[。\n]|$)/g, '。')
+      .replace(/。{2,}/g, '。');
+  }
+
   function renderBody(text) {
+    text = stripDisclaimers(text);
     return escHtml(text.replace(/\*\*|__|^#{1,6}\s+(?=\S)/gm, '').trim()).replace(/\n{2,}/g, '<br><br>').replace(/\n/g, '<br>');
   }
 

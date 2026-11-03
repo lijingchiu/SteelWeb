@@ -144,8 +144,7 @@ def build_email(d: dict, materials: dict, site_url: str, report: dict | None = N
                     f'<br><span style="{SMALL}">{esc(g.get("change_estimate", ""))}</span>')
         rows = [[f"<b>{esc(name)}</b>", cell((items.get(key) or {}).get("week")), cell((items.get(key) or {}).get("next_month"))]
                 for key, name in FORECAST_NAMES]
-        parts += [f"{h2}盤價預測</h2>", table(["品項", f"{week}行情", f"{month} 月均價"], rows),
-                  f'<p style="margin:6px 0 0;{SMALL}">AI 預估，不是保證。</p>']
+        parts += [f"{h2}盤價預測</h2>", table(["品項", f"{week}行情", f"{month} 月均價"], rows)]
 
     tp = d.get("taiwan_prices") or {}
     rows = []
