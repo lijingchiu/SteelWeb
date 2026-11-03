@@ -631,7 +631,7 @@
 - 用口語短句，不要條列，不要念出符號、代號或網址。數字念得自然，例如「每公噸一萬八千五百元」「十一月二日」。
 - 網站有的資料（價格、行情、指數、預測、新聞）只根據 <site_data> 和 lookup_site_data 工具的結果回答。需要的資料不在 <site_data> 時，先呼叫 lookup_site_data 查詢再回答，不要猜。查不到就直說網站目前沒有這項資料，並接著講最接近的現有資料（例如問到還沒有預測的月份，就說目前預測到哪個月、結果如何）。
 - 營建、營造的專業或實務問題可以運用一般專業知識，以台灣做法為準；不要編造即時價格、新聞或法條條號。涉及安全或法律責任時，提醒以最新法規或技師意見為準。
-- 問到法規（規定、標準、資格、許可、罰則、契約權利義務等）時，一定先呼叫 search_regulations 查條文，再依條文回答，並說出法規名稱與條號，例如「依營造安全衛生設施標準第十九條」。只能引用查到的條文，查不到就直說目前收錄的條文沒有直接規定，建議查全國法規資料庫或洽主管機關。
+- 法規問題（條文、條號、法定標準、罰則）由系統另外查證條文後回答。你自己回答時，不要說出任何法規條號，也不要引述條文內容；若被追問條號，就說請直接問「某某規定是哪一條」，系統會查證後回答。
 - 計算鋼筋重量時用「營建常用參考資料」的表列單位重量。
 - 不要說任何免責或提醒字句，例如「AI 預估」「不是保證」「僅供參考」。說到預測直接講方向、幅度和機率。
 - 追問時接續前面的話題。
@@ -683,7 +683,7 @@
     voice.idleTimer = setTimeout(() => stopVoice('語音已自動結束（一段時間沒有說話）。'), VOICE_IDLE_MS);
   }
 
-  async function mintVoiceKey(instructions, lawNames) {
+  async function mintVoiceKey(instructions) {
     const res = await fetch('https://api.openai.com/v1/realtime/client_secrets', {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${getKey()}`, 'Content-Type': 'application/json' },
@@ -716,19 +716,7 @@
             },
             required: ['topic'],
           },
-        }, ...(lawNames.length ? [{
-          type: 'function',
-          name: 'search_regulations',
-          description: '查詢本網站收錄的台灣營建、建築設計與鋼鐵製造相關法規條文（全國法規資料庫）。laws 選 1～4 部最相關的法規；query 寫可能出現在條文裡的關鍵詞或條號，例如「墜落 護欄 二公尺」「第19條」。',
-          parameters: {
-            type: 'object',
-            properties: {
-              laws: { type: 'array', items: { type: 'string', enum: lawNames }, minItems: 1, maxItems: 4 },
-              query: { type: 'string', description: '條文關鍵詞或條號' },
-            },
-            required: ['laws', 'query'],
-          },
-        }] : [])],
+        }],
         tool_choice: 'auto',
       } }),
     });
@@ -761,9 +749,8 @@
     try {
       await ensureContext();
       const start = state.sections.filter(sec => VOICE_START_SECTIONS.some(p => sec.title.startsWith(p)));
-      const lawIndex = await loadLawIndex();
-      const ek = await mintVoiceKey(`${VOICE_RULES}\n\n<site_data>\n${joinSections(start)}\n</site_data>`,
-                                    lawIndex ? lawIndex.laws.map(l => l.name) : []);
+      loadLawIndex();
+      const ek = await mintVoiceKey(`${VOICE_RULES}\n\n<site_data>\n${joinSections(start)}\n</site_data>`);
 
       const pc = new RTCPeerConnection();
       voice.pc = pc;
@@ -814,9 +801,7 @@
     Object.assign(voice, { active: false, starting: false, pc: null, dc: null, stream: null });
     voice.answers.clear();
     voice.users.clear();
-    voice.lawRefs = [];
-    voice.pendingLaws = 0;
-    voice.continueAfterLaws = false;
+    if (voice.fillerResolve) voice.fillerResolve();
     voice.skip.clear();
     $('voice-bar').hidden = true;
     $('chat-form').hidden = false;
@@ -831,6 +816,93 @@
     return voice.users.get(itemId);
   }
 
+  async function callText(instructions, input, json = false) {
+    const res = await fetch(OAI_URL, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${getKey()}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: CHAT_MODEL, instructions, input, reasoning: { effort: 'low' }, max_output_tokens: 4000, store: false,
+        ...(json ? { text: { format: { type: 'json_object' } } } : {}),
+      }),
+    });
+    if (!res.ok) throw await apiError(res);
+    return outputText(await res.json());
+  }
+
+  const SPOKEN_STYLE = `
+
+<spoken>
+這段回答會由語音一字不改地念出來：用口語短句，不要條列、括號、引號或其他符號，全文 150 字以內。條號用阿拉伯數字寫，例如「民法第499條」。不要寫「相關區塊」那一行。
+</spoken>`;
+
+  const VERIFY_RULES = `你是法規引用校對員。<answer> 是一段依 <regulations> 寫成、將被念出來的回答。
+
+<task>
+逐一檢查 <answer> 中每個「法規名稱＋條號」，以及它後面陳述的規定，是否確實寫在 <regulations> 的那一條裡。
+- 條文裡的「前條」「前項」「第X條」是指向別的條文。例如某條寫「前條所定之期限，延為五年」，「延為五年」出自這一條本身，不是前條。
+- 條號或內容與條文不符：改成正確的條號或內容，其他文字盡量不動。
+- <regulations> 沒有支持的說法：刪掉。
+- 全部正確：原文照抄。
+</task>
+
+只輸出 JSON：{"text": "<校對後全文>", "changed": true 或 false, "notes": "<改了什麼；沒改就空字串>"}`;
+
+  function waitForFiller() {
+    return Promise.race([voice.fillerDone || Promise.resolve(), new Promise(r => setTimeout(r, 8000))]);
+  }
+
+  async function answerLegalByVoice(text, plan) {
+    // Say something while the articles are looked up and checked.
+    voice.fillerDone = new Promise(r => { voice.fillerResolve = r; });
+    voiceSend({ type: 'response.create', response: {
+      conversation: 'none', metadata: { kind: 'filler' }, output_modalities: ['audio'], input: [],
+      instructions: '用自然的語氣只說這句話：「好，我查一下相關法規條文，請稍等。」',
+    } });
+    setVoiceStatus('thinking', '查詢法規條文…');
+    const [laws, context] = await Promise.all([searchLaws(plan.laws, plan.terms, text), ensureContext()]);
+    const regs = `<regulations>\n${laws.length ? formatLaws(laws) : `（在《${plan.laws.join('》《')}》中找不到相關條文）`}\n</regulations>\n\n`;
+    const input = state.history.slice(-HISTORY_TURNS * 2).map(h => ({ role: h.role, content: h.text }));
+    input.push({ role: 'user', content: regs + text });
+    let answer = await callText(`${ANSWER_RULES}\n\n<site_data>\n${context}\n</site_data>${SPOKEN_STYLE}`, input);
+    if (!voice.active) return;
+    if (!answer.trim() || answer.includes(OFF_MARK)) {
+      const el = addMsg('bot', '', 'chat-refusal');
+      setAnswer(el, REFUSAL, true);
+      await waitForFiller();
+      voiceSend({ type: 'response.create', response: {
+        conversation: 'none', metadata: { kind: 'refusal' }, output_modalities: ['audio'], input: [],
+        instructions: `用平穩友善的語氣，一字不改地念出下面這段話，不要加任何其他內容：${REFUSAL}`,
+      } });
+      return;
+    }
+    answer = stripDisclaimers(splitSections(answer).body.trim());
+    if (laws.length) {
+      setVoiceStatus('thinking', '核對條號…');
+      try {
+        const v = JSON.parse(await callText(VERIFY_RULES,
+          `<regulations>\n${formatLaws(laws)}\n</regulations>\n<answer>\n${answer}\n</answer>\n\n請依規則校對，只輸出 JSON。`, true));
+        if (v && typeof v.text === 'string' && v.text.trim()) answer = v.text.trim();
+        window.__voiceEvents.push({ t: Date.now(), type: 'legal.verify', changed: !!(v && v.changed), notes: v && v.notes });
+      } catch (e) {
+        // The check itself failed (network or API): keep the answer, which was
+        // still written only from the retrieved articles.
+        window.__voiceEvents.push({ t: Date.now(), type: 'legal.verify', error: String(e && e.message || e) });
+      }
+    }
+    if (!voice.active) return;
+    const el = addMsg('bot', '', 'chat-voice');
+    setAnswer(el, answer, true, laws);
+    voiceSend({ type: 'conversation.item.create', event_id: `seed_legal_${Date.now()}`,
+                item: { type: 'message', role: 'assistant', content: [{ type: 'output_text', text: answer }] } });
+    await waitForFiller();
+    voiceSend({ type: 'response.create', response: {
+      conversation: 'none', metadata: { kind: 'legal' }, output_modalities: ['audio'], input: [],
+      instructions: `用自然、平穩的語氣，一字不改地念出下面這段話，不增加也不省略任何內容，條號照念：\n${answer}`,
+    } });
+    state.history.push({ role: 'user', text }, { role: 'assistant', text: answer });
+    state.history = state.history.slice(-HISTORY_TURNS * 2);
+  }
+
   async function gateVoiceQuestion(itemId, transcript) {
     const text = String(transcript || '').trim();
     const bubble = userBubble(itemId);
@@ -843,10 +915,10 @@
     }
     bubble.querySelector('.chat-bubble').innerHTML = `${escHtml(text)}<span class="chat-voice-tag">語音</span>`;
     setVoiceStatus('thinking', '思考中…');
-    let ok;
+    let plan;
     try {
       const earlier = state.history.filter(h => h.role === 'user').slice(-2).map(h => h.text);
-      ok = (await checkScope(text, earlier)).in_scope;
+      plan = await checkScope(text, earlier);
     } catch (e) {
       addMsg('bot', escHtml(e.message || '暫時無法確認問題範圍，請再說一次。'), 'chat-error');
       voiceSend({ type: 'conversation.item.delete', item_id: itemId });
@@ -854,7 +926,16 @@
       return;
     }
     if (!voice.active) return;
-    if (ok) {
+    if (plan.in_scope && plan.laws.length) {
+      try {
+        await answerLegalByVoice(text, plan);
+      } catch (e) {
+        addMsg('bot', escHtml(e.message || '法規查詢失敗，請再說一次。'), 'chat-error');
+        setVoiceStatus('listening', '請說話…');
+      }
+      return;
+    }
+    if (plan.in_scope) {
       voice.pendingQuestion = text;
       voiceSend({ type: 'response.create' });
       return;
@@ -895,8 +976,9 @@
       }
       case 'response.created': {
         const r = ev.response || {};
-        if ((r.metadata || {}).kind === 'refusal') { voice.skip.add(r.id); break; }
-        setVoiceStatus('speaking', '回答中…（直接說話可以打斷）');
+        const kind = (r.metadata || {}).kind;
+        if (kind) voice.skip.add(r.id);
+        if (kind !== 'filler') setVoiceStatus('speaking', '回答中…（直接說話可以打斷）');
         break;
       }
       case 'response.output_audio_transcript.delta': {
@@ -914,27 +996,13 @@
         const a = voice.answers.get(ev.response_id);
         if (a) {
           a.text = ev.transcript || a.text;
-          setAnswer(a.el, a.text, true, voice.lawRefs || []);
+          setAnswer(a.el, a.text, true);
         }
         break;
       }
       case 'response.function_call_arguments.done': {
         let args = {};
         try { args = JSON.parse(ev.arguments || '{}'); } catch (_) {}
-        if (ev.name === 'search_regulations') {
-          setVoiceStatus('thinking', '查詢法規條文…');
-          const terms = String(args.query || '').split(/[\s,，、]+/).filter(Boolean);
-          voice.pendingLaws = (voice.pendingLaws || 0) + 1;
-          searchLaws(args.laws || [], terms, args.query || '', 8).then(found => {
-            voice.lawRefs = (voice.lawRefs || []).concat(found);
-            const output = found.length ? formatLaws(found).slice(0, 9000) : '收錄的條文中找不到相關規定。';
-            voiceSend({ type: 'conversation.item.create', item: { type: 'function_call_output', call_id: ev.call_id, output } });
-          }).finally(() => {
-            voice.pendingLaws -= 1;
-            if (!voice.pendingLaws && voice.continueAfterLaws) { voice.continueAfterLaws = false; voiceSend({ type: 'response.create' }); }
-          });
-          break;
-        }
         const output = ev.name === 'lookup_site_data' ? voiceLookup(args.topic, args.query) : '沒有這個工具。';
         setVoiceStatus('thinking', '查詢網站資料…');
         // The model may look up several things in one turn; it is asked to
@@ -944,6 +1012,10 @@
       }
       case 'response.done': {
         const r = ev.response || {};
+        if ((r.metadata || {}).kind === 'filler') {
+          if (voice.fillerResolve) voice.fillerResolve();
+          break;
+        }
         const a = voice.answers.get(r.id);
         if (a && a.text.trim() && voice.pendingQuestion) {
           state.history.push({ role: 'user', text: voice.pendingQuestion }, { role: 'assistant', text: a.text.trim() });
@@ -956,8 +1028,7 @@
           addMsg('bot', escHtml(quota ? 'OpenAI 額度已用完或超過預算上限。' : '回答產生失敗，請再說一次。'), 'chat-error');
         }
         const calling = r.status === 'completed' && (r.output || []).some(o => o.type === 'function_call');
-        if (calling && voice.pendingLaws) voice.continueAfterLaws = true;
-        else if (calling) voiceSend({ type: 'response.create' });
+        if (calling) voiceSend({ type: 'response.create' });
         else setVoiceStatus('listening', '請說話…');
         bumpIdle();
         break;
