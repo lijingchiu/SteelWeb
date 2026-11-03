@@ -9,6 +9,7 @@ Both are scheduled for the configured delivery time (Taiwan time); when the anal
 finishes after that time they go out immediately. Each channel is skipped while its
 App ID / username (notify-config.json) or API key (environment) is missing.
 """
+import html
 import json
 import os
 import re
@@ -91,62 +92,106 @@ def build_push(d: dict, site_url: str) -> dict:
     return {"title": title, "text": head, "subtitle": sub, "url": site_url + "?from=push"}
 
 
+# Email body is HTML: Markdown tables are rendered inconsistently by email apps
+# (and break if rows are separated by blank lines). Every element is written on
+# its own unindented line so Buttondown's Markdown pass leaves it alone.
+INK, MUTED, COPPER, DOWN, LINE = "#2a1f17", "#6d625a", "#7a4a28", "#9c5050", "#d9d6d3"
+DIR_COLOR = {"up": COPPER, "down": DOWN, "stable": MUTED}
+TD = f"padding:9px 6px;border-bottom:1px solid {LINE};vertical-align:top;"
+TH = f"padding:6px;border-bottom:2px solid {INK};text-align:left;font-size:12px;color:{MUTED};font-weight:600;"
+SMALL = f"font-size:12px;color:{MUTED};"
+
+
+def esc(s) -> str:
+    return html.escape(str(s if s is not None else ""))
+
+
+def table(head: list[str], rows: list[list[str]]) -> str:
+    out = ['<table role="presentation" width="100%" cellpadding="0" cellspacing="0" '
+           'style="border-collapse:collapse;width:100%;font-size:14px;line-height:1.45;">',
+           "<tr>" + "".join(f'<th style="{TH}">{esc(h)}</th>' for h in head) + "</tr>"]
+    out += ["<tr>" + "".join(f'<td style="{TD}">{c}</td>' for c in r) + "</tr>" for r in rows]
+    out.append("</table>")
+    return "\n".join(out)
+
+
 def build_email(d: dict, materials: dict, site_url: str, report: dict | None = None) -> dict:
     head, sub = headline_of(d)
     date = d.get("date", "")
-    lines = [f"# {head}"]
+    h2 = f'<h2 style="font-size:19px;margin:26px 0 10px;color:{INK};">'
+    parts = [f'<h1 style="font-size:22px;line-height:1.4;margin:0 0 6px;color:{INK};">{esc(head)}</h1>']
     if sub:
-        lines.append(f"*{sub}*")
-    lines.append(f"{date} · 台灣鋼鐵市場每日快報")
+        parts.append(f'<p style="margin:0 0 6px;font-size:15px;color:{MUTED};">{esc(sub)}</p>')
+    parts.append(f'<p style="margin:0;{SMALL}">{esc(date)} · 台灣鋼鐵市場每日快報</p>')
     if d.get("summary"):
-        lines += ["## 今日重點", d["summary"]]
+        parts += [f"{h2}今日重點</h2>", f'<p style="margin:0;font-size:15px;line-height:1.7;">{esc(d["summary"])}</p>']
     if report and report.get("date") == date and report.get("file"):
         deck_url = site_url.rstrip("/") + "/" + report["file"]
-        lines.append(f"[下載今日電子報簡報（PPTX，{report.get('slides', '')} 頁）→]({deck_url})")
+        parts.append(f'<p style="margin:18px 0 0;"><a href="{esc(deck_url)}" style="display:inline-block;padding:10px 18px;'
+                     f'background:{INK};color:#ffffff;border-radius:999px;text-decoration:none;font-weight:600;font-size:14px;">'
+                     f'下載今日電子報簡報（PPTX，{esc(report.get("slides", ""))} 頁）</a></p>')
 
     pf = d.get("price_forecast") or {}
     items = pf.get("items") or {}
     if items:
         week = pf.get("week_label", "本週")
         month = next(iter((pf.get("targets") or {}).values()), {}).get("target_month", "下一期")
-        lines += ["## 盤價預測", f"| 品項 | {week}行情 | {month} 月均價 |", "|---|---|---|"]
-        for key, name in FORECAST_NAMES:
-            f = items.get(key) or {}
-            cell = lambda g: f"{DIR_TEXT.get((g or {}).get('direction'), '-')} {(g or {}).get('change_estimate', '')}".strip()
-            lines.append(f"| {name} | {cell(f.get('week'))} | {cell(f.get('next_month'))} |")
+
+        def cell(g):
+            g = g or {}
+            color = DIR_COLOR.get(g.get("direction"), MUTED)
+            return (f'<span style="color:{color};font-weight:700;">{esc(DIR_TEXT.get(g.get("direction"), "-"))}</span>'
+                    f'<br><span style="{SMALL}">{esc(g.get("change_estimate", ""))}</span>')
+        rows = [[f"<b>{esc(name)}</b>", cell((items.get(key) or {}).get("week")), cell((items.get(key) or {}).get("next_month"))]
+                for key, name in FORECAST_NAMES]
+        parts += [f"{h2}盤價預測</h2>", table(["品項", f"{week}行情", f"{month} 月均價"], rows),
+                  f'<p style="margin:6px 0 0;{SMALL}">AI 預估，不是保證。</p>']
 
     tp = d.get("taiwan_prices") or {}
-    lines += ["## 最新報價", "| 品項 | 報價 | 資料期間 | 較前期 |", "|---|---|---|---|"]
+    rows = []
     for key, name in HEADLINE_PRICES:
         it = tp.get(key) or {}
-        if it.get("value") is None:
+        if not isinstance(it, dict) or it.get("value") is None:
             continue
         mom = it.get("mom_change")
         mom_s = "-" if mom is None else (f"+{fmt_num(mom)}" if mom > 0 else fmt_num(mom))
-        lines.append(f"| {name} | {fmt_num(it['value'])} {it.get('unit', '')} | {it.get('month', '')} | {mom_s} |")
+        color = COPPER if (mom or 0) > 0 else DOWN if (mom or 0) < 0 else MUTED
+        rows.append([f"<b>{esc(name)}</b>",
+                     f'{esc(fmt_num(it["value"]))} <span style="{SMALL}">{esc(it.get("unit", ""))}</span>'
+                     f'<br><span style="{SMALL}">{esc(it.get("month", ""))}</span>',
+                     f'<span style="color:{color};font-weight:700;">{esc(mom_s)}</span>'])
     fx = d.get("exchange_rate") or {}
     if fx.get("usd_twd"):
-        lines.append(f"| 美元兌新台幣 | {fx['usd_twd']} | {date} | - |")
+        rows.append(["<b>美元兌新台幣</b>", f'{esc(fx["usd_twd"])}<br><span style="{SMALL}">{esc(date)}</span>', "-"])
+    if rows:
+        parts += [f"{h2}最新報價</h2>", table(["品項", "報價", "較前期"], rows)]
 
     movers = [it for it in materials.get("items", [])
               if it.get("group") in MOVER_GROUPS and not it.get("stale") and isinstance(it.get("change_pct"), (int, float))]
     movers = sorted(movers, key=lambda it: abs(it["change_pct"]), reverse=True)[:6]
     if movers:
-        lines += ["## 營建材料與原物料變動焦點"]
+        rows = []
         for it in movers:
-            lines.append(f"- {it['name']}：{fmt_num(it['value'])} {it['unit']}（{it['period']}，{it['change_pct']:+.2f}%）")
+            color = COPPER if it["change_pct"] > 0 else DOWN if it["change_pct"] < 0 else MUTED
+            rows.append([esc(it["name"]),
+                         f'{esc(fmt_num(it["value"]))} <span style="{SMALL}">{esc(it.get("unit", ""))}</span>'
+                         f'<br><span style="{SMALL}">{esc(it.get("period", ""))}</span>',
+                         f'<span style="color:{color};font-weight:700;">{it["change_pct"]:+.2f}%</span>'])
+        parts += [f"{h2}營建材料與原物料變動焦點</h2>", table(["品項", "最新", "較前期"], rows)]
 
     news = [n for n in d.get("news_sources", []) if str(n.get("url", "")).startswith("http") and n.get("title")][:8]
     if news:
-        lines += ["## 新聞標題"]
+        parts.append(f"{h2}新聞標題</h2>")
         for n in news:
             meta = "，".join(x for x in (n.get("source"), n.get("date")) if x)
-            lines.append(f"- [{n['title']}]({n['url']})" + (f"（{meta}）" if meta else ""))
+            parts.append(f'<p style="margin:0 0 10px;font-size:14px;line-height:1.5;">'
+                         f'<a href="{esc(n["url"])}" style="color:{COPPER};">{esc(n["title"])}</a>'
+                         + (f'<br><span style="{SMALL}">{esc(meta)}</span>' if meta else "") + "</p>")
 
-    lines += [f"[查看完整分析與 97 項營建材料行情 →]({site_url})",
-              "---",
-              "本快報由 AI 依公開資料自動分析產生，僅供參考，不構成交易建議。"]
-    return {"subject": f"【鋼市快報 {date[5:].replace('-', '/')}】{head}", "body": "\n\n".join(lines)}
+    parts += [f'<p style="margin:24px 0 0;"><a href="{esc(site_url)}" style="color:{COPPER};font-weight:600;">查看完整分析與 97 項營建材料行情 →</a></p>',
+              f'<hr style="border:none;border-top:1px solid {LINE};margin:20px 0 10px;">',
+              f'<p style="margin:0;{SMALL}">本快報由 AI 依公開資料自動分析產生，僅供參考，不構成交易建議。</p>']
+    return {"subject": f"【鋼市快報 {date[5:].replace('-', '/')}】{head}", "body": "\n".join(parts)}
 
 
 # ── Senders ────────────────────────────────────────────────
