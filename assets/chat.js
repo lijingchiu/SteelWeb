@@ -158,7 +158,7 @@
 
 <task>
 1. 判斷 <question> 裡最新的問題，是否「完全」屬於允許範圍。
-2. 若屬於允許範圍，且問題涉及法規（規定、標準、資格、許可、申報、罰則、契約權利義務、幾公尺幾天幾人之類的法定要求），從 <law_list> 挑出最相關的 1～4 部法規名稱（照抄），並寫出 3～8 個最可能出現在條文裡的關鍵詞（用條文用語，例如「墜落」「護欄」「二公尺」「瑕疵」）。
+2. 若屬於允許範圍，且問題涉及法規（規定、標準、資格、許可、申報、罰則、契約權利義務、容積率建蔽率、幾公尺幾天幾人之類的法定要求），從 <law_list> 挑出最相關的 1～4 部法規名稱（照抄）。問題提到特定縣市時，優先挑該縣市的地方法規（名稱中含縣市名），再搭配中央法規；並寫出 3～8 個最可能出現在條文裡的關鍵詞（用條文用語，例如「墜落」「護欄」「二公尺」「瑕疵」）。
 只輸出 JSON：{"in_scope": true 或 false, "laws": [法規名稱], "terms": [關鍵詞]}。不涉及法規時 laws 與 terms 為空陣列。
 </task>
 
@@ -194,6 +194,7 @@
 - 問到營建、營造的專業或實務問題時，可以運用一般專業知識回答，以台灣的做法與法規為準。不要編造即時價格、行情、新聞或法條條號；法規、規範與單價會更新，涉及金額、安全或法律責任時，提醒以最新版本、結構技師或主管機關意見為準。能用網站資料佐證的（例如材料價格、物價指數），就引用網站資料。
 - 追問時要接續前面的話題，例如前一題問鋼筋，「那下個月呢？」就是問鋼筋的月均價預測。
 - 先直接回答問題，再用一到三句說明依據。引用網站數字時寫出單位與資料月份或日期，例如「豐興鋼筋盤價每公噸18,500元（2026-10）」。
+- 地方法規（臺北市、新北市、臺中市、高雄市的自治條例或規則）只適用於該縣市，回答時要講明是哪個縣市的規定。容積率、建蔽率常由各都市計畫區的都市計畫書（土地使用分區管制要點）另行規定，地方法規只是上限或原則時要提醒這一點。
 - 問到法規時，以使用者訊息中 <regulations> 提供的條文為準：先講結論，再說明規定內容並標明出處，例如「依《營造安全衛生設施標準》第19條，高度二公尺以上…」。只能引用 <regulations> 裡出現的法規與條號，不可自行補上其他條號或法規；條文沒有涵蓋的部分，直說「目前收錄的條文沒有直接規定」，並建議查詢全國法規資料庫或洽主管機關。涉及訴訟、處罰或重大權益的個案，建議諮詢律師或技師。
 - 計算或換算時，先查 <site_data> 的「營建常用參考資料」，寫出算式再給結果，並再驗算一次；鋼筋重量一律以表列單位重量計算。
 - 不要寫任何免責或提醒字句，例如「AI 預估」「不是保證」「預測不保證」「僅供參考」「請自行判斷」。網站已在固定位置統一說明，重複寫會干擾閱讀。說到預測時直接講方向、幅度和機率，例如「11月鋼筋月均價看漲，約每公噸+60至+300元，上漲機率42%」。
@@ -311,14 +312,14 @@
       picked.push(x);
       if (++ranked >= limit) break;
     }
-    return picked.map(({ d, a }) => ({ law: d.name, pcode: d.pcode, modified: d.modified, partial: d.partial,
+    return picked.map(({ d, a }) => ({ law: d.name, pcode: d.pcode, modified: d.modified, partial: d.partial, url: d.url, region: d.region,
                                       no: a.no, n: a.n, chapter: a.chapter, text: a.text.replace(/\r/g, '') }));
   }
 
   window.__steelLaws = { searchLaws, loadLawIndex };
 
   function formatLaws(found) {
-    return found.map(r => `《${r.law}》${r.no}（${r.chapter ? r.chapter.replace(/\s+/g, '') + '；' : ''}最新修正 ${r.modified}）\n${r.text.slice(0, 1500)}`).join('\n\n');
+    return found.map(r => `《${r.law}》${r.no}（${r.region ? `${r.region}地方法規；` : ''}${r.chapter ? r.chapter.replace(/\s+/g, '') + '；' : ''}${r.modified ? `最新修正 ${r.modified}` : ''}）\n${r.text.slice(0, 1500)}`).join('\n\n');
   }
 
   // Articles the answer actually cites, as links to the official text. Handles
@@ -456,7 +457,9 @@
     const { body, sections } = final ? splitSections(text) : { body: text.replace(/\n?\s*相關區塊[:：][^\n]*$/, ''), sections: [] };
     const chips = sections.map(s => `<button type="button" class="chat-jump" data-sec="${s}">前往${SECTION_NAMES[s]} ›</button>`).join('');
     const cites = final && laws ? citedLaws(body, laws) : [];
-    const links = cites.map(r => `<a class="chat-law" target="_blank" rel="noopener" href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=${encodeURIComponent(r.pcode)}&flno=${encodeURIComponent(r.n)}">${escHtml(r.law)} ${escHtml(r.no)} ↗</a>`).join('');
+    const lawHref = r => (r.region && r.url) ? r.url
+      : `https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=${encodeURIComponent(r.pcode)}&flno=${encodeURIComponent(r.n)}`;
+    const links = cites.map(r => `<a class="chat-law" target="_blank" rel="noopener" href="${escHtml(lawHref(r))}">${escHtml(r.law)} ${escHtml(r.no)} ↗</a>`).join('');
     bubble.innerHTML = renderBody(body)
       + (links ? `<div class="chat-laws"><span>法規出處</span>${links}</div>` : '')
       + (chips ? `<div class="chat-jumps">${chips}</div>` : '');

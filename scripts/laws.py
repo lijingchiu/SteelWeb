@@ -62,6 +62,26 @@ CATALOG: list[tuple[str, list[str], list[tuple[int, int]] | None]] = [
     ("空氣污染防制法", [C, S], None),
     ("營建工程空氣污染防制設施管理辦法", [C], None),
     ("噪音管制法", [C], None),
+    # 營建營造：採購法子法
+    ("招標期限標準", [C], None),
+    ("最有利標評選辦法", [C], None),
+    ("投標廠商資格與特殊或巨額採購認定標準", [C], None),
+    ("押標金保證金暨其他擔保作業辦法", [C], None),
+    ("採購履約爭議調解規則", [C], None),
+    ("機關委託技術服務廠商評選及計費辦法", [C, D], None),
+    ("採購評選委員會組織準則", [C], None),
+    ("採購評選委員會審議規則", [C], None),
+    ("統包實施辦法", [C], None),
+    ("共同投標辦法", [C], None),
+    ("中央機關未達公告金額採購招標辦法", [C], None),
+    ("採購申訴審議規則", [C], None),
+    ("工程施工查核小組作業辦法", [C], None),
+    ("採購人員倫理準則", [C], None),
+    # 營建營造：勞工與營造業管理
+    ("勞工職業災害保險及保護法", [C, S], None),
+    ("勞工保險條例", [C, S], None),
+    ("營造業評鑑辦法", [C], None),
+    ("營造業工地主任評定回訓及管理辦法", [C], None),
     # 建築設計
     ("建築法", [D, C], None),
     ("建築師法", [D], None),
@@ -78,6 +98,23 @@ CATALOG: list[tuple[str, list[str], list[tuple[int, int]] | None]] = [
     ("建築物使用類組及變更使用辦法", [D], None),
     ("建築物公共安全檢查簽證及申報辦法", [D], None),
     ("公寓大廈管理條例", [D], None),
+    # 建築設計：都更、危老與土地
+    ("都市更新條例", [D, C], None),
+    ("都市更新條例施行細則", [D, C], None),
+    ("都市危險及老舊建築物加速重建條例", [D, C], None),
+    ("都市危險及老舊建築物加速重建條例施行細則", [D, C], None),
+    ("都市危險及老舊建築物建築容積獎勵辦法", [D, C], None),
+    ("都市危險及老舊建築物結構安全性能評估辦法", [D, C], None),
+    ("土地法", [D], None),
+    ("土地法施行法", [D], None),
+    ("促進民間參與公共建設法", [D, C], None),
+    ("促進民間參與公共建設法施行細則", [D, C], None),
+    ("都市計畫法臺灣省施行細則（89.12.29 訂定）", [D], None),
+    ("都市計畫容積移轉實施辦法", [D], None),
+    ("都市計畫定期通盤檢討實施辦法", [D], None),
+    ("區域計畫法", [D], None),
+    ("區域計畫法施行細則", [D], None),
+    ("非都市土地使用管制規則", [D], None),
     # 鋼鐵製造
     ("工廠管理輔導法", [S], None),
     ("工廠管理輔導法施行細則", [S], None),
@@ -94,6 +131,31 @@ CATALOG: list[tuple[str, list[str], list[tuple[int, int]] | None]] = [
 ]
 # Steel-specific environmental rules whose exact titles vary; matched by name.
 EXTRA_PATTERNS = [(re.compile(r"電弧爐"), [S])]
+
+
+L = "地方自治法規"
+# City regulation systems reachable from GitHub's servers. 桃園 and 臺南 block
+# overseas connections, so they are not included.
+LOCAL: list[tuple[str, str, str, str]] = [
+    # (city, system, id, expected name)
+    ("臺北市", "tpe", "FL004106", "臺北市建築管理自治條例"),
+    ("臺北市", "tpe", "FL003962", "臺北市土地使用分區管制自治條例"),
+    ("新北市", "ntpc", "1C0170035", "新北市建築管理規則"),
+    ("新北市", "ntpc", "1C0150108", "都市計畫法新北市施行細則"),
+    ("新北市", "ntpc", "1C0170194", "新北市營建剩餘土石方管理自治條例"),
+    ("臺中市", "tc", "GL002282", "臺中市建築管理自治條例"),
+    ("臺中市", "tc", "GL002020", "都市計畫法臺中市施行自治條例"),
+    ("臺中市", "tc", "GL001704", "臺中市營建賸餘土石方管理自治條例"),
+    ("高雄市", "kcg", "GL000537", "高雄市建築管理自治條例"),
+    ("高雄市", "kcg", "GL000627", "都市計畫法高雄市施行細則"),
+    ("高雄市", "kcg", "GL001111", "高雄市營建工程剩餘土石方管理自治條例"),
+]
+LOCAL_URLS = {
+    "tpe": "https://laws.gov.taipei/Law/LawSearch/LawArticleContent/{id}",
+    "ntpc": "https://web.law.ntpc.gov.tw/Scripts/FLAWDAT01.aspx?lncode={id}",
+    "tc": "https://lawsearch.taichung.gov.tw/LawContent.aspx?id={id}",
+    "kcg": "https://outlaw.kcg.gov.tw/LawContent.aspx?id={id}",
+}
 
 
 def log(msg: str):
@@ -165,6 +227,157 @@ def convert(law: dict, cats: list[str], ranges) -> dict:
     }
 
 
+# ── Local regulations ─────────────────────────────────────
+
+CN_DIGIT = {"零": 0, "〇": 0, "一": 1, "二": 2, "兩": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+
+
+def cn_int(t: str) -> int | None:
+    t = t.replace(" ", "")
+    if t.isdigit():
+        return int(t)
+    total = cur = 0
+    for ch in t:
+        if ch in CN_DIGIT:
+            cur = CN_DIGIT[ch]
+        elif ch == "十":
+            total += (cur or 1) * 10; cur = 0
+        elif ch == "百":
+            total += (cur or 1) * 100; cur = 0
+        else:
+            return None
+    return total + cur
+
+
+def roc_date(text: str, label: str) -> str:
+    m = re.search(label + r"[：:]\s*民國\s*(\d+)\s*年\s*(\d+)\s*月\s*(\d+)\s*日", text)
+    return f"{int(m.group(1)) + 1911}-{int(m.group(2)):02d}-{int(m.group(3)):02d}" if m else ""
+
+
+def plain_html(fragment: str) -> str:
+    import html as H
+    t = re.sub(r"<br\s*/?>|</(?:p|div|li|tr)>", "\n", fragment, flags=re.I)
+    t = H.unescape(re.sub(r"<[^>]+>", "", t)).replace("\xa0", " ")
+    return "\n".join(re.sub(r"[ \t\u3000]+", " ", line).strip() for line in t.splitlines())
+
+
+ART_HEAD = re.compile(r"^\s*第\s*([0-9一二三四五六七八九十百零〇兩 ]+?)\s*條(?:\s*之\s*([0-9一二三四五六七八九十]+))?\s*", re.M)
+CHAPTER = re.compile(r"^\s*第\s*[0-9一二三四五六七八九十百 ]+\s*[章節編]\s*\S.*$", re.M)
+
+
+def split_articles(text: str) -> list[dict]:
+    """Splits plain text into articles at lines starting with 第X條; tracks chapter headings.
+
+    Text in the city systems is wrapped mid-sentence, so a line can start with a
+    cross-reference such as 「第一百零一條規定…」. Only headings whose number follows
+    on from the previous article are accepted; the rest stay part of the text."""
+    heads, prev = [], 0
+    for m in ART_HEAD.finditer(text):
+        n = cn_int(m.group(1))
+        if n is None:
+            continue
+        if (not heads and n <= 3) or (heads and prev <= n <= prev + 10):
+            heads.append((m, n))
+            prev = n
+    out, chapter = [], ""
+    for i, (m, n) in enumerate(heads):
+        before = text[heads[i - 1][0].end() if i else 0:m.start()]
+        ch = CHAPTER.findall(before)
+        if ch:
+            chapter = re.sub(r"\s+", " ", ch[-1]).strip()
+        end = heads[i + 1][0].start() if i + 1 < len(heads) else len(text)
+        body = re.sub(r"\n{2,}", "\n", CHAPTER.sub("", text[m.end():end])).strip()
+        sub = cn_int(m.group(2)) if m.group(2) else None
+        if not body:
+            continue
+        key = f"{n}-{sub}" if sub else str(n)
+        out.append({"no": f"第{key}條", "n": key, "chapter": chapter, "text": body})
+    return out
+
+
+def fetch_local(system: str, lid: str) -> tuple[str, str, list[dict]]:
+    import requests
+    ua = {"User-Agent": "Mozilla/5.0 (compatible; SteelWeb regulations mirror)"}
+    url = LOCAL_URLS[system].format(id=lid)
+    if system == "ntpc":
+        s = requests.Session()
+        r = s.get(url, headers=ua, timeout=60)
+        r.raise_for_status()
+        form = dict(re.findall(r'<input type="hidden" name="([^"]+)"[^>]*value="([^"]*)"', r.text))
+        import html as H
+        form = {k: H.unescape(v) for k, v in form.items()}
+        form["ctl00$cph_content$B5"] = "所有條文"
+        r = s.post(url, data=form, headers=ua, timeout=60)
+    else:
+        r = requests.get(url, headers=ua, timeout=60)
+    r.raise_for_status()
+    page = r.text
+    import html as H
+    flat = re.sub(r"\s+", " ", H.unescape(re.sub(r"<[^>]+>", " ", page)))
+    if system == "tpe":
+        name = re.search(r"<title>([^<|]+)", page)
+        items = re.findall(r'<li class="chapter[^"]*">(.*?)</li>|<div class="col-no">(.*?)</div>\s*<div class="col-data">(.*?)</div>\s*</div>\s*<div class="col-link">', page, re.S)
+        arts, chapter = [], ""
+        for ch, no, data in items:
+            if ch:
+                chapter = plain_html(ch).strip(); continue
+            m = re.search(r"第\s*([0-9]+)(?:\s*-\s*([0-9]+))?\s*條", H.unescape(no))
+            if not m:
+                continue
+            key = f"{m.group(1)}-{m.group(2)}" if m.group(2) else m.group(1)
+            arts.append({"no": f"第{key}條", "n": key, "chapter": chapter, "text": plain_html(data).strip()})
+        modified = roc_date(flat, "修正日期") or roc_date(flat, "公發布日")
+        if not modified:
+            try:
+                ex = requests.get(f"https://laws.gov.taipei/Law/LawSearch/LawExport/{lid}?type=0", headers=ua, timeout=60, stream=True)
+                m = re.search(r"-(\d{4})(\d{2})(\d{2})-", requests.utils.unquote(ex.headers.get("content-disposition", "")))
+                ex.close()
+                modified = f"{m.group(1)}-{m.group(2)}-{m.group(3)}" if m else ""
+            except Exception:
+                modified = ""
+    elif system == "ntpc":
+        # The 「所有條文」 button leads to a table: one row per article, chapter rows between.
+        arts, chapter = [], ""
+        for ch, no, data in re.findall(r'<td colspan="2" class="ch0\d">(.*?)</td>|<td class="col-th">(.*?)</td>\s*<td class="col-td">\s*<pre>(.*?)</pre>', page, re.S):
+            if ch:
+                chapter = re.sub(r"\s+", " ", plain_html(ch)).strip(); continue
+            m = re.search(r"第\s*([0-9]+)(?:\s*-\s*([0-9]+))?\s*條", H.unescape(no).replace("\xa0", " "))
+            if not m:
+                continue
+            key = f"{m.group(1)}-{m.group(2)}" if m.group(2) else m.group(1)
+            arts.append({"no": f"第{key}條", "n": key, "chapter": chapter, "text": H.unescape(re.sub(r"<[^>]+>", "", data)).strip()})
+        m = re.search(r"民國\s*(\d+)\s*年\s*(\d+)\s*月\s*(\d+)\s*日\s*(?:修正|公發布|發布|制定)", flat)
+        modified = f"{int(m.group(1)) + 1911}-{int(m.group(2)):02d}-{int(m.group(3)):02d}" if m else roc_date(flat, "公發布時間")
+    else:
+        m = re.search(r'class="law-reg-content law-article">(.*?)<div class="(?:btnZone|law-reg-footer)', page, re.S)
+        block = m.group(1) if m else page[page.find("law-reg-content"):]
+        arts = split_articles(plain_html(block))
+        modified = roc_date(flat, "修正日期") or roc_date(flat, "公發布日")
+    for a in arts:
+        a["text"] = re.split(r"\s*:::\s*", a["text"])[0].strip()
+    return url, modified, arts
+
+
+def build_local(existing: dict) -> list[dict]:
+    """Fetches each local regulation; on failure keeps the previously stored copy."""
+    docs = []
+    for city, system, lid, name in LOCAL:
+        pcode = f"{system.upper()}-{lid}"
+        try:
+            url, modified, arts = fetch_local(system, lid)
+            if len(arts) < 5:
+                raise RuntimeError(f"only {len(arts)} articles parsed")
+            doc = {"name": name, "pcode": pcode, "level": "地方法規", "moj_category": city, "categories": [L, D],
+                   "region": city, "modified": modified, "effective_note": "", "url": url, "partial": False, "articles": arts}
+            log(f"{city} {name}: {len(arts)} articles, modified {modified}")
+        except Exception as e:
+            doc = existing.get(pcode)
+            log(f"{city} {name}: FAILED ({e}); {'keeping previous copy' if doc else 'no previous copy'}")
+        if doc:
+            docs.append(doc)
+    return docs
+
+
 def main() -> int:
     items, updates = {}, []
     for kind, url in SOURCES.items():
@@ -200,6 +413,18 @@ def main() -> int:
         log(f"only {len(index)} of {len(CATALOG)} laws found; not writing the index")
         return 1
 
+    existing = {}
+    for f in OUT.glob("*.json"):
+        if "-" in f.stem:
+            try:
+                existing[f.stem] = json.loads(f.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+    for doc in build_local(existing):
+        (OUT / f"{doc['pcode']}.json").write_text(json.dumps(doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        index.append({k: doc[k] for k in ("name", "pcode", "level", "categories", "modified", "url", "partial")}
+                     | {"articles": len(doc["articles"]), "region": doc["region"]})
+
     keep = {f"{x['pcode']}.json" for x in index} | {"index.json", "README.md"}
     for f in OUT.iterdir():
         if f.name not in keep:
@@ -217,13 +442,14 @@ def main() -> int:
     lines = ["# 法規資料", "",
              f"來源：全國法規資料庫開放資料（法務部），資料日期 {', '.join(str(u) for u in updates)}；本次整理 {now}。",
              "授權：政府資料開放授權條款第1版；法律條文依著作權法第9條不得為著作權之標的。",
+             "地方自治法規取自臺北市、新北市、臺中市、高雄市政府法規查詢系統；桃園市、臺南市的系統不開放境外連線，未收錄。",
              "每月自動更新。CNS 國家標準與設計規範解說等有著作權的文件不在此列。", ""]
-    for cat in (C, D, S):
+    for cat in (C, D, S, L):
         lines += [f"## {cat}", "", "| 法規 | 位階 | 最新修正 | 條數 |", "|---|---|---|---|"]
         for x in index:
             if x["categories"][0] == cat:
                 note = "（僅收錄消滅時效、承攬相關條文）" if x["partial"] else ""
-                lines.append(f"| [{x['name']}]({x['url']}){note} | {x['level']} | {x['modified']} | {x['articles']} |")
+                lines.append(f"| [{x['name']}]({x['url']}){note} | {x.get('region') or x['level']} | {x['modified']} | {x['articles']} |")
         lines.append("")
     (OUT / "README.md").write_text("\n".join(lines), encoding="utf-8")
     total = sum(x["articles"] for x in index)
