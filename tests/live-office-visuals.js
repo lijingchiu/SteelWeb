@@ -14,7 +14,16 @@ const cases = [
   try {
     const page=await browser.newPage({viewport:{width:1280,height:900}});
     await page.addInitScript(k => localStorage.setItem('steel_openai_key',k), key);
-    const observed=[];
+    const observed=[], suggestionResponses=[];
+    page.on('response',async res=>{
+      try {
+        const req=res.request(); if (!req.url().includes('/v1/responses') || req.method()!=='POST') return;
+        const body=req.postDataJSON(); if (!String(body.instructions || '').includes('預測使用者可能')) return;
+        const data=await res.json();
+        const text=(data.output||[]).flatMap(x=>x.content||[]).filter(x=>x.type==='output_text').map(x=>x.text).join('') || data.output_text || '';
+        suggestionResponses.push({http:res.status(),status:data.status,text:String(text).slice(0,200),error:String(data.error?.message||'').slice(0,200)});
+      } catch (_) {}
+    });
     page.on('request',req=>{
       if (!req.url().includes('/v1/responses') || req.method()!=='POST') return;
       try {
@@ -47,7 +56,8 @@ const cases = [
       for (const v of c.values) assert(answer.includes(v),`${c.ext}: chart value ${v} missing from answer: ${answer.slice(0,500)}`);
       console.log(`${c.ext}: real assistant read image ${c.mark} and chart values ${c.values.join(', ')}.`);
       if (c.ext === 'docx') {
-        await page.waitForFunction(() => document.querySelector('#chat-input').placeholder.includes('按 Tab'),null,{timeout:45000});
+        try { await page.waitForFunction(() => document.querySelector('#chat-input').placeholder.includes('按 Tab'),null,{timeout:45000}); }
+        catch(e) { console.error('Suggestion diagnostic:',JSON.stringify({suggestionResponses,placeholder:await page.locator('#chat-input').getAttribute('placeholder'),mobile:await page.evaluate(()=>matchMedia('(max-width: 768px)').matches || matchMedia('(hover: none) and (pointer: coarse)').matches)})); throw e; }
         await page.locator('#chat-input').press('Tab');
         assert((await page.locator('#chat-input').inputValue()).length >= 4,'desktop Tab did not insert suggestion');
         assert.equal(await page.locator('.chat-msg.chat-user').count(),1,'desktop Tab unexpectedly sent a question');
