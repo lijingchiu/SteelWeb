@@ -494,7 +494,7 @@ function drawChart() {
 let _featuredTimer = null;
 let _featuredPaused = false;
 
-function populateFeatured(data) {
+function populateFeatured(data, materials) {
   const viewport = document.getElementById('feat-viewport');
   const controls = document.getElementById('feat-controls');
   const toggle = document.getElementById('feat-toggle');
@@ -502,29 +502,51 @@ function populateFeatured(data) {
   if (!viewport || !controls || !toggle || !next) return;
   if (_featuredTimer) clearInterval(_featuredTimer);
   const tp = data.taiwan_prices || {};
-  const products = [
-    ['fengxing_rebar_price', '豐興鋼筋盤價', 'Fengxing Rebar', 0],
-    ['north_scrap_price', '北部廢鋼大盤收購價', 'N. Taiwan Scrap', 2],
-    ['billet_price', '小鋼胚中級出廠價', 'Billet Ex-Factory', 0],
-    ['h_beam_price', '東鋼 H 型鋼流通價', 'H-Beam Circulation', 0],
-    ['csc_wire_rod_price', '中鋼棒線盤價', 'CSC Wire Rod', 0],
-  ].filter(([key]) => typeof tp[key]?.value === 'number' && Number.isFinite(tp[key].value));
+  const lookup = new Map((materials?.items || []).map(item => [item.id, item]));
+  const picks = [
+    ['fengxing_rebar_price', '豐興鋼筋盤價', 'Fengxing Rebar'],
+    ['north_scrap_price', '北部廢鋼大盤收購價', 'N. Taiwan Scrap'],
+    ['billet_price', '小鋼胚中級出廠價', 'Billet Ex-Factory'],
+    ['h_beam_price', '東鋼 H 型鋼流通價', 'H-Beam Circulation'],
+    ['csc_wire_rod_price', '中鋼棒線盤價', 'CSC Wire Rod'],
+    ['mt_vn_hrc_import', '越南熱軋鋼捲進口', 'Vietnam HRC Import'],
+    ['mt_cis_billet', '黑海小鋼胚出口', 'Black Sea Billet'],
+    ['mt_cis_hrc', '黑海熱軋鋼捲出口', 'Black Sea HRC'],
+    ['mt_seu_rebar', '南歐鋼筋出口', 'Southern Europe Rebar'],
+    ['wb_iron_ore', '鐵礦砂', 'Iron Ore · CFR 現貨'],
+    ['wb_coal_au', '澳洲動力煤', 'Australian Coal'],
+    ['wb_copper', '銅', 'Copper'],
+    ['wb_aluminum', '鋁', 'Aluminium'],
+    ['wb_nickel', '鎳', 'Nickel'],
+    ['wb_brent', '布蘭特原油', 'Brent Crude Oil'],
+    ['wb_plywood', '合板', 'Plywood'],
+    ['fx_usd_twd', '美元兌新台幣', 'USD / TWD'],
+  ];
+  const products = picks.map(([key, name, english]) => {
+    const item = lookup.get(key) || tp[key];
+    return { key, name, english, item };
+  }).filter(({ item }) => item && typeof item.value === 'number' && Number.isFinite(item.value));
   if (!products.length) { controls.hidden = true; return; }
   viewport.textContent = '';
-  const slides = products.map(([key, name, english, decimals], index) => {
-    const item = tp[key];
+  const slides = products.map(({ key, name, english, item }, index) => {
+    const unit = item.unit || '元';
+    const currency = unit.startsWith('美元/') ? 'US$' : unit.startsWith('美分/') ? '美分' : unit.startsWith('新台幣/') ? 'NT$' : 'NT$';
+    const amount = item.change ?? item.mom_change;
+    const amountDecimals = Number.isInteger(amount) ? 0 : 2;
     const slide = document.createElement('div');
     slide.className = 'feat-slide' + (index === 0 ? ' is-active' : '');
+    slide.dataset.marketId = key;
     slide.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
     slide.innerHTML = `<div class="feat-name"></div><div class="feat-spec"></div>
-      <div class="feat-price-row"><span class="feat-currency">NT$</span><span class="feat-price"></span></div>
-      <div class="feat-change-row"><span class="feat-change"></span><span class="feat-change-note">vs. 上月</span></div>
+      <div class="feat-price-row"><span class="feat-currency"></span><span class="feat-price"></span></div>
+      <div class="feat-change-row"><span class="feat-change"></span><span class="feat-change-note">較前期</span></div>
       <div class="feat-month"></div>`;
     slide.querySelector('.feat-name').textContent = name;
-    slide.querySelector('.feat-spec').textContent = `${english} · ${item.unit || '元'}`;
-    slide.querySelector('.feat-price').textContent = fmt(item.value, decimals === 0 ? undefined : decimals);
-    setChange(slide.querySelector('.feat-change'), item.mom_change, item.unit || '元', decimals);
-    slide.querySelector('.feat-month').textContent = item.month ? `DATA · ${item.month}` : '資料月份：-';
+    slide.querySelector('.feat-spec').textContent = `${english} · ${unit}`;
+    slide.querySelector('.feat-currency').textContent = currency;
+    slide.querySelector('.feat-price').textContent = item.value.toLocaleString('zh-TW', { maximumFractionDigits: 2 });
+    setChange(slide.querySelector('.feat-change'), amount, unit, amountDecimals);
+    slide.querySelector('.feat-month').textContent = [item.period || item.month ? `DATA · ${item.period || item.month}` : '資料期間：-', item.stale ? '舊資料' : '', item.source || ''].filter(Boolean).join(' · ');
     viewport.appendChild(slide);
     return slide;
   });
@@ -1077,7 +1099,6 @@ async function loadData() {
     populateMeta(data);
     populateHeadline(data);
     populatePrices(data);
-    populateFeatured(data);
     populateTicker(data, null);
     populateExchange(data);
     populateAnalysis(data);
@@ -1086,6 +1107,7 @@ async function loadData() {
     populateTopStories(data);
     const [materials, accuracy, report, outlooks] = await Promise.all([
       fetchJson('data/materials.json'), fetchJson('data/accuracy.json'), fetchJson('data/report.json'), fetchJson('data/material-outlooks.json')]);
+    populateFeatured(data, materials);
     populateTicker(data, materials);
     populateReport(report, data);
     matState.analysis = data;
