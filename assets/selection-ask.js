@@ -135,7 +135,7 @@
       // Native touch selection handles can send pointer events to the page.
       // Never clear the selection while the user might be adjusting them.
       const adjustingText = e.pointerType === 'touch' && form.hidden && !!current?.text;
-      hide(!adjustingText);
+      if (!adjustingText) hide();
     }
     clearTimeout(hold);
     const el = e.pointerType === 'touch' && imageTarget(e.target);
@@ -144,7 +144,10 @@
   document.addEventListener('pointermove', e => {
     if (start && (Math.abs(e.clientX - start.x) > 12 || Math.abs(e.clientY - start.y) > 12)) { clearTimeout(hold); start = null; }
   });
-  document.addEventListener('pointercancel', () => { clearTimeout(hold); start = null; });
+  document.addEventListener('pointercancel', () => {
+    clearTimeout(hold); start = null;
+    if (form.hidden) { clearTimeout(timer); timer = setTimeout(inspectSelection, 100); }
+  });
   document.getElementById('selection-ask-close').addEventListener('click', hide);
   form.addEventListener('keydown', e => { if (e.key === 'Escape') { e.stopPropagation(); hide(); } });
   async function imageFile(el) {

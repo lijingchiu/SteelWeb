@@ -54,6 +54,10 @@ vm.runInNewContext(fs.readFileSync(require.resolve('../assets/selection-ask.js')
   handlers.pointerdown({target:{},pointerType:'touch'});
   assert.equal(clearCount,beforeTouch,'touching a selection handle must not clear the selection');
   assert.equal(selection.isCollapsed,false);
+  assert.equal(trigger.hidden,false,'the button remains visible as scrolling begins');
+  handlers.pointermove({clientX:30,clientY:200}); handlers.pointercancel();
+  await new Promise(r=>setTimeout(r,130));
+  assert.equal(trigger.hidden,false,'the button remains visible after a scroll cancellation while text is selected');
   selectionText='調整藍點之後的完整選取'; handlers['selectionchange']();
   await new Promise(r=>setTimeout(r,250));
   assert.equal(element('selection-ask-trigger').hidden,false);
@@ -65,5 +69,9 @@ vm.runInNewContext(fs.readFileSync(require.resolve('../assets/selection-ask.js')
   element('selection-ask-trigger').handlers.click();
   await form.handlers.submit({preventDefault(){}});
   assert.equal(staged.text,'最後調整後的選取','the latest selection is staged even before the debounce completes');
+  selection.isCollapsed=false; handlers['selectionchange'](); await new Promise(r=>setTimeout(r,250));
+  assert.equal(trigger.hidden,false);
+  selection.isCollapsed=true; handlers['selectionchange'](); await new Promise(r=>setTimeout(r,250));
+  assert.equal(trigger.hidden,true,'the button closes once the selection is actually cleared');
   console.log('Selection: staged text and image, retained question, no automatic send passed.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
