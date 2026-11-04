@@ -7,9 +7,9 @@ function element(id) {
     addEventListener(type, fn) {this.handlers[type]=fn;}, contains(node) {return node === this;}, focus() {}};
 }
 const form = element('selection-ask');
-let selectionText = '鋼筋價格上漲'.repeat(500), clearCount = 0;
+let selectionText = '鋼筋價格上漲'.repeat(500), clearCount = 0, selectionRect = {left:30,right:130,top:80,bottom:100,width:100,height:20};
 const selection = {isCollapsed:false, rangeCount:1, anchorNode:{nodeType:1,closest:()=>null}, focusNode:{nodeType:1,closest:()=>null},
-  toString:()=>selectionText, getRangeAt:()=>({cloneRange:()=>({getBoundingClientRect:()=>({left:30,top:80,bottom:100,width:100,height:20})})}), removeAllRanges() {clearCount++;this.isCollapsed=true;}};
+  toString:()=>selectionText, getRangeAt:()=>({cloneRange:()=>({getBoundingClientRect:()=>selectionRect})}), removeAllRanges() {clearCount++;this.isCollapsed=true;}};
 let staged, submissions=0, editId, markers=[];
 const document = {activeElement:null,getElementById:element, addEventListener(type,fn){handlers[type]=fn;}, body:{appendChild(){}},
   createElement(){const button={style:{},hidden:false,handlers:{},addEventListener(t,fn){this.handlers[t]=fn;},setAttribute(){},remove(){this.removed=true;}}; markers.push(button); return button;},
@@ -42,8 +42,11 @@ vm.runInNewContext(fs.readFileSync(require.resolve('../assets/selection-ask.js')
   assert.equal(form.hidden,true); assert.equal(element('selection-ask-trigger').hidden,false); element('selection-ask-trigger').handlers.click(); await form.handlers.submit({preventDefault(){}});
   assert.equal(staged.file.type,'image/png'); assert.equal(staged.label,'價格走勢圖'); assert.equal(submissions,2);
   handlers['steel:selection-update']({detail:{ids:[staged.id]}}); assert(markers[0].removed); assert.equal(markers[1].textContent,'1');
+  window.innerWidth=390; window.innerHeight=800; element('selection-ask-trigger').offsetHeight=44;
+  selectionRect={left:20,right:370,top:300,bottom:340,width:350,height:40};
   selection.isCollapsed=false; selectionText='原始選取內容';
   handlers.pointerup({target:{}}); await new Promise(r=>setTimeout(r,130));
+  assert(parseInt(element('selection-ask-trigger').style.top,10) >= selectionRect.bottom + 64, 'mobile button avoids the selection and nearby system menu');
   const beforeTouch=clearCount;
   handlers.pointerdown({target:{},pointerType:'touch'});
   assert.equal(clearCount,beforeTouch,'touching a selection handle must not clear the selection');
@@ -51,6 +54,9 @@ vm.runInNewContext(fs.readFileSync(require.resolve('../assets/selection-ask.js')
   selectionText='調整藍點之後的完整選取'; handlers['selectionchange']();
   await new Promise(r=>setTimeout(r,250));
   assert.equal(element('selection-ask-trigger').hidden,false);
+  selectionRect={left:20,right:370,top:730,bottom:770,width:350,height:40};
+  handlers['selectionchange'](); await new Promise(r=>setTimeout(r,250));
+  assert(parseInt(element('selection-ask-trigger').style.top,10) + 44 <= selectionRect.top - 64, 'near the bottom the button moves away from the system menu');
   selectionText='最後調整後的選取';
   element('selection-ask-trigger').handlers.pointerdown();
   element('selection-ask-trigger').handlers.click();

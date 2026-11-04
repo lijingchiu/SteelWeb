@@ -53,8 +53,22 @@
     const popup = form.hidden ? trigger : form;
     const width = form.hidden ? Math.min(trigger.offsetWidth || 110, (vv?.width || window.innerWidth) - 24) : Math.min(360, (vv?.width || window.innerWidth) - 24);
     const height = vv?.height || window.innerHeight;
-    popup.style.left = `${Math.max(left + 12, Math.min(anchor.left, left + (vv?.width || window.innerWidth) - width - 12))}px`;
-    popup.style.top = `${Math.max(top + 12, Math.min(anchor.bottom + 10, top + height - popup.offsetHeight - 12))}px`;
+    const viewWidth = vv?.width || window.innerWidth;
+    const mobile = window.matchMedia?.('(hover: none) and (pointer: coarse)').matches || window.innerWidth <= 768;
+    let x = Math.max(left + 12, Math.min(anchor.left, left + viewWidth - width - 12));
+    let y = Math.max(top + 12, Math.min(anchor.bottom + 10, top + height - popup.offsetHeight - 12));
+    if (form.hidden && mobile && current?.text) {
+      // The system menu has no web-visible bounds. Reserve space above and
+      // below the selection and place the button at a viewport edge instead.
+      const gap = 64, upper = top + 12, lower = top + height - popup.offsetHeight - 12;
+      if (lower >= anchor.bottom + gap) y = lower;
+      else if (upper + popup.offsetHeight <= anchor.top - gap) y = upper;
+      else if (anchor.left - left >= width + 24) { x = left + 12; y = Math.max(upper, Math.min(anchor.top, lower)); }
+      else if (left + viewWidth - anchor.right >= width + 24) { x = left + viewWidth - width - 12; y = Math.max(upper, Math.min(anchor.top, lower)); }
+      else y = (anchor.top - top > top + height - anchor.bottom) ? upper : lower;
+    }
+    popup.style.left = `${x}px`;
+    popup.style.top = `${y}px`;
   }
   function show(item, rect) {
     if (!item || !rect) return;
@@ -80,6 +94,7 @@
     if (!current) return;
     if (current.text) {
       current = selectedText() || current;
+      anchor = current.range.getBoundingClientRect();
       quote.textContent = current.text.length > 100 ? current.text.slice(0, 100) + '…' : current.text;
     }
     clearTimeout(timer); trigger.hidden = true; form.hidden = false; position(); input.focus();
