@@ -20,7 +20,7 @@ assert.equal(attachments.needsBatches([file('a.pdf', 25_000_000), file('b.docx',
 assert.equal(attachments.needsBatches([file('a.pdf', 25_000_000), file('b.docx', 24_999_999)]), false);
 assert.equal(attachments.validate([file('工程.pdf'), file('施工.mp4')]), '');
 
-async function scenario(inScope) {
+async function scenario(inScope, animated = false) {
   const els = new Map(), sent = [];
   function elem(id = '') {
     if (!els.has(id)) els.set(id, { id, value: '', hidden: false, children: [], scrollHeight: 20, scrollTop: 0, clientHeight: 20, style: {}, dataset: {}, innerHTML: '',
@@ -33,7 +33,7 @@ async function scenario(inScope) {
   const document = { readyState: 'complete', getElementById: elem, addEventListener() {}, body: { classList: { add() {}, remove() {} } },
     createElement() { const bubble = { innerHTML: '' }; return { className: '', classList: { add() {} }, set innerHTML(s) { bubble.innerHTML = s; }, querySelector() { return bubble; }, bubble }; } };
   const prepared = [{type: 'input_text', text: '文件「工程.pdf」'}, {type: 'input_file', filename: '工程.pdf', file_data: 'data:application/pdf;base64,AAAA'}];
-  const window = { SteelChatWeb: {...global.SteelChatWeb, isMobileInput: () => true}, SteelAttachments: { ...attachments, prepare: async () => prepared }, navigator: {}, matchMedia: () => ({ matches: true }) };
+  const window = { SteelChatWeb: {...global.SteelChatWeb, isMobileInput: () => true}, SteelAttachments: { ...attachments, prepare: async () => prepared }, navigator: {}, matchMedia: q => ({ matches: !animated || !q.includes('prefers-reduced-motion') }) };
   const fetch = async (target, options = {}) => {
     if (String(target).includes('data/laws/index.json')) return {ok:true,json:async()=>({laws:[]})};
     if (String(target).includes('data/latest.json')) return {ok:true,json:async()=>({date:'2026-11-04'})};
@@ -50,11 +50,22 @@ async function scenario(inScope) {
   };
   vm.runInNewContext(fs.readFileSync(require.resolve('../assets/chat.js'),'utf8'), {window,document,navigator:window.navigator,location:{hash:''},localStorage:{getItem:()=> 'sk-test'},fetch,console,URL,AbortController,TextDecoder,TextEncoder,Date,setTimeout,clearTimeout});
   elem('chat-attach-menu').hidden = true;
+  const animations = [];
+  if (animated) elem('chat-attach-menu').animate = () => { const a = {cancel(){this.cancelled=true;},onfinish:null}; animations.push(a); return a; };
   elem('chat-attach').handlers.click();
   assert.equal(elem('chat-attach')['aria-expanded'], 'true');
   assert.equal(elem('chat-attach-menu').hidden, false);
+  if (animated) animations.at(-1).onfinish();
   elem('chat-attach').handlers.click();
   assert.equal(elem('chat-attach')['aria-expanded'], 'false');
+  if (animated) {
+    assert.equal(elem('chat-attach-menu').hidden, false, 'closing animation remains visible until finished');
+    elem('chat-attach').handlers.click();
+    assert(animations.at(-2).cancelled, 'rapid reopening cancels closing animation');
+    animations.at(-1).onfinish();
+    elem('chat-attach').handlers.click();
+    animations.at(-1).onfinish();
+  }
   assert.equal(elem('chat-attach-menu').hidden, true);
   elem('chat-file').handlers.change({target:{files:[file('工程.pdf')]}});
   assert.equal(elem('chat-attachments').hidden,false);
@@ -70,7 +81,7 @@ async function scenario(inScope) {
   assert(scopeParts.some(p=>p.type==='input_file' && p.filename==='工程.pdf'));
   if(inScope) assert(sent[1].input.at(-1).content.some(p=>p.type==='input_file' && p.filename==='工程.pdf'));
 }
-(async()=>{await scenario(true);await scenario(false);console.log('Attachment selection, limits, subject check and answer payload passed.');})().catch(e=>{console.error(e);process.exitCode=1;});
+(async()=>{await scenario(true);await scenario(false);await scenario(true,true);console.log('Attachment selection, animation, limits, subject check and answer payload passed.');})().catch(e=>{console.error(e);process.exitCode=1;});
 
 (async () => {
   const code = fs.readFileSync(require.resolve('../assets/chat-attachments.js'), 'utf8');

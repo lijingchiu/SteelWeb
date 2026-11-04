@@ -700,17 +700,39 @@
     $('chat-file').value = '';
   }
 
+  const panelAnimations = new WeakMap();
+  function animatePanel(el, open, complete) {
+    const previous = panelAnimations.get(el);
+    if (previous) { panelAnimations.delete(el); previous.cancel(); }
+    if (open) { el.hidden = false; el.inert = false; }
+    else el.inert = true;
+    const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (typeof el.animate !== 'function' || reduced) {
+      el.hidden = !open; el.inert = !open; if (complete) complete(); return;
+    }
+    const frames = open
+      ? [{opacity:0, transform:'translateY(8px) scale(.98)'}, {opacity:1, transform:'translateY(0) scale(1)'}]
+      : [{opacity:1, transform:'translateY(0) scale(1)'}, {opacity:0, transform:'translateY(8px) scale(.98)'}];
+    const animation = el.animate(frames, {duration:open ? 200 : 160, easing:'ease-out'});
+    panelAnimations.set(el, animation);
+    animation.onfinish = () => {
+      if (panelAnimations.get(el) !== animation) return;
+      panelAnimations.delete(el); el.hidden = !open; el.inert = !open;
+      if (complete) complete();
+    };
+  }
+
   function updateSelections() {
     const box = $('chat-quotes'), list = $('chat-quotes-list'), detail = $('chat-quote-detail');
     if (!box || !list || !detail) return;
     box.hidden = !state.selections.length;
     list.innerHTML = state.selections.map((s, i) => `<button type="button" class="chat-quote-card" data-quote-select="${i}" aria-expanded="${s.id === state.activeSelectionId}" aria-controls="chat-quote-detail"><strong>引用 ${i + 1}</strong><span>${escHtml(s.file ? `圖片：${s.label || '網站圖表'}` : s.text)}</span><small id="chat-quote-summary-${i}">${escHtml(s.question || '點選編輯問題')}</small></button>`).join('');
     const index = state.selections.findIndex(s => s.id === state.activeSelectionId);
-    detail.hidden = index < 0;
-    if (index < 0) { detail.innerHTML = ''; state.activeSelectionId = null; }
+    if (index < 0) { const animation = panelAnimations.get(detail); if (animation) { panelAnimations.delete(detail); animation.cancel(); } detail.hidden = true; detail.inert = true; detail.innerHTML = ''; state.activeSelectionId = null; }
     else {
       const item = state.selections[index], label = item.file ? `圖片：${item.label || '網站圖表'}` : item.text;
-      detail.innerHTML = `<div class="chat-quote-detail-head"><strong>引用 ${index + 1}</strong><button type="button" class="chat-quote-remove" data-quote-index="${index}" aria-label="移除第 ${index + 1} 則引用">移除 ×</button></div><p>${escHtml(label.length > 120 ? label.slice(0,120) + '…' : label)}</p><label for="chat-quote-question-${index}">這段的問題</label><textarea id="chat-quote-question-${index}" data-quote-question="${index}" rows="2" maxlength="900" placeholder="輸入這段專屬的問題">${escHtml(item.question || '')}</textarea>`;
+      detail.innerHTML = `<div class="chat-quote-detail-head"><strong>引用 ${index + 1}</strong><div class="chat-quote-detail-actions"><button type="button" class="chat-quote-collapse" data-quote-collapse aria-label="收合第 ${index + 1} 則引用">收合 ˅</button><button type="button" class="chat-quote-remove" data-quote-index="${index}" aria-label="移除第 ${index + 1} 則引用">移除 ×</button></div></div><p>${escHtml(label.length > 120 ? label.slice(0,120) + '…' : label)}</p><label for="chat-quote-question-${index}">這段的問題</label><textarea id="chat-quote-question-${index}" data-quote-question="${index}" rows="2" maxlength="900" placeholder="輸入這段專屬的問題">${escHtml(item.question || '')}</textarea>`;
+      animatePanel(detail, true);
     }
     if (typeof CustomEvent === 'function' && document.dispatchEvent) document.dispatchEvent(new CustomEvent('steel:selection-update', {detail:{ids:state.selections.map(s=>s.id)}}));
   }
@@ -1514,11 +1536,17 @@
       if (!card || state.busy) return;
       const item = state.selections[Number(card.dataset.quoteSelect)];
       if (!item) return;
-      state.activeSelectionId = state.activeSelectionId === item.id ? null : item.id;
+      if (state.activeSelectionId === item.id) { collapseQuote(); return; }
+      state.activeSelectionId = item.id;
       updateSelections();
       if (state.activeSelectionId) $(`chat-quote-question-${card.dataset.quoteSelect}`)?.focus();
     });
+    function collapseQuote() {
+      state.activeSelectionId = null;
+      animatePanel($('chat-quote-detail'), false, () => { if (!state.activeSelectionId) updateSelections(); });
+    }
     $('chat-quote-detail').addEventListener('click', e => {
+      if (e.target.closest('[data-quote-collapse]') && !state.busy) { collapseQuote(); return; }
       const button = e.target.closest('[data-quote-index]');
       if (!button || state.busy) return;
       state.selections.splice(Number(button.dataset.quoteIndex), 1); state.activeSelectionId = null; updateSelections();
@@ -1556,8 +1584,10 @@
       $('chat-mic').addEventListener('click', startVoice);
       $('voice-stop').addEventListener('click', () => stopVoice());
     }
+    let attachmentMenuOpen = false;
     function setAttachmentMenu(open, restoreFocus = false) {
-      $('chat-attach-menu').hidden = !open;
+      attachmentMenuOpen = open;
+      animatePanel($('chat-attach-menu'), open);
       $('chat-attach').setAttribute('aria-expanded', String(open));
       $('chat-attach').setAttribute('aria-label', open ? '關閉附件選單' : '加入附件');
       if (restoreFocus) $('chat-attach').focus();
@@ -1565,7 +1595,7 @@
     document.addEventListener('keydown', e => {
       if (e.key !== 'Escape' || $('chat-panel').hidden) return;
       if (!$('chat-history-panel').hidden) { showHistory(false); return; }
-      if (!$('chat-attach-menu').hidden) { setAttachmentMenu(false, true); return; }
+      if (attachmentMenuOpen) { setAttachmentMenu(false, true); return; }
       if (voice.active || voice.starting) stopVoice();
       closeChat();
     });
@@ -1575,7 +1605,7 @@
       video: '.mp4,.mov,.m4v,.webm',
       document: '.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.tsv,.txt',
     };
-    $('chat-attach').addEventListener('click', () => setAttachmentMenu($('chat-attach-menu').hidden));
+    $('chat-attach').addEventListener('click', () => setAttachmentMenu(!attachmentMenuOpen));
     $('chat-attach-menu').addEventListener('click', e => {
       const option = e.target.closest('[data-attachment-kind], #chat-choose-file');
       if (!option) return;
@@ -1583,7 +1613,7 @@
       $('chat-file').click();
     });
     document.addEventListener('click', e => {
-      if (!$('chat-attach-menu').hidden && !$('chat-attach-menu').contains(e.target) && !$('chat-attach').contains(e.target)) setAttachmentMenu(false);
+      if (attachmentMenuOpen && !$('chat-attach-menu').contains(e.target) && !$('chat-attach').contains(e.target)) setAttachmentMenu(false);
     });
     $('chat-file').addEventListener('change', e => {
       const selected = Array.from(e.target.files || []);

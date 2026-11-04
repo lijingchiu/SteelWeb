@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 require('../assets/chat-web.js');
 const url = 'https://news.example.tw/steel';
-async function runScenario(readable, inScope, selections = []) {
+async function runScenario(readable, inScope, selections = [], animated = false) {
   const sequence = [], messages = [], els = new Map(), handlers = {};
   function elem(id = '') {
     if (!els.has(id)) els.set(id, { id, value: '', hidden: false, children: [], scrollHeight: 20, scrollTop: 0, clientHeight: 20, style: {}, dataset: {}, innerHTML: '',
@@ -20,7 +20,7 @@ async function runScenario(readable, inScope, selections = []) {
   };
   const helper = { ...global.SteelChatWeb, isMobileInput: () => true,
     async readPage(u) { sequence.push('read'); return readable ? { url: u, status: 'read', title: '鋼筋行情', summary: '報導鋼筋價格變化。' } : { url: u, status: 'unavailable' }; } };
-  const window = { SteelChatWeb: helper, navigator: {}, matchMedia: () => ({ matches: true }) };
+  const window = { SteelChatWeb: helper, navigator: {}, matchMedia: q => ({ matches: !animated || !q.includes('prefers-reduced-motion') }) };
   const fetch = async (target, options = {}) => {
     if (String(target).includes('data/laws/index.json')) return { ok: true, json: async () => ({ laws: [] }) };
     if (String(target).includes('data/latest.json')) return { ok: true, json: async () => ({ date: '2026-11-04' }) };
@@ -42,6 +42,8 @@ async function runScenario(readable, inScope, selections = []) {
   };
   const context = { window, document, navigator: window.navigator, location: { hash: '' }, localStorage: { getItem: () => 'sk-test' }, fetch, console, URL, AbortController, TextDecoder, TextEncoder, Date, setTimeout, clearTimeout, CustomEvent: class { constructor(type, opts) {this.type=type;this.detail=opts.detail;} }, requestAnimationFrame: fn => fn() };
   vm.runInNewContext(fs.readFileSync(require.resolve('../assets/chat.js'), 'utf8'), context);
+  const animations = [];
+  if (animated) elem('chat-quote-detail').animate = () => { const a={cancel(){this.cancelled=true}, onfinish:null}; animations.push(a); return a; };
   for (const selection of selections) { const detail = {...selection}; handlers['steel:ask-selection']({detail}); assert.equal(detail.accepted, true); }
   if (selections.length) {
     assert.deepEqual(sequence, [], 'staging must not call the assistant');
@@ -54,9 +56,23 @@ async function runScenario(readable, inScope, selections = []) {
     const field = elem('chat-quote-question-0');
     elem('chat-quotes-list').handlers.click({target:{closest:q => q === '[data-quote-select]' ? card : null}});
     assert.equal(elem('chat-quote-detail').hidden,false, 'selecting a card opens its details');
+    if (animated) animations.at(-1).onfinish();
     assert(elem('chat-quote-detail').innerHTML.includes(selections[0].question));
     field.dataset.quoteQuestion='0'; field.value='修改後：鋼筋為什麼漲？';
     elem('chat-quote-detail').handlers.input({target:field}); selections[0].question=field.value;
+    elem('chat-quote-detail').handlers.click({target:{closest:q => q === '[data-quote-collapse]' ? {} : null}});
+    if (animated) {
+      assert.equal(elem('chat-quote-detail').hidden,false, 'details stay visible during collapse animation');
+      elem('chat-quotes-list').handlers.click({target:{closest:q => q === '[data-quote-select]' ? card : null}});
+      assert(animations.at(-2).cancelled, 'reopening cancels a pending collapse');
+      animations.at(-1).onfinish();
+      elem('chat-quote-detail').handlers.click({target:{closest:q => q === '[data-quote-collapse]' ? {} : null}});
+      animations.at(-1).onfinish();
+    }
+    assert.equal(elem('chat-quote-detail').hidden,true,'collapse hides details without removing the quote');
+    assert(elem('chat-quotes-list').innerHTML.includes(field.value),'the edited question survives collapse');
+    elem('chat-quotes-list').handlers.click({target:{closest:q => q === '[data-quote-select]' ? card : null}});
+    assert(elem('chat-quote-detail').innerHTML.includes(field.value),'the edited question is retained after reopening');
     handlers['steel:edit-selection']({detail:{id:selections[1].id}});
     assert(elem('chat-quote-detail').innerHTML.includes(selections[1].question), 'page marker opens its matching quote');
   }
@@ -82,5 +98,6 @@ async function runScenario(readable, inScope, selections = []) {
   assert.equal(staged.quotesHidden,true, 'successful reply clears the whole tray');
   const failed = await runScenario(false, false, [{id:'quote-c',text:'第一筆鋼筋資料',question:'價格為何？'}, {id:'quote-d',text:'第二筆鋼筋資料',question:'影響為何？'}]);
   assert.equal(failed.quotesHidden,false, 'failed lookup restores all pending quotes');
+  await runScenario(true, true, [{id:'quote-e',text:'鋼材行情',question:'原因？'}, {id:'quote-f',text:'廢鋼行情',question:'風險？'}], true);
   console.log('Chat integration: read before scope, linked source citations, off-topic and unavailable pages passed.');
 })().catch(e => { console.error(e); process.exitCode = 1; });
