@@ -570,7 +570,12 @@
         answerEl.querySelector('.chat-bubble').innerHTML = '<span class="chat-typing"><i></i><i></i><i></i></span><span class="chat-status">正在閱讀您提供的網頁…</span>';
         pages = await Promise.all(urls.map(u => window.SteelChatWeb.readPage(u, question, getKey(), CHAT_MODEL, ctrl.signal)));
         if (!pages.some(p => p.status !== 'unavailable')) {
-          setAnswer(answerEl, '我嘗試讀取您提供的網頁，但目前無法確認網頁內容。可能是網頁限制存取、需要登入或查詢服務暫時無法使用。請貼上文章內容或相關段落，我可以根據文字回答。', true);
+          const service = pages.every(p => p.reason === 'service');
+          const status = pages.find(p => p.httpStatus)?.httpStatus;
+          const message = service
+            ? `網頁閱讀服務暫時無法使用${status ? `（代碼 ${status}）` : ''}，因此還沒有讀取到文章。請稍後再試，或貼上文章段落讓我回答。`
+            : '我嘗試讀取您提供的網頁，但目前無法確認網頁內容。可能是網站限制存取或需要登入。請貼上文章內容或相關段落，我可以根據文字回答。';
+          setAnswer(answerEl, message, true);
           return;
         }
       }

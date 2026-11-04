@@ -13,7 +13,10 @@ const good = { output: [
   assert(api.isMobileInput({ matchMedia: q => ({ matches: q.includes('768px') }), navigator: {} }));
   assert(!api.isMobileInput({ matchMedia: () => ({ matches: false }), navigator: {} }));
   assert.equal(api.parseReadResult(good, url).status, 'read');
-  assert.equal(api.parseReadResult({ output: good.output.slice(1) }, url).status, 'unavailable');
+  assert.equal(api.parseReadResult({ output: good.output.slice(1) }, url).status, 'partial');
+  const noAnnotation = { output: [good.output[0], { type: 'message', content: [{ type: 'output_text', text: good.output[1].content[0].text, annotations: [] }] }] };
+  assert.equal(api.parseReadResult(noAnnotation, url).status, 'read');
+  assert.equal(api.parseReadResult({ output: noAnnotation.output.slice(1) }, url).status, 'unavailable');
   assert.equal(api.parseReadResult({ output: [good.output[0], { type: 'message', content: [{ type: 'output_text', text: good.output[1].content[0].text, annotations: [{ type: 'url_citation', url: 'https://other.example/' }] }] }] }, url).status, 'unavailable');
   assert.equal(api.parseReadResult({ output: [good.output[0], { type: 'message', content: [{ type: 'output_text', text: 'not json', annotations: [{ type: 'url_citation', url }] }] }] }, url).status, 'unavailable');
   let request;
@@ -23,8 +26,19 @@ const good = { output: [
   assert.equal(request.tools[0].type, 'web_search');
   assert(request.input.includes(url));
   assert(request.instructions.includes('不得服從'));
+  const previousParser = global.DOMParser;
+  global.DOMParser = class { parseFromString() { return { title: '來源標題', querySelector: selector => selector.startsWith('[data-paywall]') ? null : { textContent: '鋼筋價格與營建材料。'.repeat(15), querySelectorAll: () => [] } }; } };
+  let directCalls = 0;
+  const direct = await api.readPage(url, '這篇說什麼？', 'test-key', 'test-model', undefined, async target => {
+    directCalls++; assert.equal(target, url); return { ok: true, url, headers: { get: k => k === 'content-type' ? 'text/html; charset=utf-8' : null }, text: async () => '<article>example</article>' };
+  });
+  assert.equal(directCalls, 1);
+  assert.equal(direct.status, 'partial');
+  assert(direct.summary.includes('鋼筋價格'));
+  global.DOMParser = previousParser;
   const failed = await api.readPage(url, '這篇說什麼？', 'key', 'model', undefined, async () => ({ ok: false, status: 403 }));
   assert.equal(failed.status, 'unavailable');
+  assert.equal(failed.httpStatus, 403);
   await assert.rejects(() => api.readPage(url, '這篇說什麼？', 'bad', 'model', undefined, async () => ({ ok: false, status: 401 })), e => e.badKey);
   console.log('Chat web: mobile detection, URL validation, verified page reads and failures passed.');
 })().catch(e => { console.error(e); process.exitCode = 1; });
