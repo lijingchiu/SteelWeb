@@ -290,7 +290,10 @@
     }
     const arr = v => (Array.isArray(v) ? v : typeof v === 'string' && v ? v.split(/[\s,，、]+/) : [])
       .map(x => String(x).trim()).filter(Boolean);
-    return { in_scope: j.in_scope === true, targetLaw: typeof j.target_law === 'string' ? j.target_law.trim().slice(0,100) : (/水保法/.test(question) ? '水土保持法' : ''), legal: j.legal === true || /法規|法律|條例|規則|施行細則|辦法|法條|水保法|水土保持法|(?:法第|法$)/.test(question), laws: arr(j.laws).slice(0, 4), terms: arr(j.terms).slice(0, 10) };
+    const targetLaw = /水保法/.test(question) ? '水土保持法' : (typeof j.target_law === 'string' ? j.target_law.trim().slice(0,100) : '');
+    const chosen = arr(j.laws).slice(0, 4);
+    if (targetLaw && index?.laws.some(l => l.name === targetLaw) && !chosen.includes(targetLaw)) chosen.unshift(targetLaw);
+    return { in_scope: j.in_scope === true, targetLaw, legal: j.legal === true || /法規|法律|條例|規則|施行細則|辦法|法條|水保法|水土保持法|(?:法第|法$)/.test(question), laws: chosen.slice(0, 4), terms: arr(j.terms).slice(0, 10) };
   }
 
   // ── Regulations (data/laws, from the Ministry of Justice open data) ──

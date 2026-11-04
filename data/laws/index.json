@@ -1264,6 +1264,123 @@
    "partial": false,
    "articles": 50,
    "region": "高雄市"
+  },
+  {
+   "name": "水土保持法",
+   "pcode": "M0110001",
+   "level": "法律",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2016-11-30",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110001",
+   "partial": false,
+   "articles": 43
+  },
+  {
+   "name": "水土保持法施行細則",
+   "pcode": "M0110002",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2020-12-02",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110002",
+   "partial": false,
+   "articles": 43
+  },
+  {
+   "name": "水土保持計畫審核監督辦法",
+   "pcode": "M0110012",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2025-09-09",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110012",
+   "partial": false,
+   "articles": 42
+  },
+  {
+   "name": "水土保持計畫審查收費標準",
+   "pcode": "M0110005",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2023-06-12",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110005",
+   "partial": false,
+   "articles": 5
+  },
+  {
+   "name": "水土保持保證金繳納及保管運用辦法",
+   "pcode": "M0110003",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2018-08-29",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110003",
+   "partial": false,
+   "articles": 10
+  },
+  {
+   "name": "特定水土保持區劃定與廢止準則",
+   "pcode": "M0110004",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2026-01-20",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110004",
+   "partial": false,
+   "articles": 7
+  },
+  {
+   "name": "特定水土保持區一定規模以上之地貌改變認定辦法",
+   "pcode": "M0110026",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2024-07-09",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110026",
+   "partial": false,
+   "articles": 3
+  },
+  {
+   "name": "山坡地保育利用條例",
+   "pcode": "M0110006",
+   "level": "法律",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2019-01-09",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110006",
+   "partial": false,
+   "articles": 44
+  },
+  {
+   "name": "山坡地保育利用條例施行細則",
+   "pcode": "M0110007",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2020-05-13",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110007",
+   "partial": false,
+   "articles": 20
   }
  ],
  "reference_archive": {
