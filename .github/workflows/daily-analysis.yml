@@ -2,16 +2,17 @@ name: Daily Steel Price Analysis
 
 on:
   schedule:
-    # 18:07 UTC = 02:07 Taiwan. GitHub often starts scheduled runs hours late, so
+    # Sun–Thu UTC = Mon–Fri Taiwan; 18:07 UTC = 02:07 Taiwan.
+    # GitHub often starts scheduled runs hours late, so
     # the analysis runs overnight; push and email are then scheduled for the
     # delivery time in notify-config.json (08:00) and arrive on time.
-    - cron: '7 18 * * *'
+    - cron: '7 18 * * 0-4'
     # Backup slots (Taiwan 03:43, 05:17, 06:23, 07:47): each runs only if no
     # analysis exists yet for the day.
-    - cron: '43 19 * * *'
-    - cron: '17 21 * * *'
-    - cron: '23 22 * * *'
-    - cron: '47 23 * * *'
+    - cron: '43 19 * * 0-4'
+    - cron: '17 21 * * 0-4'
+    - cron: '23 22 * * 0-4'
+    - cron: '47 23 * * 0-4'
   # Pushing a change to this file on main runs the analysis immediately.
   push:
     branches: [main]
@@ -32,7 +33,25 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  weekday_guard:
+    runs-on: ubuntu-latest
+    outputs:
+      allowed: ${{ steps.check.outputs.allowed }}
+    steps:
+      - id: check
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          DAY=$(TZ=Asia/Taipei date +%u)
+          if [ "$EVENT_NAME" = "schedule" ] && [ "$DAY" -gt 5 ]; then
+            echo "allowed=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping delayed weekend research."
+          else
+            echo "allowed=true" >> "$GITHUB_OUTPUT"
+          fi
   analyze:
+    needs: weekday_guard
+    if: needs.weekday_guard.outputs.allowed == 'true'
     name: Fetch & Analyze Steel Prices
     runs-on: ubuntu-latest
     timeout-minutes: 30

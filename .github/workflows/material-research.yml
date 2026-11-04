@@ -1,8 +1,8 @@
 name: Research Material Outlooks
 on:
   schedule:
-    # 04:10 Taiwan, following the overnight daily analysis.
-    - cron: '10 20 * * *'
+    # Sun–Thu UTC = Mon–Fri 04:10 Taiwan, after the overnight analysis.
+    - cron: '10 20 * * 0-4'
   workflow_dispatch:
 permissions:
   contents: write
@@ -11,7 +11,25 @@ concurrency:
   group: data-writer-${{ github.ref_name }}
   cancel-in-progress: false
 jobs:
+  weekday_guard:
+    runs-on: ubuntu-latest
+    outputs:
+      allowed: ${{ steps.check.outputs.allowed }}
+    steps:
+      - id: check
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          DAY=$(TZ=Asia/Taipei date +%u)
+          if [ "$EVENT_NAME" = "schedule" ] && [ "$DAY" -gt 5 ]; then
+            echo "allowed=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping delayed weekend research."
+          else
+            echo "allowed=true" >> "$GITHUB_OUTPUT"
+          fi
   research:
+    needs: weekday_guard
+    if: needs.weekday_guard.outputs.allowed == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 55
     steps:
