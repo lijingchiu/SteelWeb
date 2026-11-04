@@ -1,6 +1,6 @@
 // Prepare locally selected media for the Responses API; never store the originals.
 (function (global) {
-  const MAX_FILES = 3, MAX_FILE = 10 * 1024 * 1024, MAX_VIDEO = 100 * 1024 * 1024;
+  const MAX_FILE = 50_000_000, MAX_VIDEO = 300 * 1024 * 1024;
   const IMAGE = /\.(png|jpe?g|webp|gif|heic|heif)$/i;
   const VIDEO = /\.(mp4|mov|m4v|webm)$/i;
   const DOC = /\.(pdf|doc|docx|ppt|pptx|xls|xlsx|csv|tsv|txt)$/i;
@@ -12,13 +12,14 @@
     return '';
   }
   function validate(files) {
-    if (files.length > MAX_FILES) return '一次最多選擇 3 個檔案。';
     for (const file of files) {
       const k = kind(file);
       if (!k) return `不支援「${file.name}」的格式。請使用圖片、影片、Word、Excel、PPT、PDF 或文字檔。`;
-      if (!file.size || file.size > (k === 'video' ? MAX_VIDEO : MAX_FILE))
-        return `「${file.name}」為空或超過大小限制（影片 100 MB，其他檔案 10 MB）。`;
+      if (!file.size || (k === 'video' ? file.size > MAX_VIDEO : file.size >= MAX_FILE))
+        return `「${file.name}」為空或超過大小限制（影片最多 300 MB，其他檔案須小於 50 MB）。`;
     }
+    const documents = files.filter(f => kind(f) === 'document').reduce((sum, f) => sum + f.size, 0);
+    if (documents >= MAX_FILE) return '單次傳送的文件合計須小於 50 MB；請拆成多次傳送。';
     return '';
   }
   function readData(file) {

@@ -9,9 +9,13 @@ assert.equal(attachments.kind(file('材料照片.JPG')), 'image');
 assert.equal(attachments.kind(file('施工影片.mov')), 'video');
 for (const ext of ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'csv', 'txt']) assert.equal(attachments.kind(file('資料.' + ext)), 'document');
 assert.match(attachments.validate([file('資料.exe')]), /不支援/);
-assert.match(attachments.validate([file('照片.png', 11 * 1024 * 1024)]), /限制/);
-assert.match(attachments.validate([file('影片.mp4', 101 * 1024 * 1024)]), /限制/);
-assert.match(attachments.validate(Array(4).fill(file('照片.png'))), /3/);
+assert.equal(attachments.validate([file('照片.png', 49_999_999)]), '');
+assert.match(attachments.validate([file('照片.png', 50_000_000)]), /限制/);
+assert.equal(attachments.validate([file('影片.mp4', 300 * 1024 * 1024)]), '');
+assert.match(attachments.validate([file('影片.mp4', 300 * 1024 * 1024 + 1)]), /限制/);
+assert.equal(attachments.validate(Array(12).fill(file('照片.png'))), '');
+assert.equal(attachments.validate([file('a.pdf', 25_000_000), file('b.docx', 24_999_999)]), '');
+assert.match(attachments.validate([file('a.pdf', 25_000_000), file('b.docx', 25_000_000)]), /合計/);
 assert.equal(attachments.validate([file('工程.pdf'), file('施工.mp4')]), '');
 
 async function scenario(inScope) {

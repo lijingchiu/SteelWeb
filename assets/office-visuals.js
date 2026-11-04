@@ -1,7 +1,7 @@
 // Read bounded OOXML package parts locally. Files and extracted media stay in the
 // browser until the user sends the question to the assistant.
 (function (global) {
-  const MAX_ENTRIES = 2500, MAX_PART = 16 * 1024 * 1024, MAX_TOTAL = 64 * 1024 * 1024;
+  const MAX_ENTRIES = 2500, MAX_PART = 50 * 1024 * 1024, MAX_TOTAL = 256 * 1024 * 1024;
   const MIME = {png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp',gif:'image/gif'};
   const local = n => n && n.localName;
   const children = (node, name) => Array.from(node?.children || []).filter(n => local(n) === name);

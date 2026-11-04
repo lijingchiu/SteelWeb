@@ -606,7 +606,9 @@
     setBusy(true);
     const ctrl = new AbortController();
     state.abort = ctrl;
-    const timer = setTimeout(() => ctrl.abort(), 90000);
+    const bytes = files.reduce((sum, f) => sum + f.size, 0);
+    const timeout = Math.min(300000, 90000 + Math.ceil(bytes / 1000000) * 500);
+    const timer = setTimeout(() => ctrl.abort(), timeout);
     try {
       let attachments = [];
       if (files.length) {

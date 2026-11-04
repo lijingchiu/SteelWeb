@@ -22,7 +22,7 @@ const cases = [
         const all=input.flatMap(x=>Array.isArray(x.content)?x.content:[]);
         const text=all.filter(p=>p.type==='input_text').map(p=>p.text).join('\n');
         observed.push({stream:!!b.stream, images:all.filter(p=>p.type==='input_image').length,
-          hasFile:all.some(p=>p.type==='input_file'), text});
+          hasFile:all.some(p=>p.type==='input_file'), fileCount:all.filter(p=>p.type==='input_file').length, text});
       } catch (_) { /* requests without this structure are irrelevant */ }
     });
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
@@ -66,6 +66,29 @@ const cases = [
     assert(answer.toUpperCase().includes('ENDSTEEL789'),`large case: last image marker missing: ${answer.slice(0,500)}`);
     assert(answer.includes('54321') && answer.includes('95671'),`large case: chart values missing: ${answer.slice(0,500)}`);
     console.log('Many-content case: real assistant answered using image 15, chart 23 and its 200th point.');
+    await page.locator('#chat-new').click();
+    const largeBegin=observed.length;
+    const [sizeChooser]=await Promise.all([page.waitForEvent('filechooser'),page.locator('#chat-choose-file').click()]);
+    await sizeChooser.setFiles([
+      '/tmp/steel-office-visual-test/office.docx', '/tmp/steel-office-visual-test/office.xlsx',
+      '/tmp/steel-office-visual-test/office.pptx', '/tmp/steel-attachment-test/large.pdf',
+      '/tmp/steel-attachment-test/large.mp4',
+    ]);
+    const selected=await page.locator('#chat-attachment-list').innerText();
+    for (const ext of ['docx','xlsx','pptx','pdf','mp4']) assert(selected.includes(ext),`large multi-upload: ${ext} was not selected`);
+    await page.locator('#chat-input').fill('這五個鋼材檢查附件內容分別是什麼？請特別列出 PDF 中的鋼筋檢查標記。');
+    await page.locator('#chat-send').click();
+    await page.waitForFunction(() => !document.querySelector('#chat-send').disabled,null,{timeout:300000});
+    const sizeAnswer=(await page.locator('.chat-msg.chat-bot').last().innerText());
+    const sizeRequests=observed.slice(largeBegin).filter(r=>r.hasFile);
+    assert(sizeRequests.length>=2,'large multi-upload: missing scope or answer request');
+    for (const req of sizeRequests) {
+      assert.equal(req.fileCount,4,'large multi-upload: four documents were not all sent');
+      assert(req.text.includes('影片「large.mp4」'), 'large multi-upload: 300 MB video frames missing');
+      assert(req.images>=4,'large multi-upload: document images or video frame missing');
+    }
+    assert(sizeAnswer.toUpperCase().includes('PDF274'),`large multi-upload: PDF marker missing: ${sizeAnswer.slice(0,500)}`);
+    console.log('Large upload case: five attachments, 49 MB PDF and 300 MiB video were processed by the real assistant.');
     // Read-only outcomes: all supplied documents are synthetic and non-sensitive.
   } finally { await browser.close(); }
 })().catch(e=>{console.error(String(e.message || e).replaceAll(key,'[redacted]'));process.exitCode=1;});
