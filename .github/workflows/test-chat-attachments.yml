@@ -21,3 +21,16 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: node tests/live-chat-attachments.js
+
+      - name: Create Office image and chart samples
+        run: python tests/make-office-visual-samples.py
+      - name: Install browser test runner
+        run: npm install --prefix /tmp/steel-pw playwright@1.55.1
+      - name: Test Office pictures and charts through the real assistant
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          NODE_PATH: /tmp/steel-pw/node_modules
+          CHROME_PATH: /usr/bin/google-chrome
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/steel-office-http.log 2>&1 &
+          node tests/live-office-visuals.js

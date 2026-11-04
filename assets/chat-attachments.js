@@ -97,6 +97,15 @@
       } else {
         parts.push({ type: 'input_text', text: `文件「${name}」` });
         parts.push({ type: 'input_file', filename: name, file_data: await readData(file) });
+        if (/\.(docx|xlsx|pptx)$/i.test(name)) {
+          const visuals = global.SteelOfficeVisuals
+            ? await global.SteelOfficeVisuals.extract(file)
+            : {parts: [], warnings: ['Office 內嵌圖片與圖表解析工具無法載入。']};
+          parts.push({type:'input_text', text:`附件「${name}」內嵌內容擷取狀態：${visuals.parts.length ? `已擷取 ${visuals.parts.length} 個圖片或圖表資料項。` : '沒有擷取到圖片或圖表。'}${visuals.warnings.length ? `限制：${visuals.warnings.join('；')}` : ''}僅能依照實際提供的圖片及圖表資料回答，不得假稱讀取未提供的內容。`});
+          parts.push(...visuals.parts);
+        } else if (/\.(doc|xls|ppt)$/i.test(name)) {
+          parts.push({type:'input_text', text:`附件「${name}」為舊版 Office 格式，目前無法自動擷取其中圖片及圖表；請說明此限制，不可假稱已看到。`});
+        }
       }
     }
     return parts;
