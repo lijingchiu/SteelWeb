@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import daily_schedule as schedule
@@ -23,12 +24,41 @@ class ScheduleTest(unittest.TestCase):
         self.assertFalse(schedule.allow_scheduled(datetime(2026, 11, 8, 0, tzinfo=tw), pending))
         self.assertFalse(schedule.allow_scheduled(datetime(2026, 11, 14, 7, tzinfo=tw), pending))
 
+    def test_previous_evening_targets_next_workday(self):
+        tw = timezone(timedelta(hours=8))
+        incomplete = dict.fromkeys(('analysis', 'research', 'report', 'notifications'), False)
+        sunday = datetime(2026, 11, 8, 23, 50, tzinfo=tw)
+        self.assertEqual(schedule.target_date(sunday).isoformat(), '2026-11-09')
+        self.assertTrue(schedule.allow_scheduled(sunday, incomplete))
+        self.assertFalse(schedule.allow_scheduled(datetime(2026, 11, 13, 23, 50, tzinfo=tw), incomplete))
+        self.assertFalse(schedule.allow_scheduled(datetime(2026, 11, 8, 23, 49, tzinfo=tw), incomplete))
+        target = notify.delivery_at(sunday, '07:00', '2026-11-09')
+        self.assertEqual(target, datetime(2026, 11, 9, 7, tzinfo=tw))
+
     def test_delivery_is_never_early(self):
         tw = timezone(timedelta(hours=8))
         for minute in (0, 58, 59):
             now = datetime(2026, 11, 9, 6, minute, tzinfo=tw)
             self.assertEqual(notify.delivery_at(now, '07:00'), datetime(2026, 11, 9, 7, tzinfo=tw))
         self.assertIsNone(notify.delivery_at(datetime(2026, 11, 9, 7, tzinfo=tw), '07:00'))
+
+    def test_next_day_notifications_are_scheduled_for_seven(self):
+        tw = timezone(timedelta(hours=8))
+        now = datetime(2026, 11, 8, 23, 58, tzinfo=tw)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            config, latest, state, report = (root / x for x in ('config', 'latest', 'state', 'report'))
+            config.write_text(json.dumps({'onesignal_app_id': 'x', 'buttondown_username': 'x', 'delivery_time': '07:00'}))
+            latest.write_text(json.dumps({'date': '2026-11-09'}))
+            state.write_text('{}')
+            report.write_text('{}')
+            env = {'RESEARCH_DATE': '2026-11-09', 'ONESIGNAL_REST_API_KEY': 'x', 'BUTTONDOWN_API_KEY': 'x', 'REPORT_PUBLIC_READY': 'true'}
+            with patch.object(notify, 'CONFIG_PATH', config), patch.object(notify, 'LATEST_PATH', latest), patch.object(notify, 'STATE_PATH', state), patch.object(notify, 'REPORT_PATH', report), patch.dict('os.environ', env), patch.object(notify, 'local_report_ready', return_value=True), patch.object(notify, 'send_push', return_value={'id': 'p'} ) as push, patch.object(notify, 'send_email', return_value={'id': 'e'}) as email:
+                self.assertEqual(notify.main(now), 0)
+                expected = datetime(2026, 11, 9, 7, tzinfo=tw)
+                self.assertEqual(push.call_args.args[-1], expected)
+                self.assertEqual(email.call_args.args[-1], expected)
+                self.assertEqual(json.loads(state.read_text())['email']['date'], '2026-11-09')
 
     def test_state_requires_today_valid_files_and_both_notifications(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -49,6 +79,8 @@ class ScheduleTest(unittest.TestCase):
             write('data/report.json', {'date': today, 'file': stem+'.pptx', 'pdf_file': stem+'.pdf', 'content': {'sha256': digest}, 'pdf_sha256': digest})
             write('data/notify-state.json', {'push': {'date': today}, 'email': {'date': today}})
             self.assertTrue(all(schedule.status(root, today).values()))
+            write('data/material-outlooks.json', {'generated_at': '2026-11-08T23:55:00+08:00', 'research_date': today, 'failed_batches': 0, 'total_items': 1, 'covered_items': 1})
+            self.assertTrue(schedule.status(root, today)['research'])
             write('data/notify-state.json', {'push': {'date': today}})
             self.assertFalse(schedule.status(root, today)['notifications'])
             write('data/material-outlooks.json', {'generated_at': today+'T01:00:00+08:00', 'failed_batches': 1, 'total_items': 1, 'covered_items': 1})

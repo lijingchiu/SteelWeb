@@ -67,10 +67,13 @@ def fmt_num(v) -> str:
     return f"{v:,.2f}".rstrip("0").rstrip(".")
 
 
-def delivery_at(now: datetime, hhmm: str) -> datetime | None:
+def delivery_at(now: datetime, hhmm: str, target_date: str | None = None) -> datetime | None:
     """Today's delivery time in Taiwan, or None when it has already passed."""
     h, m = map(int, hhmm.split(":"))
     target = now.astimezone(TW_TZ).replace(hour=h, minute=m, second=0, microsecond=0)
+    if target_date:
+        day = datetime.fromisoformat(target_date).date()
+        target = target.replace(year=day.year, month=day.month, day=day.day)
     return target if target > now else None
 
 
@@ -262,7 +265,7 @@ def send_email(key: str, email: dict, at: datetime | None) -> dict:
 
 def main(now: datetime | None = None) -> int:
     now = now or datetime.now(TW_TZ)
-    today = now.strftime("%Y-%m-%d")
+    today = os.environ.get("RESEARCH_DATE") or now.strftime("%Y-%m-%d")
     cfg = load_json(CONFIG_PATH, {})
     d = load_json(LATEST_PATH, {})
     if d.get("date") != today:
@@ -270,7 +273,7 @@ def main(now: datetime | None = None) -> int:
         return 0
     state = load_json(STATE_PATH, {})
     site_url = cfg.get("site_url", "https://lijingchiu.github.io/SteelWeb/")
-    at = delivery_at(now, cfg.get("delivery_time", "07:00"))
+    at = delivery_at(now, cfg.get("delivery_time", "07:00"), today)
     log(f"Delivery: {'scheduled ' + at.isoformat() if at else 'immediate'}")
 
     channels = {

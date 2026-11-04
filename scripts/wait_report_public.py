@@ -2,6 +2,7 @@
 from __future__ import annotations
 import hashlib
 import json
+import os
 import sys
 import time
 from datetime import datetime, timedelta, timezone
@@ -19,7 +20,7 @@ def public_files_match(base: str, expected: list[tuple[str, str]], getter=reques
 
 
 def main() -> int:
-    today = datetime.now(timezone(timedelta(hours=8))).strftime('%Y-%m-%d')
+    today = os.environ.get('RESEARCH_DATE') or datetime.now(timezone(timedelta(hours=8))).strftime('%Y-%m-%d')
     state = json.loads(Path('data/notify-state.json').read_text(encoding='utf-8')) if Path('data/notify-state.json').exists() else {}
     if (state.get('email') or {}).get('date') == today:
         print('Email was already sent; no publication wait needed.')

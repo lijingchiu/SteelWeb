@@ -2,8 +2,8 @@ name: Daily Steel Price Analysis
 
 on:
   schedule:
-    # Taiwan Mon–Fri 00:00 through 07:00 (UTC Sun–Thu 16:00–23:00).
-    - cron: '0 16-23 * * 0-4'
+    # Taiwan Sun–Thu 23:50 through the following weekday 06:50.
+    - cron: '50 15-22 * * 0-4'
   # Pushing a change to this file on main runs the analysis immediately.
   push:
     branches: [main]
@@ -28,12 +28,14 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       allowed: ${{ steps.check.outputs.allowed }}
+      target: ${{ steps.check.outputs.target }}
     steps:
       - uses: actions/checkout@v4
       - id: check
         env:
           EVENT_NAME: ${{ github.event_name }}
         run: |
+          echo "target=$(python3 scripts/daily_schedule.py target)" >> "$GITHUB_OUTPUT"
           if [ "$EVENT_NAME" = "schedule" ]; then
             echo "allowed=$(python3 scripts/daily_schedule.py gate)" >> "$GITHUB_OUTPUT"
           else
@@ -45,6 +47,8 @@ jobs:
     name: Fetch & Analyze Steel Prices
     runs-on: ubuntu-latest
     timeout-minutes: 80
+    env:
+      RESEARCH_DATE: ${{ needs.weekday_guard.outputs.target }}
 
     steps:
       - name: Checkout repository
@@ -68,7 +72,7 @@ jobs:
       - name: Check if analysis already exists today
         id: check_today
         run: |
-          DATE=$(TZ='Asia/Taipei' date +%Y-%m-%d)
+          DATE="$RESEARCH_DATE"
           echo "today=$DATE" >> $GITHUB_OUTPUT
           FORCE="${{ inputs.force_run }}"
           if [ "${{ github.event_name }}" = "push" ]; then FORCE=true; fi
@@ -158,8 +162,13 @@ jobs:
         continue-on-error: true
         run: python scripts/wait_report_public.py
 
+      - name: Verify all research and reports before notification
+        id: ready_to_notify
+        if: always() && steps.check_today.outputs.today != ''
+        run: echo "ready=$(python scripts/daily_schedule.py ready)" >> "$GITHUB_OUTPUT"
+
       - name: Send subscriber notifications
-        if: always() && github.ref == 'refs/heads/main' && steps.check_today.outputs.today != ''
+        if: always() && github.ref == 'refs/heads/main' && steps.ready_to_notify.outputs.ready == 'true' && steps.wait_public.outcome == 'success'
         continue-on-error: true
         env:
           ONESIGNAL_REST_API_KEY: ${{ secrets.ONESIGNAL_REST_API_KEY }}

@@ -173,6 +173,7 @@ def main():
         print('No source-backed results; preserving any previous publication.', file=sys.stderr)
         return 1
     payload = {'generated_at': datetime.now(timezone(timedelta(hours=8))).isoformat(), 'model': MODEL,
+               'research_date': os.environ.get('RESEARCH_DATE') or TODAY.isoformat(),
                'source_age_limit_days': 60, 'materials_updated_at': materials.get('updated_at'),
                'total_items': len(all_items), 'covered_items': len(forecasts), 'failed_batches': failures,
                'items': forecasts}

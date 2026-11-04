@@ -1075,7 +1075,8 @@ def dedupe_citations(cites: list[dict]) -> list[dict]:
 
 def main():
     now = datetime.now(TW_TZ)
-    date_str = now.strftime("%Y-%m-%d")
+    date_str = os.environ.get("RESEARCH_DATE") or now.strftime("%Y-%m-%d")
+    analysis_day = datetime.fromisoformat(date_str).replace(tzinfo=TW_TZ)
     log(f"=== Steel & Materials Analysis: {date_str} ===")
 
     exchange_rate = fetch_exchange_rate()
@@ -1089,7 +1090,7 @@ def main():
 
     headlines = scrape_steelnews_headlines()
     feed = materials.get("news_feed", [])
-    week_label, week_range = forecast_week(now)
+    week_label, week_range = forecast_week(analysis_day)
     targets = forecast_targets(materials)
 
     fx_text = format_exchange_rate_for_prompt(exchange_rate)

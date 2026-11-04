@@ -2,6 +2,7 @@
 """Read-only checks for today's Taiwan research and delivery state."""
 import hashlib
 import json
+import os
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -24,7 +25,7 @@ def status(root, today):
     outlooks = read(root, 'data/material-outlooks.json')
     try:
         generated = datetime.fromisoformat(outlooks.get('generated_at', ''))
-        current = generated.tzinfo is not None and generated.astimezone(TW).date().isoformat() == today
+        current = (generated.tzinfo is not None and (outlooks.get('research_date') or generated.astimezone(TW).date().isoformat()) == today)
     except (TypeError, ValueError):
         current = False
     research = bool(current and outlooks.get('failed_batches') == 0
@@ -45,16 +46,33 @@ def status(root, today):
     return {'analysis': analysis, 'research': research, 'report': bool(ready), 'notifications': notifications}
 
 
+def target_date(now, scheduled=True):
+    local = now.astimezone(TW)
+    day = local.date()
+    if scheduled and local.hour == 23 and local.minute >= 50:
+        day += timedelta(days=1)
+    return day
+
+
 def allow_scheduled(now, state):
     local = now.astimezone(TW)
-    return local.weekday() < 5 and local.hour < 8 and not all(state.values())
+    target = target_date(local)
+    in_window = local.hour < 8 or (local.hour == 23 and local.minute >= 50)
+    return target.weekday() < 5 and in_window and not all(state.values())
 
 
 if __name__ == '__main__':
     now = datetime.now(TW)
-    state = status(Path('.'), now.date().isoformat())
     command = sys.argv[1]
-    if command == 'gate':
-        print('true' if allow_scheduled(now, state) else 'false')
+    scheduled = os.environ.get('EVENT_NAME') == 'schedule'
+    target = os.environ.get('RESEARCH_DATE') or target_date(now, scheduled).isoformat()
+    if command == 'target':
+        print(target)
     else:
-        print('true' if state[command] else 'false')
+        state = status(Path('.'), target)
+        if command == 'gate':
+            print('true' if allow_scheduled(now, state) else 'false')
+        elif command == 'ready':
+            print('true' if state['analysis'] and state['research'] and state['report'] else 'false')
+        else:
+            print('true' if state[command] else 'false')
