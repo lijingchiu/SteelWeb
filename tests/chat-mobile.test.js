@@ -34,6 +34,10 @@ mobile.element('chat-form').handlers.submit({ submitter: mobile.element('chat-se
 assert(mobile.reads > 0, 'send button must reach the send handler');
 const desktop = simulate(false);
 desktop.element('chat-input').value = '測試';
+let shiftPrevented = false;
+desktop.element('chat-input').handlers.keydown({ key: 'Enter', shiftKey: true, isComposing: false, preventDefault() { shiftPrevented = true; } });
+assert.equal(shiftPrevented, false, 'desktop Shift+Enter keeps native newline');
+assert.equal(desktop.reads, 0, 'desktop Shift+Enter must not send');
 let desktopPrevented = false;
 desktop.element('chat-input').handlers.keydown({ key: 'Enter', shiftKey: false, isComposing: false, preventDefault() { desktopPrevented = true; } });
 assert(desktopPrevented && desktop.reads > 0, 'desktop Enter continues to send');
