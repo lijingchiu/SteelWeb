@@ -53,6 +53,9 @@ async function runScenario(readable, inScope, selections = []) {
     assert.equal(field.hidden,false, 'edit opens the correct question');
     field.dataset.quoteQuestion='0'; field.value='修改後：鋼筋為什麼漲？';
     elem('chat-quotes-list').handlers.input({target:field}); selections[0].question=field.value;
+    const other = elem('chat-quote-question-1'); other.hidden=true;
+    handlers['steel:edit-selection']({detail:{id:selections[1].id}});
+    assert.equal(other.hidden,false, 'page marker opens its matching quote');
   }
   elem('chat-input').value = url + ' 這篇說什麼？';
   elem('chat-form').handlers.submit({ submitter: elem('chat-send'), preventDefault() {} });
@@ -70,7 +73,7 @@ async function runScenario(readable, inScope, selections = []) {
   const no = await runScenario(false, false);
   assert.deepEqual(no.sequence, ['read']);
   assert(no.html.includes('無法確認這個連結的文章內容'));
-  const staged = await runScenario(true, true, [{text:'第一段鋼筋報價'.repeat(600) + '結尾資料', question:'鋼筋為什麼漲？'}, {text:'第二段廢鋼行情', question:'廢鋼有什麼風險？'}]);
+  const staged = await runScenario(true, true, [{id:'quote-a',text:'第一段鋼筋報價'.repeat(600) + '結尾資料', question:'鋼筋為什麼漲？'}, {id:'quote-b',text:'第二段廢鋼行情', question:'廢鋼有什麼風險？'}]);
   assert.deepEqual(staged.sequence, ['read', 'scope', 'answer']);
   console.log('Chat integration: read before scope, linked source citations, off-topic and unavailable pages passed.');
 })().catch(e => { console.error(e); process.exitCode = 1; });
