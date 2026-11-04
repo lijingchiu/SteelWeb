@@ -484,6 +484,26 @@
       .replace(/。{2,}/g, '。');
   }
 
+  // Keep only display data needed to reconstruct an answer; never trust stored URLs.
+  function sourceUrl(value) {
+    if (typeof value !== 'string' || !value.trim() || /[\x00-\x1f\x7f]/.test(value)) return '';
+    const v = value.trim();
+    if (/^https?:\/\//i.test(v)) {
+      try { const u = new URL(v); return ['http:', 'https:'].includes(u.protocol) ? u.href : ''; } catch (_) { return ''; }
+    }
+    return /^(?!\/\/)(?![^/?#]*:)(?:\/|\.\.?\/|[a-zA-Z0-9_])[^\\]*$/.test(v) ? v : '';
+  }
+  function sourceSnapshot(laws = [], references = [], pages = []) {
+    return {
+      laws: (Array.isArray(laws) ? laws : []).filter(r => r && typeof r.law === 'string' && typeof r.n === 'string')
+        .map(r => ({law:r.law, no:String(r.no || ''), n:r.n, pcode:String(r.pcode || ''), region:!!r.region, url:sourceUrl(r.url)})),
+      references: (Array.isArray(references) ? references : []).filter(r => r && typeof r.name === 'string' && sourceUrl(r.href))
+        .map(r => ({name:r.name, href:sourceUrl(r.href), ...(r.table && Array.isArray(r.table.headers) && Array.isArray(r.table.rows) ? {table:{headers:r.table.headers.map(String), rows:r.table.rows.filter(Array.isArray).map(row=>row.map(String)), total:r.table.total, retrieved:r.table.retrieved}} : {})})),
+      pages: (Array.isArray(pages) ? pages : []).map(p => p && sourceUrl(p.url) && p.status !== 'unavailable'
+        ? {url:sourceUrl(p.url), title:String(p.title || ''), status:p.status === 'partial' ? 'partial' : 'read'} : {status:'unavailable'}),
+    };
+  }
+
   function renderBody(text, pages = []) {
     text = stripDisclaimers(text);
     return escHtml(text.replace(/\*\*|__|^#{1,6}\s+(?=\S)/gm, '').trim())
@@ -504,6 +524,7 @@
   }
 
   function setAnswer(el, text, final, laws, references, pages = []) {
+    ({laws, references, pages} = sourceSnapshot(laws, references, pages));
     const bubble = el.querySelector('.chat-bubble');
     const { body, sections } = final ? splitSections(text) : { body: text.replace(/\n?\s*相關區塊[:：][^\n]*$/, ''), sections: [] };
     const chips = sections.map(s => `<button type="button" class="chat-jump" data-sec="${s}">前往${SECTION_NAMES[s]} ›</button>`).join('');
@@ -518,11 +539,11 @@
       const when = date && !Number.isNaN(date.getTime()) ? new Intl.DateTimeFormat('zh-TW', { timeZone: 'Asia/Taipei', dateStyle: 'short', timeStyle: 'short' }).format(date) : r.table.retrieved;
       return `<div class="chat-data-table"><div>${escHtml(r.name)}：${when ? `資料擷取時間 ${escHtml(when)}（台灣時間）` : '即時來源'}，顯示 ${r.table.rows.length} 筆（符合篩選共 ${r.table.total} 筆）</div><div class="chat-data-scroll"><table><thead><tr>${r.table.headers.map(h => `<th>${escHtml(h)}</th>`).join('')}</tr></thead><tbody>${r.table.rows.map(row => `<tr>${row.map(v => `<td>${escHtml(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div><a target="_blank" rel="noopener" href="${escHtml(r.href)}">開啟資料來源 ↗</a></div>`;
     }).join('') : '';
-    bubble.innerHTML = renderBody(body, pages)
-      + tables
-      + (links ? `<div class="chat-laws"><span>法規出處</span>${links}</div>` : '')
+    const sources = (links ? `<div class="chat-laws"><span>法規出處</span>${links}</div>` : '')
       + (pageLinks ? `<div class="chat-laws"><span>使用者提供的網頁</span>${pageLinks}</div>` : '')
-      + (refLinks ? `<div class="chat-laws"><span>相關參考資料（請核對來源及版本）</span>${refLinks}</div>` : '')
+      + (refLinks ? `<div class="chat-laws"><span>相關參考資料（請核對來源及版本）</span>${refLinks}</div>` : '');
+    bubble.innerHTML = renderBody(body, pages) + tables
+      + (sources ? `<details class="chat-sources"><summary>查看參考來源</summary>${sources}</details>` : '')
       + (chips ? `<div class="chat-jumps">${chips}</div>` : '');
     const list = $('chat-log');
     if (list.scrollHeight - list.scrollTop - list.clientHeight < 120) list.scrollTop = list.scrollHeight;
@@ -547,8 +568,8 @@
     catch (_) { $('chat-storage-status').textContent = '此瀏覽器無法儲存對話紀錄，請檢查儲存空間或瀏覽器設定。'; return; }
     $('chat-storage-status').textContent = '';
   }
-  function recordTurn(question, answer) {
-    state.history.push({ role: 'user', text: question }, { role: 'assistant', text: answer });
+  function recordTurn(question, answer, sources, displayText) {
+    state.history.push({ role: 'user', text: question }, { role: 'assistant', text: answer, ...(sources ? {sources:sourceSnapshot(sources.laws, sources.references, sources.pages), displayText:displayText || answer} : {}) });
     saveConversation();
   }
   function showHistory(open) {
@@ -571,11 +592,15 @@
     const record = readConversations().find(c => c.id === id);
     if (!record) { renderHistory(); return; }
     state.conversationId = record.id;
-    state.history = record.messages.filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.text === 'string').map(m => ({role:m.role, text:m.text}));
+    state.history = record.messages.filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.text === 'string').map(m => ({role:m.role, text:m.text, ...(m.role === 'assistant' && m.sources ? {sources:sourceSnapshot(m.sources.laws, m.sources.references, m.sources.pages), displayText:typeof m.displayText === 'string' ? m.displayText : m.text} : {})}));
     state.files = []; updateAttachments(); resetNextSuggestion();
     $('chat-input').value = ''; autoGrow();
     $('chat-log').innerHTML = '';
-    state.history.forEach(m => addMsg(m.role === 'user' ? 'user' : 'bot', renderBody(m.text)));
+    state.history.forEach(m => {
+      if (m.role === 'user') addMsg('user', renderBody(m.text));
+      else if (m.sources) { const el = addMsg('bot', ''); setAnswer(el, m.displayText || m.text, true, m.sources.laws, m.sources.references, m.sources.pages); }
+      else addMsg('bot', renderBody(m.text) + '<div class="chat-history-note">此舊紀錄未保存參考來源。</div>');
+    });
     showHistory(false);
     const saved = Array.isArray(record.suggestions) ? record.suggestions.filter(s => typeof s === 'string' && s.trim()).slice(0, 2) : [];
     if (saved.length === 2) {
@@ -840,7 +865,7 @@
       if (pages.some(p => p.status === 'unavailable')) finalText += '\n\n部分網址無法讀取，以上回答僅依已取得的內容。';
       setAnswer(answerEl, finalText, true, laws, references, pages);
       suggestNextQuestion(question, text);
-      recordTurn(question + (files.length ? `\n（附件：${files.map(f => f.name).join('、')}；原檔未儲存，若需再次分析請重新上傳。）` : ''), splitSections(finalText).body.trim());
+      recordTurn(question + (files.length ? `\n（附件：${files.map(f => f.name).join('、')}；原檔未儲存，若需再次分析請重新上傳。）` : ''), splitSections(finalText).body.trim(), {laws, references, pages}, finalText);
     } catch (e) {
       answerEl.classList.add('chat-error');
       const msg = e.name === 'AbortError' ? '等候太久，已停止。請再問一次。'
@@ -1185,7 +1210,7 @@
       conversation: 'none', metadata: { kind: 'legal' }, output_modalities: ['audio'], input: [],
       instructions: `用自然、平穩的語氣，一字不改地念出下面這段話，不增加也不省略任何內容，條號照念：\n${answer}`,
     } });
-    recordTurn(text, answer);
+    recordTurn(text, answer, {laws, references}, answer);
   }
 
   async function gateVoiceQuestion(itemId, transcript) {

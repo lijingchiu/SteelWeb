@@ -14,13 +14,13 @@ function start() {
   }
   const doc={readyState:'complete',getElementById:el,querySelector(){return null},addEventListener(){},body:{classList:{add(){},remove(){}}},
     createElement(){const bubble={innerHTML:''};return {className:'',classList:{add(){}},set innerHTML(v){bubble.innerHTML=v},querySelector(){return bubble}}}};
-  const win={SteelChatWeb:{...global.SteelChatWeb,isMobileInput:()=>true},SteelAttachments:global.SteelAttachments,navigator:{},matchMedia:()=>({matches:true})};
+  const win={SteelReferenceSearch:{search:async()=>[{name:'鋼材資料',href:'https://example.com/steel',table:{headers:['月份','價格'],rows:[['十月','18500']],total:1,retrieved:'2026-11-04'}}]},SteelChatWeb:{...global.SteelChatWeb,isMobileInput:()=>true},SteelAttachments:global.SteelAttachments,navigator:{},matchMedia:()=>({matches:true})};
   const fetch=async(url,opt={})=>{
     if(String(url).includes('data/latest.json')) return {ok:true,json:async()=>({date:'2026-11-04'})};
     if(String(url).includes('data/')) return {ok:false};
     const b=JSON.parse(opt.body);
     if(b.instructions.includes('預測使用者可能'))return {ok:true,json:async()=>({output_text:JSON.stringify({questions:['後續趨勢如何？','有哪些風險？']})})};
-    if(!b.stream)return {ok:true,json:async()=>({output_text:JSON.stringify({in_scope:true,laws:[],terms:[]})})};
+    if(!b.stream)return {ok:true,json:async()=>({output_text:JSON.stringify({in_scope:true,laws:[],terms:['鋼筋']})})};
     submissions.push(b.input);let done=false;
     return {ok:true,body:{getReader:()=>({read:async()=>done?{done:true}:(done=true,{done:false,value:new TextEncoder().encode('data: '+JSON.stringify({type:'response.output_text.delta',delta:'鋼筋參考回答'})+'\n\n')})})}};
   };
@@ -33,6 +33,7 @@ async function submit(el,text){el('chat-input').value=text;el('chat-form').handl
   let a=start();await submit(a,'鋼筋價格如何？');
   let data=JSON.parse(saved.get('steel_chat_conversations_v1'));
   assert.equal(data.length,1);assert.equal(data[0].messages.length,2);const id=data[0].id;
+  assert.equal(data[0].messages[1].sources.references[0].href,'https://example.com/steel');
   for(let n=0;n<100 && !(JSON.parse(saved.get('steel_chat_conversations_v1'))[0].suggestions || []).length;n++)await new Promise(r=>setTimeout(r,2));
   assert.equal(JSON.parse(saved.get('steel_chat_conversations_v1'))[0].suggestions.length,2);
   let b=start();b('chat-history-open').handlers.click();
@@ -40,17 +41,27 @@ async function submit(el,text){el('chat-input').value=text;el('chat-form').handl
   b('chat-history-search').value='參考回答';b('chat-history-search').handlers.input();assert.match(b('chat-history-list').innerHTML,/鋼筋價格如何/);
   b('chat-history-list').handlers.click({target:{closest:s=>s==='[data-conversation]'?{dataset:{conversation:id}}:null}});
   assert.equal(b('chat-log').children.length,2);
+  const restored=b('chat-log').children[1].querySelector().innerHTML;
+  assert(restored.includes('<details class="chat-sources">'));assert(restored.includes('https://example.com/steel'));assert(restored.includes('18500'));
   assert.equal(b('chat-next-suggestion').hidden,false);
   assert.equal(b('chat-next-suggestion-2').hidden,false);
   assert.equal(b('chat-next-suggestion').textContent,'建議：後續趨勢如何？');
   await submit(b,'那採購呢？');
   for(let n=0;n<100 && JSON.parse(saved.get('steel_chat_conversations_v1'))[0].messages.length<4;n++)await new Promise(r=>setTimeout(r,2));
   data=JSON.parse(saved.get('steel_chat_conversations_v1'));assert.equal(data.length,1);assert.equal(data[0].messages.length,4);
+  assert.equal(data[0].messages[1].sources.references[0].href,'https://example.com/steel');
+  assert.equal(data[0].messages[3].sources.references[0].href,'https://example.com/steel');
   assert(submissions[1].some(m=>m.role==='user'&&m.content==='鋼筋價格如何？'));
-  const records=JSON.parse(saved.get('steel_chat_conversations_v1'));delete records[0].suggestions;saved.set('steel_chat_conversations_v1',JSON.stringify(records));
+  const records=JSON.parse(saved.get('steel_chat_conversations_v1'));delete records[0].suggestions;delete records[0].messages[1].sources;records[0].messages[3].sources.references.push({name:'危險網址',href:'javascript:alert(1)'});
+  records[0].messages[3].displayText='建築法第1條〔網頁1〕';
+  records[0].messages[3].sources.laws=[{law:'建築法',no:'第1條',n:'1',pcode:'D0070115'}];
+  records[0].messages[3].sources.pages=[{title:'新聞',url:'https://example.com/news',status:'read'}];saved.set('steel_chat_conversations_v1',JSON.stringify(records));
   let legacy=start();legacy('chat-history-list').handlers.click({target:{closest:s=>s==='[data-conversation]'?{dataset:{conversation:id}}:null}});
   for(let n=0;n<100 && legacy('chat-next-suggestion-2').hidden;n++)await new Promise(r=>setTimeout(r,2));
   assert.equal(legacy('chat-next-suggestion').hidden,false);assert.equal(legacy('chat-next-suggestion-2').hidden,false);
+  assert(legacy('chat-log').children[1].querySelector().innerHTML.includes('此舊紀錄未保存參考來源'));
+  const restored2=legacy('chat-log').children[3].querySelector().innerHTML;
+  assert(!restored2.includes('javascript:'));assert(restored2.includes('law.moj.gov.tw'));assert(restored2.includes('https://example.com/news'));
   b('chat-history-list').handlers.click({target:{closest:s=>s==='[data-delete-conversation]'?{dataset:{deleteConversation:id}}:null}});
   assert.equal(JSON.parse(saved.get('steel_chat_conversations_v1')).length,0);
   console.log('Conversation persistence, content search, continuation and deletion passed.');

@@ -1962,6 +1962,8 @@ body.brief-open .chat-fab { opacity: 0; pointer-events: none; transform: scale(0
 
 /* ── Assistant: regulation citations ── */
 .chat-status { margin-left: 8px; font-size: 12.5px; color: var(--muted); }
+.chat-sources { margin-top: 10px; }
+.chat-sources summary { color: var(--copper); cursor: pointer; font-size: 12px; }
 .chat-laws { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px; }
 .chat-laws > span { font-size: 11.5px; color: var(--muted); letter-spacing: 0.06em; margin-right: 2px; }
 .chat-law {
