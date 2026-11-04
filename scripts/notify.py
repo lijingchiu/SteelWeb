@@ -71,7 +71,7 @@ def delivery_at(now: datetime, hhmm: str) -> datetime | None:
     """Today's delivery time in Taiwan, or None when it has already passed."""
     h, m = map(int, hhmm.split(":"))
     target = now.astimezone(TW_TZ).replace(hour=h, minute=m, second=0, microsecond=0)
-    return target if target > now + timedelta(minutes=2) else None
+    return target if target > now else None
 
 
 def headline_of(d: dict) -> tuple[str, str]:
@@ -270,7 +270,7 @@ def main(now: datetime | None = None) -> int:
         return 0
     state = load_json(STATE_PATH, {})
     site_url = cfg.get("site_url", "https://lijingchiu.github.io/SteelWeb/")
-    at = delivery_at(now, cfg.get("delivery_time", "08:00"))
+    at = delivery_at(now, cfg.get("delivery_time", "07:00"))
     log(f"Delivery: {'scheduled ' + at.isoformat() if at else 'immediate'}")
 
     channels = {

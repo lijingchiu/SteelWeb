@@ -1226,7 +1226,7 @@ function initEmailSubscribe(cfg) {
       body.append('embed', '1');
       await fetch(`https://buttondown.com/api/emails/embed-subscribe/${encodeURIComponent(cfg.buttondown_username)}`,
         { method: 'POST', body, mode: 'no-cors' });
-      setSubStatus('sub-email-status', `已送出！請到 ${email} 收信並點擊確認連結，完成後每天早上就會收到快報（沒看到請檢查垃圾郵件）。`, 'ok');
+      setSubStatus('sub-email-status', `已送出！請到 ${email} 收信並點擊確認連結，完成後週一至週五早上就會收到快報（沒看到請檢查垃圾郵件）。`, 'ok');
       input.value = '';
     } catch (err) {
       setSubStatus('sub-email-status', `送出失敗：${err.message}，請稍後再試。`, 'error');
@@ -1275,7 +1275,7 @@ function initPushSubscribe(cfg) {
         status('瀏覽器已封鎖本網站的通知。請到瀏覽器的網站設定，把「通知」改成允許後重新整理。', 'error');
       } else if (sub.optedIn) {
         btn.textContent = '關閉每日通知';
-        status(`已開啟，每天 ${cfg.delivery_time || '08:00'} 左右會收到當日頭條通知。`, 'ok');
+        status(`已開啟，週一至週五 ${cfg.delivery_time || '07:00'} 左右會收到當日頭條通知。`, 'ok');
       } else {
         btn.textContent = '開啟每日通知';
         status('');
@@ -1306,7 +1306,7 @@ function initPushSubscribe(cfg) {
 async function initSubscriptions() {
   const cfg = (await fetchJson('notify-config.json')) || {};
   const t = document.getElementById('sub-time');
-  if (t) t.textContent = `每天 ${cfg.delivery_time || '08:00'}（台灣時間）送達`;
+  if (t) t.textContent = `週一至週五 ${cfg.delivery_time || '07:00'}（台灣時間）送達`;
   initEmailSubscribe(cfg);
   initPushSubscribe(cfg);
 }

@@ -2,17 +2,8 @@ name: Daily Steel Price Analysis
 
 on:
   schedule:
-    # Sun–Thu UTC = Mon–Fri Taiwan; 18:07 UTC = 02:07 Taiwan.
-    # GitHub often starts scheduled runs hours late, so
-    # the analysis runs overnight; push and email are then scheduled for the
-    # delivery time in notify-config.json (08:00) and arrive on time.
-    - cron: '7 18 * * 0-4'
-    # Backup slots (Taiwan 03:43, 05:17, 06:23, 07:47): each runs only if no
-    # analysis exists yet for the day.
-    - cron: '43 19 * * 0-4'
-    - cron: '17 21 * * 0-4'
-    - cron: '23 22 * * 0-4'
-    - cron: '47 23 * * 0-4'
+    # Taiwan Mon–Fri 00:00 through 07:00 (UTC Sun–Thu 16:00–23:00).
+    - cron: '0 16-23 * * 0-4'
   # Pushing a change to this file on main runs the analysis immediately.
   push:
     branches: [main]
@@ -38,14 +29,13 @@ jobs:
     outputs:
       allowed: ${{ steps.check.outputs.allowed }}
     steps:
+      - uses: actions/checkout@v4
       - id: check
         env:
           EVENT_NAME: ${{ github.event_name }}
         run: |
-          DAY=$(TZ=Asia/Taipei date +%u)
-          if [ "$EVENT_NAME" = "schedule" ] && [ "$DAY" -gt 5 ]; then
-            echo "allowed=false" >> "$GITHUB_OUTPUT"
-            echo "Skipping delayed weekend research."
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            echo "allowed=$(python3 scripts/daily_schedule.py gate)" >> "$GITHUB_OUTPUT"
           else
             echo "allowed=true" >> "$GITHUB_OUTPUT"
           fi
@@ -54,7 +44,7 @@ jobs:
     if: needs.weekday_guard.outputs.allowed == 'true'
     name: Fetch & Analyze Steel Prices
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 80
 
     steps:
       - name: Checkout repository
@@ -82,10 +72,15 @@ jobs:
           echo "today=$DATE" >> $GITHUB_OUTPUT
           FORCE="${{ inputs.force_run }}"
           if [ "${{ github.event_name }}" = "push" ]; then FORCE=true; fi
-          if [ -f "data/history/${DATE}.json" ] && [ "$FORCE" != "true" ]; then
+          if [ "$(python scripts/daily_schedule.py analysis)" = "true" ] && [ "$FORCE" != "true" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
           else
             echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+          if [ "$(python scripts/daily_schedule.py research)" = "true" ] && [ "$FORCE" != "true" ]; then
+            echo "research_ready=true" >> $GITHUB_OUTPUT
+          else
+            echo "research_ready=false" >> $GITHUB_OUTPUT
           fi
           if python -c "import json,sys; sys.path.insert(0,'scripts'); from notify import local_report_ready; d=json.load(open('data/latest.json')); r=json.load(open('data/report.json')); sys.exit(0 if d.get('date') == '${DATE}' and local_report_ready(r,'${DATE}') else 1)" 2>/dev/null; then
             echo "report_ready=true" >> $GITHUB_OUTPUT
@@ -107,6 +102,13 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: python scripts/analyze.py
 
+      - name: Research all material outlooks
+        if: success() && steps.check_today.outputs.research_ready != 'true'
+        continue-on-error: true
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python scripts/material_research.py
+
       # Starts only after the full analysis has finished and been written out.
       - name: Build daily newsletter deck
         if: success() && (steps.check_today.outputs.skip != 'true' || steps.check_today.outputs.report_ready != 'true')
@@ -118,7 +120,7 @@ jobs:
 
       # Runs even when the AI step fails, so freshly fetched prices are still published.
       - name: Commit and push updated data
-        if: always() && (steps.check_today.outputs.skip != 'true' || steps.check_today.outputs.report_ready != 'true')
+        if: always() && (steps.check_today.outputs.skip != 'true' || steps.check_today.outputs.report_ready != 'true' || steps.check_today.outputs.research_ready != 'true')
         run: |
           git config user.name "Steel Analysis Bot"
           git config user.email "steel-bot@users.noreply.github.com"
@@ -141,9 +143,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANALYSIS_SKIPPED: ${{ steps.check_today.outputs.skip }}
+          RESEARCH_READY: ${{ steps.check_today.outputs.research_ready }}
           TODAY: ${{ steps.check_today.outputs.today }}
         run: |
-          if [ "$ANALYSIS_SKIPPED" = "true" ] && python -c "import json,os; s=json.load(open('data/notify-state.json')); raise SystemExit(0 if (s.get('email') or {}).get('date') == os.environ['TODAY'] else 1)" 2>/dev/null; then
+          if [ "$ANALYSIS_SKIPPED" = "true" ] && [ "$RESEARCH_READY" = "true" ] && python -c "import json,os; s=json.load(open('data/notify-state.json')); raise SystemExit(0 if (s.get('email') or {}).get('date') == os.environ['TODAY'] else 1)" 2>/dev/null; then
             echo "Today's email already sent; no extra Pages build needed."
             exit 0
           fi

@@ -2,6 +2,10 @@ name: Test chat attachment reading
 on:
   workflow_dispatch:
     inputs:
+      schedule_only:
+        description: Test weekday research and notification scheduling only
+        type: boolean
+        default: false
       pdf_only:
         description: Test newsletter PDF conversion and Pages publication only
         type: boolean
@@ -18,7 +22,7 @@ permissions:
   contents: read
 jobs:
   verify:
-    if: ${{ !inputs.pdf_only && !inputs.research_only }}
+    if: ${{ !inputs.pdf_only && !inputs.research_only && !inputs.schedule_only }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -54,7 +58,7 @@ jobs:
           node tests/live-office-visuals.js
 
   pdf_verify:
-    if: ${{ inputs.pdf_only && !inputs.research_only }}
+    if: ${{ inputs.pdf_only && !inputs.research_only && !inputs.schedule_only }}
     runs-on: ubuntu-latest
     timeout-minutes: 12
     permissions:
@@ -89,7 +93,7 @@ jobs:
         run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
 
   research_verify:
-    if: ${{ inputs.research_only }}
+    if: ${{ inputs.research_only && !inputs.schedule_only }}
     runs-on: ubuntu-latest
     timeout-minutes: 55
     steps:
@@ -109,3 +113,16 @@ jobs:
           name: material-outlooks-test
           path: data/material-outlooks.json
           retention-days: 1
+
+  schedule_verify:
+    if: ${{ inputs.schedule_only }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python -m unittest discover -s tests -p 'test_daily_schedule.py'
+      - run: python -m unittest discover -s tests -p 'test_report_delivery.py'

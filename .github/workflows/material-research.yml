@@ -1,8 +1,5 @@
 name: Research Material Outlooks
 on:
-  schedule:
-    # Sun–Thu UTC = Mon–Fri 04:10 Taiwan, after the overnight analysis.
-    - cron: '10 20 * * 0-4'
   workflow_dispatch:
 permissions:
   contents: write
