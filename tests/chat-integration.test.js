@@ -75,6 +75,13 @@ async function runScenario(readable, inScope, selections = [], animated = false)
     assert(elem('chat-quote-detail').innerHTML.includes(field.value),'the edited question is retained after reopening');
     handlers['steel:edit-selection']({detail:{id:selections[1].id}});
     assert(elem('chat-quote-detail').innerHTML.includes(selections[1].question), 'page marker opens its matching quote');
+    const extra = {id:'temporary-quote',text:'待刪除的引用',question:'暫存問題'};
+    handlers['steel:ask-selection']({detail:extra}); assert(extra.accepted);
+    assert(elem('chat-quotes-list').innerHTML.includes('data-quote-card-remove="2"'), 'each card has its own remove button');
+    const remove = {dataset:{quoteCardRemove:'2'}};
+    elem('chat-quotes-list').handlers.click({target:{closest:q=>q==='[data-quote-card-remove]'?remove:null}});
+    assert(!elem('chat-quotes-list').innerHTML.includes('待刪除的引用'), 'removal works without opening the card');
+    assert(elem('chat-quote-detail').innerHTML.includes(selections[1].question), 'removing another card preserves the active quote');
   }
   elem('chat-input').value = url + ' 這篇說什麼？';
   elem('chat-form').handlers.submit({ submitter: elem('chat-send'), preventDefault() {} });
