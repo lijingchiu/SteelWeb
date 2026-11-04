@@ -726,7 +726,7 @@
     const box = $('chat-quotes'), list = $('chat-quotes-list'), detail = $('chat-quote-detail');
     if (!box || !list || !detail) return;
     box.hidden = !state.selections.length;
-    list.innerHTML = state.selections.map((s, i) => `<div class="chat-quote-tile"><button type="button" class="chat-quote-card" data-quote-select="${i}" aria-expanded="${s.id === state.activeSelectionId}" aria-controls="chat-quote-detail"><strong>引用 ${i + 1}</strong><span>${escHtml(s.file ? `圖片：${s.label || '網站圖表'}` : s.text)}</span><small id="chat-quote-summary-${i}">${escHtml(s.question || '點選編輯問題')}</small></button><button type="button" class="chat-quote-card-remove" data-quote-card-remove="${i}" aria-label="移除第 ${i + 1} 則引用" title="移除引用">×</button></div>`).join('');
+    list.innerHTML = state.selections.map((s, i) => `<div class="chat-quote-tile"><button type="button" class="chat-quote-card" data-quote-select="${i}" aria-expanded="${s.id === state.activeSelectionId}" aria-controls="chat-quote-detail"><strong>引用 ${i + 1}</strong><span>${escHtml(s.file ? `圖片：${s.label || '網站圖表'}` : s.text)}</span><small id="chat-quote-summary-${i}">${escHtml(s.question || '點選編輯問題')}</small></button><button type="button" class="chat-quote-card-remove" data-quote-card-remove="${i}" aria-label="移除第 ${i + 1} 則引用" title="移除引用"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>`).join('');
     const index = state.selections.findIndex(s => s.id === state.activeSelectionId);
     if (index < 0) { const animation = panelAnimations.get(detail); if (animation) { panelAnimations.delete(detail); animation.cancel(); } detail.hidden = true; detail.inert = true; detail.innerHTML = ''; state.activeSelectionId = null; }
     else {
