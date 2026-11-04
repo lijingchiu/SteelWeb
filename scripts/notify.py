@@ -10,6 +10,7 @@ finishes after that time they go out immediately. Each channel is skipped while 
 App ID / username (notify-config.json) or API key (environment) is missing.
 """
 import html
+import hashlib
 import json
 import os
 import re
@@ -115,6 +116,26 @@ def table(head: list[str], rows: list[list[str]]) -> str:
     return "\n".join(out)
 
 
+def report_paths(report: dict | None, date: str) -> tuple[str, str] | None:
+    if not report or report.get('date') != date or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', date or ''):
+        return None
+    stem = f'reports/steel-daily-{date}'
+    pptx, pdf = report.get('file'), report.get('pdf_file')
+    return (pptx, pdf) if pptx == stem + '.pptx' and pdf == stem + '.pdf' else None
+
+
+def local_report_ready(report: dict | None, date: str) -> bool:
+    paths = report_paths(report, date)
+    if not paths:
+        return False
+    hashes = ((report.get('content') or {}).get('sha256'), report.get('pdf_sha256'))
+    try:
+        return all(expected and hashlib.sha256(Path(path).read_bytes()).hexdigest() == expected
+                   for path, expected in zip(paths, hashes))
+    except OSError:
+        return False
+
+
 def build_email(d: dict, materials: dict, site_url: str, report: dict | None = None) -> dict:
     head, sub = headline_of(d)
     date = d.get("date", "")
@@ -125,11 +146,16 @@ def build_email(d: dict, materials: dict, site_url: str, report: dict | None = N
     parts.append(f'<p style="margin:0;{SMALL}">{esc(date)} · 台灣鋼鐵市場每日快報</p>')
     if d.get("summary"):
         parts += [f"{h2}今日重點</h2>", f'<p style="margin:0;font-size:15px;line-height:1.7;">{esc(d["summary"])}</p>']
-    if report and report.get("date") == date and report.get("file"):
-        deck_url = site_url.rstrip("/") + "/" + report["file"]
-        parts.append(f'<p style="margin:18px 0 0;"><a href="{esc(deck_url)}" style="display:inline-block;padding:10px 18px;'
-                     f'background:{INK};color:#ffffff;border-radius:999px;text-decoration:none;font-weight:600;font-size:14px;">'
-                     f'下載今日電子報簡報（PPTX，{esc(report.get("slides", ""))} 頁）</a></p>')
+    paths = report_paths(report, date)
+    if paths:
+        buttons = []
+        for label, path in zip(('PPTX 簡報', 'PDF 文件'), paths):
+            url = site_url.rstrip('/') + '/' + path
+            buttons.append(f'<a href="{esc(url)}" style="display:inline-block;margin:0 8px 8px 0;padding:10px 18px;'
+                           f'background:{INK};color:#ffffff;border-radius:999px;text-decoration:none;font-weight:600;font-size:14px;">'
+                           f'下載 {label}</a>')
+        parts.append(f'<p style="margin:18px 0 0;">今日電子報（{esc(report.get("slides", ""))} 頁）</p>'
+                     + '<p style="margin:8px 0 0;">' + ''.join(buttons) + '</p>')
 
     pf = d.get("price_forecast") or {}
     items = pf.get("items") or {}
@@ -264,8 +290,12 @@ def main(now: datetime | None = None) -> int:
             if ch == "push":
                 result = send_push(public_id, key, build_push(d, site_url), at)
             else:
-                result = send_email(key, build_email(d, load_json(MATERIALS_PATH, {}), site_url,
-                                                     load_json(REPORT_PATH, {})), at)
+                report = load_json(REPORT_PATH, {})
+                if not local_report_ready(report, today):
+                    raise RuntimeError('今日 PPTX 或 PDF 尚未完成或檔案校驗不符；暫不寄出郵件。')
+                if os.environ.get('REPORT_PUBLIC_READY') != 'true':
+                    raise RuntimeError('兩種電子報尚未確認公開可下載；暫不寄出郵件。')
+                result = send_email(key, build_email(d, load_json(MATERIALS_PATH, {}), site_url, report), at)
             state[ch] = {"date": today, "sent_at": now.isoformat(), **result}
             log(f"{ch}: OK {result}")
         except Exception as e:

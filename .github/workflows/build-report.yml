@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 concurrency:
   group: data-writer-${{ github.ref_name }}
@@ -30,6 +31,10 @@ jobs:
           cache: 'pip'
           cache-dependency-path: scripts/requirements.txt
       - run: pip install -r scripts/requirements.txt
+      - name: Install PDF conversion tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libreoffice-impress fonts-noto-cjk fonts-liberation fontconfig
       - name: Build deck
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -47,3 +52,7 @@ jobs:
             sleep $((i * 10))
           done
           exit 1
+      - name: Request Pages publication
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

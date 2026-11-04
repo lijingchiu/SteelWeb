@@ -871,17 +871,28 @@ function initAnimations() {
 
 // Daily newsletter deck: download button in the masthead.
 function populateReport(report, data) {
-  const a = document.getElementById('report-dl');
-  if (!a || !report || !report.file || !/^reports\/[\w.-]+\.pptx$/.test(report.file)) return;
-  a.href = report.file;
-  a.setAttribute('download', report.file.split('/').pop());
+  const menu = document.getElementById('report-dl');
+  if (!menu || !report || !report.file || !/^reports\/[\w.-]+\.pptx$/.test(report.file)) return;
+  const pptx = document.getElementById('report-pptx'), pdf = document.getElementById('report-pdf');
+  pptx.href = report.file; pptx.setAttribute('download', report.file.split('/').pop());
+  const validPdf = typeof report.pdf_file === 'string' && /^reports\/[\w.-]+\.pdf$/.test(report.pdf_file)
+    && report.pdf_file === report.file.replace(/\.pptx$/, '.pdf');
+  pdf.hidden = !validPdf;
+  if (validPdf) { pdf.href = report.pdf_file; pdf.setAttribute('download', report.pdf_file.split('/').pop()); }
+  document.getElementById('report-pdf-unavailable').hidden = validPdf;
   const md = String(report.date || '').slice(5).replace('-', '/');
-  const label = a.querySelector('.report-dl-label');
+  const label = menu.querySelector('.report-dl-label');
   if (label) label.textContent = report.date === (data && data.date) ? '今日電子報' : '最新電子報';
   const meta = document.getElementById('report-dl-meta');
   if (meta) meta.textContent = `${md} · ${report.slides || ''} 頁`;
-  a.title = `下載 ${report.date} 電子報簡報（PPTX，${report.slides || ''} 頁）`;
-  a.hidden = false;
+  menu.querySelector('summary').title = `選擇 ${report.date} 電子報的下載格式`;
+  menu.hidden = false;
+  if (!menu.dataset.ready) {
+    menu.dataset.ready = '1';
+    document.addEventListener('click', e => { if (!menu.contains(e.target)) menu.open = false; });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') menu.open = false; });
+    menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
+  }
 }
 
 async function loadData() {

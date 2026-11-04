@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261104n">
+  <link rel="stylesheet" href="assets/style.css?v=20261104p">
 </head>
 <body>
 
@@ -48,11 +48,19 @@
       <span class="badge-dot"></span>
       <span id="last-updated-text">載入中</span>
     </div>
-    <a class="report-dl" id="report-dl" href="#" download hidden title="下載今日電子報簡報（PPTX）">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8.5L19 8v12.5H6z"/><path d="M14 3.5V8.5h5M12.5 11v6M9.8 14.5l2.7 2.7 2.7-2.7"/></svg>
-      <span class="report-dl-label">今日電子報</span>
-      <span class="report-dl-meta" id="report-dl-meta">PPTX</span>
-    </a>
+    <details class="report-menu" id="report-dl" hidden>
+      <summary class="report-dl" aria-label="選擇電子報下載格式">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8.5L19 8v12.5H6z"/><path d="M14 3.5V8.5h5M12.5 11v6M9.8 14.5l2.7 2.7 2.7-2.7"/></svg>
+        <span class="report-dl-label">今日電子報</span>
+        <span class="report-dl-meta" id="report-dl-meta"></span>
+        <span class="report-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="report-menu-options" aria-label="電子報下載格式">
+        <a id="report-pptx" download>下載 PPTX 簡報</a>
+        <a id="report-pdf" download>下載 PDF 文件</a>
+        <span id="report-pdf-unavailable" hidden>PDF 暫時無法提供</span>
+      </div>
+    </details>
     <nav class="nav-wrap" aria-label="Primary">
       <a class="nav-link" href="#prices" data-sec="prices">報價</a>
       <a class="nav-link" href="#materials" data-sec="materials">行情</a>
@@ -552,7 +560,7 @@
     </div>
   </section>
 
-  <script src="assets/app.js?v=20261103n"></script>
+  <script src="assets/app.js?v=20261104p"></script>
   <script src="assets/reference-search.js?v=20261104h"></script>
   <script src="assets/chat-web.js?v=20261104c"></script>
   <script src="assets/vendor/jszip.min.js?v=3.10.1"></script>

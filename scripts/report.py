@@ -19,6 +19,8 @@ site reads for its download button). Old decks are pruned after KEEP_DAYS.
 from __future__ import annotations
 
 import json
+import hashlib
+import tempfile
 import os
 import re
 import sys
@@ -39,6 +41,7 @@ from pptx.util import Emu, Inches, Pt
 sys.path.insert(0, str(Path(__file__).parent))
 from prompts import WRITING_RULES  # noqa: E402
 from report_text import extract_report  # noqa: E402
+from report_pdf import convert_report_pdf  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -838,6 +841,9 @@ def prune(keep: Path):
     for f in files[:-KEEP_DAYS]:
         if f != keep:
             f.unlink()
+            pdf = f.with_suffix('.pdf')
+            if pdf.exists():
+                pdf.unlink()
             log(f"removed old deck {f.name}")
 
 
@@ -860,17 +866,33 @@ def main() -> int:
     date = d.get("date") or datetime.now(TW).strftime("%Y-%m-%d")
     name = f"steel-daily-{date}.pptx"
     path = REPORTS / name
-    prs.save(path)
-    (DATA / "report.json").write_text(json.dumps({
+    pdf_path = path.with_suffix('.pdf')
+    # Build and validate both formats before replacing the published files.
+    with tempfile.TemporaryDirectory(prefix='steel-report-', dir=REPORTS) as tmp:
+        staged = Path(tmp) / name
+        staged_pdf = staged.with_suffix('.pdf')
+        prs.save(staged)
+        convert_report_pdf(staged, staged_pdf, len(prs.slides), content["cover"]["title"])
+        report_content = extract_report(staged, date, f"reports/{name}")
+        pdf_hash = hashlib.sha256(staged_pdf.read_bytes()).hexdigest()
+        os.replace(staged_pdf, pdf_path)
+        os.replace(staged, path)
+    manifest = {
         "date": date,
         "file": f"reports/{name}",
+        "pdf_file": f"reports/{pdf_path.name}",
+        "pdf_size": pdf_path.stat().st_size,
+        "pdf_sha256": pdf_hash,
         "slides": len(prs.slides),
         "size": path.stat().st_size,
         "title": content["cover"]["title"],
         "model": model,
         "generated_at": datetime.now(TW).isoformat(timespec="seconds"),
-        "content": extract_report(path, date, f"reports/{name}"),
-    }, ensure_ascii=False, indent=2), encoding="utf-8")
+        "content": report_content,
+    }
+    manifest_tmp = DATA / '.report.json.tmp'
+    manifest_tmp.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    os.replace(manifest_tmp, DATA / 'report.json')
     prune(path)
     log(f"saved {path.relative_to(ROOT)} ({len(prs.slides)} slides, {path.stat().st_size // 1024} KB)")
     return 0

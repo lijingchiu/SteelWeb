@@ -747,5 +747,8 @@
         "charts": []
       }
     ]
-  }
+  },
+  "pdf_file": "reports/steel-daily-2026-11-04.pdf",
+  "pdf_size": 1061192,
+  "pdf_sha256": "2c4560d4414ccb0d79481e4b8cf29673266d164d8e9895ab58154ede3ab9e1bd"
 }
