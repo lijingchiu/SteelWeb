@@ -1,4 +1,8 @@
-﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
-"擬定高速公路王田交流道附近特定區計畫（不包括 高速鐵路台中車站地區）（兒五西側整體開發區）細部計畫案","發布實施「擬定高速公路王田交流道附近特定區計畫（不包括 高速鐵路台中車站地區）（兒五西側整體開發區）細部計畫案」計畫書、圖，並自109年12月25日零時起生效。","1091225","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=eb1de583-edf9-4850-8677-90a495669150","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e0671cf5-1af2-4b0e-a544-e51bddc7efd6","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0171b185-2237-442f-b603-c6f241c361bf"
-"擬定高速公路王田交流道附近特定區計畫（不包括 高速鐵路台中車站地區）（兒五西側整體開發區）細部計畫案","發布實施「擬定高速公路王田交流道附近特定區計畫（不包括 高速鐵路台中車站地區）（兒五西側整體開發區）細部計畫案」計畫書、圖，並自109年12月25日零時起生效。","1091225","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=eb1de583-edf9-4850-8677-90a495669150","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e0671cf5-1af2-4b0e-a544-e51bddc7efd6","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a4f539a0-a1e3-4bd6-bb19-ef26e7e8a083"
-"擬定高速公路王田交流道附近特定區計畫（不包括 高速鐵路台中車站地區）（兒五西側整體開發區）細部計畫案","發布實施「擬定高速公路王田交流道附近特定區計畫（不包括 高速鐵路台中車站地區）（兒五西側整體開發區）細部計畫案」計畫書、圖，並自109年12月25日零時起生效。","1091225","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=eb1de583-edf9-4850-8677-90a495669150","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e0671cf5-1af2-4b0e-a544-e51bddc7efd6","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=1af3058c-56df-4074-8e5f-8ebf6ecaeb8e"
+【顯示名稱】
+擬定高速公路王田交流道附近特定區計畫（不包括 高速鐵路台中車站地區）（兒五西側整體開發區）細部計畫案
+
+【檢視原始資料】
+https://opendata.taichung.gov.tw/search?q=%E6%93%AC%E5%AE%9A%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF%E7%8E%8B%E7%94%B0%E4%BA%A4%E6%B5%81%E9%81%93%E9%99%84%E8%BF%91%E7%89%B9%E5%AE%9A%E5%8D%80%E8%A8%88%E7%95%AB%EF%BC%88%E4%B8%8D%E5%8C%85%E6%8B%AC%20%E9%AB%98%E9%80%9F%E9%90%B5%E8%B7%AF%E5%8F%B0%E4%B8%AD%E8%BB%8A%E7%AB%99%E5%9C%B0%E5%8D%80%EF%BC%89%EF%BC%88%E5%85%92%E4%BA%94%E8%A5%BF%E5%81%B4%E6%95%B4%E9%AB%94%E9%96%8B%E7%99%BC%E5%8D%80%EF%BC%89%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB%E6%A1%88
+
+【查詢方式】
+前往臺中市政府開放資料搜尋結果；請選擇符合名稱及年度的資料，歷史版本不一定仍提供。

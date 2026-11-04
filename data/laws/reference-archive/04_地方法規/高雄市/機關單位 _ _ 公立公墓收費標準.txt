@@ -1,27 +1,8 @@
+【顯示名稱】
+公立公墓收費標準
 
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <title>檔案下載中...</title>
-</head>
-<body>
-    <h1>正在下載檔案...</h1>
-    <p>若下載未啟動，請 <a href="/File/DirectDownload/de7e71d7-9c2a-4d3c-b785-a52e82a9a80c" download>點此手動下載</a>。</p>
+【檢視原始資料】
+https://data.kcg.gov.tw/resource/de7e71d7-9c2a-4d3c-b785-a52e82a9a80c
 
-    <script>
-        // 自動下載檔案
-        const link = document.createElement('a');
-        link.href = '/File/DirectDownload/de7e71d7-9c2a-4d3c-b785-a52e82a9a80c';
-        link.download = '';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // 等待幾秒後導回
-        setTimeout(function () {
-            window.location.href = '/resource/de7e71d7-9c2a-4d3c-b785-a52e82a9a80c';
-        }, 3000);
-    </script>
-</body>
-</html>
+【查詢方式】
+此頁提供表格預覽或下載，請核對資料年度與更新日期。

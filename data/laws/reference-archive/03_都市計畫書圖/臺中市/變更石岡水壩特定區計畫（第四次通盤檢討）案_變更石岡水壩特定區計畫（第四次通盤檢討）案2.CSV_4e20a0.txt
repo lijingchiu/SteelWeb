@@ -1,4 +1,8 @@
-﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖
-"變更石岡水壩特定區計畫（第四次通盤檢討）案","發布實施「變更石岡水壩特定區計畫（第四次通盤檢討）案」計畫書、圖，並自108年5月9日起生效。","1080509","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=qlSZqx9Tn6&d=M5LMA7w8FK","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=qlSZqx9Tn6&d=kyDT3lGhld","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=qlSZqx9Tn6&d=L36SZGnzsU"
-"變更石岡水壩特定區計畫（第四次通盤檢討）案","發布實施「變更石岡水壩特定區計畫（第四次通盤檢討）案」計畫書、圖，並自108年5月9日起生效。","1080509","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=qlSZqx9Tn6&d=M5LMA7w8FK","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=qlSZqx9Tn6&d=kyDT3lGhld","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=qlSZqx9Tn6&d=GmbEuzofhV"
-"變更石岡水壩特定區計畫（第四次通盤檢討）案","發布實施「變更石岡水壩特定區計畫（第四次通盤檢討）案」計畫書、圖，並自108年5月9日起生效。","1080509","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=qlSZqx9Tn6&d=M5LMA7w8FK","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=qlSZqx9Tn6&d=kyDT3lGhld","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=qlSZqx9Tn6&d=9EoBKJvQC0"
+【顯示名稱】
+變更石岡水壩特定區計畫（第四次通盤檢討）案
+
+【檢視原始資料】
+https://opendata.taichung.gov.tw/search?q=%E8%AE%8A%E6%9B%B4%E7%9F%B3%E5%B2%A1%E6%B0%B4%E5%A3%A9%E7%89%B9%E5%AE%9A%E5%8D%80%E8%A8%88%E7%95%AB%EF%BC%88%E7%AC%AC%E5%9B%9B%E6%AC%A1%E9%80%9A%E7%9B%A4%E6%AA%A2%E8%A8%8E%EF%BC%89%E6%A1%88
+
+【查詢方式】
+前往臺中市政府開放資料搜尋結果；請選擇符合名稱及年度的資料，歷史版本不一定仍提供。

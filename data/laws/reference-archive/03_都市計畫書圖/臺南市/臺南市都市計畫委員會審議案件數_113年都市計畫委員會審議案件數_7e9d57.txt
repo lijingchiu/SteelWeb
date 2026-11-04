@@ -1,1 +1,8 @@
-{"contentType":null,"isImage":false,"size":0,"data":[{"Seq":1,"年度":"113","審議件數":"37","報告件數":"0","研議件數":"2","備註":""}],"errorCode":0,"id":"04aad1e7-848c-4b76-aa17-240e6e39d247","message":null,"success":true}
+【顯示名稱】
+臺南市都市計畫委員會審議案件數
+
+【檢視原始資料】
+https://data.tainan.gov.tw/DataSet/Detail/240c17a6-4140-443f-a334-e667a9793f22
+
+【查詢方式】
+這是對應主題的官方或公開資料集，請核對檔名的年度；原有特定年度是否仍提供未確認。

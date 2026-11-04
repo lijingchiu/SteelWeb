@@ -1,4 +1,8 @@
-﻿﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖網址
-"變更臺中市都市計畫(舊有市區及一至五期市地重劃地區)細部計畫(郵政事業土地專案通盤檢討)(第一階段)案","整理發布實施「變更臺中市都市計畫（舊有市區及一至五期市地重劃地區）細部計畫（郵政事業土地專案通盤檢討）（第一階段）案」都市計畫書、圖，並自114年10月14日起生效，請以原公告資訊為準。","1141014","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=96ee0536-3cb7-437e-8db3-1acebe7efbd1","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9f7d8282-631a-4de8-98ca-beaa6cb0a070","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=43d5b0cb-fb09-4e26-9290-4f1b04bbca65"
-"變更臺中市都市計畫(舊有市區及一至五期市地重劃地區)細部計畫(郵政事業土地專案通盤檢討)(第一階段)案","整理發布實施「變更臺中市都市計畫（舊有市區及一至五期市地重劃地區）細部計畫（郵政事業土地專案通盤檢討）（第一階段）案」都市計畫書、圖，並自114年10月14日起生效，請以原公告資訊為準。","1141014","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=96ee0536-3cb7-437e-8db3-1acebe7efbd1","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9f7d8282-631a-4de8-98ca-beaa6cb0a070","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=43b9af20-4c21-4d27-97f9-46d1886ddede"
-"變更臺中市都市計畫(舊有市區及一至五期市地重劃地區)細部計畫(郵政事業土地專案通盤檢討)(第一階段)案","整理發布實施「變更臺中市都市計畫（舊有市區及一至五期市地重劃地區）細部計畫（郵政事業土地專案通盤檢討）（第一階段）案」都市計畫書、圖，並自114年10月14日起生效，請以原公告資訊為準。","1141014","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=96ee0536-3cb7-437e-8db3-1acebe7efbd1","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9f7d8282-631a-4de8-98ca-beaa6cb0a070","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=7ccf127b-8703-451e-bf04-9a1c6ffec2f1"
+【顯示名稱】
+變更臺中市都市計畫(舊有市區及一至五期市地重劃地區)細部計畫(郵政事業土地專案通盤檢討)(第一階段)案
+
+【檢視原始資料】
+https://opendata.taichung.gov.tw/search?q=%E8%AE%8A%E6%9B%B4%E8%87%BA%E4%B8%AD%E5%B8%82%E9%83%BD%E5%B8%82%E8%A8%88%E7%95%AB%28%E8%88%8A%E6%9C%89%E5%B8%82%E5%8D%80%E5%8F%8A%E4%B8%80%E8%87%B3%E4%BA%94%E6%9C%9F%E5%B8%82%E5%9C%B0%E9%87%8D%E5%8A%83%E5%9C%B0%E5%8D%80%29%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB%28%E9%83%B5%E6%94%BF%E4%BA%8B%E6%A5%AD%E5%9C%9F%E5%9C%B0%E5%B0%88%E6%A1%88%E9%80%9A%E7%9B%A4%E6%AA%A2%E8%A8%8E%29%28%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5%29%E6%A1%88
+
+【查詢方式】
+前往臺中市政府開放資料搜尋結果；請選擇符合名稱及年度的資料，歷史版本不一定仍提供。

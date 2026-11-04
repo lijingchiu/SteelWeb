@@ -19,6 +19,7 @@ def terms(text):
 
 def build():
     catalog = json.loads(CATALOG.read_text(encoding='utf-8'))
+    excluded = set(json.loads((ARCHIVE / 'excluded-from-search.json').read_text(encoding='utf-8')))
     docs = []
     postings = defaultdict(list)
     for category in catalog['categories']:
@@ -26,6 +27,8 @@ def build():
             p = ROOT / doc['path']
             if not p.is_file():
                 raise FileNotFoundError(p)
+            if p.relative_to(ARCHIVE).as_posix() in excluded:
+                continue
             text = p.read_text(encoding='utf-8')
             identifier = len(docs)
             docs.append({'name': doc['name'], 'path': doc['path'], 'category': category['category'], 'bytes': p.stat().st_size})

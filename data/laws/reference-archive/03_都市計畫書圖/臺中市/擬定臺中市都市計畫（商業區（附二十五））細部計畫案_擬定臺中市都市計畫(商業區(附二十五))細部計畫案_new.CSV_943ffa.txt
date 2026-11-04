@@ -1,4 +1,8 @@
-﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
-"擬定臺中市都市計畫（商業區（附二十五））細部計畫案","發布實施「擬定臺中市都市計畫（商業區（附二十五））細部計畫案」計畫書、圖，並自109年1月15日零時起生效。","1090115","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=05a65370-6964-4824-80f9-3da157e58c45","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=91bec017-1e61-4a8b-8093-bd2b4be3d653","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=11efb165-5ac8-42ff-88e4-d5d3e3c404f3"
-"擬定臺中市都市計畫（商業區（附二十五））細部計畫案","發布實施「擬定臺中市都市計畫（商業區（附二十五））細部計畫案」計畫書、圖，並自109年1月15日零時起生效。","1090115","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=05a65370-6964-4824-80f9-3da157e58c45","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=91bec017-1e61-4a8b-8093-bd2b4be3d653","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=84f2086b-f8d6-420f-a76e-c6681949bdcc"
-"擬定臺中市都市計畫（商業區（附二十五））細部計畫案","發布實施「擬定臺中市都市計畫（商業區（附二十五））細部計畫案」計畫書、圖，並自109年1月15日零時起生效。","1090115","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=05a65370-6964-4824-80f9-3da157e58c45","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=91bec017-1e61-4a8b-8093-bd2b4be3d653","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=cadb5442-2e76-4958-9bdf-20d028c53168"
+【顯示名稱】
+擬定臺中市都市計畫（商業區（附二十五））細部計畫案
+
+【檢視原始資料】
+https://opendata.taichung.gov.tw/search?q=%E6%93%AC%E5%AE%9A%E8%87%BA%E4%B8%AD%E5%B8%82%E9%83%BD%E5%B8%82%E8%A8%88%E7%95%AB%EF%BC%88%E5%95%86%E6%A5%AD%E5%8D%80%EF%BC%88%E9%99%84%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89%EF%BC%89%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB%E6%A1%88
+
+【查詢方式】
+前往臺中市政府開放資料搜尋結果；請選擇符合名稱及年度的資料，歷史版本不一定仍提供。

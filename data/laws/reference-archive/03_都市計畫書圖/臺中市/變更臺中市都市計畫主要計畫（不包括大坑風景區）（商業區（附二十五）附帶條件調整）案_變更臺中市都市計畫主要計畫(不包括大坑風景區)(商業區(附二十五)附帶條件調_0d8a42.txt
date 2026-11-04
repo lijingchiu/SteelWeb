@@ -1,4 +1,8 @@
-﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
-"變更臺中市都市計畫主要計畫（不包括大坑風景區）（商業區 （附二十五）附帶條件調整）案","發布實施「變更臺中市都市計畫主要計畫（不包括大坑風景區）（商業區 （附二十五）附帶條件調整）案」都市計畫書、圖，並自109年1月14日零時起生效。","1090114","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=6c6fc83a-bc1c-4b6e-959e-f4736e072a8a","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=be424b7b-8d9c-4fc0-b5ef-5853feb81b27","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=777ace2e-492a-4afc-a32e-9c377bacfd6f"
-"變更臺中市都市計畫主要計畫（不包括大坑風景區）（商業區 （附二十五）附帶條件調整）案","發布實施「變更臺中市都市計畫主要計畫（不包括大坑風景區）（商業區 （附二十五）附帶條件調整）案」都市計畫書、圖，並自109年1月14日零時起生效。","1090114","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=6c6fc83a-bc1c-4b6e-959e-f4736e072a8a","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=be424b7b-8d9c-4fc0-b5ef-5853feb81b27","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b630ed0d-9c05-4ea9-a715-53ed9dfb702a"
-"變更臺中市都市計畫主要計畫（不包括大坑風景區）（商業區 （附二十五）附帶條件調整）案","發布實施「變更臺中市都市計畫主要計畫（不包括大坑風景區）（商業區 （附二十五）附帶條件調整）案」都市計畫書、圖，並自109年1月14日零時起生效。","1090114","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=6c6fc83a-bc1c-4b6e-959e-f4736e072a8a","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=be424b7b-8d9c-4fc0-b5ef-5853feb81b27","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=c7033006-9f3d-401d-addc-9437fcb89e63"
+【顯示名稱】
+變更臺中市都市計畫主要計畫（不包括大坑風景區）（商業區（附二十五）附帶條件調整）案
+
+【檢視原始資料】
+https://opendata.taichung.gov.tw/search?q=%E8%AE%8A%E6%9B%B4%E8%87%BA%E4%B8%AD%E5%B8%82%E9%83%BD%E5%B8%82%E8%A8%88%E7%95%AB%E4%B8%BB%E8%A6%81%E8%A8%88%E7%95%AB%EF%BC%88%E4%B8%8D%E5%8C%85%E6%8B%AC%E5%A4%A7%E5%9D%91%E9%A2%A8%E6%99%AF%E5%8D%80%EF%BC%89%EF%BC%88%E5%95%86%E6%A5%AD%E5%8D%80%EF%BC%88%E9%99%84%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89%E9%99%84%E5%B8%B6%E6%A2%9D%E4%BB%B6%E8%AA%BF%E6%95%B4%EF%BC%89%E6%A1%88
+
+【查詢方式】
+前往臺中市政府開放資料搜尋結果；請選擇符合名稱及年度的資料，歷史版本不一定仍提供。

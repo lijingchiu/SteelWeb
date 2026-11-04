@@ -1,27 +1,8 @@
+【顯示名稱】
+社會課職掌及聯絡方式
 
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <title>檔案下載中...</title>
-</head>
-<body>
-    <h1>正在下載檔案...</h1>
-    <p>若下載未啟動，請 <a href="/File/DirectDownload/c086c2d4-b420-4db7-b920-b8f626b59984" download>點此手動下載</a>。</p>
+【檢視原始資料】
+https://data.kcg.gov.tw/resource/c086c2d4-b420-4db7-b920-b8f626b59984
 
-    <script>
-        // 自動下載檔案
-        const link = document.createElement('a');
-        link.href = '/File/DirectDownload/c086c2d4-b420-4db7-b920-b8f626b59984';
-        link.download = '';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // 等待幾秒後導回
-        setTimeout(function () {
-            window.location.href = '/resource/c086c2d4-b420-4db7-b920-b8f626b59984';
-        }, 3000);
-    </script>
-</body>
-</html>
+【查詢方式】
+此頁提供表格預覽或下載，請核對資料年度與更新日期。

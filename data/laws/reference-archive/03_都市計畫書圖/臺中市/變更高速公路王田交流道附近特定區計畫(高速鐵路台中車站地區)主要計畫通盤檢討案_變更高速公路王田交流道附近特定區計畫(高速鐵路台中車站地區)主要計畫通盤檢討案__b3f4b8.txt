@@ -1,4 +1,8 @@
-﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
-"變更高速公路王田交流道附近特定區計畫(高速鐵路台中車站地區)主要計畫通盤檢討案","發布實施「變更高速公路王田交流道附近特定區計畫(高速鐵路台中車站地區)主要計畫通盤檢討案」計畫書、圖，自109年1月17日零時起生效。","1090117","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9ebf9002-0d69-4d51-bd02-911a300823db","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=91c2b801-7f06-4388-b242-52c6e1745f05","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2377fbc8-44d6-4d6b-ae87-a60e77fa8e9a"
-"變更高速公路王田交流道附近特定區計畫(高速鐵路台中車站地區)主要計畫通盤檢討案","發布實施「變更高速公路王田交流道附近特定區計畫(高速鐵路台中車站地區)主要計畫通盤檢討案」計畫書、圖，自109年1月17日零時起生效。","1090117","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9ebf9002-0d69-4d51-bd02-911a300823db","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=91c2b801-7f06-4388-b242-52c6e1745f05","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9e468158-0995-440b-99d4-b93cd3dfef60"
-"變更高速公路王田交流道附近特定區計畫(高速鐵路台中車站地區)主要計畫通盤檢討案","發布實施「變更高速公路王田交流道附近特定區計畫(高速鐵路台中車站地區)主要計畫通盤檢討案」計畫書、圖，自109年1月17日零時起生效。","1090117","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9ebf9002-0d69-4d51-bd02-911a300823db","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=91c2b801-7f06-4388-b242-52c6e1745f05","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=cf7c6b02-8c82-4149-9f36-bd32efcafe71"
+【顯示名稱】
+變更高速公路王田交流道附近特定區計畫(高速鐵路台中車站地區)主要計畫通盤檢討案
+
+【檢視原始資料】
+https://opendata.taichung.gov.tw/search?q=%E8%AE%8A%E6%9B%B4%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF%E7%8E%8B%E7%94%B0%E4%BA%A4%E6%B5%81%E9%81%93%E9%99%84%E8%BF%91%E7%89%B9%E5%AE%9A%E5%8D%80%E8%A8%88%E7%95%AB%28%E9%AB%98%E9%80%9F%E9%90%B5%E8%B7%AF%E5%8F%B0%E4%B8%AD%E8%BB%8A%E7%AB%99%E5%9C%B0%E5%8D%80%29%E4%B8%BB%E8%A6%81%E8%A8%88%E7%95%AB%E9%80%9A%E7%9B%A4%E6%AA%A2%E8%A8%8E%E6%A1%88
+
+【查詢方式】
+前往臺中市政府開放資料搜尋結果；請選擇符合名稱及年度的資料，歷史版本不一定仍提供。

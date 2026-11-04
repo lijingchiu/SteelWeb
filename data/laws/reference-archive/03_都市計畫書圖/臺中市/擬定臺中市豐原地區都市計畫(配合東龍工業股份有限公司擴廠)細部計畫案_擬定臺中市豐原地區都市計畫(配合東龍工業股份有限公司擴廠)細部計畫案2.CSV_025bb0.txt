@@ -1,6 +1,8 @@
-﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
-"擬定臺中市豐原地區都市計畫(配合東龍工業股份有限公司擴廠)細部計畫案","發布實施「擬定臺中市豐原地區都市計畫(配合東龍工業股份有限公司擴廠)細部計畫案」計畫書、圖，並自111年1月25日零時起生效。","1110125","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=q8qJc5hUVU","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=AhJgVJXBKt","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=JmMfc4VFlz"
-"擬定臺中市豐原地區都市計畫(配合東龍工業股份有限公司擴廠)細部計畫案","發布實施「擬定臺中市豐原地區都市計畫(配合東龍工業股份有限公司擴廠)細部計畫案」計畫書、圖，並自111年1月25日零時起生效。","1110125","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=q8qJc5hUVU","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=AhJgVJXBKt","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=NMT0Gx0tX0"
-"擬定臺中市豐原地區都市計畫(配合東龍工業股份有限公司擴廠)細部計畫案","發布實施「擬定臺中市豐原地區都市計畫(配合東龍工業股份有限公司擴廠)細部計畫案」計畫書、圖，並自111年1月25日零時起生效。","1110125","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=q8qJc5hUVU","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=AhJgVJXBKt","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=yuJUv98his"
-"擬定臺中市豐原地區都市計畫(配合東龍工業股份有限公司擴廠)細部計畫案","發布實施「擬定臺中市豐原地區都市計畫(配合東龍工業股份有限公司擴廠)細部計畫案」計畫書、圖，並自111年1月25日零時起生效。","1110125","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=q8qJc5hUVU","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=AhJgVJXBKt","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=6LrqRfk3Ns"
-"擬定臺中市豐原地區都市計畫(配合東龍工業股份有限公司擴廠)細部計畫案","發布實施「擬定臺中市豐原地區都市計畫(配合東龍工業股份有限公司擴廠)細部計畫案」計畫書、圖，並自111年1月25日零時起生效。","1110125","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=q8qJc5hUVU","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=AhJgVJXBKt","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=KsIyVHknap&d=eyzv3Ggc03"
+【顯示名稱】
+擬定臺中市豐原地區都市計畫(配合東龍工業股份有限公司擴廠)細部計畫案
+
+【檢視原始資料】
+https://opendata.taichung.gov.tw/search?q=%E6%93%AC%E5%AE%9A%E8%87%BA%E4%B8%AD%E5%B8%82%E8%B1%90%E5%8E%9F%E5%9C%B0%E5%8D%80%E9%83%BD%E5%B8%82%E8%A8%88%E7%95%AB%28%E9%85%8D%E5%90%88%E6%9D%B1%E9%BE%8D%E5%B7%A5%E6%A5%AD%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%E6%93%B4%E5%BB%A0%29%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB%E6%A1%88
+
+【查詢方式】
+前往臺中市政府開放資料搜尋結果；請選擇符合名稱及年度的資料，歷史版本不一定仍提供。

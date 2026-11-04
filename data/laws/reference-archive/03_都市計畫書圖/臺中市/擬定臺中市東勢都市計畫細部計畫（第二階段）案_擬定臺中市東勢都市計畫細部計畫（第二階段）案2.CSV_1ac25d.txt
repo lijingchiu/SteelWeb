@@ -1,4 +1,8 @@
-﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
-"擬定臺中市東勢都市計畫細部計畫（第二階段）案","發布實施「擬定臺中市東勢都市計畫細部計畫（第二階段）案」計畫書、圖，並自109年5月1日零時起生效。","1090501","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=YmawbEU4OW&d=i0JsEmXhpS","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=YmawbEU4OW&d=5vFQ4TYGVo","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=8qYKStt3Dt&d=1vr80RIT9k"
-"擬定臺中市東勢都市計畫細部計畫（第二階段）案","發布實施「擬定臺中市東勢都市計畫細部計畫（第二階段）案」計畫書、圖，並自109年5月1日零時起生效。","1090501","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=YmawbEU4OW&d=i0JsEmXhpS","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=YmawbEU4OW&d=5vFQ4TYGVo","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=8qYKStt3Dt&d=jdQi0QUCvC"
-"擬定臺中市東勢都市計畫細部計畫（第二階段）案","發布實施「擬定臺中市東勢都市計畫細部計畫（第二階段）案」計畫書、圖，並自109年5月1日零時起生效。","1090501","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=YmawbEU4OW&d=i0JsEmXhpS","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=YmawbEU4OW&d=5vFQ4TYGVo","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=8qYKStt3Dt&d=13kyh0pTJJ"
+【顯示名稱】
+擬定臺中市東勢都市計畫細部計畫（第二階段）案
+
+【檢視原始資料】
+https://opendata.taichung.gov.tw/search?q=%E6%93%AC%E5%AE%9A%E8%87%BA%E4%B8%AD%E5%B8%82%E6%9D%B1%E5%8B%A2%E9%83%BD%E5%B8%82%E8%A8%88%E7%95%AB%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB%EF%BC%88%E7%AC%AC%E4%BA%8C%E9%9A%8E%E6%AE%B5%EF%BC%89%E6%A1%88
+
+【查詢方式】
+前往臺中市政府開放資料搜尋結果；請選擇符合名稱及年度的資料，歷史版本不一定仍提供。
