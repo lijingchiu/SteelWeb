@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261104v">
+  <link rel="stylesheet" href="assets/style.css?v=20261104w">
 </head>
 <body>
 
@@ -124,10 +124,15 @@
           <span class="title-top">
             <span>T</span><span>O</span><span>D</span><span>A</span><span>Y</span>
           </span>
-          <span class="title-main">鋼材報價</span>
+          <span class="headline-viewport" id="headline-viewport" aria-label="今日頭條">
+            <span class="headline-slide is-active">頭條載入中…</span>
+          </span>
         </span>
       </h1>
-      <p class="hero-headline" id="hero-headline" hidden></p>
+      <div class="headline-controls" id="headline-controls" hidden>
+        <button type="button" id="headline-toggle" aria-label="暫停頭條輪播">暫停</button>
+        <button type="button" id="headline-next" aria-label="下一則頭條">下一則 ↑</button>
+      </div>
       <p class="lead" id="summary-text">分析資料載入中...</p>
       <div class="hero-actions">
         <a class="btn btn-solid" href="#prices">查看完整報價 ↓</a>
@@ -568,7 +573,7 @@
   </section>
 
   <script src="assets/material-forecast.js?v=1"></script>
-  <script src="assets/app.js?v=20261104u"></script>
+  <script src="assets/app.js?v=20261104v"></script>
   <script src="assets/reference-search.js?v=20261104h"></script>
   <script src="assets/chat-web.js?v=20261104c"></script>
   <script src="assets/vendor/jszip.min.js?v=3.10.1"></script>

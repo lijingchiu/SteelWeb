@@ -136,20 +136,65 @@ function populateExchange(data) {
   }
 }
 
+let _headlineTimer = null;
+
 function populateHeadline(data) {
-  const el = document.getElementById('hero-headline');
-  if (!el) return;
-  el.textContent = data.headline || '';
-  el.hidden = !data.headline;
-  const hasStories = Array.isArray(data.top_stories) && data.top_stories.length > 0;
-  el.classList.toggle('clickable', hasStories);
-  if (hasStories) {
-    el.title = '查看今日鋼市頭條';
-    el.setAttribute('role', 'button');
-    el.tabIndex = 0;
-    el.onclick = () => openBriefing(data);
-    el.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBriefing(data); } };
-  }
+  const viewport = document.getElementById('headline-viewport');
+  const controls = document.getElementById('headline-controls');
+  const toggle = document.getElementById('headline-toggle');
+  const next = document.getElementById('headline-next');
+  if (!viewport || !controls || !toggle || !next) return;
+  if (_headlineTimer) clearInterval(_headlineTimer);
+  const stories = (Array.isArray(data.top_stories) ? data.top_stories : [])
+    .map((story, index) => ({ headline: plain(story?.headline), index }))
+    .filter(story => story.headline);
+  const entries = stories.length ? stories : [{ headline: plain(data.headline) || '今日頭條暫無資料', index: -1 }];
+  viewport.textContent = '';
+  const slides = entries.map((story, index) => {
+    const slide = document.createElement('span');
+    slide.className = 'headline-slide' + (index === 0 ? ' is-active' : '');
+    slide.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
+    const content = document.createElement(story.index < 0 ? 'span' : 'button');
+    content.textContent = story.headline;
+    content.className = 'headline-text';
+    if (story.index >= 0) {
+      content.type = 'button';
+      content.tabIndex = index === 0 ? 0 : -1;
+      content.setAttribute('aria-label', `查看頭條：${story.headline}`);
+      content.onclick = () => goToStory(story.index);
+    }
+    slide.appendChild(content);
+    viewport.appendChild(slide);
+    return slide;
+  });
+  controls.hidden = slides.length < 2;
+  if (slides.length < 2) return;
+  let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = 0;
+  const renderToggle = () => {
+    toggle.textContent = paused ? '播放' : '暫停';
+    toggle.setAttribute('aria-label', paused ? '播放頭條輪播' : '暫停頭條輪播');
+  };
+  const advance = () => {
+    slides.forEach(slide => slide.classList.remove('is-exiting', 'is-animated'));
+    const old = slides[current];
+    old.classList.remove('is-active');
+    old.classList.add('is-exiting');
+    old.setAttribute('aria-hidden', 'true');
+    old.querySelector('button').tabIndex = -1;
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('is-active', 'is-animated');
+    slides[current].setAttribute('aria-hidden', 'false');
+    slides[current].querySelector('button').tabIndex = 0;
+  };
+  const restart = () => {
+    if (_headlineTimer) clearInterval(_headlineTimer);
+    _headlineTimer = paused ? null : setInterval(() => { if (!document.hidden && !viewport.contains(document.activeElement)) advance(); }, 6000);
+  };
+  toggle.onclick = () => { paused = !paused; renderToggle(); restart(); };
+  next.onclick = () => { advance(); restart(); };
+  renderToggle();
+  restart();
 }
 
 // ── Today's top-stories briefing (opened from a push notification) ──
