@@ -1512,7 +1512,8 @@ a.fc-sum-row:hover { background: rgba(var(--copper-rgb), 0.04); }
   /* The header scrolls away; the tab bar below stays within thumb reach. */
   .masthead {
     position: relative;
-    padding-top: calc(14px + env(safe-area-inset-top));
+    /* Keep controls below translucent browser and system chrome. */
+    padding-top: calc(34px + env(safe-area-inset-top));
   }
   .section, .fc-card, .ts-item { scroll-margin-top: 16px; }
 
