@@ -10,7 +10,7 @@ async function runScenario(readable, inScope) {
       classList: { add() {}, remove() {}, toggle() {} }, handlers: {},
       addEventListener(type, fn) { this.handlers[type] = fn; }, focus() {},
       appendChild(child) { this.children.push(child); messages.push(child); },
-      querySelector() { return null; },
+      querySelector() { return null; }, querySelectorAll() { return []; },
     });
     return els.get(id);
   }

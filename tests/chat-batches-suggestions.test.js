@@ -7,7 +7,7 @@ async function run(mobile, withFiles, failSuggestion=false) {
   const elements=new Map(), requests=[], messages=[];
   function elem(id='') {
     if(!elements.has(id)) elements.set(id,{id,value:'',hidden:false,children:[],style:{},dataset:{},scrollHeight:20,clientHeight:20,scrollTop:0,
-      classList:{add(){},remove(){},toggle(){}},handlers:{},addEventListener(t,fn){this.handlers[t]=fn;},setAttribute(){},focus(){},click(){},querySelector(){return null;},appendChild(c){this.children.push(c);messages.push(c);}});
+      classList:{add(){},remove(){},toggle(){}},handlers:{},addEventListener(t,fn){this.handlers[t]=fn;},setAttribute(){},focus(){},click(){},querySelector(){return null;},querySelectorAll(){return [];},appendChild(c){this.children.push(c);messages.push(c);}});
     return elements.get(id);
   }
   const document={readyState:'complete',getElementById:elem,addEventListener(){},body:{classList:{add(){},remove(){}}},

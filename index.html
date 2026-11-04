@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261104y">
+  <link rel="stylesheet" href="assets/style.css?v=20261104z">
 </head>
 <body>
 
@@ -486,9 +486,23 @@
         <button type="button" id="chat-attachment-clear" aria-label="移除所有附件">移除</button>
       </div>
       <p class="chat-attachment-message" id="chat-attachment-message" role="status" aria-live="polite"></p>
-      <div class="chat-attach-menu" id="chat-attach-menu" hidden>
-        <button type="button" id="chat-choose-file">選擇圖片、影片或文件</button>
-        <span>影片單檔最多 300 MB；其他單檔須小於 50 MB，多份文件會自動分批</span>
+      <div class="chat-attach-menu" id="chat-attach-menu" aria-label="加入附件" hidden>
+        <div class="chat-attach-menu-head"><div><strong>加入附件</strong><p>選擇要與問題一起傳送的檔案</p></div></div>
+        <div class="chat-attach-options">
+          <button type="button" class="chat-attach-option" data-attachment-kind="image">
+            <span class="chat-attach-option-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="9.5" r="1.4"/><path d="m5.5 17 4.5-4 3 2.5 3-3 2.5 4.5"/></svg></span>
+            <span class="chat-attach-option-copy"><strong>圖片</strong><small>照片、截圖與圖面</small></span><span class="chat-attach-arrow" aria-hidden="true">›</span>
+          </button>
+          <button type="button" class="chat-attach-option" data-attachment-kind="video">
+            <span class="chat-attach-option-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3z"/></svg></span>
+            <span class="chat-attach-option-copy"><strong>影片</strong><small>上傳影片並擷取畫面分析</small></span><span class="chat-attach-arrow" aria-hidden="true">›</span>
+          </button>
+          <button type="button" class="chat-attach-option" data-attachment-kind="document">
+            <span class="chat-attach-option-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h8l4 4v13H6zM14 3.5v4h4M9 12h6M9 15h6"/></svg></span>
+            <span class="chat-attach-option-copy"><strong>文件</strong><small>PDF、Word、Excel、PowerPoint 等</small></span><span class="chat-attach-arrow" aria-hidden="true">›</span>
+          </button>
+        </div>
+        <div class="chat-attach-menu-foot"><span>影片最多 300 MB；其他檔案須小於 50 MB</span><button type="button" id="chat-choose-file">瀏覽全部檔案</button></div>
       </div>
       <button type="button" class="chat-next-suggestion" id="chat-next-suggestion" hidden></button>
       <form class="chat-form" id="chat-form">
@@ -521,6 +535,6 @@
   <script src="assets/vendor/jszip.min.js?v=3.10.1"></script>
   <script src="assets/office-visuals.js?v=20261104m"></script>
   <script src="assets/chat-attachments.js?v=20261104n"></script>
-  <script src="assets/chat.js?v=20261104p"></script>
+  <script src="assets/chat.js?v=20261104q"></script>
 </body>
 </html>

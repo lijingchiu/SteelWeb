@@ -12,14 +12,14 @@ function simulate(mobile) {
       id, value: '', hidden: false, children: [], scrollHeight: 20, style: {}, dataset: {},
       classList: { add() {}, remove() {}, toggle() {} },
       handlers: {}, addEventListener(event, fn) { this.handlers[event] = fn; },
-      querySelector() { return null; }, focus() {},
+      querySelector() { return null; }, querySelectorAll() { return []; }, focus() {},
     });
     return elements.get(id);
   }
   const document = { readyState: 'complete', getElementById: element, querySelector(selector) { return selector === '#chat-panel .chat-subtitle' ? { remove() { subtitleRemoved = true; } } : null; }, addEventListener() {}, body: { classList: { add() {}, remove() {} } } };
   const win = { SteelChatWeb: global.SteelChatWeb, navigator: {}, matchMedia: () => ({ matches: mobile }) };
   const context = { window: win, document, navigator: win.navigator, location: { hash: '' },
-    localStorage: { getItem() { keyReads++; return ''; } }, console, URL, AbortController, Date, setTimeout, clearTimeout };
+    localStorage: { getItem(key) { if (key === 'steel_openai_key') keyReads++; return ''; } }, console, URL, AbortController, Date, setTimeout, clearTimeout };
   vm.runInNewContext(fs.readFileSync(require.resolve('../assets/chat.js'), 'utf8'), context);
   return { element, get reads() { return keyReads; }, get subtitleRemoved() { return subtitleRemoved; } };
 }

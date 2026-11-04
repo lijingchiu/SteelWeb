@@ -39,6 +39,7 @@ const cases = [
     await page.locator('#chat-attach').click();
     for (const c of cases) {
       const begin=observed.length;
+      if (!await page.locator('#chat-attach-menu').isVisible()) await page.locator('#chat-attach').click();
       const [chooser]=await Promise.all([page.waitForEvent('filechooser'),page.locator('#chat-choose-file').click()]);
       await chooser.setFiles(`/tmp/steel-office-visual-test/office.${c.ext}`);
       await page.locator('#chat-input').fill('請分析這份鋼筋檢查文件：先寫出內嵌圖片中完整的英文標記，再列出圖表 2024 與 2025 各自的數值。請忠於附件內容，不要猜測。');
@@ -68,6 +69,7 @@ const cases = [
       await page.locator('#chat-new').click();
     }
     const begin=observed.length;
+    if (!await page.locator('#chat-attach-menu').isVisible()) await page.locator('#chat-attach').click();
     const [manyChooser]=await Promise.all([page.waitForEvent('filechooser'),page.locator('#chat-choose-file').click()]);
     await manyChooser.setFiles('/tmp/steel-office-visual-test/many.xlsx');
     await page.locator('#chat-input').fill('請分析鋼筋檢驗文件中第15張內嵌圖片的完整英文標記，並列出第23個圖表在2024年和2223年的數值。請依文件回答，不要猜測。');
@@ -87,6 +89,7 @@ const cases = [
     console.log('Many-content case: real assistant answered using image 15, chart 23 and its 200th point.');
     await page.locator('#chat-new').click();
     const largeBegin=observed.length;
+    if (!await page.locator('#chat-attach-menu').isVisible()) await page.locator('#chat-attach').click();
     const [sizeChooser]=await Promise.all([page.waitForEvent('filechooser'),page.locator('#chat-choose-file').click()]);
     await sizeChooser.setFiles([
       '/tmp/steel-office-visual-test/office.docx', '/tmp/steel-office-visual-test/office.xlsx',
@@ -111,6 +114,7 @@ const cases = [
     await page.locator('#chat-new').click();
     await page.setViewportSize({width:390,height:844});
     const batchBegin=observed.length;
+    if (!await page.locator('#chat-attach-menu').isVisible()) await page.locator('#chat-attach').click();
     const [batchChooser]=await Promise.all([page.waitForEvent('filechooser'),page.locator('#chat-choose-file').click()]);
     await batchChooser.setFiles(['/tmp/steel-attachment-test/batch-a.pdf','/tmp/steel-attachment-test/batch-b.pdf']);
     const batchSelected=await page.locator('#chat-attachment-list').innerText();

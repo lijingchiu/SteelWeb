@@ -1311,24 +1311,46 @@
       $('chat-mic').addEventListener('click', startVoice);
       $('voice-stop').addEventListener('click', () => stopVoice());
     }
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && !$('chat-panel').hidden) { if (voice.active || voice.starting) stopVoice(); closeChat(); }
-    });
-
-    $('chat-attach').addEventListener('click', () => {
-      const menu = $('chat-attach-menu'), open = menu.hidden;
-      menu.hidden = !open;
+    function setAttachmentMenu(open, restoreFocus = false) {
+      $('chat-attach-menu').hidden = !open;
       $('chat-attach').setAttribute('aria-expanded', String(open));
       $('chat-attach').setAttribute('aria-label', open ? '關閉附件選單' : '加入附件');
+      if (restoreFocus) $('chat-attach').focus();
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Escape' || $('chat-panel').hidden) return;
+      if (!$('chat-attach-menu').hidden) { setAttachmentMenu(false, true); return; }
+      if (voice.active || voice.starting) stopVoice();
+      closeChat();
     });
-    $('chat-choose-file').addEventListener('click', () => $('chat-file').click());
+
+    const fileAccept = {
+      image: '.png,.jpg,.jpeg,.webp,.gif,.heic,.heif',
+      video: '.mp4,.mov,.m4v,.webm',
+      document: '.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.tsv,.txt',
+    };
+    $('chat-attach').addEventListener('click', () => setAttachmentMenu($('chat-attach-menu').hidden));
+    $('chat-attach-menu').addEventListener('click', e => {
+      const option = e.target.closest('[data-attachment-kind], #chat-choose-file');
+      if (!option) return;
+      $('chat-file').accept = fileAccept[option.dataset.attachmentKind] || Object.values(fileAccept).join(',');
+      $('chat-file').click();
+    });
+    document.addEventListener('click', e => {
+      if (!$('chat-attach-menu').hidden && !$('chat-attach-menu').contains(e.target) && !$('chat-attach').contains(e.target)) setAttachmentMenu(false);
+    });
     $('chat-file').addEventListener('change', e => {
       const selected = Array.from(e.target.files || []);
       if (!selected.length) return;
       const issue = window.SteelAttachments.validate(selected);
       if (issue) { updateAttachments(issue); return; }
-      state.files = selected;
+      const keys = new Set(state.files.map(f => `${f.name}\0${f.size}\0${f.lastModified}`));
+      for (const file of selected) {
+        const key = `${file.name}\0${file.size}\0${file.lastModified}`;
+        if (!keys.has(key)) { state.files.push(file); keys.add(key); }
+      }
       updateAttachments();
+      setAttachmentMenu(false);
     });
     $('chat-attachment-clear').addEventListener('click', () => { state.files = []; updateAttachments(); });
 

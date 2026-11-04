@@ -1992,10 +1992,36 @@ body.brief-open .chat-fab { opacity: 0; pointer-events: none; transform: scale(0
 .chat-attach:disabled { opacity: .4; cursor: default; }
 .chat-attach svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
-.chat-attach-menu { margin: 8px 12px 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--cream); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.chat-attach-menu {
+  flex: 0 1 auto; min-height: 0; max-height: min(45vh, 330px); overflow-y: auto;
+  margin: 10px 14px 12px; padding: 14px; border: 1px solid var(--line);
+  border-radius: 16px; background: rgb(var(--paper-rgb));
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .12);
+}
 .chat-attach-menu[hidden] { display: none; }
-.chat-attach-menu button { border: 0; border-radius: 8px; padding: 8px 10px; background: var(--ink); color: var(--cream); font: inherit; font-size: 13px; cursor: pointer; }
-.chat-attach-menu span { color: var(--muted); font-size: 11px; }
+.chat-attach-menu-head strong { display: block; color: var(--ink); font-size: 14px; }
+.chat-attach-menu-head p { margin: 3px 0 10px; color: var(--muted); font-size: 11px; line-height: 1.45; }
+.chat-attach-options { display: grid; gap: 3px; }
+.chat-attach-option {
+  width: 100%; display: flex; align-items: center; gap: 11px; padding: 8px;
+  border: 0; border-radius: 10px; background: transparent; color: var(--ink);
+  text-align: left; font: inherit; cursor: pointer;
+}
+.chat-attach-option:hover, .chat-attach-option:focus-visible { background: rgba(var(--ink-rgb), .06); outline: none; }
+.chat-attach-option:focus-visible { box-shadow: inset 0 0 0 2px var(--copper); }
+.chat-attach-option-icon { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 11px; color: var(--copper); }
+.chat-attach-option-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.chat-attach-option-copy { flex: 1; min-width: 0; }
+.chat-attach-option-copy strong, .chat-attach-option-copy small { display: block; }
+.chat-attach-option-copy strong { font-size: 13px; font-weight: 600; }
+.chat-attach-option-copy small { margin-top: 2px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+.chat-attach-arrow { color: var(--muted); font-size: 20px; line-height: 1; }
+.chat-attach-menu-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 8px; padding: 10px 4px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; line-height: 1.5; }
+.chat-attach-menu-foot button { flex-shrink: 0; padding: 4px 0; border: 0; background: transparent; color: var(--copper); font: inherit; font-size: 11px; cursor: pointer; }
+.chat-attach-menu-foot button:hover { text-decoration: underline; }
+@media (max-width: 768px) {
+  .chat-attach-menu { margin: 12px 16px 18px; padding: 14px; border-radius: 16px; }
+}
 .chat-attach svg { transition: transform .2s ease; }
 .chat-attach[aria-expanded="true"] svg { transform: rotate(45deg); }
 @media (prefers-reduced-motion: reduce) { .chat-attach svg { transition: none; } }

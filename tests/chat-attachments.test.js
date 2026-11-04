@@ -26,7 +26,7 @@ async function scenario(inScope) {
     if (!els.has(id)) els.set(id, { id, value: '', hidden: false, children: [], scrollHeight: 20, scrollTop: 0, clientHeight: 20, style: {}, dataset: {}, innerHTML: '',
       classList: { add() {}, remove() {}, toggle() {} }, handlers: {},
       addEventListener(t, fn) { this.handlers[t] = fn; }, setAttribute(k,v) { this[k]=v; }, focus() {}, click() {},
-      appendChild(child) { this.children.push(child); }, querySelector() { return null; },
+      appendChild(child) { this.children.push(child); }, querySelector() { return null; }, querySelectorAll() { return []; },
     });
     return els.get(id);
   }
@@ -58,6 +58,10 @@ async function scenario(inScope) {
   assert.equal(elem('chat-attach-menu').hidden, true);
   elem('chat-file').handlers.change({target:{files:[file('工程.pdf')]}});
   assert.equal(elem('chat-attachments').hidden,false);
+  elem('chat-file').handlers.change({target:{files:[file('圖片.png')]}});
+  assert.equal(elem('chat-attachment-list').textContent, '工程.pdf、圖片.png', 'new selections append to existing attachments');
+  elem('chat-file').handlers.change({target:{files:[file('圖片.png')]}});
+  assert.equal(elem('chat-attachment-list').textContent, '工程.pdf、圖片.png', 'selecting the same file again does not duplicate it');
   elem('chat-input').value = '這份文件在說什麼？';
   elem('chat-form').handlers.submit({submitter:elem('chat-send'),preventDefault(){}});
   for (let i=0;i<100 && elem('chat-send').disabled !== false;i++) await new Promise(r=>setTimeout(r,2));
