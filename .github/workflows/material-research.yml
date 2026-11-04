@@ -1,9 +1,8 @@
 name: Research Material Outlooks
 on:
   schedule:
-    # 04:10 Taiwan, following the overnight daily analysis; 17:20 after market refresh.
+    # 04:10 Taiwan, following the overnight daily analysis.
     - cron: '10 20 * * *'
-    - cron: '20 9 * * *'
   workflow_dispatch:
 permissions:
   contents: write
