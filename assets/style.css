@@ -2067,3 +2067,21 @@ body.brief-open .chat-fab { opacity: 0; pointer-events: none; transform: scale(0
 .mat-research-sources a { color: var(--copper); text-decoration: underline; text-underline-offset: 3px; }
 .mat-research-sources li span { margin-left: 8px; color: var(--muted); font-size: 11px; }
 .mat-research-sources li p { color: var(--muted); font-size: 12px; }
+
+/* Saved conversations are kept on this device. */
+.chat-history-panel { position: absolute; z-index: 5; inset: 66px 0 0; display: flex; flex-direction: column; gap: 12px; padding: 18px; overflow: auto; background: rgb(var(--paper-rgb)); }
+.chat-history-panel[hidden] { display: none; }
+.chat-history-head { display: flex; align-items: center; justify-content: space-between; font-size: 16px; }
+.chat-history-head button, .chat-history-delete { border: 0; background: transparent; color: var(--muted); font: inherit; cursor: pointer; padding: 8px; }
+.chat-history-search span { display: block; font-size: 12px; color: var(--muted); margin-bottom: 5px; }
+.chat-history-search input { box-sizing: border-box; width: 100%; border: 1px solid var(--line); border-radius: 12px; background: transparent; color: var(--ink); padding: 10px 12px; font: inherit; font-size: 16px; }
+.chat-history-note, .chat-history-status { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.chat-history-status:empty { display: none; }
+.chat-history-list { display: grid; gap: 8px; align-content: start; }
+.chat-history-item { display: flex; align-items: center; gap: 4px; border: 1px solid var(--line); border-radius: 12px; }
+.chat-history-select { min-width: 0; flex: 1; padding: 12px; border: 0; background: transparent; text-align: left; color: var(--ink); font: inherit; cursor: pointer; }
+.chat-history-select strong, .chat-history-select small { display: block; overflow-wrap: anywhere; }
+.chat-history-select small { margin-top: 4px; color: var(--muted); }
+.chat-history-delete { color: var(--copper); margin-right: 4px; }
+.chat-history-select:focus-visible, .chat-history-delete:focus-visible, .chat-history-head button:focus-visible { outline: 2px solid var(--copper); outline-offset: -2px; }
+@media (max-width: 768px) { .chat-history-panel { top: calc(66px + env(safe-area-inset-top)); padding: 18px 16px; } }

@@ -13,6 +13,7 @@
 
 (function () {
   const OAI_KEY = 'steel_openai_key';
+  const CHAT_HISTORY_KEY = 'steel_chat_conversations_v1';
   const OAI_URL = 'https://api.openai.com/v1/responses';
   const CHAT_MODEL = 'gpt-6.1-terra';
   const MAX_QUESTION = 3000;
@@ -25,7 +26,7 @@
   };
   const SUGGESTIONS = ['最新鋼筋與廢鋼行情有什麼變化？', '網站如何看待鋼材後續走勢？', '水泥和砂石最近的物價指數如何？', '鋼價波動時，工程合約的物價調整要注意什麼？'];
 
-  const state = { history: [], busy: false, context: null, sections: [], contextDate: null, contextAt: 0, files: [], abort: null, nextQuestion: "", nextQuestionSecond: "", nextVersion: 0, nextAbort: null };
+  const state = { history: [], busy: false, context: null, sections: [], contextDate: null, contextAt: 0, files: [], abort: null, nextQuestion: "", nextQuestionSecond: "", conversationId: null, nextVersion: 0, nextAbort: null };
 
   // ── Key storage ──
   function getKey() { try { return localStorage.getItem(OAI_KEY) || ''; } catch (_) { return ''; } }
@@ -527,6 +528,67 @@
     if (list.scrollHeight - list.scrollTop - list.clientHeight < 120) list.scrollTop = list.scrollHeight;
   }
 
+  function readConversations() {
+    try {
+      const value = JSON.parse(localStorage.getItem(CHAT_HISTORY_KEY) || '[]');
+      return Array.isArray(value) ? value.filter(c => c && typeof c.id === 'string' && Array.isArray(c.messages)) : [];
+    } catch (_) { return []; }
+  }
+  function saveConversation() {
+    if (!state.history.length) return;
+    const records = readConversations();
+    if (!state.conversationId) state.conversationId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const previous = records.find(c => c.id === state.conversationId);
+    const record = { id: state.conversationId, created: previous?.created || Date.now(), updated: Date.now(),
+      title: (state.history.find(m => m.role === 'user')?.text || '對話').slice(0, 70), messages: state.history };
+    const next = [record, ...records.filter(c => c.id !== record.id)];
+    try { localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(next)); }
+    catch (_) { $('chat-storage-status').textContent = '此瀏覽器無法儲存對話紀錄，請檢查儲存空間或瀏覽器設定。'; return; }
+    $('chat-storage-status').textContent = '';
+  }
+  function recordTurn(question, answer) {
+    state.history.push({ role: 'user', text: question }, { role: 'assistant', text: answer });
+    saveConversation();
+  }
+  function showHistory(open) {
+    $('chat-history-panel').hidden = !open;
+    $('chat-history-open').setAttribute('aria-expanded', String(open));
+    if (open) { renderHistory(); $('chat-history-search').focus(); }
+  }
+  function renderHistory() {
+    const query = $('chat-history-search').value.trim().toLocaleLowerCase();
+    const records = readConversations().filter(c => !query || (c.title + ' ' + c.messages.map(m => m.text || '').join(' ')).toLocaleLowerCase().includes(query));
+    const list = $('chat-history-list');
+    list.innerHTML = records.length ? records.map(c => {
+      const date = new Date(c.updated);
+      const when = Number.isNaN(date.getTime()) ? '' : new Intl.DateTimeFormat('zh-TW', {dateStyle:'medium', timeStyle:'short'}).format(date);
+      return `<div class="chat-history-item"><button type="button" class="chat-history-select" data-conversation="${escHtml(c.id)}"><strong>${escHtml(c.title || '對話')}</strong><small>${escHtml(when)}</small></button><button type="button" class="chat-history-delete" data-delete-conversation="${escHtml(c.id)}" aria-label="刪除${escHtml(c.title || '對話')}">刪除</button></div>`;
+    }).join('') : `<p class="chat-history-note">${query ? '找不到符合的對話。' : '目前沒有已儲存的對話。'}</p>`;
+  }
+  function openConversation(id) {
+    if (state.busy || voice.active || voice.starting) return;
+    const record = readConversations().find(c => c.id === id);
+    if (!record) { renderHistory(); return; }
+    state.conversationId = record.id;
+    state.history = record.messages.filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.text === 'string').map(m => ({role:m.role, text:m.text}));
+    state.files = []; updateAttachments(); resetNextSuggestion();
+    $('chat-input').value = ''; autoGrow();
+    $('chat-log').innerHTML = '';
+    state.history.forEach(m => addMsg(m.role === 'user' ? 'user' : 'bot', renderBody(m.text)));
+    showHistory(false);
+  }
+  function deleteConversation(id) {
+    if (state.busy || voice.active || voice.starting) return;
+    const records = readConversations();
+    const record = records.find(c => c.id === id);
+    if (!record || !confirm(`確定刪除「${record.title || '這段對話'}」？刪除後無法還原。`)) return;
+    try { localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(records.filter(c => c.id !== id))); }
+    catch (_) { $('chat-history-status').textContent = '無法刪除對話，請檢查瀏覽器儲存設定。'; return; }
+    $('chat-history-status').textContent = '';
+    if (state.conversationId === id) { state.conversationId = null; state.history = []; resetNextSuggestion(); renderSuggestions(); }
+    renderHistory();
+  }
+
   function showView() {
     // Remove the subtitle from pages restored from an older cached document.
     document.querySelector('#chat-panel .chat-subtitle')?.remove();
@@ -573,6 +635,8 @@
   function setBusy(b) {
     state.busy = b;
     $('chat-send').disabled = b;
+    $('chat-history-open').disabled = b;
+    $('chat-new').disabled = b;
     if ($('chat-mic')) $('chat-mic').disabled = b;
     if ($('chat-attach')) $('chat-attach').disabled = b;
     if ($('chat-attachment-clear')) $('chat-attachment-clear').disabled = b;
@@ -764,8 +828,7 @@
       if (pages.some(p => p.status === 'unavailable')) finalText += '\n\n部分網址無法讀取，以上回答僅依已取得的內容。';
       setAnswer(answerEl, finalText, true, laws, references, pages);
       suggestNextQuestion(question, text);
-      state.history.push({ role: 'user', text: question }, { role: 'assistant', text: splitSections(text).body.trim() });
-      state.history = state.history.slice(-HISTORY_TURNS * 2);
+      recordTurn(question + (files.length ? `\n（附件：${files.map(f => f.name).join('、')}；原檔未儲存，若需再次分析請重新上傳。）` : ''), splitSections(finalText).body.trim());
     } catch (e) {
       answerEl.classList.add('chat-error');
       const msg = e.name === 'AbortError' ? '等候太久，已停止。請再問一次。'
@@ -1110,8 +1173,7 @@
       conversation: 'none', metadata: { kind: 'legal' }, output_modalities: ['audio'], input: [],
       instructions: `用自然、平穩的語氣，一字不改地念出下面這段話，不增加也不省略任何內容，條號照念：\n${answer}`,
     } });
-    state.history.push({ role: 'user', text }, { role: 'assistant', text: answer });
-    state.history = state.history.slice(-HISTORY_TURNS * 2);
+    recordTurn(text, answer);
   }
 
   async function gateVoiceQuestion(itemId, transcript) {
@@ -1231,8 +1293,7 @@
         }
         const a = voice.answers.get(r.id);
         if (a && a.text.trim() && voice.pendingQuestion) {
-          state.history.push({ role: 'user', text: voice.pendingQuestion }, { role: 'assistant', text: a.text.trim() });
-          state.history = state.history.slice(-HISTORY_TURNS * 2);
+          recordTurn(voice.pendingQuestion, a.text.trim());
           voice.pendingQuestion = null;
         }
         if (r.status === 'failed') {
@@ -1329,6 +1390,7 @@
     }
     document.addEventListener('keydown', e => {
       if (e.key !== 'Escape' || $('chat-panel').hidden) return;
+      if (!$('chat-history-panel').hidden) { showHistory(false); return; }
       if (!$('chat-attach-menu').hidden) { setAttachmentMenu(false, true); return; }
       if (voice.active || voice.starting) stopVoice();
       closeChat();
@@ -1393,6 +1455,16 @@
       }
     });
 
+    $('chat-history-open').addEventListener('click', () => { if (!state.busy && !voice.active && !voice.starting) showHistory(true); });
+    $('chat-history-close').addEventListener('click', () => showHistory(false));
+    $('chat-history-search').addEventListener('input', renderHistory);
+    $('chat-history-list').addEventListener('click', e => {
+      const del = e.target.closest('[data-delete-conversation]');
+      if (del) { deleteConversation(del.dataset.deleteConversation); return; }
+      const item = e.target.closest('[data-conversation]');
+      if (item) openConversation(item.dataset.conversation);
+    });
+
     $('chat-key-form').addEventListener('submit', e => {
       e.preventDefault();
       const v = $('chat-key-input').value.trim();
@@ -1408,14 +1480,15 @@
     $('chat-key-remove').addEventListener('click', () => {
       if (!confirm('要從這台裝置移除鋼市助理的金鑰嗎？')) return;
       clearKey();
-      state.history = []; resetNextSuggestion();
+      state.history = []; state.conversationId = null; resetNextSuggestion();
       $('chat-log').innerHTML = '';
       showView();
     });
     $('chat-new').addEventListener('click', () => {
       if (state.abort) state.abort.abort();
       if (voice.active || voice.starting) stopVoice();
-      state.history = []; resetNextSuggestion();
+      state.history = []; state.conversationId = null; resetNextSuggestion();
+      state.files = []; updateAttachments(); showHistory(false);
       renderSuggestions();
     });
   }
