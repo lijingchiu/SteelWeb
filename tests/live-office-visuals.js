@@ -34,7 +34,7 @@ const cases = [
       await chooser.setFiles(`/tmp/steel-office-visual-test/office.${c.ext}`);
       await page.locator('#chat-input').fill('請分析這份鋼筋檢查文件：先寫出內嵌圖片中完整的英文標記，再列出圖表 2024 與 2025 各自的數值。請忠於附件內容，不要猜測。');
       await page.locator('#chat-send').click();
-      await page.waitForFunction(() => !document.querySelector('#chat-send').disabled,{timeout:120000});
+      await page.waitForFunction(() => !document.querySelector('#chat-send').disabled,null,{timeout:120000});
       const answer=(await page.locator('.chat-msg.chat-bot').last().innerText()).replace(/,/g,'');
       const requests=observed.slice(begin).filter(r=>r.hasFile);
       assert(requests.length>=2,`${c.ext}: scope and answer requests missing`);
@@ -48,6 +48,24 @@ const cases = [
       console.log(`${c.ext}: real assistant read image ${c.mark} and chart values ${c.values.join(', ')}.`);
       await page.locator('#chat-new').click();
     }
+    const begin=observed.length;
+    const [manyChooser]=await Promise.all([page.waitForEvent('filechooser'),page.locator('#chat-choose-file').click()]);
+    await manyChooser.setFiles('/tmp/steel-office-visual-test/many.xlsx');
+    await page.locator('#chat-input').fill('請分析鋼筋檢驗文件中第15張內嵌圖片的完整英文標記，並列出第23個圖表在2024年和2223年的數值。請依文件回答，不要猜測。');
+    await page.locator('#chat-send').click();
+    await page.waitForFunction(() => !document.querySelector('#chat-send').disabled,null,{timeout:120000});
+    const answer=(await page.locator('.chat-msg.chat-bot').last().innerText()).replace(/,/g,'');
+    const requests=observed.slice(begin).filter(r=>r.hasFile);
+    assert(requests.length>=2,'large case: missing scope or answer request');
+    for (const r of requests) {
+      assert.equal(r.images,15,'large case: not all 15 embedded images sent');
+      assert.equal((r.text.match(/圖表（/g)||[]).length,23,'large case: not all 23 charts sent');
+      assert(r.text.includes('內嵌圖片 15'),'large case: final image missing');
+      assert(r.text.includes('chart23.xml') && r.text.includes('2223：95671'),'large case: 200th chart point missing');
+    }
+    assert(answer.toUpperCase().includes('ENDSTEEL789'),`large case: last image marker missing: ${answer.slice(0,500)}`);
+    assert(answer.includes('54321') && answer.includes('95671'),`large case: chart values missing: ${answer.slice(0,500)}`);
+    console.log('Many-content case: real assistant answered using image 15, chart 23 and its 200th point.');
     // Read-only outcomes: all supplied documents are synthetic and non-sensitive.
   } finally { await browser.close(); }
 })().catch(e=>{console.error(String(e.message || e).replaceAll(key,'[redacted]'));process.exitCode=1;});

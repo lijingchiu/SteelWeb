@@ -2,7 +2,6 @@
 // browser until the user sends the question to the assistant.
 (function (global) {
   const MAX_ENTRIES = 2500, MAX_PART = 16 * 1024 * 1024, MAX_TOTAL = 64 * 1024 * 1024;
-  const MAX_IMAGES = 12, MAX_IMAGE_BYTES = 8 * 1024 * 1024, MAX_CHARTS = 20, MAX_POINTS = 150;
   const MIME = {png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp',gif:'image/gif'};
   const local = n => n && n.localName;
   const children = (node, name) => Array.from(node?.children || []).filter(n => local(n) === name);
@@ -103,7 +102,6 @@
     return out;
   }
   function colNum(v) { return [...v].reduce((a,c)=>a*26+c.charCodeAt(0)-64,0); }
-  function colName(n) { let v=''; for (;n;n=Math.floor((n-1)/26)) v=String.fromCharCode(65+(n-1)%26)+v; return v; }
   async function refPoints(node, zip, book, sheetCache) {
     const cached=points(node); if (cached.size) return cached;
     const formula=val(first(node,'f'));
@@ -123,16 +121,19 @@
       sheetCache.set(path,cells);
     }
     const col1=colNum(m[3].toUpperCase()), row1=Number(m[4]), col2=colNum((m[5] || m[3]).toUpperCase()), row2=Number(m[6] || m[4]);
-    if (row2 < row1 || col2 < col1 || (row2-row1+1)*(col2-col1+1) > MAX_POINTS || (row1!==row2 && col1!==col2)) return cached;
-    const cells=sheetCache.get(path); let i=0;
-    for (let row=row1;row<=row2;row++) for (let col=col1;col<=col2;col++,i++) {
-      const value=cells.get(`${colName(col)}${row}`); if (value !== undefined) cached.set(i,value);
+    if (row2 < row1 || col2 < col1 || (row1!==row2 && col1!==col2)) return cached;
+    // Iterate stored cells, not the potentially million-row reference range.
+    for (const [addr,value] of sheetCache.get(path)) {
+      const cell=addr.match(/^([A-Z]+)([0-9]+)$/); if (!cell) continue;
+      const col=colNum(cell[1]), row=Number(cell[2]);
+      if (row>=row1 && row<=row2 && col>=col1 && col<=col2)
+        cached.set(row1===row2 ? col-col1 : row-row1,value);
     }
-    return cached;
+    return new Map([...cached].sort((a,b)=>a[0]-b[0]));
   }
   async function chartData(doc, zip, book, sheetCache) {
     const title=truncate(all(first(doc,'title'),'t').map(val).filter(Boolean).join(' '),200);
-    const out=[], series=all(doc,'ser').slice(0,30); let missing=false;
+    const out=[], series=all(doc,'ser'); let missing=false;
     for (const s of series) {
       const tx=children(s,'tx')[0];
       const titles=await refPoints(tx,zip,book,sheetCache);
@@ -141,8 +142,7 @@
       const values=children(s,'val')[0] || children(s,'yVal')[0];
       const labels=await refPoints(category,zip,book,sheetCache), vals=await refPoints(values,zip,book,sheetCache);
       if (!vals.size) {missing=true; continue;}
-      const data=[...vals.entries()].slice(0,MAX_POINTS).map(([i,v])=>`${labels.get(i) || `資料點${i+1}`}：${v}`);
-      if (vals.size > MAX_POINTS) missing=true;
+      const data=[...vals.entries()].map(([i,v])=>`${labels.get(i) || `資料點${i+1}`}：${v}`);
       out.push(`數列「${name}」：${data.join('；')}`);
     }
     if (!series.length) missing=true;
@@ -155,22 +155,20 @@
     try {
       const zip=await global.JSZip.loadAsync(await file.arrayBuffer()); guard(zip);
       const rels=await relationships(zip), book=await workbookInfo(zip,rels), sheetCache=new Map();
-      const media=Object.keys(zip.files).filter(n=>/^(word|xl|ppt)\/media\/[^/]+$/i.test(n) && !zip.files[n].dir && rels.reverse.has(n)).sort();
-      let imageCount=0,imageBytes=0;
+      const media=Object.keys(zip.files).filter(n=>/^(word|xl|ppt)\/media\/[^/]+$/i.test(n) && !zip.files[n].dir && rels.reverse.has(n)).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
+      let imageCount=0;
       for (const path of media) {
-        const ext=(path.split('.').pop() || '').toLowerCase(), mime=MIME[ext], size=zip.files[path]._data.uncompressedSize;
+        const ext=(path.split('.').pop() || '').toLowerCase(), mime=MIME[ext];
         if (!mime) {warnings.push(`不支援的內嵌圖片格式：${truncate(path,120)}`); continue;}
-        if (imageCount>=MAX_IMAGES || imageBytes+size>MAX_IMAGE_BYTES) {warnings.push('部分內嵌圖片超出擷取數量或大小限制。'); continue;}
         const bytes=await zip.file(path).async('uint8array');
         parts.push({type:'input_text',text:`附件「${file.name}」內嵌圖片 ${imageCount+1}（${contexts(path,rels.reverse,book.sheets)}；來源 ${path}）。`});
         parts.push({type:'input_image',image_url:bytesData(bytes,mime),detail:'high'});
-        imageCount++; imageBytes+=size;
+        imageCount++;
       }
-      const charts=Object.keys(zip.files).filter(n=>/^(word|xl|ppt)\/charts\/chart\d+\.xml$/i.test(n) && rels.reverse.has(n)).sort();
-      if (charts.length>MAX_CHARTS) warnings.push('部分圖表超出擷取數量限制。');
-      for (const path of charts.slice(0,MAX_CHARTS)) {
+      const charts=Object.keys(zip.files).filter(n=>/^(word|xl|ppt)\/charts\/chart\d+\.xml$/i.test(n) && rels.reverse.has(n)).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
+      for (const path of charts) {
         const data=await chartData(await readXml(zip,path),zip,book,sheetCache);
-        if (data.missing) warnings.push(`圖表 ${path} 的部分數列沒有可讀取的數值或超出擷取上限。`);
+        if (data.missing) warnings.push(`圖表 ${path} 的部分數列沒有可讀取的數值。`);
         if (data.lines.length) parts.push({type:'input_text',text:`附件「${file.name}」圖表（${contexts(path,rels.reverse,book.sheets)}；來源 ${path}）${data.title ? `，標題「${data.title}」` : ''}：\n${data.lines.join('\n')}\n圖表數值來自文件內快取或工作表，可能不是最新的外部連線資料。`});
       }
       if (!media.length && !charts.length) warnings.push('未找到受支援且有連結的內嵌圖片或圖表；圖案、外部連結或特殊物件不一定能擷取。');

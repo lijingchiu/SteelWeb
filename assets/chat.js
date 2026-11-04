@@ -249,6 +249,7 @@
     let msg = '';
     try { msg = ((await res.json()).error || {}).message || ''; } catch (_) {}
     if (res.status === 401) return Object.assign(new Error('金鑰無效或已被停用，請重新設定。'), { badKey: true });
+    if (res.status === 413 || /context length|too (?:many|large)|maximum context|request.{0,20}large/i.test(msg)) return new Error('附件內容超過服務可處理的大小，請將檔案拆分後再試。');
     if (res.status === 429) return new Error(/quota|billing/i.test(msg) ? 'OpenAI 額度已用完或超過預算上限。' : '目前詢問太頻繁，請稍等一下再問。');
     return new Error(`OpenAI 服務暫時無法回應（${res.status}）。`);
   }

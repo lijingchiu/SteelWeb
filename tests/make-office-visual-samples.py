@@ -36,3 +36,24 @@ types=ET.fromstring(entries['[Content_Types].xml']); ET.SubElement(types,f'{{{CT
 with ZipFile(out/'office.docx','w',ZIP_DEFLATED) as z:
     for n,data in entries.items(): z.writestr(n,data)
 print('Created three synthetic Office files with images and chart data.')
+# Regression case: 15 distinct images, 23 charts and 200 points in the last
+# chart. This verifies that extraction no longer stops at the former limits.
+many=Workbook(); sheet=many.active; sheet.title='鋼筋檢驗'
+for i in range(1,16):
+    image=Image.new('RGB',(1000,200),'white')
+    marker='ENDSTEEL789' if i==15 else f'STEELPHOTO{i:02}'
+    ImageDraw.Draw(image).text((20,70),f'STEEL INSPECTION {marker}',font=font,fill='black')
+    path=out/f'many-{i:02}.png'; image.save(path)
+    sheet.add_image(XLImage(str(path)),f'G{1+i*3}')
+for i in range(1,24):
+    col=2*i-1
+    sheet.cell(1,col,'Year'); sheet.cell(1,col+1,f'Steel chart {i}')
+    size=200 if i==23 else 2
+    for j in range(size):
+        sheet.cell(2+j,col,2024+j)
+        sheet.cell(2+j,col+1,54321 if i==23 and j==0 else 95671 if i==23 and j==199 else i*100+j)
+    c=BarChart(); c.title=f'Steel chart {i}'
+    c.add_data(Reference(sheet,min_col=col+1,min_row=1,max_row=size+1),titles_from_data=True)
+    c.set_categories(Reference(sheet,min_col=col,min_row=2,max_row=size+1));sheet.add_chart(c,f'G{60+i*2}')
+many.save(out/'many.xlsx')
+print('Created Excel file with 15 images, 23 charts and 200 chart points.')
