@@ -15,6 +15,18 @@ global.fetch = async url => {
 require('../assets/reference-search.js');
 (async () => {
   const api = global.SteelReferenceSearch;
+  assert.deepEqual(api.parseTable('名稱,數值\n"一,二",3\n'), [['名稱', '數值'], ['一,二', '3']]);
+  assert.deepEqual(api.parseTable('[{"地區":"臺中市","數值":3,"機關代碼":"123"}]'), [['地區', '數值'], ['臺中市', '3']]);
+  assert.equal(api.parseTable('<html>not data</html>'), null);
+  const savedFetch = global.fetch;
+  const csvDoc = { name: '臺中市人口', path: 'test', tableSource: 'https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=test' };
+  global.fetch = async () => ({ ok: true, headers: { get: () => null }, text: async () => '地區,年度,人口\n臺中市,2025,10\n臺北市,2025,20\n' });
+  const table = await api.liveTable(csvDoc, '臺中市114年人口多少');
+  assert.deepEqual(table.rows, [['臺中市', '2025', '10']]);
+  assert.equal(await api.liveTable({ ...csvDoc, tableSource: 'https://example.com/data.csv' }, '人口多少'), null);
+  global.fetch = async () => { throw new Error('offline'); };
+  assert.equal(await api.liveTable(csvDoc, '臺中市人口多少'), null);
+  global.fetch = savedFetch;
   const map = await api.search('臺北市使用分區圖', ['臺北市', '使用分區圖']);
   assert(map.length && map[0].name === '臺北市土地使用分區圖（官方地圖查詢）');
   assert.equal(map[0].href, 'https://zonemap.udd.gov.taipei/');

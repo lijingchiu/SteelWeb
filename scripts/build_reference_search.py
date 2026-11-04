@@ -20,6 +20,7 @@ def terms(text):
 def build():
     catalog = json.loads(CATALOG.read_text(encoding='utf-8'))
     excluded = set(json.loads((ARCHIVE / 'excluded-from-search.json').read_text(encoding='utf-8')))
+    live_sources = json.loads((ARCHIVE / 'live-sources.json').read_text(encoding='utf-8'))
     docs = []
     postings = defaultdict(list)
     for category in catalog['categories']:
@@ -31,7 +32,11 @@ def build():
                 continue
             text = p.read_text(encoding='utf-8')
             identifier = len(docs)
-            docs.append({'name': doc['name'], 'path': doc['path'], 'category': category['category'], 'bytes': p.stat().st_size})
+            entry = {'name': doc['name'], 'path': doc['path'], 'category': category['category'], 'bytes': p.stat().st_size}
+            source = live_sources.get(p.relative_to(ARCHIVE).as_posix())
+            if source:
+                entry['tableSource'] = source
+            docs.append(entry)
             for term in terms(doc['name'] + '\n' + text):
                 postings[term].append(identifier)
     result = {'version': 1, 'docs': docs, 'terms': dict(postings)}

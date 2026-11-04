@@ -310,40 +310,40 @@
   - 來源：本機資料庫，未記錄上游網址
 - `03_都市計畫書圖/其他中央機關/102年度科技發展細部計畫_CSV_71f1b5.txt` — 1655 bytes；SHA-256 `25a01511e7d6e48fec02343376583ef0efd37c688afe2432dcee5e64e46fe9f0`
   - 來源：<https://www.nusc.gov.tw/dataopen/index.php?id=20>
-- `03_都市計畫書圖/其他中央機關/103年科技發展細部計畫_CSV_e8ece0.txt` — 1772 bytes；SHA-256 `6006f8fb955faf1771597a97116e00fc691d4b8197208ef617af14c38761e9a5`
-  - 來源：<https://www.nusc.gov.tw/dataopen/index.php?id=67>
+- `03_都市計畫書圖/其他中央機關/103年科技發展細部計畫_CSV_e8ece0.txt` — 432 bytes；SHA-256 `faae80094b23a83cdb852bfce36df2ed27312dc7dd561ec25827b807c5fe3781`
+  - 來源：<https://www.nusc.gov.tw/%E8%B3%87%E8%A8%8A%E5%85%AC%E9%96%8B/Open-Data%E5%B0%88%E5%8D%80/%E6%96%BD%E6%94%BF%E8%A6%8F%E5%8A%83%E8%88%87%E6%88%90%E6%9E%9C/103%EF%A6%8E%E7%A7%91%E6%8A%80%E7%99%BC%E5%B1%95%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB--219_2015_2813_3072.html>；原來源：<https://www.nusc.gov.tw/dataopen/index.php?id=67>
 - `03_都市計畫書圖/其他中央機關/104年科技發展細部計畫_CSV_90c51f.txt` — 1586 bytes；SHA-256 `3b3a3f23203eec7f537adc07df42c7c53b9242d49002bdbf15aa08d81bf26186`
   - 來源：<https://www.nusc.gov.tw/dataopen/index.php?id=72>
-- `03_都市計畫書圖/其他中央機關/105年科技發展細部計畫_CSV_d632ce.txt` — 1378 bytes；SHA-256 `9757bd77812493c523445cd31d65b4aadc630fcf2e97f0aed0f33509ded7fb72`
-  - 來源：<https://www.nusc.gov.tw/dataopen/index.php?id=69>
-- `03_都市計畫書圖/其他中央機關/106年科技發展細部計畫_CSV_9d8d7a.txt` — 912 bytes；SHA-256 `7df3514033dc6241eb4772413a3974ce6ad56ca3c0114c1c07e2542d0ce2336e`
-  - 來源：<https://www.nusc.gov.tw/dataopen/index.php?id=97>
-- `03_都市計畫書圖/其他中央機關/107年科技發展細部計畫_CSV_92a68f.txt` — 1051 bytes；SHA-256 `1226b5cde80122865af61cbce1591e1d471205850730f471ab9c005c49129b7e`
-  - 來源：<https://www.nusc.gov.tw/dataopen/index.php?id=99>
-- `03_都市計畫書圖/其他中央機關/108年科技發展細部計畫_CSV_8af675.txt` — 686 bytes；SHA-256 `36f8590bddd9f8737763e74ee528f2b774086b4a66c9abc462c5bfda31b6ac57`
-  - 來源：<https://www.nusc.gov.tw/dataopen/index.php?id=131>
-- `03_都市計畫書圖/其他中央機關/109年科技發展細部計畫_CSV_e8f85d.txt` — 772 bytes；SHA-256 `4e72ef0a8738a54016fbf75cd41894ff141245d2643fe8a6f81f0b0210ec1995`
-  - 來源：<https://www.nusc.gov.tw/dataopen/index.php?id=132>
-- `03_都市計畫書圖/其他中央機關/110年科技發展細部計畫_CSV_0af6f2.txt` — 721 bytes；SHA-256 `ff91f1d98ce8ae2f2bba3059eec79192dd13d1738b938c1b6399c8644d22dbf1`
-  - 來源：<https://www.nusc.gov.tw/dataopen/index.php?id=133>
-- `03_都市計畫書圖/其他中央機關/111年科技發展細部計畫_CSV_f7543d.txt` — 721 bytes；SHA-256 `88498cc8f9a00f7aac076daea187a10080ecdc424230315ca29af7d3e2e604a2`
-  - 來源：<https://www.nusc.gov.tw/dataopen/index.php?id=134>
+- `03_都市計畫書圖/其他中央機關/105年科技發展細部計畫_CSV_d632ce.txt` — 432 bytes；SHA-256 `f228d20561a9d339da2a5534ec33d74970e5b8b10489a0c66ff2de2ef3821684`
+  - 來源：<https://www.nusc.gov.tw/%E8%B3%87%E8%A8%8A%E5%85%AC%E9%96%8B/Open-Data%E5%B0%88%E5%8D%80/%E6%96%BD%E6%94%BF%E8%A6%8F%E5%8A%83%E8%88%87%E6%88%90%E6%9E%9C/105%EF%A6%8E%E7%A7%91%E6%8A%80%E7%99%BC%E5%B1%95%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB--219_2015_2813_3074.html>；原來源：<https://www.nusc.gov.tw/dataopen/index.php?id=69>
+- `03_都市計畫書圖/其他中央機關/106年科技發展細部計畫_CSV_9d8d7a.txt` — 432 bytes；SHA-256 `6710b2d6cd94df34271c32ec975728e6b89489aa72825fbbc2f3fb18b249f1ff`
+  - 來源：<https://www.nusc.gov.tw/%E8%B3%87%E8%A8%8A%E5%85%AC%E9%96%8B/Open-Data%E5%B0%88%E5%8D%80/%E6%96%BD%E6%94%BF%E8%A6%8F%E5%8A%83%E8%88%87%E6%88%90%E6%9E%9C/106%E5%B9%B4%E7%A7%91%E6%8A%80%E7%99%BC%E5%B1%95%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB--219_2015_2813_3957.html>；原來源：<https://www.nusc.gov.tw/dataopen/index.php?id=97>
+- `03_都市計畫書圖/其他中央機關/107年科技發展細部計畫_CSV_92a68f.txt` — 432 bytes；SHA-256 `fd2def754a54ba6ca54e5ee81a4075a1f5584351dd8b4519b82755ef78547a62`
+  - 來源：<https://www.nusc.gov.tw/%E8%B3%87%E8%A8%8A%E5%85%AC%E9%96%8B/Open-Data%E5%B0%88%E5%8D%80/%E6%96%BD%E6%94%BF%E8%A6%8F%E5%8A%83%E8%88%87%E6%88%90%E6%9E%9C/107%E5%B9%B4%E7%A7%91%E6%8A%80%E7%99%BC%E5%B1%95%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB--219_2015_2813_4160.html>；原來源：<https://www.nusc.gov.tw/dataopen/index.php?id=99>
+- `03_都市計畫書圖/其他中央機關/108年科技發展細部計畫_CSV_8af675.txt` — 432 bytes；SHA-256 `2c36c00cd99d2a8b3a936e80e3b12c2f2808e32eace4098dbf75aec43a858c40`
+  - 來源：<https://www.nusc.gov.tw/%E8%B3%87%E8%A8%8A%E5%85%AC%E9%96%8B/Open-Data%E5%B0%88%E5%8D%80/%E6%96%BD%E6%94%BF%E8%A6%8F%E5%8A%83%E8%88%87%E6%88%90%E6%9E%9C/108%E5%B9%B4%E7%A7%91%E6%8A%80%E7%99%BC%E5%B1%95%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB--219_2015_2813_4859.html>；原來源：<https://www.nusc.gov.tw/dataopen/index.php?id=131>
+- `03_都市計畫書圖/其他中央機關/109年科技發展細部計畫_CSV_e8f85d.txt` — 432 bytes；SHA-256 `999e9d4b025561d070b7c34c31fbe1b8d9769899d29c469887b5dcb62a861bf7`
+  - 來源：<https://www.nusc.gov.tw/%E8%B3%87%E8%A8%8A%E5%85%AC%E9%96%8B/Open-Data%E5%B0%88%E5%8D%80/%E6%96%BD%E6%94%BF%E8%A6%8F%E5%8A%83%E8%88%87%E6%88%90%E6%9E%9C/109%E5%B9%B4%E7%A7%91%E6%8A%80%E7%99%BC%E5%B1%95%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB--219_2015_2813_4860.html>；原來源：<https://www.nusc.gov.tw/dataopen/index.php?id=132>
+- `03_都市計畫書圖/其他中央機關/110年科技發展細部計畫_CSV_0af6f2.txt` — 432 bytes；SHA-256 `969cdd1bb78e99e347b2979cb5da2a78bb487337695208a4bee0d90e9ad0b006`
+  - 來源：<https://www.nusc.gov.tw/%E8%B3%87%E8%A8%8A%E5%85%AC%E9%96%8B/Open-Data%E5%B0%88%E5%8D%80/%E6%96%BD%E6%94%BF%E8%A6%8F%E5%8A%83%E8%88%87%E6%88%90%E6%9E%9C/110%E5%B9%B4%E7%A7%91%E6%8A%80%E7%99%BC%E5%B1%95%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB--219_2015_2813_4861.html>；原來源：<https://www.nusc.gov.tw/dataopen/index.php?id=133>
+- `03_都市計畫書圖/其他中央機關/111年科技發展細部計畫_CSV_f7543d.txt` — 432 bytes；SHA-256 `0948d1d280e5fb73043fcb8ad7ef92fc4b5e206c431ac9913156cd42ec2e39d0`
+  - 來源：<https://www.nusc.gov.tw/%E8%B3%87%E8%A8%8A%E5%85%AC%E9%96%8B/Open-Data%E5%B0%88%E5%8D%80/%E6%96%BD%E6%94%BF%E8%A6%8F%E5%8A%83%E8%88%87%E6%88%90%E6%9E%9C/111%E5%B9%B4%E7%A7%91%E6%8A%80%E7%99%BC%E5%B1%95%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB--219_2015_2813_4862.html>；原來源：<https://www.nusc.gov.tw/dataopen/index.php?id=134>
 - `03_都市計畫書圖/其他中央機關/4-1 都市計畫區面積與人口數_都市及區域發展統計彙編，原則以前一年底資料為主，如無前一年底資料則採用最新一期資料_6e89cc.txt` — 257 bytes；SHA-256 `ce3fd4b2d4adabb5de81fc84996f0db22894a368200462148a30691c908492c6`
   - 來源：<https://data.gov.tw/dataset/6489>
 - `03_都市計畫書圖/其他中央機關/4-2 都市計畫區土地使用分區面積_都市及區域發展統計彙編，原則以前一年底資料為主，如無前一年底資料則採用最新一期資料_b686e7.txt` — 263 bytes；SHA-256 `20e694fb427bde7d4cfc3bde935cab66afc7de49da21a0b9285621da64842c01`
   - 來源：<https://data.gov.tw/dataset/6490>
-- `03_都市計畫書圖/其他中央機關/都市計畫區人口數與人口密度─按區域別分 _都市計畫區人口數與人口密度─按區域別分_f1020a.txt` — 1748 bytes；SHA-256 `0e4d1c37ae8dd5465776311835e8a43c930dc896fd63b2b76cce89137e5b5a2e`
-  - 來源：<https://opdadm.moi.gov.tw/api/v1/no-auth/resource/api/dataset/4B8982A7-D745-4281-A175-37D1028E2B24/resource/6A8FD49D-7FC5-46A7-9DA6-52D6C43CA35A/download>
-- `03_都市計畫書圖/其他中央機關/都市計畫土地使用分區面積─按區域別分 _都市計畫土地使用分區面積─按區域別分_fb058c.txt` — 3420 bytes；SHA-256 `5aec1a286b5326ce584eb4bbd768b6e5f2717be7358f3fabe2059bf86cc76878`
-  - 來源：<https://opdadm.moi.gov.tw/api/v1/no-auth/resource/api/dataset/4856A097-C2D3-4A9B-9626-913244B09406/resource/7EF8FC39-5AD6-4F6B-9781-73DDB006BE3D/download>
+- `03_都市計畫書圖/其他中央機關/都市計畫區人口數與人口密度─按區域別分 _都市計畫區人口數與人口密度─按區域別分_f1020a.txt` — 209 bytes；SHA-256 `d516e218f01a340938d5eba42daa0e95807500b8de669e57f9b7e409c2741d8a`
+  - 來源：<https://data.gov.tw/dataset/13470>；原來源：<https://data.gov.tw/>
+- `03_都市計畫書圖/其他中央機關/都市計畫土地使用分區面積─按區域別分 _都市計畫土地使用分區面積─按區域別分_fb058c.txt` — 206 bytes；SHA-256 `88febbf4ce233bf6a33bd122ffcfefb6c4bf720b97ac8ceebb398388e45f490a`
+  - 來源：<https://data.gov.tw/dataset/13474>；原來源：<https://data.gov.tw/>
 - `03_都市計畫書圖/列冊_全國都市計畫區.md` — 83288 bytes；SHA-256 `31605b459413578ba5cf37541349793e3042addf2841c77cbe672632cbf61e10`
   - 來源：<https://data.gov.tw/dataset/145623)>；<https://data.gov.tw/dataset/121998)>；<https://data.gov.tw/dataset/132263)>；<https://data.gov.tw/dataset/136118)>；<https://data.gov.tw/dataset/156197)>；<https://data.gov.tw/dataset/135467)>；<https://data.gov.tw/dataset/145608)>；<https://data.gov.tw/dataset/145609)>；其他網址見原檔
 - `03_都市計畫書圖/南投縣/南投縣都市計畫區公園一覽表_南投縣都市計畫區公園一覽表_10a1ed.txt` — 4624 bytes；SHA-256 `4220e085d32cee1d80e2a5d76fc777674ada33d9d658ac5dee9a11f5070602b0`
   - 來源：<https://data.nantou.gov.tw/dataset/d3eb0d5e-d257-4117-893c-4d3ee5641207/resource/e8de8c44-cf77-41a0-8076-723b1af22a8d/download/20200617153912.csv>
 - `03_都市計畫書圖/國土管理署（中央）/內政部都市計畫委員會資料_內政部都市計畫委員會資料_ee13db.txt` — 284 bytes；SHA-256 `77ebdeed4d20541473086a53aad667f7826b4478918e1de1d8980e1c5bbfbae5`
   - 來源：<https://opdadm.moi.gov.tw/api/v1/no-auth/resource/api/dataset/A3EE8159-7425-4A77-9F1F-8439E26D48AD/resource/8E04235D-90E4-4BAF-975F-74C121D66B7B/download>；<https://www.nlma.gov.tw/opendata/fd5_json.php,內政部都市計畫委員會資料(JSON格式)>；<https://www.nlma.gov.tw/opendata/fd5_xml.php,內政部都市計畫委員會資料(XML格式)>
-- `03_都市計畫書圖/國土管理署（中央）/新訂或擴大都市計畫案件進度_新訂或擴大都市計畫案件進度_80323d.txt` — 2263 bytes；SHA-256 `0bc2625a7e9e0ef6fcc1bf44bbb868fd7d8b10f361ec2224e0d3823509488a7a`
-  - 來源：<https://opdadm.moi.gov.tw/api/v1/no-auth/resource/api/dataset/4D2797FE-F53C-4C6C-9D41-5E13FE3B7D6D/resource/59CF417D-9AB6-4CC9-AB22-78F0153026F7/download>
+- `03_都市計畫書圖/國土管理署（中央）/新訂或擴大都市計畫案件進度_新訂或擴大都市計畫案件進度_80323d.txt` — 244 bytes；SHA-256 `82dc1f0b4a88e3125415a1f142b589af12fdf695f65099857d710c7f81903a63`
+  - 來源：<https://www.nlma.gov.tw/ch/titlelist/embedded/15232?sourcemenuid=411>；原來源：<https://data.gov.tw/>
 - `03_都市計畫書圖/國土管理署（中央）/非都市土地使用分區圖（112年）_非都市土地使用分區_南投縣_d5fab2.txt` — 250 bytes；SHA-256 `ab3fc6c48e9e9255fef2a10619420d4e7045404d659baa1af180ce9c3ed6eda2`
   - 來源：<https://data.gov.tw/dataset/169538>
 - `03_都市計畫書圖/國土管理署（中央）/非都市土地使用分區圖（112年）_非都市土地使用分區_嘉義縣_e5d708.txt` — 250 bytes；SHA-256 `5482d5fb790c54bcf291168dbcde27b466d7aa9ecf29eed44cbd8a233a4caefe`
@@ -1784,10 +1784,10 @@
   - 來源：<https://data.taipei/api/dataset/5ed4398e-3d32-4311-9757-0bd771c5e251/resource/176a45e8-e927-4354-a8a0-316323814e09/download>；<http://w2.dbas.taipei.gov.tw/change/258.doc>；<http://law.dgbas.gov.tw/system_1.php?LawID=M0203007>；<http://web.pcc.g>；<http://pwb.taipei.>；<http://www.>；<http://ebas.gov.tw)資料搜>；<http://www.grb.gov.tw)登錄委託研究計畫相關資料。>；其他網址見原檔
 - `04_地方法規/台南市/README_列冊.md` — 1707 bytes；SHA-256 `40a636cedd674e2a810ca866a3663e1366e2d1dbb13f0a8e2c3122466b4f2e64`
   - 來源：<https://data.tainan.gov.tw/DataSet/Detail/b55cda7f-4aea-411b-9c9f-ed0978e55838>；<https://data.tainan.gov.tw/dataset?keyword=%E8%80%81%E5%8C%96（官方站內搜尋>
-- `04_地方法規/台南市/機關單位 _ _ 112年臺南市印花稅徵收.txt` — 3907 bytes；SHA-256 `8fb305e9fdb495142ecde7a601a106baae65f85b6d7888f30a0b09a2a0aaeba2`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/6afe6362-652b-4a7c-aea2-e340c9e3f21c?fileName=112%E5%B9%B4%E8%87%BA%E5%8D%97%E5%B8%82%E5%8D%B0%E8%8A%B1%E7%A8%85%E5%BE%B5%E6%94%B6>
-- `04_地方法規/台南市/機關單位 _ _ 113年臺南市印花稅徵收.txt` — 3209 bytes；SHA-256 `db01b3d69456d2502f8c2adbdd483f56bb0b128c8138588c8e7f952f4f6a5770`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/2ec16dd4-4fce-43a0-9e6a-fe31be292e7f?fileName=113%E5%B9%B4%E8%87%BA%E5%8D%97%E5%B8%82%E5%8D%B0%E8%8A%B1%E7%A8%85%E5%BE%B5%E6%94%B6>
+- `04_地方法規/台南市/機關單位 _ _ 112年臺南市印花稅徵收.txt` — 227 bytes；SHA-256 `d7036bd876fa1678f9f20fe215419592e57b1bdd2230f5db722b77bb906ed10a`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/816edfbb-3308-4c3c-9d41-3522b9113ff2>；原來源：<https://data.tainan.gov.tw/File/DirectDownload/6afe6362-652b-4a7c-aea2-e340c9e3f21c?fileName=112%E5%B9%B4%E8%87%BA%E5%8D%97%E5%B8%82%E5%8D%B0%E8%8A%B1%E7%A8%85%E5%BE%B5%E6%94%B6>
+- `04_地方法規/台南市/機關單位 _ _ 113年臺南市印花稅徵收.txt` — 227 bytes；SHA-256 `6e4f32c0084d2c6ab72a862fc1cb0c0d63082c8f98fd590f62659218019ec91f`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/816edfbb-3308-4c3c-9d41-3522b9113ff2>；原來源：<https://data.tainan.gov.tw/File/DirectDownload/2ec16dd4-4fce-43a0-9e6a-fe31be292e7f?fileName=113%E5%B9%B4%E8%87%BA%E5%8D%97%E5%B8%82%E5%8D%B0%E8%8A%B1%E7%A8%85%E5%BE%B5%E6%94%B6>
 - `04_地方法規/台南市/機關單位 _ _ 114年10月臺南市政府查獲擴Y.txt` — 347 bytes；SHA-256 `ae9c2cab15a1afe4684b72c618f332f66a6c1722fbec487c1923093710845d63`
   - 來源：<https://data.tainan.gov.tw/Resource/b4c07c5e-be01-4f94-a47a-34603ef1747b>
 - `04_地方法規/台南市/機關單位 _ _ 114年10月臺南市政府查獲非l.txt` — 332 bytes；SHA-256 `26865d20222d07ab69145bf8086c7357627fe3973ccf26b2e6b1971df1df2b02`
@@ -1814,24 +1814,24 @@
   - 來源：<https://data.tainan.gov.tw/Resource/0d51c5d1-1f91-41af-9543-a433a4d8806e>
 - `04_地方法規/台南市/機關單位 _ _ 114年第4季臺南市不動產經ߐ.txt` — 319 bytes；SHA-256 `1cc6e925d39a55bf4f73eeb4c7d0b9e8bc14b9ccce1e4949d5d9fede2f82acd8`
   - 來源：<https://data.tainan.gov.tw/Resource/eb541ff0-058f-49f9-946a-b332463ec1d7>
-- `04_地方法規/台南市/機關單位 _ _ 114年臺南市印花稅徵收.txt` — 3273 bytes；SHA-256 `b19bd5309d365c59a1388f77ee5c86ec0ef102014d674d71ac21d46c5103cd5e`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/6bbd491f-ab36-4e6b-8819-8c4ac6b6bb59?fileName=114%E5%B9%B4%E8%87%BA%E5%8D%97%E5%B8%82%E5%8D%B0%E8%8A%B1%E7%A8%85%E5%BE%B5%E6%94%B6>
-- `04_地方法規/台南市/機關單位 _ _ 115年1-6月臺南市印花稅徵收.txt` — 2145 bytes；SHA-256 `1820565b689afe6e08dec5dd886010793dc5e3cb3e8fba52480a05f9003d9b6c`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/b0594564-166a-47d8-a3f1-cb3269507a89?fileName=115%E5%B9%B41-6%E6%9C%88%E8%87%BA%E5%8D%97%E5%B8%82%E5%8D%B0%E8%8A%B1%E7%A8%85%E5%BE%B5%E6%94%B6>
-- `04_地方法規/台南市/機關單位 _ _ 115年6月臺南市政府查獲擴֒.txt` — 1815 bytes；SHA-256 `cc2c9b560d5967d59ee70a1607dedc61c7801ec02d17fde6344cc4aee63c473c`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/dbbf7cb0-279c-46d5-8d87-1bd10d02d759?fileName=115%E5%B9%B46%E6%9C%88%E8%87%BA%E5%8D%97%E5%B8%82%E6%94%BF%E5%BA%9C%E6%9F%A5%E7%8D%B2%E6%93%B4%E5%A4%A7%E7%87%9F%E6%A5%AD%E9%81%AD%E8%A3%81%E7%BD%B0%E4%B9%8B%E6%97%85%E5%AE%BF%E6%A5%AD%E5%90%8D%E5%96%AE>
+- `04_地方法規/台南市/機關單位 _ _ 114年臺南市印花稅徵收.txt` — 227 bytes；SHA-256 `cf083eeabcbe5d50dffd82129d12435d0643f3feaf1c6386a44f447aef625f63`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/816edfbb-3308-4c3c-9d41-3522b9113ff2>；原來源：<https://data.tainan.gov.tw/File/DirectDownload/6bbd491f-ab36-4e6b-8819-8c4ac6b6bb59?fileName=114%E5%B9%B4%E8%87%BA%E5%8D%97%E5%B8%82%E5%8D%B0%E8%8A%B1%E7%A8%85%E5%BE%B5%E6%94%B6>
+- `04_地方法規/台南市/機關單位 _ _ 115年1-6月臺南市印花稅徵收.txt` — 233 bytes；SHA-256 `68e82d431fffbd8b7c941ec5bbccc26ac6b46bd80a6dcb5161d6194eeb699c97`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/816edfbb-3308-4c3c-9d41-3522b9113ff2>；原來源：<https://data.tainan.gov.tw/File/DirectDownload/b0594564-166a-47d8-a3f1-cb3269507a89?fileName=115%E5%B9%B41-6%E6%9C%88%E8%87%BA%E5%8D%97%E5%B8%82%E5%8D%B0%E8%8A%B1%E7%A8%85%E5%BE%B5%E6%94%B6>
+- `04_地方法規/台南市/機關單位 _ _ 115年6月臺南市政府查獲擴֒.txt` — 249 bytes；SHA-256 `4b3982a5f2d1854648bee67a9ad6240888a6af1d3c3fa16e8c04ef6e876cf6ca`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/b14b8d52-04d0-44dd-901d-8e5dd0a9c864>；原來源：<https://data.tainan.gov.tw/File/DirectDownload/dbbf7cb0-279c-46d5-8d87-1bd10d02d759?fileName=115%E5%B9%B46%E6%9C%88%E8%87%BA%E5%8D%97%E5%B8%82%E6%94%BF%E5%BA%9C%E6%9F%A5%E7%8D%B2%E6%93%B4%E5%A4%A7%E7%87%9F%E6%A5%AD%E9%81%AD%E8%A3%81%E7%BD%B0%E4%B9%8B%E6%97%85%E5%AE%BF%E6%A5%AD%E5%90%8D%E5%96%AE>
 - `04_地方法規/台南市/機關單位 _ _ 115年6月臺南市政府查獲非ۍ.txt` — 247 bytes；SHA-256 `a3e11683e4aa83a517405ef2d24b7a71fd283b0246662d1ae03e7db7ed36ac8a`
   - 來源：<https://data.tainan.gov.tw/Resource/7d50a109-887a-48ac-a470-5bb7686c2109>
-- `04_地方法規/台南市/機關單位 _ _ 115年7月臺南市政府查獲擴֒.txt` — 2330 bytes；SHA-256 `ff7cd0e035daaf7b4300a6debacf5476258523a2ad413e5dbb1925347a169158`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/1de97f55-54de-4419-bef1-d18cd4f31b25?fileName=115%E5%B9%B47%E6%9C%88%E8%87%BA%E5%8D%97%E5%B8%82%E6%94%BF%E5%BA%9C%E6%9F%A5%E7%8D%B2%E6%93%B4%E5%A4%A7%E7%87%9F%E6%A5%AD%E9%81%AD%E8%A3%81%E7%BD%B0%E4%B9%8B%E6%97%85%E5%AE%BF%E6%A5%AD%E5%90%8D%E5%96%AE>
+- `04_地方法規/台南市/機關單位 _ _ 115年7月臺南市政府查獲擴֒.txt` — 279 bytes；SHA-256 `63c792b985db23444b871bc6b84c9aa10bec9977feab345cd977c5f718913f24`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/b14b8d52-04d0-44dd-901d-8e5dd0a9c864>（同主題資料集；指定時期仍待確認）
 - `04_地方法規/台南市/機關單位 _ _ 115年7月臺南市政府查獲非ۍ.txt` — 331 bytes；SHA-256 `ab9c2d5a3af22960be73fd208ce9199b49b851cee959b700ecb86ada215b8e21`
   - 來源：<https://data.tainan.gov.tw/Resource/1fdc0a45-5b09-4090-ab90-e7efacaf3628>
-- `04_地方法規/台南市/機關單位 _ _ 115年8月臺南市政府查獲擴֒.txt` — 891 bytes；SHA-256 `9a5fa15629cba77708f6c7e4c8cbd8eb6db4ef8f5d03d3917b59650665582b18`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/c52bd379-a70b-4a96-82b2-c6404739d722?fileName=115%E5%B9%B48%E6%9C%88%E8%87%BA%E5%8D%97%E5%B8%82%E6%94%BF%E5%BA%9C%E6%9F%A5%E7%8D%B2%E6%93%B4%E5%A4%A7%E7%87%9F%E6%A5%AD%E9%81%AD%E8%A3%81%E7%BD%B0%E4%B9%8B%E6%97%85%E5%AE%BF%E6%A5%AD%E5%90%8D%E5%96%AE>
+- `04_地方法規/台南市/機關單位 _ _ 115年8月臺南市政府查獲擴֒.txt` — 279 bytes；SHA-256 `de3215e6556fd6dc072f287d2cff7fcad97d0d99c54f3baae0cdbaa3652e839c`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/b14b8d52-04d0-44dd-901d-8e5dd0a9c864>（同主題資料集；指定時期仍待確認）
 - `04_地方法規/台南市/機關單位 _ _ 115年8月臺南市政府查獲非ۍ.txt` — 331 bytes；SHA-256 `b147a4f14269df75023b940265f2c045271681e31771aa5b1462850cc064ed66`
   - 來源：<https://data.tainan.gov.tw/Resource/6aae4448-2dba-4268-8fc1-00d4af4f5050>
-- `04_地方法規/台南市/機關單位 _ _ 115年9月臺南市政府查獲擴֒.txt` — 442 bytes；SHA-256 `c9e610c8b63cd74e1689dba104c518d6943a14ce254b6423882132df82fe8348`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/39cc4fbf-48c7-478b-84c7-c5cfc7c1fc6a?fileName=115%E5%B9%B49%E6%9C%88%E8%87%BA%E5%8D%97%E5%B8%82%E6%94%BF%E5%BA%9C%E6%9F%A5%E7%8D%B2%E6%93%B4%E5%A4%A7%E7%87%9F%E6%A5%AD%E9%81%AD%E8%A3%81%E7%BD%B0%E4%B9%8B%E6%97%85%E5%AE%BF%E6%A5%AD%E5%90%8D%E5%96%AE>
+- `04_地方法規/台南市/機關單位 _ _ 115年9月臺南市政府查獲擴֒.txt` — 279 bytes；SHA-256 `967d827c181d14e7b24f69f9af045a4eafa7a3c2a80db267ffc5dc4befcc3581`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/b14b8d52-04d0-44dd-901d-8e5dd0a9c864>（同主題資料集；指定時期仍待確認）
 - `04_地方法規/台南市/機關單位 _ _ 115年9月臺南市政府查獲非ۍ.txt` — 331 bytes；SHA-256 `3a2ed62c456b04b9f2091f4647f4926329271588fd15cd94277c49095ab09187`
   - 來源：<https://data.tainan.gov.tw/Resource/126f8b51-e748-48fa-bb04-19bd18fdbe72>
 - `04_地方法規/台南市/機關單位 _ _ 115年第1季不動產買賣、租࣌.txt` — 388 bytes；SHA-256 `fa88bbd63801fe5ee7aaeadfa7095c1d39a37a64851a31ed0a271779d113d7f2`
@@ -1844,20 +1844,20 @@
   - 來源：<https://data.tainan.gov.tw/Resource/c2aae82c-63dc-4918-b842-c1282fa51e82>
 - `04_地方法規/台南市/機關單位 _ _ 115年第3季不動產買賣、租࣌.txt` — 388 bytes；SHA-256 `9423be3922510fe1a014f43221e4c5974f63eee61c3c8dcc1fc51f2e58067596`
   - 來源：<https://data.tainan.gov.tw/Resource/0760547b-3893-4ce5-9780-6ddcdd534d49>
-- `04_地方法規/台南市/機關單位 _ _ 115年第3季臺南市不動產經ߐ.txt` — 1292 bytes；SHA-256 `ba51d96463a4fd62cd508799b368e59b64492968b48e632a182969330bb419b2`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/5a580299-d762-469b-aa4b-1258f0b33f12?fileName=115%E5%B9%B4%E7%AC%AC3%E5%AD%A3%E8%87%BA%E5%8D%97%E5%B8%82%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E7%B4%80%E6%A5%AD%E9%81%95%E8%A6%8F%E8%A3%81%E7%BD%B0%E5%90%8D%E5%96%AE>
+- `04_地方法規/台南市/機關單位 _ _ 115年第3季臺南市不動產經ߐ.txt` — 237 bytes；SHA-256 `b6ab1b97f62fc77d5a6d0c075725af41271c160b40d60f78e45a8f53bcd8c2ed`
+  - 來源：<https://odportal.tw/dataset/iK25lwAi>；原來源：<https://data.tainan.gov.tw/File/DirectDownload/5a580299-d762-469b-aa4b-1258f0b33f12?fileName=115%E5%B9%B4%E7%AC%AC3%E5%AD%A3%E8%87%BA%E5%8D%97%E5%B8%82%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E7%B4%80%E6%A5%AD%E9%81%95%E8%A6%8F%E8%A3%81%E7%BD%B0%E5%90%8D%E5%96%AE>
 - `04_地方法規/台南市/機關單位 _ _ CEMS排放標準.txt` — 281 bytes；SHA-256 `b8ce81e6d881565775f4f30c3517bf62079141d0af1767963b435abe405b206b`
   - 來源：<https://data.tainan.gov.tw/Resource/dd6db80d-402f-4960-a7b4-d492db4ca944>
 - `04_地方法規/台南市/機關單位 _ _ 工廠基本資料.txt` — 283 bytes；SHA-256 `8a559b64821373d26c211d383ed081fb0d8eb4b0abbeac42379fda6c07c95588`
   - 來源：<https://data.tainan.gov.tw/Resource/2635e46d-6d40-4d0c-8fb8-d773044b5fdb>
-- `04_地方法規/台南市/機關單位 _ _ 年度藥品違規廣告裁罰統&#.txt` — 181 bytes；SHA-256 `e7607cb363ccfe8fe218ebc45a02ffb53d850c1bb1705065a7a1299a58ba760d`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/fb674e96-e69d-4d92-9ee8-a400064843b2?fileName=%E5%B9%B4%E5%BA%A6%E8%97%A5%E5%93%81%E9%81%95%E8%A6%8F%E5%BB%A3%E5%91%8A%E8%A3%81%E7%BD%B0%E7%B5%B1%E8%A8%88%E8%A1%A8(101~113%E5%B9%B4%E5%BA%A6)>
-- `04_地方法規/台南市/機關單位 _ _ 年度藥品違規廣告財閥統&#.txt` — 239 bytes；SHA-256 `b924a8524a7b811e677ffe7669c74b57689426fac0115bbfdb250a1814c2d4e8`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/e92384b5-ddbf-46ac-b009-3a86c47590b5?fileName=%E5%B9%B4%E5%BA%A6%E8%97%A5%E5%93%81%E9%81%95%E8%A6%8F%E5%BB%A3%E5%91%8A%E8%B2%A1%E9%96%A5%E7%B5%B1%E8%A8%88%E8%A1%A8(101-114%E5%B9%B4%E5%BA%A6)>
+- `04_地方法規/台南市/機關單位 _ _ 年度藥品違規廣告裁罰統&#.txt` — 215 bytes；SHA-256 `61a7c7ee5e32eef6d4229caeccdffb30830e49921b9be4376b2c74ec144c5fa7`
+  - 來源：<https://odportal.tw/dataset/V8byVf3E>；原來源：<https://data.tainan.gov.tw/File/DirectDownload/fb674e96-e69d-4d92-9ee8-a400064843b2?fileName=%E5%B9%B4%E5%BA%A6%E8%97%A5%E5%93%81%E9%81%95%E8%A6%8F%E5%BB%A3%E5%91%8A%E8%A3%81%E7%BD%B0%E7%B5%B1%E8%A8%88%E8%A1%A8(101~113%E5%B9%B4%E5%BA%A6)>
+- `04_地方法規/台南市/機關單位 _ _ 年度藥品違規廣告財閥統&#.txt` — 215 bytes；SHA-256 `61a7c7ee5e32eef6d4229caeccdffb30830e49921b9be4376b2c74ec144c5fa7`
+  - 來源：<https://odportal.tw/dataset/V8byVf3E>；原來源：<https://data.tainan.gov.tw/File/DirectDownload/e92384b5-ddbf-46ac-b009-3a86c47590b5?fileName=%E5%B9%B4%E5%BA%A6%E8%97%A5%E5%93%81%E9%81%95%E8%A6%8F%E5%BB%A3%E5%91%8A%E8%B2%A1%E9%96%A5%E7%B5%B1%E8%A8%88%E8%A1%A8(101-114%E5%B9%B4%E5%BA%A6)>
 - `04_地方法規/台南市/機關單位 _ _ 年度食品違規廣告裁罰統&#.txt` — 318 bytes；SHA-256 `44ddfa903c128d6c839897134c954a9e1dbea4448fdc6c35cef53861087f4856`
   - 來源：<https://data.tainan.gov.tw/Resource/8e129ebe-efa2-4f0c-8870-e18f61a6def0>
-- `04_地方法規/台南市/機關單位 _ _ 年度食品違規廣告財閥統&#.txt` — 262 bytes；SHA-256 `a73b2a0ec34dc7cf084e708656d6f895ac74502af5ca28f9403b5b3b0312d7af`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/d014bf42-e736-43f3-8444-56d0aaac9bd1?fileName=%E5%B9%B4%E5%BA%A6%E9%A3%9F%E5%93%81%E9%81%95%E8%A6%8F%E5%BB%A3%E5%91%8A%E8%B2%A1%E9%96%A5%E7%B5%B1%E8%A8%88%E8%A1%A8(101-114%E5%B9%B4%E5%BA%A6)>
+- `04_地方法規/台南市/機關單位 _ _ 年度食品違規廣告財閥統&#.txt` — 215 bytes；SHA-256 `0ffd80b313813e9349ea5fa556c2cb7ce15cbbf36f3b0ed84ff1222540873e64`
+  - 來源：<https://odportal.tw/dataset/OVT58VLA>；原來源：<https://data.tainan.gov.tw/File/DirectDownload/d014bf42-e736-43f3-8444-56d0aaac9bd1?fileName=%E5%B9%B4%E5%BA%A6%E9%A3%9F%E5%93%81%E9%81%95%E8%A6%8F%E5%BB%A3%E5%91%8A%E8%B2%A1%E9%96%A5%E7%B5%B1%E8%A8%88%E8%A1%A8(101-114%E5%B9%B4%E5%BA%A6)>
 - `04_地方法規/台南市/機關單位 _ _ 房屋用途分類表.txt` — 267 bytes；SHA-256 `4cbeddfdfe4adef07ec2a25acbd6962872f87d719c566229df91b603a2008c58`
   - 來源：<https://data.tainan.gov.tw/Resource/bd5a4c9f-ccb2-49fe-b13b-11d0423293b9>
 - `04_地方法規/台南市/機關單位 _ _ 私立托嬰中心名冊暨收費&#.txt` — 338 bytes；SHA-256 `aed2ef7e69f73e73a1d630227f81caaf13bc48d10e6928bf39f8572727b7f9e3`
@@ -1868,18 +1868,18 @@
   - 來源：<https://data.tainan.gov.tw/Resource/55c24e9e-c027-4818-8a7a-b04e0b69e2d3>
 - `04_地方法規/台南市/機關單位 _ _ 臺南市商圈組織清冊.txt` — 270 bytes；SHA-256 `b14a192f5f4783c4e3966fac927250e04eef721819e6357c232467bedacc3f9e`
   - 來源：<https://data.tainan.gov.tw/Resource/1bce29e8-7884-4971-ac35-6eef8d405dc3>
-- `04_地方法規/台南市/機關單位 _ _ 臺南市地價調查用建築改&#.txt` — 1109 bytes；SHA-256 `eca50372a0c861dc73ae02b4fba4a0c93ab8082aaf14da298e942baafcb27cbb`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/2faa68dc-bb38-4192-a71f-767f05bb1e0c?fileName=%E8%87%BA%E5%8D%97%E5%B8%82%E5%9C%B0%E5%83%B9%E8%AA%BF%E6%9F%A5%E7%94%A8%E5%BB%BA%E7%AF%89%E6%94%B9%E8%89%AF%E7%89%A9%E6%A8%99%E6%BA%96%E5%96%AE%E5%83%B9%E8%A1%A8>
+- `04_地方法規/台南市/機關單位 _ _ 臺南市地價調查用建築改&#.txt` — 227 bytes；SHA-256 `4d26f5b2fb38d605934564af7b298a528e27948e5df88b81d06136f36225035e`
+  - 來源：<https://odportal.tw/dataset/RLfKTZTf>；原來源：<https://data.tainan.gov.tw/File/DirectDownload/2faa68dc-bb38-4192-a71f-767f05bb1e0c?fileName=%E8%87%BA%E5%8D%97%E5%B8%82%E5%9C%B0%E5%83%B9%E8%AA%BF%E6%9F%A5%E7%94%A8%E5%BB%BA%E7%AF%89%E6%94%B9%E8%89%AF%E7%89%A9%E6%A8%99%E6%BA%96%E5%96%AE%E5%83%B9%E8%A1%A8>
 - `04_地方法規/台南市/機關單位 _ _ 臺南市房屋標準單價表-114ק.txt` — 354 bytes；SHA-256 `45eb418ce69865fd3935322dd7bf77848555b6c37994e86939cde35a4cfa9413`
   - 來源：<https://data.tainan.gov.tw/Resource/3b32553f-a76e-45d7-8577-b2ab67f4e8f0>
 - `04_地方法規/台南市/機關單位 _ _ 臺南市房屋標準單價表-適&.txt` — 357 bytes；SHA-256 `a05264d0557c6dafe8e693011eaed6d48a206117e918ae5f225712feaa78467b`
   - 來源：<https://data.tainan.gov.tw/Resource/e2340172-09b6-4d06-84f3-ed86e6d6a061>
 - `04_地方法規/台南市/機關單位 _ _ 臺南市政府市政中心場地&#.txt` — 342 bytes；SHA-256 `966d7f01eea9033a458501654099ba1f7ff924e820a124596c8838957c5d0f7e`
   - 來源：<https://data.tainan.gov.tw/Resource/4fde72d7-2906-42a8-bd1e-7b2757d37140>
-- `04_地方法規/台南市/機關單位 _ _ 臺南市政府所屬機關單位&#.txt` — 789 bytes；SHA-256 `8dab1d9a04345a115525185db64f67d011ea8f2f2db370038c305c53f90537cf`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/a63c0a22-067f-4548-8542-393515ea8940?fileName=%E8%87%BA%E5%8D%97%E5%B8%82%E6%94%BF%E5%BA%9C%E6%89%80%E5%B1%AC%E6%A9%9F%E9%97%9C%E5%96%AE%E4%BD%8D%E4%B8%BB%E7%AE%A1%E6%B3%95%E8%A6%8F%E6%95%B8%E9%87%8F%E7%B5%B1%E8%A8%88-115%E5%B9%B46%E6%9C%88>
-- `04_地方法規/台南市/機關單位 _ _ 臺南市政府檔案閱覽抄錄&#.txt` — 13170 bytes；SHA-256 `715d9e02e5782c430ab00c5ac7413a0f350764f842a86085c5938e8fa40fcf08`
-  - 來源：<https://data.tainan.gov.tw/File/DirectDownload/6795c5db-36fb-443c-8024-5c3fc1987243?fileName=%E8%87%BA%E5%8D%97%E5%B8%82%E6%94%BF%E5%BA%9C%E6%AA%94%E6%A1%88%E9%96%B1%E8%A6%BD%E6%8A%84%E9%8C%84%E8%A4%87%E8%A3%BD%E6%94%B6%E8%B2%BB%E6%A8%99%E6%BA%96>；<https://aa.archives.gov.tw/Home/PublishDetail?cnid=109777&pid=9>
+- `04_地方法規/台南市/機關單位 _ _ 臺南市政府所屬機關單位&#.txt` — 246 bytes；SHA-256 `97d107a471f62f7c0fb11c105de0b854e3eb807fa36f229605eb61970c4280d3`
+  - 來源：<https://odportal.tw/dataset/wSY0DYvM>（同主題資料集；指定時期仍待確認）
+- `04_地方法規/台南市/機關單位 _ _ 臺南市政府檔案閱覽抄錄&#.txt` — 229 bytes；SHA-256 `86977709861185dc5dd3c84ca5f4f1e3acefa0d07e74db1909d3b1a6e8b1cf1d`
+  - 來源：<https://sab.tainan.gov.tw/cl.aspx?n=41136>；原來源：<https://data.tainan.gov.tw/File/DirectDownload/6795c5db-36fb-443c-8024-5c3fc1987243?fileName=%E8%87%BA%E5%8D%97%E5%B8%82%E6%94%BF%E5%BA%9C%E6%AA%94%E6%A1%88%E9%96%B1%E8%A6%BD%E6%8A%84%E9%8C%84%E8%A4%87%E8%A3%BD%E6%94%B6%E8%B2%BB%E6%A8%99%E6%BA%96>
 - `04_地方法規/台南市/機關單位 _ _ 臺南市政府警察局114年上半.txt` — 327 bytes；SHA-256 `a90454dff70ebc21cf03d155767ddd3ea85f8ac9a0d93a995e2c554e3c36d5ec`
   - 來源：<https://data.tainan.gov.tw/Resource/72a3a926-ec66-4607-8366-099c03f51997>
 - `04_地方法規/台南市/機關單位 _ _ 臺南市政府警察局114年下半.txt` — 327 bytes；SHA-256 `b8e3569bc150a3b5293bde8e5e7f428e616a3fb6f3253f512b94fc00d472ecb6`
@@ -4114,34 +4114,14 @@
 
 2026-11-04：將 391 筆難以直接閱讀的資料表、機器格式與圖資內容改為來源網頁連結。部分連結為官方網站搜尋結果，實際歷史年度與可用格式需在來源網站確認。
 
+2026-11-04：另確認 19 筆資料的來源頁或同主題歷史頁；部分歷史頁未確認特定年度。
+
+2026-11-04：另確認 3 筆資料的來源頁或同主題歷史頁；部分歷史頁未確認特定年度。
+
+2026-11-04：新增 4 筆同主題資料頁，指定月份或年度是否仍提供尚待確認。
+
 ## 尚待確認來源的資料
 
-下列資料未確認可直接查閱的對應網頁，原文字暫留存並暫不列入助理推薦，避免開啟難讀內容。
+下列資料尚無可直接查閱的對應統計資料頁，原文字暫留存且不列入助理推薦。
 
-- `03_都市計畫書圖/其他中央機關/103年科技發展細部計畫_CSV_e8ece0.txt`
-- `03_都市計畫書圖/其他中央機關/105年科技發展細部計畫_CSV_d632ce.txt`
-- `03_都市計畫書圖/其他中央機關/106年科技發展細部計畫_CSV_9d8d7a.txt`
-- `03_都市計畫書圖/其他中央機關/107年科技發展細部計畫_CSV_92a68f.txt`
-- `03_都市計畫書圖/其他中央機關/108年科技發展細部計畫_CSV_8af675.txt`
-- `03_都市計畫書圖/其他中央機關/109年科技發展細部計畫_CSV_e8f85d.txt`
-- `03_都市計畫書圖/其他中央機關/110年科技發展細部計畫_CSV_0af6f2.txt`
-- `03_都市計畫書圖/其他中央機關/111年科技發展細部計畫_CSV_f7543d.txt`
-- `03_都市計畫書圖/其他中央機關/都市計畫區人口數與人口密度─按區域別分 _都市計畫區人口數與人口密度─按區域別分_f1020a.txt`
-- `03_都市計畫書圖/其他中央機關/都市計畫土地使用分區面積─按區域別分 _都市計畫土地使用分區面積─按區域別分_fb058c.txt`
-- `03_都市計畫書圖/國土管理署（中央）/新訂或擴大都市計畫案件進度_新訂或擴大都市計畫案件進度_80323d.txt`
 - `03_都市計畫書圖/連江縣（馬祖）/連江縣都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_XLSX_e2ea8e.txt`
-- `04_地方法規/台南市/機關單位 _ _ 112年臺南市印花稅徵收.txt`
-- `04_地方法規/台南市/機關單位 _ _ 113年臺南市印花稅徵收.txt`
-- `04_地方法規/台南市/機關單位 _ _ 114年臺南市印花稅徵收.txt`
-- `04_地方法規/台南市/機關單位 _ _ 115年1-6月臺南市印花稅徵收.txt`
-- `04_地方法規/台南市/機關單位 _ _ 115年6月臺南市政府查獲擴֒.txt`
-- `04_地方法規/台南市/機關單位 _ _ 115年7月臺南市政府查獲擴֒.txt`
-- `04_地方法規/台南市/機關單位 _ _ 115年8月臺南市政府查獲擴֒.txt`
-- `04_地方法規/台南市/機關單位 _ _ 115年9月臺南市政府查獲擴֒.txt`
-- `04_地方法規/台南市/機關單位 _ _ 115年第3季臺南市不動產經ߐ.txt`
-- `04_地方法規/台南市/機關單位 _ _ 年度藥品違規廣告裁罰統&#.txt`
-- `04_地方法規/台南市/機關單位 _ _ 年度藥品違規廣告財閥統&#.txt`
-- `04_地方法規/台南市/機關單位 _ _ 年度食品違規廣告財閥統&#.txt`
-- `04_地方法規/台南市/機關單位 _ _ 臺南市地價調查用建築改&#.txt`
-- `04_地方法規/台南市/機關單位 _ _ 臺南市政府所屬機關單位&#.txt`
-- `04_地方法規/台南市/機關單位 _ _ 臺南市政府檔案閱覽抄錄&#.txt`
