@@ -1,9 +1,10 @@
 // Search the separately maintained reference archive without treating its
 // historical, extracted or OCR text as verified current legislation.
 (function (global) {
-  const INDEX = 'data/laws/reference-archive/search-index.json?v=20261104f';
+  const INDEX = 'data/laws/reference-archive/search-index.json?v=20261104g';
   const MAX_DOCUMENT_BYTES = 3000000;
   let indexPromise;
+  let snapshotsPromise;
   const ignored = new Set(['什麼','哪些','如何','可以','請問','規定','相關','資料','查詢','建築','營建','文件','法規','台灣','臺灣','規範','設計','標準']);
 
   function grams(value) {
@@ -78,9 +79,11 @@
     }
     if (quoted) return null;
     if (cell || row.length) { row.push(cell.replace(/\r$/, '').trim()); rows.push(row); }
-    if (rows.length < 2 || rows[0].length < 2 || rows[0].length > 20 ||
+    if (rows.length < 2 || rows[0].length < 2 || rows[0].length > 80 ||
         rows[0].some(x => !x || x.length > 80) || rows.some(r => r.length !== rows[0].length || r.some(x => x.length > 200))) return null;
-    return rows;
+    const columns = rows[0].map((name, i) => /代碼|郵遞區號|電子郵件|電話|市話|經度|緯度|坐標/.test(name) ? -1 : i).filter(i => i >= 0);
+    if (columns.length < 2) return null;
+    return rows.map(r => columns.map(i => r[i]));
   }
 
   function parseTable(text) {
@@ -91,7 +94,7 @@
       if (!Array.isArray(data) || !data.length || data.length > 5000 ||
           data.some(x => !x || Array.isArray(x) || typeof x !== 'object')) return null;
       const headers = Object.keys(data[0]).filter(k => !/代碼|郵遞區號|電子郵件|電話|市話|序號|經度|緯度|坐標|坐標系/.test(k));
-      if (headers.length < 2 || headers.length > 20 || headers.some(h => h.length > 80)) return null;
+      if (headers.length < 2 || headers.length > 80 || headers.some(h => h.length > 80)) return null;
       const rows = data.map(item => headers.map(k => {
         const value = item[k];
         if (value === undefined || value === null) return '';
@@ -105,13 +108,27 @@
   }
 
   async function liveTable(doc, question) {
-    if (!doc.tableSource || !/數據|統計|多少|數量|面積|人口|資料|表格|比較|幾/.test(question)) return null;
+    if (!doc.tableSource && !doc.hasSnapshot) return null;
     try {
-      const u = new URL(doc.tableSource);
-      if (u.protocol !== 'https:' || u.hostname !== 'newdatacenter.taichung.gov.tw' || u.pathname !== '/api/v1/no-auth/resource.download') return null;
-      const res = await fetch(u.href, { signal: AbortSignal.timeout(4000), credentials: 'omit' });
-      if (!res.ok || Number(res.headers.get('content-length') || 0) > 250000) return null;
-      const rows = parseTable(await res.text());
+      let text = '', source = '', retrieved = '';
+      if (doc.tableSource) {
+        try {
+          const u = new URL(doc.tableSource);
+          if (u.protocol !== 'https:' || u.hostname !== 'newdatacenter.taichung.gov.tw' || u.pathname !== '/api/v1/no-auth/resource.download') return null;
+          const res = await fetch(u.href, { signal: AbortSignal.timeout(4000), credentials: 'omit' });
+          if (res.ok && Number(res.headers.get('content-length') || 0) <= 250000) { text = await res.text(); source = u.href; }
+        } catch (_) { /* Try a stored snapshot when the live source is unavailable. */ }
+      }
+      if (!text && doc.hasSnapshot) {
+        if (!snapshotsPromise) snapshotsPromise = fetch('data/laws/reference-archive/source-snapshots.json?v=20261104g').then(r => {
+          if (!r.ok) throw new Error('Snapshots unavailable');
+          return r.json();
+        }).catch(e => { snapshotsPromise = null; throw e; });
+        const snapshots = await snapshotsPromise;
+        const item = snapshots[doc.path.replace(/^data\/laws\/reference-archive\//, '')];
+        if (item) { text = item.text; source = item.source; retrieved = item.retrieved; }
+      }
+      const rows = parseTable(text);
       if (!rows) return null;
       const year = question.match(/(?:民國)?(\d{3,4})年/);
       let body = rows.slice(1);
@@ -128,7 +145,11 @@
         if (matched.length) body = matched;
         else if (!doc.name.replace('台', '臺').includes(needle) && !doc.path.replace('台', '臺').includes(needle)) return null;
       }
-      return { headers: rows[0], rows: body.slice(0, 10), total: body.length, source: u.href };
+      // If a question names an exact table value, show those rows first.
+      const matches = [...new Set(body.flat().filter(cell => cell.length >= 3 && cell.length <= 30 &&
+        /[\u3400-\u9fff]/.test(cell) && question.includes(cell)))].sort((a, b) => b.length - a.length);
+      if (matches.length) body = body.filter(row => row.includes(matches[0]));
+      return { headers: rows[0], rows: body.slice(0, 10), total: body.length, source, retrieved };
     } catch (_) { return null; }
   }
 
@@ -139,7 +160,7 @@
         const href = safePath(doc.path);
         if (doc.bytes > MAX_DOCUMENT_BYTES) return { ...doc, href, excerpt: '', note: '檔案較大，請開啟來源檔查閱。' };
         try {
-          const response = await fetch(`${href}?v=20261104f`);
+          const response = await fetch(`${href}?v=20261104g`);
           if (!response.ok) throw new Error('not available');
           const text = await response.text();
           // Link-only records are deliberately distinguished from source text:
@@ -154,7 +175,7 @@
               const table = await liveTable(doc, question);
               return { ...doc, name: title ? title[1].trim() : doc.name, href: source.href, table,
                 excerpt: table ? [table.headers, ...table.rows].map(row => row.join(' | ')).join('\n') : '',
-                note: table ? `以下是即時讀取的來源資料，共 ${table.total} 筆，顯示前 ${table.rows.length} 筆；注意表內年度及單位。` : `此項只有來源連結，未提供正文；${how ? how[1].trim() : '請前往來源查閱。'}` };
+                note: table ? `以下是${table.retrieved ? `擷取於 ${table.retrieved} 的來源資料副本` : '即時讀取的來源資料'}，符合篩選共 ${table.total} 筆，顯示前 ${table.rows.length} 筆；注意表內年度及單位。` : `此項只有來源連結，未提供正文；${how ? how[1].trim() : '請前往來源查閱。'}` };
             }
           }
           return { ...doc, href, excerpt: snippet(text, terms, question), note: '文字可能為歷史版本或 OCR 擷取，請核對原始來源。' };

@@ -21,6 +21,7 @@ def build():
     catalog = json.loads(CATALOG.read_text(encoding='utf-8'))
     excluded = set(json.loads((ARCHIVE / 'excluded-from-search.json').read_text(encoding='utf-8')))
     live_sources = json.loads((ARCHIVE / 'live-sources.json').read_text(encoding='utf-8'))
+    snapshot_sources = json.loads((ARCHIVE / 'snapshot-sources.json').read_text(encoding='utf-8'))
     docs = []
     postings = defaultdict(list)
     for category in catalog['categories']:
@@ -36,6 +37,8 @@ def build():
             source = live_sources.get(p.relative_to(ARCHIVE).as_posix())
             if source:
                 entry['tableSource'] = source
+            if p.relative_to(ARCHIVE).as_posix() in snapshot_sources:
+                entry['hasSnapshot'] = True
             docs.append(entry)
             for term in terms(doc['name'] + '\n' + text):
                 postings[term].append(identifier)
