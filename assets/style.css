@@ -1645,7 +1645,7 @@ body.brief-open .chat-fab { opacity: 0; pointer-events: none; transform: scale(0
 .chat-resize-top { top: 0; left: 24px; right: 24px; height: 10px; cursor: ns-resize; }
 .chat-resize-left { top: 24px; bottom: 24px; left: 0; width: 10px; cursor: ew-resize; }
 .chat-resize-corner { top: 0; left: 0; width: 24px; height: 24px; cursor: nwse-resize; }
-.chat-resize-corner::after { content: ''; position: absolute; top: 6px; left: 6px; width: 9px; height: 9px; border-top: 2px solid var(--muted); border-left: 2px solid var(--muted); border-radius: 4px 0 0 0; opacity: 0.65; }
+.chat-resize-corner::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-top: 2px solid var(--muted); border-left: 2px solid var(--muted); border-radius: 14px 0 0 0; opacity: 0.65; }
 
 
 .chat-head {
