@@ -510,7 +510,7 @@ def cover(deck: Deck, d: dict, c: dict):
     s = deck.prs.slides.add_slide(deck.blank)
     s.background.fill.solid()
     s.background.fill.fore_color.rgb = CREAM
-    text(s, MX, Inches(0.6), Inches(8), Inches(0.3), "AI ANALYSIS · 每日自動化分析報告", size=10.5, color=MUTED, spacing=300)
+    text(s, MX, Inches(0.6), Inches(8), Inches(0.3), "每日自動化分析報告", size=10.5, color=MUTED, spacing=300)
     text(s, MX, Inches(1.15), Inches(7.5), Inches(0.9), "T O D A Y", size=50, color=SAND, kind="serif", spacing=1200)
     text(s, MX, Inches(1.95), Inches(7.6), Inches(1.1), "鋼市每日快報", size=58, bold=True)
     rect(s, MX, Inches(3.35), Inches(0.07), Inches(1.0), COPPER)
