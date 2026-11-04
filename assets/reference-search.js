@@ -1,7 +1,7 @@
 // Search the separately maintained reference archive without treating its
 // historical, extracted or OCR text as verified current legislation.
 (function (global) {
-  const INDEX = 'data/laws/reference-archive/search-index.json?v=20261104h';
+  const INDEX = 'data/laws/reference-archive/search-index.json?v=20261104i';
   const MAX_DOCUMENT_BYTES = 3000000;
   let indexPromise;
   let snapshotsPromise;

@@ -408,6 +408,13 @@ def main() -> int:
         return 1
 
     wanted = list(CATALOG)
+    civil_path = ROOT / "scripts" / "civil_laws_catalog.json"
+    civil = json.loads(civil_path.read_text(encoding="utf-8"))
+    seen_names = {entry[0] for entry in wanted}
+    for name in civil["names"]:
+        if name not in seen_names:
+            wanted.append((name, [C, D], None))
+            seen_names.add(name)
     for name in items:
         for pat, cats in EXTRA_PATTERNS:
             if pat.search(name) and not any(name == w[0] for w in wanted):
@@ -422,10 +429,14 @@ def main() -> int:
             continue
         doc = convert(law, cats, ranges)
         (OUT / f"{doc['pcode']}.json").write_text(json.dumps(doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-        index.append({k: doc[k] for k in ("name", "pcode", "level", "categories", "modified", "url", "partial")}
+        index.append({k: doc[k] for k in ("name", "pcode", "level", "categories", "modified", "url", "partial", "effective_note")}
                      | {"articles": len(doc["articles"])})
     for name in missing:
         log(f"MISSING: {name}")
+    missing_civil = sorted(set(missing) & set(civil["names"]))
+    if missing_civil:
+        log(f"{len(missing_civil)} catalogued civil laws are absent from the source; refusing to replace the index pending review")
+        return 1
     if len(index) < len(CATALOG) * 0.8:
         log(f"only {len(index)} of {len(CATALOG)} laws found; not writing the index")
         return 1
@@ -439,7 +450,7 @@ def main() -> int:
                 pass
     for doc in build_local(existing):
         (OUT / f"{doc['pcode']}.json").write_text(json.dumps(doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-        index.append({k: doc[k] for k in ("name", "pcode", "level", "categories", "modified", "url", "partial")}
+        index.append({k: doc[k] for k in ("name", "pcode", "level", "categories", "modified", "url", "partial", "effective_note")}
                      | {"articles": len(doc["articles"]), "region": doc["region"]})
 
     keep = {f"{x['pcode']}.json" for x in index} | {"index.json", "README.md"}

@@ -62,6 +62,8 @@ require('../assets/reference-search.js');
     const item = results.find(x => x.knowledge && x.knowledge.id.startsWith(expected));
     assert(item && item.href.startsWith('https://') && item.excerpt && item.note.includes('來源'));
   }
+  const soil = await api.search('營建剩餘土石方處理方案', ['營建剩餘土石方', '處理方案']);
+  assert(soil.some(x => x.href === 'https://www.nlma.gov.tw/ch/legislation/regsearch/9'));
   const county = await api.search('非都市土地使用分區彰化縣', ['非都市', '使用分區', '彰化縣']);
   assert(county[0].name.includes('彰化縣'));
   assert.deepEqual(await api.search('zz9q8x7y6w', ['zz9q8x7y6w']), []);
