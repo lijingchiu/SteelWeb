@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261104t">
+  <link rel="stylesheet" href="assets/style.css?v=20261104u">
 </head>
 <body>
 
@@ -323,29 +323,8 @@
       <div class="table-footnote" id="mat-sources">
         資料來源：台灣金屬行情網、行政院主計總處、臺北市／新北市／臺中市政府主計處（政府資料開放授權條款）、World Bank Commodity Price Data（CC BY 4.0）、臺灣證券交易所 OpenAPI。標示「過期」的品項代表來源暫時無法連線，沿用前次資料。
       </div>
-    </section>
-
-    <!-- § 02 Chart -->
-    <section class="section section-chart" id="chart" data-fade>
-      <div class="section-head">
-        <div>
-          <div class="kicker">§ 03 · PRICE TREND</div>
-          <h2 class="h2">近期價格走勢</h2>
-        </div>
-        <div class="chart-legend">
-          <span class="legend-dot" style="background:var(--chart-1)"></span><span>小鋼胚</span>
-          <span class="legend-dot" style="background:var(--chart-2)"></span><span>鋼筋</span>
-          <span class="legend-dot" style="background:var(--chart-3)"></span><span>H型鋼</span>
-          <span class="legend-dot" style="background:var(--chart-4)"></span><span>棒線</span>
-        </div>
-      </div>
-      <div class="chart-wrapper">
-        <canvas id="price-chart"></canvas>
-      </div>
-    </section>
-
-    <!-- § 04 Price forecast -->
-    <section class="section section-forecast" id="forecast" data-fade>
+    <details class="mat-research" id="forecast">
+      <summary>查看五項鋼材預測研究與歷史命中率</summary>
       <div class="section-head">
         <div>
           <div class="kicker">§ 04 · PRICE OUTLOOK</div>
@@ -372,6 +351,27 @@
       </div>
 
       <div class="table-footnote">「本週／下週」預測市場實際成交行情；「下一期月均價」預測台灣金屬行情網下一次公布的月均價，公布後會自動計分。預測由 AI 依新聞、國際行情與原物料資料推論，僅供參考，不構成交易建議。</div>
+    </details>
+
+    </section>
+
+    <!-- § 02 Chart -->
+    <section class="section section-chart" id="chart" data-fade>
+      <div class="section-head">
+        <div>
+          <div class="kicker">§ 03 · PRICE TREND</div>
+          <h2 class="h2">近期價格走勢</h2>
+        </div>
+        <div class="chart-legend">
+          <span class="legend-dot" style="background:var(--chart-1)"></span><span>小鋼胚</span>
+          <span class="legend-dot" style="background:var(--chart-2)"></span><span>鋼筋</span>
+          <span class="legend-dot" style="background:var(--chart-3)"></span><span>H型鋼</span>
+          <span class="legend-dot" style="background:var(--chart-4)"></span><span>棒線</span>
+        </div>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="price-chart"></canvas>
+      </div>
     </section>
 
     <!-- § 05 Market Analysis -->
@@ -567,7 +567,8 @@
     </div>
   </section>
 
-  <script src="assets/app.js?v=20261104q"></script>
+  <script src="assets/material-forecast.js?v=1"></script>
+  <script src="assets/app.js?v=20261104r"></script>
   <script src="assets/reference-search.js?v=20261104h"></script>
   <script src="assets/chat-web.js?v=20261104c"></script>
   <script src="assets/vendor/jszip.min.js?v=3.10.1"></script>

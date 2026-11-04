@@ -188,6 +188,8 @@ function goToAnchor(anchor, search) {
     }
   }
   const target = document.getElementById(anchor) || document.getElementById('news');
+  if (target?.tagName === 'DETAILS') target.open = true;
+  for (let parent = target?.parentElement; parent; parent = parent.parentElement) if (parent.tagName === 'DETAILS') parent.open = true;
   if (!target) return;
   const section = target.closest('.section');
   if (section) section.classList.add('in');
@@ -766,7 +768,7 @@ function populateAccuracy(acc) {
 
 // ── Construction materials ────────────────────────────────
 
-const matState = { q: '', group: 'all', freq: 'all', data: null, expanded: new Set() };
+const matState = { q: '', group: 'all', freq: 'all', data: null, analysis: null, expanded: new Set(), openItems: new Set(), charts: [] };
 const MAT_PREVIEW = 6;
 const MAT_QUIET_REGIONS = new Set(['全國', '國際', '臺灣']);
 
@@ -775,6 +777,10 @@ function fmtValue(v) {
   const abs = Math.abs(v);
   const d = abs >= 1000 ? 0 : abs >= 100 ? 1 : 2;
   return v.toLocaleString('zh-TW', { minimumFractionDigits: 0, maximumFractionDigits: d });
+}
+
+function fmtHistory(v) {
+  return typeof v === 'number' && Number.isFinite(v) ? v.toLocaleString('zh-TW', { maximumFractionDigits: 4 }) : '-';
 }
 
 function sparkline(history) {
@@ -797,6 +803,8 @@ function matMatches(it, tokens) {
 function renderMaterials() {
   const m = matState.data;
   const list = document.getElementById('mat-list');
+  matState.charts.forEach(chart => chart.destroy());
+  matState.charts = [];
   if (!m || !list) return;
   const groupsById = Object.fromEntries((m.groups || []).map(g => [g.id, g]));
   const tokens = matState.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -828,6 +836,13 @@ function renderMaterials() {
     lastGroup = it.group;
   });
   list.innerHTML = rows.join('');
+  list.querySelectorAll('.mat-detail').forEach(detail => {
+    detail.addEventListener('toggle', () => {
+      if (detail.open) { matState.openItems.add(detail.dataset.id); drawMaterialChart(detail); }
+      else { matState.openItems.delete(detail.dataset.id); if (typeof Chart !== 'undefined') { const chart = Chart.getChart(detail.querySelector('canvas')); if (chart) { chart.destroy(); matState.charts = matState.charts.filter(c => c !== chart); } } }
+    });
+    if (detail.open) drawMaterialChart(detail);
+  });
   list.onclick = e => {
     const b = e.target.closest('.mat-more');
     if (!b) return;
@@ -836,26 +851,71 @@ function renderMaterials() {
   };
 }
 
-function matRow(it, groupsById, withHeader) {
-  {
-    const header = withHeader
-      ? `<div class="mat-group-head"><span>${esc(groupsById[it.group]?.name || it.group)}</span><span class="mat-group-desc">${esc(groupsById[it.group]?.desc || '')}</span></div>`
-      : '';
-    const pct = typeof it.change_pct === 'number' ? it.change_pct : null;
-    const cls = pct === null ? 'stable' : pct > 0 ? 'up' : pct < 0 ? 'down' : 'stable';
-    const arrow = pct === null ? '' : pct > 0 ? '▲' : pct < 0 ? '▼' : '—';
-    const chg = pct === null ? '-' : `${arrow} ${Math.abs(pct).toFixed(2)}%`;
-    const region = it.region && !MAT_QUIET_REGIONS.has(it.region) && !it.name.includes(it.region) ? `<span class="mat-tag">${esc(it.region)}</span>` : '';
-    const stale = it.stale ? '<span class="mat-tag mat-stale">過期</span>' : '';
-    return `${header}<div class="mat-row">
-        <div class="mat-name">${esc(it.name)}${region}${stale}</div>
-        <div class="mat-spark">${sparkline(it.history)}</div>
-        <div class="mat-value">${fmtValue(it.value)}<span class="mat-unit">${esc(it.unit)}</span></div>
-        <div class="mat-chg price-change ${cls}">${chg}</div>
-        <div class="mat-meta"><span class="mat-freq">${esc(it.freq)}</span>${esc(it.period)}
-          <a href="${safeUrl(it.source_url)}" target="_blank" rel="noopener">${esc(it.source)}</a></div>
-      </div>`;
+function materialForecast(it) {
+  const analysis = matState.analysis || {};
+  const forecast = analysis.price_forecast?.items?.[it.id];
+  const target = analysis.price_forecast?.targets?.[it.id];
+  const checked = forecast && target && target.baseline_month === it.period && Number(target.baseline_value) === Number(it.value) && !it.stale;
+  if (checked && (forecast.week || forecast.next_month)) {
+    const facts = Object.fromEntries((analysis.research?.facts || []).map(x => [x.id, x]));
+    return `<div class="mat-forecast-head">AI 研究預測 · 發布於 ${esc(analysis.date || '-')}</div>
+      ${forecast.week ? fcBlock(`${analysis.price_forecast.week_label || '本週'}行情 ${analysis.price_forecast.week_range || ''}`, forecast.week) : ''}
+      ${forecast.next_month ? fcBlock(`下一期月均價 ${target.target_month || ''}`, forecast.next_month, fcScenarios(forecast.next_month, forecast.ensemble)) : ''}
+      ${fcRisk(forecast, facts)}`;
   }
+  const model = window.SteelMaterialForecast.baseline(it);
+  if (!model.available) return `<div class="mat-forecast-head">走勢預測</div><p class="mat-model-note">${esc(model.reason)} 目前有 ${model.points} 筆歷史紀錄。</p>`;
+  const label = { up: '偏漲', down: '偏跌', stable: '持平' }[model.direction];
+  const delta = `${model.delta > 0 ? '+' : ''}${fmtHistory(model.delta)}`;
+  return `<div class="mat-forecast-head">下一資料期 · 歷史基準推估 <span class="trend-badge ${model.direction}">${label}</span></div>
+    <p class="mat-model-value">參考值 ${fmtHistory(model.estimate)} ${esc(it.unit)} <span>（${delta} ${esc(it.unit)}）</span></p>
+    <p class="mat-model-note">計算依據：最近 ${model.changes} 次資料變動的中位數，套用至 ${esc(it.period)} 的數值；共 ${model.points} 筆歷史紀錄。${model.short ? '樣本很少，推估高度不確定。' : '僅為歷史外推，未納入最新消息。'}${it.group === 'stocks' ? ' 股價波動大，非投資建議。' : ''}</p>`;
+}
+
+function matRow(it, groupsById, withHeader) {
+  const header = withHeader
+    ? `<div class="mat-group-head"><span>${esc(groupsById[it.group]?.name || it.group)}</span><span class="mat-group-desc">${esc(groupsById[it.group]?.desc || '')}</span></div>` : '';
+  const pct = typeof it.change_pct === 'number' ? it.change_pct : null;
+  const cls = pct === null ? 'stable' : pct > 0 ? 'up' : pct < 0 ? 'down' : 'stable';
+  const arrow = pct === null ? '' : pct > 0 ? '▲' : pct < 0 ? '▼' : '—';
+  const chg = pct === null ? '-' : `${arrow} ${Math.abs(pct).toFixed(2)}%`;
+  const region = it.region && !MAT_QUIET_REGIONS.has(it.region) && !it.name.includes(it.region) ? `<span class="mat-tag">${esc(it.region)}</span>` : '';
+  const stale = it.stale ? '<span class="mat-tag mat-stale">過期</span>' : '';
+  return `${header}<details class="mat-detail" data-id="${esc(it.id)}"${matState.openItems.has(it.id) ? ' open' : ''}>
+    <summary class="mat-row">
+      <span class="mat-name">${esc(it.name)}${region}${stale}<span class="mat-expand-hint">展開預測與走勢 ▾</span></span>
+      <span class="mat-spark">${sparkline(it.history)}</span>
+      <span class="mat-value">${fmtValue(it.value)}<span class="mat-unit">${esc(it.unit)}</span></span>
+      <span class="mat-chg price-change ${cls}">${chg}</span>
+      <span class="mat-meta"><span class="mat-freq">${esc(it.freq)}</span>${esc(it.period)} · ${esc(it.source)}</span>
+    </summary>
+    <div class="mat-detail-content">
+      <div class="mat-chart-title">歷史走勢 <span>按住並拖曳查看各期數值</span></div>
+      <div class="mat-chart-box"><canvas aria-label="${esc(it.name)}歷史走勢圖" role="img"></canvas></div>
+      <div class="mat-detail-forecast">${materialForecast(it)}</div>
+      <div class="mat-detail-source">參考資料：<a href="${safeUrl(it.source_url)}" target="_blank" rel="noopener">${esc(it.source)} ↗</a>${it.note ? ` · ${esc(it.note)}` : ''}</div>
+    </div>
+  </details>`;
+}
+
+function drawMaterialChart(detail) {
+  if (!detail.open) return;
+  if (typeof Chart === 'undefined') { const box = detail.querySelector('.mat-chart-box'); if (box) box.textContent = '走勢圖載入失敗，請檢查網路後重新整理。'; return; }
+  const canvas = detail.querySelector('canvas');
+  if (!canvas || Chart.getChart(canvas)) return;
+  const it = (matState.data?.items || []).find(x => x.id === detail.dataset.id);
+  const history = (it?.history || []).filter(p => Array.isArray(p) && typeof p[0] === 'string' && Number.isFinite(p[1]));
+  if (!history.length) { canvas.parentElement.textContent = '目前沒有可繪製的歷史資料'; return; }
+  const color = cssVar('--copper');
+  const chart = new Chart(canvas, {
+    type: 'line',
+    data: { labels: history.map(p => p[0]), datasets: [{ label: it.name, data: history.map(p => p[1]), borderColor: color, backgroundColor: tint(color, 0.08), borderWidth: 2, tension: 0.25, fill: true, pointRadius: 0, pointHoverRadius: 0, pointHitRadius: 18 }] },
+    options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { display: false }, tooltip: { enabled: true, backgroundColor: cssVar('--tooltip-bg'), titleColor: cssVar('--ink'), bodyColor: cssVar('--ink'), callbacks: { label: ctx => `${fmtHistory(ctx.parsed.y)} ${it.unit}` } } },
+      scales: { x: { grid: { display: false }, ticks: { maxTicksLimit: 6, maxRotation: 0, color: cssVar('--muted') } }, y: { grid: { color: cssVar('--chart-grid') }, ticks: { maxTicksLimit: 5, color: cssVar('--muted'), callback: value => fmtValue(value) } } }
+    }
+  });
+  matState.charts.push(chart);
 }
 
 function chipRow(el, options, key) {
@@ -968,6 +1028,7 @@ async function loadData() {
     const [materials, accuracy, report] = await Promise.all([
       fetchJson('data/materials.json'), fetchJson('data/accuracy.json'), fetchJson('data/report.json')]);
     populateReport(report, data);
+    matState.analysis = data;
     populateMaterials(materials);
     populateAccuracy(accuracy);
     maybeOpenBriefingFromPush(data);
@@ -986,7 +1047,7 @@ async function loadData() {
 
 // ── Section navigation: smooth in-page jumps and the current-section highlight ──
 
-const NAV_SECTIONS = ['prices', 'materials', 'chart', 'forecast', 'analysis', 'news', 'subscribe'];
+const NAV_SECTIONS = ['prices', 'materials', 'forecast', 'chart', 'analysis', 'news', 'subscribe'];
 
 function setActiveSection(id) {
   document.querySelectorAll('.tab[data-sec], .nav-link[data-sec]').forEach(a => {
@@ -1020,6 +1081,8 @@ function initNav() {
     if (!target) return;
     e.preventDefault();
     _userInteracted = true;
+    if (target.tagName === 'DETAILS') target.open = true;
+    for (let parent = target.parentElement; parent; parent = parent.parentElement) if (parent.tagName === 'DETAILS') parent.open = true;
     const section = target.closest('.section');
     if (section) section.classList.add('in');
     target.classList.add('in');
@@ -1084,6 +1147,9 @@ function applyTheme(choice) {
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute('content', cssVar('--cream') || '#e3e3e8');
   drawChart();
+  matState.charts.forEach(chart => chart.destroy());
+  matState.charts = [];
+  document.querySelectorAll('.mat-detail[open]').forEach(drawMaterialChart);
 }
 
 function initTheme() {
