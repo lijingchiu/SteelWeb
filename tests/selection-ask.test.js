@@ -7,8 +7,9 @@ function element(id) {
     addEventListener(type, fn) {this.handlers[type]=fn;}, contains(node) {return node === this;}, focus() {}};
 }
 const form = element('selection-ask');
+let selectionText = '鋼筋價格上漲'.repeat(500), clearCount = 0;
 const selection = {isCollapsed:false, rangeCount:1, anchorNode:{nodeType:1,closest:()=>null}, focusNode:{nodeType:1,closest:()=>null},
-  toString:()=> '鋼筋價格上漲'.repeat(500), getRangeAt:()=>({cloneRange:()=>({getBoundingClientRect:()=>({left:30,top:80,bottom:100,width:100,height:20})})}), removeAllRanges() {this.isCollapsed=true;}};
+  toString:()=>selectionText, getRangeAt:()=>({cloneRange:()=>({getBoundingClientRect:()=>({left:30,top:80,bottom:100,width:100,height:20})})}), removeAllRanges() {clearCount++;this.isCollapsed=true;}};
 let staged, submissions=0, editId, markers=[];
 const document = {activeElement:null,getElementById:element, addEventListener(type,fn){handlers[type]=fn;}, body:{appendChild(){}},
   createElement(){const button={style:{},hidden:false,handlers:{},addEventListener(t,fn){this.handlers[t]=fn;},setAttribute(){},remove(){this.removed=true;}}; markers.push(button); return button;},
@@ -41,5 +42,19 @@ vm.runInNewContext(fs.readFileSync(require.resolve('../assets/selection-ask.js')
   assert.equal(form.hidden,true); assert.equal(element('selection-ask-trigger').hidden,false); element('selection-ask-trigger').handlers.click(); await form.handlers.submit({preventDefault(){}});
   assert.equal(staged.file.type,'image/png'); assert.equal(staged.label,'價格走勢圖'); assert.equal(submissions,2);
   handlers['steel:selection-update']({detail:{ids:[staged.id]}}); assert(markers[0].removed); assert.equal(markers[1].textContent,'1');
+  selection.isCollapsed=false; selectionText='原始選取內容';
+  handlers.pointerup({target:{}}); await new Promise(r=>setTimeout(r,130));
+  const beforeTouch=clearCount;
+  handlers.pointerdown({target:{},pointerType:'touch'});
+  assert.equal(clearCount,beforeTouch,'touching a selection handle must not clear the selection');
+  assert.equal(selection.isCollapsed,false);
+  selectionText='調整藍點之後的完整選取'; handlers['selectionchange']();
+  await new Promise(r=>setTimeout(r,250));
+  assert.equal(element('selection-ask-trigger').hidden,false);
+  selectionText='最後調整後的選取';
+  element('selection-ask-trigger').handlers.pointerdown();
+  element('selection-ask-trigger').handlers.click();
+  await form.handlers.submit({preventDefault(){}});
+  assert.equal(staged.text,'最後調整後的選取','the latest selection is staged even before the debounce completes');
   console.log('Selection: staged text and image, retained question, no automatic send passed.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

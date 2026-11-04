@@ -41,10 +41,10 @@
     const el = node?.nodeType === 1 ? node : node?.parentElement;
     return !el || !!el.closest('#selection-ask, #chat-panel, input, textarea, [contenteditable="true"], button');
   };
-  const hide = () => {
+  const hide = (clearSelection = true) => {
     clearTimeout(timer); clearTimeout(hold);
     form.hidden = true; trigger.hidden = true; current = null; anchor = null; status.textContent = '';
-    window.getSelection()?.removeAllRanges();
+    if (clearSelection) window.getSelection()?.removeAllRanges();
   };
   function position() {
     if (!anchor || (form.hidden && trigger.hidden)) return;
@@ -64,21 +64,33 @@
     input.value = ''; status.textContent = ''; form.hidden = true; trigger.hidden = false;
     position();
   }
+  function selectedText() {
+    const sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount || excluded(sel.anchorNode) || excluded(sel.focusNode)) return null;
+    const text = String(sel).trim();
+    if (!text) return null;
+    const range = sel.getRangeAt(0).cloneRange();
+    return {text, range};
+  }
+  trigger.addEventListener('pointerdown', () => {
+    if (current?.text) current = selectedText() || current;
+    clearTimeout(timer);
+  });
   trigger.addEventListener('click', () => {
     if (!current) return;
+    if (current.text) {
+      current = selectedText() || current;
+      quote.textContent = current.text.length > 100 ? current.text.slice(0, 100) + '…' : current.text;
+    }
     clearTimeout(timer); trigger.hidden = true; form.hidden = false; position(); input.focus();
   });
   window.visualViewport?.addEventListener('resize', position);
   window.visualViewport?.addEventListener('scroll', position);
   function inspectSelection() {
     if (!form.hidden) return;
-    const sel = window.getSelection();
-    if (!sel || sel.isCollapsed || !sel.rangeCount || excluded(sel.anchorNode) || excluded(sel.focusNode)) return;
-    const text = String(sel).trim();
-    if (!text) return;
-    const range = sel.getRangeAt(0).cloneRange();
-    const rect = range.getBoundingClientRect();
-    show({text, range}, rect);
+    const selected = selectedText();
+    if (!selected) { if (current?.text) hide(false); return; }
+    show(selected, selected.range.getBoundingClientRect());
   }
   document.addEventListener('selectionchange', () => { clearTimeout(timer); timer = setTimeout(inspectSelection, 220); });
   document.addEventListener('pointerup', e => {
@@ -100,7 +112,12 @@
     e.preventDefault(); selectImage(el);
   });
   document.addEventListener('pointerdown', e => {
-    if ((!form.hidden || !trigger.hidden) && !form.contains(e.target) && !trigger.contains(e.target)) hide();
+    if ((!form.hidden || !trigger.hidden) && !form.contains(e.target) && !trigger.contains(e.target)) {
+      // Native touch selection handles can send pointer events to the page.
+      // Never clear the selection while the user might be adjusting them.
+      const adjustingText = e.pointerType === 'touch' && form.hidden && !!current?.text;
+      hide(!adjustingText);
+    }
     clearTimeout(hold);
     const el = e.pointerType === 'touch' && imageTarget(e.target);
     if (el) { start = {x:e.clientX, y:e.clientY}; hold = setTimeout(() => selectImage(el), 650); }
