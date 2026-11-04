@@ -58,6 +58,8 @@ const cases = [
       if (c.ext === 'docx') {
         try { await page.waitForFunction(() => document.querySelector('#chat-input').placeholder.includes('按 Tab'),null,{timeout:45000}); }
         catch(e) { console.error('Suggestion diagnostic:',JSON.stringify({suggestionResponses,placeholder:await page.locator('#chat-input').getAttribute('placeholder'),mobile:await page.evaluate(()=>matchMedia('(max-width: 768px)').matches || matchMedia('(hover: none) and (pointer: coarse)').matches)})); throw e; }
+        for (let i=0; i<30 && !suggestionResponses.length; i++) await page.waitForTimeout(100);
+        assert(suggestionResponses.some(r=>r.http===200 && r.text),`suggestion service did not return a question: ${JSON.stringify(suggestionResponses)}`);
         await page.locator('#chat-input').press('Tab');
         assert((await page.locator('#chat-input').inputValue()).length >= 4,'desktop Tab did not insert suggestion');
         assert.equal(await page.locator('.chat-msg.chat-user').count(),1,'desktop Tab unexpectedly sent a question');

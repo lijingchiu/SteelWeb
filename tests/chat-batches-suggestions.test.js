@@ -3,7 +3,7 @@ const fs=require('node:fs'), vm=require('node:vm');
 require('../assets/chat-web.js'); require('../assets/chat-attachments.js');
 const helper=global.SteelAttachments;
 global.FileReader=class {readAsDataURL(file){this.result='data:application/pdf;base64,AAAA';queueMicrotask(()=>this.onload());}};
-async function run(mobile, withFiles) {
+async function run(mobile, withFiles, failSuggestion=false) {
   const elements=new Map(), requests=[], messages=[];
   function elem(id='') {
     if(!elements.has(id)) elements.set(id,{id,value:'',hidden:false,children:[],style:{},dataset:{},scrollHeight:20,clientHeight:20,scrollTop:0,
@@ -18,7 +18,7 @@ async function run(mobile, withFiles) {
     if(String(target).includes('data/latest.json'))return {ok:true,json:async()=>({date:'2026-11-04'})};
     if(String(target).includes('data/'))return {ok:false};
     const b=JSON.parse(options.body);
-    if(b.instructions.includes('預測使用者可能')) return {ok:true,json:async()=>({output_text:JSON.stringify({question:'這對鋼筋採購成本有何影響？'})})};
+    if(b.instructions.includes('預測使用者可能')) return failSuggestion ? {ok:false,status:503} : {ok:true,json:async()=>({output_text:JSON.stringify({question:'這對鋼筋採購成本有何影響？'})})};
     if(b.instructions.includes('文件證據擷取器')){
       requests.push({type:'batch',body:b});
       const parts=b.input[0].content, f=parts.find(p=>p.type==='input_file');
@@ -62,5 +62,8 @@ async function run(mobile, withFiles) {
   let typedPrevented=false;
   desktop.elem('chat-input').handlers.keydown({key:'Tab',shiftKey:false,isComposing:false,preventDefault(){typedPrevented=true;}});
   assert.equal(typedPrevented,false); // Tab does not overwrite a draft or trap focus.
-  console.log('Batched evidence, partial failure reporting, mobile suggestion and desktop Tab passed.');
+  const fallback=await run(true,false,true);
+  assert.equal(fallback.elem('chat-next-suggestion').hidden,false);
+  assert(fallback.elem('chat-next-suggestion').textContent.includes('資料有哪些重點'));
+  console.log('Batched evidence, partial failure reporting, mobile suggestion, fallback and desktop Tab passed.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
