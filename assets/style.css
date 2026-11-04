@@ -2115,7 +2115,7 @@ body.brief-open .chat-fab { opacity: 0; pointer-events: none; transform: scale(0
 .chat-quotes-head { align-items:baseline; flex-wrap:wrap; font-size:12px; }
 .chat-quotes-head span { color:var(--muted); font-size:11px; }
 .chat-quotes-head button { display:none; }
-.chat-quotes-list { display:flex; gap:7px; overflow-x:auto; overscroll-behavior-x:contain; margin-top:7px; padding-bottom:4px; }
+.chat-quotes-list { display:flex; gap:7px; overflow-x:auto; overscroll-behavior-x:contain; margin-top:1px; padding:6px 6px 8px; }
 .chat-quote-card { flex:0 0 145px; min-width:0; padding:7px 9px; text-align:left; border:1px solid var(--line); border-radius:9px; color:var(--ink); background:rgba(var(--ink-rgb),.035); font:inherit; font-size:12px; cursor:pointer; }
 .chat-quote-card { transition: border-color .18s ease, background-color .18s ease, transform .18s ease; }
 .chat-quote-card:hover { border-color:var(--copper); transform:translateY(-1px); }
