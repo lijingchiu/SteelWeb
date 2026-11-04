@@ -1247,8 +1247,57 @@
     }
   }
 
+  function initChatResize() {
+    const panel = $('chat-panel');
+    const storageKey = 'steel-chat-panel-size';
+    const desktop = () => window.matchMedia('(min-width: 769px)').matches;
+    const clamp = (value, min, max) => Math.max(Math.min(min, max), Math.min(value, max));
+    const setSize = (width, height) => {
+      const w = clamp(width, 320, window.innerWidth - 56);
+      const h = clamp(height, 300, window.innerHeight - 56);
+      panel.style.setProperty('--chat-panel-width', `${w}px`);
+      panel.style.setProperty('--chat-panel-height', `${h}px`);
+      try { localStorage.setItem(storageKey, JSON.stringify({ width: w, height: h })); } catch (_) {}
+    };
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey));
+      if (saved && Number.isFinite(saved.width) && Number.isFinite(saved.height) && desktop()) setSize(saved.width, saved.height);
+    } catch (_) {}
+    panel.querySelectorAll('.chat-resize').forEach(handle => {
+      const mode = handle.dataset.resize;
+      let drag = null;
+      handle.addEventListener('pointerdown', e => {
+        if (!desktop() || e.button !== 0) return;
+        const rect = panel.getBoundingClientRect();
+        drag = { x: e.clientX, y: e.clientY, width: rect.width, height: rect.height, id: e.pointerId };
+        handle.setPointerCapture(e.pointerId);
+        e.preventDefault();
+      });
+      handle.addEventListener('pointermove', e => {
+        if (!drag || e.pointerId !== drag.id) return;
+        const w = mode === 'height' ? drag.width : drag.width + drag.x - e.clientX;
+        const h = mode === 'width' ? drag.height : drag.height + drag.y - e.clientY;
+        setSize(w, h);
+      });
+      const end = e => { if (drag && e.pointerId === drag.id) drag = null; };
+      handle.addEventListener('pointerup', end);
+      handle.addEventListener('pointercancel', end);
+      handle.addEventListener('lostpointercapture', end);
+      handle.addEventListener('keydown', e => {
+        const rect = panel.getBoundingClientRect();
+        let dx = 0, dy = 0;
+        if (mode !== 'height' && e.key === 'ArrowLeft') dx = 20;
+        if (mode !== 'height' && e.key === 'ArrowRight') dx = -20;
+        if (mode !== 'width' && e.key === 'ArrowUp') dy = 20;
+        if (mode !== 'width' && e.key === 'ArrowDown') dy = -20;
+        if (dx || dy) { e.preventDefault(); setSize(rect.width + dx, rect.height + dy); }
+      });
+    });
+  }
+
   function init() {
     if (!$('chat-panel')) return;
+    initChatResize();
     importKeyFromHash();
     if (window.visualViewport) {
       window.visualViewport.addEventListener('resize', fitToKeyboard);

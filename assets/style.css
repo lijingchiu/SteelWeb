@@ -1626,8 +1626,8 @@ body.brief-open .chat-fab { opacity: 0; pointer-events: none; transform: scale(0
   z-index: 1050;
   display: flex;
   flex-direction: column;
-  width: 400px;
-  height: min(640px, calc(100vh - 120px));
+  width: min(var(--chat-panel-width, 400px), calc(100vw - 56px));
+  height: min(var(--chat-panel-height, 640px), calc(100vh - 56px));
   border: 1px solid var(--line);
   border-radius: 18px;
   background: rgb(var(--paper-rgb));
@@ -1640,6 +1640,13 @@ body.brief-open .chat-fab { opacity: 0; pointer-events: none; transform: scale(0
 }
 .chat-panel.open { opacity: 1; transform: none; }
 .chat-panel[hidden] { display: none; }
+.chat-resize { position: absolute; z-index: 2; border: 0; padding: 0; background: transparent; touch-action: none; }
+.chat-resize:focus-visible { outline: 2px solid var(--copper); outline-offset: -2px; }
+.chat-resize-top { top: 0; left: 24px; right: 24px; height: 10px; cursor: ns-resize; }
+.chat-resize-left { top: 24px; bottom: 24px; left: 0; width: 10px; cursor: ew-resize; }
+.chat-resize-corner { top: 0; left: 0; width: 24px; height: 24px; cursor: nwse-resize; }
+.chat-resize-corner::after { content: ''; position: absolute; top: 6px; left: 6px; width: 9px; height: 9px; border-top: 2px solid var(--muted); border-left: 2px solid var(--muted); border-radius: 4px 0 0 0; opacity: 0.65; }
+
 
 .chat-head {
   display: flex;
@@ -1804,6 +1811,8 @@ body.brief-open .chat-fab { opacity: 0; pointer-events: none; transform: scale(0
   .chat-fab span { display: none; }
   .chat-fab svg { width: 25px; height: 25px; }
   body.typing .chat-fab { opacity: 0; pointer-events: none; }
+
+  .chat-resize { display: none; }
 
   /* Full-screen sheet on phones. */
   .chat-panel {
