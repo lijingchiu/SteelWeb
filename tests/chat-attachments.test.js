@@ -59,3 +59,26 @@ async function scenario(inScope) {
   if(inScope) assert(sent[1].input.at(-1).content.some(p=>p.type==='input_file' && p.filename==='工程.pdf'));
 }
 (async()=>{await scenario(true);await scenario(false);console.log('Attachment selection, limits, subject check and answer payload passed.');})().catch(e=>{console.error(e);process.exitCode=1;});
+
+(async () => {
+  const code = fs.readFileSync(require.resolve('../assets/chat-attachments.js'), 'utf8');
+  let revoked = false;
+  class FakeVideo {
+    constructor() { this.handlers = {}; this.duration = 24; this.videoWidth = 1920; this.videoHeight = 1080; }
+    addEventListener(type, fn) { this.handlers[type] = fn; }
+    removeEventListener(type) { delete this.handlers[type]; }
+    set src(value) { queueMicrotask(() => this.handlers.loadedmetadata?.()); }
+    set currentTime(value) { this.time = value; queueMicrotask(() => this.handlers.seeked?.()); }
+    removeAttribute() {} load() {}
+  }
+  const URL = {createObjectURL:()=> 'blob:video',revokeObjectURL:()=>{revoked = true;}};
+  const document = {createElement: type => type === 'video' ? new FakeVideo() : {width:0,height:0,getContext:()=>({drawImage(){}}),toDataURL:()=> 'data:image/jpeg;base64,AAAA'}};
+  const window = {};
+  vm.runInNewContext(code, {window,document,URL,setTimeout,clearTimeout,queueMicrotask,Math,Number,Error,String});
+  const parts = await window.SteelAttachments.prepare([file('施工影片.mp4')]);
+  assert.equal(parts.filter(p => p.type === 'input_image').length, 8);
+  assert.match(parts[0].text, /未讀取聲音/);
+  assert(parts.some(p => p.type === 'input_text' && p.text.includes('第 1.5 秒')));
+  assert.equal(revoked, true);
+  console.log('Video frame extraction, timestamps and cleanup passed.');
+})().catch(e => {console.error(e);process.exitCode=1;});
