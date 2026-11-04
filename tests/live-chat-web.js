@@ -8,6 +8,12 @@ let trace = {};
 const observe = async (target, options) => {
   const response = await fetch(target, options);
   trace.httpStatus = response.status;
+  if (!response.ok) {
+    try {
+      const error = (await response.clone().json()).error || {};
+      trace.error = { code: error.code, param: error.param, message: String(error.message || '').replaceAll(key, '[redacted]').slice(0, 350) };
+    } catch (_) {}
+  }
   if (response.ok) {
     const data = await response.clone().json();
     const outputs = data.output || [];
