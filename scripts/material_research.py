@@ -51,7 +51,7 @@ def source_urls(response):
 def clean_text(value, limit=500):
     text = re.sub(r'\s*\(?\s*\[[^\]]+\]\(https?://[^)]*\)\s*\)?', '', str(value or ''))
     text = re.sub(r'cite.*?', '', text)
-    return re.sub(r'\s+', ' ', text).replace('給定的', '目前的').replace('給定數據', '目前數據').replace('給定數值', '目前數值').strip()[:limit]
+    return re.sub(r'\s+', ' ', text).replace('給定的', '目前的').replace('給定數據', '目前數據').replace('給定數值', '目前數值').replace('給定', '目前').replace('使用者提供的', '目前的').replace('使用者提供', '目前資料').strip()[:limit]
 
 
 def parse_json(text):

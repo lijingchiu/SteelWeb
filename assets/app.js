@@ -872,17 +872,17 @@ function materialForecast(it) {
   if (currentResearch) {
     const labels = { up: '偏漲', down: '偏跌', stable: '持平', uncertain: '方向待觀察' };
     const direction = labels[researched.direction] ? researched.direction : 'uncertain';
-    const sources = researched.sources.map(src => `<li><a href="${safeUrl(src.url)}" target="_blank" rel="noopener">${esc(src.title)} ↗</a><span>發布 ${esc(src.published)}</span><p>${esc(src.fact)}</p></li>`).join('');
-    return `<div class="mat-forecast-head">下一資料期 · 近期消息與行情研究 <span class="trend-badge ${direction === 'uncertain' ? 'stable' : direction}">${labels[direction]}</span></div>
-      <p class="mat-model-note">研究更新：${esc(String(matState.outlooks.generated_at).slice(0, 10))} · 參考 ${esc(it.period)} ${fmtHistory(it.value)} ${esc(it.unit)}</p>
-      <p class="mat-research-reason">${esc(researched.reason)}</p><p class="mat-model-note">可能的變數：${esc(researched.risk)}</p>
+    const sources = researched.sources.map(src => `<li><a href="${safeUrl(src.url)}" target="_blank" rel="noopener">${esc(src.title)} ↗</a><span>發布 ${esc(src.published)}</span><p>${esc(plain(src.fact))}</p></li>`).join('');
+    return `<div class="mat-forecast-head">AI 近期消息與行情研判 <span class="trend-badge ${direction === 'uncertain' ? 'stable' : direction}">${labels[direction]}</span></div>
+      <p class="mat-model-note">研究更新：${esc(String(matState.outlooks.generated_at).slice(0, 10))} · 網站行情 ${esc(it.period)} ${fmtHistory(it.value)} ${esc(it.unit)}</p>
+      <p class="mat-research-reason">${esc(plain(researched.reason))}</p><p class="mat-model-note">可能的變數：${esc(plain(researched.risk))}</p>
       <div class="mat-research-sources">近期消息與參考資料<ul>${sources}</ul></div>`;
   }
   const model = window.SteelMaterialForecast.baseline(it);
   if (!model.available) return `<div class="mat-forecast-head">走勢預測</div><p class="mat-model-note">${esc(model.reason)} 目前有 ${model.points} 筆歷史紀錄。</p>`;
   const label = { up: '偏漲', down: '偏跌', stable: '持平' }[model.direction];
   const delta = `${model.delta > 0 ? '+' : ''}${fmtHistory(model.delta)}`;
-  return `<div class="mat-forecast-head">下一資料期 · 歷史基準推估 <span class="trend-badge ${model.direction}">${label}</span></div>
+  return `<div class="mat-forecast-head">歷史基準推估 <span class="trend-badge ${model.direction}">${label}</span></div>
     <p class="mat-model-value">參考值 ${fmtHistory(model.estimate)} ${esc(it.unit)} <span>（${delta} ${esc(it.unit)}）</span></p>
     <p class="mat-model-note">目前沒有可核對的近期商品消息，以下只依歷史數據推估。計算依據：最近 ${model.changes} 次資料變動的中位數，套用至 ${esc(it.period)} 的數值；共 ${model.points} 筆歷史紀錄。${model.short ? '樣本很少，推估高度不確定。' : '僅為歷史外推，未納入最新消息。'}${it.group === 'stocks' ? ' 股價波動大，非投資建議。' : ''}</p>`;
 }

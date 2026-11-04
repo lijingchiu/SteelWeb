@@ -3,7 +3,7 @@ import unittest
 from datetime import date
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from material_research import validate, batches
+from material_research import validate, batches, clean_text
 
 class ResearchValidationTest(unittest.TestCase):
     def setUp(self):
@@ -30,6 +30,8 @@ class ResearchValidationTest(unittest.TestCase):
         self.row['direction'] = 'up'
         self.items[0]['stale'] = True
         self.assertFalse(self.check())
+    def test_citation_markup_is_removed_from_reader_facing_text(self):
+        self.assertEqual(clean_text('市場消息。([來源](https://example.com/article))'), '市場消息。')
     def test_batches_preserve_all_groups_and_exclude_stale(self):
         items = [{'id':str(i),'group':'a' if i<9 else 'b','stale':i==1} for i in range(12)]
         batches_out = batches(items, size=4)
