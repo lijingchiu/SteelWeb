@@ -10,6 +10,8 @@
 
 ## 已上傳檔案與來源
 
+2026-11-04：經檢查，127 個難以閱讀的資料項目已改為來源連結與說明；原資料的歷史版本仍可能存在於 Git 紀錄。部分來源可能更新，請確認資料年度。
+
 - `00_索引/README.md` — 533430 bytes；SHA-256 `1297e9cdfe86cf1bb3f7b91bb1acc55ff657e7f52d84fcff296d20c5630f8412`
   - 來源：<https://www.pcc.gov.tw/)>；<https://www.cnsonline.com.tw/)>；<https://cnsmark.bsmi.gov.tw/CNS_AP/)>；<https://www.bsmi.gov.tw/wSite/ct?xItem=109284&ctNode=9924&mp=111)>；<https://www.bsmi.gov.tw/wSite/record/file_actData.jsp?fileuuid=120157&filename=f1741763732331.pdf)>；<https://www.bsmi.gov.tw/wSite/public/Data/f1684220016565.pdf)>；<https://www.bsmi.gov.tw/wSite/public/Data/f1710813130497.pdf)>；<https://www.pcc.gov.tw/downloadFile?fpath=VXBsb2FkLzI5Ny9yZWxmaWxlLzc2OTMvNjI0MC8yYWE3ZjE2Zi1hZWU0LTQzMDEtOWEwNi0wNDczNDg2ZjFkMWEucGRm&sname=9-%E5%85%AC%E5%85%B1%E5%B7%A5%E7%A8%8B%E6%8A%80%E8%A1%9C%E8%B3%87%E6%96%99%E5%BA%AB%E5%8F%8A%E4%BB%A5%E5%85%AC%E5%85%B1%E5%B7%A5%E7%A8%8B%E6%8E%A8%E5%BB%A3%E5%BE%AA%E7%92%B2%E7%B6%93%E6%BF%9F%E4%B9%8B%E4%BD%9C%E6%B3%95.pdf)>；其他網址見原檔
 - `01_技術文件_著作權付費/CNS國家標準/README.md` — 3248 bytes；SHA-256 `145352489afc02da8f38f9be92a7ba9a8f5bc39cf1d9a73826e00b81f85fc674`
@@ -48,8 +50,8 @@
   - 來源：<https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg011246/ch02/type2/gov10/num1/Eg.pdf>
 - `01_技術文件_著作權付費/建築物耐震設計規範及解說/建築物耐震設計規範及解說部分規定修正草案總說明_e30744.txt` — 268902 bytes；SHA-256 `2c7e19bf0cd74bb023bb2cbcc0fcf46b1c8901a430a3998bd5002d79a0372618`
   - 來源：<https://www.nlma.gov.tw/filesys/file/chinese/publication/law/lawdata/1100807986.pdf>
-- `01_技術文件_著作權付費/建築物耐震設計規範及解說/建築物耐震設計規範及解說（100年7月版）_ba481e.txt` — 276 bytes；SHA-256 `10b032c55a1f17f6defc6254ebc406148dded31abb5617a7f1902383f62bd4e7`
-  - 來源：<https://www.nlma.gov.tw/uploads/files/997970daba4b45a498265151f438c778.pdf>
+- `01_技術文件_著作權付費/建築物耐震設計規範及解說/建築物耐震設計規範及解說（100年7月版）_ba481e.txt` — 600 bytes；SHA-256 `252e78f9da95a90225b90d83ad6a0f0dc8c11f7b99f6b32ce42406bc9d4e7dc4`
+  - 來源：<https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg017015/ch02/type2/gov10/num1/Eg.pdf>；<https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg011246/ch02/type2/gov10/num1/Eg.pdf>；原文字已改為來源連結。
 - `01_技術文件_著作權付費/建築物耐震設計規範及解說/建築物耐震設計規範及解說（100年7月版）_ba481e_擷取文字.txt` — 619563 bytes；SHA-256 `464cf31712af604453e2affc71ff8e31ceee1e687b7ac9d3cc6653d7591c46a7`
   - 來源：<http://140.124.56.30/>
 - `01_技術文件_著作權付費/建築物耐震設計規範及解說/耐震設計規範修訂條文草案：其他耐震相關規定（土壤液化修訂）_926a82.txt` — 54416 bytes；SHA-256 `79297ce86d8895cb4016de8cc377ac0f4ca718d23a9a604ccb480204eb9abc42`
@@ -426,8 +428,8 @@
   - 來源：本機資料庫，未記錄上游網址
 - `03_都市計畫書圖/新竹縣/新竹縣107-108年度都市計畫地區面積及人口_新竹縣107-108年度都市計畫地區面積及人口_a42405.txt` — 9623 bytes；SHA-256 `407ac3cf872ed8cc3302dcbf586b7ff63f6e32a85b0532137b5faf7b8f922292`
   - 來源：本機資料庫，未記錄上游網址
-- `03_都市計畫書圖/新竹縣/新竹縣107-108年度都市計畫地區面積及人口_新竹縣107-108年度都市計畫地區面積及人口_c95574.txt` — 38537 bytes；SHA-256 `98d28b2780783600f81ec3bceb4271b6d2342c249fb7485d0c17e8d850976c5f`
-  - 來源：<http://schemas.openxmlformats.org/package/2006/content-types>；<http://schemas.openxmlformats.org/spreadsheetml/2006/main>；<http://schemas.openxmlformats.org/officeDocument/2006/relationships>；<http://schemas.openxmlformats.org/markup-compatibility/2006>；<http://schemas.microsoft.com/office/spreadsheetml/2010/11/main>；<http://schemas.microsoft.com/office/spreadsheetml/2010/11/ac>；<http://schemas.openxmlformats.org/drawingml/2006/main>；<http://schemas.microsoft.com/office/thememl/2012/main>；其他網址見原檔
+- `03_都市計畫書圖/新竹縣/新竹縣107-108年度都市計畫地區面積及人口_新竹縣107-108年度都市計畫地區面積及人口_c95574.txt` — 351 bytes；SHA-256 `b697929c0b746f867278f9a9187155a265158c8caf1f3e17a1fb59895854d1be`
+  - 來源：<https://www.hsinchu.gov.tw/OpenDataDetail.aspx?n=902&s=1026>；原文字已改為來源連結。
 - `03_都市計畫書圖/桃園市/桃園市政府都市發展局市政信箱年度案件_桃園市政府都市發展局市政信箱年度案件_959388.txt` — 81 bytes；SHA-256 `e6bca12714e6904091b3968e25603e0ceef818153c4e7aece8e2694e3f424877`
   - 來源：<https://opendata.tycg.gov.tw/api/dataset/ae4cc0f5-b436-41e1-b217-2622fa7e307e/resource/3b637cfa-a814-44b4-abeb-c792283ed206/download>
 - `03_都市計畫書圖/桃園市/桃園市政府都市發展局年度採購招標案件一覽表_104_d3034d.txt` — 918 bytes；SHA-256 `7d864fc3bcd78ae2e9a34a49cadf83926a318a3ae9f5c965cfc02b2f56433895`
@@ -520,154 +522,154 @@
   - 來源：<https://opendata.tycg.gov.tw/api/dataset/c7351614-a9e5-46ac-bcc1-dd35e2d45475/resource/f6b508cc-4bca-4655-863b-8813e127a5a8/download>
 - `03_都市計畫書圖/臺中市/105年度臺中市都市計畫公共設施用地計畫面積_105年臺中市都市計畫公共設施用地計畫面積.csv.CSV_e49697.txt` — 5973 bytes；SHA-256 `412252410a69ff87b255b08b74e94802e61b800b522c8c3de587f409849ba819`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=bcba1a48-f808-4d4a-82a6-7f17fa255744>
-- `03_都市計畫書圖/臺中市/105年度臺中市都市計畫公共設施用地計畫面積_105年臺中市都市計畫公共設施用地計畫面積.csv.JSON_3d280d.txt` — 27636 bytes；SHA-256 `815f75f28907e1dab569d6fc34fc59f19be74340d6f8e20d13816316705a150d`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=918ea9e9-a81b-4358-af80-cb70372aaf32>
+- `03_都市計畫書圖/臺中市/105年度臺中市都市計畫公共設施用地計畫面積_105年臺中市都市計畫公共設施用地計畫面積.csv.JSON_3d280d.txt` — 476 bytes；SHA-256 `1046d11acae914b84a7d033e9ed7808d0a6be3056b04c3363a071161a34a7d5c`
+  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=918ea9e9-a81b-4358-af80-cb70372aaf32>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/105年度臺中市都市計畫公共設施用地計畫面積_105年臺中市都市計畫公共設施用地計畫面積.csv.XML_17ccbd.txt` — 38511 bytes；SHA-256 `e1523841a1a302d37b326f57a6b56ab61ae3cdaec6de20746903292f9794858f`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b0034df6-c3a3-44ea-8a02-70419bee457b>
 - `03_都市計畫書圖/臺中市/105年都市計畫地區面積及人口表_105年都市計畫地區面積及人口表.csv.CSV_38de12.txt` — 3273 bytes；SHA-256 `86d9c0c46ca5da05b04351aea85fc5472727055aafce5a20a25a53d97b7e45f2`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=175ba7d4-4db1-4c5f-bd5b-7d40fd78f02a>
-- `03_都市計畫書圖/臺中市/105年都市計畫地區面積及人口表_105年都市計畫地區面積及人口表.csv.JSON_723c53.txt` — 12130 bytes；SHA-256 `64d331bf615be1691cf5350ab03e97fb2606a85e5da6a42eb94437840c41a693`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=1d38965e-5ae4-479a-a80c-ae7055530726>
+- `03_都市計畫書圖/臺中市/105年都市計畫地區面積及人口表_105年都市計畫地區面積及人口表.csv.JSON_723c53.txt` — 443 bytes；SHA-256 `4a7289b1ca8bb70e705402d84fed4786ed2316c302d61bf829af24a02af174d5`
+  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=1d38965e-5ae4-479a-a80c-ae7055530726>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/105年都市計畫地區面積及人口表_105年都市計畫地區面積及人口表.csv.XML_6ed924.txt` — 18088 bytes；SHA-256 `e672180b0c81432b5cdc10c2ee53e8336bf3029ddd50f1d4e98760b344bcc861`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9630919b-6e0c-49b3-8936-d4edc64e8890>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2016_01_11920-01-01-2_臺中市都市計畫區域_079a4e.txt` — 672718 bytes；SHA-256 `708ad851de9270603e157a386df9b30ad66ee5ccd85b535b831ef7c7ec25c4b9`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=8b8d542f-b628-47f5-a899-46e6e262c8bb>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2016_01_11920-01-01-2_臺中市都市計畫區域_7aef08.txt` — 224240 bytes；SHA-256 `9df930dfa5f96bc7133525bf4c963c10d44ba8a1673aa655734a5c18af43ff8a`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=bd1cb62f-3394-4f9f-adbb-62d683e1ee60>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2016_01_11920-01-01-2_臺中市都市計畫區域_a2c9cb.txt` — 685339 bytes；SHA-256 `53fa18842cb062337f61eff8ef8a5cff0ead99acf12a6d8dec359d6131d4f4e1`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=3a624a36-17d1-45ba-a2c6-8fcdcd949c9b>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2017_01_11920-01-01-2_臺中市都市計畫區域_48d272.txt` — 228482 bytes；SHA-256 `5425dc5919a86beeea1a4f45b404ee1b1f1416f8b2d16f263fd263fca1c5f289`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e09095ab-f16e-4356-a0dd-0a5329dba67f>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2017_01_11920-01-01-2_臺中市都市計畫區域_b8ec5e.txt` — 228482 bytes；SHA-256 `4ca17a2f1744bcdae0a6120355df9c37ad79d782c6549b366288bbd51839293b`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=de259ec0-7cbd-4c6e-8a16-832a34a6fbdc>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2018_01_11920-01-01-2_臺中市都市計畫區域_3c8d5d.txt` — 139420 bytes；SHA-256 `6f74a4f333b6327abdff28c37326dadc3b5daf7077bceed8c29f84b10d6eac3b`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=ff4c737e-8261-41bb-85c6-6be10f319cda>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2018_01_11920-01-01-2_臺中市都市計畫區域_d06ad3.txt` — 139420 bytes；SHA-256 `3a9bdbb6b19f59758dbbb6eeb52c7773717f5408b94f4cb2ba1105d94ec1fe5f`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=dc8f6d9b-30a6-41ca-967c-6fb6813c9f84>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2021_01_11920-01-01-2_臺中市都市計畫區域_d09a06.txt` — 111563 bytes；SHA-256 `2383608e914caa058de40c965382e7ac0a1cec674bebfd7c41268e1ca9a6f59c`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=62b50b99-f330-4816-bfb7-0cb529028e50>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2022_01_11920-01-01-2_臺中市都市計畫區域_8c7f02.txt` — 111568 bytes；SHA-256 `f344bc8acd4183e129e7ebfab6f2ec43e68db1b30f151f76b4d71e38bd9fe5c8`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=44ded8cf-2987-48b6-839e-740e0811d392>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2023_01_11920-01-01-2_臺中市都市計畫區域_9ca8ba.txt` — 111675 bytes；SHA-256 `bb70db2db95c6a4badabe7a1da2d92e58094c5ec0be5e08ddfc1d53be23ad52e`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f5d09d56-1e52-496e-add0-a135ac6607af>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2023_11920-01-01-2_臺中市都市計畫區域內現有_4def54.txt` — 86374 bytes；SHA-256 `f1723fa175cf99542069f66bc728e668c74734a15cd0e87e32b11f096de78285`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=7ba74535-9ffa-47e5-a2a4-052293493c2d>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2024_11920-01-01-2_臺中市都市計畫區域內現有_fc3acb.txt` — 111676 bytes；SHA-256 `966738747c6146b767ac6ab46d219c3b35cb30e1785933579717c124b6feeb12`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=222eb51c-5eb5-4557-9dee-d4afc2791e96>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2025_11920-01-01-2_臺中市都市計畫區域內現有_6a1968.txt` — 86378 bytes；SHA-256 `1df9f20684338bcb0a2cfe7941c55748a0998916e19f0be438fbf6eab97d4b21`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2c04c57f-25e2-4e3a-af6e-f9addfa390d3>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫地區面積及人口_2016_01_11920-01-01-2_臺中市都市計畫地區面積及人口.JSON_b3853d.txt` — 210460 bytes；SHA-256 `5f039def8b0c730c7ee362233f9285a11258533afe60c9d7361429f297715d73`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=08f37d01-79a1-4312-875b-0d3794740fde>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫地區面積及人口_2018_01_11920-01-01-2_臺中市都市計畫地區面積及人口.JSON_1d5a4a.txt` — 53275 bytes；SHA-256 `902715d1cf4788440c9662ecb9fd9e1b913f3996dbb6d02fde53f59f104abc96`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b14015cf-5cc9-4572-84be-a0d9cf635ec2>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫地區面積及人口_2023_11920-01-01-2_臺中市都市計畫地區面積及人口.JSON_4762cd.txt` — 9864 bytes；SHA-256 `3c929c4b3bf675bc6c3bf520f35ef1f6e8d87138a4f6abc8b08f272564303750`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=eb7d0822-b7c0-4a02-b87f-b9d13127462d>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫地區面積及人口_2024_11920-01-01-2_臺中市都市計畫地區面積及人口.JSON_9656ea.txt` — 39671 bytes；SHA-256 `a7ef54499401a52323f4d18cfc5022c97b2772295686e4bb0ae76a5709c0dd38`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2dac9caa-313f-42f5-91a8-b57361e0d010>
-- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫地區面積及人口_2025_11920-01-01-2_臺中市都市計畫地區面積及人口.JSON_d3800c.txt` — 8512 bytes；SHA-256 `841c2ee82d7c6ed324ee235077cb003c32ce747bad64998ef1e4254317a5a7f4`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0580a03f-6ef4-4608-9e70-30494ee43483>
-- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2016_01_11920-01-02-2_臺中市都市計畫地區種類.JSON_c60805.txt` — 80221 bytes；SHA-256 `d71b31b70a9c952342607a60752754c8a65f44162e752686ca6934d231d73105`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2730dce1-3bb8-47e1-ab5a-39f39e014168>
-- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2017_01_11920-01-02-2_臺中市都市計畫地區種類.JSON_354a7f.txt` — 80232 bytes；SHA-256 `12e796edd1a877bce818690234c7cc5a7dfaa740dd805d4b0d1ff4d3fe41b1f6`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=22346457-e4fd-4d8f-9e8f-61ac8d0ac7a5>
-- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2018_01_11920-01-02-2_臺中市都市計畫地區種類.JSON_6b57b6.txt` — 60068 bytes；SHA-256 `daba9cbcd8c3bdbe6417a718cc94ef67226930024f6752ced5dbca243bc2581a`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e70ffdc1-a6c5-43c3-bcc9-85cdda65210d>
-- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2021_01_11920-01-02-2_臺中市都市計畫地區種類.JSON_b3d86b.txt` — 49971 bytes；SHA-256 `95e77c13f93237bcc2aeab19dfa85b095c5a17b2e33d58d96dd0de42aa2c5b87`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=3ad614b6-4f17-4f85-8f83-bb11db4e588f>
-- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2022_01_11920-01-02-2_臺中市都市計畫地區種類.JSON_5da52a.txt` — 49971 bytes；SHA-256 `103a385eedf50ec22491c20717bd6e7899f16baef3c78a7e4b296f0faf7077c6`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2536f361-4ded-49fa-b9c5-a2463461014b>
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2016_01_11920-01-01-2_臺中市都市計畫區域_079a4e.txt` — 533 bytes；SHA-256 `421232cd462ad536befb3a75ae0c84a49b39e24fc2d66feda0568b49629f65b5`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=8b8d542f-b628-47f5-a899-46e6e262c8bb>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2016_01_11920-01-01-2_臺中市都市計畫區域_7aef08.txt` — 533 bytes；SHA-256 `ff8da25b2621156ad72e1175e7486c02644ae71c7c4e3c2042b0ea3f5238972a`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=bd1cb62f-3394-4f9f-adbb-62d683e1ee60>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2016_01_11920-01-01-2_臺中市都市計畫區域_a2c9cb.txt` — 533 bytes；SHA-256 `35b4783369fe13678e7a74e598b73e6124c9bbc50fbaf6545bc535515abd7093`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=3a624a36-17d1-45ba-a2c6-8fcdcd949c9b>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2017_01_11920-01-01-2_臺中市都市計畫區域_48d272.txt` — 533 bytes；SHA-256 `2ae0e9f2b9f2b6d56227361ccdccd7521d6eb3ed2b44eed7a0dd73492b6931ed`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e09095ab-f16e-4356-a0dd-0a5329dba67f>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2017_01_11920-01-01-2_臺中市都市計畫區域_b8ec5e.txt` — 533 bytes；SHA-256 `55a3a14ab655b1d67cf71edfe2147849713916f46608d08b867811007c071e8f`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=de259ec0-7cbd-4c6e-8a16-832a34a6fbdc>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2018_01_11920-01-01-2_臺中市都市計畫區域_3c8d5d.txt` — 533 bytes；SHA-256 `44e2cccc7e9a8c5aec33f4f12c5983e9bf896c36c0babb62ff9124c3201de721`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=ff4c737e-8261-41bb-85c6-6be10f319cda>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2018_01_11920-01-01-2_臺中市都市計畫區域_d06ad3.txt` — 533 bytes；SHA-256 `07e0079dd1215a24daf00d0a259675fef058c23e0d7d1f4e4421e877e22f665a`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=dc8f6d9b-30a6-41ca-967c-6fb6813c9f84>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2021_01_11920-01-01-2_臺中市都市計畫區域_d09a06.txt` — 533 bytes；SHA-256 `ac605c8ff463521a543df4c7cfb2aad51d92404ac187db42594fb2d411541d54`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=62b50b99-f330-4816-bfb7-0cb529028e50>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2022_01_11920-01-01-2_臺中市都市計畫區域_8c7f02.txt` — 533 bytes；SHA-256 `d3c51511b3c0812790056d81f4bb35ed2389923570e7ec40673fa3d5efb5c042`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=44ded8cf-2987-48b6-839e-740e0811d392>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2023_01_11920-01-01-2_臺中市都市計畫區域_9ca8ba.txt` — 533 bytes；SHA-256 `bad3cfcaf8cc02811c7496f6fd8b556c182e9b44d6e4932d50ca5244b69c4162`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f5d09d56-1e52-496e-add0-a135ac6607af>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2023_11920-01-01-2_臺中市都市計畫區域內現有_4def54.txt` — 539 bytes；SHA-256 `bb494f53d421df8b10eca1c143c359fec3332c3c06e417f51c1414f1a2e03ebf`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=7ba74535-9ffa-47e5-a2a4-052293493c2d>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2024_11920-01-01-2_臺中市都市計畫區域內現有_fc3acb.txt` — 539 bytes；SHA-256 `0f97bde7e5afa41a4c0ad3e91bf4a37c2588ad80ff601caaaeb6daaeaf4b7723`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=222eb51c-5eb5-4557-9dee-d4afc2791e96>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_2025_11920-01-01-2_臺中市都市計畫區域內現有_6a1968.txt` — 539 bytes；SHA-256 `09c844d6457409bcedbd86672b97e5aacca3f10c2904b861c2db8555c217e895`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2c04c57f-25e2-4e3a-af6e-f9addfa390d3>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫地區面積及人口_2016_01_11920-01-01-2_臺中市都市計畫地區面積及人口.JSON_b3853d.txt` — 493 bytes；SHA-256 `196583c0ed4c8db34dec081274fa102709adb54817f5f0c9327ea6999edd3e7d`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=08f37d01-79a1-4312-875b-0d3794740fde>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫地區面積及人口_2018_01_11920-01-01-2_臺中市都市計畫地區面積及人口.JSON_1d5a4a.txt` — 493 bytes；SHA-256 `0a660def8a482eab457ba62603bbaaf98ab8205b07aec65cf987aaff08f0c972`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b14015cf-5cc9-4572-84be-a0d9cf635ec2>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫地區面積及人口_2023_11920-01-01-2_臺中市都市計畫地區面積及人口.JSON_4762cd.txt` — 490 bytes；SHA-256 `53238d3b5d9fea25918efaab3daf76a4620dc47ed52a044a1b5823f5bf3963d1`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=eb7d0822-b7c0-4a02-b87f-b9d13127462d>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫地區面積及人口_2024_11920-01-01-2_臺中市都市計畫地區面積及人口.JSON_9656ea.txt` — 490 bytes；SHA-256 `97da680247edf27a1f75f7d75610078c17997923eb579560844a34f212e01479`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2dac9caa-313f-42f5-91a8-b57361e0d010>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-01-2 臺中市都市計畫地區面積及人口_2025_11920-01-01-2_臺中市都市計畫地區面積及人口.JSON_d3800c.txt` — 490 bytes；SHA-256 `8988530fc7e9a673897c354049aea30422bc7ccf8190a018b498b85236ef2306`
+  - 來源：<https://data.gov.tw/dataset/117672>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0580a03f-6ef4-4608-9e70-30494ee43483>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2016_01_11920-01-02-2_臺中市都市計畫地區種類.JSON_c60805.txt` — 474 bytes；SHA-256 `fe563252d940a548ecf59a655fc19b66c0c73781bd0ae782e0cd5e5296d133a0`
+  - 來源：<https://data.gov.tw/dataset/90722>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2730dce1-3bb8-47e1-ab5a-39f39e014168>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2017_01_11920-01-02-2_臺中市都市計畫地區種類.JSON_354a7f.txt` — 474 bytes；SHA-256 `c1f2b60438cc88ec866608f3e61f7dcefa2c7748461bd89fd69d4b7d165a6a4f`
+  - 來源：<https://data.gov.tw/dataset/90722>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=22346457-e4fd-4d8f-9e8f-61ac8d0ac7a5>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2018_01_11920-01-02-2_臺中市都市計畫地區種類.JSON_6b57b6.txt` — 474 bytes；SHA-256 `c3496926ddc44619eec48e5eb78ba98882ea920fe9fafff2222c3f3640b05515`
+  - 來源：<https://data.gov.tw/dataset/90722>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e70ffdc1-a6c5-43c3-bcc9-85cdda65210d>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2021_01_11920-01-02-2_臺中市都市計畫地區種類.JSON_b3d86b.txt` — 474 bytes；SHA-256 `1c87d56f97d0eceeef2513fb0b1693908e5a770df1b1beda2db3d4fdb8b7c6f0`
+  - 來源：<https://data.gov.tw/dataset/90722>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=3ad614b6-4f17-4f85-8f83-bb11db4e588f>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2022_01_11920-01-02-2_臺中市都市計畫地區種類.JSON_5da52a.txt` — 474 bytes；SHA-256 `ec083f794a89341fceab0211fcab54d20b9de3795a2300af949adbea7cd1409b`
+  - 來源：<https://data.gov.tw/dataset/90722>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2536f361-4ded-49fa-b9c5-a2463461014b>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2023_01_11920-01-02-2_臺中市都市計畫地區種類.JSON_1a39b7.txt` — 7553 bytes；SHA-256 `3cc7b9f176ecb41cd65269b2b0ee098e9514520d07ee4c29c4160fc7b4e61dcd`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=8773c1a5-d18d-4526-bccc-28bf617b72b9>
-- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2023_11920-01-02-2_臺中市都市計畫地區種類.JSON_067b4f.txt` — 26408 bytes；SHA-256 `d7cc26f1b0ff1f17cff8ce2e4c97f95ca2941cbb80414016bafd34f795e7bd8b`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=86615898-af68-4b27-8db9-4a50aaf75de7>
-- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2024_11920-01-02-2_臺中市都市計畫地區種類.JSON_feaae9.txt` — 44955 bytes；SHA-256 `9e9c8d2993962cb187d8f5bdc21d3df775d283b7afd626231ac07e00d5a385c7`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0af15d91-11c7-4dde-9c2c-7105b1beba2e>
-- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2025_11920-01-02-2_臺中市都市計畫地區種類.JSON_d0a4d4.txt` — 22603 bytes；SHA-256 `ded1f7808fea789291453bd660f232c054806bfd5a41126b8a9600be8263dadd`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=739ed0e1-db5a-4e8e-912d-90737ff97fba>
-- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2016_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_615383.txt` — 304286 bytes；SHA-256 `6b6fa58eafa85d7d4dce316b77c03e63930c70027796870d921af80c845d219b`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a4afa81b-99ad-434f-a64d-52661f759348>
-- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2016_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_d15c15.txt` — 211201 bytes；SHA-256 `fff9cf9014b8e490ebe68637c1a3b3cfeac300b59499e880574e6a1576d64ee7`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=8735b4f1-658e-4239-b90e-da88799c61ae>
-- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2017_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_481981.txt` — 304345 bytes；SHA-256 `da83dc5e42501e50e243c376058c8272d0ad06ad5c7d52665d396a164b1d513e`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0cc9e71e-4666-4665-a1ea-8c36cd042c25>
-- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2018_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_0f3a51.txt` — 228034 bytes；SHA-256 `541f0cb866e737f74accecaa65d5e8db71abed48273d06e7bd2cafe72d11b296`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e5f4480d-78d5-467d-a938-0920a90c21d2>
-- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2021_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_086310.txt` — 189470 bytes；SHA-256 `ceb1bcb6f76cf8a485dec213baf3fc95027b143eea84c7e88d686f926786c624`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9c9c7f6e-97d1-4e6e-87a4-151ffeaf0243>
-- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2022_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_3b4e12.txt` — 189468 bytes；SHA-256 `5ee0c8c48bc739000c33c0b800cff3ce3861f3a7e02cc03cf78959f9c66ec038`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=3b75a400-7807-4c01-8dce-e376b4443f3e>
-- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2023_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_977d12.txt` — 28674 bytes；SHA-256 `f6d7f877a7d666ed98c68887e19cf9ad28c14132cede6fbc3371431fadfa4c2e`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=45b02ece-2eb5-43a1-b100-23bc15f2e484>
-- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2023_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_5b5ac6.txt` — 199104 bytes；SHA-256 `9d2430e46233966d087a1f9a25dd1c7731e7f1e2dd5d7ff71eb599add3673d10`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0b0c6cd3-1677-4e72-be13-23ae9665789c>
-- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2024_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_840224.txt` — 170437 bytes；SHA-256 `2a721c1257615a000aa6355f6c9b4c518c00acb79ed876ae65b36544a899ae82`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=c3c8768f-0ea4-425e-9ac8-b4fd98445e14>
-- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2025_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_79bff3.txt` — 170451 bytes；SHA-256 `b799a2604e9c6ab1d2ac6e197f60239905b7d8323d0bb5be2b064e081ac4c0fb`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b75487c9-6f3f-4415-9187-b9c688eab2cf>
-- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2015_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_086f6e.txt` — 164551 bytes；SHA-256 `efec59cbd5300021b3e4068c9440fb0c2d536866c104ddd07e33afe02d783d10`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=275cab98-0913-4503-aae7-ea6e7e96d9c6>
-- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2016_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_8b86b4.txt` — 306349 bytes；SHA-256 `5e76cfc5751ed6bfbb5d0dd913cd16d1e438f26e295f9043f5325bdc602a74b0`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=51435f34-1f95-4125-be70-e9872c59c21c>
-- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2017_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_847702.txt` — 306349 bytes；SHA-256 `7fc7d60a241735bc8165547d68163687b4d237712000f6b5882839da2d8c0959`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=30704eb6-f929-48f7-b28a-1727b72db65d>
-- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2018_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_2486d6.txt` — 229448 bytes；SHA-256 `26007a081e12afd6a1e70d35a772938ecfa95f902ae8ec9fd34ff3660863d9db`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=33e93c4f-05fc-47ba-a999-ab76ebc65d6e>
-- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2021_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_e27584.txt` — 190847 bytes；SHA-256 `751cd28a3e48cfab052406492e3df8886b6aefa2069f43ae40fda65ec73d72a4`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=df39a2af-2ad2-40d3-a1e5-8508167773ee>
-- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2022_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_375db2.txt` — 190870 bytes；SHA-256 `955e9454e1951fdc6f131b3f7cc5df5622c3129a6faa97b75f806967fdf19f3b`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=64dc5a64-3214-4d4b-a9e9-3347042bfa10>
-- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2023_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_3e2b96.txt` — 28871 bytes；SHA-256 `2445a6c1af529b1bd29320e0dc403748363dd03d00a3a12ca1129b39e7110123`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=7fb7b2fc-53c6-49fe-9755-b3f566bf0d5e>
-- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2023_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_c947e9.txt` — 200487 bytes；SHA-256 `e3bdb08fdb45201d1f49429592a5851a0df64373e169570100fade867975e5d2`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=883ced2f-9941-49cf-bbc3-2859383ba614>
-- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2024_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_0ce4ea.txt` — 171615 bytes；SHA-256 `24b93f10812d6735b66d24b4fcadbd11790a2af5c5fa2686e28cfff418c058cd`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=37723d5b-f40d-4284-89f7-7e8e0ec9e951>
-- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2025_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_089893.txt` — 171613 bytes；SHA-256 `fa64a6cd7592f1bf609e5a68bf6966159269b34f560cf0d1a5e9574e4f612cae`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=30e7b836-0cc3-4f0e-a677-79db259b90a4>
-- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2016_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_6cc0f0.txt` — 176986 bytes；SHA-256 `51206bfc018978aa5129855c6b0dad3076d5aee4cea843adcef4fc50fb222037`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=5c9d9827-2575-4252-a1a1-7f1fda1f6b68>
-- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2016_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_cbe221.txt` — 176986 bytes；SHA-256 `51206bfc018978aa5129855c6b0dad3076d5aee4cea843adcef4fc50fb222037`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=8c87e37b-d799-4163-9e5a-ce1afd8395d0>
-- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2017_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_939008.txt` — 177016 bytes；SHA-256 `19b6e6c9adaa94875e615cf4ee30f7dad219f1dfd8e68f8f6a862e3956cab231`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=80563386-9fe6-4fac-80ee-f006ee73b9fb>
-- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2018_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_e6d4ce.txt` — 132656 bytes；SHA-256 `325569c1beee2dc9ae2bc8e4bc404a1127c31c43cc3a50ddcff4efcaad4ebd82`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=c0268e97-bd0e-4100-8795-3507b1036259>
-- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2021_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_a056bc.txt` — 110216 bytes；SHA-256 `17093c2e6f6b8f7e16a229c408cbd735643e7afae7918cdc2284fb738a920ebc`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=17b09bf8-1158-4467-a8d1-d93c7c61b2bd>
-- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2022_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_57b1f5.txt` — 110213 bytes；SHA-256 `5a2ded39148b39c014ffb2ef40c1b59aebfa68a60e92dbaf0f4fc50c8836f637`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0b4c96fe-03b6-4a17-b4ea-0f63e1fa99b7>
-- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2023_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_85464b.txt` — 17139 bytes；SHA-256 `0ca9e640d5d3bece5eaf54c0835c034cd12e58d3142a8bc6fe3611ce26127754`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=d02042d9-cdc4-42e4-a8e0-5e77dabc6fb7>
-- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2023_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_0cf3bd.txt` — 115839 bytes；SHA-256 `7201533bfae7cbf801ad31fe9306d5815c70069c939876277c5abfdcd6624edf`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=aa47aa8c-60b6-4878-b7a5-b37f6df63880>
-- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2024_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_4ccda6.txt` — 99146 bytes；SHA-256 `4d4730b56b84b7048801cb6aa776270e381c4ca3bc14bed1fb11eec26e846ead`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=fa2db686-6158-43cc-be26-120691622275>
-- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2025_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_313662.txt` — 99152 bytes；SHA-256 `4afb5e4c3cc4e0bb6a6a023694c1e80fb4b94276469b52f04a7e89b66f030e85`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=6f1c0634-05f1-4d5e-abf7-129a1b0d9a24>
-- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2015_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_9d66cb.txt` — 193638 bytes；SHA-256 `83896177136941a88515b6a8db816fe02158f5e384f410b37c71878f642fbe87`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=fbf4ae1f-2f10-4821-87cc-bf3ef1f19a2d>
-- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2016_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_93374e.txt` — 306314 bytes；SHA-256 `ae40b2158181cabfa957cd7f14cf3678d1323a74dd9253da45406e3dd425566a`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=d0728241-3308-436c-b106-ae93da0f64d1>
-- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2016_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_ff3266.txt` — 306314 bytes；SHA-256 `ae40b2158181cabfa957cd7f14cf3678d1323a74dd9253da45406e3dd425566a`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=dd0fa27b-0df7-4d9c-bb79-2b50aab2b26b>
-- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2017_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_98045c.txt` — 306320 bytes；SHA-256 `8839d048580532074cc62df5ac182b8d697e99bd3df7a382abe960e4c451a8ad`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a1e91157-8461-43f4-96fa-8146438c1745>
-- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2017_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_f1aefb.txt` — 306320 bytes；SHA-256 `8839d048580532074cc62df5ac182b8d697e99bd3df7a382abe960e4c451a8ad`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=15e93a2d-34d2-4670-9211-a9ac3dec15a0>
-- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2018_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_4fe4ff.txt` — 229429 bytes；SHA-256 `ddf5c877eaa15473575adf559d7814d9a43b5a6961a6bb7605c526c3249d4fb6`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=6aeb5a75-0a6e-4ba4-b198-1ec275d174b8>
-- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2021_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_2cbf7b.txt` — 190801 bytes；SHA-256 `ade773e1e1cd9bf3d74736c0199c69ce3e9903832689a4ebb38817a463e0db0d`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=71cef265-5509-4b61-84b0-4e0b9c8d11bf>
-- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2022_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_37fab3.txt` — 190838 bytes；SHA-256 `9821bc8fcf2af83b42c32311401c1c594682d6ba44fd057161e61b3e24632bd7`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0135f696-baf6-4866-b6f1-a4f0bd84214f>
-- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2023_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_459728.txt` — 28874 bytes；SHA-256 `c3e3f6ed7139f70aacab8252a3f18149dac0df008fa3529702a0211bc1894485`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=1d21107b-c0fc-4071-80b1-c5e035dfb2bf>
-- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2023_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_1ac78e.txt` — 200454 bytes；SHA-256 `75e24c5159d1c99569349d05bdacb8efbb5fc4a615d3769c4e7bb2bc4ab4bc27`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=ccb50f6c-45b5-47cb-9f58-d4632c9d8dda>
-- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2024_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_41928a.txt` — 171583 bytes；SHA-256 `575026bb0d453d55693e9f63bcf1514dc65f9a464c195a385706e31cfb392844`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=6260b485-34d0-4e8b-b62c-dbc3c1128ab9>
-- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2025_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_e3c103.txt` — 171583 bytes；SHA-256 `a66b273390913356439e334e7440a96ed5568ac6bf8f8661d5b5f18c46bbe08a`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=cba8def6-d1b2-4e97-8b70-1f40db9a74d9>
+- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2023_11920-01-02-2_臺中市都市計畫地區種類.JSON_067b4f.txt` — 471 bytes；SHA-256 `9972f31fa536f66360f02733a4f1db71ba20cb8dbb14b9b45fd971f6b4b4c889`
+  - 來源：<https://data.gov.tw/dataset/90722>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=86615898-af68-4b27-8db9-4a50aaf75de7>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2024_11920-01-02-2_臺中市都市計畫地區種類.JSON_feaae9.txt` — 471 bytes；SHA-256 `11fbd4082055b7dd6a1f8a24a2f7cb973f3af556f4630c49109a998d4d671724`
+  - 來源：<https://data.gov.tw/dataset/90722>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0af15d91-11c7-4dde-9c2c-7105b1beba2e>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-02-2 臺中市都市計畫地區種類_2025_11920-01-02-2_臺中市都市計畫地區種類.JSON_d0a4d4.txt` — 471 bytes；SHA-256 `5d68f76fc948b6d1026921917c3eb9518444115d85d1e1ac021b624d67301676`
+  - 來源：<https://data.gov.tw/dataset/90722>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=739ed0e1-db5a-4e8e-912d-90737ff97fba>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2016_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_615383.txt` — 510 bytes；SHA-256 `da8a9343764b7e429d97a444935de043ac4fb93703386329123de1bd716b5973`
+  - 來源：<https://data.gov.tw/dataset/90723>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a4afa81b-99ad-434f-a64d-52661f759348>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2016_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_d15c15.txt` — 510 bytes；SHA-256 `57383979d6ac039a6107874011a6cf1c8743e5aceb711b1f168a429efbba8372`
+  - 來源：<https://data.gov.tw/dataset/90723>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=8735b4f1-658e-4239-b90e-da88799c61ae>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2017_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_481981.txt` — 510 bytes；SHA-256 `23675c9552283fc4a0d531b8f7879ae52142186303c6d211b4df364e7dd1fdd3`
+  - 來源：<https://data.gov.tw/dataset/90723>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0cc9e71e-4666-4665-a1ea-8c36cd042c25>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2018_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_0f3a51.txt` — 510 bytes；SHA-256 `30fc3ef52bc64586812396dd15ec8ddc88c91fa63fac2d79d1bcb58f101141cd`
+  - 來源：<https://data.gov.tw/dataset/90723>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e5f4480d-78d5-467d-a938-0920a90c21d2>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2021_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_086310.txt` — 510 bytes；SHA-256 `bafb0256eadb537caa478d2b221e7c837f4e3ca315a8749b1bf51283af3a1a26`
+  - 來源：<https://data.gov.tw/dataset/90723>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9c9c7f6e-97d1-4e6e-87a4-151ffeaf0243>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2022_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_3b4e12.txt` — 510 bytes；SHA-256 `ed495ef74b183733238e6b8aeac1c9310e1fbc3c2353542ff77abcc1ecc28601`
+  - 來源：<https://data.gov.tw/dataset/90723>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=3b75a400-7807-4c01-8dce-e376b4443f3e>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2023_01_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_977d12.txt` — 510 bytes；SHA-256 `ef6d4e5ec39fc6f04616ba3a69035f6c88c324245cb580ade7772dd0cf411b67`
+  - 來源：<https://data.gov.tw/dataset/90723>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=45b02ece-2eb5-43a1-b100-23bc15f2e484>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2023_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_5b5ac6.txt` — 507 bytes；SHA-256 `0d4b77e447b13e4ca22cfadfb8d757a609a170f5f694617742ed68e35af00328`
+  - 來源：<https://data.gov.tw/dataset/90723>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0b0c6cd3-1677-4e72-be13-23ae9665789c>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2024_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_840224.txt` — 507 bytes；SHA-256 `82579ef7cf78a8e7d82283c552498fa7d251735aa0233421a2d828c5db738de6`
+  - 來源：<https://data.gov.tw/dataset/90723>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=c3c8768f-0ea4-425e-9ac8-b4fd98445e14>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-03-2 臺中市都市計畫公共設施用地計畫面積_2025_11920-01-03-2_臺中市都市計畫公共設施用地計畫面積.JSON_79bff3.txt` — 507 bytes；SHA-256 `c96f8aa61d1d2e5074791eec7e2535ab7505b19943a544fdea928203bb9db26a`
+  - 來源：<https://data.gov.tw/dataset/90723>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b75487c9-6f3f-4415-9187-b9c688eab2cf>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2015_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_086f6e.txt` — 559 bytes；SHA-256 `cbdedcfcdf67cd3be2e772a2bf90d60c0b2083aa8d5ec75f90cd44565358bd1e`
+  - 來源：<https://opendata.taichung.gov.tw/search/34b52f5e-a1af-4925-8a83-18ecc2280d08>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=275cab98-0913-4503-aae7-ea6e7e96d9c6>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2016_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_8b86b4.txt` — 559 bytes；SHA-256 `e04cf9ac6ddb4c0ea00ddef75b537a0b885a5aba56817b291f3d6a015921eb6f`
+  - 來源：<https://opendata.taichung.gov.tw/search/34b52f5e-a1af-4925-8a83-18ecc2280d08>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=51435f34-1f95-4125-be70-e9872c59c21c>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2017_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_847702.txt` — 559 bytes；SHA-256 `f51c669394292812e31dc0abc104f72d50f24da3e964a25361d2070d9e78cdb3`
+  - 來源：<https://opendata.taichung.gov.tw/search/34b52f5e-a1af-4925-8a83-18ecc2280d08>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=30704eb6-f929-48f7-b28a-1727b72db65d>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2018_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_2486d6.txt` — 559 bytes；SHA-256 `282c7673eed350dc7896b2d175001f2856db31178206e868b48acd97fb7bbe4c`
+  - 來源：<https://opendata.taichung.gov.tw/search/34b52f5e-a1af-4925-8a83-18ecc2280d08>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=33e93c4f-05fc-47ba-a999-ab76ebc65d6e>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2021_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_e27584.txt` — 559 bytes；SHA-256 `2737f39e24d162f7dd18c797e2d0110b93f283d9975566ccb1500b78aa748628`
+  - 來源：<https://opendata.taichung.gov.tw/search/34b52f5e-a1af-4925-8a83-18ecc2280d08>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=df39a2af-2ad2-40d3-a1e5-8508167773ee>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2022_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_375db2.txt` — 559 bytes；SHA-256 `0cc4e26d6a71f2f122fdea0e1e6462ad2479b06ded9803366db2aed6651f1b34`
+  - 來源：<https://opendata.taichung.gov.tw/search/34b52f5e-a1af-4925-8a83-18ecc2280d08>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=64dc5a64-3214-4d4b-a9e9-3347042bfa10>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2023_01_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_3e2b96.txt` — 559 bytes；SHA-256 `be668adb905e84f9064a95859b66c4f4472d855629090845f0603cf644a077ea`
+  - 來源：<https://opendata.taichung.gov.tw/search/34b52f5e-a1af-4925-8a83-18ecc2280d08>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=7fb7b2fc-53c6-49fe-9755-b3f566bf0d5e>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2023_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_c947e9.txt` — 556 bytes；SHA-256 `d4eec41e64e8ad112419acc0cb8cb752446e6179544e95020782982c9167ea05`
+  - 來源：<https://opendata.taichung.gov.tw/search/34b52f5e-a1af-4925-8a83-18ecc2280d08>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=883ced2f-9941-49cf-bbc3-2859383ba614>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2024_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_0ce4ea.txt` — 556 bytes；SHA-256 `1e49b6627732650ee126ee2ec177d62d023dd6f487809f67cf6c7e18eec788bc`
+  - 來源：<https://opendata.taichung.gov.tw/search/34b52f5e-a1af-4925-8a83-18ecc2280d08>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=37723d5b-f40d-4284-89f7-7e8e0ec9e951>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2025_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_089893.txt` — 556 bytes；SHA-256 `48664c9618656bf54463f7835403b9f699ebafb921f20bc0d3ea672b151d6cd3`
+  - 來源：<https://opendata.taichung.gov.tw/search/34b52f5e-a1af-4925-8a83-18ecc2280d08>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=30e7b836-0cc3-4f0e-a677-79db259b90a4>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2016_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_6cc0f0.txt` — 498 bytes；SHA-256 `8897001e216ebc7f635124c36a3f50e3cf3cedf7ba09d36168cae7da64eeba03`
+  - 來源：<https://data.gov.tw/dataset/90725>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=5c9d9827-2575-4252-a1a1-7f1fda1f6b68>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2016_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_cbe221.txt` — 498 bytes；SHA-256 `9d38891a72ebab367782dfe68c37a98bd2dfb8000d1769872dc5fae8f9c32d2b`
+  - 來源：<https://data.gov.tw/dataset/90725>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=8c87e37b-d799-4163-9e5a-ce1afd8395d0>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2017_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_939008.txt` — 498 bytes；SHA-256 `958b49f2e92314b00e11f95f7329ecfa8fafc31c23b06a9e5a4064d04d8459e5`
+  - 來源：<https://data.gov.tw/dataset/90725>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=80563386-9fe6-4fac-80ee-f006ee73b9fb>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2018_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_e6d4ce.txt` — 498 bytes；SHA-256 `882da21d1ddee97dc8bc7d69363a08f30206eb655ab962f0f2cfddad08f79152`
+  - 來源：<https://data.gov.tw/dataset/90725>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=c0268e97-bd0e-4100-8795-3507b1036259>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2021_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_a056bc.txt` — 498 bytes；SHA-256 `f22d96c1dc4360fe8fcb66f0ce42c76de08c47eeeb99e77cfb6eaa60b72f0425`
+  - 來源：<https://data.gov.tw/dataset/90725>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=17b09bf8-1158-4467-a8d1-d93c7c61b2bd>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2022_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_57b1f5.txt` — 498 bytes；SHA-256 `bc1c3755986cf405bffa1e63f19935537ee2275a54ed705d06ed7cea04607a69`
+  - 來源：<https://data.gov.tw/dataset/90725>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0b4c96fe-03b6-4a17-b4ea-0f63e1fa99b7>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2023_01_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_85464b.txt` — 498 bytes；SHA-256 `9f2e67dda11f5fa83d5d08da5cb9a3af9389942771e951dc8f750ec8957d801c`
+  - 來源：<https://data.gov.tw/dataset/90725>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=d02042d9-cdc4-42e4-a8e0-5e77dabc6fb7>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2023_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_0cf3bd.txt` — 495 bytes；SHA-256 `778269372a05d653567176b0a7c08be140e20fa76600b10ee27ced900a643e11`
+  - 來源：<https://data.gov.tw/dataset/90725>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=aa47aa8c-60b6-4878-b7a5-b37f6df63880>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2024_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_4ccda6.txt` — 495 bytes；SHA-256 `6ea74886e9bc5fd8fbf2ff284131fe3e943a34be931b56b6b267c2e669932d68`
+  - 來源：<https://data.gov.tw/dataset/90725>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=fa2db686-6158-43cc-be26-120691622275>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-05-2 臺中市都市計畫土地使用分區面積_2025_11920-01-05-2_臺中市都市計畫土地使用分區面積.JSON_313662.txt` — 495 bytes；SHA-256 `b6979c53912fac46074c6eb41a1453d50148df8bb8d2e3484befe046c3087197`
+  - 來源：<https://data.gov.tw/dataset/90725>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=6f1c0634-05f1-4d5e-abf7-129a1b0d9a24>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2015_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_9d66cb.txt` — 517 bytes；SHA-256 `edcf829d9c4e64e512de1e4e08cd2fe1d68e1755ad17bc86ca544720c93d81c9`
+  - 來源：<https://data.gov.tw/dataset/117673>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=fbf4ae1f-2f10-4821-87cc-bf3ef1f19a2d>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2016_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_93374e.txt` — 517 bytes；SHA-256 `9cf26bcc0d97be156019c85f6678850b2aac5205b7d4959bfcb8061d1bce7d69`
+  - 來源：<https://data.gov.tw/dataset/117673>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=d0728241-3308-436c-b106-ae93da0f64d1>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2016_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_ff3266.txt` — 517 bytes；SHA-256 `feb1d254f593561aeec7cd4877d65afcf0987646783eb65b203788b84cf8777d`
+  - 來源：<https://data.gov.tw/dataset/117673>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=dd0fa27b-0df7-4d9c-bb79-2b50aab2b26b>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2017_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_98045c.txt` — 517 bytes；SHA-256 `d9da3b9a3d943bfb0ee07c37cc25ba5f248d9484f61484c030f45385f175a339`
+  - 來源：<https://data.gov.tw/dataset/117673>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a1e91157-8461-43f4-96fa-8146438c1745>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2017_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_f1aefb.txt` — 517 bytes；SHA-256 `bbab1b79d633b9c8830cc938c8a20a6da99b76a10464b64d65eebb305595a1a4`
+  - 來源：<https://data.gov.tw/dataset/117673>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=15e93a2d-34d2-4670-9211-a9ac3dec15a0>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2018_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_4fe4ff.txt` — 517 bytes；SHA-256 `9afcfcb684af2698869944500b0ba562efb5ce00d0ea91734435c8f38c1074b1`
+  - 來源：<https://data.gov.tw/dataset/117673>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=6aeb5a75-0a6e-4ba4-b198-1ec275d174b8>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2021_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_2cbf7b.txt` — 517 bytes；SHA-256 `4e51956d4aa03479acce75ba078a19b46d2597bd7b36205a595f382550763731`
+  - 來源：<https://data.gov.tw/dataset/117673>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=71cef265-5509-4b61-84b0-4e0b9c8d11bf>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2022_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_37fab3.txt` — 517 bytes；SHA-256 `dc760dce23c7ed2d57e196fd7023c094612096e1f26439f95d490f63def36d80`
+  - 來源：<https://data.gov.tw/dataset/117673>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0135f696-baf6-4866-b6f1-a4f0bd84214f>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2023_01_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_459728.txt` — 517 bytes；SHA-256 `0fca685e1962c53eb48f33391e2149108272c5f66f44b903c426430039a3835d`
+  - 來源：<https://data.gov.tw/dataset/117673>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=1d21107b-c0fc-4071-80b1-c5e035dfb2bf>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2023_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_1ac78e.txt` — 514 bytes；SHA-256 `3d5566bc5a33fd79f3e8fb2086df739867985bb02133a36f33fad9e2d6f163f4`
+  - 來源：<https://data.gov.tw/dataset/117673>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=ccb50f6c-45b5-47cb-9f58-d4632c9d8dda>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2024_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_41928a.txt` — 514 bytes；SHA-256 `412bcbfbf83a48d9d717cd18355e9c7503fc697cdf69f47676d7912f32aa8929`
+  - 來源：<https://data.gov.tw/dataset/117673>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=6260b485-34d0-4e8b-b62c-dbc3c1128ab9>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/11920-01-06-2 臺中市都市計畫公共設施用地已闢建面積_2025_11920-01-06-2_臺中市都市計畫公共設施用地已闢建面積.JSON_e3c103.txt` — 514 bytes；SHA-256 `0cd83b75de504c315c27e5329dd8dc76709f18166a821481cdc9736f03c6f1db`
+  - 來源：<https://data.gov.tw/dataset/117673>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=cba8def6-d1b2-4e97-8b70-1f40db9a74d9>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/11920-01-07-2 臺中市都市計畫樁位釘樁數_2015_01_11920-01-07-2_臺中市都市計畫樁位釘樁數.JSON_84c37e.txt` — 375 bytes；SHA-256 `255fabc9326b211917aa526abeeefdd8f3a2e0569897fea41516683d36af231a`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=fe9443e4-f7d1-4309-b975-48a4c5049e49>
 - `03_都市計畫書圖/臺中市/11920-01-07-2 臺中市都市計畫樁位釘樁數_2016_01_11920-01-07-2_臺中市都市計畫樁位釘樁數.JSON_50a3de.txt` — 375 bytes；SHA-256 `cacef28890bdd018b7d2b74745e036e73827a38d0db4aa8ca8720310bb548a21`
@@ -692,32 +694,32 @@
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=8b9fd262-ce97-4de1-915e-da9f5560e9c6>
 - `03_都市計畫書圖/臺中市/11920-01-07-2 臺中市都市計畫樁位釘樁數_2025_11920-01-07-2_臺中市都市計畫樁位釘樁數.JSON_13d397.txt` — 375 bytes；SHA-256 `9365ab89df39038e493bfbff791a2587ba556bf1f3290c38046dc9690a834bf3`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a5eefa7b-f52d-4636-b1df-dd276d8cf184>
-- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2016_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_084bd5.txt` — 360051 bytes；SHA-256 `e024e50522a8f3ba5eb688e30e7d403ada50b5af92d603a1e6456522a6bc650a`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=c13bc839-626e-46c2-8e8e-724fe0392a22>
-- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2016_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_4205d0.txt` — 360051 bytes；SHA-256 `e024e50522a8f3ba5eb688e30e7d403ada50b5af92d603a1e6456522a6bc650a`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e894ff8e-9158-45d4-9897-b47dfc3682fa>
-- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2017_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_2d0916.txt` — 367060 bytes；SHA-256 `4782c13302ab47243369d33c8916353d08b7a99cff1dc14bc41e85b61e5859cc`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a013aa73-6157-4b8e-8f8a-143fcc6ce089>
-- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2017_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_a94df5.txt` — 367060 bytes；SHA-256 `87ccaba5de8f277a706322750e5fd980683f9413b086c61330cc3f2ec7dd58e1`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=d8cf18f7-846b-4268-820e-9774df058ef0>
-- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2018_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_274b66.txt` — 277704 bytes；SHA-256 `636ce89f97fe44bd8a95ccd7d615989a2f121f60be8afe4dda735bb54b322ec3`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a0e211e0-b016-42a3-af47-8db042639a4d>
+- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2016_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_084bd5.txt` — 517 bytes；SHA-256 `129a45fb41d32391457861bf1908f3cb6c0f9c90ecc2d9cab5646aa4704f42fe`
+  - 來源：<https://data.gov.tw/dataset/117605>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=c13bc839-626e-46c2-8e8e-724fe0392a22>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2016_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_4205d0.txt` — 517 bytes；SHA-256 `5d4a80793c1ae28d1ff5b84ebb9d9a23825255fadd714c8a975bcaeb19176122`
+  - 來源：<https://data.gov.tw/dataset/117605>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e894ff8e-9158-45d4-9897-b47dfc3682fa>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2017_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_2d0916.txt` — 517 bytes；SHA-256 `86d34a4c7473ff69a85afb071e95e4cfb12711e4eda700ee1f5a9b2d00fc2a93`
+  - 來源：<https://data.gov.tw/dataset/117605>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a013aa73-6157-4b8e-8f8a-143fcc6ce089>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2017_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_a94df5.txt` — 517 bytes；SHA-256 `419c2580d5c34781b35501b5701bb42671fc987dd775584beca58b17d1b9b79f`
+  - 來源：<https://data.gov.tw/dataset/117605>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=d8cf18f7-846b-4268-820e-9774df058ef0>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2018_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_274b66.txt` — 517 bytes；SHA-256 `1b8038ea9a96feb8a62e79568c96dd1ffba573e4aade01b1404fad2f99b58b5f`
+  - 來源：<https://data.gov.tw/dataset/117605>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a0e211e0-b016-42a3-af47-8db042639a4d>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2018_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_42c258.txt` — 5209 bytes；SHA-256 `f19b35c54429f585f5154996974214091267ae6701f09f1e55e9d6fb240574c8`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=6221d981-b0b2-4ded-95fd-869ac4028a28>
-- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2018_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_a587bd.txt` — 277704 bytes；SHA-256 `636ce89f97fe44bd8a95ccd7d615989a2f121f60be8afe4dda735bb54b322ec3`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=4a79620a-8670-4181-8631-3e56bfbbd933>
-- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2021_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_787aad.txt` — 222143 bytes；SHA-256 `d9c29261f26aa06ebca681d66b6168f938653dd11be66d360be4c8cf93d4cfab`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9e07d184-3cf2-492b-9da1-2727bfd569b8>
-- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2022_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_b5cd0f.txt` — 55707 bytes；SHA-256 `115f70fb6194ad45c72a1b1a36b7fa51f45c69a3ae4e8ee6d2f70cee521de33e`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=ebedb04b-ea64-466f-a8e6-0c2963ed9b63>
-- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2022_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_0f0c35.txt` — 222331 bytes；SHA-256 `219388eec7036bb10fce06e7b8a5b24d4bab9eae9f52dceb528994d415548baa`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=aa65421a-6f0a-4154-83e4-cd0727754665>
+- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2018_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_a587bd.txt` — 517 bytes；SHA-256 `e4ebfda28c84363c1ec87e2f4ed64b4a2defbaca92d4f04d4e1795d770f3af50`
+  - 來源：<https://data.gov.tw/dataset/117605>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=4a79620a-8670-4181-8631-3e56bfbbd933>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2021_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_787aad.txt` — 517 bytes；SHA-256 `bd70ad8aba7aaf4bd617e96b6c6212b3400213c5922336b4c50fac952d95c3a0`
+  - 來源：<https://data.gov.tw/dataset/117605>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9e07d184-3cf2-492b-9da1-2727bfd569b8>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2022_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_b5cd0f.txt` — 517 bytes；SHA-256 `f32fd0f668adc540fad3fc9f67abf5418674fd2405271b7fa0d60b018750c960`
+  - 來源：<https://data.gov.tw/dataset/117605>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=ebedb04b-ea64-466f-a8e6-0c2963ed9b63>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2022_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_0f0c35.txt` — 514 bytes；SHA-256 `67c94113fb6b80e2f6a5ff74fca71943df59fb27e3fb7e044e2761652d88603c`
+  - 來源：<https://data.gov.tw/dataset/117605>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=aa65421a-6f0a-4154-83e4-cd0727754665>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2023_01_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_3d9bd3.txt` — 2703 bytes；SHA-256 `ab2bb7f4751e7bdb1c003722241ecb69958a040cdfe1f58eda09ce36d054fdd9`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b19d24a1-72a5-4111-a426-8668d755092b>
-- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2023_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_47089a.txt` — 129023 bytes；SHA-256 `5a1f83c0dc3c1f92db3833a8d06d3cec0c58a565e42dc8b123c35cf3818f7730`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=4d1c0a01-76ce-4017-816d-a910aa6aa0b1>
-- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2024_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_d1a962.txt` — 120166 bytes；SHA-256 `ec2a768a9d265a7005f31d1ea53df8a23d95a4c6235ddc14ab8059cf1f1d12f2`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f80243e6-4203-4346-a78b-8070e94e3910>
+- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2023_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_47089a.txt` — 514 bytes；SHA-256 `c7ae0aadb9eed8659036df911953f9b33128bc30396127eae317eee5443111c4`
+  - 來源：<https://data.gov.tw/dataset/117605>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=4d1c0a01-76ce-4017-816d-a910aa6aa0b1>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/20535-11-01-2 臺中市都市計畫區域內公共工程實施數量_2024_20535-11-01-2_臺中市都市計畫區域內公共工程實施數量.JSON_d1a962.txt` — 514 bytes；SHA-256 `e308e213c1173ea2cecb3868392113a2c72378c54698e1db54cbf18954adf8f3`
+  - 來源：<https://data.gov.tw/dataset/117605>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f80243e6-4203-4346-a78b-8070e94e3910>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2024-08_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_515990.txt` — 4466 bytes；SHA-256 `4b023420c1a1d5322b13529ac1a4258960de14f40018b09a12405b740be8f6ff`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=1cee7027-a9b7-4c0a-8a90-6701129cddcf>
 - `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2024-10_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_13ce75.txt` — 4462 bytes；SHA-256 `85205d18b6aa590e4f3d4e566b320c0cc605607f6c9138ca59bb386cd39a877e`
@@ -740,20 +742,20 @@
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=86cef6fa-3107-4684-ae7a-33642c265031>
 - `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2025-12_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_92d989.txt` — 4464 bytes；SHA-256 `e0705bb17e251c2d87fa3c19a4d6bd50ee1a6ab6aed4c2c8bdb856688a67aefc`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=41e412f3-f762-4a77-af8e-e5921f0ee38d>
-- `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-02_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_9a97a2.txt` — 13275 bytes；SHA-256 `1c07549b2750b9a87e5b291791f49455ad95105979d89f614b61f2134964c87d`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f6edf329-d972-4ae6-bc01-6a9f053d3a59>
-- `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-03_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_224772.txt` — 13296 bytes；SHA-256 `e0cef00614b27406b2d9184a562e2a3598c734ee5fe85e8ccdcc3793f0d585bb`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9ed00bb6-eb51-4e5e-95c1-a401168e2d47>
+- `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-02_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_9a97a2.txt` — 528 bytes；SHA-256 `278b30c5af8121e57214a6d6df586d06819ac0c2d204e4cc4e1e3c578d80578f`
+  - 來源：<https://data.gov.tw/dataset/90733>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f6edf329-d972-4ae6-bc01-6a9f053d3a59>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-03_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_224772.txt` — 528 bytes；SHA-256 `87e997b3fccd113461bfc240307d16ccf86e788d15119ac337bea74d3d8e1479`
+  - 來源：<https://data.gov.tw/dataset/90733>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9ed00bb6-eb51-4e5e-95c1-a401168e2d47>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-04_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_b7c073.txt` — 4926 bytes；SHA-256 `9b87d80e024cd2239726adc3808564342178acfb63400de8c49100103c395889`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=ec97ec98-2931-4a58-a6b6-944afa629aad>
-- `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-05_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_3b360c.txt` — 14649 bytes；SHA-256 `e62c977c4144102eddfddd4be25abf7437787fd55446d97ed999ce3af13d4fe2`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=467ecd3b-d1f8-4a6c-ba98-8498c53c5f29>
-- `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-06_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_51be2d.txt` — 14664 bytes；SHA-256 `f2f2dd16d27b5f91ad95956fff665e3418ec3e1a2e05c8a8617eed9a732321a3`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2269c2f4-c5e9-4f3a-9410-c7345915b13d>
-- `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-07_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_91d5e6.txt` — 14664 bytes；SHA-256 `5fc5c185da47d668f9c312456157ef1f100ca86f6601430eeb668eeec64c553c`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=16db3c8b-2b78-436b-b1d8-7511454c9643>
-- `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-08_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_c7539b.txt` — 14656 bytes；SHA-256 `26cfc5bee00e8c7f119c1c78494bc24205a881c4b0d1e65f8573cb3954090779`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9efaa887-8868-42f5-889c-46e72c454c7f>
+- `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-05_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_3b360c.txt` — 528 bytes；SHA-256 `fb43d29281aedc446d4f769dbd4f61f40c35acde68d84a8c8e9edc2436158e3e`
+  - 來源：<https://data.gov.tw/dataset/90733>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=467ecd3b-d1f8-4a6c-ba98-8498c53c5f29>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-06_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_51be2d.txt` — 528 bytes；SHA-256 `ca9cbd9cb2316c16bf85557a4b81d94e77acd5a022e6ebf0579a4fc247d61697`
+  - 來源：<https://data.gov.tw/dataset/90733>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2269c2f4-c5e9-4f3a-9410-c7345915b13d>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-07_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_91d5e6.txt` — 528 bytes；SHA-256 `09e2ff645e13c66691cbef51fd999d90e16a9a67d8c219fee961784599691b18`
+  - 來源：<https://data.gov.tw/dataset/90733>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=16db3c8b-2b78-436b-b1d8-7511454c9643>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺中市/20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分_2026-08_20536-02-05-2_臺中市核發建築物使用執照統計-按土地使_c7539b.txt` — 528 bytes；SHA-256 `ee7895b622b95026f41a2b12a8a1513e8f8b9f6ad12aa02d276ba4fdf5264965`
+  - 來源：<https://data.gov.tw/dataset/90733>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9efaa887-8868-42f5-889c-46e72c454c7f>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/「擬定新社都市計畫細部計畫(第四次通盤檢討)案」_「擬定新社都市計畫細部計畫(第四次通盤檢討)案」1.CSV_8dc86c.txt` — 976 bytes；SHA-256 `a9083bafe217ae58ab4169a3bfc45388995ca90421ad3f29a844b588de4fca98`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=74b81ca3-216e-4a8c-bd0d-0831b4969dfa>；<https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=Bv6nUL4AUW&d=IwKkDfVqwO>；<https://www.ud.taichung.gov.tw/media/1117910/%E6%93%AC%E5%AE%9A%E6%96%B0%E7%A4%BE%E9%83%BD%E5%B8%82%E8%A8%88%E7%95%AB%E7%B4%B0%E9%83%A8%E8%A8%88%E7%95%AB-%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5.pdf>；<https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=Bv6nUL4AUW&d=DzNiWiQXkh>；<https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=Bv6nUL4AUW&d=wTD0jAND6t>
 - `03_都市計畫書圖/臺中市/「擬定臺中市大肚地區都市計畫細部計畫」、「擬定臺中市高鐵站區都市計畫細部計畫」及「擬定臺中市烏日地區都市計畫細部計畫」案_「臺中市烏日大肚地區都市計畫主要計畫」_ed214b.txt` — 4987 bytes；SHA-256 `058a2021a6179e1614c5f947c88b33ab7c79af3d64400c4b956087c1371aa5a1`
@@ -856,14 +858,14 @@
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=17a6a1d4-af7d-4b81-89b1-33253b535817>；<https://drive.google.com/file/d/1NWx0QNA-lQsnwXEZWk_b-cBfEktL-7AY/view?usp=sharing>
 - `03_都市計畫書圖/臺中市/臺中市105年都市計畫土地使用分區面積_105年臺中市都市計畫土地使用分區面積.CSV_30296b.txt` — 5171 bytes；SHA-256 `b5e826f68a9bf4071cf336cc2ff420b18d4bfe5a3fb529b0aa90f07b7105dbd2`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=82ef1f19-27fa-4110-8883-4477a341aab3>
-- `03_都市計畫書圖/臺中市/臺中市105年都市計畫土地使用分區面積_105年臺中市都市計畫土地使用分區面積.JSON_21f0ef.txt` — 28028 bytes；SHA-256 `1f214188d4cd4c34fd9586d60786974ce7d234960f3de435d04d0ff9f758c90a`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f4345b1e-b7ef-4c9c-a822-8ecb4bade456>
+- `03_都市計畫書圖/臺中市/臺中市105年都市計畫土地使用分區面積_105年臺中市都市計畫土地使用分區面積.JSON_21f0ef.txt` — 457 bytes；SHA-256 `c248d223ab1c9198206a9f0683bd1fdb1941d42a0efa0d26d85d377f226252cc`
+  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f4345b1e-b7ef-4c9c-a822-8ecb4bade456>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/臺中市105年都市計畫土地使用分區面積_105年臺中市都市計畫土地使用分區面積.XML_3046aa.txt` — 43424 bytes；SHA-256 `ff4e8fdbe997c58caef76a9e1da086fd343433664201c2f4f078fc1ae6ba5450`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b5f29901-4382-4121-a81d-5db3dba1be41>
 - `03_都市計畫書圖/臺中市/臺中市105年都市計畫地區種類_105年臺中市都市計畫地區種類.CSV.CSV_9dc479.txt` — 2871 bytes；SHA-256 `01af9843d7619f052dde3b8636e3bcc8348f6c18fd8631c41fc031ec5e666a64`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=83b24bfd-a702-4380-93d6-f2cbca354d06>
-- `03_都市計畫書圖/臺中市/臺中市105年都市計畫地區種類_105年臺中市都市計畫地區種類.CSV.JSON_3639e4.txt` — 12651 bytes；SHA-256 `4672d2c59ce9d5d20da28bbe8e02130f8810aa59e0e93355cf9eb7ed63049f76`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=af079bb9-3335-4cba-b839-57cb2cb3c617>
+- `03_都市計畫書圖/臺中市/臺中市105年都市計畫地區種類_105年臺中市都市計畫地區種類.CSV.JSON_3639e4.txt` — 437 bytes；SHA-256 `bfdd1273fd693a436c021b78910c91af4953ea49fc2896b98f6f7385276bcdca`
+  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=af079bb9-3335-4cba-b839-57cb2cb3c617>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/臺中市105年都市計畫地區種類_105年臺中市都市計畫地區種類.CSV.XML_43f20f.txt` — 18147 bytes；SHA-256 `0f6c78c3bd062d7c085fb5518bb0738e0c72e90c9ec700c1e41834e3ac0ffbc0`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f4d24950-c793-49a7-bb57-01b6c406ccdc>
 - `03_都市計畫書圖/臺中市/臺中市106年都市計畫圖(GIS)_TWD67_106都計twd67.CSV_169e48.txt` — 332 bytes；SHA-256 `d4f13896ea753bb44d857ba9bebb7c03ca9a829272f27e457063168c9b966b4c`
@@ -880,28 +882,28 @@
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=55b81c28-7145-483b-8c1a-af2d5e9e0acb>；<https://drive.google.com/file/d/1G1x1cLRvrCyr-a26aoJbRaM2-H0KeuF5/view?usp=sharing>
 - `03_都市計畫書圖/臺中市/臺中市各都市計畫-人口數與人口成長率彙整表_臺中市各都市計畫-人口數與人口成長率彙整表.CSV.CSV_087834.txt` — 3238 bytes；SHA-256 `8aecfaeab2a2117347d7afdef269f4c0c33403f5eb79bda257141b7433e08e6c`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=fe5acaab-3e6a-498f-b9ca-955bd7b3b6a4>
-- `03_都市計畫書圖/臺中市/臺中市各都市計畫-人口數與人口成長率彙整表_臺中市各都市計畫-人口數與人口成長率彙整表.CSV.JSON_733568.txt` — 11905 bytes；SHA-256 `7a0caed3377318c9348cfba5236355707222ee9735572795ca75951ff06f16f2`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a5ba4e83-67a8-425c-bbf9-fa772ff894f9>
+- `03_都市計畫書圖/臺中市/臺中市各都市計畫-人口數與人口成長率彙整表_臺中市各都市計畫-人口數與人口成長率彙整表.CSV.JSON_733568.txt` — 481 bytes；SHA-256 `1dc82645753617cc6c173ec3d604fe5b4ab2c9592a8c1ff8e078838f01f2135f`
+  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a5ba4e83-67a8-425c-bbf9-fa772ff894f9>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/臺中市各都市計畫-人口數與人口成長率彙整表_臺中市各都市計畫-人口數與人口成長率彙整表.CSV.XML_01ec5a.txt` — 16939 bytes；SHA-256 `eb191ea028af545765924234c62b7b763a986f9204bc7cadd78770809e6dd803`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b64f7195-0eca-4e3d-94f2-588aa30b96fd>
 - `03_都市計畫書圖/臺中市/臺中市各都市計畫-公共設施總面積比例分析表_臺中市各都市計畫-公共設施總面積比例分析表.CSV.CSV_d7881c.txt` — 2301 bytes；SHA-256 `f211f00352360cf3faa0ccc882cf6ef9558e60591493bb9ce6cc596ef1d4077b`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=df54e1ec-c2ee-41a7-90b5-bc0a2fe8fdb0>
-- `03_都市計畫書圖/臺中市/臺中市各都市計畫-公共設施總面積比例分析表_臺中市各都市計畫-公共設施總面積比例分析表.CSV.JSON_0f1b87.txt` — 11974 bytes；SHA-256 `05ce5e7f439e1bd70cd61f9a422e093e5054679b756615eec6ab6cdf2cfb857a`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=15398a26-70a6-4295-b9c5-15932baca2db>
+- `03_都市計畫書圖/臺中市/臺中市各都市計畫-公共設施總面積比例分析表_臺中市各都市計畫-公共設施總面積比例分析表.CSV.JSON_0f1b87.txt` — 481 bytes；SHA-256 `e832e44d4b258100bb335d42d00d8c6f3c160519a606899cd63cad9d18104acf`
+  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=15398a26-70a6-4295-b9c5-15932baca2db>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/臺中市各都市計畫-公共設施總面積比例分析表_臺中市各都市計畫-公共設施總面積比例分析表.CSV.XML_dd8b84.txt` — 19064 bytes；SHA-256 `e8467cb86a10ac3eef8be8e37a95edf04e861a4367d95c38c311141d75fdfd77`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a73f4331-d1f4-4166-a590-ee468d62d085>
 - `03_都市計畫書圖/臺中市/臺中市各都市計畫區名稱與範圍_各區都計範圍67.CSV_3f1fcb.txt` — 345 bytes；SHA-256 `66d7dd2460e0a33f20797b8d622007508a316e38317b3a06d4d1df112782f306`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=d9f4fec1-f048-475c-a397-5071b461d2aa>；<https://drive.google.com/file/d/15PSTxMXQ09yTnCa6aD85CQdnu9ybeZsj/view?usp=sharing,66000,台中市都市計畫土地使用分區圖資檔案各區名稱與範圍,從地圖網址下載取得圖資檔案,大台中>
 - `03_都市計畫書圖/臺中市/臺中市各都市計畫土地使用內容概要統計表_臺中市各都市計畫土地使用內容概要統計表.CSV.CSV_4250a5.txt` — 2865 bytes；SHA-256 `377c058b94b3631c26db2389625912213377874460de7b3e571a299ba6041d77`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=03ef4d95-b8fa-4920-86f6-51015449e9e4>
-- `03_都市計畫書圖/臺中市/臺中市各都市計畫土地使用內容概要統計表_臺中市各都市計畫土地使用內容概要統計表.CSV.JSON_516836.txt` — 12803 bytes；SHA-256 `20d55dd13018e3d733c0878789dc2a24ac0db00a0d9cba0224497ff9a547cc8a`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=11c830a8-c74d-4fb3-97b3-8992b26673b2>
+- `03_都市計畫書圖/臺中市/臺中市各都市計畫土地使用內容概要統計表_臺中市各都市計畫土地使用內容概要統計表.CSV.JSON_516836.txt` — 473 bytes；SHA-256 `0d0b771420488f4da71ab00e43068bd40ae13481c71290630130efa7eb912220`
+  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=11c830a8-c74d-4fb3-97b3-8992b26673b2>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/臺中市各都市計畫土地使用內容概要統計表_臺中市各都市計畫土地使用內容概要統計表.CSV.XML_5d2cc2.txt` — 20181 bytes；SHA-256 `ba02a4f4ae35203f6462e0fcd34b90f5b293cf11ab796e5fb23b7289c4102f52`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=50cc4e0f-403e-4d8a-965a-f55af6d6c744>
 - `03_都市計畫書圖/臺中市/臺中市各都市計畫土地使用內容類型分析表_臺中市各都市計畫土地使用內容類型分析表.CSV.CSV_87c826.txt` — 4755 bytes；SHA-256 `7470d10f7c3d88638e23dd9b417d7cec7560322b2d4fdd40d897465e8da18f09`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=4a7950a2-3f24-42db-ae93-d619d7f1a79f>
-- `03_都市計畫書圖/臺中市/臺中市各都市計畫土地使用內容類型分析表_臺中市各都市計畫土地使用內容類型分析表.CSV.JSON_6c4479.txt` — 24162 bytes；SHA-256 `282331b2acfdabe03e5d44d53ca601202877d6ae422556b9491e58deb6a89c7d`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=353e3f56-8a10-469e-93bb-b7d345916b48>
+- `03_都市計畫書圖/臺中市/臺中市各都市計畫土地使用內容類型分析表_臺中市各都市計畫土地使用內容類型分析表.CSV.JSON_6c4479.txt` — 473 bytes；SHA-256 `d621cca95f4b0242c3096aba1892a92ce999b9f801f4816fce726a0ac4a249d4`
+  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=353e3f56-8a10-469e-93bb-b7d345916b48>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/臺中市各都市計畫土地使用內容類型分析表_臺中市各都市計畫土地使用內容類型分析表.CSV.XML_f12d2d.txt` — 36212 bytes；SHA-256 `55f9db8c486adb2d18221d6b42ff937c9d52792fd641692c7ed5dd8d264ff246`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=47788393-d965-4fb9-8e11-841d673c1056>
 - `03_都市計畫書圖/臺中市/臺中市后里都市計畫區一千分之一地形圖_臺中市后里都市計畫區一千分之一地形圖.CSV_c6975c.txt` — 349 bytes；SHA-256 `1467deb42d31f1dfbe07ef2bb846f1f3839410376199a5aaec34744d469da8ce`
@@ -1082,16 +1084,16 @@
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=5257ebca-4c3f-40b9-a8a6-4be610bd44cf>；<https://drive.google.com/file/d/1UU28S_CgKC4yjFoqVqO8UqUK-HFNoSzi/view?usp=sharing>
 - `03_都市計畫書圖/臺中市/臺中市都市計畫土地使用面積_臺中市都市計畫土地使用面積.CSV.CSV_ab3fd0.txt` — 4778 bytes；SHA-256 `33ac764622c588de94665c6886b7694a910f8ba410856b2444d02e1f37c77742`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=23bef792-6df7-40a7-98a3-b4badc2fec81>
-- `03_都市計畫書圖/臺中市/臺中市都市計畫土地使用面積_臺中市都市計畫土地使用面積.CSV.JSON_d501c6.txt` — 19780 bytes；SHA-256 `6da043517eaac1573fe3f22a6cadf35c13880bfc7598900ef6bbcc5647619482`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f025698a-3935-436c-933d-c3a485c103e0>
+- `03_都市計畫書圖/臺中市/臺中市都市計畫土地使用面積_臺中市都市計畫土地使用面積.CSV.JSON_d501c6.txt` — 437 bytes；SHA-256 `80d052cf47359532aa40220ddb972a764463e21a78f6db3dd8913360749f3b03`
+  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f025698a-3935-436c-933d-c3a485c103e0>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/臺中市都市計畫土地使用面積_臺中市都市計畫土地使用面積.CSV.XML_b5f1c8.txt` — 27318 bytes；SHA-256 `fa9109375495cda72ecb821d1ab16399d9b0d8f273fda7d69d6010196f613c73`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=23bf1ea4-3ba9-46da-a82d-b2d00920c55d>
 - `03_都市計畫書圖/臺中市/臺中市都市計畫容積移轉申請案件數_臺中市都市計畫容積移轉申請案件數_1.CSV_22bb63.txt` — 812 bytes；SHA-256 `decb9e5c469fff904fee4cb1ae16e4314b4b5f84196251f5bc9f7d4b942ad218`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e78136f9-7f23-4170-81f7-b279c7ff27fc>
 - `03_都市計畫書圖/臺中市/臺中市都市計畫面積及人口_臺中市都市計畫面積及人口_1.CSV_bd0245.txt` — 2748 bytes；SHA-256 `45a22d6aaef98d85c8d88a2c9ec38beb18547404121b26f9c1f04aed20f61772`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b0bfa9e4-2b20-4409-bcc2-0c84fcd765b2>
-- `03_都市計畫書圖/臺中市/臺中市都市計畫面積及人口_臺中市都市計畫面積及人口_1.JSON_ac6a6b.txt` — 9339 bytes；SHA-256 `aba853ca471d49353c30447edc1016ed75fdc50b7a63bb5108823307f36178dd`
-  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=5a5c2c86-4be1-44c3-be8a-2f4c82903760>
+- `03_都市計畫書圖/臺中市/臺中市都市計畫面積及人口_臺中市都市計畫面積及人口_1.JSON_ac6a6b.txt` — 429 bytes；SHA-256 `fa75d19848572a40df9da2522b4ac87187df6f6c9027db7a1271644057754975`
+  - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=5a5c2c86-4be1-44c3-be8a-2f4c82903760>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺中市/臺中市都市計畫面積及人口_臺中市都市計畫面積及人口_1.XML_8e6c55.txt` — 14637 bytes；SHA-256 `23c9fe5c158125471eafd36378491d68679eecb242bcc07f514aa74fa5a87140`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=19f6857c-ed25-47d3-b04b-857b47b97671>
 - `03_都市計畫書圖/臺中市/臺中市霧峰都市計畫區一千分之一地形圖_臺中市霧峰都市計畫區一千分之一地形圖.CSV_b20f84.txt` — 349 bytes；SHA-256 `278187241fa89034cdf4df7afaf903eec656f472a0caf11ef158e2a6fc6c8030`
@@ -1464,8 +1466,8 @@
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0737da8f-90c8-4602-87ec-be8832812d33>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=261aa5a9-a1d8-4bae-a589-7eb9e8efc1e0>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b06c126b-4609-4df1-b612-e44257a88b88>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=22c70f5d-a036-4db9-acc9-635e94690979>
 - `03_都市計畫書圖/臺中市/變更臺中市都市計畫（舊有市區及一至五期市地重劃地區）細部計畫（配合西區土庫段67-62地號等9筆土地容積調派調整部分第二種住宅區為第五種住宅區）案_變更臺中市都_6997df.txt` — 1750 bytes；SHA-256 `fb4a15d417a9b391bc07d329148fc117c31fee967fcb4ccfcfe60860a853c62d`
   - 來源：<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=24cd47c6-98df-4b4e-b7b7-32eb88370354>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=8abb32f8-f2a5-4cfb-8c2a-268a40ea4cc3>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e899f28c-f81b-4441-829d-860131da7c40>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=7985335e-c042-4ac3-979f-b3ef4388023c>；<https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=660327cc-9f09-4aad-946f-b1355adc4ede>
-- `03_都市計畫書圖/臺北市/臺北市土地使用分區_提供臺北市土地使用分區情形之資訊_c05d65.txt` — 36273236 bytes；SHA-256 `7279fb2e29cd265aebed0bc1618e128a9c2dd60089bf92661e80d3f33a8fd358`
-  - 來源：<https://data.taipei/api/dataset/a132a433-db7c-4387-8085-83e6a093b17f/resource/bed9a0d3-cb43-438e-825b-93810f8f2b9d/download>
+- `03_都市計畫書圖/臺北市/臺北市土地使用分區_提供臺北市土地使用分區情形之資訊_c05d65.txt` — 386 bytes；SHA-256 `f8851b619e8c190e222e3bd9ba6de2d2feb189ff8f4eefd9a4f68810da0093c0`
+  - 來源：<https://data.gov.taipei/dataset/detail?id=a132a433-db7c-4387-8085-83e6a093b17f>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺北市/臺北市土地使用分區圖資_臺北市土地使用分區圖資_a2b7fc.txt` — 2179 bytes；SHA-256 `099aba6cb25360778695be940c477c2e20d6e16a6c94d5f5e3e4d8880adf88b8`
   - 來源：<https://data.taipei/api/dataset/a4da6624-d896-4d54-9651-3d4bbd839942/resource/1a116328-e0c9-4a4d-9c43-f37e8da3ffd6/download>；<https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E5%A3%AB%E6%9E%97%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,如須查詢具體定位可至：https://webgis.udd.gov.taipei/upis_v2>；<https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E5%8C%97%E6%8A%95%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,>；<https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E5%85%A7%E6%B9%96%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,>；<https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E6%9D%BE%E5%B1%B1%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,>；<https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E5%A4%A7%E5%90%8C%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,>；<https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E4%B8%AD%E5%B1%B1%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,>；<https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E5%8D%97%E6%B8%AF%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,>；其他網址見原檔
 - `03_都市計畫書圖/臺北市/臺北市政府都市發展局通訊錄_臺北市政府都市發展局通訊錄_66516c.txt` — 1747 bytes；SHA-256 `14e84a9b3d1f992f9a921c5c25dcffe366cdd6ba28bd78809e2545d25bef92d2`
@@ -1514,60 +1516,60 @@
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/ddb210e9-712e-41c5-8668-0199109f87bd>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_108年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_ac70d6.txt` — 29933 bytes；SHA-256 `ec9bcc89273ccc632d38e8cb87893cc71f122d58ff49d0559556e480f42b3a19`
   - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/ddb210e9-712e-41c5-8668-0199109f87bd>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_109年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_3ff5a0.txt` — 30788 bytes；SHA-256 `8610bf0891cde872138b9d832c1b9dca8b35d555d4429a8b3b5a8004c0e7c8a5`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/2f560952-90b1-4440-92b0-c410a64d9557>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_109年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_3ff5a0.txt` — 395 bytes；SHA-256 `5a931213ecc934bfd8b4f047c3383ae10125ac0803d5f365da373058e8ad0d69`
+  - 來源：<https://data.tainan.gov.tw/Resource/2f560952-90b1-4440-92b0-c410a64d9557>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_109年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_fde79b.txt` — 4846 bytes；SHA-256 `5e7bb688ce5ff0f8a9b517c99c19f823ae652787ca5f885b9b2533e98a52d842`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/2f560952-90b1-4440-92b0-c410a64d9557>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_110年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_1ae731.txt` — 31409 bytes；SHA-256 `cd412aa54aa424a00842fdcaaf107686c1b8af7c6b22380d8b7ed9a022de46c1`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/eeb49a7f-61b0-4cdb-80dc-1e49bc638da5>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_110年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_1ae731.txt` — 395 bytes；SHA-256 `789bbb891cf6d6df348e8f8e8505879ff2f63776a9cab2115a2279a3cf5a31f5`
+  - 來源：<https://data.tainan.gov.tw/Resource/eeb49a7f-61b0-4cdb-80dc-1e49bc638da5>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_110年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_5e2def.txt` — 4213 bytes；SHA-256 `9927f60c56812036c09260351f6cf91b79d9cc95567dc3b1eeb0de2565991b43`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/eeb49a7f-61b0-4cdb-80dc-1e49bc638da5>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_111年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_2b8704.txt` — 4260 bytes；SHA-256 `867d57ba52c149b74ad14c2e336bd38148f8e34bd826dd5e90cce30568f3350d`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/3d1bc06a-aa24-4664-a5a7-a40987a557cb>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_111年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_a22da0.txt` — 31456 bytes；SHA-256 `ffca845c99947312aa92e45979da2efeedd8fd0c0f0c7752ecffed2e5a36cc30`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/3d1bc06a-aa24-4664-a5a7-a40987a557cb>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_112年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_68045d.txt` — 31442 bytes；SHA-256 `88b7b07faaa7e90ee4427d3a031c0f6bcfeee5947b04e4272fbc5d7c8866ce6b`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/75c2a3d8-f3f6-4762-ae5f-524025719480>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_111年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_a22da0.txt` — 395 bytes；SHA-256 `cea1e8dfc00041ae13b6ae78e7687e73bb26ea89639c19464a583e4650a5d5b5`
+  - 來源：<https://data.tainan.gov.tw/Resource/3d1bc06a-aa24-4664-a5a7-a40987a557cb>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_112年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_68045d.txt` — 395 bytes；SHA-256 `48cc6b0a1bbb0309e5c19912804c6e36aef89894f05f13cedd3e7f2613a8958b`
+  - 來源：<https://data.tainan.gov.tw/Resource/75c2a3d8-f3f6-4762-ae5f-524025719480>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_112年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_826d5b.txt` — 4246 bytes；SHA-256 `7072fa9e8429c062065fbe4c7e1e0fb3b1a118081ceb8e65ef72e737707015ec`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/75c2a3d8-f3f6-4762-ae5f-524025719480>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_108年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_2b2752.txt` — 3952 bytes；SHA-256 `99dea12a8553168b5b3369b8fe276d3b6be31cedb8acc0879a53de6d365b22d0`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/d739c133-d2d3-40fc-a331-b525bcf4f626>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_108年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_4ee295.txt` — 29894 bytes；SHA-256 `43a98e79a123072d1edafb39f97246e0c2ec75c545c98e2406070ee97fefa046`
   - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/d739c133-d2d3-40fc-a331-b525bcf4f626>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_109年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_1018d8.txt` — 30474 bytes；SHA-256 `eba5a36aa082dcfd90b6ac1468cc01bc4b0cfec93e229f2b4f266216d13b621e`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/3316f879-0c72-47e6-9fee-1a7d75ebf67a>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_109年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_1018d8.txt` — 395 bytes；SHA-256 `ec31d7fb13fbd70e19260134f8ae2e2c52f5a16f048630246a2e5f8c7330ece0`
+  - 來源：<https://data.tainan.gov.tw/Resource/3316f879-0c72-47e6-9fee-1a7d75ebf67a>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_109年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_b4e2ce.txt` — 4532 bytes；SHA-256 `9d14e7209b0a0d2a59fc1660ca582acbfa392eaade1e6439a68ca2449e611982`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/3316f879-0c72-47e6-9fee-1a7d75ebf67a>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_110年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_e91ec5.txt` — 31320 bytes；SHA-256 `8f499503c96a5c6be0bd2b231b5a115258664a7ebbd54c440a4cdabd1cb12a8e`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/99be926d-c3dd-45c9-87ca-c9e0ff7294a5>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_110年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_e91ec5.txt` — 395 bytes；SHA-256 `8cb16dbd5b45e773836b4ce0b90c2520ca9c0dab2f23852cb1074a50f78847d4`
+  - 來源：<https://data.tainan.gov.tw/Resource/99be926d-c3dd-45c9-87ca-c9e0ff7294a5>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_110年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_eaf4da.txt` — 4124 bytes；SHA-256 `b9d04ec09f5f77d6974364272247e3660ddce3fe5d95e76c9b3f270f67b58a8c`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/99be926d-c3dd-45c9-87ca-c9e0ff7294a5>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_111年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_6321b4.txt` — 31879 bytes；SHA-256 `6b5d311311427f7ca07f7f6905158fb9a8990b1a2901e13584efd2671982b979`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/9bc0b7a9-8f1a-48b3-9352-f33d0ca3d361>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_111年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_6321b4.txt` — 395 bytes；SHA-256 `45b9c9c686c1a8ed35ac5e792435a699ce2870d25ae140f8e3c785290c84a50e`
+  - 來源：<https://data.tainan.gov.tw/Resource/9bc0b7a9-8f1a-48b3-9352-f33d0ca3d361>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_111年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_d47a92.txt` — 4683 bytes；SHA-256 `7b650bc9beaff1d5cbf0602c6e00697a5f737169f0c0dce09a3290ad8f495d99`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/9bc0b7a9-8f1a-48b3-9352-f33d0ca3d361>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_112年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_475cbc.txt` — 4126 bytes；SHA-256 `fbee8a78072cae0aa0a24e1fcd79c4f9bbcd17dce0c63ea65636ec8371636b64`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/df0795a9-e04c-4dc5-a2f9-9bb06145140f>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_112年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_eeeca6.txt` — 31322 bytes；SHA-256 `77a45ce928683f79a1ceed0804cd1156166a36457b308514803d1eefd85cfe31`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/df0795a9-e04c-4dc5-a2f9-9bb06145140f>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_112年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_eeeca6.txt` — 395 bytes；SHA-256 `ff00455479f7097f0655a43cb4f705caf3565b58ca39ea940d929c31800ed4f9`
+  - 來源：<https://data.tainan.gov.tw/Resource/df0795a9-e04c-4dc5-a2f9-9bb06145140f>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_108年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_1a25d6.txt` — 4491 bytes；SHA-256 `88d003d988a5227712e57b4267e5050927527900db2dc2bf52169af1a5a83143`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/c9d07f89-9c0b-4caf-98dd-693fb11d4526>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_108年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_da373b.txt` — 30433 bytes；SHA-256 `b650bd267dd1ed0edc953d1e148514ca3c414b036565a4c340143dcf1288e355`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/c9d07f89-9c0b-4caf-98dd-693fb11d4526>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_109年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_696dd0.txt` — 30807 bytes；SHA-256 `c331d5a02fa98af32a46dce70bf1862297b7f270ca6c3d61bab6d96fd42ad869`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/0d889cc6-6b15-44d7-88c4-2c94aa6d9a91>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_108年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_da373b.txt` — 389 bytes；SHA-256 `8501cdaa37824fa3c65bd2958bd274aafd089fed44f24e68b5ed725fc703d460`
+  - 來源：<https://data.tainan.gov.tw/Resource/c9d07f89-9c0b-4caf-98dd-693fb11d4526>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_109年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_696dd0.txt` — 389 bytes；SHA-256 `1d9a0bc49c8e5a00bb1ee3b376f23d5533b82716f06c0434ef055c2f1f7e2ef6`
+  - 來源：<https://data.tainan.gov.tw/Resource/0d889cc6-6b15-44d7-88c4-2c94aa6d9a91>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_109年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_d830d1.txt` — 4865 bytes；SHA-256 `633fc7e75e3bba65230636adc896bf3428034470f69d23a8879a7865b5977da9`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/0d889cc6-6b15-44d7-88c4-2c94aa6d9a91>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_110年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_2e125a.txt` — 31811 bytes；SHA-256 `2dcf216526a0daae2a1393522f55d5f7113b0148b2e9a5b0d7f5cf1bf831fd9b`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/78b50260-9957-4d2b-b6a8-b4ee3e353379>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_110年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_2e125a.txt` — 389 bytes；SHA-256 `df78477eb449fa5efb32e47183b85eb88724bec94d1661d47255cac2959b9348`
+  - 來源：<https://data.tainan.gov.tw/Resource/78b50260-9957-4d2b-b6a8-b4ee3e353379>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_110年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_efb44b.txt` — 4615 bytes；SHA-256 `5b7898d3730bf6e054c6c82039dfb4ef26df416877921a7b7f84e5d56ff2f7fc`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/78b50260-9957-4d2b-b6a8-b4ee3e353379>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_111年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_691cbe.txt` — 31767 bytes；SHA-256 `a0f097190d6b1fe16910d4cf241715d04d4e382db2ea31d7b040363295a5cda0`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/13eaebc6-59d4-437f-9c14-5a80cda4f135>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_111年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_691cbe.txt` — 389 bytes；SHA-256 `01fff85d366cefcd575c50be13fd1c9ea67241dd36a9702fbfcc35d201e36923`
+  - 來源：<https://data.tainan.gov.tw/Resource/13eaebc6-59d4-437f-9c14-5a80cda4f135>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_111年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_db8f1c.txt` — 4571 bytes；SHA-256 `7a7e49fd303153805c42a3eaefd3b2814c8a14f7e030067b4251aa6dc9a9c0fe`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/13eaebc6-59d4-437f-9c14-5a80cda4f135>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_112年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_8eaaab.txt` — 31767 bytes；SHA-256 `68e547d88880e65a8b14db48007c78f25d2955c31663f51d1a9c3ff0cc035576`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/d7d75c29-0594-4d0a-8fb8-c579d5436324>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_112年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_8eaaab.txt` — 389 bytes；SHA-256 `d7b38b2f289e9a3222e8b56e93149f5bfda43e2adf8742f7007d052b9145dca0`
+  - 來源：<https://data.tainan.gov.tw/Resource/d7d75c29-0594-4d0a-8fb8-c579d5436324>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地計畫面積_112年度臺南市都市計畫公共設施用地計畫面積(單位：公頃)_c941cc.txt` — 4571 bytes；SHA-256 `7a7e49fd303153805c42a3eaefd3b2814c8a14f7e030067b4251aa6dc9a9c0fe`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/d7d75c29-0594-4d0a-8fb8-c579d5436324>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫區內受理建築線指定案件資訊_110年臺南市都市計畫區內受理建築線指定案件統計_1c414f.txt` — 3787 bytes；SHA-256 `2f90b9197b99700f4ae59f8ef8c3c6b469e0fa85ac9f17f6cefaf24e0179acb5`
@@ -1592,8 +1594,8 @@
   - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/94baa45a-3aa8-4d01-a526-0b3f67d726a6>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_109年臺南市都市計畫區域內公共工程實施數量-道路_57efe9.txt` — 2632 bytes；SHA-256 `6c6f4477e61ef18f48f047b6fbd097e5ea3335f3e5a7c68cc01e3f22c96f7376`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/de19c57e-6895-47e3-b71a-0c37434f43d9>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_109年臺南市都市計畫區域內公共工程實施數量-道路_72bbee.txt` — 26268 bytes；SHA-256 `b6e61fadff40c5edda3a0cc0916c0f2497b3912d349e20b0b0dc430aab7c0287`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/de19c57e-6895-47e3-b71a-0c37434f43d9>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_109年臺南市都市計畫區域內公共工程實施數量-道路_72bbee.txt` — 414 bytes；SHA-256 `cb2df97655c3781c360638373562a3cb8c86f8d54081034b5338add8b2246613`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/99f565a4-b670-4189-860b-3fe170ca7e6b?handler=Download>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_110年臺南市都市計畫區域內公共工程實施數量-公園_8d7df8.txt` — 4304 bytes；SHA-256 `862c6c180d3ca4bb036f1d74de1cd89a361d7cf4a50e8ddaae57ddd9f70c22c8`
   - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/4d8237e0-55f0-4b84-98ba-f9f92835eb32>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_110年臺南市都市計畫區域內公共工程實施數量-公園_949595.txt` — 1145 bytes；SHA-256 `6d5440ff6362bf6c60191418bacc729a420cebf84247682e586f0655427492a1`
@@ -1602,18 +1604,18 @@
   - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/55017fc6-8c77-4eb5-8701-d8d5821e8efb>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_110年臺南市都市計畫區域內公共工程實施數量-橋梁_97885c.txt` — 1396 bytes；SHA-256 `77950660dfd0c120f9e855b1310cd42f1c8cc85224731e874372fade918c6704`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/55017fc6-8c77-4eb5-8701-d8d5821e8efb>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_110年臺南市都市計畫區域內公共工程實施數量-道路_891517.txt` — 27381 bytes；SHA-256 `4dbf7fa1c4eba64b38be43368fd437a712c623924b7474f9cf70d1e144328fa5`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/99af1e94-8df4-46c7-af23-1037851e8405>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_110年臺南市都市計畫區域內公共工程實施數量-道路_891517.txt` — 414 bytes；SHA-256 `ced630c78f4f987fd32e8b47aab402b9279c8c8e619e83c63c624985f8400634`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/99f565a4-b670-4189-860b-3fe170ca7e6b?handler=Download>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_110年臺南市都市計畫區域內公共工程實施數量-道路_e17d19.txt` — 2703 bytes；SHA-256 `74f77e3700576dea988661a99f6aef9132ff5895bf19f00251b86767425e7c2b`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/99af1e94-8df4-46c7-af23-1037851e8405>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_111年臺南市都市計畫區域內公共工程實施數量-道路_a7e1fd.txt` — 2776 bytes；SHA-256 `4e80839b0b2cbed865a68e6330ae97eaba1c2ab429a8dfac6d466dd8fc3835db`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/b2613dcf-4b31-4708-a602-bd17dbcd53a9>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_111年臺南市都市計畫區域內公共工程實施數量-道路_f72087.txt` — 27454 bytes；SHA-256 `3513526d307a3965ced03be4548ed198e5337cd03ddd2769e5f08ed38bad538b`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/b2613dcf-4b31-4708-a602-bd17dbcd53a9>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_111年臺南市都市計畫區域內公共工程實施數量-道路_f72087.txt` — 414 bytes；SHA-256 `9947e2ecc24a41bd239be1de821c024d183778ec54516f8f0fd67f0477e8b672`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/99f565a4-b670-4189-860b-3fe170ca7e6b?handler=Download>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_112年臺南市都市計畫區域內公共工程實施數量-道路_55ce60.txt` — 2722 bytes；SHA-256 `07a13707553e035c03d07e341fbec02513f150c78e44a56dd8b808f1dbb623b8`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/643e9367-f3a4-4b40-a453-ddba3e60bb92>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_112年臺南市都市計畫區域內公共工程實施數量-道路_55fa15.txt` — 27400 bytes；SHA-256 `0871e6ff7e57bfb707e88ba207f1f6e7f0ca5b0418b131a89e02e837ec926bfe`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/643e9367-f3a4-4b40-a453-ddba3e60bb92>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_112年臺南市都市計畫區域內公共工程實施數量-道路_55fa15.txt` — 414 bytes；SHA-256 `8b2697fba38bc31c822bf0d17598e3a6b8d869629061a689babca87bea17905b`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/99f565a4-b670-4189-860b-3fe170ca7e6b?handler=Download>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_113年臺南市都市計畫區域內公共工程實施數量-道路、橋梁、公園_5c190a.txt` — 37439 bytes；SHA-256 `f0bac3119a02c548cbce0adb941aa17ab979d82cb40c6854ec3e05b221a5644b`
   - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/7fc5bc4b-da8a-44d1-9508-adad01dadd7d>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_113年臺南市都市計畫區域內公共工程實施數量-道路、橋梁、公園_7b6ac6.txt` — 3661 bytes；SHA-256 `16e5d61f4a4396b0f07f4c5f3b6b396c63dbaed758106aeb19479e7779f99289`
@@ -1638,44 +1640,44 @@
   - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/c5fd0539-e499-4f59-8128-43f388e0cad5>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區證明書申請方式統計_臺南市都市計畫土地使用分區證明書申請方式統計_ed8773.txt` — 216 bytes；SHA-256 `e097db65d3c075192a9e1cd560fade28559b61df67feddfcbfbab0e3831605e1`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/c5fd0539-e499-4f59-8128-43f388e0cad5>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_108年度臺南市都市計畫土地使用分區面積(單位：公頃)_691c11.txt` — 22307 bytes；SHA-256 `544ad08ccad9900082e9077e0fbfa1ec29068c3dae34f1c70eb1425ad6ddbcb2`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/67ea1be3-8460-4736-8ba1-9ca6456f29ee>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_108年度臺南市都市計畫土地使用分區面積(單位：公頃)_691c11.txt` — 377 bytes；SHA-256 `543d1ecc4d243ddf18ca21630ccc13e29e4ebb55a140439f5a764fc6cb43252a`
+  - 來源：<https://data.tainan.gov.tw/Resource/67ea1be3-8460-4736-8ba1-9ca6456f29ee>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_108年度臺南市都市計畫土地使用分區面積(單位：公頃)_981eb9.txt` — 4019 bytes；SHA-256 `e5285f3cec33bddae23e8fc74047341ef877a14d59459ccccc07db66cc04d14d`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/67ea1be3-8460-4736-8ba1-9ca6456f29ee>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_109年度臺南市都市計畫土地使用分區面積(單位：公頃)_3b67e4.txt` — 4194 bytes；SHA-256 `f9562c11fbaa16f59b012ae1be7bcdaff4869999ca4070eb3bc7bba88bed4717`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/3fac7864-f50d-4d20-ae5c-d7161169062a>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_109年度臺南市都市計畫土地使用分區面積(單位：公頃)_fe6b38.txt` — 22482 bytes；SHA-256 `79d759e1df41339e3e02ce5d4ce2ee75282e9d858b1ed28fb5a5de8a37ef2e72`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/3fac7864-f50d-4d20-ae5c-d7161169062a>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_109年度臺南市都市計畫土地使用分區面積(單位：公頃)_fe6b38.txt` — 377 bytes；SHA-256 `01a4a99625cb16fd72473676e3d669835080ba3a9c967365aee3a06b668ffe23`
+  - 來源：<https://data.tainan.gov.tw/Resource/3fac7864-f50d-4d20-ae5c-d7161169062a>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_110年度臺南市都市計畫土地使用分區面積(單位：公頃)_a0aba2.txt` — 4097 bytes；SHA-256 `372cc84f38c19a59ddf66d847be4264df188ee2b23c710a7ed0f5e70d19405f7`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/b06c6c3c-f2fd-4d8e-99c9-f7d6daf37812>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_110年度臺南市都市計畫土地使用分區面積(單位：公頃)_c8f46d.txt` — 23267 bytes；SHA-256 `fa6db624d1bfcf18cb29e1ee1729c580fa50953469adef64d9abadd6167fbfd7`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/b06c6c3c-f2fd-4d8e-99c9-f7d6daf37812>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_110年度臺南市都市計畫土地使用分區面積(單位：公頃)_c8f46d.txt` — 377 bytes；SHA-256 `edcba8700d26b310ca8c71d398932a4bc537f7eabdaa46309a24f5ce14c34001`
+  - 來源：<https://data.tainan.gov.tw/Resource/b06c6c3c-f2fd-4d8e-99c9-f7d6daf37812>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_111年度臺南市都市計畫土地使用分區面積(單位：公頃)_1ea9b1.txt` — 4100 bytes；SHA-256 `a96017f1e613b9ff87f3de1848ea651cc919fdb0a2a5520109812cdf09380c14`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/7fd64ea5-b461-431b-88c6-8f8d61dbc77c>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_111年度臺南市都市計畫土地使用分區面積(單位：公頃)_678fa9.txt` — 23270 bytes；SHA-256 `568d9fce7065ed6af1a9bdbe3834970ce9375e6cd8c3e4f8f27fd17fc88b3c4a`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/7fd64ea5-b461-431b-88c6-8f8d61dbc77c>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_111年度臺南市都市計畫土地使用分區面積(單位：公頃)_678fa9.txt` — 377 bytes；SHA-256 `3d9ad0cb539545c9bfb36358e66207bfe8a7d741d47bcee3551555baeda5052d`
+  - 來源：<https://data.tainan.gov.tw/Resource/7fd64ea5-b461-431b-88c6-8f8d61dbc77c>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_112年度臺南市都市計畫土地使用分區面積(單位：公頃)_d06bbe.txt` — 4101 bytes；SHA-256 `4786a9c18d523e22a22d0c102730d6c62bf2321b61afd9084a0636798d08b299`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/0c531eae-11b6-44f7-bf0f-749151529bc2>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_112年度臺南市都市計畫土地使用分區面積(單位：公頃)_f7ee8b.txt` — 23271 bytes；SHA-256 `db84f2b1f54f7ae2a5c52ab6a4de88226b93f1d44f01bf257060706b16e2f6ae`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/0c531eae-11b6-44f7-bf0f-749151529bc2>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫土地使用分區面積_112年度臺南市都市計畫土地使用分區面積(單位：公頃)_f7ee8b.txt` — 377 bytes；SHA-256 `44bed2ae5000e9426f7cc88d5038500da533e8b8f39ae7d0c378e495636119e6`
+  - 來源：<https://data.tainan.gov.tw/Resource/0c531eae-11b6-44f7-bf0f-749151529bc2>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_108年度臺南市都市計畫地區種類(單位：處數；公頃)_9386bd.txt` — 4315 bytes；SHA-256 `6a558da269c73f7f048f4181929ac11ea41836edeaf946a846dc25103804284c`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/a02c5383-a2aa-4866-82e6-a80598807f20>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_108年度臺南市都市計畫地區種類(單位：處數；公頃)_f79e83.txt` — 11764 bytes；SHA-256 `7bf0c5d2866a1aca15c2cec639118708de42215ea41d73cbca5148d97000071e`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/a02c5383-a2aa-4866-82e6-a80598807f20>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_108年度臺南市都市計畫地區種類(單位：處數；公頃)_f79e83.txt` — 362 bytes；SHA-256 `c8008f5a3078091f394ff98affb208eb786c2331c7276e5330e82c17d4a51587`
+  - 來源：<https://data.tainan.gov.tw/Resource/a02c5383-a2aa-4866-82e6-a80598807f20>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_109年度臺南市都市計畫地區種類(單位：處數；公頃)_31e488.txt` — 1974 bytes；SHA-256 `e49c70dc5f2f0f2f3740731cde362bac4575d85b0c0ae1bbb9d2ee0bd86d622c`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/3fe915f9-2402-481d-946c-c776d7c3db46>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_109年度臺南市都市計畫地區種類(單位：處數；公頃)_9b1f4f.txt` — 11415 bytes；SHA-256 `daa0d6d8909b8659c4b6c7b9af94858dd13256a7966b3b4767244f5d5bc17f4a`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/3fe915f9-2402-481d-946c-c776d7c3db46>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_109年度臺南市都市計畫地區種類(單位：處數；公頃)_9b1f4f.txt` — 362 bytes；SHA-256 `34f021113c3ccfe6c8811e8b28f1877ce254ef6b8f74d20dde0f843b1b987e05`
+  - 來源：<https://data.tainan.gov.tw/Resource/3fe915f9-2402-481d-946c-c776d7c3db46>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_110年度臺南市都市計畫地區種類(單位：處數；公頃)_9dd10e.txt` — 4550 bytes；SHA-256 `b981ee87847f0f5ed42347e947809e83d70cfdbaf4a331e23fde9a4367267116`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/bcaf247e-0557-4b4a-af2d-174c7d28093e>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_110年度臺南市都市計畫地區種類(單位：處數；公頃)_a482ba.txt` — 12307 bytes；SHA-256 `18c5a3cc5595e50b1b3877381534b0dcc59bb2632f2f9826362cc31c954f0c0f`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/bcaf247e-0557-4b4a-af2d-174c7d28093e>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_111年度臺南市都市計畫地區種類(單位：處數；公頃)_85bdb8.txt` — 12304 bytes；SHA-256 `6ab817a7775172355b0dd2fef6de2a096fe4223591ccb423e70cfb6fcea104ba`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/797f1265-7ff0-41a1-9c37-b8065174da4a>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_110年度臺南市都市計畫地區種類(單位：處數；公頃)_a482ba.txt` — 362 bytes；SHA-256 `b848ef67efe2f0aa8072b9c143913c917aced76b3ab2b14e57741f63a8af5adf`
+  - 來源：<https://data.tainan.gov.tw/Resource/bcaf247e-0557-4b4a-af2d-174c7d28093e>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_111年度臺南市都市計畫地區種類(單位：處數；公頃)_85bdb8.txt` — 362 bytes；SHA-256 `ace5c2c26b3c0525ac9eeea4f879a8ad184d0a05256f924daf412735ee0481aa`
+  - 來源：<https://data.tainan.gov.tw/Resource/797f1265-7ff0-41a1-9c37-b8065174da4a>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_111年度臺南市都市計畫地區種類(單位：處數；公頃)_f288d6.txt` — 4547 bytes；SHA-256 `a8ee44c60680398ade8f78868f81fe81aa280c598a7e10a2bf80bbde6e208531`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/797f1265-7ff0-41a1-9c37-b8065174da4a>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_112年度臺南市都市計畫地區種類(單位：處數；公頃)_7a1c51.txt` — 12307 bytes；SHA-256 `3411ebe3bf102f9450c9bea69a2bb19664b3a9b872d448f0ce715a9a4098b798`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/0f22555b-4175-4ac5-bac3-4d25c3bb4709>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_112年度臺南市都市計畫地區種類(單位：處數；公頃)_7a1c51.txt` — 362 bytes；SHA-256 `5c69254efb868bd43fd8899a87fd5efaf92900c440bc20fffda6c04f3a072e6e`
+  - 來源：<https://data.tainan.gov.tw/Resource/0f22555b-4175-4ac5-bac3-4d25c3bb4709>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_112年度臺南市都市計畫地區種類(單位：處數；公頃)_bae671.txt` — 4550 bytes；SHA-256 `39249fd6a296aaf7e810dc70574d50c586c0860af09431165e4dae348b4ba6b8`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/0f22555b-4175-4ac5-bac3-4d25c3bb4709>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_115年度臺南市都市計畫地區種類(單位：處數；公頃)_44e4fc.txt` — 2426 bytes；SHA-256 `49d7a7d7c2090bbc816551d58c0e3fccbf7720fbad103ba4848741a31e025c7e`
@@ -1700,10 +1702,10 @@
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/8cf1e392-ed74-4251-898e-6c0833e0b55d>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫案件進度_112年臺南市都市計畫案件進度_483c36.txt` — 26727 bytes；SHA-256 `9ef869eb538b9271991c70063aa5b8be5786de67828e7ad4016634320ef34172`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/9363d004-9728-463c-b9e7-6655fd80a1e9>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫案件進度_112年臺南市都市計畫案件進度_534fbd.txt` — 37726 bytes；SHA-256 `311728d0ae428651e53ebc1a53b62702989ecd006f15dc60bb45d0902e33239f`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/9363d004-9728-463c-b9e7-6655fd80a1e9>
-- `03_都市計畫書圖/臺南市/臺南市都市計畫案件進度_個案進度彙整表_222378.txt` — 37726 bytes；SHA-256 `3ce3d4899545fa497d5848bbd0417146af12c7f142b2f36f7a6853ba5486aac5`
-  - 來源：<https://soa.tainan.gov.tw/Api/Service/Get/2c3f1a5b-31ea-4857-bd58-01110c0ec70d>
+- `03_都市計畫書圖/臺南市/臺南市都市計畫案件進度_112年臺南市都市計畫案件進度_534fbd.txt` — 333 bytes；SHA-256 `1555efd4f8ebd6cb2407d639ceeffda483b7dccdb06ebebf944416a959d4785a`
+  - 來源：<https://data.tainan.gov.tw/Resource/9363d004-9728-463c-b9e7-6655fd80a1e9>；原文字已改為來源連結。
+- `03_都市計畫書圖/臺南市/臺南市都市計畫案件進度_個案進度彙整表_222378.txt` — 294 bytes；SHA-256 `253a5858052c22ed7b6ff388eeadaafacb414d52b620a464769acb2964fc99da`
+  - 來源：<https://data.tainan.gov.tw/DataSet/Detail/e4a6e84f-cf58-481c-b0c3-3b473a95e769>；原文字已改為來源連結。
 - `03_都市計畫書圖/臺南市/臺南市都市計畫案件進度_個案進度彙整表_6c341f.txt` — 26727 bytes；SHA-256 `9ef869eb538b9271991c70063aa5b8be5786de67828e7ad4016634320ef34172`
   - 來源：<https://data.tainan.gov.tw/File/ResourceCsvDownload/2c3f1a5b-31ea-4857-bd58-01110c0ec70d>
 - `03_都市計畫書圖/臺南市/臺南市都市計畫樁位公告案數_臺南市都市計畫樁位公告案數_763f53.txt` — 289 bytes；SHA-256 `7f686a73dd885274c743e0ae564416bffce380c637d85f1f5144854559275835`
@@ -4099,3 +4101,16 @@
 - `07_建築都市核心法規命令_可自由下載/非都市土地開發許可審查收費標準_全文.json` — 3809 bytes
 - `07_建築都市核心法規命令_可自由下載/高級電信工程人員及電信工程人員資格取得與管理辦法_全文.json` — 10702 bytes
 - `07_建築都市核心法規命令_可自由下載/高雄港國內航線或港區工程用之中華民國船舶不適用強制引水辦法_全文.json` — 7803 bytes
+
+## 尚待確認來源的資料
+
+以下 8 筆內容包含難讀的機器格式，但原下載網址目前失效、無法連接或未能確認對應年度；暫保留原內容，避免以錯誤連結取代。
+
+- `03_都市計畫書圖/高雄市/高雄市都市計畫委員會審議會議紀錄_高雄市都市計畫委員會審議會議紀錄_65ed62.txt`
+- `03_都市計畫書圖/連江縣（馬祖）/連江縣都市計畫區域內現有已開闢道路長度及面積暨橋梁座數、自行車道長度_XLSX_e2ea8e.txt`
+- `03_都市計畫書圖/連江縣（馬祖）/連江縣都市計畫區域內公共工程實施數量_XLSX_a91e5f.txt`
+- `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_113年臺南市都市計畫區域內公共工程實施數量-道路、橋梁、公園_5c190a.txt`
+- `03_都市計畫書圖/臺南市/臺南市都市計畫區域內公共工程實施數量_114年臺南市都市計畫區域內公共工程實施數量-道路、橋梁、公園_179658.txt`
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已取得面積_108年度臺南市都市計畫公共設施用地已取得面積(單位：公頃)_ac70d6.txt`
+- `03_都市計畫書圖/臺南市/臺南市都市計畫地區種類_115年度臺南市都市計畫地區種類(單位：處數；公頃)_5ace9c.txt`
+- `03_都市計畫書圖/臺南市/臺南市都市計畫公共設施用地已闢建面積_108年度臺南市都市計畫公共設施用地已闢建面積(單位：公頃)_4ee295.txt`

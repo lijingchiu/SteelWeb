@@ -1,4 +1,13 @@
-[[文字層無法以本機純 Python 工具擷取（AES 加密 PDF，需 cryptography 原生模組），原始檔完整保留]]
+【資料名稱】
+建築物耐震設計規範及解說（100年7月版）_ba481e
 
-官方連結：https://www.nlma.gov.tw/uploads/files/997970daba4b45a498265151f438c778.pdf
-搜尋結果標題即本名，抓取後由文字層覆核
+【檢視原始資料】
+https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg017015/ch02/type2/gov10/num1/Eg.pdf
+
+【說明】
+原本記錄的PDF實為污水下水道計畫，與檔名不符。此連結為100年1月19日修正、100年7月1日生效的官方公報「部分規定」，並非已確認的完整合併版。
+
+【原始資料下載】
+https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg011246/ch02/type2/gov10/num1/Eg.pdf
+
+第二個連結是95年生效版本，須與100年修正部分對照。

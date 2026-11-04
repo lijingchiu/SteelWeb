@@ -70,6 +70,16 @@
           const response = await fetch(href);
           if (!response.ok) throw new Error('not available');
           const text = await response.text();
+          // Link-only records are deliberately distinguished from source text:
+          // the search result points to the official site, and its title alone
+          // must not be used as evidence for an answer.
+          const match = text.match(/【檢視原始資料】\s*(https?:\/\/[^\s]+)/);
+          if (match) {
+            const source = new URL(match[1]);
+            if (source.protocol === 'https:' || source.protocol === 'http:') {
+              return { ...doc, href: source.href, excerpt: '', note: '此項只有來源連結，未提供正文；請前往來源查閱。' };
+            }
+          }
           return { ...doc, href, excerpt: snippet(text, terms, question), note: '文字可能為歷史版本或 OCR 擷取，請核對原始來源。' };
         } catch (_) { return { ...doc, href, excerpt: '', note: '無法載入內容，請開啟來源檔查閱。' }; }
       }));
