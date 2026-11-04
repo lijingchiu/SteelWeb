@@ -2,13 +2,14 @@ name: Daily Steel Price Analysis
 
 on:
   schedule:
-    # 21:17 UTC = 05:17 Taiwan. Off the top of the hour: the old 00:00 UTC slot
-    # started 2-3.5 hours late every day. Notifications are scheduled for the
-    # delivery time in notify-config.json, so they still arrive at a fixed time.
-    - cron: '17 21 * * *'
-    # Backup slots: GitHub often starts scheduled runs hours late or drops them.
-    # A later slot does nothing when today's analysis already exists.
+    # 18:07 UTC = 02:07 Taiwan. GitHub often starts scheduled runs hours late, so
+    # the analysis runs overnight; push and email are then scheduled for the
+    # delivery time in notify-config.json (08:00) and arrive on time.
+    - cron: '7 18 * * *'
+    # Backup slots (Taiwan 03:43, 05:17, 06:23, 07:47): each runs only if no
+    # analysis exists yet for the day.
     - cron: '43 19 * * *'
+    - cron: '17 21 * * *'
     - cron: '23 22 * * *'
     - cron: '47 23 * * *'
   # Pushing a change to this file on main runs the analysis immediately.
