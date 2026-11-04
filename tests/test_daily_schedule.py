@@ -13,6 +13,22 @@ import notify
 
 
 class ScheduleTest(unittest.TestCase):
+    def test_offset_schedules_target_the_next_workday(self):
+        workflow = (Path(__file__).resolve().parents[1] / '.github/workflows/daily-analysis.yml').read_text()
+        self.assertIn("cron: '53 15 * * 0-4'", workflow)
+        self.assertIn("cron: '47 16-22 * * 0-4'", workflow)
+        tw = timezone(timedelta(hours=8))
+        incomplete = dict.fromkeys(('analysis', 'research', 'report', 'notifications'), False)
+        complete = dict.fromkeys(incomplete, True)
+        for offset in range(14):
+            target = datetime(2026, 11, 9, tzinfo=tw) + timedelta(days=offset)
+            first = target - timedelta(minutes=7)
+            times = [first] + [target.replace(hour=hour, minute=47) for hour in range(7)]
+            for moment in times:
+                self.assertEqual(schedule.target_date(moment), target.date())
+                self.assertEqual(schedule.allow_scheduled(moment, incomplete), target.weekday() < 5)
+                self.assertFalse(schedule.allow_scheduled(moment, complete))
+
     def test_weekday_window_and_completed_research(self):
         tw = timezone(timedelta(hours=8))
         pending = {'analysis': False, 'research': False, 'report': False, 'notifications': False}

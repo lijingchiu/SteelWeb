@@ -2,8 +2,10 @@ name: Daily Steel Price Analysis
 
 on:
   schedule:
-    # Taiwan Sun–Thu 23:50 through the following weekday 06:50.
-    - cron: '50 15-22 * * 0-4'
+    # Taiwan Sun–Thu 23:53, followed by 00:47–06:47 on workdays.
+    # Offset each schedule away from the hour to avoid the documented peak.
+    - cron: '53 15 * * 0-4'
+    - cron: '47 16-22 * * 0-4'
   # Pushing a change to this file on main runs the analysis immediately.
   push:
     branches: [main]
