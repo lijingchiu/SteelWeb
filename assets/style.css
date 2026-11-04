@@ -438,33 +438,41 @@ button { font-family: inherit; }
 .ticker {
   position: relative;
   z-index: 1;
-  overflow: hidden;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: var(--ticker-bg);
-  padding: 12px 0;
 }
+.ticker-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 7px 24px; color: var(--muted); font-size: 11px; letter-spacing: .04em;
+}
+.ticker-header button {
+  border: 0; padding: 4px; background: transparent; color: var(--muted);
+  font: inherit; cursor: pointer;
+}
+.ticker-header button:hover, .ticker-header button:focus-visible { color: var(--copper); }
+.ticker-row { overflow: hidden; border-top: 1px solid var(--line); padding: 10px 0; }
 .ticker-inner {
-  display: flex;
-  white-space: nowrap;
+  display: flex; width: max-content; white-space: nowrap;
+  animation: ticker-left var(--ticker-duration, 90s) linear infinite;
   will-change: transform;
 }
-.ticker-item {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 12px;
-  padding: 0 24px;
-  font-size: 13px;
-}
+.ticker-reverse { animation-name: ticker-right; }
+.ticker.is-paused .ticker-inner, .ticker-row:hover .ticker-inner { animation-play-state: paused; }
+.ticker-group { display: flex; flex: none; }
+.ticker-item { display: inline-flex; align-items: baseline; gap: 8px; padding: 0 18px; font-size: 13px; }
 .ticker-label { font-weight: 600; color: var(--ink); letter-spacing: 0.02em; }
-.ticker-price {
-  font-family: var(--font-mono);
-  font-size: 15px;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
+.ticker-price { font-family: var(--font-mono); font-size: 15px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.ticker-detail { font-size: 10px; color: var(--muted); }
 .ticker-chg { font-family: var(--font-mono); font-size: 11px; }
 .ticker-sep { color: var(--copper); opacity: 0.35; font-size: 14px; }
+@keyframes ticker-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes ticker-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .ticker-row { overflow-x: auto; }
+  .ticker-inner { animation: none; }
+  .ticker-group[aria-hidden="true"] { display: none; }
+}
 
 /* ── Section base ── */
 .section {

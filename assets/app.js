@@ -20,8 +20,6 @@ const TREND_LABELS = { up: '上漲', down: '下跌', stable: '持平' };
 const CONF_LABELS = { high: '信心度：高', medium: '信心度：中', low: '信心度：低' };
 
 let priceChart = null;
-let _tickerRAF = null;
-let _tickerX = 0;
 
 // Model-written text sometimes carries citation markup like "([site](https://...))";
 // links belong in the source lists, so drop them from prose.
@@ -559,54 +557,55 @@ function populateFeatured(data) {
   restart();
 }
 
-function populateTicker(data) {
-  const inner = document.getElementById('ticker-inner');
-  if (!inner) return;
-  const tp = data.taiwan_prices || {};
-  const items = [
-    { label: '臺灣粗鋼產量', key: 'crude_steel_production', decimals: 1 },
-    { label: '北部廢鋼',     key: 'north_scrap_price',      decimals: 2 },
-    { label: '小鋼胚',       key: 'billet_price',           decimals: 0 },
-    { label: '豐興鋼筋',     key: 'fengxing_rebar_price',   decimals: 0 },
-    { label: 'H型鋼',        key: 'h_beam_price',           decimals: 0 },
-    { label: '棒線盤價',     key: 'csc_wire_rod_price',     decimals: 0 },
-  ];
-  const buildItem = item => {
-    const d = tp[item.key] || {};
-    const val = d.value != null ? fmt(d.value, item.decimals) : '-';
-    const chg = typeof d.mom_change === 'number' ? d.mom_change : null;
-    const cls = chg === null ? '' : chg > 0 ? 'up' : chg < 0 ? 'down' : '';
-    const arrow = chg === null ? '' : chg > 0 ? '▲' : chg < 0 ? '▼' : '—';
-    const chgText = chg !== null ? `${arrow} ${Math.abs(chg).toFixed(item.decimals)}` : '';
-    return `<span class="ticker-item">
-      <span class="ticker-label">${item.label}</span>
-      <span class="ticker-price">${val}</span>
-      ${chgText ? `<span class="ticker-chg ${cls}">${chgText}</span>` : ''}
-      <span class="ticker-sep">※</span>
+// Each record is assigned to exactly one row; the hidden copy makes the loop seamless.
+function populateTicker(data, materials) {
+  const selectedGroups = new Set(['tw_steel', 'intl_steel', 'commodities', 'fx', 'production']);
+  const selectedIndices = new Set(['cci_tw_00', 'cci_tw_01', 'cci_tw_02', 'cci_tw_03', 'cci_tw_05', 'cci_tw_09', 'cci_tw_10', 'cci_tw_13']);
+  let items = Array.isArray(materials?.items) ? materials.items.filter(it => selectedGroups.has(it.group) || selectedIndices.has(it.id)) : [];
+  if (!items.length) {
+    const prices = data.taiwan_prices || {};
+    items = Object.entries(prices).filter(([, value]) => value && typeof value.value === 'number')
+      .map(([id, value]) => ({ ...value, id, name: ({ north_scrap_price: '北部廢鋼', billet_price: '小鋼胚', fengxing_rebar_price: '豐興鋼筋', h_beam_price: '東鋼 H 型鋼', csc_wire_rod_price: '中鋼棒線', crude_steel_production: '臺灣粗鋼產量' })[id] || id, period: value.month }));
+  }
+  const seen = new Set();
+  const rows = [[], [], []];
+  items.filter(it => it.id && it.name && typeof it.value === 'number' && Number.isFinite(it.value))
+    .forEach(it => {
+      if (seen.has(it.id)) return;
+      seen.add(it.id);
+      rows[(seen.size - 1) % rows.length].push(it);
+    });
+  const formatNumber = n => n.toLocaleString('zh-TW', { maximumFractionDigits: 2 });
+  const buildItem = it => {
+    const change = typeof it.change_pct === 'number' && Number.isFinite(it.change_pct) ? it.change_pct : null;
+    const cls = change === null ? '' : change > 0 ? 'up' : change < 0 ? 'down' : '';
+    const arrow = change === null ? '' : change > 0 ? '▲' : change < 0 ? '▼' : '—';
+    const label = it.unit === '指數' && !it.name.includes('指數') ? `${it.name}指數` : it.name;
+    const period = [it.period || it.month, it.stale ? '舊資料' : ''].filter(Boolean).join(' · ');
+    return `<span class="ticker-item" data-market-id="${esc(it.id)}">
+      <span class="ticker-label">${esc(label)}</span>
+      <span class="ticker-price">${formatNumber(it.value)}</span>
+      <span class="ticker-detail">${esc(it.unit || '')}${period ? ` · ${esc(period)}` : ''}</span>
+      ${change !== null ? `<span class="ticker-chg ${cls}">${arrow} ${Math.abs(change).toFixed(2)}%</span>` : ''}
+      <span class="ticker-sep" aria-hidden="true">※</span>
     </span>`;
   };
-  inner.innerHTML = [...items, ...items].map(buildItem).join('');
-  startTicker();
-}
-
-function startTicker() {
-  const inner = document.getElementById('ticker-inner');
-  if (!inner) return;
-  if (_tickerRAF) { cancelAnimationFrame(_tickerRAF); _tickerRAF = null; }
-  _tickerX = 0;
-  inner.style.transform = 'translateX(0px)';
-
-  requestAnimationFrame(() => {
-    const half = inner.scrollWidth / 2;
-    if (half <= 0) return;
-    const tick = () => {
-      _tickerX -= 0.4;
-      if (_tickerX <= -half) _tickerX += half;
-      inner.style.transform = `translateX(${_tickerX}px)`;
-      _tickerRAF = requestAnimationFrame(tick);
-    };
-    _tickerRAF = requestAnimationFrame(tick);
+  rows.forEach((row, index) => {
+    const inner = document.getElementById(`ticker-inner-${index}`);
+    if (!inner) return;
+    if (!row.length) { inner.innerHTML = '<span class="ticker-item">暫無行情資料</span>'; inner.style.animation = 'none'; return; }
+    inner.style.animation = '';
+    inner.style.setProperty('--ticker-duration', `${Math.max(65, row.length * 9)}s`);
+    const content = row.map(buildItem).join('');
+    inner.innerHTML = `<span class="ticker-group">${content}</span><span class="ticker-group" aria-hidden="true">${content}</span>`;
   });
+  const ticker = document.querySelector('.ticker');
+  const toggle = document.getElementById('ticker-toggle');
+  if (ticker && toggle) toggle.onclick = () => {
+    const paused = ticker.classList.toggle('is-paused');
+    toggle.textContent = paused ? '播放' : '暫停';
+    toggle.setAttribute('aria-label', paused ? '播放行情跑馬燈' : '暫停行情跑馬燈');
+  };
 }
 
 const FC_ITEMS = [
@@ -1079,7 +1078,7 @@ async function loadData() {
     populateHeadline(data);
     populatePrices(data);
     populateFeatured(data);
-    populateTicker(data);
+    populateTicker(data, null);
     populateExchange(data);
     populateAnalysis(data);
     populateForecast(data);
@@ -1087,6 +1086,7 @@ async function loadData() {
     populateTopStories(data);
     const [materials, accuracy, report, outlooks] = await Promise.all([
       fetchJson('data/materials.json'), fetchJson('data/accuracy.json'), fetchJson('data/report.json'), fetchJson('data/material-outlooks.json')]);
+    populateTicker(data, materials);
     populateReport(report, data);
     matState.analysis = data;
     matState.outlooks = outlooks;

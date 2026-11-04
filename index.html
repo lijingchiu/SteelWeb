@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261104w">
+  <link rel="stylesheet" href="assets/style.css?v=20261104x">
 </head>
 <body>
 
@@ -160,12 +160,13 @@
     </aside>
   </section>
 
-  <!-- Ticker -->
-  <div class="ticker" aria-label="報價跑馬燈">
-    <div class="ticker-inner" id="ticker-inner">
-      <span class="ticker-item"><span class="ticker-label">載入中</span><span class="ticker-sep">※</span></span>
-    </div>
-  </div>
+  <!-- Market tickers -->
+  <section class="ticker" aria-label="重要行情跑馬燈">
+    <div class="ticker-header"><span>重要行情 · 漲跌幅為較前期變化</span><button type="button" id="ticker-toggle" aria-label="暫停行情跑馬燈">暫停</button></div>
+    <div class="ticker-row" aria-label="行情第一列"><div class="ticker-inner" id="ticker-inner-0"><span class="ticker-item">載入中…</span></div></div>
+    <div class="ticker-row" aria-label="行情第二列"><div class="ticker-inner ticker-reverse" id="ticker-inner-1"><span class="ticker-item">載入中…</span></div></div>
+    <div class="ticker-row" aria-label="行情第三列"><div class="ticker-inner" id="ticker-inner-2"><span class="ticker-item">載入中…</span></div></div>
+  </section>
 
   <!-- Main content area -->
   <div id="content-area">
@@ -573,7 +574,7 @@
   </section>
 
   <script src="assets/material-forecast.js?v=1"></script>
-  <script src="assets/app.js?v=20261104v"></script>
+  <script src="assets/app.js?v=20261104w"></script>
   <script src="assets/reference-search.js?v=20261104h"></script>
   <script src="assets/chat-web.js?v=20261104c"></script>
   <script src="assets/vendor/jszip.min.js?v=3.10.1"></script>
