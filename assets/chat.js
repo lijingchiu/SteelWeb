@@ -256,7 +256,7 @@
     let msg = '';
     try { msg = ((await res.json()).error || {}).message || ''; } catch (_) {}
     if (res.status === 401) return Object.assign(new Error('金鑰無效或已被停用，請重新設定。'), { badKey: true });
-    if (res.status === 413 || (res.status === 400 && /context length|too (?:many|large)|maximum context|request.{0,20}large/i.test(msg))) return new Error('附件內容超過服務可處理的大小，請將檔案拆分後再試。');
+    if (res.status === 413 || (res.status === 400 && /context length|too (?:many|large)|maximum context|request.{0,20}large/i.test(msg))) return new Error('引用或附件內容超過服務一次可處理的大小，請分次提問。');
     if (res.status === 429) return Object.assign(new Error(/quota|billing/i.test(msg) ? 'OpenAI 額度已用完或超過預算上限。' : '目前詢問太頻繁，請稍等一下再問。'), { stopBatch: true });
     return new Error(`OpenAI 服務暫時無法回應（${res.status}）。`);
   }
@@ -576,8 +576,8 @@
     catch (_) { $('chat-storage-status').textContent = '此瀏覽器無法儲存對話紀錄，請檢查儲存空間或瀏覽器設定。'; return; }
     $('chat-storage-status').textContent = '';
   }
-  function recordTurn(question, answer, sources, displayText) {
-    state.history.push({ role: 'user', text: question }, { role: 'assistant', text: answer, ...(sources ? {sources:sourceSnapshot(sources.laws, sources.references, sources.pages), displayText:displayText || answer} : {}) });
+  function recordTurn(question, answer, sources, displayText, userDisplay) {
+    state.history.push({ role: 'user', text: question, ...(userDisplay ? {displayText:userDisplay} : {}) }, { role: 'assistant', text: answer, ...(sources ? {sources:sourceSnapshot(sources.laws, sources.references, sources.pages), displayText:displayText || answer} : {}) });
     saveConversation();
   }
   function showHistory(open) {
@@ -600,12 +600,12 @@
     const record = readConversations().find(c => c.id === id);
     if (!record) { renderHistory(); return; }
     state.conversationId = record.id;
-    state.history = record.messages.filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.text === 'string').map(m => ({role:m.role, text:m.text, ...(m.role === 'assistant' && m.sources ? {sources:sourceSnapshot(m.sources.laws, m.sources.references, m.sources.pages), displayText:typeof m.displayText === 'string' ? m.displayText : m.text} : {})}));
+    state.history = record.messages.filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.text === 'string').map(m => ({role:m.role, text:m.text, ...(m.role === 'user' && typeof m.displayText === 'string' ? {displayText:m.displayText} : {}), ...(m.role === 'assistant' && m.sources ? {sources:sourceSnapshot(m.sources.laws, m.sources.references, m.sources.pages), displayText:typeof m.displayText === 'string' ? m.displayText : m.text} : {})}));
     state.files = []; updateAttachments(); resetNextSuggestion();
     $('chat-input').value = ''; autoGrow();
     $('chat-log').innerHTML = '';
     state.history.forEach(m => {
-      if (m.role === 'user') addMsg('user', renderBody(m.text));
+      if (m.role === 'user') addMsg('user', renderBody(m.displayText || m.text));
       else if (m.sources) { const el = addMsg('bot', ''); setAnswer(el, m.displayText || m.text, true, m.sources.laws, m.sources.references, m.sources.pages); }
       else addMsg('bot', renderBody(m.text) + '<div class="chat-history-note">此舊紀錄未保存參考來源。</div>');
     });
@@ -809,13 +809,15 @@
     resetNextSuggestion();
     const intro = $('chat-log').querySelector('.chat-intro');
     if (intro) intro.remove();
-    addMsg('user', escHtml(question.slice(0, MAX_QUESTION) + (files.length ? '\n附件：' + files.map(f => f.name).join('、') : '')));
-    $('chat-input').value = '';
-    autoGrow();
-    if (question.length > MAX_QUESTION) {
+    if (typed.length > MAX_QUESTION) {
       addMsg('bot', escHtml(`問題請精簡在 ${MAX_QUESTION} 字以內，再問一次。`), 'chat-note');
       return;
     }
+    const quotePreview = selections.filter(s => s.text).map((s, i) => `引用 ${i + 1}：${s.text.length > 100 ? s.text.slice(0, 100) + '…' : s.text}`).join('\n');
+    const userDisplay = [quotePreview, typed || (!quotes ? question : '請說明上述內容。'), files.length ? '附件：' + files.map(f => f.name).join('、') : ''].filter(Boolean).join('\n');
+    addMsg('user', escHtml(userDisplay));
+    $('chat-input').value = '';
+    autoGrow();
     const answerEl = addMsg('bot', '<span class="chat-typing"><i></i><i></i><i></i></span>');
     setBusy(true);
     const ctrl = new AbortController();
@@ -840,7 +842,6 @@
         } else attachments = await window.SteelAttachments.prepare(files);
         state.files = []; updateAttachments();
       }
-      state.selections = []; updateSelections();
       const earlier = state.history.filter(h => h.role === 'user').slice(-2).map(h => h.text);
       const urls = window.SteelChatWeb ? window.SteelChatWeb.extractUrls(question) : [];
       let pages = [];
@@ -890,7 +891,7 @@
           if (ctrl.signal.aborted) throw Object.assign(new Error('已停止查詢'), {name:'AbortError'});
           const links = [...suggestions, {name:'法務部全國法規資料庫',href:'https://law.moj.gov.tw/'}];
           setAnswer(answerEl, message, true, [], links);
-          recordTurn(question, message, {references:links}, message);
+          recordTurn(question, message, {references:links}, message, userDisplay);
           return;
         }
         const start = pages.length;
@@ -923,8 +924,9 @@
       if (batchFailures.length) finalText += `\n\n未能讀取：${batchFailures.map(f => `${f.name}（${f.reason}）`).join('、')}。`;
       if (pages.some(p => p.status === 'unavailable')) finalText += '\n\n部分網址無法讀取，以上回答僅依已取得的內容。';
       setAnswer(answerEl, finalText, true, laws, references, pages);
+      state.selections = []; updateSelections();
       suggestNextQuestion(question, text);
-      recordTurn(question + (files.length ? `\n（附件：${files.map(f => f.name).join('、')}；原檔未儲存，若需再次分析請重新上傳。）` : ''), splitSections(finalText).body.trim(), {laws, references, pages}, finalText);
+      recordTurn(question + (files.length ? `\n（附件：${files.map(f => f.name).join('、')}；原檔未儲存，若需再次分析請重新上傳。）` : ''), splitSections(finalText).body.trim(), {laws, references, pages}, finalText, userDisplay);
     } catch (e) {
       answerEl.classList.add('chat-error');
       const msg = e.name === 'AbortError' ? '等候太久，已停止。請再問一次。'
@@ -1468,8 +1470,6 @@
     document.addEventListener('steel:ask-selection', e => {
       const detail = e.detail || {};
       if (state.busy) { detail.error = '助理正在回答，請稍後再試。'; return; }
-      const total = state.selections.reduce((n, s) => n + (s.text || '').length, 0) + (detail.text || '').length;
-      if (total > 1800) { detail.error = '引用文字合計請勿超過 1800 字；可先傳送或移除部分內容。'; return; }
       if (detail.file) {
         const issue = window.SteelAttachments.validate([detail.file]);
         if (issue) { detail.error = issue; return; }

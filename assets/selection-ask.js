@@ -2,6 +2,7 @@
 (() => {
   const form = document.getElementById('selection-ask');
   if (!form) return;
+  const trigger = document.getElementById('selection-ask-trigger');
   const quote = document.getElementById('selection-ask-quote');
   const input = document.getElementById('selection-ask-input');
   const status = document.getElementById('selection-ask-status');
@@ -11,27 +12,37 @@
     const el = node?.nodeType === 1 ? node : node?.parentElement;
     return !el || !!el.closest('#selection-ask, #chat-panel, input, textarea, [contenteditable="true"], button');
   };
-  const hide = () => { form.hidden = true; current = null; status.textContent = ''; };
+  const hide = () => {
+    clearTimeout(timer); clearTimeout(hold);
+    form.hidden = true; trigger.hidden = true; current = null; anchor = null; status.textContent = '';
+    window.getSelection()?.removeAllRanges();
+  };
   function position() {
-    if (form.hidden || !anchor) return;
+    if (!anchor || (form.hidden && trigger.hidden)) return;
     const vv = window.visualViewport;
     const left = vv?.offsetLeft || 0, top = vv?.offsetTop || 0;
-    const width = Math.min(360, (vv?.width || window.innerWidth) - 24);
+    const popup = form.hidden ? trigger : form;
+    const width = form.hidden ? Math.min(trigger.offsetWidth || 110, (vv?.width || window.innerWidth) - 24) : Math.min(360, (vv?.width || window.innerWidth) - 24);
     const height = vv?.height || window.innerHeight;
-    form.style.left = `${Math.max(left + 12, Math.min(anchor.left, left + (vv?.width || window.innerWidth) - width - 12))}px`;
-    form.style.top = `${Math.max(top + 12, Math.min(anchor.bottom + 10, top + height - form.offsetHeight - 12))}px`;
+    popup.style.left = `${Math.max(left + 12, Math.min(anchor.left, left + (vv?.width || window.innerWidth) - width - 12))}px`;
+    popup.style.top = `${Math.max(top + 12, Math.min(anchor.bottom + 10, top + height - popup.offsetHeight - 12))}px`;
   }
   function show(item, rect) {
     if (!item || !rect) return;
     current = item; anchor = rect;
-    quote.textContent = item.text || item.label || '網站圖片或圖表';
-    input.value = ''; status.textContent = ''; form.hidden = false;
+    const preview = item.text || item.label || '網站圖片或圖表';
+    quote.textContent = preview.length > 100 ? preview.slice(0, 100) + '…' : preview;
+    input.value = ''; status.textContent = ''; form.hidden = true; trigger.hidden = false;
     position();
   }
+  trigger.addEventListener('click', () => {
+    if (!current) return;
+    clearTimeout(timer); trigger.hidden = true; form.hidden = false; position(); input.focus();
+  });
   window.visualViewport?.addEventListener('resize', position);
   window.visualViewport?.addEventListener('scroll', position);
   function inspectSelection() {
-    if (!form.hidden && form.contains(document.activeElement)) return;
+    if (!form.hidden) return;
     const sel = window.getSelection();
     if (!sel || sel.isCollapsed || !sel.rangeCount || excluded(sel.anchorNode) || excluded(sel.focusNode)) return;
     const text = String(sel).trim();
@@ -40,7 +51,11 @@
     show({text}, rect);
   }
   document.addEventListener('selectionchange', () => { clearTimeout(timer); timer = setTimeout(inspectSelection, 220); });
-  document.addEventListener('pointerup', () => { clearTimeout(hold); clearTimeout(timer); timer = setTimeout(inspectSelection, 100); });
+  document.addEventListener('pointerup', e => {
+    clearTimeout(hold); start = null;
+    if (form.contains(e.target) || trigger.contains(e.target)) return;
+    clearTimeout(timer); timer = setTimeout(inspectSelection, 100);
+  });
   const imageTarget = target => {
     const el = target?.closest?.('img, canvas');
     return el && !excluded(el) && el.getBoundingClientRect().width >= 60 && el.getBoundingClientRect().height >= 40 ? el : null;
@@ -55,7 +70,7 @@
     e.preventDefault(); selectImage(el);
   });
   document.addEventListener('pointerdown', e => {
-    if (!form.hidden && !form.contains(e.target)) hide();
+    if ((!form.hidden || !trigger.hidden) && !form.contains(e.target) && !trigger.contains(e.target)) hide();
     clearTimeout(hold);
     const el = e.pointerType === 'touch' && imageTarget(e.target);
     if (el) { start = {x:e.clientX, y:e.clientY}; hold = setTimeout(() => selectImage(el), 650); }
@@ -86,7 +101,6 @@
   form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!current || submit.disabled) return;
-    if (current.text && current.text.length > 1800) { status.textContent = '選取文字請勿超過 1800 字。'; return; }
     submit.disabled = true; status.textContent = current.element ? '正在擷取圖片…' : '';
     try {
       const detail = {text:current.text || '', label:current.label || '', question:input.value.trim()};
@@ -94,7 +108,6 @@
       document.dispatchEvent(new CustomEvent('steel:ask-selection', {detail}));
       if (!detail.accepted) { status.textContent = detail.error || '無法加入，請稍後再試。'; return; }
       hide();
-      window.getSelection()?.removeAllRanges();
     } catch (_) { status.textContent = '無法擷取這張圖片，請改用截圖上傳。'; }
     finally { submit.disabled = false; }
   });

@@ -60,7 +60,7 @@ async function runScenario(readable, inScope, selections = []) {
   const no = await runScenario(false, false);
   assert.deepEqual(no.sequence, ['read']);
   assert(no.html.includes('無法確認這個連結的文章內容'));
-  const staged = await runScenario(true, true, [{text:'第一段鋼筋報價'}, {text:'第二段廢鋼行情'}]);
+  const staged = await runScenario(true, true, [{text:'第一段鋼筋報價'.repeat(600) + '結尾資料'}, {text:'第二段廢鋼行情'}]);
   assert.deepEqual(staged.sequence, ['read', 'scope', 'answer']);
   console.log('Chat integration: read before scope, linked source citations, off-topic and unavailable pages passed.');
 })().catch(e => { console.error(e); process.exitCode = 1; });
