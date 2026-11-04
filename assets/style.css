@@ -2017,3 +2017,10 @@ body.brief-open .chat-fab { opacity: 0; pointer-events: none; transform: scale(0
   .mat-chart-title span { display: block; margin: 5px 0 0; }
   .mat-research { padding: 14px; }
 }
+.mat-research-reason { margin: 12px 0; color: var(--ink); font-size: 14px; line-height: 1.8; }
+.mat-research-sources { margin-top: 16px; font-size: 13px; font-weight: 600; }
+.mat-research-sources ul { margin: 8px 0 0; padding-left: 18px; }
+.mat-research-sources li { margin: 10px 0; font-weight: 400; line-height: 1.65; }
+.mat-research-sources a { color: var(--copper); text-decoration: underline; text-underline-offset: 3px; }
+.mat-research-sources li span { margin-left: 8px; color: var(--muted); font-size: 11px; }
+.mat-research-sources li p { color: var(--muted); font-size: 12px; }
