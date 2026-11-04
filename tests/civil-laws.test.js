@@ -21,6 +21,13 @@ vm.runInNewContext(fs.readFileSync(path.join(root,'assets/chat.js'),'utf8'),{win
     const result=await window.__steelLaws.searchLaws([name],[],`${name}第${number}條`);
     assert(result.some(r=>r.law===name&&r.n===number),name);
   }
+  for(const name of ['桃園市建築管理自治條例','嘉義縣營建剩餘土石方管理自治條例','花蓮縣建築管理自治條例','臺東縣營建剩餘土石方管理自治條例']) {
+    const result=await window.__steelLaws.searchLaws([name],[],`${name}第1條`);
+    assert(result.some(r=>r.law===name && r.n==='1' && r.region),name);
+  }
+  const local=index.laws.filter(l=>l.pcode.match(/^(KL|HC|ML|CH|NT|KM|HCC|CYI|CYC|PT|PH|HL|TT|TY)-/));
+  assert.equal(local.length,28);
+  for(const entry of local){const doc=JSON.parse(fs.readFileSync(path.join(root,'data/laws',entry.pcode+'.json'),'utf8'));assert(doc.articles.at(-1).text.includes('施行'));assert(!doc.articles.some(a=>/GlobalCheckForm|font-family|<script/i.test(a.text)));}
   const safety=await window.__steelLaws.searchLaws(['營造安全衛生設施標準'],[],'營造安全衛生設施標準第11-2條');
   assert(safety.some(r=>r.effective_note.includes('一百十六年七月一日')));
   console.log(`Civil law catalog, source files, lookups and effective-date notes passed: ${index.laws.length} laws.`);

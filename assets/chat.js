@@ -871,9 +871,12 @@
         catch (e) { if (ctrl.signal.aborted || e.badKey) throw e; }
         finally { ctrl.signal.removeEventListener('abort', cancelWeb); webCtrl.abort(); }
         if (!found.length) {
-          const message = '本站沒有查到相關條文，目前也無法取得可確認的官方網路來源。請稍後再試，或前往法務部全國法規資料庫查詢。';
-          setAnswer(answerEl, message, true, [], [{name:'法務部全國法規資料庫',href:'https://law.moj.gov.tw/'}]);
-          recordTurn(question, message, {references:[{name:'法務部全國法規資料庫',href:'https://law.moj.gov.tw/'}]}, message);
+          const message = '本站沒有查到相關條文，目前也無法取得可確認的官方網路資料。請稍後再試，或使用下方的官方查詢入口。';
+          const suggestions = await referencePromise;
+          if (ctrl.signal.aborted) throw Object.assign(new Error('已停止查詢'), {name:'AbortError'});
+          const links = [...suggestions, {name:'法務部全國法規資料庫',href:'https://law.moj.gov.tw/'}];
+          setAnswer(answerEl, message, true, [], links);
+          recordTurn(question, message, {references:links}, message);
           return;
         }
         const start = pages.length;

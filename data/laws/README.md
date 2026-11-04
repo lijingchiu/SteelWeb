@@ -2,7 +2,7 @@
 
 來源：全國法規資料庫開放資料（法務部），資料日期 2026/10/22 上午 12:00:00, 2026/10/22 上午 12:00:00；本次整理 2026-11-04T08:12:53+08:00。
 授權：政府資料開放授權條款第1版；法律條文依著作權法第9條不得為著作權之標的。
-地方自治法規取自臺北市、新北市、臺中市、高雄市政府法規查詢系統；桃園市、臺南市的系統不開放境外連線，未收錄。
+地方自治法規取自各縣市官方法規查詢系統；僅收錄已取得並核對的部分法規，其他縣市可使用官方查詢入口。
 每月自動更新。CNS 國家標準與設計規範解說等有著作權的文件不在此列。
 
 ## 營建營造
@@ -317,3 +317,37 @@
 - [開發行為環境影響評估作業準則](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0090003)（61 條，修正 2021-02-02）
 - [非都市土地供公共設施使用認定及核發證明辦法](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340162)（7 條，修正 2021-08-12）
 - [非都市土地開發影響費徵收辦法](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070053)（8 條，修正 2015-12-04）
+
+### 縣市營建剩餘土石方自治條例
+
+- [基隆市營建剩餘土石方資源處理及收容處理場所設置管理自治條例](https://exlaw.klcg.gov.tw/LawContent.aspx?id=GL000501)（72 條；修正 2014-10-21）
+- [新竹市營建剩餘土石方處理自治條例](https://law.hccg.gov.tw/LawContent.aspx?id=FL030211)（46 條；修正 2025-07-30）
+- [苗栗縣營建工程剩餘土石方處理及資源堆置處理場設置管理自治條例](https://law.miaoli.gov.tw/glrsnewsout/LawContent.aspx?id=FL033808)（44 條；修正 2026-09-11）
+- [彰化縣營建剩餘土石方管理自治條例](https://lawsearch.chcg.gov.tw/GLRSNEWSOUT/LawContent.aspx?id=FL038757)（45 條；修正 2026-06-01）
+- [南投縣營建工程賸餘土石方處理及資源堆置處理場設置管理自治條例](https://glrs.nantou.gov.tw/LawContent.aspx?id=GL000179)（44 條；修正 2014-07-14）
+- [金門縣營建工程剩餘土石方處理自治條例](https://law.kinmen.gov.tw/LawContent.aspx?id=FL038759)（43 條；修正 2007-03-14）
+- [新竹縣營建工程剩餘土石方管理自治條例](https://hclaw.hsinchu.gov.tw/law/LawContent.aspx?id=GL000253)（37 條；修正 2013-07-01）
+- [嘉義市營建工程剩餘土石方管理自治條例](https://law.chiayi.gov.tw/LawContent.aspx?id=FL026378)（40 條；修正 2024-06-16）
+- [嘉義縣營建剩餘土石方管理自治條例](https://law.cyhg.gov.tw/LawContent.aspx?id=FL037406)（46 條；修正 2026-08-28）
+- [屏東縣營建剩餘土石方管理自治條例](https://ptlaw.pthg.gov.tw/LawContent.aspx?id=GL000060)（46 條；修正 2024-03-29）
+- [澎湖縣營建剩餘土石方管理自治條例](https://law.penghu.gov.tw/glrsnewsout/LawContent.aspx?id=FL038758)（42 條；修正 2023-08-30）
+- [花蓮縣營建工程剩餘土石方管理自治條例](https://glrs.hl.gov.tw/glrsout/LawContent.aspx?id=FL048840)（45 條；修正 2019-02-19）
+- [臺東縣營建剩餘土石方管理自治條例](https://law.taitung.gov.tw/LawContent.aspx?id=GL000274)（51 條；修正 2024-09-09）
+- [桃園市營建剩餘土石方管理自治條例](https://law.tycg.gov.tw/LawContent.aspx?id=GL001477)（39 條；修正 2026-07-31）
+
+### 縣市建築管理自治條例
+
+- [新竹縣建築管理自治條例](https://hclaw.hsinchu.gov.tw/law/LawContent.aspx?id=FL026964)（38 條；修正 2023-08-22）
+- [嘉義市建築管理自治條例](https://law.chiayi.gov.tw/LawContent.aspx?id=FL022491)（49 條；修正 2016-03-08）
+- [嘉義縣建築管理自治條例](https://law.cyhg.gov.tw/LawContent.aspx?id=FL026925)（42 條；修正 2018-12-22）
+- [屏東縣建築管理自治條例](https://ptlaw.pthg.gov.tw/LawContent.aspx?id=FL026602)（41 條；修正 2014-08-26）
+- [澎湖縣建築管理自治條例](https://law.penghu.gov.tw/glrsnewsout/LawContent.aspx?id=FL026758)（41 條；修正 2005-04-15）
+- [花蓮縣建築管理自治條例](https://glrs.hl.gov.tw/glrsout/LawContent.aspx?id=FL026603)（40 條；修正 2025-02-21）
+- [臺東縣建築管理自治條例](https://law.taitung.gov.tw/LawContent.aspx?id=FL021926)（41 條；修正 2023-05-30）
+- [桃園市建築管理自治條例](https://law.tycg.gov.tw/LawContent.aspx?id=GL001431)（50 條；修正 2024-04-18）
+- [基隆市建築管理自治條例](https://exlaw.klcg.gov.tw/LawContent.aspx?id=GL000079)（47 條；修正 2013-05-14）
+- [金門縣建築管理自治條例](https://law.kinmen.gov.tw/LawContent.aspx?id=FL030625)（42 條；修正 2017-12-06）
+- [新竹市建築管理自治條例](https://law.hccg.gov.tw/LawContent.aspx?id=FL022481)（42 條；修正 2021-09-10）
+- [苗栗縣建築管理自治條例](https://law.miaoli.gov.tw/glrsnewsout/LawContent.aspx?id=FL026450)（42 條；修正 2025-05-07）
+- [彰化縣建築管理自治條例](https://lawsearch.chcg.gov.tw/GLRSNEWSOUT/LawContent.aspx?id=FL026531)（41 條；修正 2025-01-20）
+- [南投縣建築管理自治條例](https://glrs.nantou.gov.tw/LawContent.aspx?id=FL021919)（54 條；修正 2023-09-28）

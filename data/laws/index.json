@@ -3982,6 +3982,426 @@
    "partial": false,
    "effective_note": "",
    "articles": 8
+  },
+  {
+   "name": "基隆市營建剩餘土石方資源處理及收容處理場所設置管理自治條例",
+   "pcode": "KL-GL000501",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2014-10-21",
+   "url": "https://exlaw.klcg.gov.tw/LawContent.aspx?id=GL000501",
+   "partial": false,
+   "effective_note": "",
+   "region": "基隆市",
+   "articles": 72
+  },
+  {
+   "name": "新竹市營建剩餘土石方處理自治條例",
+   "pcode": "HC-FL030211",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2025-07-30",
+   "url": "https://law.hccg.gov.tw/LawContent.aspx?id=FL030211",
+   "partial": false,
+   "effective_note": "",
+   "region": "新竹市",
+   "articles": 46
+  },
+  {
+   "name": "苗栗縣營建工程剩餘土石方處理及資源堆置處理場設置管理自治條例",
+   "pcode": "ML-FL033808",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2026-09-11",
+   "url": "https://law.miaoli.gov.tw/glrsnewsout/LawContent.aspx?id=FL033808",
+   "partial": false,
+   "effective_note": "",
+   "region": "苗栗縣",
+   "articles": 44
+  },
+  {
+   "name": "彰化縣營建剩餘土石方管理自治條例",
+   "pcode": "CH-FL038757",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2026-06-01",
+   "url": "https://lawsearch.chcg.gov.tw/GLRSNEWSOUT/LawContent.aspx?id=FL038757",
+   "partial": false,
+   "effective_note": "",
+   "region": "彰化縣",
+   "articles": 45
+  },
+  {
+   "name": "南投縣營建工程賸餘土石方處理及資源堆置處理場設置管理自治條例",
+   "pcode": "NT-GL000179",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2014-07-14",
+   "url": "https://glrs.nantou.gov.tw/LawContent.aspx?id=GL000179",
+   "partial": false,
+   "effective_note": "",
+   "region": "南投縣",
+   "articles": 44
+  },
+  {
+   "name": "金門縣營建工程剩餘土石方處理自治條例",
+   "pcode": "KM-FL038759",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2007-03-14",
+   "url": "https://law.kinmen.gov.tw/LawContent.aspx?id=FL038759",
+   "partial": false,
+   "effective_note": "",
+   "region": "金門縣",
+   "articles": 43
+  },
+  {
+   "name": "新竹縣營建工程剩餘土石方管理自治條例",
+   "pcode": "HCC-GL000253",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2013-07-01",
+   "url": "https://hclaw.hsinchu.gov.tw/law/LawContent.aspx?id=GL000253",
+   "partial": false,
+   "effective_note": "",
+   "region": "新竹縣",
+   "articles": 37
+  },
+  {
+   "name": "嘉義市營建工程剩餘土石方管理自治條例",
+   "pcode": "CYI-FL026378",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2024-06-16",
+   "url": "https://law.chiayi.gov.tw/LawContent.aspx?id=FL026378",
+   "partial": false,
+   "effective_note": "",
+   "region": "嘉義市",
+   "articles": 40
+  },
+  {
+   "name": "嘉義縣營建剩餘土石方管理自治條例",
+   "pcode": "CYC-FL037406",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2026-08-28",
+   "url": "https://law.cyhg.gov.tw/LawContent.aspx?id=FL037406",
+   "partial": false,
+   "effective_note": "",
+   "region": "嘉義縣",
+   "articles": 46
+  },
+  {
+   "name": "屏東縣營建剩餘土石方管理自治條例",
+   "pcode": "PT-GL000060",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2024-03-29",
+   "url": "https://ptlaw.pthg.gov.tw/LawContent.aspx?id=GL000060",
+   "partial": false,
+   "effective_note": "",
+   "region": "屏東縣",
+   "articles": 46
+  },
+  {
+   "name": "澎湖縣營建剩餘土石方管理自治條例",
+   "pcode": "PH-FL038758",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2023-08-30",
+   "url": "https://law.penghu.gov.tw/glrsnewsout/LawContent.aspx?id=FL038758",
+   "partial": false,
+   "effective_note": "",
+   "region": "澎湖縣",
+   "articles": 42
+  },
+  {
+   "name": "花蓮縣營建工程剩餘土石方管理自治條例",
+   "pcode": "HL-FL048840",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2019-02-19",
+   "url": "https://glrs.hl.gov.tw/glrsout/LawContent.aspx?id=FL048840",
+   "partial": false,
+   "effective_note": "",
+   "region": "花蓮縣",
+   "articles": 45
+  },
+  {
+   "name": "臺東縣營建剩餘土石方管理自治條例",
+   "pcode": "TT-GL000274",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2024-09-09",
+   "url": "https://law.taitung.gov.tw/LawContent.aspx?id=GL000274",
+   "partial": false,
+   "effective_note": "",
+   "region": "臺東縣",
+   "articles": 51
+  },
+  {
+   "name": "桃園市營建剩餘土石方管理自治條例",
+   "pcode": "TY-GL001477",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2026-07-31",
+   "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001477",
+   "partial": false,
+   "effective_note": "",
+   "region": "桃園市",
+   "articles": 39
+  },
+  {
+   "name": "新竹縣建築管理自治條例",
+   "pcode": "HCC-FL026964",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2023-08-22",
+   "url": "https://hclaw.hsinchu.gov.tw/law/LawContent.aspx?id=FL026964",
+   "partial": false,
+   "effective_note": "",
+   "region": "新竹縣",
+   "articles": 38
+  },
+  {
+   "name": "嘉義市建築管理自治條例",
+   "pcode": "CYI-FL022491",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2016-03-08",
+   "url": "https://law.chiayi.gov.tw/LawContent.aspx?id=FL022491",
+   "partial": false,
+   "effective_note": "",
+   "region": "嘉義市",
+   "articles": 49
+  },
+  {
+   "name": "嘉義縣建築管理自治條例",
+   "pcode": "CYC-FL026925",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2018-12-22",
+   "url": "https://law.cyhg.gov.tw/LawContent.aspx?id=FL026925",
+   "partial": false,
+   "effective_note": "",
+   "region": "嘉義縣",
+   "articles": 42
+  },
+  {
+   "name": "屏東縣建築管理自治條例",
+   "pcode": "PT-FL026602",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2014-08-26",
+   "url": "https://ptlaw.pthg.gov.tw/LawContent.aspx?id=FL026602",
+   "partial": false,
+   "effective_note": "",
+   "region": "屏東縣",
+   "articles": 41
+  },
+  {
+   "name": "澎湖縣建築管理自治條例",
+   "pcode": "PH-FL026758",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2005-04-15",
+   "url": "https://law.penghu.gov.tw/glrsnewsout/LawContent.aspx?id=FL026758",
+   "partial": false,
+   "effective_note": "",
+   "region": "澎湖縣",
+   "articles": 41
+  },
+  {
+   "name": "花蓮縣建築管理自治條例",
+   "pcode": "HL-FL026603",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2025-02-21",
+   "url": "https://glrs.hl.gov.tw/glrsout/LawContent.aspx?id=FL026603",
+   "partial": false,
+   "effective_note": "",
+   "region": "花蓮縣",
+   "articles": 40
+  },
+  {
+   "name": "臺東縣建築管理自治條例",
+   "pcode": "TT-FL021926",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2023-05-30",
+   "url": "https://law.taitung.gov.tw/LawContent.aspx?id=FL021926",
+   "partial": false,
+   "effective_note": "",
+   "region": "臺東縣",
+   "articles": 41
+  },
+  {
+   "name": "桃園市建築管理自治條例",
+   "pcode": "TY-GL001431",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2024-04-18",
+   "url": "https://law.tycg.gov.tw/LawContent.aspx?id=GL001431",
+   "partial": false,
+   "effective_note": "",
+   "region": "桃園市",
+   "articles": 50
+  },
+  {
+   "name": "基隆市建築管理自治條例",
+   "pcode": "KL-GL000079",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2013-05-14",
+   "url": "https://exlaw.klcg.gov.tw/LawContent.aspx?id=GL000079",
+   "partial": false,
+   "effective_note": "",
+   "region": "基隆市",
+   "articles": 47
+  },
+  {
+   "name": "金門縣建築管理自治條例",
+   "pcode": "KM-FL030625",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2017-12-06",
+   "url": "https://law.kinmen.gov.tw/LawContent.aspx?id=FL030625",
+   "partial": false,
+   "effective_note": "",
+   "region": "金門縣",
+   "articles": 42
+  },
+  {
+   "name": "新竹市建築管理自治條例",
+   "pcode": "HC-FL022481",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2021-09-10",
+   "url": "https://law.hccg.gov.tw/LawContent.aspx?id=FL022481",
+   "partial": false,
+   "effective_note": "",
+   "region": "新竹市",
+   "articles": 42
+  },
+  {
+   "name": "苗栗縣建築管理自治條例",
+   "pcode": "ML-FL026450",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2025-05-07",
+   "url": "https://law.miaoli.gov.tw/glrsnewsout/LawContent.aspx?id=FL026450",
+   "partial": false,
+   "effective_note": "",
+   "region": "苗栗縣",
+   "articles": 42
+  },
+  {
+   "name": "彰化縣建築管理自治條例",
+   "pcode": "CH-FL026531",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2025-01-20",
+   "url": "https://lawsearch.chcg.gov.tw/GLRSNEWSOUT/LawContent.aspx?id=FL026531",
+   "partial": false,
+   "effective_note": "",
+   "region": "彰化縣",
+   "articles": 41
+  },
+  {
+   "name": "南投縣建築管理自治條例",
+   "pcode": "NT-FL021919",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2023-09-28",
+   "url": "https://glrs.nantou.gov.tw/LawContent.aspx?id=FL021919",
+   "partial": false,
+   "effective_note": "",
+   "region": "南投縣",
+   "articles": 54
   }
  ],
  "reference_archive": {

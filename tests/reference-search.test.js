@@ -64,6 +64,11 @@ require('../assets/reference-search.js');
   }
   const soil = await api.search('營建剩餘土石方處理方案', ['營建剩餘土石方', '處理方案']);
   assert(soil.some(x => x.href === 'https://www.nlma.gov.tw/ch/legislation/regsearch/9'));
+  const local = await api.search('屏東縣建築管理自治法規查詢', ['屏東縣','建築管理']);
+  assert(local.some(x => x.href === 'https://ptlaw.pthg.gov.tw/'));
+  assert(!local.some(x => /宜蘭縣|雲林縣|桃園市|臺中市/.test(x.name)));
+  const bridge = await api.search('公路橋梁耐震評估與補強設計規範', ['公路橋梁','耐震評估','補強']);
+  assert(bridge.some(x => x.href.includes('serno=428')));
   const county = await api.search('非都市土地使用分區彰化縣', ['非都市', '使用分區', '彰化縣']);
   assert(county[0].name.includes('彰化縣'));
   assert.deepEqual(await api.search('zz9q8x7y6w', ['zz9q8x7y6w']), []);

@@ -488,6 +488,743 @@
         "確認工程來源、土石方種類與核准去處。",
         "查核所在地自治法規、運輸及流向管理要求。"
       ]
+    },
+    {
+      "id": "local-portal-01",
+      "field": "地方自治法規",
+      "title": "臺北市法規查詢系統",
+      "keywords": [
+        "臺北市",
+        "台北市",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "臺北市官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://laws.gov.taipei/Law",
+      "organization": "臺北市政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-02",
+      "field": "地方自治法規",
+      "title": "新北市政府電子法規查詢系統",
+      "keywords": [
+        "新北市",
+        "新北市",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "新北市官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://web.law.ntpc.gov.tw/Fn/Onews.asp",
+      "organization": "新北市政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-03",
+      "field": "地方自治法規",
+      "title": "桃園市政府主管法規查詢系統",
+      "keywords": [
+        "桃園市",
+        "桃園市",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "桃園市官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://law.tycg.gov.tw/",
+      "organization": "桃園市政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-04",
+      "field": "地方自治法規",
+      "title": "臺中市政府主管法規查詢系統",
+      "keywords": [
+        "臺中市",
+        "台中市",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "臺中市官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://lawsearch.taichung.gov.tw/GLRSout/",
+      "organization": "臺中市政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-05",
+      "field": "地方自治法規",
+      "title": "臺南市政府主管法規查詢系統（本次連線受限）",
+      "keywords": [
+        "臺南市",
+        "台南市",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "臺南市官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。本次自動連線測試受限；可嘗試由內政部國土管理署相關網站清單進入。",
+      "url": "https://law01.tainan.gov.tw/glrsnewsout/",
+      "organization": "臺南市政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-06",
+      "field": "地方自治法規",
+      "title": "高雄市政府主管法規查詢系統",
+      "keywords": [
+        "高雄市",
+        "高雄市",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "高雄市官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://outlaw.kcg.gov.tw/",
+      "organization": "高雄市政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-07",
+      "field": "地方自治法規",
+      "title": "基隆市政府主管法規查詢系統",
+      "keywords": [
+        "基隆市",
+        "基隆市",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "基隆市官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://exlaw.klcg.gov.tw/",
+      "organization": "基隆市政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-08",
+      "field": "地方自治法規",
+      "title": "新竹市政府主管法規查詢系統",
+      "keywords": [
+        "新竹市",
+        "新竹市",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "新竹市官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://law.hccg.gov.tw/",
+      "organization": "新竹市政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-09",
+      "field": "地方自治法規",
+      "title": "新竹縣政府主管法規查詢系統",
+      "keywords": [
+        "新竹縣",
+        "新竹縣",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "新竹縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://hclaw.hsinchu.gov.tw/law/",
+      "organization": "新竹縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-10",
+      "field": "地方自治法規",
+      "title": "苗栗縣政府主管法規查詢系統",
+      "keywords": [
+        "苗栗縣",
+        "苗栗縣",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "苗栗縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://law.miaoli.gov.tw/glrsnewsout/index.aspx",
+      "organization": "苗栗縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-11",
+      "field": "地方自治法規",
+      "title": "彰化縣政府主管法規查詢系統",
+      "keywords": [
+        "彰化縣",
+        "彰化縣",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "彰化縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://lawsearch.chcg.gov.tw/GLRSNEWSOUT/index.aspx",
+      "organization": "彰化縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-12",
+      "field": "地方自治法規",
+      "title": "南投縣政府主管法規查詢系統",
+      "keywords": [
+        "南投縣",
+        "南投縣",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "南投縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://glrs.nantou.gov.tw/glrsout/",
+      "organization": "南投縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-13",
+      "field": "地方自治法規",
+      "title": "雲林縣政府主管法規查詢系統（本次連線受限）",
+      "keywords": [
+        "雲林縣",
+        "雲林縣",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "雲林縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。本次自動連線測試受限；可嘗試由內政部國土管理署相關網站清單進入。",
+      "url": "https://law.yunlin.gov.tw/",
+      "organization": "雲林縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-14",
+      "field": "地方自治法規",
+      "title": "嘉義市政府主管法規查詢系統",
+      "keywords": [
+        "嘉義市",
+        "嘉義市",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "嘉義市官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://law.chiayi.gov.tw/index.aspx",
+      "organization": "嘉義市政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-15",
+      "field": "地方自治法規",
+      "title": "嘉義縣政府主管法規查詢系統",
+      "keywords": [
+        "嘉義縣",
+        "嘉義縣",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "嘉義縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://law.cyhg.gov.tw/",
+      "organization": "嘉義縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-16",
+      "field": "地方自治法規",
+      "title": "澎湖縣政府主管法規查詢系統",
+      "keywords": [
+        "澎湖縣",
+        "澎湖縣",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "澎湖縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://law.penghu.gov.tw/glrsnewsout/",
+      "organization": "澎湖縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-17",
+      "field": "地方自治法規",
+      "title": "金門縣政府主管法規查詢系統",
+      "keywords": [
+        "金門縣",
+        "金門縣",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "金門縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://law.kinmen.gov.tw/",
+      "organization": "金門縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-18",
+      "field": "地方自治法規",
+      "title": "宜蘭縣政府主管法規查詢系統（本次連線受限）",
+      "keywords": [
+        "宜蘭縣",
+        "宜蘭縣",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "宜蘭縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。本次自動連線測試受限；可嘗試由內政部國土管理署相關網站清單進入。",
+      "url": "https://glrslaw.e-land.gov.tw/",
+      "organization": "宜蘭縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-19",
+      "field": "地方自治法規",
+      "title": "屏東縣政府主管法規查詢系統",
+      "keywords": [
+        "屏東縣",
+        "屏東縣",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "屏東縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://ptlaw.pthg.gov.tw/",
+      "organization": "屏東縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-20",
+      "field": "地方自治法規",
+      "title": "連江縣政府法規查詢系統（本次連線受限）",
+      "keywords": [
+        "連江縣",
+        "馬祖",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "連江縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。本次自動連線測試受限，可參考內政部國土管理署相關網站清單。",
+      "url": "https://law.matsu.gov.tw/index.aspx",
+      "organization": "連江縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-21",
+      "field": "地方自治法規",
+      "title": "花蓮縣政府主管法規查詢系統",
+      "keywords": [
+        "花蓮縣",
+        "花蓮縣",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "花蓮縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://glrs.hl.gov.tw/glrsout/",
+      "organization": "花蓮縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "local-portal-22",
+      "field": "地方自治法規",
+      "title": "臺東縣政府主管法規查詢系統",
+      "keywords": [
+        "臺東縣",
+        "台東縣",
+        "自治法規",
+        "建築管理",
+        "土石方",
+        "土地使用",
+        "都市計畫"
+      ],
+      "summary": "臺東縣官方法規查詢入口，並非特定法規全文；請搜尋法規名稱並確認現行版本。",
+      "url": "https://law.taitung.gov.tw/",
+      "organization": "臺東縣政府",
+      "kind": "官方法規查詢入口",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "輸入法規名稱或關鍵字查詢。",
+        "確認法規狀態、修正日期與施行日期。"
+      ]
+    },
+    {
+      "id": "bridge-seismic",
+      "field": "橋梁",
+      "title": "公路橋梁耐震設計規範",
+      "keywords": [
+        "公路",
+        "橋梁",
+        "耐震",
+        "設計"
+      ],
+      "summary": "交通部規範頁提供公路橋梁耐震設計版本及附件。",
+      "url": "https://www.motc.gov.tw/ch/app/data/view?id=740&module=divpubreg&serno=419",
+      "organization": "交通部",
+      "kind": "主管機關技術規範入口",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "確認工程適用範圍與官方公告版本。",
+        "依工程設計條件核對原始內容。"
+      ]
+    },
+    {
+      "id": "bridge-retrofit",
+      "field": "橋梁",
+      "title": "公路橋梁耐震評估與補強設計規範",
+      "keywords": [
+        "橋梁",
+        "耐震評估",
+        "補強"
+      ],
+      "summary": "交通部發布既有公路橋梁耐震評估及補強設計規範。",
+      "url": "https://www.motc.gov.tw/ch/app/divpubreg_list/view?id=740&module=divpubreg&serno=428",
+      "organization": "交通部",
+      "kind": "主管機關技術規範入口",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "確認工程適用範圍與官方公告版本。",
+        "依工程設計條件核對原始內容。"
+      ]
+    },
+    {
+      "id": "highway-work",
+      "field": "道路",
+      "title": "公路工程施工規範",
+      "keywords": [
+        "公路",
+        "路基",
+        "路面",
+        "橋梁",
+        "隧道",
+        "施工"
+      ],
+      "summary": "交通部公路工程施工規範包含路基、路面、橋梁、隧道、邊坡及施工安全。",
+      "url": "https://www.motc.gov.tw/ch/app/divpubreg_list/view?id=740&module=divpubreg&serno=387",
+      "organization": "交通部",
+      "kind": "主管機關技術規範入口",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "確認工程適用範圍與官方公告版本。",
+        "依工程設計條件核對原始內容。"
+      ]
+    },
+    {
+      "id": "public-works-specs",
+      "field": "公共工程",
+      "title": "公共工程施工綱要規範及編碼",
+      "keywords": [
+        "公共工程",
+        "施工綱要規範",
+        "施工",
+        "編碼"
+      ],
+      "summary": "工程會技術資料庫提供施工綱要規範及工程編碼入口。",
+      "url": "https://www.pcc.gov.tw/content/list?eid=5100",
+      "organization": "行政院公共工程委員會",
+      "kind": "主管機關技術規範入口",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "確認工程適用範圍與官方公告版本。",
+        "依工程設計條件核對原始內容。"
+      ]
+    },
+    {
+      "id": "precast-design",
+      "field": "結構",
+      "title": "建築物預鑄混凝土結構設計規範",
+      "keywords": [
+        "預鑄",
+        "混凝土",
+        "結構設計",
+        "接合"
+      ],
+      "summary": "內政部提供建築物預鑄混凝土結構設計規範。",
+      "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/7212",
+      "organization": "內政部國土管理署",
+      "kind": "主管機關技術規範入口",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "確認工程適用範圍與官方公告版本。",
+        "依工程設計條件核對原始內容。"
+      ]
+    },
+    {
+      "id": "masonry-design",
+      "field": "結構",
+      "title": "建築物磚構造設計及施工規範",
+      "keywords": [
+        "磚構造",
+        "磚牆",
+        "設計",
+        "施工"
+      ],
+      "summary": "內政部提供建築物磚構造設計及施工規範。",
+      "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/246",
+      "organization": "內政部國土管理署",
+      "kind": "主管機關技術規範入口",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "確認工程適用範圍與官方公告版本。",
+        "依工程設計條件核對原始內容。"
+      ]
+    },
+    {
+      "id": "yilan-building-official",
+      "field": "地方自治法規",
+      "title": "宜蘭縣建築管理自治條例：縣府建設處法規清單",
+      "keywords": [
+        "宜蘭縣",
+        "建築管理",
+        "自治條例"
+      ],
+      "summary": "宜蘭縣政府建設處列有建築管理自治條例等法規，請開啟相應連結確認現行全文。",
+      "url": "https://eadept.e-land.gov.tw/News.aspx?n=15687&sms=15491",
+      "organization": "宜蘭縣政府",
+      "kind": "官方法規入口或政府公告",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "查核文件修正日期及現行施行狀態。",
+        "工程適用條件請向主管機關核對。"
+      ]
+    },
+    {
+      "id": "tainan-building-official",
+      "field": "地方自治法規",
+      "title": "臺南市建築管理自治條例：市府公告",
+      "keywords": [
+        "臺南市",
+        "台南市",
+        "建築管理",
+        "自治條例"
+      ],
+      "summary": "臺南市政府提供建築管理自治條例公告，應由主管機關系統確認目前版本。",
+      "url": "https://udweb.tainan.gov.tw/News_Content.aspx?n=17183&s=7668568",
+      "organization": "臺南市政府",
+      "kind": "官方法規入口或政府公告",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "查核文件修正日期及現行施行狀態。",
+        "工程適用條件請向主管機關核對。"
+      ]
+    },
+    {
+      "id": "yunlin-building-official",
+      "field": "地方自治法規",
+      "title": "雲林縣建築管理自治條例（本次連線受限）",
+      "keywords": [
+        "雲林縣",
+        "建築管理",
+        "自治條例"
+      ],
+      "summary": "雲林縣主管法規系統提供建築管理自治條例；本次自動連線受限，請於主管機關網站核對。",
+      "url": "https://law.yunlin.gov.tw/LawContent.aspx?id=FL028330",
+      "organization": "雲林縣政府",
+      "kind": "官方法規入口或政府公告",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "查核文件修正日期及現行施行狀態。",
+        "工程適用條件請向主管機關核對。"
+      ]
+    },
+    {
+      "id": "lienchiang-building-official",
+      "field": "地方自治法規",
+      "title": "連江縣建築管理自治條例：工務類法規目錄（本次連線受限）",
+      "keywords": [
+        "連江縣",
+        "馬祖",
+        "建築管理",
+        "自治條例"
+      ],
+      "summary": "連江縣工務類法規目錄列有建築管理自治條例；本次自動連線受限。",
+      "url": "https://law.matsu.gov.tw/LawCategoryMain.aspx?CategoryID=06",
+      "organization": "連江縣政府",
+      "kind": "官方法規入口或政府公告",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "查核文件修正日期及現行施行狀態。",
+        "工程適用條件請向主管機關核對。"
+      ]
     }
   ],
   "connections": [

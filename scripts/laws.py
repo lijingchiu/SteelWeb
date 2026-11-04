@@ -144,8 +144,7 @@ EXTRA_PATTERNS = [(re.compile(r"電弧爐"), [S])]
 
 
 L = "地方自治法規"
-# City regulation systems reachable from GitHub's servers. 桃園 and 臺南 block
-# overseas connections, so they are not included.
+# Selected official city regulations; a failed refresh keeps the last verified copy.
 LOCAL: list[tuple[str, str, str, str]] = [
     # (city, system, id, expected name)
     ("臺北市", "tpe", "FL004106", "臺北市建築管理自治條例"),
@@ -159,12 +158,54 @@ LOCAL: list[tuple[str, str, str, str]] = [
     ("高雄市", "kcg", "GL000537", "高雄市建築管理自治條例"),
     ("高雄市", "kcg", "GL000627", "都市計畫法高雄市施行細則"),
     ("高雄市", "kcg", "GL001111", "高雄市營建工程剩餘土石方管理自治條例"),
+    ("基隆市", "kl", "GL000501", "基隆市營建剩餘土石方資源處理及收容處理場所設置管理自治條例"),
+    ("新竹市", "hc", "FL030211", "新竹市營建剩餘土石方處理自治條例"),
+    ("苗栗縣", "ml", "FL033808", "苗栗縣營建工程剩餘土石方處理及資源堆置處理場設置管理自治條例"),
+    ("彰化縣", "ch", "FL038757", "彰化縣營建剩餘土石方管理自治條例"),
+    ("南投縣", "nt", "GL000179", "南投縣營建工程賸餘土石方處理及資源堆置處理場設置管理自治條例"),
+    ("金門縣", "km", "FL038759", "金門縣營建工程剩餘土石方處理自治條例"),
+    ("新竹縣", "hcc", "GL000253", "新竹縣營建工程剩餘土石方管理自治條例"),
+    ("嘉義市", "cyi", "FL026378", "嘉義市營建工程剩餘土石方管理自治條例"),
+    ("嘉義縣", "cyc", "FL037406", "嘉義縣營建剩餘土石方管理自治條例"),
+    ("屏東縣", "pt", "GL000060", "屏東縣營建剩餘土石方管理自治條例"),
+    ("澎湖縣", "ph", "FL038758", "澎湖縣營建剩餘土石方管理自治條例"),
+    ("花蓮縣", "hl", "FL048840", "花蓮縣營建工程剩餘土石方管理自治條例"),
+    ("臺東縣", "tt", "GL000274", "臺東縣營建剩餘土石方管理自治條例"),
+    ("桃園市", "ty", "GL001477", "桃園市營建剩餘土石方管理自治條例"),
+    ("新竹縣", "hcc", "FL026964", "新竹縣建築管理自治條例"),
+    ("嘉義市", "cyi", "FL022491", "嘉義市建築管理自治條例"),
+    ("嘉義縣", "cyc", "FL026925", "嘉義縣建築管理自治條例"),
+    ("屏東縣", "pt", "FL026602", "屏東縣建築管理自治條例"),
+    ("澎湖縣", "ph", "FL026758", "澎湖縣建築管理自治條例"),
+    ("花蓮縣", "hl", "FL026603", "花蓮縣建築管理自治條例"),
+    ("臺東縣", "tt", "FL021926", "臺東縣建築管理自治條例"),
+    ("桃園市", "ty", "GL001431", "桃園市建築管理自治條例"),
+    ("基隆市", "kl", "GL000079", "基隆市建築管理自治條例"),
+    ("金門縣", "km", "FL030625", "金門縣建築管理自治條例"),
+    ("新竹市", "hc", "FL022481", "新竹市建築管理自治條例"),
+    ("苗栗縣", "ml", "FL026450", "苗栗縣建築管理自治條例"),
+    ("彰化縣", "ch", "FL026531", "彰化縣建築管理自治條例"),
+    ("南投縣", "nt", "FL021919", "南投縣建築管理自治條例"),
 ]
 LOCAL_URLS = {
     "tpe": "https://laws.gov.taipei/Law/LawSearch/LawArticleContent/{id}",
     "ntpc": "https://web.law.ntpc.gov.tw/Scripts/FLAWDAT01.aspx?lncode={id}",
     "tc": "https://lawsearch.taichung.gov.tw/LawContent.aspx?id={id}",
     "kcg": "https://outlaw.kcg.gov.tw/LawContent.aspx?id={id}",
+    "kl": "https://exlaw.klcg.gov.tw/LawContent.aspx?id={id}",
+    "hc": "https://law.hccg.gov.tw/LawContent.aspx?id={id}",
+    "ml": "https://law.miaoli.gov.tw/glrsnewsout/LawContent.aspx?id={id}",
+    "ch": "https://lawsearch.chcg.gov.tw/GLRSNEWSOUT/LawContent.aspx?id={id}",
+    "nt": "https://glrs.nantou.gov.tw/LawContent.aspx?id={id}",
+    "km": "https://law.kinmen.gov.tw/LawContent.aspx?id={id}",
+    "hcc": "https://hclaw.hsinchu.gov.tw/law/LawContent.aspx?id={id}",
+    "cyi": "https://law.chiayi.gov.tw/LawContent.aspx?id={id}",
+    "cyc": "https://law.cyhg.gov.tw/LawContent.aspx?id={id}",
+    "pt": "https://ptlaw.pthg.gov.tw/LawContent.aspx?id={id}",
+    "ph": "https://law.penghu.gov.tw/glrsnewsout/LawContent.aspx?id={id}",
+    "hl": "https://glrs.hl.gov.tw/glrsout/LawContent.aspx?id={id}",
+    "tt": "https://law.taitung.gov.tw/LawContent.aspx?id={id}",
+    "ty": "https://law.tycg.gov.tw/LawContent.aspx?id={id}",
 }
 
 
@@ -312,10 +353,56 @@ def split_articles(text: str) -> list[dict]:
     return out
 
 
-def fetch_local(system: str, lid: str) -> tuple[str, str, list[dict]]:
+def extract_local_article_text(page: str) -> str:
+    """Extract only the official article container, including nested markup."""
+    from html.parser import HTMLParser
+    class ArticleParser(HTMLParser):
+        def __init__(self):
+            super().__init__(convert_charrefs=True)
+            self.active = False
+            self.finished = False
+            self.depth = 0
+            self.parts = []
+        def handle_starttag(self, tag, attrs):
+            if self.finished:
+                return
+            attrs = dict(attrs)
+            ident = attrs.get("id", "")
+            if not self.active:
+                if tag in {"div", "table"} and (ident.endswith("divLawContent08") or ident.endswith("tableLawArticleBasic")):
+                    self.active = True
+                    self.depth = 1
+                return
+            if tag not in {"br", "img", "input", "hr", "meta", "link"}:
+                self.depth += 1
+            if tag == "br":
+                self.parts.append("\n")
+        def handle_endtag(self, tag):
+            if not self.active:
+                return
+            if tag in {"td", "tr", "div", "p", "li"}:
+                self.parts.append("\n")
+            if tag not in {"br", "img", "input", "hr", "meta", "link"}:
+                self.depth -= 1
+                if self.depth == 0:
+                    self.active = False
+                    self.finished = True
+        def handle_data(self, data):
+            if self.active:
+                self.parts.append(data)
+    parser = ArticleParser()
+    parser.feed(page)
+    if parser.finished:
+        return "".join(parser.parts).replace("\xa0", " ")
+    m = re.search(r'class="law-reg-content law-article">(.*?)<div class="(?:btnZone|law-reg-footer)', page, re.S)
+    return plain_html(m.group(1)) if m else ""
+
+
+def fetch_local(system: str, lid: str, expected_name: str = "") -> tuple[str, str, list[dict]]:
     import requests
     ua = {"User-Agent": "Mozilla/5.0 (compatible; SteelWeb regulations mirror)"}
     url = LOCAL_URLS[system].format(id=lid)
+    request_timeout = 12 if expected_name else 60
     if system == "ntpc":
         s = requests.Session()
         r = s.get(url, headers=ua, timeout=60)
@@ -326,11 +413,16 @@ def fetch_local(system: str, lid: str) -> tuple[str, str, list[dict]]:
         form["ctl00$cph_content$B5"] = "所有條文"
         r = s.post(url, data=form, headers=ua, timeout=60)
     else:
-        r = requests.get(url, headers=ua, timeout=60)
+        r = requests.get(url, headers=ua, timeout=request_timeout)
     r.raise_for_status()
     page = r.text
     import html as H
     flat = re.sub(r"\s+", " ", H.unescape(re.sub(r"<[^>]+>", " ", page)))
+    if system in {"kl", "hc", "ml", "ch", "nt", "km", "hcc", "cyi", "cyc", "pt", "ph", "hl", "tt", "ty"} and expected_name:
+        if re.sub(r"\s+", "", expected_name) not in re.sub(r"\s+", "", flat):
+            raise ValueError("official page title does not match expected regulation")
+        if re.search(r"法規名稱\s*[：:]\s*廢", flat):
+            raise ValueError("regulation is marked abolished")
     if system == "tpe":
         name = re.search(r"<title>([^<|]+)", page)
         items = re.findall(r'<li class="chapter[^"]*">(.*?)</li>|<div class="col-no">(.*?)</div>\s*<div class="col-data">(.*?)</div>\s*</div>\s*<div class="col-link">', page, re.S)
@@ -366,9 +458,10 @@ def fetch_local(system: str, lid: str) -> tuple[str, str, list[dict]]:
         m = re.search(r"民國\s*(\d+)\s*年\s*(\d+)\s*月\s*(\d+)\s*日\s*(?:修正|公發布|發布|制定)", flat)
         modified = f"{int(m.group(1)) + 1911}-{int(m.group(2)):02d}-{int(m.group(3)):02d}" if m else roc_date(flat, "公發布時間")
     else:
-        m = re.search(r'class="law-reg-content law-article">(.*?)<div class="(?:btnZone|law-reg-footer)', page, re.S)
-        block = m.group(1) if m else page[page.find("law-reg-content"):]
-        arts = split_articles(plain_html(block))
+        block = extract_local_article_text(page)
+        if not block:
+            raise ValueError("unable to isolate official article content")
+        arts = split_articles(block)
         modified = roc_date(flat, "修正日期") or roc_date(flat, "公發布日")
     for a in arts:
         a["text"] = re.split(r"\s*:::\s*", a["text"])[0].strip()
@@ -381,9 +474,11 @@ def build_local(existing: dict) -> list[dict]:
     for city, system, lid, name in LOCAL:
         pcode = f"{system.upper()}-{lid}"
         try:
-            url, modified, arts = fetch_local(system, lid)
+            url, modified, arts = fetch_local(system, lid, name if system in {"kl", "hc", "ml", "ch", "nt", "km", "hcc", "cyi", "cyc", "pt", "ph", "hl", "tt", "ty"} else "")
             if len(arts) < 5:
                 raise RuntimeError(f"only {len(arts)} articles parsed")
+            if system in {"kl", "hc", "ml", "ch", "nt", "km", "hcc", "cyi", "cyc", "pt", "ph", "hl", "tt", "ty"} and "施行" not in arts[-1]["text"]:
+                raise RuntimeError("final article or enactment clause missing")
             doc = {"name": name, "pcode": pcode, "level": "地方法規", "moj_category": city, "categories": [L, D],
                    "region": city, "modified": modified, "effective_note": "", "url": url, "partial": False, "articles": arts}
             log(f"{city} {name}: {len(arts)} articles, modified {modified}")
@@ -479,7 +574,7 @@ def main() -> int:
     lines = ["# 法規資料", "",
              f"來源：全國法規資料庫開放資料（法務部），資料日期 {', '.join(str(u) for u in updates)}；本次整理 {now}。",
              "授權：政府資料開放授權條款第1版；法律條文依著作權法第9條不得為著作權之標的。",
-             "地方自治法規取自臺北市、新北市、臺中市、高雄市政府法規查詢系統；桃園市、臺南市的系統不開放境外連線，未收錄。",
+             "地方自治法規取自各縣市政府法規查詢系統；僅收錄已取得並核對的部分法規，其他縣市請使用官方查詢入口。",
              "每月自動更新。CNS 國家標準與設計規範解說等有著作權的文件不在此列。", ""]
     for cat in (C, D, S, L):
         lines += [f"## {cat}", "", "| 法規 | 位階 | 最新修正 | 條數 |", "|---|---|---|---|"]

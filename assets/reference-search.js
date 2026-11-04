@@ -1,7 +1,7 @@
 // Search the separately maintained reference archive without treating its
 // historical, extracted or OCR text as verified current legislation.
 (function (global) {
-  const INDEX = 'data/laws/reference-archive/search-index.json?v=20261104i';
+  const INDEX = 'data/laws/reference-archive/search-index.json?v=20261104j';
   const MAX_DOCUMENT_BYTES = 3000000;
   let indexPromise;
   let snapshotsPromise;
@@ -29,8 +29,11 @@
   }
 
   function rank(index, question, terms, group = 'all') {
+    const cities = ['臺北市','新北市','桃園市','臺中市','臺南市','高雄市','基隆市','新竹市','新竹縣','苗栗縣','彰化縣','南投縣','雲林縣','嘉義市','嘉義縣','屏東縣','宜蘭縣','花蓮縣','臺東縣','澎湖縣','金門縣','連江縣'];
+    const normalizeCity = s => String(s || '').replace(/台/g, '臺');
+    const requested = cities.filter(city => normalizeCity(`${question} ${(terms || []).join(' ')}`).includes(city));
     const tokens = [...new Set([...grams((terms || []).join(' ')), ...grams(question)])];
-    const hits = new Map();
+    const hits = new Map(), locations = new Map();
     const useful = tokens.filter(t => index.terms[t] && index.terms[t].length < index.docs.length * 0.8);
     for (const token of useful) {
       const ids = index.terms[token];
@@ -38,7 +41,13 @@
       for (const id of ids) {
         const doc = index.docs[id];
         if (!doc || doc.name === 'README' || (group === 'knowledge' && !doc.knowledge) || (group === 'archive' && doc.knowledge)) continue;
-        const item = hits.get(id) || { id, score: 0, matches: 0 };
+        if (!locations.has(id)) {
+          const docLocation = normalizeCity(`${doc.name} ${doc.path} ${doc.category}`);
+          locations.set(id, cities.filter(city => docLocation.includes(city)));
+        }
+        const docCities = locations.get(id);
+        if (requested.length && docCities.length && !requested.some(city => docCities.includes(city))) continue;
+        const item = hits.get(id) || { id, score: requested.some(city => docCities.includes(city)) ? 25 : 0, matches: 0 };
         item.matches++;
         item.score += weight * (doc.name.toLowerCase().includes(token) ? 2.5 : 1);
         hits.set(id, item);
