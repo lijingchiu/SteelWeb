@@ -8,11 +8,12 @@ function element(id) {
 }
 const form = element('selection-ask');
 const selection = {isCollapsed:false, rangeCount:1, anchorNode:{nodeType:1,closest:()=>null}, focusNode:{nodeType:1,closest:()=>null},
-  toString:()=> '鋼筋價格上漲'.repeat(500), getRangeAt:()=>({getBoundingClientRect:()=>({left:30,bottom:100})}), removeAllRanges() {this.isCollapsed=true;}};
-let staged, submissions=0;
-const document = {activeElement:null,getElementById:element, addEventListener(type,fn){handlers[type]=fn;},
-  dispatchEvent(event){submissions++; staged=event.detail; event.detail.accepted=true;}};
-const window = {innerWidth:1000,innerHeight:700,getSelection:()=>selection};
+  toString:()=> '鋼筋價格上漲'.repeat(500), getRangeAt:()=>({cloneRange:()=>({getBoundingClientRect:()=>({left:30,top:80,bottom:100,width:100,height:20})})}), removeAllRanges() {this.isCollapsed=true;}};
+let staged, submissions=0, editId, markers=[];
+const document = {activeElement:null,getElementById:element, addEventListener(type,fn){handlers[type]=fn;}, body:{appendChild(){}},
+  createElement(){const button={style:{},hidden:false,handlers:{},addEventListener(t,fn){this.handlers[t]=fn;},setAttribute(){},remove(){this.removed=true;}}; markers.push(button); return button;},
+  dispatchEvent(event){if(event.type==='steel:edit-selection') { editId=event.detail.id; return; } submissions++; staged=event.detail; event.detail.accepted=true;}};
+const window = {innerWidth:1000,innerHeight:700,getSelection:()=>selection,addEventListener(){}};
 class CustomEvent {constructor(type, options){this.type=type;this.detail=options.detail;}}
 class File {constructor(parts,name,options){this.name=name;this.type=options.type;this.size=parts[0].size;}}
 const context={document,window,location:{href:'https://example.com/'},CustomEvent,File,URL,Date,setTimeout,clearTimeout,
@@ -27,6 +28,7 @@ vm.runInNewContext(fs.readFileSync(require.resolve('../assets/selection-ask.js')
   element('selection-ask-input').value='為什麼？';
   await form.handlers.submit({preventDefault(){}});
   assert.equal(staged.text,'鋼筋價格上漲'.repeat(500)); assert.equal(staged.question,'為什麼？'); assert.equal(submissions,1); assert(form.hidden);
+  const firstId=staged.id; assert.equal(markers[0].textContent,'1'); markers[0].handlers.click(); assert.equal(editId,firstId);
   selection.isCollapsed=false; handlers.pointerup({target:{}}); await new Promise(r=>setTimeout(r,130));
   element('selection-ask-trigger').handlers.click();
   handlers.pointerup({target:element('selection-ask-close')}); element('selection-ask-close').handlers.click();
@@ -38,5 +40,6 @@ vm.runInNewContext(fs.readFileSync(require.resolve('../assets/selection-ask.js')
   handlers.contextmenu({target:{closest:()=>img},preventDefault(){}});
   assert.equal(form.hidden,true); assert.equal(element('selection-ask-trigger').hidden,false); element('selection-ask-trigger').handlers.click(); await form.handlers.submit({preventDefault(){}});
   assert.equal(staged.file.type,'image/png'); assert.equal(staged.label,'價格走勢圖'); assert.equal(submissions,2);
+  handlers['steel:selection-update']({detail:{ids:[staged.id]}}); assert(markers[0].removed); assert.equal(markers[1].textContent,'1');
   console.log('Selection: staged text and image, retained question, no automatic send passed.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

@@ -702,6 +702,7 @@
     if (!box || !list) return;
     box.hidden = !state.selections.length;
     list.innerHTML = state.selections.map((s, i) => `<div class="chat-quote"><div class="chat-quote-content"><span>${escHtml(s.file ? `圖片：${s.label || '網站圖表'}` : s.text)}</span><div class="chat-quote-question-row"><span id="chat-quote-summary-${i}" class="chat-quote-summary">${escHtml(s.question || '尚未輸入專屬問題')}</span><button type="button" class="chat-quote-edit" data-quote-edit="${i}" aria-expanded="false" aria-controls="chat-quote-question-${i}">${s.question ? '編輯問題' : '新增問題'} ✎</button></div><textarea id="chat-quote-question-${i}" data-quote-question="${i}" aria-label="第 ${i + 1} 段的專屬問題" rows="2" maxlength="900" placeholder="輸入這段專屬的問題" hidden>${escHtml(s.question || '')}</textarea></div><button type="button" class="chat-quote-remove" data-quote-index="${i}" aria-label="移除第 ${i + 1} 則引用">×</button></div>`).join('');
+    if (typeof CustomEvent === 'function' && document.dispatchEvent) document.dispatchEvent(new CustomEvent('steel:selection-update', {detail:{ids:state.selections.map(s=>s.id)}}));
   }
 
   const DEFAULT_CHAT_PLACEHOLDER = '問鋼價、行情或營建問題…';
@@ -1474,7 +1475,7 @@
         const issue = window.SteelAttachments.validate([detail.file]);
         if (issue) { detail.error = issue; return; }
       }
-      state.selections.push({text: detail.text || '', file: detail.file || null, label: detail.label || '', question: String(detail.question || '').trim()});
+      state.selections.push({id:detail.id, text: detail.text || '', file: detail.file || null, label: detail.label || '', question: String(detail.question || '').trim()});
       updateSelections();
       autoGrow(); updateNextSuggestion();
       showHistory(false);
@@ -1501,6 +1502,14 @@
       state.selections[Number(index)].question = e.target.value;
       const summary = $(`chat-quote-summary-${index}`);
       if (summary) summary.textContent = e.target.value.trim() || '尚未輸入專屬問題';
+    });
+    document.addEventListener('steel:edit-selection', e => {
+      if (state.busy) return;
+      const index = state.selections.findIndex(s => s.id === e.detail?.id);
+      if (index < 0) return;
+      showHistory(false); openChat();
+      const field = $(`chat-quote-question-${index}`);
+      if (field) { field.hidden = false; document.querySelector(`[data-quote-edit="${index}"]`)?.setAttribute('aria-expanded', 'true'); field.focus(); field.scrollIntoView?.({block:'nearest'}); }
     });
     initChatResize();
     importKeyFromHash();

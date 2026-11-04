@@ -8,6 +8,35 @@
   const status = document.getElementById('selection-ask-status');
   const submit = document.getElementById('selection-ask-send');
   let current = null, timer, hold, start, anchor;
+  const marks = new Map();
+  function positionMarks() {
+    for (const mark of marks.values()) {
+      try {
+        const rect = mark.anchor.getBoundingClientRect();
+        const visible = rect.width > 0 && rect.height > 0 && rect.bottom > 0 && rect.top < window.innerHeight;
+        mark.button.hidden = !visible;
+        if (visible) { mark.button.style.left = `${Math.max(6, Math.min(window.innerWidth - 36, rect.left))}px`; mark.button.style.top = `${Math.max(6, rect.top - 28)}px`; }
+      } catch (_) { mark.button.hidden = true; }
+    }
+  }
+  function addMark(id, target) {
+    if (!target) return;
+    const button = document.createElement('button');
+    button.type = 'button'; button.className = 'selection-mark';
+    button.addEventListener('click', () => document.dispatchEvent(new CustomEvent('steel:edit-selection', {detail:{id}})));
+    document.body.appendChild(button);
+    marks.set(id, {button, anchor:target});
+    refreshMarks([...marks.keys()]);
+  }
+  function refreshMarks(ids) {
+    const active = new Set(ids);
+    for (const [id, mark] of marks) if (!active.has(id)) { mark.button.remove(); marks.delete(id); }
+    ids.forEach((id, i) => { const mark = marks.get(id); if (mark) { mark.button.textContent = String(i + 1); mark.button.setAttribute('aria-label', `編輯第 ${i + 1} 段引用的問題`); } });
+    positionMarks();
+  }
+  document.addEventListener('steel:selection-update', e => refreshMarks(e.detail.ids));
+  window.addEventListener('scroll', positionMarks, {passive:true, capture:true});
+  window.addEventListener('resize', positionMarks);
   const excluded = node => {
     const el = node?.nodeType === 1 ? node : node?.parentElement;
     return !el || !!el.closest('#selection-ask, #chat-panel, input, textarea, [contenteditable="true"], button');
@@ -47,8 +76,9 @@
     if (!sel || sel.isCollapsed || !sel.rangeCount || excluded(sel.anchorNode) || excluded(sel.focusNode)) return;
     const text = String(sel).trim();
     if (!text) return;
-    const rect = sel.getRangeAt(0).getBoundingClientRect();
-    show({text}, rect);
+    const range = sel.getRangeAt(0).cloneRange();
+    const rect = range.getBoundingClientRect();
+    show({text, range}, rect);
   }
   document.addEventListener('selectionchange', () => { clearTimeout(timer); timer = setTimeout(inspectSelection, 220); });
   document.addEventListener('pointerup', e => {
@@ -103,10 +133,12 @@
     if (!current || submit.disabled) return;
     submit.disabled = true; status.textContent = current.element ? '正在擷取圖片…' : '';
     try {
-      const detail = {text:current.text || '', label:current.label || '', question:input.value.trim()};
+      const id = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const detail = {id, text:current.text || '', label:current.label || '', question:input.value.trim()};
       if (current.element) detail.file = await imageFile(current.element);
       document.dispatchEvent(new CustomEvent('steel:ask-selection', {detail}));
       if (!detail.accepted) { status.textContent = detail.error || '無法加入，請稍後再試。'; return; }
+      addMark(id, current.range || current.element);
       hide();
     } catch (_) { status.textContent = '無法擷取這張圖片，請改用截圖上傳。'; }
     finally { submit.disabled = false; }

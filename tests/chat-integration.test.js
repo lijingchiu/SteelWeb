@@ -14,7 +14,7 @@ async function runScenario(readable, inScope, selections = []) {
     });
     return els.get(id);
   }
-  const document = { readyState: 'complete', getElementById: elem, querySelector() { return null; }, addEventListener(type, fn) { handlers[type] = fn; },
+  const document = { readyState: 'complete', getElementById: elem, querySelector() { return null; }, addEventListener(type, fn) { handlers[type] = fn; }, dispatchEvent() {},
     body: { classList: { add() {}, remove() {} } },
     createElement() { const bubble = { innerHTML: '' }; return { className: '', classList: { add() {} }, set innerHTML(s) { bubble.innerHTML = s; }, querySelector() { return bubble; }, bubble }; },
   };
@@ -40,7 +40,7 @@ async function runScenario(readable, inScope, selections = []) {
     }
     throw Error('unexpected ' + target);
   };
-  const context = { window, document, navigator: window.navigator, location: { hash: '' }, localStorage: { getItem: () => 'sk-test' }, fetch, console, URL, AbortController, TextDecoder, TextEncoder, Date, setTimeout, clearTimeout, requestAnimationFrame: fn => fn() };
+  const context = { window, document, navigator: window.navigator, location: { hash: '' }, localStorage: { getItem: () => 'sk-test' }, fetch, console, URL, AbortController, TextDecoder, TextEncoder, Date, setTimeout, clearTimeout, CustomEvent: class { constructor(type, opts) {this.type=type;this.detail=opts.detail;} }, requestAnimationFrame: fn => fn() };
   vm.runInNewContext(fs.readFileSync(require.resolve('../assets/chat.js'), 'utf8'), context);
   for (const selection of selections) { const detail = {...selection}; handlers['steel:ask-selection']({detail}); assert.equal(detail.accepted, true); }
   if (selections.length) {
