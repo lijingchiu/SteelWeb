@@ -1,7 +1,7 @@
 // Search the separately maintained reference archive without treating its
 // historical, extracted or OCR text as verified current legislation.
 (function (global) {
-  const INDEX = 'data/laws/reference-archive/search-index.json?v=20261104c';
+  const INDEX = 'data/laws/reference-archive/search-index.json?v=20261104d';
   const MAX_DOCUMENT_BYTES = 3000000;
   let indexPromise;
   const ignored = new Set(['什麼','哪些','如何','可以','請問','規定','相關','資料','查詢','建築','營建','文件','法規','台灣','臺灣','規範','設計','標準']);
@@ -63,11 +63,11 @@
   async function search(question, terms = []) {
     try {
       const index = await loadIndex();
-      return await Promise.all(rank(index, question, terms).map(async doc => {
+      const results = await Promise.all(rank(index, question, terms).map(async doc => {
         const href = safePath(doc.path);
         if (doc.bytes > MAX_DOCUMENT_BYTES) return { ...doc, href, excerpt: '', note: '檔案較大，請開啟來源檔查閱。' };
         try {
-          const response = await fetch(`${href}?v=20261104c`);
+          const response = await fetch(`${href}?v=20261104d`);
           if (!response.ok) throw new Error('not available');
           const text = await response.text();
           // Link-only records are deliberately distinguished from source text:
@@ -77,12 +77,18 @@
           if (match) {
             const source = new URL(match[1]);
             if (source.protocol === 'https:' || source.protocol === 'http:') {
-              return { ...doc, href: source.href, excerpt: '', note: '此項只有來源連結，未提供正文；請前往來源查閱。' };
+              const title = text.match(/【顯示名稱】\s*([^\n]+)/);
+              const how = text.match(/【查詢方式】\s*([^\n]+)/);
+              return { ...doc, name: title ? title[1].trim() : doc.name, href: source.href, excerpt: '',
+                note: `此項只有來源連結，未提供正文；${how ? how[1].trim() : '請前往來源查閱。'}` };
             }
           }
           return { ...doc, href, excerpt: snippet(text, terms, question), note: '文字可能為歷史版本或 OCR 擷取，請核對原始來源。' };
         } catch (_) { return { ...doc, href, excerpt: '', note: '無法載入內容，請開啟來源檔查閱。' }; }
       }));
+      // Several entries may describe the same official map. Show it only once.
+      const seen = new Set();
+      return results.filter(r => { if (seen.has(r.href)) return false; seen.add(r.href); return true; });
     } catch (_) { return []; }
   }
   global.SteelReferenceSearch = { search, rank, grams, snippet };

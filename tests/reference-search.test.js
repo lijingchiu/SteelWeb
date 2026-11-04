@@ -16,8 +16,11 @@ require('../assets/reference-search.js');
 (async () => {
   const api = global.SteelReferenceSearch;
   const map = await api.search('臺北市使用分區圖', ['臺北市', '使用分區圖']);
-  assert(map.length && map[0].name.includes('臺北市'));
-  assert(map.some(x => x.name.includes('主計')) && map.some(x => x.name.includes('細計')));
+  assert(map.length && map[0].name === '臺北市土地使用分區圖（官方地圖查詢）');
+  assert.equal(map[0].href, 'https://zonemap.udd.gov.taipei/');
+  assert.equal(map.filter(x => x.href === map[0].href).length, 1);
+  assert(map[0].note.includes('門牌地址或地段地號'));
+  assert.equal(map[0].excerpt, '');
   assert(map.every(x => x.href.startsWith('data/laws/reference-archive/') || x.href.startsWith('https://')));
   const linked = await api.search('11920-01-01-2 臺中市都市計畫地區面積及人口', ['11920', '臺中市', '都市計畫', '人口']);
   assert(linked.some(x => x.href.startsWith('https://') && x.note.includes('只有來源連結') && x.excerpt === ''));
@@ -28,7 +31,7 @@ require('../assets/reference-search.js');
   assert(county[0].name.includes('彰化縣'));
   assert.deepEqual(await api.search('zz9q8x7y6w', ['zz9q8x7y6w']), []);
   const index = JSON.parse(fs.readFileSync(path.join(root, 'data/laws/reference-archive/search-index.json')));
-  const huge = index.docs.find(d => d.bytes > 30000000);
+  const huge = { name: '大型資料', path: 'data/large.txt', bytes: 36000000 };
   const fake = { docs: [huge], terms: { '獨特': [0] } };
   assert.equal(api.rank(fake, '獨特', ['獨特']).length, 0); // ubiquitous terms do not cause broad retrieval
   for (const request of docRequests) assert(!request.includes('..'));
