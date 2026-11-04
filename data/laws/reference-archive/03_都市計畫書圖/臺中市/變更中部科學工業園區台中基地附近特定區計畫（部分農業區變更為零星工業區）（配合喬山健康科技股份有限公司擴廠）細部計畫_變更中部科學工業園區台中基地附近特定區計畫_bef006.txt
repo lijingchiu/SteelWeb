@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
+"變更中部科學工業園區台中基地附近特定區計畫（部分農業區變更為零星工業區）（配合喬山健康科技股份有限公司擴廠）細部計畫","發布實施「變更中部科學工業園區台中基地附近特定區計畫（部分農業區變更為零星工業區）（配合喬山健康科技股份有限公司擴廠）細部計畫」都市計畫書、圖，並自11０年５月５日零時起生效。","1100505","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9d421052-a2cd-4227-a07c-280dc4bfa9c5","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=809ac927-d37a-4605-a5dc-7638d51e0b89","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=fafe19e4-bc30-4e4b-a981-34709e72fbd9"

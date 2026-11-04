@@ -1,0 +1,1 @@
+{"contentType":null,"isImage":false,"size":0,"data":[{"年度":"113","樁位測釘支數":"3980"},{"年度":"112","樁位測釘支數":"6842"}],"errorCode":0,"id":"d64e231b-f800-4bd5-988d-7ad0f89fd6be","message":null,"success":true}

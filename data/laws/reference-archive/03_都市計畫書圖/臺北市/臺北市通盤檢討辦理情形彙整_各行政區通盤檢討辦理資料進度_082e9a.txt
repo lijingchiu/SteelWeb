@@ -1,0 +1,13 @@
+項次,行政區,行政區代碼,網址,市話,分機,備註
+1,台北市北投區,63000120,https://udd.gov.taipei/overall-review/,(02)27208889,8268,各行政區資料進度，依實施進度即刻更新
+2,台北市士林區,63000110,https://udd.gov.taipei/overall-review/,(02)27208890,8262,各行政區資料進度，依實施進度即刻更新
+3,台北市內湖區,63000100,https://udd.gov.taipei/overall-review/,(02)27208891,8287,各行政區資料進度，依實施進度即刻更新
+4,台北市中山區,63000040,https://udd.gov.taipei/overall-review/,(02)27208892,8267,各行政區資料進度，依實施進度即刻更新
+5,台北市松山區,63000010,https://udd.gov.taipei/overall-review/,(02)27208893,8265,各行政區資料進度，依實施進度即刻更新
+6,台北市大同區,63000060,https://udd.gov.taipei/overall-review/,(02)27208894,8268,各行政區資料進度，依實施進度即刻更新
+7,台北市南港區,63000090,https://udd.gov.taipei/overall-review/,(02)27208895,8270,各行政區資料進度，依實施進度即刻更新
+8,台北市信義區,63000020,https://udd.gov.taipei/overall-review/,(02)27208896,8266,各行政區資料進度，依實施進度即刻更新
+9,台北市大安區,63000030,https://udd.gov.taipei/overall-review/,(02)27208897,8271,各行政區資料進度，依實施進度即刻更新
+10,台北市中正區,63000050,https://udd.gov.taipei/overall-review/,(02)27208898,8287,各行政區資料進度，依實施進度即刻更新
+11,台北市萬華區,63000070,https://udd.gov.taipei/overall-review/,(02)27208899,8289,各行政區資料進度，依實施進度即刻更新
+12,台北市文山區,63000080,https://udd.gov.taipei/overall-review/,(02)27208900,8288,各行政區資料進度，依實施進度即刻更新

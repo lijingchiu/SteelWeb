@@ -1,0 +1,1 @@
+{"contentType":null,"isImage":false,"size":0,"data":[{"年度":"111","審議件數":"40","報告件數":"0","研議件數":"1","備註":""}],"errorCode":0,"id":"4f8cbbc8-4e45-420b-8ea2-4d77ca83d621","message":null,"success":true}

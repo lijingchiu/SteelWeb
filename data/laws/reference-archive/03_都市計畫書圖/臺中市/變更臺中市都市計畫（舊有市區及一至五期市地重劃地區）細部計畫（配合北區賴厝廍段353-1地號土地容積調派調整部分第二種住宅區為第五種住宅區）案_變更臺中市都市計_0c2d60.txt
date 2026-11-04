@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
+"變?臺中市?市計畫（舊有市區及一至五期市地重劃地區）細部計畫（配合北區賴厝?段353-1地號土地容積調派調整部分第二種住宅區為第五種住宅區)案","發布實施「變?臺中市?市計畫（舊有市區及一至五期市地重劃地區）細部計畫（配合北區賴厝?段353-1地號土地容積調派調整部分第二種住宅區為第五種住宅區)案」都市計畫書、圖，並自110年9月24日零時起生效。","1100924","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=261aa5a9-a1d8-4bae-a589-7eb9e8efc1e0","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b06c126b-4609-4df1-b612-e44257a88b88","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=22c70f5d-a036-4db9-acc9-635e94690979"

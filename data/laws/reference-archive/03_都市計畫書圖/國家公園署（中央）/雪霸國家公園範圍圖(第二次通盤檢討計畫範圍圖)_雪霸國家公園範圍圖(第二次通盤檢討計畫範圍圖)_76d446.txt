@@ -1,0 +1,2 @@
+File_Name,TGOS_URL,File_URL,File_Format,Description,Agency_Codes
+雪霸國家公園範圍圖(第二次通盤檢討計畫範圍圖),https://www.tgos.tw/MDE/MetaData/CRUD/ViewMetaData?GUID=88a4d446-3b9c-4a5d-bc22-38da0c0ea5f6&VIEW_TYPE=only&SOURCE=1,https://www.tgos.tw:443/MDE/VirtualDir_TC/Product/dd24105f-09c0-4b95-af10-ad72232cc18f/mapdata201805310605.zip,KML,雪霸國家公園範圍圖(第二次通盤檢討計畫範圍圖),A01030500G

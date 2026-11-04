@@ -1,0 +1,3 @@
+county,countycode,special_agricultural_zone_landpublicarea,general_agricultural_zone_landpublicarea,industrial_zone_landpublicarea,village_zone_landpublicarea,forestry_zone_landpublicarea,slope_land_preservation_zone_landpublicarea,scenic_zone_landpublicarea,national_park_zone_landpublicarea,river_zone_special_zone_others_landpublicarea,ha
+新北市,65000,1663.987319,3676.515241,171.549844,321.795539,19113.394389,53634.616033,0,6511.546204,2631.715987,87725.120556
+,,,,,,,,,,,

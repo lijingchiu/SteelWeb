@@ -1,0 +1,2 @@
+﻿圖資名稱,製作說明,基本說明,連結網址,縣市別代碼,資料描述,使用說明,範圍說明
+"臺中市谷關都市計畫區一千分之一地形圖","約2007年地測","DWG檔案","https://drive.google.com/file/d/1vf_uAfGMr87QNoYpTew1H04bDfZO-FBF/view?usp=sharing","66000","地形圖","從網址下載取得圖資檔案","谷關"

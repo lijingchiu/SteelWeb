@@ -1,0 +1,7 @@
+縣市別代碼,公告實施日期,公告事宜,公告書網址,公告圖
+66000,108年11月15日,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=GqBAYYDWEi,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=k1uE9MeJ0n,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=HJZiD2ve4e
+66000,108年11月15日,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=GqBAYYDWEi,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=k1uE9MeJ0n,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=H4P7KSxBu7
+66000,108年11月15日,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=GqBAYYDWEi,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=k1uE9MeJ0n,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=ZXU3qoZ4bY
+66000,108年11月15日,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=GqBAYYDWEi,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=k1uE9MeJ0n,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=68VwdUmgMb
+66000,108年11月15日,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=GqBAYYDWEi,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=k1uE9MeJ0n,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=0Y9sju1rwg
+66000,108年11月15日,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=GqBAYYDWEi,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=k1uE9MeJ0n,https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=eiKpywzFCB&d=sShkK17NZw

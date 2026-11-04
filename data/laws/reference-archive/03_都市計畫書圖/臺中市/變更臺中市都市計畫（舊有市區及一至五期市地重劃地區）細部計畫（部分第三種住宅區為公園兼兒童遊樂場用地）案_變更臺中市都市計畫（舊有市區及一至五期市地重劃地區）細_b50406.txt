@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖
+"變更臺中市都市計畫（舊有市區及一至五期市地重劃地區）細部計畫（部分第三種住宅區為公園兼兒童遊樂場用地）案 ","發布實施「變更臺中市都市計畫（舊有市區及一至五期市地重劃地區）細部計畫（部分第三種住宅區為公園兼兒童遊樂場用地）案」都市計畫書、圖，並自107年6月23日零時起生效。","1070623","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=74565d73-1742-440b-849c-7b789bf28489","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=5cfcc604-3759-4614-9c81-d29d90a4e488","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=4240dbad-3c99-4113-a2db-c25bd217330a"

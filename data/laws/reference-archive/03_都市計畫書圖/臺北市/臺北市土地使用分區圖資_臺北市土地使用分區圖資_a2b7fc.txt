@@ -1,0 +1,13 @@
+項次,行政區代碼,土地使用分區行政區,連結,備註
+1,63000110,士林區,https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E5%A3%AB%E6%9E%97%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,如須查詢具體定位可至：https://webgis.udd.gov.taipei/upis_v2
+2,63000120,北投區,https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E5%8C%97%E6%8A%95%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,
+3,63000100,內湖區,https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E5%85%A7%E6%B9%96%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,
+4,63000010,松山區,https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E6%9D%BE%E5%B1%B1%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,
+5,63000060,大同區,https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E5%A4%A7%E5%90%8C%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,
+6,63000040,中山區,https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E4%B8%AD%E5%B1%B1%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,
+7,63000090,南港區,https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E5%8D%97%E6%B8%AF%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,
+8,63000030,大安區,https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E5%A4%A7%E5%AE%89%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,
+9,63000080,文山區,https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E6%96%87%E5%B1%B1%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,
+10,63000020,信義區,https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E4%BF%A1%E7%BE%A9%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,
+11,63000050,中正區,https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E4%B8%AD%E6%AD%A3%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,
+12,63000070,萬華區,https://udd.gov.taipei/assets/q7wskXnp27hermaoFs7U2d/attachs/%E8%90%AC%E8%8F%AF%E5%8D%80%E5%9C%9F%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%88%86%E5%8D%80.pdf,

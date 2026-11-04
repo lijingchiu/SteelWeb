@@ -1,0 +1,2 @@
+﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜網址,公告書網址,公告圖網址
+變更臺中市都市計畫主要計畫（部分農業區為公墓用地）（配合臺中市第一花園公墓範圍調整）案,整理發布實施「變更臺中市都市計畫主要計畫（部分農業區為公墓用地）（配合臺中市第一花園公墓範圍調整）案」計畫書、圖，自​113年9月26日零時起生效，請以原公告資訊為準。,1130926,https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e7a8e466-1397-4343-bce9-5b6025fe1d6b,https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=8497f166-69df-4a89-9435-8022ecfb3a1e,https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=34a71031-ad96-4b31-a4bd-a76b119b6cf6

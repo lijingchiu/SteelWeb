@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書
+"變更臺中市都市計畫主要計畫(不包括大坑風景區)(部分農業區為乙種工業區)案」暨「擬定臺中市都市計畫【乙種工業區(供聯好環保股份有限公司使用)】細部計畫案","發布實施「變更臺中市都市計畫主要計畫(不包括大坑風景區)(部分農業區為乙種工業區)案」暨「擬定臺中市都市計畫【乙種工業區(供聯好環保股份有限公司使用)】細部計畫案」都市計畫書、圖，並自106年3月28日零時起生效。","1060328","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=66ebe784-6fd8-4006-a0d5-995677d6a643","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9cb5c9c8-bce4-4fec-94ad-f97806b45be9"

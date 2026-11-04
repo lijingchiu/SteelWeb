@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告圖網址
+"訂正臺中市都市計畫(福安里附近)細部計畫（第二種住宅區為第二種住宅區<附帶條件>)案","發布實施「訂正臺中市都市計畫(福安里附近)細部計畫（第二種住宅區為第二種住宅區<附帶條件>)案」都市計畫書、圖，並自106年4月29日零時起生效。","1060429","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f2e2efdf-9146-43d2-93a8-13cc268dcbff","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=fGU3fiHK0i&d=HjkPOXRJn0"

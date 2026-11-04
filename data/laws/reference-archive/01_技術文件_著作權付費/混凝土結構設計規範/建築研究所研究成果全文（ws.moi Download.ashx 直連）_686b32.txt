@@ -1,0 +1,4 @@
+[[文字層無法以本機純 Python 工具擷取（AES 加密 PDF，需 cryptography 原生模組），原始檔完整保留]]
+
+官方連結：https://ws.moi.gov.tw/Download.ashx?u=LzAwMS9VcGxvYWQvT2xkRmlsZV9BYnJpX0dvdi9yZXNlYXJjaC80OTQvMTQ0NzkyOTgyMTEucGRm&n=Y29tcGxldGUucGRm
+抓取後由文字層驗證內容

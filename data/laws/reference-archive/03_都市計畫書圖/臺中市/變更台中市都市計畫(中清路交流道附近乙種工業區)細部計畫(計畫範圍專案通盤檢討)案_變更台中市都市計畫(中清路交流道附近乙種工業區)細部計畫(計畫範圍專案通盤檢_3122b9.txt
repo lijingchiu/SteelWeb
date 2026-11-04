@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告圖網址
+"變更台中市都市計畫(中清路交流道附近乙種工業區)細部計畫(計畫範圍專案通盤檢討)案 ","發布實施「變更台中市都市計畫(中清路交流道附近乙種工業區)細部計畫(計畫範圍專案通盤檢討)案」計畫書、圖，並自106年6月2日零時起生效。","1060602","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=aa257ada-a0c2-4b64-83bd-46fd3d4e30ea","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=QwDdYNmIeR&d=wEXtK8qkrY"

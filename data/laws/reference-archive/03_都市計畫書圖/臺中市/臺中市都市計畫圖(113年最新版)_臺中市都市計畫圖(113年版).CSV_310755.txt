@@ -1,0 +1,2 @@
+﻿檔案名稱,基本說明,地圖格式,地圖網址,地圖欄位說明,縣市別代碼,機關代碼,保有機關說明
+"臺中市都市計畫圖(113年版)","全台中市都市計畫","SHP","https://drive.google.com/file/d/1a1cbZIViTbaOBqkSuvmux7s3jXOPK4dL/view?usp=sharing","https://drive.google.com/file/d/14W_-w0PwSIfxCnkENrAk0aJs-rWk3dtS/view?usp=sharing","66000","387000000A","臺中市政府都市發展局"

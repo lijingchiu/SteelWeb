@@ -1,0 +1,2 @@
+﻿圖資﻿﻿檔案名稱,圖資座標,檔案格式,地圖網址,中英文代碼說明網址,縣市別代碼,資料描述,地圖取得,範圍說明
+"都計圖","TWD97","SHP","https://drive.google.com/file/d/194PHRw82tCMn-Of5i8_L95a_Y_maOoBp/view?usp=sharing","https://drive.google.com/file/d/14W_-w0PwSIfxCnkENrAk0aJs-rWk3dtS/view?usp=sharing","66000","台中市都市計畫土地使用分區圖資檔案","從地圖網址下載取得圖資檔案","大台中"

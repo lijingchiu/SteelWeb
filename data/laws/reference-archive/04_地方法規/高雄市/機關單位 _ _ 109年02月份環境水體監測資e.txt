@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>檔案下載中...</title>
+</head>
+<body>
+    <h1>正在下載檔案...</h1>
+    <p>若下載未啟動，請 <a href="/File/DirectDownload/b30e18e3-1f59-479e-9b7f-e0ee8d0af5e3" download>點此手動下載</a>。</p>
+
+    <script>
+        // 自動下載檔案
+        const link = document.createElement('a');
+        link.href = '/File/DirectDownload/b30e18e3-1f59-479e-9b7f-e0ee8d0af5e3';
+        link.download = '';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // 等待幾秒後導回
+        setTimeout(function () {
+            window.location.href = '/resource/b30e18e3-1f59-479e-9b7f-e0ee8d0af5e3';
+        }, 3000);
+    </script>
+</body>
+</html>

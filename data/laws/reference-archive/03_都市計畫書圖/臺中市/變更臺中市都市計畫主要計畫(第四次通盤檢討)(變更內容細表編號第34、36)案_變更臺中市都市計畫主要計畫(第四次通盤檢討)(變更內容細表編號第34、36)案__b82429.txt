@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書
+"變更臺中市都市計畫主要計畫(第四次通盤檢討)(變更內容細表編號第34、36)案","發布實施「變更臺中市都市計畫主要計畫(第四次通盤檢討)(變更內容細表編號第34、36)案」計畫書、圖，並自106年10月24日零時起生效。","1061024","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=3a90eb14-fa24-4cf1-a553-2c81a0985489","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a98d5306-0203-489e-ac5d-acdb1b55b343"

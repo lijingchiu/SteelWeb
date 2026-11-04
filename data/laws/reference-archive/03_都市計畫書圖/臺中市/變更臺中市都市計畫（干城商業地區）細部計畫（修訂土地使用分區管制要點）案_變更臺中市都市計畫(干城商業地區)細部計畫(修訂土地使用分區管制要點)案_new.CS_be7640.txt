@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜網址,公告書網址
+"變更臺中市都市計畫（干城商業地區）細部計畫（修訂土地使用分區管制要點）案","發布實施「變更臺中市都市計畫（干城商業地區）細部計畫（修訂土地使用分區管制要點）案」計畫書，並自112年6月9日零時起生效","1120609","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9f818d4e-8175-4413-9901-222f53aae28f","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=40da2c1a-afda-4a00-bf2b-d7328cdb871f"

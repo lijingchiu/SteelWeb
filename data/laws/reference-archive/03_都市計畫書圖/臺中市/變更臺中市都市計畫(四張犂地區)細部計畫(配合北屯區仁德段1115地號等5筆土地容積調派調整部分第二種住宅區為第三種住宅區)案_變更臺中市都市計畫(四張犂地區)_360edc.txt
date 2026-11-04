@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
+"變更臺中市都市計畫(四張?地區)細部計畫(配合北屯區仁德段1115地號等5筆土地容積調派調整部分第二種住宅區為第三種住宅區)案","發布實施「變更臺中市都市計畫(四張?地區)細部計畫(配合北屯區仁德段1115地號等5筆土地容積調派調整部分第二種住宅區為第三種住宅區)案」都市計畫書、圖，自111年3月18日零時起生效。","1110318","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=68e3b16d-5f26-458f-87a2-778a5c8a768e","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=67eee33e-8b3b-4bb4-8378-1b33bab423ec","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=22f13492-1528-4040-bdd0-34db0168cf16"

@@ -1,0 +1,5 @@
+﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
+"變更臺中市都市計畫主要計畫（第四次通盤檢討）（第四階段）案","發布實施「變更臺中市都市計畫主要計畫（第四次通盤檢討）（第四階段）案」計畫書、圖，並自110年6月30日零時起生效。","1100630","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=cxysdMm9ZO&d=TNG0bPZKJ4","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=cxysdMm9ZO&d=DY1dJ90cZf","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=cxysdMm9ZO&d=rmw5v1AZyx"
+"變更臺中市都市計畫主要計畫（第四次通盤檢討）（第四階段）案","發布實施「變更臺中市都市計畫主要計畫（第四次通盤檢討）（第四階段）案」計畫書、圖，並自110年6月30日零時起生效。","1100630","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=cxysdMm9ZO&d=TNG0bPZKJ4","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=cxysdMm9ZO&d=DY1dJ90cZf","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=cxysdMm9ZO&d=aLB8CuTcy2"
+"","","","","",""
+"","","","","",""

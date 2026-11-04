@@ -1,0 +1,2 @@
+圖檔名稱,TGOS資料集網址,SHP下載位址,圖檔格式,圖檔描述,公告文號,公告年份
+玉山國家公園第四次通盤檢討使用分區圖,https://www.tgos.tw/MDE/MetaData/CRUD/ViewMetaData?GUID=82c597a7-2d75-40fb-b471-0c054d8a31e1&VIEW_TYPE=only&SOURCE=1,https://www.tgos.tw:443/MDE/VirtualDir_TC/Product/2f920135-e56f-493c-95a5-002cc59cf7cb/玉山國家公園第4次通盤檢討使用分區.zip,SHP圖檔,玉山國家公園第四次通盤檢討使用分區圖檔資料,行政院111年11月30日院臺建字第1110035980號函核定_內政部_111年12月27日台內營字第1110821855號函公告,111

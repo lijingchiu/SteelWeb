@@ -1,0 +1,9 @@
+【來源與下載】
+https://conf.ncree.org.tw/DownloadCht.aspx?n=A11111180
+【說明】本機檔案實為網頁而非講義PDF；本頁列出講義，實際下載可用性尚未確認，沒有講義全文。
+
+
+【原有文字檔的內容，供對照】
+[[文字層無法以本機純 Python 工具擷取（AES 加密 PDF，需 cryptography 原生模組），原始檔完整保留]]
+
+官方連結：https://conf.ncree.org.tw/DownloadCht.aspx?n=A11111180

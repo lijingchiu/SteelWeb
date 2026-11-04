@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
+"「變更大里都市計畫(部分溝渠用地為河川區及河道用地)案」","發布實施「變更大里都市計畫(部分溝渠用地為河川區及河道用地)案」計畫書、圖，並自107年2月14日零時起生效。","1070214","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0d1629ad-f368-4006-8867-1c8e8653b6e4","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=59c8a7ef-6d57-4e15-b386-ea95f7d6fa88","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=75cecf45-7d6e-4693-85fb-15951a4ccb41"

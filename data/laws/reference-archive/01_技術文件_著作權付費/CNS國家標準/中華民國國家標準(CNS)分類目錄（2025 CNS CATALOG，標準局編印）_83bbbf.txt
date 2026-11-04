@@ -1,0 +1,4 @@
+[[文字層無法以本機純 Python 工具擷取（AES 加密 PDF，需 cryptography 原生模組），原始檔完整保留]]
+
+官方連結：https://www.bsmi.gov.tw/wSite/record/file_actData.jsp?fileuuid=120157&filename=f1741763732331.pdf
+含 CNS 560／CNS 61 條目；文字層 AES 加密無法本地擷取，原文完整

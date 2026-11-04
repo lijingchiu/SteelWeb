@@ -1,0 +1,2 @@
+File_Name,TGOS_URL,File_URL,File_Format,Description,Agency_Codes
+雪霸國家公園土地使用分區圖(第二次通盤檢討),https://www.tgos.tw/MDE/MetaData/CRUD/ViewMetaData?GUID=b040bc5b-688d-492f-98d7-50f5b1c4527a&VIEW_TYPE=only&SOURCE=1,https://www.tgos.tw:443/MDE/VirtualDir_TC/Product/ab983e55-e420-4c24-b706-d0b87cffae2c/mapdata201806260205.zip,SHP,雪霸國家公園土地使用分區圖(第二次通盤檢討)格式為Shape_file,A01030500G

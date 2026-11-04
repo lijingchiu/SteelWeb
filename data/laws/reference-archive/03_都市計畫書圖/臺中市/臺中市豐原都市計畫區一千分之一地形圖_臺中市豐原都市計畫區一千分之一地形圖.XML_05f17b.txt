@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<item>
+  <圖資名稱>臺中市豐原交流道都市計畫區一千分之一地形圖</圖資名稱>
+  <製作說明>約2005年地測</製作說明>
+  <基本說明>DWG檔案</基本說明>
+  <連結網址>https://drive.google.com/file/d/1UKMbv6IjLHajXchi8aDvVF9ahtZZoKRk/view?usp=sharing</連結網址>
+  <縣市別代碼>66000</縣市別代碼>
+  <資料描述>地形圖</資料描述>
+  <使用說明>從網址下載取得圖資檔案</使用說明>
+  <範圍說明>豐原</範圍說明>
+</item>
+</root>

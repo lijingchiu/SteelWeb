@@ -1,0 +1,2 @@
+﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖
+"變更豐原都市計畫(部分農業區為金融服務專用區、商業區、體育場用地、綠地用地、綠地兼滯洪池用地、園道用地及道路用地)","發布實施「變更豐原都市計畫(部分農業區為金融服務專用區、商業區、體育場用地、綠地用地、綠地兼滯洪池用地、園道用地及道路用地)」案計畫書、圖，並自106年11月3日零時起生效。","1061103","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=LzSn31SfNP&d=nDYLn1ONLe","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=LzSn31SfNP&d=YBlSuOuBug","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=LzSn31SfNP&d=96uj6vnk0k"

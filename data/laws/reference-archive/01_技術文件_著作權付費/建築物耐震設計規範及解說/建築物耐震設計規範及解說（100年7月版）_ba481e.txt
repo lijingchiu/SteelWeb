@@ -1,0 +1,4 @@
+[[文字層無法以本機純 Python 工具擷取（AES 加密 PDF，需 cryptography 原生模組），原始檔完整保留]]
+
+官方連結：https://www.nlma.gov.tw/uploads/files/997970daba4b45a498265151f438c778.pdf
+搜尋結果標題即本名，抓取後由文字層覆核

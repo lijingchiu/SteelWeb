@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜網址,公告書網址,公告圖網址
+"變更臺中市烏日大肚地區都市計畫主要計畫（配合同安厝排水系統–同安厝排水治理計畫 第一次修正）） 案","發布實施「變更臺中市烏日大肚地區都市計畫主要計畫(配合同安厝排水系統–同安厝排水治理計畫(第一次修正))案」計畫書、圖，並自112年12月14日零時起生效","1121214","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=fb30293c-4393-4385-83f5-97810da3b0d5","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=130a2452-c379-4274-914b-e885ba44deff","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9cc050fc-8451-4e86-b536-59170e0ddec2"

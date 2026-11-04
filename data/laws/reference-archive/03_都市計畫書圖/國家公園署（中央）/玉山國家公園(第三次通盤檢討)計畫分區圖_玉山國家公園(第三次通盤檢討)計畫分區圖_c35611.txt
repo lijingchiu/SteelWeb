@@ -1,0 +1,2 @@
+File_Name,TGOS_URL,File_URL,File_Format,Description,Official_Document_Number,Agency_Codes
+玉山國家公園三通範圍圖,https://www.tgos.tw/MDE/MetaData/CRUD/ViewMetaData?GUID=1a1a30e0-b1b0-4718-b2a6-c88b19b92a62&VIEW_TYPE=only&SOURCE=1,https://www.tgos.tw:443/MDE/VirtualDir_TC/Product/35f9cfe5-9978-46da-a079-39f347d107f4/mapdata201903130319.zip,SHP圖檔,玉山國家公園第三次通盤檢討使用分區圖圖檔資料,內政部國家公園計畫委員會第97次委員會議通過(第 3 次通盤檢討)_行政院101年10月8日院臺建字第1010145584號函核定_內政部_101年11月12日台內營字第 1010810982號函公告,A01030200G

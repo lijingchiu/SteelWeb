@@ -1,0 +1,2 @@
+﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,縣市別代碼
+"變更大安都市計畫（都市計畫圖重製檢討）案","發布實施「變更大安都市計畫（都市計畫圖重製檢討）案」計畫書、圖，並自106年12月22日零時起生效。","1060601","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=FzcDOiGnq6&d=lW5DfgCZUM","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=FzcDOiGnq6&d=KfOpU2cjtB","66000"

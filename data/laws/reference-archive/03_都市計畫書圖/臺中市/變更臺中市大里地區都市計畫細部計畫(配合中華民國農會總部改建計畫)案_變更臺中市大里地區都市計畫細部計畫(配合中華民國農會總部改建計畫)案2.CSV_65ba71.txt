@@ -1,0 +1,2 @@
+﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址
+"變更臺中市大里地區都市計畫細部計畫(配合中華民國農會總部改建計畫)案","發布實施「變更臺中市大里地區都市計畫細部計畫(配合中華民國農會總部改建計畫)案」都市計畫書，並自111年1月17日零時起生效。","1110117","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=4QhM3S086g&d=p6sTivG57w","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=4QhM3S086g&d=J4sYPqXyS3"

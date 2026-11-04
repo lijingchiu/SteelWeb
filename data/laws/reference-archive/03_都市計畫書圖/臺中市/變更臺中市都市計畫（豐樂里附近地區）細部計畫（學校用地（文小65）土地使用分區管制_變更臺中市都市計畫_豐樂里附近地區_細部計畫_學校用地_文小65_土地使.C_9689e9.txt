@@ -1,0 +1,2 @@
+﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜網址,公告書網址
+變更臺中市都市計畫（豐樂里附近地區）細部計畫（學校用地（文小65）土地使用分區管制,整理發布實施「變更臺中市都市計畫（豐樂里附近地區）細部計畫（學校用地（文小65）土地使用分區管制要點）」計畫書，並自113年9月16日零時起生效，請以原公告資訊為準。,1130916,https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=619339a2-63cb-4fb5-b8bf-df8b36348baf,https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=ef37111b-d673-4f1e-a38d-28c2c4301458

@@ -1,0 +1,1 @@
+{"contentType":null,"isImage":false,"size":0,"data":[{"\uFEFF年度":"114","樁位公告案數":"16"},{"\uFEFF年度":"113","樁位公告案數":"26"},{"\uFEFF年度":"112","樁位公告案數":"31"}],"errorCode":0,"id":"99312e30-1a37-437e-bdc3-d1c0b62d081d","message":null,"success":true}

@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜網址,公告書網址,公告圖網址
+"變更臺中市都市計畫主要計畫（第四次通盤檢討）(第七階段)案","發布實施「變更臺中市都市計畫主要計畫（第四次通盤檢討）(第七階段)案」計畫書，自112年5月29日零時起生效","1120529","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=3d236b0d-d096-43d1-922d-08cfdcd12d44","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=8de180d8-0d84-40db-887e-93303228aed3","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=3c3efef0-8194-402d-9c75-25182f3a2425"

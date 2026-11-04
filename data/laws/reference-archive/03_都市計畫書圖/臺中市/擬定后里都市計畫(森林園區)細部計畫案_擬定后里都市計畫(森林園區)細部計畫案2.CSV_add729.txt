@@ -1,0 +1,4 @@
+﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
+"擬定后里都市計畫(森林園區)細部計畫案","發布實施「擬定后里都市計畫(森林園區)細部計畫案」計畫書、圖，並自110年1月23日零時起生效。","1100123","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=zBT1gOJkhK&d=M4r7y3qBP6","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=zBT1gOJkhK&d=kWg4GvxyNj","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=zBT1gOJkhK&d=0bCvDzLUmS"
+"擬定后里都市計畫(森林園區)細部計畫案","發布實施「擬定后里都市計畫(森林園區)細部計畫案」計畫書、圖，並自110年1月23日零時起生效。","1100123","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=zBT1gOJkhK&d=M4r7y3qBP6","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=zBT1gOJkhK&d=kWg4GvxyNj","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=zBT1gOJkhK&d=ginA1EqLhV"
+"","","","","",""

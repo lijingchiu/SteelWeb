@@ -1,0 +1,2 @@
+﻿﻿檔案名稱,檔案格式,座標,地圖網址,縣市別代碼,資料描述,使用說明,範圍說明
+"臺中都市計畫圖-GIS","SHP","TWD67","https://drive.google.com/file/d/1MPX328c806JFioMsf7MQoKSca_oCuZ1Z/view?usp=sharing","66000","台中市都市計畫土地使用分區圖資檔案","從地圖網址下載取得圖資檔案","升格前台中市最早歷史版本"

@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜網址,公告書網址,公告圖網址
+"變更臺中市都市計畫（臺灣省實施區段徵收五年計畫範圍－廍子地區）細部計畫（部分文中小用地 文中小3）為社會福利設施用地（配合社會住宅興辦計畫）案","發布實施「變更臺中市都市計畫(臺灣省實施區段徵收五年計畫範圍－廍子地區)細部計畫(部分文中小用地(文中小3)為社會福利設施用地)(配合社會住宅興辦計畫)案」計畫書、圖，並自112年11月21日零時起生效","1121121","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=8893ff3c-02f0-4859-aa28-753432d668da","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=66bf0b9b-17e0-4c0e-8985-a1df29ffc772","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=4be64bbb-2099-42bf-a9e6-3760e8284051"

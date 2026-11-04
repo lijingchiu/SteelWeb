@@ -1,0 +1,3 @@
+item,name,"coordinate system",file_format,"contact person",localcallservice,extension,link
+1,新北市使用分區,TWD97,Shapefile,林冠緯,(02)29603456,3589,https://urban.planning.ntpc.gov.tw/opendataDownload/新北市使用分區.zip
+2,新北市都市計畫範圍,TWD97,Shapefile,林冠緯,(02)29603456,3589,https://urban.planning.ntpc.gov.tw/opendataDownload/新北市都市計畫範圍.zip

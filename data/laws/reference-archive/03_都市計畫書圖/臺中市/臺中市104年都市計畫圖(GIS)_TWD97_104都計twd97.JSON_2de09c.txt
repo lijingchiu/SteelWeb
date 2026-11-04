@@ -1,0 +1,1 @@
+[{"檔案名稱":"都計圖"  , "座標":"TWD97"  , "檔案格式":"SHP"  , "地圖網址":"https://drive.google.com/file/d/1iqbl1PztQd8oDKOrEvT8f3dxiKDZRux8/view?usp=sharing"  , "縣市別代碼":"66000"  , "資料描述":"台中市都市計畫土地使用分區圖資檔案"  , "使用說明":"從地圖網址下載取得圖資檔案"  , "範圍說明":"大台中" }]

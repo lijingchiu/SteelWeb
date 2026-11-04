@@ -1,0 +1,3 @@
+圖檔名稱,TGOS資料集網址,SHP下載位址,圖檔格式,圖檔描述,公告成立時間,公告年度
+東沙環礁國家公園(第1次通盤檢討)計畫圖(103年實施),https://www.tgos.tw/MDE/MetaData/CRUD/ViewMetaData?GUID=62dd90cd-9fb0-4538-afa8-896bb4f68eab&VIEW_TYPE=only&SOURCE=1,https://www.tgos.tw:443/MDE/VirtualDir_TC/Product/330636b0-ee2e-499a-8a49-3d07258ef0cb/mapdata202209211025.zip,東沙環礁國家公園之計畫圖,國家公園署,本項資料連結TGOS資料，為SHP地理圖資圖檔，國家公園於民國96年1月17日公告成立,96
+

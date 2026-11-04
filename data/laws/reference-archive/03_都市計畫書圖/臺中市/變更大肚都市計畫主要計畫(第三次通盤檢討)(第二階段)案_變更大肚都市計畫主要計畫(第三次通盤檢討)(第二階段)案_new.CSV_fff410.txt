@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖
+"變更大肚都市計畫主要計畫(第三次通盤檢討)(第二階段)案","發布實施「變更大肚都市計畫主要計畫(第三次通盤檢討)(第二階段)案」計畫書、圖，自108年10月16日零時起生效。","1081016","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=21ef1a1e-4658-4d63-ab57-5e57a1d52b6e","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e54e03b9-ea15-424e-b87c-d466ee6e6f1b","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e351f1f8-eb4f-402c-86d9-665e83e50581"

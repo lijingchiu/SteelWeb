@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<item>
+  <縣市別代碼>66000</縣市別代碼>
+  <公告實施日期>106年11月16日</公告實施日期>
+  <公告事宜>https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=oi108mDE75&amp;d=da9BTJz9RV</公告事宜>
+  <公告書網址>https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=oi108mDE75&amp;d=k2RKx0dqDe</公告書網址>
+  <公告圖>https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=oi108mDE75&amp;d=RDA6EnePuF</公告圖>
+</item>
+</root>
