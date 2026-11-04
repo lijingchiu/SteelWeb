@@ -49,15 +49,16 @@ async function runScenario(readable, inScope, selections = []) {
     assert.equal(elem('chat-input').value, '', 'individual questions must stay with their own quote');
     elem('chat-quotes-continue').handlers.click();
     assert(elem('chat-quotes-list').innerHTML.includes(selections[1].text), 'continuing selection preserves staged content');
-    const edit = {dataset:{quoteEdit:'0'},setAttribute(){}};
-    const field = elem('chat-quote-question-0'); field.hidden=true;
-    elem('chat-quotes-list').handlers.click({target:{closest:q => q === '[data-quote-edit]' ? edit : null}});
-    assert.equal(field.hidden,false, 'edit opens the correct question');
+    assert.equal(elem('chat-quote-detail').hidden, true, 'quotes begin as compact cards');
+    const card = {dataset:{quoteSelect:'0'}};
+    const field = elem('chat-quote-question-0');
+    elem('chat-quotes-list').handlers.click({target:{closest:q => q === '[data-quote-select]' ? card : null}});
+    assert.equal(elem('chat-quote-detail').hidden,false, 'selecting a card opens its details');
+    assert(elem('chat-quote-detail').innerHTML.includes(selections[0].question));
     field.dataset.quoteQuestion='0'; field.value='修改後：鋼筋為什麼漲？';
-    elem('chat-quotes-list').handlers.input({target:field}); selections[0].question=field.value;
-    const other = elem('chat-quote-question-1'); other.hidden=true;
+    elem('chat-quote-detail').handlers.input({target:field}); selections[0].question=field.value;
     handlers['steel:edit-selection']({detail:{id:selections[1].id}});
-    assert.equal(other.hidden,false, 'page marker opens its matching quote');
+    assert(elem('chat-quote-detail').innerHTML.includes(selections[1].question), 'page marker opens its matching quote');
   }
   elem('chat-input').value = url + ' 這篇說什麼？';
   elem('chat-form').handlers.submit({ submitter: elem('chat-send'), preventDefault() {} });

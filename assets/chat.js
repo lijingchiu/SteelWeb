@@ -26,7 +26,7 @@
   };
   const SUGGESTIONS = ['最新鋼筋與廢鋼行情有什麼變化？', '網站如何看待鋼材後續走勢？', '水泥和砂石最近的物價指數如何？', '鋼價波動時，工程合約的物價調整要注意什麼？'];
 
-  const state = { history: [], busy: false, context: null, sections: [], contextDate: null, contextAt: 0, files: [], selections: [], abort: null, nextQuestion: "", nextQuestionSecond: "", conversationId: null, nextVersion: 0, nextAbort: null };
+  const state = { history: [], busy: false, context: null, sections: [], contextDate: null, contextAt: 0, files: [], selections: [], activeSelectionId: null, abort: null, nextQuestion: "", nextQuestionSecond: "", conversationId: null, nextVersion: 0, nextAbort: null };
 
   // ── Key storage ──
   function getKey() { try { return localStorage.getItem(OAI_KEY) || ''; } catch (_) { return ''; } }
@@ -701,10 +701,17 @@
   }
 
   function updateSelections() {
-    const box = $('chat-quotes'), list = $('chat-quotes-list');
-    if (!box || !list) return;
+    const box = $('chat-quotes'), list = $('chat-quotes-list'), detail = $('chat-quote-detail');
+    if (!box || !list || !detail) return;
     box.hidden = !state.selections.length;
-    list.innerHTML = state.selections.map((s, i) => `<div class="chat-quote"><div class="chat-quote-content"><span>${escHtml(s.file ? `圖片：${s.label || '網站圖表'}` : s.text)}</span><div class="chat-quote-question-row"><span id="chat-quote-summary-${i}" class="chat-quote-summary">${escHtml(s.question || '尚未輸入專屬問題')}</span><button type="button" class="chat-quote-edit" data-quote-edit="${i}" aria-expanded="false" aria-controls="chat-quote-question-${i}">${s.question ? '編輯問題' : '新增問題'} ✎</button></div><textarea id="chat-quote-question-${i}" data-quote-question="${i}" aria-label="第 ${i + 1} 段的專屬問題" rows="2" maxlength="900" placeholder="輸入這段專屬的問題" hidden>${escHtml(s.question || '')}</textarea></div><button type="button" class="chat-quote-remove" data-quote-index="${i}" aria-label="移除第 ${i + 1} 則引用">×</button></div>`).join('');
+    list.innerHTML = state.selections.map((s, i) => `<button type="button" class="chat-quote-card" data-quote-select="${i}" aria-expanded="${s.id === state.activeSelectionId}" aria-controls="chat-quote-detail"><strong>引用 ${i + 1}</strong><span>${escHtml(s.file ? `圖片：${s.label || '網站圖表'}` : s.text)}</span><small id="chat-quote-summary-${i}">${escHtml(s.question || '點選編輯問題')}</small></button>`).join('');
+    const index = state.selections.findIndex(s => s.id === state.activeSelectionId);
+    detail.hidden = index < 0;
+    if (index < 0) { detail.innerHTML = ''; state.activeSelectionId = null; }
+    else {
+      const item = state.selections[index], label = item.file ? `圖片：${item.label || '網站圖表'}` : item.text;
+      detail.innerHTML = `<div class="chat-quote-detail-head"><strong>引用 ${index + 1}</strong><button type="button" class="chat-quote-remove" data-quote-index="${index}" aria-label="移除第 ${index + 1} 則引用">移除 ×</button></div><p>${escHtml(label.length > 120 ? label.slice(0,120) + '…' : label)}</p><label for="chat-quote-question-${index}">這段的問題</label><textarea id="chat-quote-question-${index}" data-quote-question="${index}" rows="2" maxlength="900" placeholder="輸入這段專屬的問題">${escHtml(item.question || '')}</textarea>`;
+    }
     if (typeof CustomEvent === 'function' && document.dispatchEvent) document.dispatchEvent(new CustomEvent('steel:selection-update', {detail:{ids:state.selections.map(s=>s.id)}}));
   }
 
@@ -1503,37 +1510,38 @@
       detail.accepted = true;
     });
     $('chat-quotes-list').addEventListener('click', e => {
-      const edit = e.target.closest('[data-quote-edit]');
-      if (edit && !state.busy) {
-        const textarea = $(`chat-quote-question-${edit.dataset.quoteEdit}`);
-        if (!textarea) return;
-        textarea.hidden = !textarea.hidden;
-        edit.setAttribute('aria-expanded', String(!textarea.hidden));
-        if (!textarea.hidden) textarea.focus();
-        return;
-      }
+      const card = e.target.closest('[data-quote-select]');
+      if (!card || state.busy) return;
+      const item = state.selections[Number(card.dataset.quoteSelect)];
+      if (!item) return;
+      state.activeSelectionId = state.activeSelectionId === item.id ? null : item.id;
+      updateSelections();
+      if (state.activeSelectionId) $(`chat-quote-question-${card.dataset.quoteSelect}`)?.focus();
+    });
+    $('chat-quote-detail').addEventListener('click', e => {
       const button = e.target.closest('[data-quote-index]');
       if (!button || state.busy) return;
-      state.selections.splice(Number(button.dataset.quoteIndex), 1); updateSelections();
+      state.selections.splice(Number(button.dataset.quoteIndex), 1); state.activeSelectionId = null; updateSelections();
     });
     $('chat-quotes-continue').addEventListener('click', () => {
       if (voice.active || voice.starting) stopVoice();
       closeChat();
     });
-    $('chat-quotes-list').addEventListener('input', e => {
+    $('chat-quote-detail').addEventListener('input', e => {
       const index = e.target.dataset.quoteQuestion;
       if (index === undefined || !state.selections[Number(index)]) return;
       state.selections[Number(index)].question = e.target.value;
       const summary = $(`chat-quote-summary-${index}`);
-      if (summary) summary.textContent = e.target.value.trim() || '尚未輸入專屬問題';
+      if (summary) summary.textContent = e.target.value.trim() || '點選編輯問題';
     });
     document.addEventListener('steel:edit-selection', e => {
       if (state.busy) return;
       const index = state.selections.findIndex(s => s.id === e.detail?.id);
       if (index < 0) return;
+      state.activeSelectionId = state.selections[index].id; updateSelections();
       showHistory(false); openChat();
       const field = $(`chat-quote-question-${index}`);
-      if (field) { field.hidden = false; document.querySelector(`[data-quote-edit="${index}"]`)?.setAttribute('aria-expanded', 'true'); field.focus(); field.scrollIntoView?.({block:'nearest'}); }
+      if (field) { field.focus(); field.scrollIntoView?.({block:'nearest'}); }
     });
     initChatResize();
     importKeyFromHash();
