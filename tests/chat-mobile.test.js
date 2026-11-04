@@ -45,10 +45,16 @@ desktop.element('chat-input').handlers.keydown({ key: 'Enter', shiftKey: false, 
 assert(desktopPrevented && desktop.reads > 0, 'desktop Enter continues to send');
 const input = desktop.element('chat-input');
 input.value = '';
-Object.defineProperty(input, 'scrollHeight', {get() { return this.value.length > 10 ? 80 : 20; }});
+Object.defineProperty(input, 'scrollHeight', {configurable:true, get() { return this.value.length > 10 ? 80 : 20; }});
 input.handlers.input();
 assert.equal(input.value, '', 'measuring the placeholder must not leave text in the draft');
 assert.equal(input.style.height, '82px', 'wrapped placeholder determines a usable input height');
+Object.defineProperty(input, 'scrollHeight', {configurable:true, get() { return this.value.length > 10 ? 240 : 20; }});
+input.value = '鋼筋行情的影響因素與可能的未來走勢'.repeat(20);
+input.handlers.input();
+assert.equal(input.style.height, '144px', 'long inputs grow only to the height limit');
+input.value = '短句'; input.handlers.input();
+assert.equal(input.style.height, '44px', 'input shrinks again when content is removed');
 const before = mobile.reads;
 mobile.element('chat-log').handlers.click({ target: { closest: selector => selector === '.chat-chip' ? { textContent: '建議問題' } : null } });
 assert.equal(mobile.element('chat-input').value, '建議問題');

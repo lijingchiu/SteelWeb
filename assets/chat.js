@@ -953,7 +953,7 @@
     const measuringPlaceholder = !t.value && !!t.placeholder;
     if (measuringPlaceholder) t.value = t.placeholder;
     t.style.height = 'auto';
-    const height = Math.max(44, Math.min(t.scrollHeight + 2, 120));
+    const height = Math.max(44, Math.min(t.scrollHeight + 2, 144));
     if (measuringPlaceholder) t.value = '';
     t.style.height = height + 'px';
   }
@@ -1480,6 +1480,14 @@
   function init() {
     if (!$('chat-panel')) return;
     window.addEventListener?.('resize', autoGrow);
+    if (window.ResizeObserver) {
+      let previousWidth = 0;
+      const observer = new window.ResizeObserver(entries => {
+        const width = entries[0]?.contentRect.width || 0;
+        if (width && width !== previousWidth) { previousWidth = width; autoGrow(); }
+      });
+      observer.observe($('chat-input'));
+    }
     document.addEventListener('steel:ask-selection', e => {
       const detail = e.detail || {};
       if (state.busy) { detail.error = '助理正在回答，請稍後再試。'; return; }
