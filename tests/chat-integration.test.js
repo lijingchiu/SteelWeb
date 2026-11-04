@@ -7,7 +7,7 @@ async function runScenario(readable, inScope, selections = []) {
   const sequence = [], messages = [], els = new Map(), handlers = {};
   function elem(id = '') {
     if (!els.has(id)) els.set(id, { id, value: '', hidden: false, children: [], scrollHeight: 20, scrollTop: 0, clientHeight: 20, style: {}, dataset: {}, innerHTML: '',
-      classList: { add() {}, remove() {}, toggle() {} }, handlers: {},
+      classList: { add() {}, remove() {}, toggle() {}, contains() { return false; } }, handlers: {},
       addEventListener(type, fn) { this.handlers[type] = fn; }, setAttribute() {}, focus() {},
       appendChild(child) { this.children.push(child); messages.push(child); },
       querySelector() { return null; }, querySelectorAll() { return []; },
@@ -47,6 +47,8 @@ async function runScenario(readable, inScope, selections = []) {
     assert.deepEqual(sequence, [], 'staging must not call the assistant');
     assert(elem('chat-quotes-list').innerHTML.includes(selections[0].text));
     assert.equal(elem('chat-input').value, '', 'individual questions must stay with their own quote');
+    elem('chat-quotes-continue').handlers.click();
+    assert(elem('chat-quotes-list').innerHTML.includes(selections[1].text), 'continuing selection preserves staged content');
     const edit = {dataset:{quoteEdit:'0'},setAttribute(){}};
     const field = elem('chat-quote-question-0'); field.hidden=true;
     elem('chat-quotes-list').handlers.click({target:{closest:q => q === '[data-quote-edit]' ? edit : null}});

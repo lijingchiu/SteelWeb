@@ -15,7 +15,7 @@
         const rect = mark.anchor.getBoundingClientRect();
         const visible = rect.width > 0 && rect.height > 0 && rect.bottom > 0 && rect.top < window.innerHeight;
         mark.button.hidden = !visible;
-        if (visible) { mark.button.style.left = `${Math.max(6, Math.min(window.innerWidth - 36, rect.left))}px`; mark.button.style.top = `${Math.max(6, rect.top - 28)}px`; }
+        if (visible) { const size = mark.button.offsetWidth || 36; mark.button.style.left = `${Math.max(6, Math.min(window.innerWidth - size - 6, rect.left))}px`; mark.button.style.top = `${Math.max(6, rect.top - size - 3)}px`; }
       } catch (_) { mark.button.hidden = true; }
     }
   }

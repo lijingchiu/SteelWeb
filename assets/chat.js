@@ -1496,6 +1496,10 @@
       if (!button || state.busy) return;
       state.selections.splice(Number(button.dataset.quoteIndex), 1); updateSelections();
     });
+    $('chat-quotes-continue').addEventListener('click', () => {
+      if (voice.active || voice.starting) stopVoice();
+      closeChat();
+    });
     $('chat-quotes-list').addEventListener('input', e => {
       const index = e.target.dataset.quoteQuestion;
       if (index === undefined || !state.selections[Number(index)]) return;
