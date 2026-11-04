@@ -853,10 +853,9 @@
       if (plan.laws.length || plan.terms.length) {
         answerEl.querySelector('.chat-bubble').innerHTML = '<span class="chat-typing"><i></i><i></i><i></i></span><span class="chat-status">查詢法規及參考資料…</span>';
       }
-      let [laws, references] = await Promise.all([
-        retrievalDeadline(plan.laws.length ? searchLaws(plan.laws, plan.terms, question) : Promise.resolve([]), 8000, ctrl.signal).catch(e => { if (ctrl.signal.aborted) throw e; return []; }),
-        retrievalDeadline(searchReferences(question, plan.terms), 8000, ctrl.signal).catch(e => { if (ctrl.signal.aborted) throw e; return []; }),
-      ]);
+      const referencePromise = retrievalDeadline(searchReferences(question, plan.terms), 8000, ctrl.signal).catch(() => []);
+      const laws = await retrievalDeadline(plan.laws.length ? searchLaws(plan.laws, plan.terms, question) : Promise.resolve([]), 8000, ctrl.signal)
+        .catch(e => { if (ctrl.signal.aborted) throw e; return []; });
       let onlineRegs = '';
       if (plan.legal && (!laws.length || (plan.targetLaw && !laws.some(l => l.law === plan.targetLaw)))) {
         answerEl.querySelector('.chat-bubble').innerHTML = '<span class="chat-typing"><i></i><i></i><i></i></span><span class="chat-status">站內未找到條文，正在查詢官方法規網站…</span>';
@@ -877,6 +876,8 @@
         pages.push(...found);
         onlineRegs = `<online_regulations>\n${JSON.stringify(found.map((p, i) => ({...p, citation:`〔網頁${start+i+1}〕`})))}\n</online_regulations>\n\n`;
       }
+      const references = onlineRegs ? [] : await referencePromise;
+      if (ctrl.signal.aborted) throw Object.assign(new Error('已停止查詢'), {name:'AbortError'});
       const regs = plan.laws.length
         ? `<regulations>\n${laws.length ? formatLaws(laws) : `（在《${plan.laws.join('》《')}》中找不到相關條文）`}\n</regulations>\n\n`
         : '';
