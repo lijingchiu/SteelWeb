@@ -41,5 +41,10 @@ const good = { output: [
   assert.equal(failed.status, 'unavailable');
   assert.equal(failed.httpStatus, 403);
   await assert.rejects(() => api.readPage(url, '這篇說什麼？', 'bad', 'model', undefined, async () => ({ ok: false, status: 401 })), e => e.badKey);
+  const official = 'https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110001';
+  let searchBody;
+  const lawPages = await api.searchRegulations('水保法','key','model',undefined,async (target,opt) => { searchBody=JSON.parse(opt.body); return {ok:true,json:async()=>({output:[{type:'message',content:[{type:'output_text',text:'水土保持法第一條說明目的。',annotations:[{type:'url_citation',url:official,title:'水土保持法'},{type:'url_citation',url:'https://example.com/other',title:'非官方'}]}]}]})}; });
+  assert.equal(searchBody.tools[0].type,'web_search');assert.equal(lawPages.length,1);assert.equal(lawPages[0].url,official);assert(lawPages[0].summary.includes('水土保持法'));
+  assert.deepEqual(await api.searchRegulations('水保法','key','model',undefined,async()=>({ok:true,json:async()=>({output:[{type:'message',content:[{type:'output_text',text:'無出處資料',annotations:[]}]}]})})),[]);
   console.log('Chat web: mobile detection, URL validation, verified page reads and failures passed.');
 })().catch(e => { console.error(e); process.exitCode = 1; });
