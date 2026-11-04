@@ -540,7 +540,8 @@
     if (!state.conversationId) state.conversationId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
     const previous = records.find(c => c.id === state.conversationId);
     const record = { id: state.conversationId, created: previous?.created || Date.now(), updated: Date.now(),
-      title: (state.history.find(m => m.role === 'user')?.text || '對話').slice(0, 70), messages: state.history };
+      title: (state.history.find(m => m.role === 'user')?.text || '對話').slice(0, 70), messages: state.history,
+      suggestions: [state.nextQuestion, state.nextQuestionSecond].filter(Boolean) };
     const next = [record, ...records.filter(c => c.id !== record.id)];
     try { localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(next)); }
     catch (_) { $('chat-storage-status').textContent = '此瀏覽器無法儲存對話紀錄，請檢查儲存空間或瀏覽器設定。'; return; }
@@ -576,6 +577,15 @@
     $('chat-log').innerHTML = '';
     state.history.forEach(m => addMsg(m.role === 'user' ? 'user' : 'bot', renderBody(m.text)));
     showHistory(false);
+    const saved = Array.isArray(record.suggestions) ? record.suggestions.filter(s => typeof s === 'string' && s.trim()).slice(0, 2) : [];
+    if (saved.length === 2) {
+      [state.nextQuestion, state.nextQuestionSecond] = saved;
+      updateNextSuggestion();
+    } else {
+      const answer = [...state.history].reverse().find(m => m.role === 'assistant');
+      const question = [...state.history].reverse().find(m => m.role === 'user');
+      if (question && answer) suggestNextQuestion(question.text, answer.text);
+    }
   }
   function deleteConversation(id) {
     if (state.busy || voice.active || voice.starting) return;
@@ -694,6 +704,7 @@
         : /鋼筋|鋼價|鋼材|廢鋼/.test(topic) ? '哪些市場因素值得持續關注？'
         : '接下來有哪些值得關注的因素？';
       updateNextSuggestion();
+      saveConversation();
     };
     try {
       const body = {
@@ -715,6 +726,7 @@
       state.nextQuestionSecond = valid[1] || '接下來有哪些值得關注的因素？';
       if (state.nextQuestionSecond === state.nextQuestion) state.nextQuestionSecond = '這對工程成本有什麼影響？';
       updateNextSuggestion();
+      saveConversation();
     } catch (_) { fallback(); }
     finally { if (state.nextAbort === ctrl) state.nextAbort = null; }
   }
