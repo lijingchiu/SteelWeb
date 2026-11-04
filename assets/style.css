@@ -2029,6 +2029,9 @@ body.brief-open .chat-fab { opacity: 0; pointer-events: none; transform: scale(0
 .chat-next-suggestion { display: block; margin: 5px 14px 0 auto; padding: 6px 10px; max-width: calc(100% - 28px); border: 1px solid var(--line); border-radius: 14px; background: transparent; color: var(--muted); text-align: left; font: inherit; font-size: 12px; line-height: 1.4; cursor: pointer; }
 .chat-next-suggestion[hidden] { display: none; }
 .chat-next-suggestion:hover { border-color: var(--copper); color: var(--ink); }
+@media (max-width: 768px) {
+  .chat-next-suggestion { margin-bottom: 12px; }
+}
 
 /* Expandable material forecasts and individual history charts. */
 .mat-detail { border-bottom: 1px solid var(--line); }
