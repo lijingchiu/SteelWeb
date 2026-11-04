@@ -25,10 +25,15 @@ async function runScenario(readable, inScope) {
     if (String(target).includes('data/laws/index.json')) return { ok: true, json: async () => ({ laws: [] }) };
     if (String(target).includes('data/latest.json')) return { ok: true, json: async () => ({ date: '2026-11-04' }) };
     if (String(target).includes('data/materials.json') || String(target).includes('data/accuracy.json')) return { ok: false };
+    if (String(target).includes('data/report.json')) return { ok: true, json: async () => ({ date: '2026-11-03', file: 'reports/test.pptx', title: '電子報獨有標題', slides: 1, content: { date: '2026-11-03', file: 'reports/test.pptx', pages: [{page: 1, text: ['電子報獨有內容'], charts: [{name: '鋼筋', points: [{category: '26/10', value: '18500'}]}]}] } }) };
     if (String(target).includes('/v1/responses')) {
       const body = JSON.parse(options.body);
       if (!body.stream) { sequence.push('scope'); assert(body.input.includes('報導鋼筋價格變化')); return { ok: true, json: async () => ({ output_text: JSON.stringify({ in_scope: inScope, laws: [], terms: [] }) }) }; }
       sequence.push('answer'); assert(body.input.at(-1).content.includes('報導鋼筋價格變化'));
+      assert(body.instructions.includes('電子報獨有內容'));
+      assert(body.instructions.includes('圖表「鋼筋」：26/10：18500'));
+      assert(body.instructions.includes('電子報日期與網站最新分析日期不同'));
+      assert(body.instructions.includes('電子報第1頁'));
       let done = false; const encoded = new TextEncoder().encode('data: '+JSON.stringify({ type: 'response.output_text.delta', delta: '報導提到鋼筋價格變化。〔網頁1〕' })+'\n\n');
       return { ok: true, body: { getReader: () => ({ async read() { if (done) return { done: true }; done = true; return { done: false, value: encoded }; } }) } };
     }

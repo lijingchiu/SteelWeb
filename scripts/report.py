@@ -38,6 +38,7 @@ from pptx.util import Emu, Inches, Pt
 
 sys.path.insert(0, str(Path(__file__).parent))
 from prompts import WRITING_RULES  # noqa: E402
+from report_text import extract_report  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -868,6 +869,7 @@ def main() -> int:
         "title": content["cover"]["title"],
         "model": model,
         "generated_at": datetime.now(TW).isoformat(timespec="seconds"),
+        "content": extract_report(path, date, f"reports/{name}"),
     }, ensure_ascii=False, indent=2), encoding="utf-8")
     prune(path)
     log(f"saved {path.relative_to(ROOT)} ({len(prs.slides)} slides, {path.stat().st_size // 1024} KB)")
