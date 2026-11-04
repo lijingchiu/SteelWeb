@@ -61,8 +61,9 @@ async function runScenario(readable, inScope, selections = []) {
   }
   elem('chat-input').value = url + ' 這篇說什麼？';
   elem('chat-form').handlers.submit({ submitter: elem('chat-send'), preventDefault() {} });
+  if (selections.length) assert.equal(elem('chat-quotes').hidden, true, 'all quotes hide immediately while the reply is pending');
   for (let i = 0; i < 50 && elem('chat-send').disabled !== false; i++) await new Promise(r => setTimeout(r, 2));
-  return { sequence, html: messages.at(-1)?.bubble.innerHTML || '' };
+  return { sequence, html: messages.at(-1)?.bubble.innerHTML || '', quotesHidden:elem('chat-quotes').hidden };
 }
 (async () => {
   const ok = await runScenario(true, true);
@@ -77,5 +78,8 @@ async function runScenario(readable, inScope, selections = []) {
   assert(no.html.includes('無法確認這個連結的文章內容'));
   const staged = await runScenario(true, true, [{id:'quote-a',text:'第一段鋼筋報價'.repeat(600) + '結尾資料', question:'鋼筋為什麼漲？'}, {id:'quote-b',text:'第二段廢鋼行情', question:'廢鋼有什麼風險？'}]);
   assert.deepEqual(staged.sequence, ['read', 'scope', 'answer']);
+  assert.equal(staged.quotesHidden,true, 'successful reply clears the whole tray');
+  const failed = await runScenario(false, false, [{id:'quote-c',text:'第一筆鋼筋資料',question:'價格為何？'}, {id:'quote-d',text:'第二筆鋼筋資料',question:'影響為何？'}]);
+  assert.equal(failed.quotesHidden,false, 'failed lookup restores all pending quotes');
   console.log('Chat integration: read before scope, linked source citations, off-topic and unavailable pages passed.');
 })().catch(e => { console.error(e); process.exitCode = 1; });

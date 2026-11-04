@@ -662,6 +662,7 @@
     document.body.classList.add('chat-open');
     showView();
     fitToKeyboard();
+    autoGrow();
     requestAnimationFrame(() => panel.classList.add('open'));
     const focusEl = getKey() ? $('chat-input') : $('chat-key-input');
     if (window.matchMedia('(min-width: 769px)').matches && focusEl) focusEl.focus();
@@ -677,6 +678,8 @@
 
   function setBusy(b) {
     state.busy = b;
+    const quoteBox = $('chat-quotes');
+    if (quoteBox) quoteBox.hidden = b || !state.selections.length;
     $('chat-send').disabled = b;
     $('chat-history-open').disabled = b;
     $('chat-new').disabled = b;
@@ -717,6 +720,7 @@
     button.hidden = !state.nextQuestion || !!input.value.trim() || state.busy || !isMobile;
     secondButton.textContent = state.nextQuestionSecond ? `建議：${state.nextQuestionSecond}` : '';
     secondButton.hidden = !state.nextQuestionSecond || !!input.value.trim() || state.busy || !isMobile;
+    autoGrow();
   }
   function resetNextSuggestion() {
     state.nextVersion++;
@@ -867,6 +871,7 @@
         answerEl.classList.add('chat-refusal');
         const missing = batchFailures.length ? `\n\n未能讀取：${batchFailures.map(f => `${f.name}（${f.reason}）`).join('、')}。` : '';
         setAnswer(answerEl, REFUSAL + missing, true);
+        state.selections = []; updateSelections();
         return;
       }
       const input = state.history.slice(-HISTORY_TURNS * 2).map(h => ({ role: h.role, content: h.text }));
@@ -918,6 +923,7 @@
       if (!text.trim() || text.trim().startsWith(OFF_MARK) || text.includes(OFF_MARK)) {
         answerEl.classList.add('chat-refusal');
         setAnswer(answerEl, REFUSAL, true);
+        if (text.trim()) { state.selections = []; updateSelections(); }
         return;
       }
       let finalText = text;
@@ -943,8 +949,13 @@
 
   function autoGrow() {
     const t = $('chat-input');
+    if (!t) return;
+    const measuringPlaceholder = !t.value && !!t.placeholder;
+    if (measuringPlaceholder) t.value = t.placeholder;
     t.style.height = 'auto';
-    t.style.height = Math.min(t.scrollHeight, 120) + 'px';
+    const height = Math.max(44, Math.min(t.scrollHeight + 2, 120));
+    if (measuringPlaceholder) t.value = '';
+    t.style.height = height + 'px';
   }
 
   // On phones the on-screen keyboard shrinks the visible area but not the layout
@@ -1468,6 +1479,7 @@
 
   function init() {
     if (!$('chat-panel')) return;
+    window.addEventListener?.('resize', autoGrow);
     document.addEventListener('steel:ask-selection', e => {
       const detail = e.detail || {};
       if (state.busy) { detail.error = '助理正在回答，請稍後再試。'; return; }
