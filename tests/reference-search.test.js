@@ -5,10 +5,10 @@ const root = path.resolve(__dirname, '..');
 let docRequests = [];
 global.fetch = async url => {
   if (url.includes('search-index.json')) {
-    return { ok: true, json: async () => JSON.parse(fs.readFileSync(path.join(root, url), 'utf8')) };
+    return { ok: true, json: async () => JSON.parse(fs.readFileSync(path.join(root, url.split('?')[0]), 'utf8')) };
   }
   docRequests.push(url);
-  const name = url.split('/').map(decodeURIComponent).join('/');
+  const name = url.split('?')[0].split('/').map(decodeURIComponent).join('/');
   const file = path.join(root, name);
   return { ok: fs.existsSync(file), text: async () => fs.readFileSync(file, 'utf8') };
 };

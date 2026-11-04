@@ -1,7 +1,7 @@
 // Search the separately maintained reference archive without treating its
 // historical, extracted or OCR text as verified current legislation.
 (function (global) {
-  const INDEX = 'data/laws/reference-archive/search-index.json';
+  const INDEX = 'data/laws/reference-archive/search-index.json?v=20261104c';
   const MAX_DOCUMENT_BYTES = 3000000;
   let indexPromise;
   const ignored = new Set(['什麼','哪些','如何','可以','請問','規定','相關','資料','查詢','建築','營建','文件','法規','台灣','臺灣','規範','設計','標準']);
@@ -67,7 +67,7 @@
         const href = safePath(doc.path);
         if (doc.bytes > MAX_DOCUMENT_BYTES) return { ...doc, href, excerpt: '', note: '檔案較大，請開啟來源檔查閱。' };
         try {
-          const response = await fetch(href);
+          const response = await fetch(`${href}?v=20261104c`);
           if (!response.ok) throw new Error('not available');
           const text = await response.text();
           // Link-only records are deliberately distinguished from source text:
