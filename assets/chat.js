@@ -835,13 +835,16 @@
       let pages = [];
       if (urls.length) {
         answerEl.querySelector('.chat-bubble').innerHTML = '<span class="chat-typing"><i></i><i></i><i></i></span><span class="chat-status">正在閱讀您提供的網頁…</span>';
-        pages = await Promise.all(urls.map(u => window.SteelChatWeb.readPage(u, question, getKey(), CHAT_MODEL, ctrl.signal)));
+        const [newsLatest, newsMaterials] = await Promise.all([getJson('data/latest.json'), getJson('data/materials.json')]);
+        const news = [...(newsLatest?.news_sources || []), ...(newsMaterials?.news_feed || [])];
+        pages = await Promise.all(urls.map(u => window.SteelChatWeb.readPage(u, question, getKey(), CHAT_MODEL, ctrl.signal, window.fetch || fetch,
+          news.find(n => n && n.url && window.SteelChatWeb.samePage(n.url, u)) || null)));
         if (!pages.some(p => p.status !== 'unavailable')) {
           const service = pages.every(p => p.reason === 'service');
           const status = pages.find(p => p.httpStatus)?.httpStatus;
           const message = service
             ? `網頁閱讀服務暫時無法使用${status ? `（代碼 ${status}）` : ''}，因此還沒有讀取到文章。請稍後再試，或貼上文章段落讓我回答。`
-            : '我嘗試讀取您提供的網頁，但目前無法確認網頁內容。可能是網站限制存取或需要登入。請貼上文章內容或相關段落，我可以根據文字回答。';
+            : '目前無法確認這個連結的文章內容。可能是中轉網址、網站讀取限制或搜尋服務未取得內容；請提供新聞原始網址、標題或相關段落，我可以繼續查詢。';
           setAnswer(answerEl, message, true);
           return;
         }

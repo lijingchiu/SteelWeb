@@ -57,6 +57,6 @@ async function runScenario(readable, inScope) {
   assert(off.html.includes('只回答'));
   const no = await runScenario(false, false);
   assert.deepEqual(no.sequence, ['read']);
-  assert(no.html.includes('無法確認網頁內容'));
+  assert(no.html.includes('無法確認這個連結的文章內容'));
   console.log('Chat integration: read before scope, linked source citations, off-topic and unavailable pages passed.');
 })().catch(e => { console.error(e); process.exitCode = 1; });
