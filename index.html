@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261104g">
+  <link rel="stylesheet" href="assets/style.css?v=20261104i">
 </head>
 <body>
 
@@ -519,7 +519,20 @@
 
     <div class="chat-main" id="chat-main" hidden>
       <div class="chat-log" id="chat-log" aria-live="polite"></div>
+      <div class="chat-attachments" id="chat-attachments" hidden>
+        <span id="chat-attachment-list"></span>
+        <button type="button" id="chat-attachment-clear" aria-label="移除所有附件">移除</button>
+      </div>
+      <p class="chat-attachment-message" id="chat-attachment-message" role="status" aria-live="polite"></p>
+      <div class="chat-attach-menu" id="chat-attach-menu" hidden>
+        <button type="button" id="chat-choose-file">選擇圖片、影片或文件</button>
+        <span>最多 3 個檔案；影片 100 MB、其他檔案 10 MB</span>
+      </div>
       <form class="chat-form" id="chat-form">
+        <input type="file" id="chat-file" accept=".png,.jpg,.jpeg,.webp,.gif,.heic,.heif,.mp4,.mov,.m4v,.webm,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.tsv,.txt" multiple hidden>
+        <button type="button" class="chat-attach" id="chat-attach" aria-label="加入附件" aria-expanded="false" aria-controls="chat-attach-menu" title="加入附件">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
         <button type="button" class="chat-mic" id="chat-mic" aria-label="語音對話" title="語音對話" hidden>
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3.5" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.5"/></svg>
         </button>
@@ -541,6 +554,7 @@
   <script src="assets/app.js?v=20261103n"></script>
   <script src="assets/reference-search.js?v=20261104h"></script>
   <script src="assets/chat-web.js?v=20261104c"></script>
-  <script src="assets/chat.js?v=20261104h"></script>
+  <script src="assets/chat-attachments.js?v=20261104i"></script>
+  <script src="assets/chat.js?v=20261104i"></script>
 </body>
 </html>
