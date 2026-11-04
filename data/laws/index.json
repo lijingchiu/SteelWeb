@@ -1265,5 +1265,44 @@
    "articles": 50,
    "region": "高雄市"
   }
- ]
+ ],
+ "reference_archive": {
+  "index": "data/laws/reference-archive/index.json",
+  "manifest": "data/laws/reference-archive/MANIFEST.md",
+  "categories": [
+   {
+    "name": "00_索引",
+    "count": 1
+   },
+   {
+    "name": "01_技術文件_著作權付費",
+    "count": 28
+   },
+   {
+    "name": "02_行政規則與函釋",
+    "count": 118
+   },
+   {
+    "name": "03_都市計畫書圖",
+    "count": 734
+   },
+   {
+    "name": "04_地方法規",
+    "count": 102
+   },
+   {
+    "name": "05_判決與爭議",
+    "count": 11
+   },
+   {
+    "name": "06_法律全文_可自由下載",
+    "count": 28
+   },
+   {
+    "name": "07_建築都市核心法規命令_可自由下載",
+    "count": 264
+   }
+  ],
+  "note": "參考資料，不代表現行法規；部分含 OCR 或不完整內容。"
+ }
 }

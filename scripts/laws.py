@@ -434,16 +434,25 @@ def main() -> int:
 
     keep = {f"{x['pcode']}.json" for x in index} | {"index.json", "README.md"}
     for f in OUT.iterdir():
-        if f.name not in keep:
+        if f.is_file() and f.name not in keep:
             f.unlink()
 
     now = datetime.now(TW).isoformat(timespec="seconds")
+    reference_path = OUT / "reference-archive" / "index.json"
+    reference = None
+    if reference_path.exists():
+        catalog = json.loads(reference_path.read_text(encoding="utf-8"))
+        reference = {"index": "data/laws/reference-archive/index.json",
+                     "manifest": "data/laws/reference-archive/MANIFEST.md",
+                     "categories": [{"name": c["category"], "count": c["count"]} for c in catalog["categories"]],
+                     "note": "參考資料，不代表現行法規；部分含 OCR 或不完整內容。"}
     (OUT / "index.json").write_text(json.dumps({
         "updated_at": now,
         "source": "全國法規資料庫開放資料（法務部）",
         "source_updated": updates,
         "license": "政府資料開放授權條款第1版；法律條文依著作權法第9條不得為著作權之標的",
         "laws": index,
+        **({"reference_archive": reference} if reference else {}),
     }, ensure_ascii=False, indent=1), encoding="utf-8")
 
     lines = ["# 法規資料", "",
