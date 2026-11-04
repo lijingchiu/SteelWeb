@@ -1,0 +1,47 @@
+name: Refresh Regulations
+
+# Construction, building-design and steel-industry regulations from the
+# Ministry of Justice open data, for the site assistant. Laws change rarely,
+# so this runs monthly; push a change to the trigger file to run it now.
+on:
+  schedule:
+    - cron: '41 19 3 * *'   # 4th of each month, 03:41 Taiwan time
+  push:
+    branches: [main]
+    paths: ['.github/trigger/refresh-laws']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writer-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download and build regulations
+        run: |
+          pip install -q requests
+          python scripts/laws.py
+      - name: Commit
+        run: |
+          git config user.name "Steel Analysis Bot"
+          git config user.email "steel-bot@users.noreply.github.com"
+          git add data/laws
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "data: regulations $(TZ=Asia/Taipei date +%Y-%m-%d)"
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 10))
+          done
+          exit 1

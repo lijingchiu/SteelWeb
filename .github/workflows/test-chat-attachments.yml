@@ -1,0 +1,128 @@
+name: Test chat attachment reading
+on:
+  workflow_dispatch:
+    inputs:
+      schedule_only:
+        description: Test weekday research and notification scheduling only
+        type: boolean
+        default: false
+      pdf_only:
+        description: Test newsletter PDF conversion and Pages publication only
+        type: boolean
+        default: false
+      research_ids:
+        description: Optional comma-separated material IDs
+        type: string
+        required: false
+      research_only:
+        description: Test material outlook research only
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: ${{ !inputs.pdf_only && !inputs.research_only && !inputs.schedule_only }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: pip install python-docx openpyxl python-pptx reportlab pillow
+      - run: python tests/make-attachment-samples.py
+      - name: Test real attachment reading
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node tests/live-chat-attachments.js
+
+      - name: Create Office image and chart samples
+        run: python tests/make-office-visual-samples.py
+      - name: Create large test attachments
+        run: |
+          if ! command -v ffmpeg >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y ffmpeg; fi
+          python tests/make-large-attachments.py
+      - name: Install browser test runner
+        run: npm install --prefix /tmp/steel-pw playwright@1.55.1
+      - name: Test Office pictures and charts through the real assistant
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          NODE_PATH: /tmp/steel-pw/node_modules
+          CHROME_PATH: /usr/bin/google-chrome
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/steel-office-http.log 2>&1 &
+          node tests/live-office-visuals.js
+
+  pdf_verify:
+    if: ${{ inputs.pdf_only && !inputs.research_only && !inputs.schedule_only }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      pages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install newsletter conversion dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libreoffice-impress fonts-noto-cjk fonts-liberation fontconfig poppler-utils
+          pip install -r scripts/requirements.txt pillow
+      - name: Test conversion, integrity and email delivery rules
+        env:
+          TEST_PDF_OUTPUT: /tmp/steel-linux-report.pdf
+        run: python -m unittest discover -s tests -p 'test_report_*.py'
+      - name: Render PDF pages for review
+        run: |
+          mkdir -p /tmp/steel-pdf-review
+          for page in 1 4 5 11; do pdftoppm -f "$page" -l "$page" -r 90 -png -singlefile /tmp/steel-linux-report.pdf "/tmp/steel-pdf-review/page-$page"; done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: newsletter-pdf-review
+          path: /tmp/steel-pdf-review/*.png
+          retention-days: 1
+      - name: Verify Pages build authorization
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
+
+  research_verify:
+    if: ${{ inputs.research_only && !inputs.schedule_only }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python -m unittest discover -s tests -p 'test_material_research.py'
+      - name: Research materials with real web sources
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MATERIAL_RESEARCH_IDS: ${{ inputs.research_ids }}
+        run: python scripts/material_research.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: material-outlooks-test
+          path: data/material-outlooks.json
+          retention-days: 1
+
+  schedule_verify:
+    if: ${{ inputs.schedule_only }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python -m unittest discover -s tests -p 'test_daily_schedule.py'
+      - run: python -m unittest discover -s tests -p 'test_report_delivery.py'

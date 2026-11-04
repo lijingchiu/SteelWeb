@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖
+"臺中市大平霧地區都市計畫主要計畫","發布實施「臺中市大平霧地區都市計畫主要計畫」4案都市計畫書、圖，並自107年4月20日零時起生效。","1070420","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=414094b9-5a7e-4936-a214-2e1774126926","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=40d26fa1-33b1-4b99-bfd6-a1be12fe8fa4","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=83717c2c-9ce9-4681-9ae8-c855ff142a2e"

@@ -1,0 +1,15 @@
+<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><title>Office 擷取測試</title>
+<label>測試文件 <input type="file" id="files" multiple accept=".docx,.xlsx,.pptx"></label>
+<pre id="result">等待測試文件</pre>
+<script src="../assets/vendor/jszip.min.js"></script><script src="../assets/office-visuals.js"></script>
+<script>
+document.getElementById('files').addEventListener('change', async e => {
+  const result = document.getElementById('result'); result.textContent='讀取中';
+  const output=[];
+  for (const file of e.target.files) {
+    const v=await window.SteelOfficeVisuals.extract(file);
+    output.push({file:file.name,parts:v.parts.map(p=>p.type==='input_image' ? {type:p.type,hasData:p.image_url.startsWith('data:image/')} : p),warnings:v.warnings});
+  }
+  result.textContent=JSON.stringify(output,null,2);
+});
+</script></html>

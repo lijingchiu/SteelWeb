@@ -1,0 +1,11 @@
+【顯示名稱】
+桃園市都市計畫私有公共設施保留地與公有非公用土地交換統計
+
+【檢視原始資料】
+https://opendata.tycg.gov.tw/datalist/03c5ff89-2fa1-4cca-ae56-a4a0b66d5f34
+
+【查詢方式】
+請在來源頁查閱或下載資料；網站可能更新，請核對檔名的年度與版本。
+
+【原始資料下載】
+https://opendata.tycg.gov.tw/api/dataset/03c5ff89-2fa1-4cca-ae56-a4a0b66d5f34/resource/62ebfe1f-a63c-4dfa-8f6c-6e7b6cc597ee/download

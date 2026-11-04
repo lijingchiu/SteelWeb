@@ -1,0 +1,2 @@
+﻿縣市別代碼,公告實施日期,公告事宜,公告書網址,公告圖
+"66000","106年11月16日","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=oi108mDE75&d=da9BTJz9RV","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=oi108mDE75&d=k2RKx0dqDe","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=oi108mDE75&d=RDA6EnePuF"

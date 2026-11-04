@@ -1,0 +1,8 @@
+【資料名稱】
+臺中市各都市計畫-公共設施總面積比例分析表_臺中市各都市計畫-公共設施總面積比例分析表.CSV.JSON_0f1b87
+
+【檢視原始資料】
+https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=15398a26-70a6-4295-b9c5-15932baca2db
+
+【說明】
+原文字是單行 JSON 統計資料。請至來源網站查閱或下載；資料可能更新，請核對檔名中的年度。 此連結直接提供 JSON 原始資料。

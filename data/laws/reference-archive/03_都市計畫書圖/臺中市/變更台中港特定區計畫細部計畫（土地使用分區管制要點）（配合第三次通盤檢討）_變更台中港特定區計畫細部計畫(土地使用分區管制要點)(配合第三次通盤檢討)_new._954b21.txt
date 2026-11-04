@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址
+"變更台中港特定區計畫細部計畫（土地使用分區管制要點）（配合第三次通盤檢討）","發布實施「變更台中港特定區計畫細部計畫（土地使用分區管制要點）（配合第三次通盤檢討）」案都市計畫書，並自106年11月24日零時起生效。","1061124","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=65c5048b-6170-4dd0-b56d-bf7aa3a139be","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=14e29581-360c-4785-936e-4fd7c29e00eb"

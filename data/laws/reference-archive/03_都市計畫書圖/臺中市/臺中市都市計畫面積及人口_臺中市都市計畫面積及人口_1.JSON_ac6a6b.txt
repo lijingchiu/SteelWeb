@@ -1,0 +1,8 @@
+【資料名稱】
+臺中市都市計畫面積及人口_臺中市都市計畫面積及人口_1.JSON_ac6a6b
+
+【檢視原始資料】
+https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=5a5c2c86-4be1-44c3-be8a-2f4c82903760
+
+【說明】
+原文字是單行 JSON 統計資料。請至來源網站查閱或下載；資料可能更新，請核對檔名中的年度。 此連結直接提供 JSON 原始資料。

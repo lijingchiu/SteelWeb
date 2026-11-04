@@ -1,0 +1,11 @@
+【來源與下載】
+https://data.gov.tw/dataset/7446
+【說明】官方資料集頁列有SHP資源；屬性文字不含地圖幾何。
+
+【先前擷取的文字】
+--- taroko_97.dbf（cp950；1 筆）---
+AREA	PERIMETER	NPARKS_	NPARKS_ID	NAME	MAXIMUM
+982952128.0	183991.406	4	3	太魯閣	3747.39
+
+【原有文字檔的內容，供對照】
+[[binary（.shp），無文字可擷取；原始檔已保留]]

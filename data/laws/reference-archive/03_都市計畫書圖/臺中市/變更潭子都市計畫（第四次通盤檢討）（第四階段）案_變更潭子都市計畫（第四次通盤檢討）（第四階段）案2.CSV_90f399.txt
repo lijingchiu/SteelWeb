@@ -1,0 +1,2 @@
+﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖
+"變更潭子都市計畫（第四次通盤檢討）（第四階段）案","發布實施「變更潭子都市計畫（第四次通盤檢討）（第四階段）案」計畫書、圖，並自108年5月8日起生效。","1080508","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=jFAl3OCZKg&d=Vjz6C62oal","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=jFAl3OCZKg&d=s9sZ1OpG5q","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=jFAl3OCZKg&d=9zJkwgxTda"

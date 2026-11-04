@@ -1,0 +1,11 @@
+【顯示名稱】
+桃園市都市計畫座談會及說明會參與人員性別統計
+
+【檢視原始資料】
+https://opendata.tycg.gov.tw/datalist/37d0b6df-b027-41fe-ac9b-0e1eefa28d88
+
+【查詢方式】
+請在來源頁查閱或下載資料；網站可能更新，請核對檔名的年度與版本。
+
+【原始資料下載】
+https://opendata.tycg.gov.tw/api/dataset/37d0b6df-b027-41fe-ac9b-0e1eefa28d88/resource/cf7bda3c-1e1f-4166-a37a-10e8f717fad6/download

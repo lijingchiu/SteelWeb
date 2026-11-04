@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>台灣鋼鐵市場分析</title>
+  <defs>
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9995a"/>
+      <stop offset="1" stop-color="#8a5530"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#2a1f17"/>
+  <path fill="url(#steel)" d="M14 13h36a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H37v16h13a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h13V24H14a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z"/>
+  <rect x="14" y="15" width="36" height="2" rx="1" fill="#f3d2a8" opacity="0.55"/>
+</svg>

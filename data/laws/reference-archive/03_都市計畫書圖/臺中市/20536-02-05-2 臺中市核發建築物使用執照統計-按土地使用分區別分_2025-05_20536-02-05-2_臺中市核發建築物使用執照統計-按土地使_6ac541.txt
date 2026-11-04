@@ -1,0 +1,11 @@
+【顯示名稱】
+20536-02-05-2 臺中市核發建築物使用執照統計-按土地使用分區別分
+
+【檢視原始資料】
+https://data.gov.tw/dataset/90733
+
+【查詢方式】
+請在來源頁查閱或下載資料；網站可能更新，請核對檔名的年度與版本。
+
+【原始資料下載】
+https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=14c6331f-b80a-48c3-8002-595aaa451c1f

@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書
+"變更台中港特定區計畫(第三次通盤檢討)(第四階段)案","公告發布實施「變更台中港特定區計畫(第三次通盤檢討)(第四階段)案」計畫書、圖，自107年9月14日零時起生效。","1070914","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=cbdf1d93-4b38-4fbc-ac34-c52e681aa5cc","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f61f73e9-2945-498e-8c73-84e633694769"

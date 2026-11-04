@@ -1,0 +1,11 @@
+【顯示名稱】
+桃園市都市計畫委員會名冊
+
+【檢視原始資料】
+https://opendata.tycg.gov.tw/datalist/e18bd2b5-c8a8-4b9a-9a83-72048fd2b198
+
+【查詢方式】
+請在來源頁查閱或下載資料；網站可能更新，請核對檔名的年度與版本。
+
+【原始資料下載】
+https://opendata.tycg.gov.tw/api/dataset/e18bd2b5-c8a8-4b9a-9a83-72048fd2b198/resource/d52e656d-1fe3-45d0-ac90-ae951a39f525/download

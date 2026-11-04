@@ -1,0 +1,2 @@
+﻿圖資名稱,製作說明,座標,基本說明,地圖網址,縣市別代碼,資料描述,使用說明,範圍說明
+"臺中市神岡都市計畫區一千分之一地形圖","約2002年地測資料","TWD97","DWG","https://drive.google.com/file/d/1bE3wyhmQsKFysGspEinjqC_DVqvkw8W9/view?usp=sharing","66000","地形圖","從網址下載取得圖資檔案","神岡"

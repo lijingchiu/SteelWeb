@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
+"變更臺中市烏日都市計畫主要計畫(明傳產業園區部分)案","發布實施「變更臺中市烏日都市計畫主要計畫(明傳產業園區部分)案」都市計畫書、圖，並自108年3月20日零時起生效。","1080320","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f42103cc-7baa-46ba-8539-d1716e8c9ce0","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=4e92fd46-a927-40ad-b90f-cc95c53564f9","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2649b317-f61c-4fd1-9054-4ff3cf56c292"

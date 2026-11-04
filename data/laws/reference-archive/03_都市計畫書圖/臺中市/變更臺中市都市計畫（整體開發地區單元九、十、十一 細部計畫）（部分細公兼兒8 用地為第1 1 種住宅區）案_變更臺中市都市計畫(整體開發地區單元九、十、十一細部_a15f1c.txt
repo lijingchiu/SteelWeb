@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜網址,公告書網址,公告圖網址
+"變更臺中市都市計畫（整體開發地區單元九、十、十一 細部計畫）（部分細公兼兒8 用地為第1 1 種住宅區）案","發布實施「變更臺中市都市計畫(整體開發地區單元九、十、十一)細部計畫(部分細公兼兒8用地為第1-1種住宅區)案」計畫書、圖，並自112年6月21日零時起生效","1120621","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=a161945e-76ee-4149-9d2a-57ead4f71ceb","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=7341538f-d52e-47cf-8cb6-7a2a2a22fe62","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=982d507a-0480-43cb-81fd-f1bcdb2e481b"

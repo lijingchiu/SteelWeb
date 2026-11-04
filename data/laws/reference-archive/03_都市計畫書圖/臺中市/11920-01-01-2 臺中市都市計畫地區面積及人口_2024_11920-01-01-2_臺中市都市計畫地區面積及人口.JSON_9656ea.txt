@@ -1,0 +1,11 @@
+【資料名稱】
+11920-01-01-2 臺中市都市計畫地區面積及人口_2024_11920-01-01-2_臺中市都市計畫地區面積及人口.JSON_9656ea
+
+【檢視原始資料】
+https://data.gov.tw/dataset/117672
+
+【說明】
+原文字是單行 JSON 統計資料。請至來源網站查閱或下載；資料可能更新，請核對檔名中的年度。
+
+【原始資料下載】
+https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2dac9caa-313f-42f5-91a8-b57361e0d010

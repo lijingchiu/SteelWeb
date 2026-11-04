@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
+"「變更臺中市都市計畫(整體開發單元六、七)(大慶車站附近)細部計畫(配合麻糍埔遺址及舊南屯溪文化景觀保存)案」","公告發布實施「變更臺中市都市計畫(整體開發單元六、七)(大慶車站附近)細部計畫(配合麻糍埔遺址及舊南屯溪文化景觀保存)案」都市計畫書、圖，自107年12月25日零時起生效。","1071225","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=131ecb6c-5b69-4860-a783-f248e98ae72b","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=779b6ea8-037c-4a6d-9e83-285bf83c2b0c","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=c5481dc2-d8e5-4e93-a3ce-63d1a686623e"

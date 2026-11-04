@@ -2,211 +2,578 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('steel_theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>台灣鋼鐵市場每日分析</title>
-  <meta name="description" content="台灣廢鋼、鋼筋、型鋼每日價格分析與預測，結合國際市場觀點與匯率影響。">
+  <meta name="description" content="台灣粗鋼產量、廢鋼、鋼胚、鋼筋、型鋼、棒線最新月度行情，結合國際市場觀點與匯率影響。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png?v=2" sizes="32x32" type="image/png">
+  <link rel="alternate icon" href="favicon.ico?v=2">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=2">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="鋼市快報">
+  <meta name="theme-color" content="#2a1f17">
+  <link rel="stylesheet" href="assets/style.css?v=20261104v">
 </head>
 <body>
+
+  <!-- Parallax grain texture -->
+  <div class="grain" id="grain" aria-hidden="true"></div>
+
+  <!-- Loading overlay -->
   <div id="loading-overlay">
     <div class="spinner"></div>
-    <p>載入市場分析資料中...</p>
+    <p>載入市場分析資料中</p>
   </div>
 
-  <header>
-    <div class="container">
-      <div class="header-inner">
-        <div class="logo">
-          <div class="logo-icon">⚙</div>
-          <div class="logo-text">
-            <h1>台灣鋼鐵市場分析</h1>
-            <p>每日自動化 AI 價格分析報告</p>
-          </div>
-        </div>
-        <div class="header-badges">
-          <div class="badge" id="last-updated-badge">
-            <span class="badge-dot"></span>
-            <span id="last-updated-text">載入中...</span>
-          </div>
-          <div class="badge confidence-badge" id="confidence-badge">-</div>
-        </div>
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="brand">
+      <div>
+        <div class="brand-main">台灣鋼鐵市場分析</div>
       </div>
+    </div>
+    <div class="meta-top" id="last-updated-badge">
+      <span class="badge-dot"></span>
+      <span id="last-updated-text">載入中</span>
+    </div>
+    <details class="report-menu" id="report-dl" hidden>
+      <summary class="report-dl" aria-label="選擇電子報下載格式">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8.5L19 8v12.5H6z"/><path d="M14 3.5V8.5h5M12.5 11v6M9.8 14.5l2.7 2.7 2.7-2.7"/></svg>
+        <span class="report-dl-label">今日電子報</span>
+        <span class="report-dl-meta" id="report-dl-meta"></span>
+        <span class="report-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="report-menu-options" aria-label="電子報下載格式">
+        <a id="report-pptx" download>下載 PPTX 簡報</a>
+        <a id="report-pdf" download>下載 PDF 文件</a>
+        <span id="report-pdf-unavailable" hidden>PDF 暫時無法提供</span>
+      </div>
+    </details>
+    <nav class="nav-wrap" aria-label="Primary">
+      <a class="nav-link" href="#prices" data-sec="prices">報價</a>
+      <a class="nav-link" href="#materials" data-sec="materials">行情</a>
+      <a class="nav-link" href="#chart" data-sec="chart">走勢</a>
+      <a class="nav-link" href="#forecast" data-sec="forecast">預測</a>
+      <a class="nav-link" href="#analysis" data-sec="analysis">分析</a>
+      <a class="nav-link" href="#news" data-sec="news">新聞</a>
+      <a class="nav-link" href="#subscribe" data-sec="subscribe">訂閱</a>
+    </nav>
+    <div class="theme-switch" role="radiogroup" aria-label="顯示模式">
+      <button type="button" class="theme-btn" data-theme-choice="light" role="radio" aria-checked="false" title="淺色模式" aria-label="淺色模式">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+      </button>
+      <button type="button" class="theme-btn" data-theme-choice="dark" role="radio" aria-checked="false" title="深色模式" aria-label="深色模式">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <button type="button" class="theme-btn" data-theme-choice="system" role="radio" aria-checked="true" title="跟隨裝置" aria-label="跟隨裝置">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M9 20h6M12 16v4"/></svg>
+      </button>
     </div>
   </header>
 
-  <main class="container">
+  <!-- Phone navigation: fixed tab bar at the bottom, within thumb reach -->
+  <nav class="tabbar" aria-label="快速跳轉">
+    <a class="tab" href="#prices" data-sec="prices">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7l8.3 8.3a1 1 0 0 1 0 1.4l-7.3 7.3a1 1 0 0 1-1.4 0z"/><circle cx="8" cy="8" r="1.4"/></svg>
+      <span>報價</span>
+    </a>
+    <a class="tab" href="#materials" data-sec="materials">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="1.5"/><path d="M3.5 9.3h17M3.5 14.6h17M9.5 4v16"/></svg>
+      <span>行情</span>
+    </a>
+    <a class="tab" href="#chart" data-sec="chart">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 19.5h17"/><path d="M4.5 15.5l4.5-5 3.5 3 6.5-8"/></svg>
+      <span>走勢</span>
+    </a>
+    <a class="tab" href="#forecast" data-sec="forecast">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
+      <span>預測</span>
+    </a>
+    <a class="tab" href="#analysis" data-sec="analysis">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8.5L19 8v12.5H6z"/><path d="M14 3.5V8.5h5M9 12.5h7M9 16h5"/></svg>
+      <span>分析</span>
+    </a>
+    <a class="tab" href="#news" data-sec="news">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h12.5v13a1.5 1.5 0 0 0 1.5 1.5H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M16.5 9H20v9.5a1.5 1.5 0 0 1-3 0M7 9h6.5M7 12.5h6.5M7 16h4"/></svg>
+      <span>新聞</span>
+    </a>
+    <a class="tab" href="#subscribe" data-sec="subscribe">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>
+      <span>訂閱</span>
+    </a>
+  </nav>
 
-    <!-- Summary -->
-    <section class="card summary-card">
-      <div class="card-header">
-        <span class="card-icon">📋</span>
-        <h2 class="section-title">今日市場總結</h2>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="eyeline">AI ANALYSIS · 每日自動化分析報告</div>
+      <h1 class="title">
+        <span class="title-block">
+          <span class="title-top">
+            <span>T</span><span>O</span><span>D</span><span>A</span><span>Y</span>
+          </span>
+          <span class="title-main">鋼材報價</span>
+        </span>
+      </h1>
+      <p class="hero-headline" id="hero-headline" hidden></p>
+      <p class="lead" id="summary-text">分析資料載入中...</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="#prices">查看完整報價 ↓</a>
+        <a class="btn btn-ghost" href="#subscribe">訂閱每日快報</a>
       </div>
-      <p id="summary-text" class="summary-text">分析資料載入中...</p>
+    </div>
+
+    <aside class="hero-right">
+      <div class="feat-header">
+        <div class="feat-tag">TODAY'S FOCUS · 焦點報價</div>
+        <div class="feat-controls" id="feat-controls" hidden>
+          <button type="button" id="feat-toggle" aria-label="暫停輪播">暫停</button>
+          <button type="button" id="feat-next" aria-label="下一項報價">下一項 ↑</button>
+        </div>
+      </div>
+      <div class="feat-viewport" id="feat-viewport" aria-label="焦點報價">
+        <div class="feat-slide is-active">
+          <div class="feat-name">豐興鋼筋盤價</div>
+          <div class="feat-spec">Fengxing Rebar · 元 / 公噸</div>
+          <div class="feat-price-row"><span class="feat-currency">NT$</span><span class="feat-price">-</span></div>
+          <div class="feat-change-row"><span class="price-change">-</span><span class="feat-change-note">vs. 上月</span></div>
+          <div class="feat-month">-</div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- Ticker -->
+  <div class="ticker" aria-label="報價跑馬燈">
+    <div class="ticker-inner" id="ticker-inner">
+      <span class="ticker-item"><span class="ticker-label">載入中</span><span class="ticker-sep">※</span></span>
+    </div>
+  </div>
+
+  <!-- Main content area -->
+  <div id="content-area">
+
+    <!-- § 01 Price Table -->
+    <section class="section section-table" id="prices" data-fade>
+      <div class="section-head">
+        <div>
+          <div class="kicker">§ 01 · TODAY'S QUOTES</div>
+          <h2 class="h2">全項鋼材報價</h2>
+        </div>
+        <div class="section-meta">
+          資料來源：<a href="https://chart.metaltrade.tw/ste/domestic/13/" target="_blank" rel="noopener">台灣金屬行情網 ↗</a>
+        </div>
+      </div>
+
+      <!-- Exchange Rate -->
+      <div class="exchange-row">
+        <span class="exchange-label">USD / TWD</span>
+        <span class="exchange-value" id="exchange-rate">-</span>
+        <span class="exchange-sep">·</span>
+        <span class="exchange-impact" id="exchange-impact">-</span>
+        <span class="exchange-source" id="exchange-source"></span>
+      </div>
+
+      <div class="table">
+        <div class="thead">
+          <span class="td col-no">№</span>
+          <span class="td col-prod">品名</span>
+          <span class="td col-unit">單位</span>
+          <span class="td col-price">報價</span>
+          <span class="td col-chg">月增</span>
+          <span class="td col-badge">趨勢</span>
+        </div>
+
+        <!-- Row 01: 臺灣粗鋼產量 -->
+        <div class="tr" id="card-production" data-row style="transition-delay:0ms">
+          <span class="td col-no">01</span>
+          <span class="td col-prod">
+            <span class="prod-name">臺灣粗鋼產量</span>
+            <span class="prod-sub">Crude Steel Production</span>
+          </span>
+          <span class="td col-unit">萬噸</span>
+          <span class="td col-price" id="production-current">-</span>
+          <span class="td col-chg" id="production-change">-</span>
+          <span class="td col-badge">
+            <span class="trend-badge" id="production-trend-badge">-</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" id="production-trend-bar"></div></div>
+          </span>
+          <div style="display:none" id="production-month"></div>
+        </div>
+
+        <!-- Row 02: 北部廢鋼大盤收購價 -->
+        <div class="tr" id="card-scrap" data-row style="transition-delay:60ms">
+          <span class="td col-no">02</span>
+          <span class="td col-prod">
+            <span class="prod-name">北部廢鋼大盤收購價</span>
+            <span class="prod-sub">N. Taiwan Scrap Purchase</span>
+          </span>
+          <span class="td col-unit">元 / 公斤</span>
+          <span class="td col-price" id="scrap-current">-</span>
+          <span class="td col-chg" id="scrap-change">-</span>
+          <span class="td col-badge">
+            <span class="trend-badge" id="scrap-trend-badge">-</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" id="scrap-trend-bar"></div></div>
+          </span>
+          <div style="display:none" id="scrap-month"></div>
+        </div>
+
+        <!-- Row 03: 小鋼胚中級出廠價 -->
+        <div class="tr" id="card-billet" data-row style="transition-delay:120ms">
+          <span class="td col-no">03</span>
+          <span class="td col-prod">
+            <span class="prod-name">小鋼胚中級出廠價</span>
+            <span class="prod-sub">Billet Ex-Factory</span>
+          </span>
+          <span class="td col-unit">元 / 公噸</span>
+          <span class="td col-price" id="billet-current">-</span>
+          <span class="td col-chg" id="billet-change">-</span>
+          <span class="td col-badge">
+            <span class="trend-badge" id="billet-trend-badge">-</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" id="billet-trend-bar"></div></div>
+          </span>
+          <div style="display:none" id="billet-month"></div>
+        </div>
+
+        <!-- Row 04: 豐興鋼筋盤價 -->
+        <div class="tr" id="card-rebar" data-row style="transition-delay:180ms">
+          <span class="td col-no">04</span>
+          <span class="td col-prod">
+            <span class="prod-name">豐興鋼筋盤價</span>
+            <span class="prod-sub">Fengxing Rebar</span>
+          </span>
+          <span class="td col-unit">元 / 公噸</span>
+          <span class="td col-price" id="rebar-current">-</span>
+          <span class="td col-chg" id="rebar-change">-</span>
+          <span class="td col-badge">
+            <span class="trend-badge" id="rebar-trend-badge">-</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" id="rebar-trend-bar"></div></div>
+          </span>
+          <div style="display:none" id="rebar-month"></div>
+        </div>
+
+        <!-- Row 05: 東鋼H型鋼流通價 -->
+        <div class="tr" id="card-hbeam" data-row style="transition-delay:240ms">
+          <span class="td col-no">05</span>
+          <span class="td col-prod">
+            <span class="prod-name">東鋼H型鋼流通價</span>
+            <span class="prod-sub">H-Beam Circulation</span>
+          </span>
+          <span class="td col-unit">元 / 公噸</span>
+          <span class="td col-price" id="hbeam-current">-</span>
+          <span class="td col-chg" id="hbeam-change">-</span>
+          <span class="td col-badge">
+            <span class="trend-badge" id="hbeam-trend-badge">-</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" id="hbeam-trend-bar"></div></div>
+          </span>
+          <div style="display:none" id="hbeam-month"></div>
+        </div>
+
+        <!-- Row 06: 中鋼棒線盤價 -->
+        <div class="tr" id="card-wirerod" data-row style="transition-delay:300ms">
+          <span class="td col-no">06</span>
+          <span class="td col-prod">
+            <span class="prod-name">中鋼棒線盤價</span>
+            <span class="prod-sub">CSC Wire Rod</span>
+          </span>
+          <span class="td col-unit">元 / 公噸</span>
+          <span class="td col-price" id="wirerod-current">-</span>
+          <span class="td col-chg" id="wirerod-change">-</span>
+          <span class="td col-badge">
+            <span class="trend-badge" id="wirerod-trend-badge">-</span>
+            <div class="trend-bar-track"><div class="trend-bar-fill" id="wirerod-trend-bar"></div></div>
+          </span>
+          <div style="display:none" id="wirerod-month"></div>
+        </div>
+      </div>
+
+      <div class="table-footnote">本表為月度參考價格 · 資料來源：台灣金屬行情網</div>
     </section>
 
-    <!-- Price Cards -->
-    <div class="price-grid">
-      <div class="price-card" id="card-scrap">
-        <div class="price-card-top">
-          <div class="price-meta">
-            <span class="price-icon">🏭</span>
-            <span class="price-type">廢鋼</span>
-            <span class="price-unit">元 / 公噸</span>
+    <!-- § 02 Construction materials -->
+    <section class="section section-materials" id="materials" data-fade>
+      <div class="section-head">
+        <div>
+          <div class="kicker">§ 02 · CONSTRUCTION MATERIALS</div>
+          <h2 class="h2">營建材料行情</h2>
+        </div>
+        <div class="section-meta" id="mat-updated">載入中</div>
+      </div>
+
+      <div class="mat-controls">
+        <input type="search" id="mat-search" class="mat-search" autocomplete="off"
+               placeholder="搜尋品項、地區或來源，例如：鋼筋、水泥、臺中、銅、中鋼">
+        <div class="mat-chips" id="mat-groups" role="group" aria-label="分類"></div>
+        <div class="mat-chips mat-chips-freq" id="mat-freq" role="group" aria-label="更新頻率"></div>
+      </div>
+      <div class="mat-count" id="mat-count"></div>
+      <div class="mat-list" id="mat-list"></div>
+      <div class="table-footnote" id="mat-sources">
+        資料來源：台灣金屬行情網、行政院主計總處、臺北市／新北市／臺中市政府主計處（政府資料開放授權條款）、World Bank Commodity Price Data（CC BY 4.0）、臺灣證券交易所 OpenAPI。標示「過期」的品項代表來源暫時無法連線，沿用前次資料。
+      </div>
+    <details class="mat-research" id="forecast">
+      <summary>查看五項鋼材預測研究與歷史命中率</summary>
+      <div class="section-head">
+        <div>
+          <div class="kicker">§ 04 · PRICE OUTLOOK</div>
+          <h2 class="h2">盤價走勢預測</h2>
+        </div>
+        <div class="section-meta" id="forecast-date">-</div>
+      </div>
+
+      <div class="fc-summary-wrap" id="fc-summary"></div>
+      <div class="fc-accuracy" id="fc-accuracy"></div>
+      <div class="forecast-grid" id="fc-grid">
+        <p class="fc-reason">預測資料將於下次分析執行後產生</p>
+      </div>
+      <div class="fc-card fc-overall">
+        <div class="fc-head">
+          <div>
+            <div class="fc-name">綜合推論依據</div>
+            <div class="fc-sub">Reasoning Basis · 時事 × 國際市場 × 原物料供需</div>
           </div>
-          <div class="trend-badge" id="scrap-trend-badge">-</div>
         </div>
-        <div class="price-main">
-          <div class="price-current" id="scrap-current">-</div>
-          <div class="price-change" id="scrap-change">-</div>
-        </div>
-        <div class="price-prediction-row">
-          <span class="pred-label">下週預測</span>
-          <span class="pred-value" id="scrap-prediction">-</span>
-        </div>
-        <div class="price-reason" id="scrap-reason">-</div>
-        <div class="trend-bar-track">
-          <div class="trend-bar-fill" id="scrap-trend-bar"></div>
-        </div>
+        <p class="fc-reason" id="fc-overall-basis">預測資料將於下次分析執行後產生</p>
+        <div class="fc-research" id="fc-research"></div>
+        <div class="fc-cites" id="fc-cites"></div>
       </div>
 
-      <div class="price-card" id="card-rebar">
-        <div class="price-card-top">
-          <div class="price-meta">
-            <span class="price-icon">🔩</span>
-            <span class="price-type">鋼筋</span>
-            <span class="price-unit">元 / 公噸</span>
-          </div>
-          <div class="trend-badge" id="rebar-trend-badge">-</div>
-        </div>
-        <div class="price-main">
-          <div class="price-current" id="rebar-current">-</div>
-          <div class="price-change" id="rebar-change">-</div>
-        </div>
-        <div class="price-prediction-row">
-          <span class="pred-label">下週預測</span>
-          <span class="pred-value" id="rebar-prediction">-</span>
-        </div>
-        <div class="price-reason" id="rebar-reason">-</div>
-        <div class="trend-bar-track">
-          <div class="trend-bar-fill" id="rebar-trend-bar"></div>
-        </div>
-      </div>
+      <div class="table-footnote">「本週／下週」預測市場實際成交行情；「下一期月均價」預測台灣金屬行情網下一次公布的月均價，公布後會自動計分。預測由 AI 依新聞、國際行情與原物料資料推論，僅供參考，不構成交易建議。</div>
+    </details>
 
-      <div class="price-card" id="card-structural">
-        <div class="price-card-top">
-          <div class="price-meta">
-            <span class="price-icon">🏗️</span>
-            <span class="price-type">型鋼</span>
-            <span class="price-unit">元 / 公噸</span>
-          </div>
-          <div class="trend-badge" id="structural-trend-badge">-</div>
-        </div>
-        <div class="price-main">
-          <div class="price-current" id="structural-current">-</div>
-          <div class="price-change" id="structural-change">-</div>
-        </div>
-        <div class="price-prediction-row">
-          <span class="pred-label">下週預測</span>
-          <span class="pred-value" id="structural-prediction">-</span>
-        </div>
-        <div class="price-reason" id="structural-reason">-</div>
-        <div class="trend-bar-track">
-          <div class="trend-bar-fill" id="structural-trend-bar"></div>
-        </div>
-      </div>
-    </div>
+    </section>
 
-    <!-- Exchange Rate Banner -->
-    <div class="exchange-banner card">
-      <div class="exchange-item">
-        <div class="exchange-label">💱 USD / TWD 匯率</div>
-        <div class="exchange-value" id="exchange-rate">-</div>
-      </div>
-      <div class="exchange-divider"></div>
-      <div class="exchange-item exchange-impact-item">
-        <div class="exchange-label">匯率對鋼價影響</div>
-        <div class="exchange-impact" id="exchange-impact">-</div>
-      </div>
-    </div>
-
-    <!-- Chart -->
-    <div class="card chart-card">
-      <div class="card-header">
-        <span class="card-icon">📈</span>
-        <h2 class="section-title">近期價格走勢</h2>
+    <!-- § 02 Chart -->
+    <section class="section section-chart" id="chart" data-fade>
+      <div class="section-head">
+        <div>
+          <div class="kicker">§ 03 · PRICE TREND</div>
+          <h2 class="h2">近期價格走勢</h2>
+        </div>
         <div class="chart-legend">
-          <span class="legend-dot" style="background:#f0a500"></span><span>廢鋼</span>
-          <span class="legend-dot" style="background:#388bfd"></span><span>鋼筋</span>
-          <span class="legend-dot" style="background:#3fb950"></span><span>型鋼</span>
+          <span class="legend-dot" style="background:var(--chart-1)"></span><span>小鋼胚</span>
+          <span class="legend-dot" style="background:var(--chart-2)"></span><span>鋼筋</span>
+          <span class="legend-dot" style="background:var(--chart-3)"></span><span>H型鋼</span>
+          <span class="legend-dot" style="background:var(--chart-4)"></span><span>棒線</span>
         </div>
       </div>
       <div class="chart-wrapper">
         <canvas id="price-chart"></canvas>
       </div>
+    </section>
+
+    <!-- § 05 Market Analysis -->
+    <section class="section section-analysis" id="analysis" data-fade>
+      <div class="section-head">
+        <div>
+          <div class="kicker">§ 05 · MARKET ANALYSIS</div>
+          <h2 class="h2">市場深度分析</h2>
+        </div>
+      </div>
+
+      <div class="analysis-layout">
+        <div class="analysis-block">
+          <div class="kicker">利差試算分析</div>
+          <p id="spread-analysis" class="analysis-text">-</p>
+        </div>
+        <div class="analysis-block">
+          <div class="kicker">未來一個月展望</div>
+          <p id="weekly-trend" class="analysis-text">-</p>
+        </div>
+        <div class="analysis-block analysis-wide">
+          <div class="kicker">營建材料觀察</div>
+          <p id="materials-outlook" class="analysis-text">-</p>
+        </div>
+        <div class="analysis-block analysis-wide">
+          <div class="kicker">國際鋼鐵市場大局觀</div>
+          <p id="international-outlook" class="analysis-text">-</p>
+        </div>
+        <div class="analysis-block analysis-wide">
+          <div class="kicker">主要風險因素</div>
+          <ul id="risk-factors" class="risk-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- § 06 News -->
+    <section class="section section-news" id="news" data-fade>
+      <div class="section-head">
+        <div>
+          <div class="kicker">§ 06 · MARKET NOTES</div>
+          <h2 class="h2">本日參考新聞</h2>
+        </div>
+        <div class="section-meta news-sources">
+          <a href="https://steelnews.com.tw" target="_blank" rel="noopener" class="news-source-link">steelnews.com.tw ↗</a>
+          <a href="https://chart.metaltrade.tw/ste/domestic/13/" target="_blank" rel="noopener" class="news-source-link">台灣金屬行情網 ↗</a>
+        </div>
+      </div>
+      <div class="ts-list" id="top-stories"></div>
+      <div class="news-list" id="news-list"></div>
+      <div class="end">— 本期完 —</div>
+    </section>
+
+  </div><!-- /#content-area -->
+
+  <!-- § 07 Subscribe (outside #content-area so it survives a data load failure) -->
+  <section class="section section-subscribe in" id="subscribe">
+    <div class="section-head">
+      <div>
+        <div class="kicker">§ 07 · DAILY BRIEFING</div>
+        <h2 class="h2">訂閱每日快報</h2>
+      </div>
+      <div class="section-meta" id="sub-time">週一至週五早上 7 點自動送達</div>
     </div>
 
-    <!-- Analysis Grid -->
-    <div class="analysis-grid">
-      <div class="card analysis-card">
-        <div class="card-header">
-          <span class="card-icon">📊</span>
-          <h2 class="section-title">利差試算分析</h2>
-        </div>
-        <p id="spread-analysis" class="analysis-text">-</p>
+    <div class="sub-grid">
+      <div class="sub-card">
+        <div class="sub-name">Email 每日快報</div>
+        <p class="sub-desc">週一至週五早上寄送當日頭條、盤價預測、最新行情與新聞標題。送出後請到信箱點擊確認連結才會開始寄送，每封信底部都能一鍵退訂。</p>
+        <form class="sub-form" id="sub-email-form" novalidate>
+          <input type="email" id="sub-email" class="mat-search sub-input" placeholder="your@email.com" autocomplete="email" required>
+          <button type="submit" class="btn btn-solid" id="sub-email-btn">訂閱</button>
+        </form>
+        <div class="sub-status" id="sub-email-status" role="status"></div>
       </div>
 
-      <div class="card analysis-card">
-        <div class="card-header">
-          <span class="card-icon">🔮</span>
-          <h2 class="section-title">本週走勢預測</h2>
-        </div>
-        <p id="weekly-trend" class="analysis-text">-</p>
-      </div>
-
-      <div class="card analysis-card full-width">
-        <div class="card-header">
-          <span class="card-icon">🌐</span>
-          <h2 class="section-title">國際鋼鐵市場大局觀</h2>
-        </div>
-        <p id="international-outlook" class="analysis-text">-</p>
-      </div>
-
-      <div class="card analysis-card risk-card">
-        <div class="card-header">
-          <span class="card-icon">⚠️</span>
-          <h2 class="section-title">主要風險因素</h2>
-        </div>
-        <ul id="risk-factors" class="risk-list"></ul>
+      <div class="sub-card">
+        <div class="sub-name">手機／電腦通知</div>
+        <p class="sub-desc">週一至週五早上推播當日最重要的鋼市新聞標題，點一下通知就會開啟網站。可隨時在這裡或瀏覽器設定中關閉。</p>
+        <button type="button" class="btn btn-solid" id="sub-push-btn" disabled>開啟每日通知</button>
+        <div class="sub-status" id="sub-push-status" role="status"></div>
       </div>
     </div>
+  </section>
 
-    <!-- News Sources -->
-    <div class="card news-card">
-      <div class="card-header">
-        <span class="card-icon">📰</span>
-        <h2 class="section-title">本日參考新聞</h2>
-        <a href="https://steelnews.com.tw" target="_blank" rel="noopener" class="news-source-link">steelnews.com.tw ↗</a>
-      </div>
-      <div id="news-list" class="news-list"></div>
-    </div>
-
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <p class="footer-disclaimer">⚠ 本報告由 AI 模型自動分析生成，僅供參考，不構成任何投資建議。實際交易請依官方公告為準。</p>
-      <p class="footer-meta">
-        數據來源：<a href="https://steelnews.com.tw" target="_blank" rel="noopener">steelnews.com.tw</a>
-        &nbsp;|&nbsp; 分析引擎：<span id="model-name">-</span>
-        &nbsp;|&nbsp; <a href="https://github.com/lijingchiu/steelweb" target="_blank" rel="noopener">GitHub ↗</a>
-      </p>
-    </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <span>© 2026 台灣鋼鐵市場分析</span>
+    <span>⚠ 本報告由 AI 自動分析生成，不構成投資建議</span>
+    <span>引擎：<span id="model-name">-</span> &nbsp;·&nbsp; <a href="https://github.com/lijingchiu/SteelWeb" target="_blank" rel="noopener">GitHub ↗</a></span>
   </footer>
 
-  <script src="assets/app.js"></script>
+  <!-- Run Modal -->
+  <div id="run-modal" class="modal-overlay" style="display:none">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>手動觸發分析</h3>
+        <button class="modal-close-btn" onclick="closeRunModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">
+          需要 GitHub Personal Access Token（PAT）來觸發 GitHub Actions。<br>
+          <a href="https://github.com/settings/tokens/new?scopes=workflow&description=SteelWeb+Trigger" target="_blank" rel="noopener">
+            點此建立 PAT（需勾選 workflow 權限）↗
+          </a>
+        </p>
+        <div class="modal-field">
+          <label for="pat-input">GitHub Personal Access Token</label>
+          <input type="password" id="pat-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" spellcheck="false">
+        </div>
+        <label class="modal-checkbox">
+          <input type="checkbox" id="remember-pat">
+          記住 Token（儲存於此瀏覽器，不會上傳至伺服器）
+        </label>
+      </div>
+      <div id="run-status" class="run-status" style="display:none"></div>
+      <div class="modal-footer">
+        <button class="modal-btn-secondary" onclick="closeRunModal()">取消</button>
+        <button class="modal-btn-primary" id="trigger-btn" onclick="triggerWorkflow()">▶ 執行分析</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site assistant -->
+  <button type="button" class="chat-fab" id="chat-fab" aria-label="開啟鋼市助理">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"/><path d="M8 9h8M8 12h5"/></svg>
+    <span>問助理</span>
+  </button>
+  <section class="chat-panel" id="chat-panel" role="dialog" aria-modal="false" aria-labelledby="chat-title" hidden>
+    <button class="chat-resize chat-resize-top" type="button" data-resize="height" aria-label="調整助理高度" title="拖曳調整高度；亦可使用上下方向鍵"></button>
+    <button class="chat-resize chat-resize-left" type="button" data-resize="width" aria-label="調整助理寬度" title="拖曳調整寬度；亦可使用左右方向鍵"></button>
+    <button class="chat-resize chat-resize-corner" type="button" data-resize="both" aria-label="調整助理大小" title="拖曳調整大小；亦可使用方向鍵"></button>
+    <header class="chat-head">
+      <div>
+        <div class="chat-title" id="chat-title">鋼市助理</div>
+      </div>
+      <div class="chat-actions">
+        <span id="chat-key-menu" hidden>
+          <button type="button" class="chat-icon-btn" id="chat-new" title="新對話" aria-label="新對話">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 4v4h4"/></svg>
+          </button>
+          <button type="button" class="chat-icon-btn" id="chat-key-remove" title="移除此裝置的金鑰" aria-label="移除此裝置的金鑰">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="3.5"/><path d="M10.5 12.5L19 4M15.5 7.5l2.5 2.5M17.5 5.5l2 2"/></svg>
+          </button>
+        </span>
+        <button type="button" class="chat-icon-btn" id="chat-close" title="關閉" aria-label="關閉">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="chat-setup" id="chat-setup" hidden>
+      <p class="chat-setup-lead">這台裝置還沒啟用鋼市助理。</p>
+      <p>請貼上 OpenAI API 金鑰。金鑰只會存在這台裝置的瀏覽器裡，不會上傳到網站。</p>
+      <form class="chat-key-form" id="chat-key-form" autocomplete="off">
+        <input type="password" id="chat-key-input" class="chat-key-input" placeholder="sk-..." aria-label="OpenAI API 金鑰" autocomplete="off" spellcheck="false">
+        <button type="submit" class="chat-key-save">啟用</button>
+      </form>
+      <p class="chat-key-msg" id="chat-key-msg" role="alert"></p>
+    </div>
+
+    <div class="chat-main" id="chat-main" hidden>
+      <div class="chat-log" id="chat-log" aria-live="polite"></div>
+      <div class="chat-attachments" id="chat-attachments" hidden>
+        <span id="chat-attachment-list"></span>
+        <button type="button" id="chat-attachment-clear" aria-label="移除所有附件">移除</button>
+      </div>
+      <p class="chat-attachment-message" id="chat-attachment-message" role="status" aria-live="polite"></p>
+      <div class="chat-attach-menu" id="chat-attach-menu" hidden>
+        <button type="button" id="chat-choose-file">選擇圖片、影片或文件</button>
+        <span>影片單檔最多 300 MB；其他單檔須小於 50 MB，多份文件會自動分批</span>
+      </div>
+      <button type="button" class="chat-next-suggestion" id="chat-next-suggestion" hidden></button>
+      <form class="chat-form" id="chat-form">
+        <input type="file" id="chat-file" accept=".png,.jpg,.jpeg,.webp,.gif,.heic,.heif,.mp4,.mov,.m4v,.webm,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.tsv,.txt" multiple hidden>
+        <button type="button" class="chat-attach" id="chat-attach" aria-label="加入附件" aria-expanded="false" aria-controls="chat-attach-menu" title="加入附件">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <button type="button" class="chat-mic" id="chat-mic" aria-label="語音對話" title="語音對話" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3.5" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.5"/></svg>
+        </button>
+        <textarea id="chat-input" rows="1" maxlength="3000" enterkeyhint="enter" placeholder="問鋼價、行情或營建問題…" aria-label="輸入問題"></textarea>
+        <button type="submit" class="chat-send" id="chat-send" aria-label="送出">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+        </button>
+      </form>
+      <div class="voice-bar" id="voice-bar" data-state="connecting" hidden>
+        <span class="voice-orb" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="voice-status" id="voice-status" role="status" aria-live="polite">連線中…</span>
+        <button type="button" class="voice-stop" id="voice-stop">結束語音</button>
+      </div>
+      <audio id="voice-audio" autoplay playsinline hidden></audio>
+      <p class="chat-foot">AI 依網站資料回答，可能有誤，重要決定請再確認。</p>
+    </div>
+  </section>
+
+  <script src="assets/material-forecast.js?v=1"></script>
+  <script src="assets/app.js?v=20261104u"></script>
+  <script src="assets/reference-search.js?v=20261104h"></script>
+  <script src="assets/chat-web.js?v=20261104c"></script>
+  <script src="assets/vendor/jszip.min.js?v=3.10.1"></script>
+  <script src="assets/office-visuals.js?v=20261104m"></script>
+  <script src="assets/chat-attachments.js?v=20261104n"></script>
+  <script src="assets/chat.js?v=20261104o"></script>
 </body>
 </html>

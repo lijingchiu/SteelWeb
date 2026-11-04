@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖
+"變更臺中市都市計畫（整體開發地區單元九、十、十一）細部計畫（配合同平巷老樹修正園道用地及同平巷、同榮里、永和巷土地公廟保留）案","發布實施「變更臺中市都市計畫（整體開發地區單元九、十、十一）細部計畫（配合同平巷老樹修正園道用地及同平巷、同榮里、永和巷土地公廟保留）案」都市計畫書、圖，並自108年5月14日零時起生效。","1080514","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=21d4351f-2e83-48ef-80bf-e447d5b6f24f","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=395a27fb-80f4-48e3-89f5-58d2b55f7f48","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2f142511-6232-4a95-a360-7a673ef6735d"

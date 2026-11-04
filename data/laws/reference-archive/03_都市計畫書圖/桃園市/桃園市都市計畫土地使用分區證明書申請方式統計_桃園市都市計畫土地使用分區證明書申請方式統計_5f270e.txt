@@ -1,0 +1,11 @@
+【顯示名稱】
+桃園市都市計畫土地使用分區證明書申請方式統計
+
+【檢視原始資料】
+https://opendata.tycg.gov.tw/datalist/bed4f462-8278-4752-9c8d-3f188b707059
+
+【查詢方式】
+請在來源頁查閱或下載資料；網站可能更新，請核對檔名的年度與版本。
+
+【原始資料下載】
+https://opendata.tycg.gov.tw/api/dataset/bed4f462-8278-4752-9c8d-3f188b707059/resource/eb87dc05-81f5-4095-874f-39aca6067945/download

@@ -1,0 +1,2 @@
+﻿檔案名稱,基本說明,地圖格式,地圖網址,縣市別代碼,地圖範圍
+"臺中市都市計畫圖GIS檔案(85年度_TWD67)","原台中市","SHP","https://drive.google.com/file/d/1UU28S_CgKC4yjFoqVqO8UqUK-HFNoSzi/view?usp=sharing","66000","原臺中市"

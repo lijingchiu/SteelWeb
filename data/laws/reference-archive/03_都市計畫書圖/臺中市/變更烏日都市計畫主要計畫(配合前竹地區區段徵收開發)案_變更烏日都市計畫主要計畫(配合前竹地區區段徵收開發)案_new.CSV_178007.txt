@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖
+"變更烏日都市計畫主要計畫(配合前竹地區區段徵收開發)案","發布實施「變更烏日都市計畫主要計畫(配合前竹地區區段徵收開發)案」計畫書、圖，並自108年10月8日零時起生效。","1081008","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9aa52de3-7e0a-43c3-933f-8edb48573724","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=28b50bb8-8d65-498e-914e-3a957ff25482","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=dd900778-bc25-4162-9c8c-0e267965808e"

@@ -1,0 +1,11 @@
+【資料名稱】
+11920-01-04-2 臺中市都市計畫公共設施用地已取得面積_2025_11920-01-04-2_臺中市都市計畫公共設施用地已取得面積.JSON_089893
+
+【檢視原始資料】
+https://opendata.taichung.gov.tw/search/34b52f5e-a1af-4925-8a83-18ecc2280d08
+
+【說明】
+原文字是單行 JSON 統計資料。請至來源網站查閱或下載；資料可能更新，請核對檔名中的年度。
+
+【原始資料下載】
+https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=30e7b836-0cc3-4f0e-a677-79db259b90a4

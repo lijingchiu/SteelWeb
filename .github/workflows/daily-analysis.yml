@@ -2,23 +2,53 @@ name: Daily Steel Price Analysis
 
 on:
   schedule:
-    # 00:00 UTC = 08:00 Taiwan Time (CST, UTC+8)
-    - cron: '0 0 * * *'
+    # Taiwan Sun–Thu 23:50 through the following weekday 06:50.
+    - cron: '50 15-22 * * 0-4'
+  # Pushing a change to this file on main runs the analysis immediately.
+  push:
+    branches: [main]
+    paths: ['.github/trigger/run-analysis']
   workflow_dispatch:
     inputs:
       force_run:
         description: 'Force re-run even if data already exists today'
         required: false
-        default: 'false'
+        default: 'true'
 
 permissions:
   contents: write
+  pages: write
+
+concurrency:
+  group: data-writer-${{ github.ref_name }}
+  cancel-in-progress: false
 
 jobs:
+  weekday_guard:
+    runs-on: ubuntu-latest
+    outputs:
+      allowed: ${{ steps.check.outputs.allowed }}
+      target: ${{ steps.check.outputs.target }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: check
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          echo "target=$(python3 scripts/daily_schedule.py target)" >> "$GITHUB_OUTPUT"
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            echo "allowed=$(python3 scripts/daily_schedule.py gate)" >> "$GITHUB_OUTPUT"
+          else
+            echo "allowed=true" >> "$GITHUB_OUTPUT"
+          fi
   analyze:
+    needs: weekday_guard
+    if: needs.weekday_guard.outputs.allowed == 'true'
     name: Fetch & Analyze Steel Prices
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 80
+    env:
+      RESEARCH_DATE: ${{ needs.weekday_guard.outputs.target }}
 
     steps:
       - name: Checkout repository
@@ -42,44 +72,131 @@ jobs:
       - name: Check if analysis already exists today
         id: check_today
         run: |
-          DATE=$(TZ='Asia/Taipei' date +%Y-%m-%d)
+          DATE="$RESEARCH_DATE"
           echo "today=$DATE" >> $GITHUB_OUTPUT
-          if [ -f "data/history/${DATE}.json" ] && [ "${{ github.event.inputs.force_run }}" != "true" ]; then
+          FORCE="${{ inputs.force_run }}"
+          if [ "${{ github.event_name }}" = "push" ]; then FORCE=true; fi
+          if [ "$(python scripts/daily_schedule.py analysis)" = "true" ] && [ "$FORCE" != "true" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
-            echo "Analysis for ${DATE} already exists, skipping."
           else
             echo "skip=false" >> $GITHUB_OUTPUT
           fi
+          if [ "$(python scripts/daily_schedule.py research)" = "true" ] && [ "$FORCE" != "true" ]; then
+            echo "research_ready=true" >> $GITHUB_OUTPUT
+          else
+            echo "research_ready=false" >> $GITHUB_OUTPUT
+          fi
+          if python -c "import json,sys; sys.path.insert(0,'scripts'); from notify import local_report_ready; d=json.load(open('data/latest.json')); r=json.load(open('data/report.json')); sys.exit(0 if d.get('date') == '${DATE}' and local_report_ready(r,'${DATE}') else 1)" 2>/dev/null; then
+            echo "report_ready=true" >> $GITHUB_OUTPUT
+          else
+            echo "report_ready=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install PDF conversion tools
+        if: steps.check_today.outputs.skip != 'true' || steps.check_today.outputs.report_ready != 'true'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libreoffice-impress fonts-noto-cjk fonts-liberation fontconfig
 
       - name: Run steel price analysis
+        id: analyze
         if: steps.check_today.outputs.skip != 'true'
         env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        run: |
-          python scripts/analyze.py
+        run: python scripts/analyze.py
 
+      - name: Research all material outlooks
+        if: success() && steps.check_today.outputs.research_ready != 'true'
+        continue-on-error: true
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python scripts/material_research.py
+
+      # Starts only after the full analysis has finished and been written out.
+      - name: Build daily newsletter deck
+        if: success() && (steps.check_today.outputs.skip != 'true' || steps.check_today.outputs.report_ready != 'true')
+        continue-on-error: true
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: python scripts/report.py
+
+      # Runs even when the AI step fails, so freshly fetched prices are still published.
       - name: Commit and push updated data
-        if: steps.check_today.outputs.skip != 'true'
+        if: always() && (steps.check_today.outputs.skip != 'true' || steps.check_today.outputs.report_ready != 'true' || steps.check_today.outputs.research_ready != 'true')
         run: |
           git config user.name "Steel Analysis Bot"
           git config user.email "steel-bot@users.noreply.github.com"
-          git add data/
+          git add data/ reports/
           if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "data: steel price analysis ${{ steps.check_today.outputs.today }}"
-            git push origin main
+            echo "No changes to commit"
+            exit 0
           fi
+          git commit -m "data: steel price analysis ${{ steps.check_today.outputs.today }}"
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && exit 0
+            sleep $((i * 10))
+          done
+          exit 1
+
+      # GITHUB_TOKEN pushes do not automatically trigger branch-based Pages builds.
+      - name: Request Pages publication
+        if: always() && github.ref == 'refs/heads/main' && steps.check_today.outputs.today != ''
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ANALYSIS_SKIPPED: ${{ steps.check_today.outputs.skip }}
+          RESEARCH_READY: ${{ steps.check_today.outputs.research_ready }}
+          TODAY: ${{ steps.check_today.outputs.today }}
+        run: |
+          if [ "$ANALYSIS_SKIPPED" = "true" ] && [ "$RESEARCH_READY" = "true" ] && python -c "import json,os; s=json.load(open('data/notify-state.json')); raise SystemExit(0 if (s.get('email') or {}).get('date') == os.environ['TODAY'] else 1)" 2>/dev/null; then
+            echo "Today's email already sent; no extra Pages build needed."
+            exit 0
+          fi
+          gh api -X POST "repos/${{ github.repository }}/pages/builds"
+
+      - name: Confirm both newsletter files are public
+        id: wait_public
+        if: always() && github.ref == 'refs/heads/main' && steps.check_today.outputs.today != ''
+        continue-on-error: true
+        run: python scripts/wait_report_public.py
+
+      - name: Verify all research and reports before notification
+        id: ready_to_notify
+        if: always() && steps.check_today.outputs.today != ''
+        run: echo "ready=$(python scripts/daily_schedule.py ready)" >> "$GITHUB_OUTPUT"
+
+      - name: Send subscriber notifications
+        if: always() && github.ref == 'refs/heads/main' && steps.ready_to_notify.outputs.ready == 'true' && steps.wait_public.outcome == 'success'
+        continue-on-error: true
+        env:
+          ONESIGNAL_REST_API_KEY: ${{ secrets.ONESIGNAL_REST_API_KEY }}
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          REPORT_PUBLIC_READY: ${{ steps.wait_public.outcome == 'success' && 'true' || 'false' }}
+        run: python scripts/notify.py
+
+      - name: Commit notification state
+        if: always() && github.ref == 'refs/heads/main' && steps.check_today.outputs.today != ''
+        run: |
+          git config user.name "Steel Analysis Bot"
+          git config user.email "steel-bot@users.noreply.github.com"
+          git add data/notify-state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "data: notification state ${{ steps.check_today.outputs.today }}"
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 10))
+          done
+          exit 1
 
       - name: Summary
+        if: always()
         run: |
-          echo "### Analysis Results" >> $GITHUB_STEP_SUMMARY
           if [ -f data/latest.json ]; then
-            DATE=$(python3 -c "import json; d=json.load(open('data/latest.json')); print(d.get('date','?'))")
-            CONF=$(python3 -c "import json; d=json.load(open('data/latest.json')); print(d.get('confidence','?'))")
-            echo "- **Date**: $DATE" >> $GITHUB_STEP_SUMMARY
-            echo "- **Confidence**: $CONF" >> $GITHUB_STEP_SUMMARY
-            echo "- **Model**: $(python3 -c "import json; d=json.load(open('data/latest.json')); print(d.get('model_used','?'))")" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "No data file found." >> $GITHUB_STEP_SUMMARY
+            echo "### Analysis Results" >> $GITHUB_STEP_SUMMARY
+            python3 -c "import json; d=json.load(open('data/latest.json')); print('- **Date**: ' + str(d.get('date','?'))); print('- **Confidence**: ' + str(d.get('confidence','?'))); print('- **Model**: ' + str(d.get('model_used','?')))" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f data/materials.json ]; then
+            python3 -c "import json; m=json.load(open('data/materials.json')); [print(f\"- {s['source']}: {'OK' if s['ok'] else 'FAILED'} ({s['items']} items) {s.get('error','')}\") for s in m['sources_status']]" >> $GITHUB_STEP_SUMMARY
           fi

@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址
+"變更台中市都市計畫（台灣省實施區段徵收五年計畫範圍－廍子地區）細部計畫（計畫範圍專案通盤檢討）案","發布實施「變更臺中市都市計畫(台灣省實施區段徵收五年計畫範圍－廍子地區)細部計畫(計畫範圍專案通盤檢討)案」計畫書、圖，並自106年6月2日零時起生效。","1060602","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=6966216f-dd34-4300-b746-21cf43c5e64e","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=d60cb0ce-1cfd-4f25-9f07-2f9cc085b65a"

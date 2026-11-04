@@ -1,0 +1,11 @@
+【顯示名稱】
+航空城都市計畫土地使用計畫面積表
+
+【檢視原始資料】
+https://opendata.tycg.gov.tw/datalist/075b9611-28d9-4931-a2ad-8f6f04bde47a
+
+【查詢方式】
+請在來源頁查閱或下載資料；網站可能更新，請核對檔名的年度與版本。
+
+【原始資料下載】
+https://opendata.tycg.gov.tw/api/dataset/075b9611-28d9-4931-a2ad-8f6f04bde47a/resource/cbea96a5-13eb-4032-af63-444378c83cf2/download

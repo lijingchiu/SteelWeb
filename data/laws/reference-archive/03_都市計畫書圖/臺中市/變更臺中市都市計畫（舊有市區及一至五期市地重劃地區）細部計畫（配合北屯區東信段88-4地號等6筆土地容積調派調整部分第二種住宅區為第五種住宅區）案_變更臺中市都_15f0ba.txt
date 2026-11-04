@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖
+"變更臺中市都市計畫（舊有市區及一至五期市地重劃地區）細部計畫（配合北屯區東信段88-4地號等6筆土地容積調派調整部分第二種住宅區為第五種住宅區）案","發布實施「變更臺中市都市計畫（舊有市區及一至五期市地重劃地區）細部計畫（配合北屯區東信段88-4地號等6筆土地容積調派調整部分第二種住宅區為第五種住宅區）案」都市計畫書、圖，自108年6月20日零時起生效。","1080620","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f70fb80a-21a9-4d0e-a36a-ceeddab4f4e2","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=5c989012-bb9b-44d7-bdd2-8e09fb607b34","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9260a940-b474-46af-b524-76ced53b0f2d"

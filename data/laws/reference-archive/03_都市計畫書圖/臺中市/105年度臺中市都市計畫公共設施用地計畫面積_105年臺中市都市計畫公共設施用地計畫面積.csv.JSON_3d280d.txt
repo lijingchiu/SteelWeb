@@ -1,0 +1,8 @@
+【資料名稱】
+105年度臺中市都市計畫公共設施用地計畫面積_105年臺中市都市計畫公共設施用地計畫面積.csv.JSON_3d280d
+
+【檢視原始資料】
+https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=918ea9e9-a81b-4358-af80-cb70372aaf32
+
+【說明】
+原文字是單行 JSON 統計資料。請至來源網站查閱或下載；資料可能更新，請核對檔名中的年度。 此連結直接提供 JSON 原始資料。

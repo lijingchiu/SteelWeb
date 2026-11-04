@@ -1,0 +1,8 @@
+【資料名稱】
+105年都市計畫地區面積及人口表_105年都市計畫地區面積及人口表.csv.JSON_723c53
+
+【檢視原始資料】
+https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=1d38965e-5ae4-479a-a80c-ae7055530726
+
+【說明】
+原文字是單行 JSON 統計資料。請至來源網站查閱或下載；資料可能更新，請核對檔名中的年度。 此連結直接提供 JSON 原始資料。

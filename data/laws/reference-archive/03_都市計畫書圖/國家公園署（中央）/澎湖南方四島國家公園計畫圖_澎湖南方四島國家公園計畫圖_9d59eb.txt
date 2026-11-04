@@ -1,0 +1,2 @@
+圖檔名稱,TGOS資料集網址,SHP下載位址,圖檔格式,圖檔描述,公告成立時間,公告年度
+澎湖南方四島國家公園計畫圖,https://www.tgos.tw/MDE/MetaData/CRUD/ViewMetaData?GUID=7ecb2769-26a1-48d0-a1fe-ca38c05834f1&VIEW_TYPE=only&SOURCE=1,https://www.tgos.tw:443/MDE/VirtualDir_TC/Product/163d327f-d96c-4db3-a955-25636424565c/澎湖南方四島國家公園計畫圖(103年實施).zip,SHP,澎湖南方四島國家公園計畫圖SHP圖檔資料,行政院103年3月10日院臺建字第1030010925號函核定「澎湖南方四島國家公園計畫書」計畫圖,103

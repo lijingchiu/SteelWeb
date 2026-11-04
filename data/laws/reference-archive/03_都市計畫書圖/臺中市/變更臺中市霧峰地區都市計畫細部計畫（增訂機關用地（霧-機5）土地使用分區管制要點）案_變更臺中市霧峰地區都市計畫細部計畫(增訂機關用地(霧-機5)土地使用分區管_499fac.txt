@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址
+"變更臺中市霧峰地區都市計畫細部計畫（增訂機關用地（霧-機5）土地使用分區管制要點）案","發布實施「變更臺中市霧峰地區都市計畫細部計畫（增訂機關用地（霧-機5）土地使用分區管制要點）案」計畫書、圖，並自109年2月22日零時起生效。","1090222","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9aab2773-ab64-49da-8e22-d02093fe6fb0","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9c56bb7d-7b0c-4daa-8c4b-8d3b1c60a18d"

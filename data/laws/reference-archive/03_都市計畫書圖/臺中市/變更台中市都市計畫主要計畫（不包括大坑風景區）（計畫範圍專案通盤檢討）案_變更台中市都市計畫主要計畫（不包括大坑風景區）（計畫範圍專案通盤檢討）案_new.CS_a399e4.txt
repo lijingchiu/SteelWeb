@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址
+"變更台中市都市計畫主要計畫（不包括大坑風景區）（計畫範圍專案通盤檢討）案","發布實施「變更台中市都市計畫主要計畫（不包括大坑風景區）（計畫範圍專案通盤檢討）案」計畫書、圖，並自106年6月1日零時起生效。","1060601","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=b0e8dbeb-d467-4fea-b4f3-63287ba27c4f","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0c860261-ce61-4433-8122-ba11b2bf700e"

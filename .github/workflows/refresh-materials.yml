@@ -1,0 +1,50 @@
+name: Refresh Material Prices
+
+# Price-only refresh (no AI call). Runs after the TWSE close on weekdays so
+# daily stock and FX quotes, weekly international steel quotes and news
+# headlines stay current between the 08:00 daily analyses.
+on:
+  schedule:
+    # 07:40 UTC = 15:40 Taiwan, Mon–Fri
+    - cron: '40 7 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writer-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: scripts/requirements.txt
+      - run: pip install -r scripts/requirements.txt
+      - name: Fetch material prices
+        run: python scripts/materials.py
+      - name: Commit and push
+        run: |
+          git config user.name "Steel Analysis Bot"
+          git config user.email "steel-bot@users.noreply.github.com"
+          git add data/materials.json data/chart-data.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git commit -m "data: refresh material prices $(TZ='Asia/Taipei' date '+%Y-%m-%d %H:%M')"
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }} && exit 0
+            sleep $((i * 10))
+          done
+          exit 1

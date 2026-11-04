@@ -1,0 +1,2 @@
+﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖
+"變更臺中市都市計畫細部計畫(整體開發地區單元九、十、十一)細部計畫（配合第十四期市地重劃區範圍調整）案 ","發布實施「變更臺中市都市計畫細部計畫(整體開發地區單元九、十、十一)細部計畫（配合第十四期市地重劃區範圍調整）案」計畫書、圖，並自106年1月20日零時起生效。","1060120","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=XN0CBBkpRy&d=ChDu7fbg1y","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=XN0CBBkpRy&d=RjveRE8LKl","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=XN0CBBkpRy&d=Sk913jz76L"

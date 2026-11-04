@@ -1,0 +1,2 @@
+圖資名稱,製作說明,座標,基本說明,連結網址,縣市別代碼,資料描述,使用說明,範圍說明
+臺中市102年都市計畫圖(GIS)_TWD97,約在102年版更,TWD97,臺中市,https://drive.google.com/file/d/1Sg7ZGk14Sot831Rxyd69sBkvNgupU_wx/view?usp=sharing,66000,台中市都市計畫土地使用分區圖資檔案,從地圖網址下載取得圖資檔案,大台中

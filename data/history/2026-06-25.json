@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-25T06:06:01.028555+08:00",
+  "date": "2026-06-25",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "中鋼第三季小螺絲盤元專案出爐",
+      "url": "https://steelnews.com.tw/news/content?id=176663"
+    },
+    {
+      "title": "韓國熱軋修正報價向下 估力守590？",
+      "url": "https://steelnews.com.tw/news/content?id=176657"
+    },
+    {
+      "title": "鋼筋市場昨天「燒燒」  今天冷冷",
+      "url": "https://steelnews.com.tw/news/content?id=176655"
+    },
+    {
+      "title": "弱需求+觀望氣氛 熱、冷軋行情被進口拖累向下",
+      "url": "https://steelnews.com.tw/news/content?id=176624"
+    },
+    {
+      "title": "中國廢鋼市場進入震盪格局 供需拉鋸限制價格波動",
+      "url": "https://steelnews.com.tw/news/content?id=176681"
+    },
+    {
+      "title": "淡季需求轉弱 中國廢鋼價格續呈窄幅震盪",
+      "url": "https://steelnews.com.tw/news/content?id=176680"
+    },
+    {
+      "title": "達涅利QSP-DUE技術在首鋼京唐達成新里程碑",
+      "url": "https://steelnews.com.tw/news/content?id=176678"
+    },
+    {
+      "title": "英國普銳特將為中國武鋼供應六流大鋼胚連鑄機用於高端鋼材生產",
+      "url": "https://steelnews.com.tw/news/content?id=176677"
+    },
+    {
+      "title": "中國焦炭第八輪漲價全面落地　第九輪提漲預期升溫",
+      "url": "https://steelnews.com.tw/news/content?id=176669"
+    },
+    {
+      "title": "德國回收協會呼籲：綠色鋼鐵分類應以「實際碳排」為基準",
+      "url": "https://steelnews.com.tw/news/content?id=176687"
+    },
+    {
+      "title": "ÇİB主席：土耳其鋼鐵業在不確定性中鍛鍊出高度韌性",
+      "url": "https://steelnews.com.tw/news/content?id=176685"
+    },
+    {
+      "title": "西班牙鋼鐵業呼籲歐盟強化貿易防禦以因應加劇的進口壓力",
+      "url": "https://steelnews.com.tw/news/content?id=176684"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "目前無直接匯率數據，但若新台幣貶值，將推升進口廢鋼成本，對國內鋼價形成支撐；反之則可能壓抑鋼價。考量全球經濟不確定性，匯率波動將持續影響鋼鐵進出口成本與競爭力。"
+  },
+  "spread_analysis": "廢鋼收購價月增0.2元/公斤，小鋼胚出廠價月增270元/公噸，顯示廢鋼成本上漲已部分轉嫁至小鋼胚。豐興鋼筋盤價持平，東鋼H型鋼流通價上漲800元/公噸，顯示型鋼產品利差擴大，而鋼筋利差可能受成本擠壓。整體而言，廢鋼到鋼筋的加工利差可能收窄，而鋼筋到型鋼的利差則有擴大趨勢，反映不同產品線的供需狀況差異。",
+  "monthly_trend": "預計下月台灣鋼市將呈現震盪偏弱格局。廢鋼價格受中國市場震盪及淡季需求轉弱影響，上漲動能有限。鋼筋市場在「昨天燒燒，今天冷冷」的描述下，顯示需求不穩定，盤價恐難有大幅上漲。型鋼雖有上漲，但整體市場受弱需求及進口拖累，加上國際鐵礦價格跌破關鍵區間，成本支撐鬆動，預期鋼價將面臨下行壓力，不排除部分產品線有小幅修正。",
+  "international_outlook": "中國市場廢鋼進入震盪格局，淡季需求轉弱，價格呈窄幅震盪，且熱軋捲出口價格下跌，對全球鋼價形成壓力。韓國熱軋報價向下修正，顯示區域性需求疲軟。歐洲市場面臨進口壓力，呼籲強化貿易防禦。印度鋼筋價格因雨季展望不佳呈現錯綜走勢，並對多國啟動反傾銷調查，顯示區域保護主義升溫。全球鋼鐵市場區域分化加劇，供需錯配成新常態，國際鐵礦價格下跌更進一步削弱鋼價成本支撐，下半年鋼市面臨嚴峻考驗。",
+  "risk_factors": [
+    "中國鋼鐵市場需求持續疲軟，出口價格下跌對全球鋼價造成壓力。",
+    "國際鐵礦石價格跌破關鍵區間，鋼價成本支撐鬆動，可能導致鋼價進一步下跌。",
+    "全球經濟不確定性及地緣政治風險，影響終端需求及貿易流動。"
+  ],
+  "summary": "台灣鋼市5月粗鋼產量顯著增加，廢鋼與小鋼胚價格上漲，但豐興鋼筋盤價持平，東鋼H型鋼上漲。然而，新聞顯示市場受弱需求、進口拖累及國際鐵礦價格下跌影響，整體氛圍偏向觀望。中國廢鋼市場震盪，韓國熱軋報價向下，預示下月台灣鋼市可能面臨下行壓力，需密切關注國際情勢與國內需求變化。",
+  "confidence": "medium"
+}

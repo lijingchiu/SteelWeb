@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-05-31T05:49:04.228849+08:00",
+  "date": "2026-05-31",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "豐興下週一停收鐵屑廢鋼",
+      "url": "https://steelnews.com.tw/news/content?id=175435"
+    },
+    {
+      "title": "志昌邱董事長邱宏泰接掌高雄國際鋼鐵經營協會第26屆理事長",
+      "url": "https://steelnews.com.tw/news/content?id=175434"
+    },
+    {
+      "title": "台鋼集團旗下鋼廠週六跟週一停收廢鋼",
+      "url": "https://steelnews.com.tw/news/content?id=175433"
+    },
+    {
+      "title": "燁輝6月鍍烤內銷調漲1200元、7月外銷漲20美元",
+      "url": "https://steelnews.com.tw/news/content?id=175406"
+    },
+    {
+      "title": "唐榮6月304產品盤價再漲2000元、316附價也同步調漲",
+      "url": "https://steelnews.com.tw/news/content?id=175405"
+    },
+    {
+      "title": "5月29日中國鋼鐵期貨收盤主流上漲",
+      "url": "https://steelnews.com.tw/news/content?id=175413"
+    },
+    {
+      "title": "中國不鏽鋼現貨轉弱觀望加劇 下游承接力明顯不足",
+      "url": "https://steelnews.com.tw/news/content?id=175401"
+    },
+    {
+      "title": "受鋼鐵需求放緩影響 中國鐵礦石價格進一步微幅下跌",
+      "url": "https://steelnews.com.tw/news/content?id=175394"
+    },
+    {
+      "title": "本週(0522-0528)國際鋼材交易價格整理",
+      "url": "https://steelnews.com.tw/news/content?id=175402"
+    },
+    {
+      "title": "南非調高鋼鐵產品進口關稅至10-30%",
+      "url": "https://steelnews.com.tw/news/content?id=175400"
+    },
+    {
+      "title": "6月美國國內廢鋼價格預計仍以橫盤整理為主 但部分看空情緒已有所突破",
+      "url": "https://steelnews.com.tw/news/content?id=175391"
+    },
+    {
+      "title": "美國紐柯調高特種鋼價格 國內鋼筋與線材價格保持平穩",
+      "url": "https://steelnews.com.tw/news/content?id=175379"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-04",
+    "crude_steel_production": {
+      "value": 111.1378,
+      "unit": "萬噸",
+      "mom_change": -33.3895,
+      "month": "2026-02"
+    },
+    "north_scrap_price": {
+      "value": 10.2,
+      "unit": "元/公斤",
+      "mom_change": 0.5,
+      "month": "2026-04"
+    },
+    "billet_price": {
+      "value": 15790.0,
+      "unit": "元/公噸",
+      "mom_change": -410.0,
+      "month": "2026-04"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 400.0,
+      "month": "2026-04"
+    },
+    "h_beam_price": {
+      "value": 35900.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-04"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 1000.0,
+      "month": "2026-04"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.5,
+    "impact_on_steel": "目前新聞未提及匯率，但若美元走強，將增加進口廢鋼成本，對國內鋼價形成支撐；反之則可能壓抑鋼價。"
+  },
+  "spread_analysis": "根據最新數據，北部廢鋼收購價為10.2元/公斤（10200元/公噸），豐興鋼筋盤價為18900元/公噸，東鋼H型鋼流通價為35900元/公噸。廢鋼至鋼筋的加工利差約為8700元/公噸，鋼筋至型鋼的利差約為17000元/公噸。考量廢鋼收購價上漲0.5元/公斤，鋼筋盤價上漲400元/公噸，型鋼流通價上漲800元/公噸，顯示鋼廠在成本上升壓力下，成功將部分成本轉嫁至下游產品，維持或略擴大利差。若匯率波動，將直接影響進口廢鋼成本，進而影響整體利差結構，需密切關注。",
+  "monthly_trend": "預計下月台灣鋼筋、型鋼價格將呈現平穩偏強走勢，漲幅約在200-500元/公噸。主要理由為廢鋼成本支撐（北部廢鋼月變動+0.5元/公斤），以及鋼廠停收廢鋼的動作顯示庫存去化與價格支撐意圖。雖然中國不鏽鋼現貨轉弱，鐵礦石價格下跌，但台灣內需市場在基礎建設項目推動下仍有一定支撐。不鏽鋼產品如唐榮6月盤價續漲，顯示特定產品線仍有上漲動能。",
+  "international_outlook": "國際市場呈現分歧。中國鋼鐵期貨主流上漲，但其不鏽鋼現貨轉弱且鐵礦石價格微幅下跌，顯示需求放緩壓力。美國廢鋼價格預計橫盤整理，紐柯調高特種鋼價格，但國內鋼筋與線材價格平穩，顯示美國市場相對穩定。東協地區鋼筋價格下滑，買家觀望，線材穩定，整體需求偏弱。南非調高鋼鐵產品進口關稅，可能影響區域貿易流向。全球廢鋼市場受地緣政治與運費影響，波動性增加。",
+  "risk_factors": [
+    "中國鋼鐵需求放緩及鐵礦石價格下跌，可能對全球鋼價形成壓力。",
+    "國際廢鋼市場波動性增加，地緣政治與運費變動可能影響台灣進口成本。",
+    "東協地區鋼筋價格下滑，可能導致區域競爭加劇，影響台灣出口。"
+  ],
+  "summary": "2026年4月台灣粗鋼產量下降，但廢鋼收購價、鋼筋、型鋼及中鋼棒線盤價均呈現上漲。近期豐興與台鋼集團停收廢鋼，顯示鋼廠對廢鋼價格有支撐意圖。國際市場方面，中國期貨上漲但現貨偏弱，美國平穩，東協下滑。整體而言，台灣鋼市在成本支撐下，短期內仍有上漲動能，但需留意國際市場的潛在壓力。",
+  "confidence": "medium"
+}

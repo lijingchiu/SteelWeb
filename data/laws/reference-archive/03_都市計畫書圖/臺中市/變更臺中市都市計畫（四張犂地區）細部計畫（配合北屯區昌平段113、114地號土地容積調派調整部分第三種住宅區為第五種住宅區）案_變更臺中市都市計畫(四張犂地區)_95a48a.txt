@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
+"變更臺中市都市計畫（四張犂地區）細部計畫（配合北屯區昌平段113、114地號土地容積調派調整部分第三種住宅區為第五種住宅區）案","發布實施「變更臺中市都市計畫（四張犂地區）細部計畫（配合北屯區昌平段113、114地號土地容積調派調整部分第三種住宅區為第五種住宅區）案」都市計畫書、圖，並自111年5月20日零時起生效。","1110520","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f2e032ee-8dff-435e-b7f4-21e8a74dbb05","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=4d2b0d8d-974c-44b9-bdc5-6756f0635baa","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=530e0c76-106f-49b8-8f87-dac8a74cb5ef"

@@ -1,0 +1,2 @@
+File_Name,TGOS_URL,File_URL,File_Format,Description,Official_Document,YYY(ROC)
+東沙環礁國家公園(第2次通盤檢討)計畫圖,https://www.tgos.tw/MDE/MetaData/CRUD/ViewMetaData?GUID=1897aa1d-16f5-4e83-b119-217a30091c49&VIEW_TYPE=only&SOURCE=1,https://www.tgos.tw:443/MDE/VirtualDir_TC/Product/88ddeb5a-b368-4529-a2bc-4e31463072c4/1121212-東沙2通-公告實施shp.zip,SHP圖檔,東沙環礁國家公園(第2次通盤檢討)計畫圖(112年實施),東沙環礁國家公園計畫（第2次通盤檢討）業奉行政院112年10月23日院臺交字第1121038395號函核定，內政部112年12月12日台內園字第1121280052號公告，自112年12月15日生效,112

@@ -1,0 +1,2 @@
+圖檔名稱,TGOS資料集網址,SHP下載位址,圖檔格式,圖檔描述,機關代碼
+太魯閣國家公園第3次通盤檢討計畫範圍圖,https://www.tgos.tw/MDE/MetaData/CRUD/ViewMetaData?GUID=4add3cc0-0f8b-4787-ba02-37a6f2ad62c1&VIEW_TYPE=only&SOURCE=1,https://www.tgos.tw:443/MDE/VirtualDir_TC/Product/0f05fdb8-e903-4ffe-803a-1d3d3788b668/三通修正後shp.zip,SHP,太魯閣國家公園第3次通盤檢討計畫範圍圖格式為Shape_file,A01030400G

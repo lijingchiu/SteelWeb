@@ -1,0 +1,11 @@
+【顯示名稱】
+桃園市都市計畫土地使用面積
+
+【檢視原始資料】
+https://opendata.tycg.gov.tw/datalist/68a7798a-3363-4412-9162-a9d37d3bc4ee
+
+【查詢方式】
+請在來源頁查閱或下載資料；網站可能更新，請核對檔名的年度與版本。
+
+【原始資料下載】
+https://opendata.tycg.gov.tw/api/dataset/68a7798a-3363-4412-9162-a9d37d3bc4ee/resource/798b07a8-2022-45e5-9fed-cd7ef208096a/download

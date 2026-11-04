@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖
+"變更臺中市都市計畫主要計畫（不包括大坑風景區）（第三次通盤檢討）（107年第4季申請變更住宅區為商業區）案","發布實施「變更臺中市都市計畫主要計畫（不包括大坑風景區）（第三次通盤檢討）（107年第4季申請變更住宅區為商業區）案」計畫書、圖，並自108年4月18日零時起生效。","1080418","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=16593959-ae10-46d9-b0e2-f6d7310f2520","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=7dfd2bf7-980a-4aed-8d8b-eb7438a3afb5","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=6cc9af3e-991f-47f7-a2a2-59d547086cb5"

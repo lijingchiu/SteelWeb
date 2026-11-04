@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書,公告圖網址
+"變更臺中市都市計畫(文山及春社里地區)細部計畫(第二次通盤檢討)案","發布實施「變更臺中市都市計畫(文山及春社里地區)細部計畫(第二次通盤檢討)案」都市計畫書、圖，並自107年6月14日零時起生效。","1070614","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9cbac86a-be37-4882-81b1-4cd048ee13e7","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=9cbac86a-be37-4882-81b1-4cd048ee13e7","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=7200e237-9628-414d-932b-aedf49c754d5"

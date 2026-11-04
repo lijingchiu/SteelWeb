@@ -1,0 +1,2 @@
+﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址,公告圖
+"變更潭子都市計畫細部計畫(土地使用分區管制要點)(配合第四次通盤檢討)案","發布實施「變更潭子都市計畫細部計畫(土地使用分區管制要點)(配合第四次通盤檢討)案」計畫書，並自106年8月7日起生效。","1060807","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=Kv5CCWY0Z3&d=zls5nF0dHp","https://datacenter.taichung.gov.tw/shift/getfile.ashx?m=Kv5CCWY0Z3&d=5p4lznxJn0",""

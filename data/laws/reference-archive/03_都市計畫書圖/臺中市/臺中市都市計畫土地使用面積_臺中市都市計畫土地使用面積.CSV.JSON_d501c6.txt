@@ -1,0 +1,8 @@
+【資料名稱】
+臺中市都市計畫土地使用面積_臺中市都市計畫土地使用面積.CSV.JSON_d501c6
+
+【檢視原始資料】
+https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f025698a-3935-436c-933d-c3a485c103e0
+
+【說明】
+原文字是單行 JSON 統計資料。請至來源網站查閱或下載；資料可能更新，請核對檔名中的年度。 此連結直接提供 JSON 原始資料。

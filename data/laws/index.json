@@ -1,0 +1,1308 @@
+{
+ "updated_at": "2026-11-04T08:12:53+08:00",
+ "source": "全國法規資料庫開放資料（法務部）",
+ "source_updated": [
+  "2026/10/22 上午 12:00:00",
+  "2026/10/22 上午 12:00:00"
+ ],
+ "license": "政府資料開放授權條款第1版；法律條文依著作權法第9條不得為著作權之標的",
+ "laws": [
+  {
+   "name": "營造業法",
+   "pcode": "D0070110",
+   "level": "法律",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2019-06-19",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070110",
+   "partial": false,
+   "articles": 74
+  },
+  {
+   "name": "營造業法施行細則",
+   "pcode": "D0070111",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2018-08-22",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070111",
+   "partial": false,
+   "articles": 29
+  },
+  {
+   "name": "營造業承攬工程造價限額工程規模範圍申報淨值及一定期間承攬總額認定辦法",
+   "pcode": "D0070161",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2020-07-07",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070161",
+   "partial": false,
+   "articles": 14
+  },
+  {
+   "name": "政府採購法",
+   "pcode": "A0030057",
+   "level": "法律",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2019-05-22",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030057",
+   "partial": false,
+   "articles": 123
+  },
+  {
+   "name": "政府採購法施行細則",
+   "pcode": "A0030058",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2021-07-14",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030058",
+   "partial": false,
+   "articles": 127
+  },
+  {
+   "name": "技師法",
+   "pcode": "J0030022",
+   "level": "法律",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2026-01-05",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0030022",
+   "partial": false,
+   "articles": 59
+  },
+  {
+   "name": "技師法施行細則",
+   "pcode": "J0030023",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2012-11-14",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0030023",
+   "partial": false,
+   "articles": 21
+  },
+  {
+   "name": "公共工程專業技師簽證規則",
+   "pcode": "D0070069",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2023-10-04",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070069",
+   "partial": false,
+   "articles": 17
+  },
+  {
+   "name": "民法",
+   "pcode": "B0000001",
+   "level": "法律",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2026-08-17",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001",
+   "partial": true,
+   "articles": 42
+  },
+  {
+   "name": "職業安全衛生法",
+   "pcode": "N0060001",
+   "level": "法律",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2025-12-19",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060001",
+   "partial": false,
+   "articles": 61
+  },
+  {
+   "name": "職業安全衛生法施行細則",
+   "pcode": "N0060002",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2026-06-26",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060002",
+   "partial": false,
+   "articles": 56
+  },
+  {
+   "name": "職業安全衛生設施規則",
+   "pcode": "N0060009",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2026-06-30",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060009",
+   "partial": false,
+   "articles": 393
+  },
+  {
+   "name": "營造安全衛生設施標準",
+   "pcode": "N0060014",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2026-06-30",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060014",
+   "partial": false,
+   "articles": 189
+  },
+  {
+   "name": "職業安全衛生管理辦法",
+   "pcode": "N0060027",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2026-06-29",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060027",
+   "partial": false,
+   "articles": 111
+  },
+  {
+   "name": "職業安全衛生教育訓練規則",
+   "pcode": "N0060010",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2026-06-25",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060010",
+   "partial": false,
+   "articles": 51
+  },
+  {
+   "name": "危險性工作場所審查及檢查辦法",
+   "pcode": "N0070019",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2020-07-17",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0070019",
+   "partial": false,
+   "articles": 25
+  },
+  {
+   "name": "起重升降機具安全規則",
+   "pcode": "N0060013",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2020-08-20",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060013",
+   "partial": false,
+   "articles": 108
+  },
+  {
+   "name": "勞工作業環境監測實施辦法",
+   "pcode": "N0060033",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2026-06-12",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060033",
+   "partial": false,
+   "articles": 33
+  },
+  {
+   "name": "高溫作業勞工作息時間標準",
+   "pcode": "N0060007",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2014-07-01",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0060007",
+   "partial": false,
+   "articles": 11
+  },
+  {
+   "name": "勞動基準法",
+   "pcode": "N0030001",
+   "level": "法律",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2024-07-31",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0030001",
+   "partial": false,
+   "articles": 98
+  },
+  {
+   "name": "勞動基準法施行細則",
+   "pcode": "N0030002",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2024-03-27",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0030002",
+   "partial": false,
+   "articles": 70
+  },
+  {
+   "name": "就業服務法",
+   "pcode": "N0090001",
+   "level": "法律",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2025-01-20",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0090001",
+   "partial": false,
+   "articles": 85
+  },
+  {
+   "name": "外國人從事就業服務法第四十六條第一項第八款至第十款工作資格及審查標準",
+   "pcode": "N0090029",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2026-04-11",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0090029",
+   "partial": false,
+   "articles": 81
+  },
+  {
+   "name": "廢棄物清理法",
+   "pcode": "O0050001",
+   "level": "法律",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2026-07-15",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0050001",
+   "partial": false,
+   "articles": 91
+  },
+  {
+   "name": "空氣污染防制法",
+   "pcode": "O0020001",
+   "level": "法律",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2018-08-01",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0020001",
+   "partial": false,
+   "articles": 100
+  },
+  {
+   "name": "營建工程空氣污染防制設施管理辦法",
+   "pcode": "O0020058",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2021-10-18",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0020058",
+   "partial": false,
+   "articles": 20
+  },
+  {
+   "name": "噪音管制法",
+   "pcode": "O0030001",
+   "level": "法律",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2025-12-26",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0030001",
+   "partial": false,
+   "articles": 37
+  },
+  {
+   "name": "招標期限標準",
+   "pcode": "A0030093",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2009-08-31",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030093",
+   "partial": false,
+   "articles": 13
+  },
+  {
+   "name": "最有利標評選辦法",
+   "pcode": "A0030080",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2025-01-21",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030080",
+   "partial": false,
+   "articles": 25
+  },
+  {
+   "name": "投標廠商資格與特殊或巨額採購認定標準",
+   "pcode": "A0030099",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2015-10-29",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030099",
+   "partial": false,
+   "articles": 18
+  },
+  {
+   "name": "押標金保證金暨其他擔保作業辦法",
+   "pcode": "A0030079",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2019-11-18",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030079",
+   "partial": false,
+   "articles": 42
+  },
+  {
+   "name": "採購履約爭議調解規則",
+   "pcode": "A0030108",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2008-04-22",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030108",
+   "partial": false,
+   "articles": 26
+  },
+  {
+   "name": "機關委託技術服務廠商評選及計費辦法",
+   "pcode": "A0030077",
+   "level": "命令",
+   "categories": [
+    "營建營造",
+    "建築設計"
+   ],
+   "modified": "2025-05-23",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030077",
+   "partial": false,
+   "articles": 41
+  },
+  {
+   "name": "採購評選委員會組織準則",
+   "pcode": "A0030103",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2026-05-08",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030103",
+   "partial": false,
+   "articles": 11
+  },
+  {
+   "name": "採購評選委員會審議規則",
+   "pcode": "A0030102",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2021-11-04",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030102",
+   "partial": false,
+   "articles": 19
+  },
+  {
+   "name": "統包實施辦法",
+   "pcode": "A0030063",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2012-09-24",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030063",
+   "partial": false,
+   "articles": 11
+  },
+  {
+   "name": "共同投標辦法",
+   "pcode": "A0030064",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2007-05-22",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030064",
+   "partial": false,
+   "articles": 17
+  },
+  {
+   "name": "中央機關未達公告金額採購招標辦法",
+   "pcode": "A0030067",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2018-03-08",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030067",
+   "partial": false,
+   "articles": 8
+  },
+  {
+   "name": "採購申訴審議規則",
+   "pcode": "A0030097",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2019-10-29",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030097",
+   "partial": false,
+   "articles": 33
+  },
+  {
+   "name": "工程施工查核小組作業辦法",
+   "pcode": "D0070080",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2023-08-09",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070080",
+   "partial": false,
+   "articles": 14
+  },
+  {
+   "name": "採購人員倫理準則",
+   "pcode": "A0030095",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "1999-04-26",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030095",
+   "partial": false,
+   "articles": 15
+  },
+  {
+   "name": "勞工職業災害保險及保護法",
+   "pcode": "N0050031",
+   "level": "法律",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2021-04-30",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0050031",
+   "partial": false,
+   "articles": 109
+  },
+  {
+   "name": "勞工保險條例",
+   "pcode": "N0050001",
+   "level": "法律",
+   "categories": [
+    "營建營造",
+    "鋼鐵製造"
+   ],
+   "modified": "2026-01-21",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0050001",
+   "partial": false,
+   "articles": 104
+  },
+  {
+   "name": "營造業評鑑辦法",
+   "pcode": "D0070144",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2009-07-29",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070144",
+   "partial": false,
+   "articles": 11
+  },
+  {
+   "name": "營造業工地主任評定回訓及管理辦法",
+   "pcode": "D0070121",
+   "level": "命令",
+   "categories": [
+    "營建營造"
+   ],
+   "modified": "2026-04-10",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070121",
+   "partial": false,
+   "articles": 8
+  },
+  {
+   "name": "建築法",
+   "pcode": "D0070109",
+   "level": "法律",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2022-05-11",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070109",
+   "partial": false,
+   "articles": 123
+  },
+  {
+   "name": "建築師法",
+   "pcode": "D0070112",
+   "level": "法律",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2023-12-06",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070112",
+   "partial": false,
+   "articles": 63
+  },
+  {
+   "name": "建築師法施行細則",
+   "pcode": "D0070125",
+   "level": "命令",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2011-04-25",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070125",
+   "partial": false,
+   "articles": 18
+  },
+  {
+   "name": "建築技術規則總則編",
+   "pcode": "D0070114",
+   "level": "命令",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2020-10-19",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070114",
+   "partial": false,
+   "articles": 12
+  },
+  {
+   "name": "建築技術規則建築設計施工編",
+   "pcode": "D0070115",
+   "level": "命令",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2026-02-23",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070115",
+   "partial": false,
+   "articles": 389
+  },
+  {
+   "name": "建築技術規則建築構造編",
+   "pcode": "D0070116",
+   "level": "命令",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2023-05-10",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070116",
+   "partial": false,
+   "articles": 622
+  },
+  {
+   "name": "建築技術規則建築設備編",
+   "pcode": "D0070117",
+   "level": "命令",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2022-12-29",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070117",
+   "partial": false,
+   "articles": 159
+  },
+  {
+   "name": "都市計畫法",
+   "pcode": "D0070001",
+   "level": "法律",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2021-05-26",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070001",
+   "partial": false,
+   "articles": 92
+  },
+  {
+   "name": "國土計畫法",
+   "pcode": "D0070230",
+   "level": "法律",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2025-01-20",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070230",
+   "partial": false,
+   "articles": 47
+  },
+  {
+   "name": "消防法",
+   "pcode": "D0120001",
+   "level": "法律",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2024-11-29",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0120001",
+   "partial": false,
+   "articles": 80
+  },
+  {
+   "name": "各類場所消防安全設備設置標準",
+   "pcode": "D0120029",
+   "level": "命令",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2024-04-24",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0120029",
+   "partial": false,
+   "articles": 266
+  },
+  {
+   "name": "建築物室內裝修管理辦法",
+   "pcode": "D0070148",
+   "level": "命令",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2023-12-11",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070148",
+   "partial": false,
+   "articles": 43
+  },
+  {
+   "name": "建築物使用類組及變更使用辦法",
+   "pcode": "D0070141",
+   "level": "命令",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2025-05-13",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070141",
+   "partial": false,
+   "articles": 11
+  },
+  {
+   "name": "建築物公共安全檢查簽證及申報辦法",
+   "pcode": "D0070149",
+   "level": "命令",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2022-12-28",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070149",
+   "partial": false,
+   "articles": 16
+  },
+  {
+   "name": "公寓大廈管理條例",
+   "pcode": "D0070118",
+   "level": "法律",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2022-05-11",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070118",
+   "partial": false,
+   "articles": 66
+  },
+  {
+   "name": "都市更新條例",
+   "pcode": "D0070008",
+   "level": "法律",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2024-11-13",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070008",
+   "partial": false,
+   "articles": 88
+  },
+  {
+   "name": "都市更新條例施行細則",
+   "pcode": "D0070010",
+   "level": "命令",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2019-05-15",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070010",
+   "partial": false,
+   "articles": 49
+  },
+  {
+   "name": "都市危險及老舊建築物加速重建條例",
+   "pcode": "D0070249",
+   "level": "法律",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2023-12-06",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070249",
+   "partial": false,
+   "articles": 15
+  },
+  {
+   "name": "都市危險及老舊建築物加速重建條例施行細則",
+   "pcode": "D0070256",
+   "level": "命令",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2017-08-01",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070256",
+   "partial": false,
+   "articles": 12
+  },
+  {
+   "name": "都市危險及老舊建築物建築容積獎勵辦法",
+   "pcode": "D0070258",
+   "level": "命令",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2025-03-04",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070258",
+   "partial": false,
+   "articles": 15
+  },
+  {
+   "name": "都市危險及老舊建築物結構安全性能評估辦法",
+   "pcode": "D0070259",
+   "level": "命令",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2018-10-11",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070259",
+   "partial": false,
+   "articles": 15
+  },
+  {
+   "name": "土地法",
+   "pcode": "D0060001",
+   "level": "法律",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2024-08-07",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0060001",
+   "partial": false,
+   "articles": 262
+  },
+  {
+   "name": "土地法施行法",
+   "pcode": "D0060002",
+   "level": "法律",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2011-06-15",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0060002",
+   "partial": false,
+   "articles": 63
+  },
+  {
+   "name": "促進民間參與公共建設法",
+   "pcode": "D0070062",
+   "level": "法律",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2022-12-21",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070062",
+   "partial": false,
+   "articles": 63
+  },
+  {
+   "name": "促進民間參與公共建設法施行細則",
+   "pcode": "D0070068",
+   "level": "命令",
+   "categories": [
+    "建築設計",
+    "營建營造"
+   ],
+   "modified": "2023-12-28",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070068",
+   "partial": false,
+   "articles": 94
+  },
+  {
+   "name": "都市計畫法臺灣省施行細則（89.12.29 訂定）",
+   "pcode": "D0070012",
+   "level": "命令",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2026-08-12",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070012",
+   "partial": false,
+   "articles": 55
+  },
+  {
+   "name": "都市計畫容積移轉實施辦法",
+   "pcode": "D0070028",
+   "level": "命令",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2014-08-04",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070028",
+   "partial": false,
+   "articles": 22
+  },
+  {
+   "name": "都市計畫定期通盤檢討實施辦法",
+   "pcode": "D0070004",
+   "level": "命令",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2025-07-22",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070004",
+   "partial": false,
+   "articles": 51
+  },
+  {
+   "name": "區域計畫法",
+   "pcode": "D0070030",
+   "level": "法律",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2000-01-26",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070030",
+   "partial": false,
+   "articles": 30
+  },
+  {
+   "name": "區域計畫法施行細則",
+   "pcode": "D0070031",
+   "level": "命令",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2013-10-23",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070031",
+   "partial": false,
+   "articles": 25
+  },
+  {
+   "name": "非都市土地使用管制規則",
+   "pcode": "D0060013",
+   "level": "命令",
+   "categories": [
+    "建築設計"
+   ],
+   "modified": "2026-05-27",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0060013",
+   "partial": false,
+   "articles": 89
+  },
+  {
+   "name": "工廠管理輔導法",
+   "pcode": "J0030043",
+   "level": "法律",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2024-05-24",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0030043",
+   "partial": false,
+   "articles": 53
+  },
+  {
+   "name": "工廠管理輔導法施行細則",
+   "pcode": "J0030068",
+   "level": "命令",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2021-01-20",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0030068",
+   "partial": false,
+   "articles": 18
+  },
+  {
+   "name": "鋼鐵業燒結工場空氣污染物排放標準",
+   "pcode": "O0020011",
+   "level": "命令",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2012-06-14",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0020011",
+   "partial": false,
+   "articles": 7
+  },
+  {
+   "name": "鋼鐵業集塵灰高溫冶煉設施戴奧辛管制及排放標準",
+   "pcode": "O0020070",
+   "level": "命令",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2005-10-12",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0020070",
+   "partial": false,
+   "articles": 9
+  },
+  {
+   "name": "水污染防治法",
+   "pcode": "O0040001",
+   "level": "法律",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2018-06-13",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0040001",
+   "partial": false,
+   "articles": 86
+  },
+  {
+   "name": "氣候變遷因應法",
+   "pcode": "O0020098",
+   "level": "法律",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2023-02-15",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0020098",
+   "partial": false,
+   "articles": 63
+  },
+  {
+   "name": "碳費收費辦法",
+   "pcode": "O0020139",
+   "level": "命令",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2026-09-01",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0020139",
+   "partial": false,
+   "articles": 24
+  },
+  {
+   "name": "能源管理法",
+   "pcode": "J0130002",
+   "level": "法律",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2026-09-23",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0130002",
+   "partial": false,
+   "articles": 35
+  },
+  {
+   "name": "商品檢驗法",
+   "pcode": "J0100001",
+   "level": "法律",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2007-07-11",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0100001",
+   "partial": false,
+   "articles": 71
+  },
+  {
+   "name": "關稅法",
+   "pcode": "G0350001",
+   "level": "法律",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2022-05-11",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0350001",
+   "partial": false,
+   "articles": 112
+  },
+  {
+   "name": "平衡稅及反傾銷稅課徵實施辦法",
+   "pcode": "G0350034",
+   "level": "命令",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2019-01-28",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0350034",
+   "partial": false,
+   "articles": 54
+  },
+  {
+   "name": "毒性及關注化學物質管理法",
+   "pcode": "O0060012",
+   "level": "法律",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2019-01-16",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0060012",
+   "partial": false,
+   "articles": 75
+  },
+  {
+   "name": "煉鋼業電弧爐戴奧辛管制及排放標準",
+   "pcode": "O0020044",
+   "level": "命令",
+   "categories": [
+    "鋼鐵製造"
+   ],
+   "modified": "2020-12-23",
+   "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=O0020044",
+   "partial": false,
+   "articles": 9
+  },
+  {
+   "name": "臺北市建築管理自治條例",
+   "pcode": "TPE-FL004106",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2019-02-22",
+   "url": "https://laws.gov.taipei/Law/LawSearch/LawArticleContent/FL004106",
+   "partial": false,
+   "articles": 42,
+   "region": "臺北市"
+  },
+  {
+   "name": "臺北市土地使用分區管制自治條例",
+   "pcode": "TPE-FL003962",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2025-07-09",
+   "url": "https://laws.gov.taipei/Law/LawSearch/LawArticleContent/FL003962",
+   "partial": false,
+   "articles": 138,
+   "region": "臺北市"
+  },
+  {
+   "name": "新北市建築管理規則",
+   "pcode": "NTPC-1C0170035",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2018-08-08",
+   "url": "https://web.law.ntpc.gov.tw/Scripts/FLAWDAT01.aspx?lncode=1C0170035",
+   "partial": false,
+   "articles": 38,
+   "region": "新北市"
+  },
+  {
+   "name": "都市計畫法新北市施行細則",
+   "pcode": "NTPC-1C0150108",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2025-11-05",
+   "url": "https://web.law.ntpc.gov.tw/Scripts/FLAWDAT01.aspx?lncode=1C0150108",
+   "partial": false,
+   "articles": 59,
+   "region": "新北市"
+  },
+  {
+   "name": "新北市營建剩餘土石方管理自治條例",
+   "pcode": "NTPC-1C0170194",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2026-06-24",
+   "url": "https://web.law.ntpc.gov.tw/Scripts/FLAWDAT01.aspx?lncode=1C0170194",
+   "partial": false,
+   "articles": 28,
+   "region": "新北市"
+  },
+  {
+   "name": "臺中市建築管理自治條例",
+   "pcode": "TC-GL002282",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2023-03-31",
+   "url": "https://lawsearch.taichung.gov.tw/LawContent.aspx?id=GL002282",
+   "partial": false,
+   "articles": 71,
+   "region": "臺中市"
+  },
+  {
+   "name": "都市計畫法臺中市施行自治條例",
+   "pcode": "TC-GL002020",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2026-10-22",
+   "url": "https://lawsearch.taichung.gov.tw/LawContent.aspx?id=GL002020",
+   "partial": false,
+   "articles": 62,
+   "region": "臺中市"
+  },
+  {
+   "name": "臺中市營建賸餘土石方管理自治條例",
+   "pcode": "TC-GL001704",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2026-10-22",
+   "url": "https://lawsearch.taichung.gov.tw/LawContent.aspx?id=GL001704",
+   "partial": false,
+   "articles": 55,
+   "region": "臺中市"
+  },
+  {
+   "name": "高雄市建築管理自治條例",
+   "pcode": "KCG-GL000537",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2021-02-01",
+   "url": "https://outlaw.kcg.gov.tw/LawContent.aspx?id=GL000537",
+   "partial": false,
+   "articles": 78,
+   "region": "高雄市"
+  },
+  {
+   "name": "都市計畫法高雄市施行細則",
+   "pcode": "KCG-GL000627",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2026-06-01",
+   "url": "https://outlaw.kcg.gov.tw/LawContent.aspx?id=GL000627",
+   "partial": false,
+   "articles": 38,
+   "region": "高雄市"
+  },
+  {
+   "name": "高雄市營建工程剩餘土石方管理自治條例",
+   "pcode": "KCG-GL001111",
+   "level": "地方法規",
+   "categories": [
+    "地方自治法規",
+    "建築設計"
+   ],
+   "modified": "2020-08-20",
+   "url": "https://outlaw.kcg.gov.tw/LawContent.aspx?id=GL001111",
+   "partial": false,
+   "articles": 50,
+   "region": "高雄市"
+  }
+ ],
+ "reference_archive": {
+  "index": "data/laws/reference-archive/index.json",
+  "manifest": "data/laws/reference-archive/MANIFEST.md",
+  "categories": [
+   {
+    "name": "00_索引",
+    "count": 1
+   },
+   {
+    "name": "01_技術文件_著作權付費",
+    "count": 28
+   },
+   {
+    "name": "02_行政規則與函釋",
+    "count": 118
+   },
+   {
+    "name": "03_都市計畫書圖",
+    "count": 734
+   },
+   {
+    "name": "04_地方法規",
+    "count": 102
+   },
+   {
+    "name": "05_判決與爭議",
+    "count": 11
+   },
+   {
+    "name": "06_法律全文_可自由下載",
+    "count": 28
+   },
+   {
+    "name": "07_建築都市核心法規命令_可自由下載",
+    "count": 264
+   }
+  ],
+  "note": "參考資料，不代表現行法規；部分含 OCR 或不完整內容。"
+ }
+}

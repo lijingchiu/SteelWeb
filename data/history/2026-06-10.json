@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-06-10T11:24:40.517749+08:00",
+  "date": "2026-06-10",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "連日大雨 不鏽鋼市場苦等客戶上門",
+      "url": "https://steelnews.com.tw/news/content?id=175932"
+    },
+    {
+      "title": "印度對越南熱軋報價再跌",
+      "url": "https://steelnews.com.tw/news/content?id=175931"
+    },
+    {
+      "title": "中鋼工程板調漲在即  進口工程板交易熱絡",
+      "url": "https://steelnews.com.tw/news/content?id=175921"
+    },
+    {
+      "title": "鍍鋅市場漲勢鬆動　價格回落補跌壓力浮現",
+      "url": "https://steelnews.com.tw/news/content?id=175930"
+    },
+    {
+      "title": "短期中國不鏽鋼市場將延續弱勢下探走勢",
+      "url": "https://steelnews.com.tw/news/content?id=175954"
+    },
+    {
+      "title": "日本關東鐵源6月出口標下跌",
+      "url": "https://steelnews.com.tw/news/content?id=175952"
+    },
+    {
+      "title": "基本面全面利空且支撐因素消失 中國熱軋捲出口價格下跌",
+      "url": "https://steelnews.com.tw/news/content?id=175945"
+    },
+    {
+      "title": "6月10日中國鋼鐵期貨開盤漲跌互現",
+      "url": "https://steelnews.com.tw/news/content?id=175942"
+    },
+    {
+      "title": "中國鋼胚將延續小幅震盪趨弱走勢",
+      "url": "https://steelnews.com.tw/news/content?id=175939"
+    },
+    {
+      "title": "中國焦炭市場維持強勢 第六輪漲價陸續落地",
+      "url": "https://steelnews.com.tw/news/content?id=175938"
+    },
+    {
+      "title": "本週美東散裝與貨櫃廢鋼碼頭價持穩 EMR火災恐致破碎原料價格回落",
+      "url": "https://steelnews.com.tw/news/content?id=175953"
+    },
+    {
+      "title": "塔塔鋼鐵英國塔爾伯特港廠發生火災 熱軋帶鋼廠營運暫時中斷",
+      "url": "https://steelnews.com.tw/news/content?id=175949"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-05",
+    "crude_steel_production": {
+      "value": 168.908,
+      "unit": "萬噸",
+      "mom_change": 57.7702,
+      "month": "2026-03"
+    },
+    "north_scrap_price": {
+      "value": 10.4,
+      "unit": "元/公斤",
+      "mom_change": 0.2,
+      "month": "2026-05"
+    },
+    "billet_price": {
+      "value": 16060.0,
+      "unit": "元/公噸",
+      "mom_change": 270.0,
+      "month": "2026-05"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    },
+    "h_beam_price": {
+      "value": 36700.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-05"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-05"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.35,
+    "impact_on_steel": "近期新聞未直接提及匯率變動，但全球鋼市疲軟恐使新台幣相對美元走強，有利於進口廢鋼成本，但不利於出口競爭力。"
+  },
+  "spread_analysis": "廢鋼方面，北部廢鋼收購價月增0.2元/公斤，顯示成本端有支撐。小鋼胚中級出廠價月增270元/公噸，豐興鋼筋盤價持平，東鋼H型鋼流通價月增800元/公噸。儘管廢鋼成本微升，但鋼筋盤價未動，顯示鋼筋廠利潤受擠壓。H型鋼因鋼廠接單暢旺意圖再漲，利差空間相對較好。整體而言，廢鋼至鋼筋的加工利差面臨壓力，而型鋼利差表現較佳。若新台幣走強，進口廢鋼成本降低，有助於緩解鋼筋廠利潤壓力，但出口型鋼則可能面臨價格競爭。",
+  "monthly_trend": "預計下月廢鋼價格將呈現小幅震盪偏弱走勢，主因國際廢鋼市場需求低迷與美國出口廢鋼跌價，日本關東鐵源出口標下跌，美東散裝與貨櫃廢鋼碼頭價雖持穩但EMR火災恐致破碎原料價格回落。鋼筋價格預計持平或小幅下跌，受土耳其當地鋼筋現貨價格下跌及整體需求疲軟影響。型鋼價格則可能因鋼廠接單暢旺而維持堅挺，甚至有小幅上漲空間，預估漲幅約在0-2%之間。",
+  "international_outlook": "中國市場：熱軋捲出口價格下跌，基本面全面利空且支撐因素消失；不鏽鋼市場將延續弱勢下探走勢；鋼胚將延續小幅震盪趨弱走勢；焦炭市場維持強勢，第六輪漲價陸續落地。日本市場：關東鐵源6月出口標下跌，顯示廢鋼出口價格承壓。韓國市場：新聞未直接提及。美國市場：美東散裝與貨櫃廢鋼碼頭價持穩，但EMR火災恐致破碎原料價格回落。土耳其市場：需求低迷與美國出口廢鋼跌價導致當地鋼筋現貨價格下跌，國內線材價格多數下跌。印度市場：對越南熱軋報價再跌，維沙卡帕特南鋼廠發生爆炸，影響供應。英國市場：塔塔鋼鐵塔爾伯特港廠火災導致熱軋帶鋼廠營運暫時中斷，數項鋼鐵進口配額幾近用罄。整體國際市場呈現供過於求、需求疲軟的態勢，價格普遍承壓。",
+  "risk_factors": [
+    "中國鋼鐵市場持續弱勢，對全球鋼價形成壓力。",
+    "國際廢鋼價格下跌，可能進一步拉低台灣廢鋼收購價。",
+    "連日大雨影響不鏽鋼市場需求，可能擴散至其他鋼品。"
+  ],
+  "summary": "台灣粗鋼產量雖有顯著增長，但市場氛圍偏弱。廢鋼價格微漲，但國際市場疲軟恐使其承壓。鋼筋盤價持平，利潤空間受擠壓。H型鋼因需求暢旺表現較佳。國際市場普遍面臨需求低迷、價格下跌的挑戰，中國、印度、土耳其等主要市場均呈現弱勢。台灣鋼市短期內恐難擺脫國際影響，需謹慎應對。",
+  "confidence": "medium"
+}

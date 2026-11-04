@@ -1,0 +1,1763 @@
+{
+  "generated_at": "2026-11-02T23:33:33.094563+08:00",
+  "date": "2026-11-02",
+  "model_used": "gpt-6.1-terra（OpenAI API）",
+  "news_count": 36,
+  "news_sources": [
+    {
+      "title": "豐興廢鋼、鋼筋、型鋼3大產品 11月初全面開平盤",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNYjZWQkRDcEpfdFVhRXZyZkhVa1BvdWxqNDJpNUVZekNMeFNNU2lyLUZOVTNFdC1pdGJWZjE2bGg5ZWZjckt2X3BVSUR3SGJkU25YaDFYeWtJMEdWODNLZzVWeDZJd2RVSEloZ3FkZGJsTnFMc0ZsNGdBZHQwZm9PSmRB?oc=5",
+      "source": "壹蘋新聞網",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "原料行情持穩、下游買氣緩 豐興本周盤價轉平盤｜新聞快訊｜豐雲學堂",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1rLVhYeGJFYkdWYnhFTWNpSndmTzJDTEtwSmZOTkpzNVRXVWRFbFlIdUVOem1rVzlVOUJFeTJMWmVyWDl6YzgzNk1RbzV0LUpzLVJDVk1YdC1IaHpiaFlTVkFocktnakNTbmd4V3ZwNUJkQ095WUE?oc=5",
+      "source": "永豐金證券",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "國際廢鋼走勢持平豐興.威致本周報價開平盤| 產經",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5PcHpOeTVIeEJCOW1CWkQxTnR6dExqR2VUNDN0Y21xa1M1WTg2SnFUcDZzQjVNdE9GdnJjV21hMkhTZXJyWWw4OTQxb3p2Y1J4TG1NUWxEYXFaNGc?oc=5",
+      "source": "非凡新聞台",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "《鋼鐵股》豐興盤價再平盤 10月出貨符合預期",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNQktXTEhkYnZOcXZiWmJtNklDbHpvRnllYVVxUzkwclhrVC1URGpGSzB2d0pNZE9HR0dBME9ZYktGYm9UUXlLbDdrdERfVkE1OTZNRFVwaklJSzVnRkkzNGtGRVlFdmt4eHJBR2JtWjNSaUZnZVpEY2JvYnFrcjBmRjdESnlHWnFl?oc=5",
+      "source": "富聯網",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "原料行情持穩、下游買氣緩 豐興本周盤價轉平盤",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5qM1F6UjFqWktSWEM4TG9Uc2c2Q205WmtKS1ZEdjFnXzBoX04tYzlVZWNxUnJLMW51dnlEU05jS3BaVDZqSXRfcmZ6ZHY4NWc?oc=5",
+      "source": "鉅亨網",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "買盤平穩，豐興本週三大產品開平盤- 新聞",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPc3VUUU1pZURBZnhmLU5VbHlhWG9CWEp2WVIxcmVnLWJObjYxbGhpemhsTUlIeUpfT1VjbjZkSEEySUxMb0hwek4ycWkxeWlqMWpiRWphVHktbVdLYW50ZGRwYVVQRmdQLUZlUzh1VW1saXNpUjgxbk9aekhWZXZBYmQ1WlBaUHZGR2hkYTZFbGNkQQ?oc=5",
+      "source": "MoneyDJ",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "個股：國際廢鋼走勢持平，豐興(2015)、威致(2028)本週鋼筋報價平盤開出",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPRmJURFlfQk5sZGVzNGZXQXkwT0ZNQ2tjZEZVOHlNTTJWZ1NzdzlGczJMNU5NUVBtYm83djlLRGtIQldQYjdyYXgzNkhkVnVFVDlZLUU3VG84bDJqSzdnd0thN0N2RlZlQTNwYWVNVjRLR1FLT3ZwRXNkZkdpSUE1SjdSVWJfRFhv?oc=5",
+      "source": "富聯網",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "國際廢鋼走勢持平 豐興.威致本周報價開平盤",
+      "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxNQWphRmNGTVhRb3hncnIyTlpYbDNGRjdEbzRrcFF2S2I1Yks5Ymc5UHd2VmZjbHBFSkhDOVhBZkxSdkFHd00wdE9vSk5pVlA5RVlJZ0JSSTVoOWJPNjF2Z2c5TVQzaTNhWjdRRnJWQjNtclg0dVJHLTIzb09qanZuNGgyLUY4R0FaNkgzeFdCeFJsa09td3J5Sk15bVFNRldYd2VfUXpiWHZNOEN2anA2MnhLQldHRFRXelotU1ZWWlB1QkhlMVZ4SHZORExQekVIY2ZIcGsyc3dQSEM5djhPOUoteUU4NV9rX2Y5M05Fb05YQVAtZXdTYXVpR3hscEFyWmRqdU81OHB5bjBNOHhIVlZuazFCOFlHbjFKR2pGVUJic19Nb096emJUdnlKUkMzaVh0bDdIZHlxOGRhQ3VFTDZB?oc=5",
+      "source": "Yahoo股市",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "中鋼與中龍10月出貨量逼近100萬公噸 創今年來單月第三高",
+      "url": "https://news.google.com/rss/articles/CBMi4wJBVV95cUxPOTZISW9MNkRPUVVPbmMzY1NwaHFBOHExeGNmREdmZ2FZNHNzbkJwWHh4aHFqUzBXQ3psbTY4aFZyYWQyQlJvczlreDkwRzFid2h4STBOUTJWaTEtSnFNZjVUbEh2VXdkVHMzYTRUbUEyUXpJWHlCeVNySTRNYmZ2Q0pzRHoyOTF4dTRzV0JkZzR5WVVKd1d5WGNITWJXcEdMb19jblE1S1NXdDZnWGxrVEw4T2xhVEpOYWlUcHdYYTdmY3pDY2gyQ05KUG9UN005ZTJHclE5Y2xfNml6dnIyR1F3TDk0YThXMXd1Wl84ejBlc0xXaXNkNG9vVXlzaXNaeUNaS0RYU0c0TXhOZkhHQUdmeHdERVo0WWg0djJMNUcwN2JiUHdhSTBjSWtadGNKODFzb1ZZUDZ2RVJXbUdwbTR5emN5QjJjalNJdmxMQ3F4MEFfVE5ocmFTcHg0aGpMUzM4?oc=5",
+      "source": "Life 生活網",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "買盤平穩，豐興本週三大產品開平盤 | MoneyDJ理財網",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9OTmZibURxMW9TSkNNWEc2RUFGWVMtUnJzY0liaUE0b2VKSnU5YmRMTFRDWGlsSXpPTDRCYXplRTQzelVET1Q4WUMtdTlpOGtoZW9URHV3?oc=5",
+      "source": "LINE TODAY",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "中鋼盤價有望連三漲",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBsNXQteFFKNW9od3h3R0RuR1RDYkVfb3RjR0pNdXJVeFQzakN2c0ZDSDlVcDU1dTVNRWtxaW02bDUybEYwWENlQ3Y0SVZrWGlU0gFWQVVfeXFMT2FfZFR5WlhEMFZXZjVzaUVxQ2RnTmlhUTFTWGNQci1XVjVzV0twM1JKN2RLWHlzYTB5bkdtZk03Z3RsQmVYVURUMHNqdlZKT2M4RUloYlE?oc=5",
+      "source": "UDN",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "中鋼盤價有望連三漲 | 集中市場 | 證券",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOaE43TWFTUDBha3ktWkN2MDZaMldsSm8wLVBHSkdLcU5VcXZWNUFvTFRjTVpsenpLV1lqb2xjWnJyaWRQTGV0RVdXSHYtdkZ0eTZ0cUViVllUODNoQ0prb2twbTVySDFsT1ljZHpOeDRpQ0REcXdOVW0zNi1XV29yMA?oc=5",
+      "source": "經濟日報",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "越南和發11月鋼價平盤展現抗跌韌性 中鋼、新光鋼樂見",
+      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBOelFFUTVQdHpwRWlORmQ1bnBodml4QXBabzVGdTBiM2xQVGk3S1V5eXhtYm9iYVJWMVUwNHRhZ2EwSWJWTU1hSHUwMTQ?oc=5",
+      "source": "聚財網",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "越南和發11月鋼價平盤展現抗跌韌性中鋼、新光鋼樂見| 產業綜合| 產經",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE95OTZDaGNNRjBFSmUxekh1aTBCaWluU0JGSFBqclBxWnZIbFV1dG1GZ2w2M1FtWmM0MWxVUXhHaWRzUjdXeW5QV1dDOTRFNDg0T3JIdEhicG8zYkdjRWw0NkZOM2txQTZTd2VTdWdjWnlvSGM?oc=5",
+      "source": "UDN",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "買盤平穩，豐興本週三大產品開平盤",
+      "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOOGxiVm9HTmZhSkd2MEVvdVVJUVJnc0FodmlhaHlrd05JWW82alVDcm1BSF9iQlVPTHgyWW9Ta0NJNmlNVDJhWk5kNC1qX3BGOWpJbU53czdoelhaZU8zZk9JR0w5bC1nUGpUR21QOURydl9ZWUZTUWZFQUlQQmtxTjFXTzRGTFZSd2REV0dWTnNPX0g1elc4TGpMb2MyREVEZUd6eVV2T0lpSXFqck5LeTMxWlh2Z0ZPYU1tSHVpTkJmTW1BamhfY1UyaDVqUGhOYUQ5S0txdFR0cExOaGREa2tnQjFTZVhsYU9sZ2drdWFiMGtsS0RfLXFFTUx3VGlaUXphTGl4MmFFRW5iU2wtNA?oc=5",
+      "source": "Yahoo股市",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "《商情》終端需求平淡 土耳其廢鋼破碎料價連3平",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOWlRnbi1IcFhkQUJoMDNUbW96cnpzN1hVNDFRa0VyU2VtaG1Zbk5LVkZvNGlIaXJ2Z0xfRmkzSXRUb1FNTGl4VXNKVG9pY3hTUXNTTVljYlg0cVJ1MjhvSTVqcV9HUGFLRkxDaUdrbEdqZ2JEU3BjaXJueWxxOUlZMXdPd0N6LUN5?oc=5",
+      "source": "富聯網",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "研報掘金｜中郵證券：海螺水泥Q3盈利承壓明顯，期待價格觸底回升",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5LTUFkTVk0UmstUUlZTGhIRWsyVGVVenFwOVdmMC1vXzJPQTB3YURpTmIyRGVHRUd5T0RVR2prRWJDZ3ZIbkVFY0dMS0YxaWEta2xhZ3FRSENqeDdpZDZzSjJ1OTVDQjUtRkE?oc=5",
+      "source": "TradingView",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "水泥雙雄業績出爐 3月合併營收月增逾4成",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNSEFPREsxOXBRY1ZDb2ozSFR5cFN2RlRUbjBGY3FzSzdXQ09PNzlvMTBoR1lQVnVMWVZReXI4aHYzbkxyNmRHS2xUZERkU0FzMWE2enI3aTUzVDRGWHdGMTN5eHFRVlFoRjM3dF94SmNHeGtGQ3pYUEVtOFliMENfYmpZNUtmWWVjUUE?oc=5",
+      "source": "PChome Online 新聞",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "研報掘金｜平安證券：維持海螺水泥“推薦”評級，業績加速築底，分紅回購慷慨",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5xcnMwSDlraERfNzR4bk4zbFRmNnpZVF8talRlS1pIVUhqbmFSOXZwc3JlQjIyNlBLcDFnc1pSNVRIMFBhR19mSVN5d085NzgyczVyWW91Rkc3MnFMRXFOQkQ3QlV3Qy1nS2c?oc=5",
+      "source": "TradingView",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "海螺水泥(00914.HK)11月2日耗資343.74萬港元回購20萬股",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9lMk9ENnRINFdONjZXZlQ3Qkowd1JVejlKQU5MelZJOVZVMkoyclZsTGRhdmJ0Z3doMm5xUzd5YVNSWE5yVE1Ra2loNWxkdlRienQ5WlBScnkxRG1DWmZ3Y3ZmSkxvRlRCRGc?oc=5",
+      "source": "TradingView",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "港股異動丨華新建材大升超10%帶動水泥股普升，Q3歸母淨利潤超機構預期",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1oWWdUcnVoemJWVjZTSzNQOU14OXRZbVRnamxMZG00TV9GaUdFRE5NY1VPREpTeHQ3cy01MVNDREk1TW04Tmx6NWJLVzFuNm1FcW5WUlFPcHlscFB1U2lSLVoxcFJFWFJMYUE?oc=5",
+      "source": "TradingView",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Sagar Cements第二季財報每股盈利遜於預期 作者 Investing.com - Investing.com 香港 - 股市報價& 財經新聞",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9HbVNRdV9PbTNPdXFjaWJzTkFzTkY1SWdYdlVqUDF6QXZHNmgxdVdmQlEtbXRPOGtsX0dPQkVqVHEway0wMXJFQzZheXBiUlpSc0dqcF9DeGZjOHZiOEIwUElmWGNLSk15MjZRUWtxMA?oc=5",
+      "source": "Investing.com 香港 - 股市報價&amp; 財經新聞",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "盤中速報 - 永固-KY(5546)股價殺至跌停，跌停價11.85元，成交200張",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1XMlRiQ2FURTFpekpxbnNKS2U4SEZNZzF6bmNZU3NIdFV0N2JmY3NxYU1ZZ3hfWUM3dFBiY0tmZXhYWTdxanpteEw0NXdEaFR3QXRFcldLQWJ1SWd6RWx4cFlrMk8?oc=5",
+      "source": "TradingView",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "中國國家統計局10月製造業PMI降至49.3，非製造業PMI回落至49.7",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxNODNGOTdpd2drWDdGOWVWdUNPZDRLcFZDemRJOFdnSXoxeXRUZEJMaGR1c3BhV0M4TDNPbklGc2tOZWhiT1U4c3pReGhaZWFFck13NVBLTDVYNFpwekV1QjRwQVJkN0hIX0RaUkRoeEk4TVNERVZEV045cmRwaWd4LXg3X0ttbGpiNFkyZktienlVN2dsSUYtd015RFEzLVhzcVlzam5BajhIbjVPdEZCeW1LTWs3V3JidjZwRzVMS3E3Y0RybDhWN2VPSUlPR2JJa3JoV0o0c29Sam53U2hSZ3VQeWJwWFZUUEZXcWlCNA?oc=5",
+      "source": "www.tmgm.com",
+      "date": "2026-11-02"
+    },
+    {
+      "title": "Ember：電能可滿足土耳其85%的最終能源消耗",
+      "url": "https://steelnews.com.tw/news/content?id=183123",
+      "source": "SNN 環宇鋼鐵網",
+      "date": ""
+    },
+    {
+      "title": "印度與紐西蘭自由貿易協定於10月20日正式生效",
+      "url": "https://steelnews.com.tw/news/content?id=182730",
+      "source": "SNN 環宇鋼鐵網",
+      "date": ""
+    },
+    {
+      "title": "歐盟鋼廠提出2027年汽車合約上調100歐元/噸",
+      "url": "https://steelnews.com.tw/news/content?id=182646",
+      "source": "SNN 環宇鋼鐵網",
+      "date": ""
+    },
+    {
+      "title": "能源價格壓力下 IMF預測2026年全球經濟成長放緩至3.1%",
+      "url": "https://steelnews.com.tw/news/content?id=182417",
+      "source": "SNN 環宇鋼鐵網",
+      "date": ""
+    },
+    {
+      "title": "EUROFER：2026年歐盟汽車產量將下降0.9% 復甦延至2027年",
+      "url": "https://steelnews.com.tw/news/content?id=182261",
+      "source": "SNN 環宇鋼鐵網",
+      "date": ""
+    },
+    {
+      "title": "Tenaris開始於加拿大生產全新TN 95EY鋼級產品",
+      "url": "https://steelnews.com.tw/news/content?id=182815",
+      "source": "SNN 環宇鋼鐵網",
+      "date": ""
+    },
+    {
+      "title": "俄羅斯謝韋爾擴展Forcera耐候鋼系列 推出薄板產品",
+      "url": "https://steelnews.com.tw/news/content?id=181387",
+      "source": "SNN 環宇鋼鐵網",
+      "date": ""
+    },
+    {
+      "title": "政策驅動需求結構性復甦　中國鋼市下半年「板強長弱」",
+      "url": "https://steelnews.com.tw/news/content?id=180684",
+      "source": "SNN 環宇鋼鐵網",
+      "date": ""
+    },
+    {
+      "title": "越南蓮花集團推出耐腐蝕性增強的全新合金塗層鋼",
+      "url": "https://steelnews.com.tw/news/content?id=179793",
+      "source": "SNN 環宇鋼鐵網",
+      "date": ""
+    },
+    {
+      "title": "MMZ Onur Boru於土耳其首度生產20毫米厚ERW方形型鋼",
+      "url": "https://steelnews.com.tw/news/content?id=179418",
+      "source": "SNN 環宇鋼鐵網",
+      "date": ""
+    },
+    {
+      "title": "越南和發12月熱軋不降價！越南盾新盤全面平盤",
+      "url": "https://steelnews.com.tw/news/content?id=183218",
+      "source": "SNN 環宇鋼鐵網",
+      "date": ""
+    },
+    {
+      "title": "南部鋼筋詢問度低",
+      "url": "https://steelnews.com.tw/news/content?id=183209",
+      "source": "SNN 環宇鋼鐵網",
+      "date": ""
+    }
+  ],
+  "web_citations": [
+    {
+      "title": "《鋼鐵股》豐興盤價再平盤 10月出貨符合預期 - nStock 新聞文章",
+      "url": "https://www.nstock.tw/news/article_c?id=20261102-080408040000&utm_source=openai"
+    },
+    {
+      "title": "豐興廢鋼上周變盤調漲 本周鋼筋、型鋼基價跟進開漲盤",
+      "url": "https://tw.stock.yahoo.com/news/%E8%B1%90%E8%88%88%E5%BB%A2%E9%8B%BC%E4%B8%8A%E5%91%A8%E8%AE%8A%E7%9B%A4%E8%AA%BF%E6%BC%B2-%E6%9C%AC%E5%91%A8%E9%8B%BC%E7%AD%8B-%E5%9E%8B%E9%8B%BC%E5%9F%BA%E5%83%B9%E8%B7%9F%E9%80%B2%E9%96%8B%E6%BC%B2%E7%9B%A4-090055081.html?utm_source=openai"
+    },
+    {
+      "title": "鋼鐵盤價總表｜豐興週盤、條線與中鋼月盤季盤漲跌",
+      "url": "https://www.double-steel.com/zh/market?utm_source=openai"
+    },
+    {
+      "title": "利商股份有限公司",
+      "url": "https://www.fuc.com.tw/news_detail.php?id=21&utm_source=openai"
+    },
+    {
+      "title": "2026 年 9 月台灣鋼棒進口市場分析 | 双享鋼鐵 Double Steel Corp.",
+      "url": "https://www.double-steel.com/zh/news/0fd0deae-f9a1-46f1-99df-48203fac72d5?utm_source=openai"
+    },
+    {
+      "title": "美国东海岸废钢出口价格止跌回升 运费下降支撑FOB报价-钢之家钢铁网",
+      "url": "https://news.steelhome.com/2026/10/22/n4781406.html?utm_source=openai"
+    },
+    {
+      "title": "10月29日国际主要废钢市场价格汇总_我的钢铁网",
+      "url": "https://feigang.mysteel.com/a/26102916/B583F4957A176522.html?utm_source=openai"
+    },
+    {
+      "title": "鉄スクラップ輸出落札価格・数量データ｜関東鉄源協同組合",
+      "url": "https://kantotetsugen.com/data.html?utm_source=openai"
+    },
+    {
+      "title": "双享鋼鐵週報｜2026 第45週（2026/11/02） | 双享鋼鐵 Double Steel Corp.",
+      "url": "https://www.double-steel.com/zh/news/f3d2a853-7081-40e3-979d-d6474d5265c8?utm_source=openai"
+    },
+    {
+      "title": "https://news.metal.net.cn/content-338-8015710-1.html?utm_source=openai",
+      "url": "https://news.metal.net.cn/content-338-8015710-1.html?utm_source=openai"
+    },
+    {
+      "title": "臺北產經動態（2026Q2） - 臺北產經資訊網",
+      "url": "https://taipeiecon.taipei/Situation/more?id=c429ec67f4ed47a39197821279a42bd3&utm_source=openai"
+    },
+    {
+      "title": "審議會審議情形 - 電價費率審議會 - 電價及費率審議資訊揭露專區",
+      "url": "https://www3.moeaea.gov.tw/ele102/Content/Messagess/List01.aspx?MmmID=654246034164516005&utm_source=openai"
+    },
+    {
+      "title": "Ministry of Environment -Content",
+      "url": "https://oaout.moenv.gov.tw/law/EngLawContent.aspx?id=371&lan=E&utm_source=openai"
+    },
+    {
+      "title": "申請課徵反傾銷稅應注意是否符合傾銷要件-財政部全球資訊網",
+      "url": "https://www.mof.gov.tw/%20/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=8f8f4e6b19eb445b8b63744a161afff0&utm_source=openai"
+    },
+    {
+      "title": "Federal Register, Volume 91 Issue 197 (Wednesday, October 14, 2026)",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2026-10-14/html/2026-20897.htm?utm_source=openai"
+    },
+    {
+      "title": "商务部 海关总署公告2025年第79号 公布对部分钢铁产品实施出口许可证管理",
+      "url": "https://www.tid.gov.hk/en/tradecircular/files/2025/ci10772025a.pdf?utm_source=openai"
+    },
+    {
+      "title": "國泰世華匯率，國泰世華牌告匯率, 國泰世華Swift Code",
+      "url": "https://www.findrate.tw/bank/11/backup/?utm_source=openai"
+    },
+    {
+      "title": "《鋼鐵股》豐興盤價再平盤 10月出貨符合預期",
+      "url": "https://www.nstock.tw/news/article_c?id=20261102-080408040000"
+    },
+    {
+      "title": "豐興鋼鐵盤價走勢",
+      "url": "https://juyi-steel.tw/steel-price-trends/"
+    },
+    {
+      "title": "豐興廢鋼上周變盤調漲 本周鋼筋、型鋼基價跟進開漲盤",
+      "url": "https://tw.stock.yahoo.com/news/%E8%B1%90%E8%88%88%E5%BB%A2%E9%8B%BC%E4%B8%8A%E5%91%A8%E8%AE%8A%E7%9B%A4%E8%AA%BF%E6%BC%B2-%E6%9C%AC%E5%91%A8%E9%8B%BC%E7%AD%8B-%E5%9E%8B%E9%8B%BC%E5%9F%BA%E5%83%B9%E8%B7%9F%E9%80%B2%E9%96%8B%E6%BC%B2%E7%9B%A4-090055081.html"
+    },
+    {
+      "title": "鋼鐵盤價總表",
+      "url": "https://www.double-steel.com/zh/market"
+    },
+    {
+      "title": "H型鋼11月開盤",
+      "url": "https://www.fuc.com.tw/news_detail.php?id=21"
+    },
+    {
+      "title": "中國台灣地區東和鋼鐵上調11月H型鋼價格",
+      "url": "https://news.steelhome.com/2026/11/02/n4786186.html"
+    },
+    {
+      "title": "2026年9月台灣鋼棒進口市場分析",
+      "url": "https://www.double-steel.com/zh/news/0fd0deae-f9a1-46f1-99df-48203fac72d5"
+    },
+    {
+      "title": "美國東海岸廢鋼出口價格止跌回升",
+      "url": "https://news.steelhome.com/2026/10/22/n4781406.html"
+    },
+    {
+      "title": "10月29日國際主要廢鋼市場價格匯總",
+      "url": "https://feigang.mysteel.com/a/26102916/B583F4957A176522.html"
+    },
+    {
+      "title": "關東鐵源協同組合廢鋼出口得標價格資料",
+      "url": "https://kantotetsugen.com/data.html"
+    },
+    {
+      "title": "双享鋼鐵週報：2026第42週",
+      "url": "https://www.double-steel.com/zh/news/c27d29fb-e0fa-453c-b9af-56c2e73d1c5d"
+    },
+    {
+      "title": "双享鋼鐵週報：2026第45週",
+      "url": "https://www.double-steel.com/zh/news/f3d2a853-7081-40e3-979d-d6474d5265c8"
+    },
+    {
+      "title": "2026年9月中國出口鋼材1,049.2萬噸",
+      "url": "https://news.metal.net.cn/content-338-8015710-1.html"
+    },
+    {
+      "title": "China's finished steel exports in January–September",
+      "url": "https://www.steelorbis.com/steel-news/latest-news/chinas-finished-steel-exports-down-26-in-jan-sept-up-33-in-sept-from-aug-1483606.htm"
+    },
+    {
+      "title": "中鋼協：9月進出口鋼材及鐵礦石",
+      "url": "https://www.guandian.hk/article/20261014/10028923.html"
+    },
+    {
+      "title": "臺北產經動態：2026年第二季",
+      "url": "https://taipeiecon.taipei/Situation/more?id=c429ec67f4ed47a39197821279a42bd3"
+    },
+    {
+      "title": "經濟部電價費率審議會：115年第2次會議資料",
+      "url": "https://www3.moeaea.gov.tw/ele102/Content/Messagess/List01.aspx?MmmID=654246034164516005"
+    },
+    {
+      "title": "Taiwan freezes electricity rates to support economy",
+      "url": "https://focustaiwan.tw/business/202609180019"
+    },
+    {
+      "title": "環境部碳費收費法規",
+      "url": "https://oaout.moenv.gov.tw/law/EngLawContent.aspx?id=371&lan=E"
+    },
+    {
+      "title": "申請課徵反傾銷稅應注意是否符合傾銷要件",
+      "url": "https://www.mof.gov.tw/%20/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=8f8f4e6b19eb445b8b63744a161afff0"
+    },
+    {
+      "title": "Certain Corrosion-Resistant Steel Products From Taiwan: Preliminary Results",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2026-10-14/html/2026-20897.htm"
+    },
+    {
+      "title": "中國商務部及海關總署2025年第79號公告",
+      "url": "https://www.tid.gov.hk/en/tradecircular/files/2025/ci10772025a.pdf"
+    },
+    {
+      "title": "國泰世華匯率備份",
+      "url": "https://www.findrate.tw/bank/11/backup/"
+    }
+  ],
+  "taiwan_prices": {
+    "crude_steel_production": {
+      "value": 146.6611,
+      "unit": "萬噸",
+      "mom_change": -2.5013,
+      "month": "2026-08",
+      "stale": false
+    },
+    "north_scrap_price": {
+      "value": 10.3,
+      "unit": "元/公斤",
+      "mom_change": 0.1,
+      "month": "2026-10",
+      "stale": false
+    },
+    "billet_price": {
+      "value": 16075.0,
+      "unit": "元/公噸",
+      "mom_change": 25.0,
+      "month": "2026-10",
+      "stale": false
+    },
+    "fengxing_rebar_price": {
+      "value": 18500.0,
+      "unit": "元/公噸",
+      "mom_change": 200.0,
+      "month": "2026-10",
+      "stale": false
+    },
+    "h_beam_price": {
+      "value": 38500.0,
+      "unit": "元/公噸",
+      "mom_change": 1000.0,
+      "month": "2026-10",
+      "stale": false
+    },
+    "csc_wire_rod_price": {
+      "value": 28350.0,
+      "unit": "元/公噸",
+      "mom_change": 0.0,
+      "month": "2026-10",
+      "stale": false
+    },
+    "data_month": "2026-10"
+  },
+  "exchange_rate": {
+    "usd_twd": 32.61,
+    "usd_twd_estimate": 32.61,
+    "source": "國泰世華銀行",
+    "fetched_at": "2026-11-02T23:33:35.219537+08:00",
+    "impact_on_steel": "11月2日美元兌新台幣中間值為32.61元。進口廢鋼以美元計價，但缺少可比的前期牌價，無法判定匯率讓成本增加或減少多少。實際成本仍看購匯成交價。",
+    "spot_buy": 32.51,
+    "spot_sell": 32.71
+  },
+  "spread_analysis": "10月每公噸鋼胚與廢鋼價差約5,775元，較9月縮小75元；鋼筋與鋼胚價差約2,425元，擴大175元。H型鋼與鋼胚價差約22,425元，擴大975元，但交易口徑不同。這些只是價格相減，未扣耗損、電費與加工費，不能當成鋼廠利潤；型鋼也不是由鋼筋加工而成。",
+  "monthly_trend": "11月鋼市預估偏穩，型鋼較有漲價機會。東和已調高訂單基價，豐興鋼筋則在上週漲價後於11月2日開平盤。廢鋼成本仍有支撐，但鋼筋買氣偏弱，買家不必把廠價上漲直接當成成交價全面上漲。北部廢鋼與鋼胚的11月同口徑新價還沒確認。",
+  "international_outlook": "國際市場漲跌互見。中國9月鋼材出口1,049.2萬公噸，供應競爭仍大；日本10月廢鋼出口標售價高於9月，顯示原料報價有支撐。美國貨櫃廢鋼11月2日報每公噸350美元，較上週持平。只有一家媒體報導，土耳其10月29日進口混合廢鋼市場價每公噸381美元，來源國及成交性質還沒確認。韓國方面，10月23日越南進口台、日、韓熱軋鋼捲報每公噸550美元，較前期持平，無法單獨判斷韓國國內行情。",
+  "materials_outlook": "工程成本壓力主要來自機電和工資。全國9月營造工程物價指數中，機電設備較8月漲1.69%，工資漲1.25%，瀝青漲0.81%；水泥跌0.20%，砂石持平，木材漲0.09%。採購時應分開確認材料和工班報價，指數變動不等於個別工程的成交漲幅。",
+  "price_forecast": {
+    "items": {
+      "north_scrap_price": {
+        "week": {
+          "direction": "stable",
+          "change_estimate": "-0.05～+0.05元／公斤",
+          "reason": "本週北部廢鋼成交價預估大致持平，變動約每公斤負0.05至正0.05元。豐興11月2日廠內收購價維持每公斤10.1元，提供平盤參考，但它不是北部大盤價格。日本10月廢鋼出口標售價上升，給賣方支撐；豐興表示鋼筋需求仍弱，則限制鋼廠採購意願。兩股力量抵消，本週先看平盤。"
+        },
+        "next_month": {
+          "direction": "up",
+          "change_estimate": "+0.10～+0.50元／公斤",
+          "reason": "11月北部廢鋼月均價略偏漲，預估較10月每公斤增加0.10至0.50元。10月下旬豐興已提高廢鋼收購價，日本10月出口標售價也高於9月，賣方仍有支撐。但11月首週豐興平盤，鋼筋需求偏弱，可能壓住後續漲幅。北部大盤11月同口徑新價還沒確認，上漲把握不高。",
+          "scenarios": {
+            "up": {
+              "prob": 42,
+              "range": "超過+0.0309至+0.80元／公斤"
+            },
+            "stable": {
+              "prob": 23,
+              "range": "-0.0309～+0.0309元／公斤"
+            },
+            "down": {
+              "prob": 35,
+              "range": "-0.80至低於-0.0309元／公斤"
+            }
+          }
+        },
+        "evidence": [
+          "F1",
+          "F3",
+          "F11",
+          "F18",
+          "F19"
+        ],
+        "counterpoint": "北部大盤11月收購價若沒有跟上10月下旬廠內調價，或鋼廠因買氣弱而降價，月均價可能持平或下跌。",
+        "watch": "追蹤北部大盤11月實際收購價，以及豐興下週廢鋼盤價；若大盤連續下跌，改看月均價下跌。",
+        "revision_note": "本週由漲改為持平，因豐興11月2日廢鋼盤價開平；月均價維持偏漲，但因新週盤未再調漲而保留較大下跌機會。",
+        "ensemble": {
+          "runs": 3,
+          "month_agree": 3,
+          "week_agree": 3
+        }
+      },
+      "billet_price": {
+        "week": {
+          "direction": "down",
+          "change_estimate": "-100～-50元／公噸",
+          "reason": "本週小鋼胚（軋成鋼筋前的半成品）成交價預估每公噸小跌50至100元。豐興表示鋼筋需求仍相對疲弱，買家對半成品的採購動能有限；中國9月鋼材出口量仍大，也增加區域競爭壓力。不過，豐興10月下旬提高廢鋼收購價，限制鋼廠降價空間。台灣本週鋼胚實際新報價還沒確認。"
+        },
+        "next_month": {
+          "direction": "down",
+          "change_estimate": "-150～-450元／公噸",
+          "reason": "11月小鋼胚月均價略偏跌，預估較10月每公噸減少150至450元。鋼筋需求疲弱，鋼胚買家較難接受漲價；中國9月鋼材出口量仍大，競爭壓力尚在。但廢鋼成本在10月下旬上升，可能支撐鋼廠報價。上次低估10月鋼胚價格的穩定性，這次保留下跌之外的明顯機會，且不把唐山報價當成台灣成交價。",
+          "scenarios": {
+            "up": {
+              "prob": 33,
+              "range": "超過+48.225至+700元／公噸"
+            },
+            "stable": {
+              "prob": 26,
+              "range": "-48.225～+48.225元／公噸"
+            },
+            "down": {
+              "prob": 41,
+              "range": "-700至低於-48.225元／公噸"
+            }
+          }
+        },
+        "evidence": [
+          "F1",
+          "F3",
+          "F13",
+          "F18",
+          "F23"
+        ],
+        "counterpoint": "廢鋼成本上升若持續反映在鋼胚報價，或下游補庫存，11月月均價可能不跌反漲。",
+        "watch": "追蹤台灣鋼胚11月同口徑成交價及北部廢鋼收購價；若兩者同步走高，改看鋼胚上漲。",
+        "revision_note": "維持前次判斷，鋼筋需求偏弱仍壓抑鋼胚；但上次誤判10月下跌，本次降低下跌把握，不把海外報價直接套用台灣。",
+        "ensemble": {
+          "runs": 3,
+          "month_agree": 3,
+          "week_agree": 3
+        }
+      },
+      "fengxing_rebar_price": {
+        "week": {
+          "direction": "stable",
+          "change_estimate": "-50～+50元/公噸",
+          "reason": "本週豐興鋼筋成交價預估持平，議價波動約每公噸正負50元。豐興11月2日基價維持每公噸18,500元，較上週沒有再漲。10月下旬廢鋼漲價仍支撐鋼廠報價，但只有一家媒體報導豐興表示鋼筋需求相對疲弱，買家未必接受更高價格。盤價不是每筆實際成交價，仍應逐案詢價。"
+        },
+        "next_month": {
+          "direction": "up",
+          "change_estimate": "+60～+300元/公噸",
+          "reason": "11月豐興鋼筋月均價較可能小漲，每公噸約漲60至300元。豐興10月下旬提高廢鋼收購價後，鋼筋基價也跟著上漲，原料成本對後續報價仍有支撐。不過11月2日基價與10月官方月均價同為每公噸18,500元，若後續週盤不變，月均價可能持平。需求偏弱也限制再漲空間，因此上漲把握不高。",
+          "scenarios": {
+            "up": {
+              "prob": 42,
+              "range": "+55.51～+700元/公噸"
+            },
+            "stable": {
+              "prob": 35,
+              "range": "-55.5～+55.5元/公噸"
+            },
+            "down": {
+              "prob": 23,
+              "range": "-700～-55.51元/公噸"
+            }
+          }
+        },
+        "evidence": [
+          "F1",
+          "F2",
+          "F3",
+          "F18",
+          "F19"
+        ],
+        "counterpoint": "若11月後續週盤都維持每公噸18,500元，官方月均價可能持平，而不是上漲。",
+        "watch": "觀察豐興後續週盤和實際接單；若持續平盤或降價，且廢鋼成本回落，就下修月均價判斷。",
+        "revision_note": "維持前次判斷：本週看平、11月月均價看小漲。11月2日平盤降低了再漲的把握，但先前廢鋼成本仍有支撐。",
+        "ensemble": {
+          "runs": 3,
+          "month_agree": 3,
+          "week_agree": 3
+        }
+      },
+      "h_beam_price": {
+        "week": {
+          "direction": "up",
+          "change_estimate": "+100～+300元／公噸",
+          "reason": "本週東鋼H型鋼（截面呈H形的建築鋼材）流通成交價預估每公噸上漲100至300元。東和11月訂單基價每公噸上調500元，廠方報價提高，流通商有理由跟進；10月下旬廢鋼成本上升也提供支撐。但訂單基價不是現貨成交價，買家是否接受還沒確認，因此不把廠方漲幅全部套入。"
+        },
+        "next_month": {
+          "direction": "up",
+          "change_estimate": "+200～+700元／公噸",
+          "reason": "11月東鋼H型鋼流通月均價略偏漲，預估較10月每公噸增加200至700元。東和已調高11月訂單基價，若流通商能轉嫁部分成本，月均價有機會跟漲。不過，官方價格過去35個月有23個月持平，10月也已上漲；流通端成交是否接受新價仍未確認，所以持平機會接近上漲。",
+          "scenarios": {
+            "up": {
+              "prob": 49,
+              "range": "超過+115.5至+1,200元／公噸"
+            },
+            "stable": {
+              "prob": 44,
+              "range": "-115.5～+115.5元／公噸"
+            },
+            "down": {
+              "prob": 7,
+              "range": "-1,000至低於-115.5元／公噸"
+            }
+          }
+        },
+        "evidence": [
+          "F3",
+          "F6",
+          "F17",
+          "F21"
+        ],
+        "counterpoint": "東和基價上漲若未獲流通商與工地買家接受，官方月均流通價可能仍持平。",
+        "watch": "追蹤符合官方統計品規的11月流通成交價；若成交連續維持10月水準，改看月均價持平。",
+        "revision_note": "維持前次判斷：東和11月訂單基價調漲支持週價與月均價偏漲，但流通成交尚未確認。",
+        "ensemble": {
+          "runs": 3,
+          "month_agree": 3,
+          "week_agree": 3
+        }
+      },
+      "csc_wire_rod_price": {
+        "week": {
+          "direction": "stable",
+          "change_estimate": "-50～+50元/公噸",
+          "reason": "本週中鋼棒線成交行情預估持平，議價波動約每公噸正負50元。只有一家媒體整理指出，中鋼第四季棒線盤價持平；11月部分板捲雖調漲，不能當成棒線也已漲價。原料仍有成本壓力，但中國9月鋼材出口量大，買家對漲價可能較謹慎。棒線最新接單與本週實際成交價都還沒確認。"
+        },
+        "next_month": {
+          "direction": "stable",
+          "change_estimate": "-85～+85元/公噸",
+          "reason": "11月中鋼棒線月均價預估持平，較10月每公噸波動不超過85元。只有一家媒體整理稱第四季盤價持平，加上過去35個月有29個月持平，短期調價機率較低。上方有原料成本壓力，下方有中國出口供應競爭，兩者可能互相抵消；但缺少棒線最新接單與中鋼實際原料採購資料，仍須保留調價可能。",
+          "scenarios": {
+            "up": {
+              "prob": 11,
+              "range": "+85.06～+1,200元/公噸"
+            },
+            "stable": {
+              "prob": 79,
+              "range": "-85.05～+85.05元/公噸"
+            },
+            "down": {
+              "prob": 10,
+              "range": "-1,200～-85.06元/公噸"
+            }
+          }
+        },
+        "evidence": [
+          "F7",
+          "F13",
+          "F15",
+          "F16",
+          "F22"
+        ],
+        "counterpoint": "若中鋼對棒線另行公布調價，或官方月均價反映不同交易條件，11月可能超出持平範圍。",
+        "watch": "確認中鋼棒線正式盤價及11月同口徑成交資料；若正式調價並持續反映在行情上，就改判方向。",
+        "revision_note": "維持前次判斷：本週及11月月均價看平。棒線歷來較少調價，現有資料也未確認第四季另有調價。",
+        "ensemble": {
+          "runs": 3,
+          "month_agree": 3,
+          "week_agree": 3
+        }
+      }
+    },
+    "overall_basis": "最重要的是豐興11月2日三項週盤持平，以及東和調高11月型鋼訂單基價。判斷月均價時，也先看各品項過去漲跌頻率：棒線和H型鋼較常持平，廢鋼、鋼胚及鋼筋變動較頻繁。北部大盤與鋼胚的11月同口徑新價尚未確認；豐興廠內廢鋼價另有報導分歧，暫採兩個網站支持的每公噸10,100元。",
+    "week_label": "本週",
+    "week_range": "11/02–11/08",
+    "targets": {
+      "north_scrap_price": {
+        "baseline_month": "2026-10",
+        "baseline_value": 10.3,
+        "target_month": "2026-11"
+      },
+      "billet_price": {
+        "baseline_month": "2026-10",
+        "baseline_value": 16075.0,
+        "target_month": "2026-11"
+      },
+      "fengxing_rebar_price": {
+        "baseline_month": "2026-10",
+        "baseline_value": 18500.0,
+        "target_month": "2026-11"
+      },
+      "h_beam_price": {
+        "baseline_month": "2026-10",
+        "baseline_value": 38500.0,
+        "target_month": "2026-11"
+      },
+      "csc_wire_rod_price": {
+        "baseline_month": "2026-10",
+        "baseline_value": 28350.0,
+        "target_month": "2026-11"
+      }
+    }
+  },
+  "risk_factors": [
+    "北部廢鋼實際收購價若與豐興廠價走勢不同，廢鋼和鋼筋預測都可能偏離。",
+    "東和型鋼新訂單價若無法反映到流通成交價，H型鋼月均價可能持平。",
+    "鋼胚缺少11月台灣同口徑新價，海外報價不能直接替代國內成交價。"
+  ],
+  "top_stories": [
+    {
+      "headline": "豐興11月首週三大鋼品盤價開平",
+      "subheadline": "廢鋼、鋼筋與型鋼均未再調價",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNYjZWQkRDcEpfdFVhRXZyZkhVa1BvdWxqNDJpNUVZekNMeFNNU2lyLUZOVTNFdC1pdGJWZjE2bGg5ZWZjckt2X3BVSUR3SGJkU25YaDFYeWtJMEdWODNLZzVWeDZJd2RVSEloZ3FkZGJsTnFMc0ZsNGdBZHQwZm9PSmRB?oc=5",
+      "source": "壹蘋新聞網",
+      "date": "2026-11-02",
+      "coverage": 8,
+      "anchor": "prices",
+      "search": "",
+      "articles": [
+        {
+          "title": "豐興廢鋼、鋼筋、型鋼3大產品 11月初全面開平盤",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNYjZWQkRDcEpfdFVhRXZyZkhVa1BvdWxqNDJpNUVZekNMeFNNU2lyLUZOVTNFdC1pdGJWZjE2bGg5ZWZjckt2X3BVSUR3SGJkU25YaDFYeWtJMEdWODNLZzVWeDZJd2RVSEloZ3FkZGJsTnFMc0ZsNGdBZHQwZm9PSmRB?oc=5",
+          "source": "壹蘋新聞網",
+          "date": "2026-11-02"
+        },
+        {
+          "title": "原料行情持穩、下游買氣緩 豐興本周盤價轉平盤｜新聞快訊｜豐雲學堂",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1rLVhYeGJFYkdWYnhFTWNpSndmTzJDTEtwSmZOTkpzNVRXVWRFbFlIdUVOem1rVzlVOUJFeTJMWmVyWDl6YzgzNk1RbzV0LUpzLVJDVk1YdC1IaHpiaFlTVkFocktnakNTbmd4V3ZwNUJkQ095WUE?oc=5",
+          "source": "永豐金證券",
+          "date": "2026-11-02"
+        },
+        {
+          "title": "國際廢鋼走勢持平豐興.威致本周報價開平盤| 產經",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5PcHpOeTVIeEJCOW1CWkQxTnR6dExqR2VUNDN0Y21xa1M1WTg2SnFUcDZzQjVNdE9GdnJjV21hMkhTZXJyWWw4OTQxb3p2Y1J4TG1NUWxEYXFaNGc?oc=5",
+          "source": "非凡新聞台",
+          "date": "2026-11-02"
+        },
+        {
+          "title": "《鋼鐵股》豐興盤價再平盤 10月出貨符合預期",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNQktXTEhkYnZOcXZiWmJtNklDbHpvRnllYVVxUzkwclhrVC1URGpGSzB2d0pNZE9HR0dBME9ZYktGYm9UUXlLbDdrdERfVkE1OTZNRFVwaklJSzVnRkkzNGtGRVlFdmt4eHJBR2JtWjNSaUZnZVpEY2JvYnFrcjBmRjdESnlHWnFl?oc=5",
+          "source": "富聯網",
+          "date": "2026-11-02"
+        },
+        {
+          "title": "原料行情持穩、下游買氣緩 豐興本周盤價轉平盤",
+          "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5qM1F6UjFqWktSWEM4TG9Uc2c2Q205WmtKS1ZEdjFnXzBoX04tYzlVZWNxUnJLMW51dnlEU05jS3BaVDZqSXRfcmZ6ZHY4NWc?oc=5",
+          "source": "鉅亨網",
+          "date": "2026-11-02"
+        },
+        {
+          "title": "買盤平穩，豐興本週三大產品開平盤- 新聞",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPc3VUUU1pZURBZnhmLU5VbHlhWG9CWEp2WVIxcmVnLWJObjYxbGhpemhsTUlIeUpfT1VjbjZkSEEySUxMb0hwek4ycWkxeWlqMWpiRWphVHktbVdLYW50ZGRwYVVQRmdQLUZlUzh1VW1saXNpUjgxbk9aekhWZXZBYmQ1WlBaUHZGR2hkYTZFbGNkQQ?oc=5",
+          "source": "MoneyDJ",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "headline": "中鋼盤價有望連續三次調漲",
+      "subheadline": "媒體預估，尚非中鋼正式公告",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBsNXQteFFKNW9od3h3R0RuR1RDYkVfb3RjR0pNdXJVeFQzakN2c0ZDSDlVcDU1dTVNRWtxaW02bDUybEYwWENlQ3Y0SVZrWGlU0gFWQVVfeXFMT2FfZFR5WlhEMFZXZjVzaUVxQ2RnTmlhUTFTWGNQci1XVjVzV0twM1JKN2RLWHlzYTB5bkdtZk03Z3RsQmVYVURUMHNqdlZKT2M4RUloYlE?oc=5",
+      "source": "UDN",
+      "date": "2026-11-02",
+      "coverage": 2,
+      "anchor": "news",
+      "search": "",
+      "articles": [
+        {
+          "title": "中鋼盤價有望連三漲",
+          "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBsNXQteFFKNW9od3h3R0RuR1RDYkVfb3RjR0pNdXJVeFQzakN2c0ZDSDlVcDU1dTVNRWtxaW02bDUybEYwWENlQ3Y0SVZrWGlU0gFWQVVfeXFMT2FfZFR5WlhEMFZXZjVzaUVxQ2RnTmlhUTFTWGNQci1XVjVzV0twM1JKN2RLWHlzYTB5bkdtZk03Z3RsQmVYVURUMHNqdlZKT2M4RUloYlE?oc=5",
+          "source": "UDN",
+          "date": "2026-11-02"
+        },
+        {
+          "title": "中鋼盤價有望連三漲 | 集中市場 | 證券",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOaE43TWFTUDBha3ktWkN2MDZaMldsSm8wLVBHSkdLcU5VcXZWNUFvTFRjTVpsenpLV1lqb2xjWnJyaWRQTGV0RVdXSHYtdkZ0eTZ0cUViVllUODNoQ0prb2twbTVySDFsT1ljZHpOeDRpQ0REcXdOVW0zNi1XV29yMA?oc=5",
+          "source": "經濟日報",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "headline": "越南和發11月鋼價平盤引關注",
+      "subheadline": "相關報導認為中鋼與新光鋼受惠",
+      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBOelFFUTVQdHpwRWlORmQ1bnBodml4QXBabzVGdTBiM2xQVGk3S1V5eXhtYm9iYVJWMVUwNHRhZ2EwSWJWTU1hSHUwMTQ?oc=5",
+      "source": "聚財網",
+      "date": "2026-11-02",
+      "coverage": 2,
+      "anchor": "news",
+      "search": "",
+      "articles": [
+        {
+          "title": "越南和發11月鋼價平盤展現抗跌韌性 中鋼、新光鋼樂見",
+          "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBOelFFUTVQdHpwRWlORmQ1bnBodml4QXBabzVGdTBiM2xQVGk3S1V5eXhtYm9iYVJWMVUwNHRhZ2EwSWJWTU1hSHUwMTQ?oc=5",
+          "source": "聚財網",
+          "date": "2026-11-02"
+        },
+        {
+          "title": "越南和發11月鋼價平盤展現抗跌韌性中鋼、新光鋼樂見| 產業綜合| 產經",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE95OTZDaGNNRjBFSmUxekh1aTBCaWluU0JGSFBqclBxWnZIbFV1dG1GZ2w2M1FtWmM0MWxVUXhHaWRzUjdXeW5QV1dDOTRFNDg0T3JIdEhicG8zYkdjRWw0NkZOM2txQTZTd2VTdWdjWnlvSGM?oc=5",
+          "source": "UDN",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    {
+      "headline": "燁輝11月兩大鋼品每噸漲1,200元",
+      "subheadline": "只有一家媒體在近三天內報導具體漲幅",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5Lc21SN2VjWHlkRHZmRE5NOW5mNHJvRUEyZnJnMWxsa1BsVVpsYjEzV3NrM2lyVnNnTWhsb05HTEZEdW1nUjlWSEFaNDZUQ280aGRGQlVGcFFnZ9IBX0FVX3lxTE0yNFpObjk5X3BVLUlob2NoMGFvMG9TRUhOQUtUNXRXeUFfelJVNDNReUxaZUxtbm04NFVVeFpLM3hjTGl5MnpLckloZHIzblVUU1o1YllXV1pBVUJrV1FV?oc=5",
+      "source": "經濟日報",
+      "date": "2026-11-01",
+      "coverage": 1,
+      "anchor": "news",
+      "search": "",
+      "articles": [
+        {
+          "title": "燁輝11月盤價開漲盤 兩大主力鋼品漲每噸1,200元",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5Lc21SN2VjWHlkRHZmRE5NOW5mNHJvRUEyZnJnMWxsa1BsVVpsYjEzV3NrM2lyVnNnTWhsb05HTEZEdW1nUjlWSEFaNDZUQ280aGRGQlVGcFFnZ9IBX0FVX3lxTE0yNFpObjk5X3BVLUlob2NoMGFvMG9TRUhOQUtUNXRXeUFfelJVNDNReUxaZUxtbm04NFVVeFpLM3hjTGl5MnpLckloZHIzblVUU1o1YllXV1pBVUJrV1FV?oc=5",
+          "source": "經濟日報",
+          "date": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "headline": "中鋼與中龍10月出貨近100萬噸",
+      "subheadline": "只有一家媒體報導，稱創今年單月第三高",
+      "url": "https://news.google.com/rss/articles/CBMi4wJBVV95cUxPOTZISW9MNkRPUVVPbmMzY1NwaHFBOHExeGNmREdmZ2FZNHNzbkJwWHh4aHFqUzBXQ3psbTY4aFZyYWQyQlJvczlreDkwRzFid2h4STBOUTJWaTEtSnFNZjVUbEh2VXdkVHMzYTRUbUEyUXpJWHlCeVNySTRNYmZ2Q0pzRHoyOTF4dTRzV0JkZzR5WVVKd1d5WGNITWJXcEdMb19jblE1S1NXdDZnWGxrVEw4T2xhVEpOYWlUcHdYYTdmY3pDY2gyQ05KUG9UN005ZTJHclE5Y2xfNml6dnIyR1F3TDk0YThXMXd1Wl84ejBlc0xXaXNkNG9vVXlzaXNaeUNaS0RYU0c0TXhOZkhHQUdmeHdERVo0WWg0djJMNUcwN2JiUHdhSTBjSWtadGNKODFzb1ZZUDZ2RVJXbUdwbTR5emN5QjJjalNJdmxMQ3F4MEFfVE5ocmFTcHg0aGpMUzM4?oc=5",
+      "source": "Life 生活網",
+      "date": "2026-11-02",
+      "coverage": 1,
+      "anchor": "news",
+      "search": "",
+      "articles": [
+        {
+          "title": "中鋼與中龍10月出貨量逼近100萬公噸 創今年來單月第三高",
+          "url": "https://news.google.com/rss/articles/CBMi4wJBVV95cUxPOTZISW9MNkRPUVVPbmMzY1NwaHFBOHExeGNmREdmZ2FZNHNzbkJwWHh4aHFqUzBXQ3psbTY4aFZyYWQyQlJvczlreDkwRzFid2h4STBOUTJWaTEtSnFNZjVUbEh2VXdkVHMzYTRUbUEyUXpJWHlCeVNySTRNYmZ2Q0pzRHoyOTF4dTRzV0JkZzR5WVVKd1d5WGNITWJXcEdMb19jblE1S1NXdDZnWGxrVEw4T2xhVEpOYWlUcHdYYTdmY3pDY2gyQ05KUG9UN005ZTJHclE5Y2xfNml6dnIyR1F3TDk0YThXMXd1Wl84ejBlc0xXaXNkNG9vVXlzaXNaeUNaS0RYU0c0TXhOZkhHQUdmeHdERVo0WWg0djJMNUcwN2JiUHdhSTBjSWtadGNKODFzb1ZZUDZ2RVJXbUdwbTR5emN5QjJjalNJdmxMQ3F4MEFfVE5ocmFTcHg0aGpMUzM4?oc=5",
+          "source": "Life 生活網",
+          "date": "2026-11-02"
+        }
+      ]
+    }
+  ],
+  "headline": "豐興11月首週三大產品開平盤，鋼筋每噸18,500元",
+  "headline_sub": "東和11月H型鋼訂單基價每噸上調500元",
+  "summary": "本週鋼筋與廢鋼看平，H型鋼看漲。豐興11月2日三項週盤持平；東和11月型鋼訂單基價上調，但流通成交價是否跟漲仍待確認。11月鋼胚偏弱，棒線月均價預估持平。",
+  "confidence": "medium",
+  "research": {
+    "facts": [
+      {
+        "id": "F1",
+        "fact": "豐興11月2日週盤的廢鋼收購價為每公噸10,100元、鋼筋基價18,500元、型鋼基價25,500元，三項均較上週持平。([nstock.tw](https://www.nstock.tw/news/article_c?id=20261102-080408040000&utm_source=openai))",
+        "date": "2026-11-02",
+        "type": "報價",
+        "materials": [
+          "north_scrap_price",
+          "fengxing_rebar_price"
+        ],
+        "sources": [
+          {
+            "title": "《鋼鐵股》豐興盤價再平盤 10月出貨符合預期",
+            "url": "https://www.nstock.tw/news/article_c?id=20261102-080408040000"
+          },
+          {
+            "title": "豐興鋼鐵盤價走勢",
+            "url": "https://juyi-steel.tw/steel-price-trends/"
+          }
+        ],
+        "source_count": 2
+      },
+      {
+        "id": "F2",
+        "fact": "豐興10月27日週盤的廢鋼收購價維持每公噸10,100元；鋼筋漲200元至18,500元，型鋼漲500元至25,500元。([tw.stock.yahoo.com](https://tw.stock.yahoo.com/news/%E8%B1%90%E8%88%88%E5%BB%A2%E9%8B%BC%E4%B8%8A%E5%91%A8%E8%AE%8A%E7%9B%A4%E8%AA%BF%E6%",
+        "date": "2026-10-27",
+        "type": "報價",
+        "materials": [
+          "fengxing_rebar_price"
+        ],
+        "sources": [
+          {
+            "title": "豐興廢鋼上周變盤調漲 本周鋼筋、型鋼基價跟進開漲盤",
+            "url": "https://tw.stock.yahoo.com/news/%E8%B1%90%E8%88%88%E5%BB%A2%E9%8B%BC%E4%B8%8A%E5%91%A8%E8%AE%8A%E7%9B%A4%E8%AA%BF%E6%BC%B2-%E6%9C%AC%E5%91%A8%E9%8B%BC%E7%AD%8B-%E5%9E%8B%E9%8B%BC%E5%9F%BA%E5%83%B9%E8%B7%9F%E9%80%B2%E9%96%8B%E6%BC%B2%E7%9B%A4-090055081.html"
+          },
+          {
+            "title": "豐興鋼鐵盤價走勢",
+            "url": "https://juyi-steel.tw/steel-price-trends/"
+          }
+        ],
+        "source_count": 2
+      },
+      {
+        "id": "F3",
+        "fact": "豐興10月22日週中將廢鋼收購價調漲每公噸300元；10月5日、12日及19日的開盤價均為廢鋼9,800元、鋼筋18,300元、型鋼25,000元，單位均為每公噸。([double-steel.com](https://www.double-steel.com/zh/market?utm_source=openai))",
+        "date": "2026-10-22",
+        "type": "報價",
+        "materials": [
+          "fengxing_rebar_price"
+        ],
+        "sources": [
+          {
+            "title": "鋼鐵盤價總表",
+            "url": "https://www.double-steel.com/zh/market"
+          },
+          {
+            "title": "豐興鋼鐵盤價走勢",
+            "url": "https://juyi-steel.tw/steel-price-trends/"
+          }
+        ],
+        "source_count": 2
+      },
+      {
+        "id": "F6",
+        "fact": "東和鋼鐵11月H型鋼（截面呈H形的建築鋼材）訂單基價每公噸調漲500元；另有報導稱中龍11月型鋼基價每公噸漲900元。([fuc.com.tw](https://www.fuc.com.tw/news_detail.php?id=21&utm_source=openai))",
+        "date": "2026-11-01",
+        "type": "報價",
+        "materials": [
+          "h_beam_price"
+        ],
+        "sources": [
+          {
+            "title": "H型鋼11月開盤",
+            "url": "https://www.fuc.com.tw/news_detail.php?id=21"
+          },
+          {
+            "title": "中國台灣地區東和鋼鐵上調11月H型鋼價格",
+            "url": "https://news.steelhome.com/2026/11/02/n4786186.html"
+          }
+        ],
+        "source_count": 2
+      },
+      {
+        "id": "F7",
+        "fact": "市場整理指出，中鋼11月熱軋、冷軋及熱浸鍍鋅鋼捲每公噸調漲900元，但AP板持平；中鋼第四季棒線盤價持平。([double-steel.com](https://www.double-steel.com/zh/news/0fd0deae-f9a1-46f1-99df-48203fac72d5?utm_source=openai))",
+        "date": "2026-10-05",
+        "type": "報價",
+        "materials": [
+          "csc_wire_rod_price"
+        ],
+        "sources": [
+          {
+            "title": "2026年9月台灣鋼棒進口市場分析",
+            "url": "https://www.double-steel.com/zh/news/0fd0deae-f9a1-46f1-99df-48203fac72d5"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F8",
+        "fact": "豐興11月2日資料顯示，美國貨櫃廢鋼報價每公噸350美元，與上週持平；美國大船廢鋼及日本H2廢鋼本週未報價，不能解讀成價格為零。([nstock.tw](https://www.nstock.tw/news/article_c?id=20261102-080408040000&utm_source=openai))",
+        "date": "2026-11-02",
+        "type": "報價",
+        "materials": [
+          "north_scrap_price",
+          "fengxing_rebar_price"
+        ],
+        "sources": [
+          {
+            "title": "《鋼鐵股》豐興盤價再平盤 10月出貨符合預期",
+            "url": "https://www.nstock.tw/news/article_c?id=20261102-080408040000"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F9",
+        "fact": "鋼之家報導，10月20日美國1、2號混合重廢、比例80比20的台灣到岸評估價為每公噸344至348美元；這是市場評估價，不是已證實的成交價。([news.steelhome.com](https://news.steelhome.com/2026/10/22/n4781406.html?utm_source=openai))",
+        "date": "2026-10-20",
+        "type": "報價",
+        "materials": [
+          "north_scrap_price"
+        ],
+        "sources": [
+          {
+            "title": "美國東海岸廢鋼出口價格止跌回升",
+            "url": "https://news.steelhome.com/2026/10/22/n4781406.html"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F10",
+        "fact": "Mysteel報導，10月29日土耳其進口80比20混合重廢的市場價格為每公噸381美元；公開摘要未確認來源國及成交性質。([feigang.mysteel.com](https://feigang.mysteel.com/a/26102916/B583F4957A176522.html?utm_source=openai))",
+        "date": "2026-10-29",
+        "type": "報價",
+        "materials": [
+          "north_scrap_price"
+        ],
+        "sources": [
+          {
+            "title": "10月29日國際主要廢鋼市場價格匯總",
+            "url": "https://feigang.mysteel.com/a/26102916/B583F4957A176522.html"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F11",
+        "fact": "日本關東鐵源協同組合10月H2廢鋼出口標售平均得標價為每公噸52,077日圓，9月為48,113日圓；市場報導標售日期為10月9日。([kantotetsugen.com](https://kantotetsugen.com/data.html?utm_source=openai))",
+        "date": "2026-10-09",
+        "type": "成交",
+        "materials": [
+          "north_scrap_price"
+        ],
+        "sources": [
+          {
+            "title": "關東鐵源協同組合廢鋼出口得標價格資料",
+            "url": "https://kantotetsugen.com/data.html"
+          },
+          {
+            "title": "双享鋼鐵週報：2026第42週",
+            "url": "https://www.double-steel.com/zh/news/c27d29fb-e0fa-453c-b9af-56c2e73d1c5d"
+          }
+        ],
+        "source_count": 2
+      },
+      {
+        "id": "F12",
+        "fact": "Mysteel資料經市場週報整理，唐山遷安普通方胚10月31日主流出廠價為每公噸2,890元人民幣，低於前一截點的2,920元。([double-steel.com](https://www.double-steel.com/zh/news/f3d2a853-7081-40e3-979d-d6474d5265c8?utm_source=openai))",
+        "date": "2026-10-31",
+        "type": "報價",
+        "materials": [
+          "billet_price"
+        ],
+        "sources": [
+          {
+            "title": "双享鋼鐵週報：2026第45週",
+            "url": "https://www.double-steel.com/zh/news/f3d2a853-7081-40e3-979d-d6474d5265c8"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F13",
+        "fact": "中國海關統計顯示，9月鋼材出口1,049.2萬公噸，較8月增加3.3%；1至9月累計出口8,564.1萬公噸，年減2.6%。([news.metal.net.cn](https://news.metal.net.cn/content-338-8015710-1.html?utm_source=openai))",
+        "date": "2026-09",
+        "type": "公告",
+        "materials": [
+          "billet_price",
+          "h_beam_price",
+          "csc_wire_rod_price"
+        ],
+        "sources": [
+          {
+            "title": "2026年9月中國出口鋼材1,049.2萬噸",
+            "url": "https://news.metal.net.cn/content-338-8015710-1.html"
+          },
+          {
+            "title": "China's finished steel exports in January–September",
+            "url": "https://www.steelorbis.com/steel-news/latest-news/chinas-finished-steel-exports-down-26-in-jan-sept-up-33-in-sept-from-aug-1483606.htm"
+          }
+        ],
+        "source_count": 2
+      },
+      {
+        "id": "F14",
+        "fact": "中國9月全部出口鋼材平均單價為每公噸735.7美元；這是不同產品混合後的統計均價，不是鋼筋或鋼胚的即期出口報價。([news.metal.net.cn](https://news.metal.net.cn/content-338-8015710-1.html?utm_source=openai))",
+        "date": "2026-09",
+        "type": "公告",
+        "materials": [
+          "billet_price",
+          "h_beam_price",
+          "csc_wire_rod_price"
+        ],
+        "sources": [
+          {
+            "title": "2026年9月中國出口鋼材1,049.2萬噸",
+            "url": "https://news.metal.net.cn/content-338-8015710-1.html"
+          },
+          {
+            "title": "中鋼協：9月進出口鋼材及鐵礦石",
+            "url": "https://www.guandian.hk/article/20261014/10028923.html"
+          }
+        ],
+        "source_count": 2
+      },
+      {
+        "id": "F15",
+        "fact": "市場週報指出，10月30日澳洲62%粉礦運往中國的到岸參考價格為每公噸92.25美元；這是日價，不能直接當成10月月均價。([double-steel.com](https://www.double-steel.com/zh/news/f3d2a853-7081-40e3-979d-d6474d5265c8?utm_source=openai))",
+        "date": "2026-10-30",
+        "type": "報價",
+        "materials": [
+          "billet_price",
+          "csc_wire_rod_price"
+        ],
+        "sources": [
+          {
+            "title": "双享鋼鐵週報：2026第45週",
+            "url": "https://www.double-steel.com/zh/news/f3d2a853-7081-40e3-979d-d6474d5265c8"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F16",
+        "fact": "市場週報指出，10月27至28日澳洲一般低揮發硬焦煤離岸價約每公噸230.1美元，優質低揮發硬焦煤約265美元；焦煤與發電用動力煤不是同一品項。([double-steel.com](https://www.double-steel.com/zh/news/f3d2a853-7081-40e3-979d-d6474d5265c8?utm_source=openai))",
+        "date": "2026-10-28",
+        "type": "報價",
+        "materials": [
+          "csc_wire_rod_price"
+        ],
+        "sources": [
+          {
+            "title": "双享鋼鐵週報：2026第45週",
+            "url": "https://www.double-steel.com/zh/news/f3d2a853-7081-40e3-979d-d6474d5265c8"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F17",
+        "fact": "臺北市政府整理的國土管理署統計顯示，2026年第二季全國核發建造執照的總樓地板面積為800.767萬平方公尺。([taipeiecon.taipei](https://taipeiecon.taipei/Situation/more?id=c429ec67f4ed47a39197821279a42bd3&utm_source=openai))",
+        "date": "2026-06",
+        "type": "公告",
+        "materials": [
+          "fengxing_rebar_price",
+          "h_beam_price"
+        ],
+        "sources": [
+          {
+            "title": "臺北產經動態：2026年第二季",
+            "url": "https://taipeiecon.taipei/Situation/more?id=c429ec67f4ed47a39197821279a42bd3"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F18",
+        "fact": "豐興表示，10月整體出貨高於9月；報導同時指出鋼筋需求仍相對疲弱。([nstock.tw](https://www.nstock.tw/news/article_c?id=20261102-080408040000&utm_source=openai))",
+        "date": "2026-11-02",
+        "type": "公告",
+        "materials": [
+          "fengxing_rebar_price"
+        ],
+        "sources": [
+          {
+            "title": "《鋼鐵股》豐興盤價再平盤 10月出貨符合預期",
+            "url": "https://www.nstock.tw/news/article_c?id=20261102-080408040000"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F19",
+        "fact": "經濟部9月18日電價審議後決定10月起電價不調整，平均電價維持每度3.7823元；此平均值不是電爐鋼廠的個別契約電價。([www3.moeaea.gov.tw](https://www3.moeaea.gov.tw/ele102/Content/Messagess/List01.aspx?MmmID=654246034164516005&utm_source=openai))",
+        "date": "2026-09-18",
+        "type": "公告",
+        "materials": [
+          "north_scrap_price",
+          "billet_price",
+          "fengxing_rebar_price",
+          "h_beam_price"
+        ],
+        "sources": [
+          {
+            "title": "經濟部電價費率審議會：115年第2次會議資料",
+            "url": "https://www3.moeaea.gov.tw/ele102/Content/Messagess/List01.aspx?MmmID=654246034164516005"
+          },
+          {
+            "title": "Taiwan freezes electricity rates to support economy",
+            "url": "https://focustaiwan.tw/business/202609180019"
+          }
+        ],
+        "source_count": 2
+      },
+      {
+        "id": "F20",
+        "fact": "碳費（對溫室氣體排放收取的費用）規定涵蓋全廠直接排放與用電間接排放合計超過每年25,000公噸二氧化碳當量的適用事業；是否課徵及實際金額仍須逐廠核對。([oaout.moenv.gov.tw](https://oaout.moenv.gov.tw/law/EngLawContent.aspx?id=371&lan=E&utm_source=openai))",
+        "date": "2026-09-01",
+        "type": "公告",
+        "materials": [
+          "billet_price",
+          "fengxing_rebar_price",
+          "h_beam_price",
+          "csc_wire_rod_price"
+        ],
+        "sources": [
+          {
+            "title": "環境部碳費收費法規",
+            "url": "https://oaout.moenv.gov.tw/law/EngLawContent.aspx?id=371&lan=E"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F21",
+        "fact": "財政部9月表示，當時課徵反傾銷稅的產品包括特定熱軋扁軋鋼品、碳鋼鋼板及特定鍍鋅鋼品；適用對象與稅率須依各案確認。([mof.gov.tw](https://www.mof.gov.tw/%20/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=8f8f4e6b19eb445b8b63744a161afff0&utm_source=openai))",
+        "date": "2026-09-08",
+        "type": "公告",
+        "materials": [
+          "h_beam_price",
+          "csc_wire_rod_price"
+        ],
+        "sources": [
+          {
+            "title": "申請課徵反傾銷稅應注意是否符合傾銷要件",
+            "url": "https://www.mof.gov.tw/%20/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=8f8f4e6b19eb445b8b63744a161afff0"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F22",
+        "fact": "美國商務部10月14日公布台灣特定抗腐蝕鋼品反傾銷行政複查初步結果；這是特定產品及複查期間的初步認定，不代表所有台灣鋼品均適用相同稅率。([govinfo.gov](https://www.govinfo.gov/content/pkg/FR-2026-10-14/html/2026-20897.htm?utm_source=openai))",
+        "date": "2026-10-14",
+        "type": "公告",
+        "materials": [
+          "h_beam_price",
+          "csc_wire_rod_price"
+        ],
+        "sources": [
+          {
+            "title": "Certain Corrosion-Resistant Steel Products From Taiwan: Preliminary Results",
+            "url": "https://www.govinfo.gov/content/pkg/FR-2026-10-14/html/2026-20897.htm"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F23",
+        "fact": "中國對列入目錄的部分鋼鐵產品自2026年1月1日起實施出口許可證管理；許可證管理不等於全面禁止出口。([tid.gov.hk](https://www.tid.gov.hk/en/tradecircular/files/2025/ci10772025a.pdf?utm_source=openai))",
+        "date": "2026-01-01",
+        "type": "公告",
+        "materials": [
+          "billet_price",
+          "h_beam_price",
+          "csc_wire_rod_price"
+        ],
+        "sources": [
+          {
+            "title": "中國商務部及海關總署2025年第79號公告",
+            "url": "https://www.tid.gov.hk/en/tradecircular/files/2025/ci10772025a.pdf"
+          }
+        ],
+        "source_count": 1
+      },
+      {
+        "id": "F24",
+        "fact": "11月2日國泰世華美元即期買入為32.51元、賣出為32.71元，兩者中間值為每美元32.61元；進口商實際購匯成本應看成交匯率，不能直接視為中間值。([findrate.tw](https://www.findrate.tw/bank/11/backup/?utm_source=openai))",
+        "date": "2026-11-02",
+        "type": "報價",
+        "materials": [
+          "north_scrap_price",
+          "billet_price",
+          "fengxing_rebar_price",
+          "h_beam_price",
+          "csc_wire_rod_price"
+        ],
+        "sources": [
+          {
+            "title": "國泰世華匯率備份",
+            "url": "https://www.findrate.tw/bank/11/backup/"
+          }
+        ],
+        "source_count": 1
+      }
+    ],
+    "drivers": {
+      "north_scrap_price": [
+        {
+          "dimension": "成本",
+          "factor": "美元計價進口廢鋼仍須承擔匯率成本；目前缺少可比的前期國泰世華牌價。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "week",
+          "facts": [
+            "F8",
+            "F24"
+          ]
+        },
+        {
+          "dimension": "供給",
+          "factor": "日本10月H2出口標售價高於9月，但不能直接當成台灣到岸價。",
+          "direction": "up",
+          "strength": 1,
+          "horizon": "week",
+          "facts": [
+            "F11"
+          ]
+        },
+        {
+          "dimension": "需求",
+          "factor": "豐興表示鋼筋需求仍相對疲弱，可能限制廢鋼採購動能。",
+          "direction": "down",
+          "strength": 1,
+          "horizon": "week",
+          "facts": [
+            "F18"
+          ]
+        },
+        {
+          "dimension": "政策與貿易",
+          "factor": "10月起電價未調整，沒有已確認的新一輪電價上漲壓力。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "week",
+          "facts": [
+            "F19"
+          ]
+        },
+        {
+          "dimension": "市場情緒",
+          "factor": "豐興本週三項盤價持平，美國貨櫃廢鋼報價也持平。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "week",
+          "facts": [
+            "F1",
+            "F8"
+          ]
+        },
+        {
+          "dimension": "季節性",
+          "factor": "缺少足以確認本週季節性影響的具體資料。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "week",
+          "facts": []
+        }
+      ],
+      "billet_price": [
+        {
+          "dimension": "成本",
+          "factor": "豐興10月下旬提高廢鋼收購價，反映電爐原料成本已上升。",
+          "direction": "up",
+          "strength": 2,
+          "horizon": "week",
+          "facts": [
+            "F3"
+          ]
+        },
+        {
+          "dimension": "供給",
+          "factor": "中國9月鋼材出口量仍超過1,000萬公噸，但不能直接等同台灣鋼胚供給。",
+          "direction": "down",
+          "strength": 1,
+          "horizon": "month",
+          "facts": [
+            "F13"
+          ]
+        },
+        {
+          "dimension": "需求",
+          "factor": "豐興指出鋼筋需求相對疲弱，對鋼胚需求構成限制。",
+          "direction": "down",
+          "strength": 1,
+          "horizon": "week",
+          "facts": [
+            "F18"
+          ]
+        },
+        {
+          "dimension": "政策與貿易",
+          "factor": "中國部分鋼品出口須申請許可證，但尚不能量化對台灣鋼胚供給的影響。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "month",
+          "facts": [
+            "F23"
+          ]
+        },
+        {
+          "dimension": "市場情緒",
+          "factor": "唐山方胚出廠參考價較前一截點下降，反映當地報價偏弱。",
+          "direction": "down",
+          "strength": 1,
+          "horizon": "week",
+          "facts": [
+            "F12"
+          ]
+        },
+        {
+          "dimension": "季節性",
+          "factor": "缺少足以確認本週季節性影響的具體資料。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "week",
+          "facts": []
+        }
+      ],
+      "fengxing_rebar_price": [
+        {
+          "dimension": "成本",
+          "factor": "豐興10月22日廢鋼漲價後，10月27日鋼筋基價跟漲。",
+          "direction": "up",
+          "strength": 2,
+          "horizon": "week",
+          "facts": [
+            "F2",
+            "F3"
+          ]
+        },
+        {
+          "dimension": "供給",
+          "factor": "本週豐興鋼筋基價持平，尚無經查證的新增供給衝擊。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "week",
+          "facts": [
+            "F1"
+          ]
+        },
+        {
+          "dimension": "需求",
+          "factor": "豐興指出鋼筋需求仍相對疲弱。",
+          "direction": "down",
+          "strength": 2,
+          "horizon": "week",
+          "facts": [
+            "F18"
+          ]
+        },
+        {
+          "dimension": "政策與貿易",
+          "factor": "10月起電價不調整，暫無已確認的新電價調漲。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "week",
+          "facts": [
+            "F19"
+          ]
+        },
+        {
+          "dimension": "市場情緒",
+          "factor": "鋼筋基價在上週調漲後，本週轉為平盤。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "week",
+          "facts": [
+            "F1",
+            "F2"
+          ]
+        },
+        {
+          "dimension": "季節性",
+          "factor": "第四季是否出現營建旺季效應，目前仍無法以已查證資料確認。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "month",
+          "facts": [
+            "F18"
+          ]
+        }
+      ],
+      "h_beam_price": [
+        {
+          "dimension": "成本",
+          "factor": "豐興10月下旬上調廢鋼收購價，反映電爐原料成本上升。",
+          "direction": "up",
+          "strength": 1,
+          "horizon": "week",
+          "facts": [
+            "F3"
+          ]
+        },
+        {
+          "dimension": "供給",
+          "factor": "東和及中龍已調高11月型鋼基價，但尚不能直接換算流通成交價。",
+          "direction": "up",
+          "strength": 2,
+          "horizon": "week",
+          "facts": [
+            "F6"
+          ]
+        },
+        {
+          "dimension": "需求",
+          "factor": "全國第二季建照面積提供需求背景，但不足以單獨判定本週H型鋼接單。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "month",
+          "facts": [
+            "F17"
+          ]
+        },
+        {
+          "dimension": "政策與貿易",
+          "factor": "已查到的台灣反傾銷產品範圍不能直接套用至所有H型鋼進口。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "month",
+          "facts": [
+            "F21"
+          ]
+        },
+        {
+          "dimension": "市場情緒",
+          "factor": "東和基價上漲顯示廠商提高報價，但流通端是否接受仍待查證。",
+          "direction": "up",
+          "strength": 1,
+          "horizon": "week",
+          "facts": [
+            "F6"
+          ]
+        },
+        {
+          "dimension": "季節性",
+          "factor": "缺少足以確認本週季節性影響的具體資料。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "week",
+          "facts": []
+        }
+      ],
+      "csc_wire_rod_price": [
+        {
+          "dimension": "成本",
+          "factor": "10月底鐵礦及焦煤報價可供成本追蹤，但缺少與中鋼實際採購條件可比的資料。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "month",
+          "facts": [
+            "F15",
+            "F16"
+          ]
+        },
+        {
+          "dimension": "供給",
+          "factor": "中國鋼材出口量仍大，但全部鋼材出口量不能直接代表棒線供給。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "month",
+          "facts": [
+            "F13"
+          ]
+        },
+        {
+          "dimension": "需求",
+          "factor": "尚未查得可量化中鋼棒線最新接單變化的公開資料。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "month",
+          "facts": []
+        },
+        {
+          "dimension": "政策與貿易",
+          "factor": "美國對台灣特定抗腐蝕鋼品的複查不能直接套用至棒線。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "month",
+          "facts": [
+            "F22"
+          ]
+        },
+        {
+          "dimension": "市場情緒",
+          "factor": "中鋼第四季棒線盤價持平，板捲漲價不能視為棒線已跟漲。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "month",
+          "facts": [
+            "F7"
+          ]
+        },
+        {
+          "dimension": "季節性",
+          "factor": "缺少足以確認下個月季節性影響的具體資料。",
+          "direction": "neutral",
+          "strength": 1,
+          "horizon": "month",
+          "facts": []
+        }
+      ]
+    },
+    "conflicts": [
+      {
+        "topic": "豐興11月2日廢鋼收購價",
+        "versions": "時報新聞與聚毅鋼鐵均報每公噸10,100元；Yieh英文報導為9,900元，鋼筋及型鋼價格則一致。",
+        "judgment": "暫採10,100元：它與10月27日已公布價格及本週平盤說法一致，且有兩個不同網站支持；仍未取得豐興原始價表，應保留異議。([nstock.tw](https://www.nstock.tw/news/article_c?id=20261102-080408040000&utm_source=openai))"
+      },
+      {
+        "topic": "11月2日報導所引述的前期澳洲鐵礦砂價格",
+        "versions": "時報新聞稱前值為每公噸92.15美元；聚毅頁面稱前值為92.4美元；兩者都列出新值92.25美元。",
+        "judgment": "兩者可能使用不同截點，但公開內容不足以確認；不據此判定同一比較期間的漲跌。([nstock.tw](https://www.nstock.tw/news/article_c?id=20261102-080408040000&utm_source=openai))"
+      },
+      {
+        "topic": "中鋼11月是否所有板材均漲900元",
+        "versions": "双享盤價總表寫11月月盤全面上漲每公噸900元；同網站較具體的分析稱熱軋、冷軋及熱浸鍍鋅鋼捲上漲，但AP板平盤。",
+        "judgment": "採較具體的分品項說法，不將漲幅套用到所有板材，也不套用到第四季棒線。([double-steel.com](https://www.double-steel.com/zh/market?utm_source=openai))"
+      },
+      {
+        "topic": "H型鋼流通價水準",
+        "versions": "台灣金屬行情網10月東鋼H型鋼月均流通價為每公噸38,500元；双享週報回顧的國產H型鋼流通價約25,000元。",
+        "judgment": "兩者品規、交易條件及統計口徑未能對齊；不可直接認定同一商品價格矛盾，也不能用約25,000元推算官方月價漲跌。([double-steel.com](https://www.double-steel.com/zh/news/f3d2a853-7081-40e3-979d-d6474d5265c8?utm_source=openai))"
+      }
+    ],
+    "chains": [
+      {
+        "chain": "北部廢鋼大盤收購價 → 豐興鋼筋盤價",
+        "status": "尚待觀察",
+        "facts": [
+          "F1"
+        ],
+        "note": "11月豐興廠內廢鋼報價不是北部大盤收購價；鋼筋週盤等於10月月均價，但北部大盤11月新價尚未確認。"
+      },
+      {
+        "chain": "小鋼胚中級出廠價 → 豐興鋼筋盤價",
+        "status": "尚待觀察",
+        "facts": [
+          "F1",
+          "F12"
+        ],
+        "note": "台灣小鋼胚缺少11月同口徑新價；唐山方胚不能直接替代台灣出廠價。"
+      },
+      {
+        "chain": "北部廢鋼大盤收購價 → 小鋼胚中級出廠價",
+        "status": "尚待觀察",
+        "facts": [],
+        "note": "兩端目前都缺少可與10月官方月均價比較的11月同口徑資料。"
+      },
+      {
+        "chain": "鐵礦砂到岸現貨價 → 小鋼胚中級出廠價",
+        "status": "尚待觀察",
+        "facts": [
+          "F15"
+        ],
+        "note": "已找到10月30日礦價，但缺11月同口徑礦價、10月可比月均價及台灣小鋼胚新價。"
+      },
+      {
+        "chain": "布蘭特原油 → 北部廢鋼大盤收購價",
+        "status": "尚待觀察",
+        "facts": [],
+        "note": "未取得可與10月平均比較的11月布蘭特價格與北部廢鋼新價。"
+      },
+      {
+        "chain": "小鋼胚中級出廠價 → 中鋼棒線盤價，晚一個月",
+        "status": "尚待觀察",
+        "facts": [
+          "F7"
+        ],
+        "note": "起點10月月增0.16%，變動不到0.3%，算是持平；第四季棒線平盤不能用來證明起點變動已傳導。"
+      },
+      {
+        "chain": "小鋼胚中級出廠價 → 東鋼H型鋼流通價，晚一個月",
+        "status": "尚待觀察",
+        "facts": [
+          "F6"
+        ],
+        "note": "起點10月變動不到0.3%，算是持平；東和11月訂單基價上漲，不等於官方H型鋼流通月均價已上漲。"
+      }
+    ],
+    "gaps": [
+      "截至11月2日，查得11月豐興一次週盤；沒有其他11月週盤，不應把10月調價寫成11月已再度調價。",
+      "未取得豐興原始價表；11月2日廢鋼收購價存在10,100元與9,900元的報導差異。",
+      "未能獨立確認威致、海光及燁興最新盤價的完整金額與適用品項；亦未取得可核對的南部廢鋼收購價。",
+      "未確認美國出口土耳其的最新80比20混合重廢成交價；土耳其進口參考價不能自行指定來源國。",
+      "未取得可核對合約月份的11月2日中國螺紋鋼期貨收盤價，也未確認最新中國鋼筋或鋼胚出口報價。",
+      "未能以政府原始資料核實最新全國開工面積、公共工程整體進度、預拌混凝土出貨量及下游最新接單量。",
+      "未能核對各電爐廠實際契約電價、適用碳費與每公噸鋼材負擔。",
+      "未取得同口徑前期國泰世華美元牌價，因此不能可靠量化匯率變動造成的進口成本增減；32.61元是買賣中間值，不是實際購匯成交價。",
+      "台灣金屬行情網所列10月月均價未取得可直接連至該月數值的網頁網址；相關事實的來源陣列因此留空。",
+      "北部廢鋼與鋼胚的11月同口徑新價尚未確認；不能用豐興廠內廢鋼價格或唐山鋼胚價格直接替代。"
+    ],
+    "links": [
+      {
+        "cause": "north_scrap_price",
+        "effect": "fengxing_rebar_price",
+        "cause_name": "北部廢鋼大盤收購價",
+        "effect_name": "豐興鋼筋盤價",
+        "lag": 0,
+        "r": 0.86,
+        "n": 35,
+        "cause_moves": 32,
+        "effect_followed": 29,
+        "same_dir": 26,
+        "strength": "強"
+      },
+      {
+        "cause": "billet_price",
+        "effect": "fengxing_rebar_price",
+        "cause_name": "小鋼胚中級出廠價",
+        "effect_name": "豐興鋼筋盤價",
+        "lag": 0,
+        "r": 0.76,
+        "n": 35,
+        "cause_moves": 32,
+        "effect_followed": 29,
+        "same_dir": 21,
+        "strength": "強"
+      },
+      {
+        "cause": "north_scrap_price",
+        "effect": "billet_price",
+        "cause_name": "北部廢鋼大盤收購價",
+        "effect_name": "小鋼胚中級出廠價",
+        "lag": 0,
+        "r": 0.66,
+        "n": 35,
+        "cause_moves": 32,
+        "effect_followed": 30,
+        "same_dir": 22,
+        "strength": "強"
+      },
+      {
+        "cause": "wb_iron_ore",
+        "effect": "billet_price",
+        "cause_name": "鐵礦砂（CFR 現貨）",
+        "effect_name": "小鋼胚中級出廠價",
+        "lag": 0,
+        "r": 0.49,
+        "n": 34,
+        "cause_moves": 32,
+        "effect_followed": 30,
+        "same_dir": 21,
+        "strength": "中等"
+      },
+      {
+        "cause": "wb_brent",
+        "effect": "north_scrap_price",
+        "cause_name": "布蘭特原油",
+        "effect_name": "北部廢鋼大盤收購價",
+        "lag": 0,
+        "r": 0.45,
+        "n": 34,
+        "cause_moves": 33,
+        "effect_followed": 30,
+        "same_dir": 17,
+        "strength": "中等"
+      },
+      {
+        "cause": "billet_price",
+        "effect": "csc_wire_rod_price",
+        "cause_name": "小鋼胚中級出廠價",
+        "effect_name": "中鋼棒線盤價",
+        "lag": 1,
+        "r": 0.43,
+        "n": 34,
+        "cause_moves": 32,
+        "effect_followed": 6,
+        "same_dir": 4,
+        "strength": "中等"
+      },
+      {
+        "cause": "billet_price",
+        "effect": "h_beam_price",
+        "cause_name": "小鋼胚中級出廠價",
+        "effect_name": "東鋼H型鋼流通價",
+        "lag": 1,
+        "r": 0.37,
+        "n": 34,
+        "cause_moves": 32,
+        "effect_followed": 10,
+        "same_dir": 6,
+        "strength": "中等"
+      },
+      {
+        "cause": "wb_coal_au",
+        "effect": "billet_price",
+        "cause_name": "澳洲動力煤",
+        "effect_name": "小鋼胚中級出廠價",
+        "lag": 0,
+        "r": 0.34,
+        "n": 34,
+        "cause_moves": 34,
+        "effect_followed": 32,
+        "same_dir": 20,
+        "strength": "弱或不成立"
+      },
+      {
+        "cause": "cci_tw_04",
+        "effect": "fengxing_rebar_price",
+        "cause_name": "磚瓦瓷類",
+        "effect_name": "豐興鋼筋盤價",
+        "lag": 1,
+        "r": 0.08,
+        "n": 35,
+        "cause_moves": 4,
+        "effect_followed": 4,
+        "same_dir": 2,
+        "strength": "弱或不成立"
+      },
+      {
+        "cause": "wb_iron_ore",
+        "effect": "csc_wire_rod_price",
+        "cause_name": "鐵礦砂（CFR 現貨）",
+        "effect_name": "中鋼棒線盤價",
+        "lag": 0,
+        "r": -0.3,
+        "n": 34,
+        "cause_moves": 32,
+        "effect_followed": 6,
+        "same_dir": 1,
+        "strength": "弱或不成立"
+      }
+    ]
+  }
+}

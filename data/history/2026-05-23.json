@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-05-23T05:56:30.990603+08:00",
+  "date": "2026-05-23",
+  "model_used": "google/gemini-2.5-flash",
+  "news_count": 15,
+  "news_sources": [
+    {
+      "title": "東和股東會通過派利4.30元  並董事改選",
+      "url": "https://steelnews.com.tw/news/content?id=175074"
+    },
+    {
+      "title": "中鋼股東會通過配息0.15元　看好鋼市逐步回穩",
+      "url": "https://steelnews.com.tw/news/content?id=175070"
+    },
+    {
+      "title": "下週鋼筋平盤機率高",
+      "url": "https://steelnews.com.tw/news/content?id=175041"
+    },
+    {
+      "title": "中鴻看好鋼市後市穩步復甦　AI、基建與中國控產成三大支撐",
+      "url": "https://steelnews.com.tw/news/content?id=175026"
+    },
+    {
+      "title": "5月22日中國鋼鐵期貨收盤全數下跌",
+      "url": "https://steelnews.com.tw/news/content?id=175043"
+    },
+    {
+      "title": "東京制鐵關西集貨場廢鋼調降",
+      "url": "https://steelnews.com.tw/news/content?id=175042"
+    },
+    {
+      "title": "中國不鏽鋼庫存顯著下降　市場情緒轉趨樂觀",
+      "url": "https://steelnews.com.tw/news/content?id=175037"
+    },
+    {
+      "title": "宏觀消息面暫顯溫和 昨(21)中國有色金屬大部分震盪收漲",
+      "url": "https://steelnews.com.tw/news/content?id=175036"
+    },
+    {
+      "title": "中國不鏽鋼現貨抗跌挺價　鋼廠控貨支撐市場信心",
+      "url": "https://steelnews.com.tw/news/content?id=175033"
+    },
+    {
+      "title": "中國鋼市續跌探底　現貨偏穩盤面重心下移",
+      "url": "https://steelnews.com.tw/news/content?id=175029"
+    },
+    {
+      "title": "本週(0515-0521)國際鋼材交易價格整理",
+      "url": "https://steelnews.com.tw/news/content?id=175044"
+    },
+    {
+      "title": "美國國內廢鋼市場6月份預計將持續橫盤",
+      "url": "https://steelnews.com.tw/news/content?id=175038"
+    }
+  ],
+  "taiwan_prices": {
+    "data_month": "2026-04",
+    "crude_steel_production": {
+      "value": 111.1378,
+      "unit": "萬噸",
+      "mom_change": -33.3895,
+      "month": "2026-02"
+    },
+    "north_scrap_price": {
+      "value": 10.2,
+      "unit": "元/公斤",
+      "mom_change": 0.5,
+      "month": "2026-04"
+    },
+    "billet_price": {
+      "value": 15790.0,
+      "unit": "元/公噸",
+      "mom_change": -410.0,
+      "month": "2026-04"
+    },
+    "fengxing_rebar_price": {
+      "value": 18900.0,
+      "unit": "元/公噸",
+      "mom_change": 400.0,
+      "month": "2026-04"
+    },
+    "h_beam_price": {
+      "value": 35900.0,
+      "unit": "元/公噸",
+      "mom_change": 800.0,
+      "month": "2026-04"
+    },
+    "csc_wire_rod_price": {
+      "value": 27350.0,
+      "unit": "元/公噸",
+      "mom_change": 1000.0,
+      "month": "2026-04"
+    }
+  },
+  "exchange_rate": {
+    "usd_twd_estimate": 32.2,
+    "impact_on_steel": "近期無明確匯率變動新聞，但全球經濟不確定性可能導致美元走強，進而影響進口廢鋼成本及出口鋼品競爭力。"
+  },
+  "spread_analysis": "根據最新數據，北部廢鋼收購價10.2元/公斤，豐興鋼筋盤價18900元/公噸，小鋼胚出廠價15790元/公噸。廢鋼轉鋼筋的加工利差為18900 - (10.2 * 1000) = 8700元/公噸，相較上月廢鋼漲、鋼筋漲，利差略有收窄。小鋼胚轉鋼筋的利差為18900 - 15790 = 3110元/公噸，小鋼胚跌、鋼筋漲，利差擴大。東鋼H型鋼流通價35900元/公噸，與小鋼胚利差為20110元/公噸，型鋼漲價，利差擴大。整體而言，鋼筋利差受廢鋼成本上漲影響，但型鋼利差表現較佳。",
+  "monthly_trend": "預計下月鋼筋將以平盤為主，主要受中國期貨下跌、土耳其鋼筋走軟等國際利空因素影響，但台灣本地需求相對穩定，且中鋼看好鋼市逐步回穩。廢鋼價格可能因東京制鐵調降而承壓，但美國市場預計橫盤，波動有限。型鋼受惠於基建需求，有望維持高檔震盪。整體市場將呈現區間盤整格局，漲跌幅度約在±2%之間。",
+  "international_outlook": "中國鋼鐵市場面臨期貨全數下跌、鋼市續跌探底的壓力，儘管不鏽鋼庫存下降、現貨抗跌，但整體需求疲軟。日本東京制鐵廢鋼調降，顯示區域廢鋼需求不振。美國廢鋼市場預計6月將持續橫盤，顯示需求穩定但缺乏上漲動能。土耳其鋼筋現貨價格因宰牲節假期走軟，進口廢鋼價格也微幅走軟，反映需求低迷。印尼則積極推動鋼鐵下游化，長期可能改變區域供應格局。",
+  "risk_factors": [
+    "中國鋼鐵期貨持續下跌，可能拖累國際鋼價。",
+    "全球地緣政治與運費波動，增加廢鋼進口成本不確定性。",
+    "土耳其等主要出口市場需求疲軟，影響台灣鋼品出口動能。"
+  ],
+  "summary": "台灣鋼市在4月粗鋼產量下降，廢鋼、鋼筋、型鋼價格呈現漲跌互見。中鋼、中鴻對後市持謹慎樂觀態度，但國際市場受中國期貨下跌、土耳其需求疲軟影響。預計下月鋼筋平盤機率高，廢鋼可能承壓，型鋼維持高檔。整體市場將在多空交織下呈現盤整格局。",
+  "confidence": "medium"
+}

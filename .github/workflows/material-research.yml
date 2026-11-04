@@ -1,0 +1,60 @@
+name: Research Material Outlooks
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: data-writer-${{ github.ref_name }}
+  cancel-in-progress: false
+jobs:
+  weekday_guard:
+    runs-on: ubuntu-latest
+    outputs:
+      allowed: ${{ steps.check.outputs.allowed }}
+    steps:
+      - id: check
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          DAY=$(TZ=Asia/Taipei date +%u)
+          if [ "$EVENT_NAME" = "schedule" ] && [ "$DAY" -gt 5 ]; then
+            echo "allowed=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping delayed weekend research."
+          else
+            echo "allowed=true" >> "$GITHUB_OUTPUT"
+          fi
+  research:
+    needs: weekday_guard
+    if: needs.weekday_guard.outputs.allowed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Research each material using current sources
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python scripts/material_research.py
+      - name: Publish research data
+        run: |
+          git config user.name "Steel Analysis Bot"
+          git config user.email "steel-bot@users.noreply.github.com"
+          git add data/material-outlooks.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "data: refresh material outlooks $(TZ='Asia/Taipei' date '+%Y-%m-%d')"
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin "${{ github.ref_name }}" && git push origin HEAD:"${{ github.ref_name }}" && exit 0
+            sleep $((i * 10))
+          done
+          exit 1
+      - name: Request Pages publication
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

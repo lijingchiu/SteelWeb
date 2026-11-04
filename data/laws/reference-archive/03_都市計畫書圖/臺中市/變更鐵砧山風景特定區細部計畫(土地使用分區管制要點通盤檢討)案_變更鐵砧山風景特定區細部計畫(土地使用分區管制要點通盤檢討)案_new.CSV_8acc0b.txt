@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址
+"變更鐵砧山風景特定區細部計畫(土地使用分區管制要點通盤檢討)案","發布實施「變更鐵砧山風景特定區細部計畫(土地使用分區管制要點通盤檢討)案」計畫書、圖，並自111年7月1日零時起生效。","1110701","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=e0eb0ed9-b34f-435e-8643-eb895d5752c1","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=0209293e-ac59-4fa6-8866-6d607c18995c"

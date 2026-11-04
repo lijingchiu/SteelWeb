@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書網址
+"變更臺中市都市計畫（楓樹里附近地區）細部計畫（計畫範圍專案通盤檢討）案 ","發布實施「變更台中市都市計畫（楓樹里附近地區）細部計畫(計畫範圍專案通盤檢討)案」計畫書、圖，並自106年6月2日零時起生效。","1060602","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=5c974d66-fdfe-4211-bbd8-dbb501229c5e","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=f7e393ad-bea6-4839-9f9f-eb5c0a31cc5e"

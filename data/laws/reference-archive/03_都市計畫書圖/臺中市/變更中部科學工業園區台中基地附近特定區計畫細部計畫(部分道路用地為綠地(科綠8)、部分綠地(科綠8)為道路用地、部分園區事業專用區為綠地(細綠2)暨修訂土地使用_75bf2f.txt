@@ -1,0 +1,2 @@
+﻿﻿﻿公告名稱,計畫描述,公告實施日期_民國年月日,公告事宜,公告書
+"變更中部科學工業園區台中基地附近特定區計畫細部計畫(部分道路用地為綠地(科綠8)、部分綠地(科綠8)為道路用地、部分園區事業專用區為綠地(細綠2)暨修訂土地使用管制要點)案","發布實施「變更中部科學工業園區台中基地附近特定區計畫細部計畫(部分道路用地為綠地(科綠8)、部分綠地(科綠8)為道路用地、部分園區事業專用區為綠地(細綠2)暨修訂土地使用管制要點)案」計畫書、圖，並自106年7月18日零時起生效。","1060718","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=98b0d9c5-fc29-4120-943b-dc1ac1b6be9a","https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=2023bcf7-ee90-4e43-ac7f-9acbaf76e07a"

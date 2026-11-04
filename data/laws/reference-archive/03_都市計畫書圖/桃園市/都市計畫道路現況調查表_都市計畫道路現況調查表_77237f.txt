@@ -1,0 +1,11 @@
+【顯示名稱】
+都市計畫道路現況調查表
+
+【檢視原始資料】
+https://opendata.tycg.gov.tw/datalist/c7351614-a9e5-46ac-bcc1-dd35e2d45475
+
+【查詢方式】
+請在來源頁查閱或下載資料；網站可能更新，請核對檔名的年度與版本。
+
+【原始資料下載】
+https://opendata.tycg.gov.tw/api/dataset/c7351614-a9e5-46ac-bcc1-dd35e2d45475/resource/f6b508cc-4bca-4655-863b-8813e127a5a8/download
