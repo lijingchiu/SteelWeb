@@ -23,7 +23,7 @@
     prices: '鋼材報價', materials: '營建材料行情', chart: '價格走勢', forecast: '盤價預測',
     analysis: '市場分析', news: '新聞',
   };
-  const SUGGESTIONS = ['這週鋼筋會漲嗎？', 'H型鋼為什麼看漲？', '水泥和砂石最近的物價指數如何？', '鋼價上漲時，工程合約怎麼約定物價調整？'];
+  const SUGGESTIONS = ['最新鋼筋與廢鋼行情有什麼變化？', '網站如何看待鋼材後續走勢？', '水泥和砂石最近的物價指數如何？', '鋼價波動時，工程合約的物價調整要注意什麼？'];
 
   const state = { history: [], busy: false, context: null, sections: [], contextDate: null, abort: null };
 
@@ -501,6 +501,13 @@
         <p>我可以回答網站上的所有資料，以及營建、營造相關的問題，例如工法、估價、合約、法規與工地安全。例如：</p>
         <div class="chat-suggest">${SUGGESTIONS.map(q => `<button type="button" class="chat-chip">${escHtml(q)}</button>`).join('')}</div>
       </div>`;
+    const intro = $('chat-log').querySelector('.chat-intro');
+    getJson('data/latest.json').then(data => {
+      if (!intro || !intro.isConnected || !data || !Array.isArray(data.suggested_questions)) return;
+      const suggestions = data.suggested_questions.filter(q => typeof q === 'string' && q.trim() && q.length <= 100).slice(0, 4);
+      if (!suggestions.length) return;
+      intro.querySelector('.chat-suggest').innerHTML = suggestions.map(q => `<button type="button" class="chat-chip">${escHtml(q)}</button>`).join('');
+    });
   }
 
   function openChat() {

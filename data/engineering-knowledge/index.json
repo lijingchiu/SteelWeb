@@ -1,0 +1,546 @@
+{
+  "description": "臺灣土木、建築、水保、大地與鋼材專業知識線索；摘要不取代原文與個案簽證。",
+  "reviewed": "2026-11-04",
+  "cards": [
+    {
+      "id": "swc-law",
+      "field": "水土保持",
+      "title": "水土保持技術規範：調查、規劃及設計",
+      "keywords": [
+        "水保",
+        "水土保持",
+        "山坡地",
+        "坡地",
+        "排水",
+        "滯洪",
+        "沉砂"
+      ],
+      "summary": "水土保持技術規範涵蓋水土保持調查、規劃、設計、施工、監督與審查；個案應依基地條件及最新法規核對。",
+      "url": "https://law.moa.gov.tw/LawContent.aspx?id=FL014521",
+      "organization": "農業部",
+      "kind": "主管機關法規",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "確認基地土地範圍、坡面條件與開發內容。",
+        "檢視逕流排水、滯洪沉砂及施工期間維護。",
+        "比對核定計畫與最新技術規範。"
+      ]
+    },
+    {
+      "id": "swc-apply",
+      "field": "水土保持",
+      "title": "水土保持計畫與簡易申報",
+      "keywords": [
+        "水保計畫",
+        "簡易水保",
+        "申報書",
+        "開發許可",
+        "土石方"
+      ],
+      "summary": "水土保持申請書件包括水土保持計畫、簡易水土保持申報書及規劃書；適用類型與規模須逐項核對。",
+      "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0110012",
+      "organization": "法務部",
+      "kind": "主管機關法規",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "釐清土地分區、開發行為與主管機關。",
+        "核對申請種類、規模及程序，勿僅憑單一數值判斷。"
+      ]
+    },
+    {
+      "id": "swc-manual",
+      "field": "水土保持",
+      "title": "水土保持手冊：野溪治理及土石流",
+      "keywords": [
+        "水保",
+        "水土保持",
+        "野溪",
+        "土石流",
+        "坡面",
+        "集水區"
+      ],
+      "summary": "農村水保署的2017年水土保持手冊包含工程與土石流等篇章，可作規劃與處理方法的背景資料；適用規範另須核對。",
+      "url": "https://tech.ardswc.gov.tw/Education/SWCBManual",
+      "organization": "農村水保署",
+      "kind": "技術手冊",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "確認集水區、野溪上游及周邊保全對象。",
+        "查閱設施類型、地形與可能的土砂運移。"
+      ]
+    },
+    {
+      "id": "swc-hazard",
+      "field": "水土保持",
+      "title": "土石流及大規模崩塌潛勢圖",
+      "keywords": [
+        "土石流",
+        "大規模崩塌",
+        "潛勢溪流",
+        "防災",
+        "地圖"
+      ],
+      "summary": "官方防災資訊網提供土石流與大規模崩塌潛勢及警戒圖資；圖資應與基地位置及現場條件交叉核對。",
+      "url": "https://246.ardswc.gov.tw/",
+      "organization": "農村水保署",
+      "kind": "官方圖資",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "以基地位置查詢潛勢範圍與圖層日期。",
+        "同時查核現場地形與主管機關資料。"
+      ]
+    },
+    {
+      "id": "swc-construction",
+      "field": "水土保持",
+      "title": "水土保持工程施工與工料參考",
+      "keywords": [
+        "水保施工",
+        "工程預算",
+        "工料分析",
+        "野溪清疏",
+        "施工規範"
+      ],
+      "summary": "水保工程管考系統提供工程施工規範、工料分析及相關表單入口，使用前應核對文件日期與契約要求。",
+      "url": "https://mis.ardswc.gov.tw/Swcbtaojr/DownLoadDoc.aspx",
+      "organization": "農村水保署",
+      "kind": "技術文件",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "施工前核對圖說、工程規範與契約。",
+        "設置檢驗、施工紀錄及雨季維護管理。"
+      ]
+    },
+    {
+      "id": "geo-boring",
+      "field": "大地工程",
+      "title": "地質鑽探與工程地質資料",
+      "keywords": [
+        "大地",
+        "地質鑽探",
+        "鑽孔",
+        "岩心",
+        "土壤試驗",
+        "地下水位"
+      ],
+      "summary": "工程地質探勘資料庫可查鑽孔、地層與試驗等資料；鄰近鑽孔不能取代基地專屬調查及工程判讀。",
+      "url": "https://geotech.gsmma.gov.tw/imoeagis/Home/Map",
+      "organization": "經濟部地礦中心",
+      "kind": "官方圖資",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "確認鑽孔位置、深度、時間及地下水觀測。",
+        "比對柱狀圖、試驗結果與基地地層變化。"
+      ]
+    },
+    {
+      "id": "geo-sensitive",
+      "field": "大地工程",
+      "title": "地質敏感區地號查詢",
+      "keywords": [
+        "大地",
+        "地質敏感區",
+        "斷層",
+        "山崩",
+        "地滑",
+        "地號"
+      ],
+      "summary": "地質敏感區查詢系統可用縣市、地段與地號查詢；開發程序及正式範圍應依主管機關公告與個案確認。",
+      "url": "https://gsa.gsmma.gov.tw/gwh/gsb97-1/sys_2014b_pg/menu.cfm",
+      "organization": "經濟部地礦中心",
+      "kind": "官方查詢",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "依地號查詢並確認官方公告及範圍。",
+        "涉及開發時確認基地地質調查及安全評估程序。"
+      ]
+    },
+    {
+      "id": "geo-liq",
+      "field": "大地工程",
+      "title": "土壤液化潛勢及基地評估",
+      "keywords": [
+        "土壤液化",
+        "液化潛勢",
+        "地震",
+        "砂土",
+        "地盤改良"
+      ],
+      "summary": "官方系統提供液化潛勢及軟弱土層圖資；地圖是區域性參考，基地設計仍需配合地質調查與規範評估。",
+      "url": "https://liquefaction.gsmma.gov.tw/",
+      "organization": "經濟部地礦中心",
+      "kind": "官方圖資",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "先查潛勢圖版本與基地位置。",
+        "由專業人員結合地下水、土層及地震條件評估。"
+      ]
+    },
+    {
+      "id": "geo-foundation",
+      "field": "大地工程",
+      "title": "建築物基礎構造設計",
+      "keywords": [
+        "基礎",
+        "筏式基礎",
+        "樁基礎",
+        "承載力",
+        "沉陷",
+        "大地"
+      ],
+      "summary": "建築物基礎構造設計應結合土層、地下水及荷載條件，並查閱主管機關公布的基礎構造設計規範與適用版本。",
+      "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/962",
+      "organization": "內政部國土署",
+      "kind": "主管機關規範",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "核對地層參數、地下水位與結構荷重。",
+        "分別檢視承載、沉陷及鄰近設施影響。"
+      ]
+    },
+    {
+      "id": "geo-excavate",
+      "field": "大地工程",
+      "title": "開挖、擋土支撐與施工監測",
+      "keywords": [
+        "開挖",
+        "擋土",
+        "支撐",
+        "地下水",
+        "鄰房",
+        "沉陷",
+        "監測"
+      ],
+      "summary": "開挖前應考量鑽探資料、土壤及地下水、擋土支撐與施工監測；相關設計及程序須依營造安全法令與工程條件辦理。",
+      "url": "https://laws.mol.gov.tw/FLAW/FLAWDOC01.aspx?flno=73&id=FL015026",
+      "organization": "勞動部",
+      "kind": "主管機關法規",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "檢查擋土型式、開挖階段與地下水控制。",
+        "追蹤支撐及鄰房變位，異常時依監測計畫處理。"
+      ]
+    },
+    {
+      "id": "civil-concrete",
+      "field": "土木結構",
+      "title": "混凝土結構設計：鋼筋與構材",
+      "keywords": [
+        "土木",
+        "結構",
+        "混凝土",
+        "鋼筋",
+        "RC",
+        "配筋"
+      ],
+      "summary": "建築物混凝土結構設計規範提供混凝土構材、材料與設計之依據，使用時需核對公告版本及後續勘誤。",
+      "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6874",
+      "organization": "內政部國土署",
+      "kind": "主管機關規範",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "確認設計荷載、構材尺寸、材料強度及配筋。",
+        "核對鋼筋錨定、接頭與耐震細部之適用規定。"
+      ]
+    },
+    {
+      "id": "civil-concrete-work",
+      "field": "土木結構",
+      "title": "結構混凝土施工與品管",
+      "keywords": [
+        "混凝土",
+        "模板",
+        "澆置",
+        "養護",
+        "鋼筋",
+        "施工"
+      ],
+      "summary": "混凝土施工應對照施工規範及工程圖說，並將材料、澆置、養護與檢驗納入施工及品管計畫。",
+      "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/932",
+      "organization": "內政部國土署",
+      "kind": "主管機關規範",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "澆置前檢查模板、鋼筋、埋設物與施工縫。",
+        "依契約確認試驗、養護及拆模紀錄。"
+      ]
+    },
+    {
+      "id": "civil-seismic",
+      "field": "土木結構",
+      "title": "建築物耐震設計及解說",
+      "keywords": [
+        "耐震",
+        "地震",
+        "結構",
+        "耐震設計",
+        "韌性",
+        "建築"
+      ],
+      "summary": "耐震設計應查閱主管機關公告的建築物耐震設計規範及解說與後續修正；歷史版本不能直接視為現行規定。",
+      "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/175",
+      "organization": "內政部國土署",
+      "kind": "主管機關規範",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "確認建築使用、基地與設計地震條件。",
+        "依構造系統核對耐震分析與構材細部規定。"
+      ]
+    },
+    {
+      "id": "civil-quality",
+      "field": "施工品質",
+      "title": "公共工程施工品質管理",
+      "keywords": [
+        "土木",
+        "施工計畫",
+        "品質管理",
+        "品管",
+        "材料",
+        "檢驗",
+        "自主檢查"
+      ],
+      "summary": "公共工程品質管理涉及施工計畫、品管計畫、材料與施工檢驗、自主檢查及紀錄管理；實際要求以契約與適用規定為準。",
+      "url": "https://www.pcc.gov.tw/content/index?eid=2514&type=C",
+      "organization": "行政院工程會",
+      "kind": "制度說明",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "檢查施工計畫、材料送審及檢驗停留點。",
+        "保留自主檢查、試驗、缺失改善與驗收紀錄。"
+      ]
+    },
+    {
+      "id": "steel-design",
+      "field": "鋼結構與鋼材",
+      "title": "鋼結構設計：構材、接合與耐震",
+      "keywords": [
+        "鋼結構",
+        "鋼構",
+        "鋼骨",
+        "H型鋼",
+        "梁柱",
+        "接合",
+        "挫屈",
+        "耐震"
+      ],
+      "summary": "鋼結構設計規範涵蓋受拉、受壓、撓曲構材、接合與耐震設計；應核對適用設計方法與最新公告。",
+      "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/7176",
+      "organization": "內政部國土署",
+      "kind": "主管機關規範",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "確認構材受拉、受壓、彎曲及組合力。",
+        "接合、穩定、挫屈與耐震細部需配合整體系統核對。"
+      ]
+    },
+    {
+      "id": "steel-weld",
+      "field": "鋼結構與鋼材",
+      "title": "鋼結構施工：銲接、螺栓與驗收",
+      "keywords": [
+        "鋼構施工",
+        "銲接",
+        "焊接",
+        "螺栓",
+        "鋼骨",
+        "塗裝",
+        "檢驗",
+        "品質"
+      ],
+      "summary": "鋼結構施工規範涵蓋材料、製作、銲接、高強度螺栓、安裝與品質管制；個案須依圖說及適用版本檢驗。",
+      "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/157",
+      "organization": "內政部國土署",
+      "kind": "主管機關規範",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "核對材料證明、製作圖、銲接及螺栓接合。",
+        "檢查安裝、臨時支撐、表面處理與驗收紀錄。"
+      ]
+    },
+    {
+      "id": "steel-src",
+      "field": "鋼結構與鋼材",
+      "title": "鋼骨鋼筋混凝土構造施工",
+      "keywords": [
+        "SRC",
+        "鋼骨鋼筋混凝土",
+        "鋼骨",
+        "鋼筋",
+        "施工"
+      ],
+      "summary": "鋼骨鋼筋混凝土構造施工須協調鋼骨、鋼筋及混凝土等工序，並查閱主管機關公布的施工規範與工程圖說。",
+      "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/1219",
+      "organization": "內政部國土署",
+      "kind": "主管機關規範",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "協調鋼骨、鋼筋、模板與混凝土施工順序。",
+        "查核接合位置、鋼筋排置及混凝土澆置可行性。"
+      ]
+    },
+    {
+      "id": "steel-cns",
+      "field": "鋼結構與鋼材",
+      "title": "鋼筋 CNS 標準查詢",
+      "keywords": [
+        "CNS",
+        "鋼筋",
+        "材料",
+        "標準",
+        "檢驗",
+        "鋼筋混凝土"
+      ],
+      "summary": "標準檢驗局公布的國家標準資料列有鋼筋混凝土用鋼筋 CNS 560；實際採購及檢驗應查核標準現行版本與契約。",
+      "url": "https://www.bsmi.gov.tw/wSite/public/Data/f1392349074972.pdf",
+      "organization": "經濟部標準檢驗局",
+      "kind": "標準目錄",
+      "reviewed": "2026-11-04",
+      "daily_research": true,
+      "checkpoints": [
+        "核對規格、等級、數量與材質證明。",
+        "依契約及適用標準安排取樣、檢驗與追溯。"
+      ]
+    },
+    {
+      "id": "safe-construction",
+      "field": "施工安全",
+      "title": "營造工程開挖與勞工安全",
+      "keywords": [
+        "營造安全",
+        "施工安全",
+        "擋土支撐",
+        "開挖",
+        "勞安",
+        "職安"
+      ],
+      "summary": "營造工程之開挖與擋土支撐有專門安全規定，應依工程條件核對主管機關法令與施工安全計畫。",
+      "url": "https://laws.mol.gov.tw/FLAW/FLAWDOC01.aspx?flno=73&id=FL015026",
+      "organization": "勞動部",
+      "kind": "主管機關法規",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "檢查施工階段的開挖、支撐與監測措施。",
+        "變更工法或出現異常時，依計畫檢討並通報。"
+      ]
+    },
+    {
+      "id": "water-structure",
+      "field": "水利工程",
+      "title": "水利混凝土構造與材料施工",
+      "keywords": [
+        "水利",
+        "混凝土塊",
+        "護岸",
+        "鋼筋",
+        "水工",
+        "施工"
+      ],
+      "summary": "水利署混凝土塊施工規範與鋼筋、結構用混凝土等相關章節相互參照；工程仍以合約與現行適用規範為準。",
+      "url": "https://www.wra.gov.tw/wralaw/Law_Content.aspx?n=9334&s=11161&sms=9191",
+      "organization": "經濟部水利署",
+      "kind": "主管機關規範",
+      "reviewed": "2026-11-04",
+      "daily_research": false,
+      "checkpoints": [
+        "確認設施目的、材料條件與設計圖說。",
+        "查核水利署相互引用的材料及施工章節。"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "swc-law",
+      "to": "swc-apply",
+      "relationship": "確認基地開發是否涉及水保申請，再依技術規範規劃設計。"
+    },
+    {
+      "from": "swc-law",
+      "to": "swc-manual",
+      "relationship": "以技術規範核對要求，以手冊查閱水保處理背景。"
+    },
+    {
+      "from": "swc-hazard",
+      "to": "geo-sensitive",
+      "relationship": "坡地風險先交叉查閱土石流及地質敏感區圖資。"
+    },
+    {
+      "from": "geo-sensitive",
+      "to": "geo-boring",
+      "relationship": "敏感區查詢後，配合基地地質與鑽探資料評估。"
+    },
+    {
+      "from": "geo-boring",
+      "to": "geo-foundation",
+      "relationship": "依土層與地下水資料，配合基礎設計規範分析。"
+    },
+    {
+      "from": "geo-liq",
+      "to": "geo-boring",
+      "relationship": "液化潛勢圖資應搭配基地鑽探及評估。"
+    },
+    {
+      "from": "geo-foundation",
+      "to": "geo-excavate",
+      "relationship": "基礎與開挖支撐需共同考慮地層及地下水條件。"
+    },
+    {
+      "from": "geo-excavate",
+      "to": "safe-construction",
+      "relationship": "開挖設計與施工安全及監測相互銜接。"
+    },
+    {
+      "from": "civil-seismic",
+      "to": "civil-concrete",
+      "relationship": "耐震設計與混凝土結構設計應配合適用規範。"
+    },
+    {
+      "from": "civil-seismic",
+      "to": "steel-design",
+      "relationship": "鋼結構耐震要求需與建築物耐震設計一併核對。"
+    },
+    {
+      "from": "steel-design",
+      "to": "steel-weld",
+      "relationship": "鋼構構材及接合設計須銜接製作、安裝與檢驗。"
+    },
+    {
+      "from": "steel-weld",
+      "to": "civil-quality",
+      "relationship": "銲接、螺栓及鋼構安裝應納入工程品質管制。"
+    },
+    {
+      "from": "steel-src",
+      "to": "civil-concrete-work",
+      "relationship": "SRC施工需協調鋼骨、鋼筋及混凝土施工。"
+    },
+    {
+      "from": "steel-cns",
+      "to": "civil-concrete-work",
+      "relationship": "鋼筋材料應核對CNS、設計圖說與施工檢驗要求。"
+    },
+    {
+      "from": "water-structure",
+      "to": "swc-manual",
+      "relationship": "水利構造及水保設施需依工程性質分別核對規範。"
+    }
+  ]
+}

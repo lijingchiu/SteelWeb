@@ -22,6 +22,7 @@ from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
 
 import prompts
+from suggestions import make_suggestions
 from materials import build_materials, taiwan_prices_from_materials, write_outputs
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
@@ -777,10 +778,18 @@ def dossier_for_prompt(d: dict) -> str:
 
 
 def build_research_prompt(date_str, week_label, week_range, tp, fx_text, materials, news_text, rates_text, links_text):
+    knowledge_path = Path(__file__).resolve().parents[1] / 'data/engineering-knowledge/index.json'
+    try:
+        knowledge = json.loads(knowledge_path.read_text(encoding='utf-8'))
+        sources = '\n'.join(f"- {c['field']}｜{c['title']}｜{c['organization']}｜{c['url']}"
+                            for c in knowledge['cards'] if c.get('daily_research'))
+    except (OSError, ValueError, KeyError, TypeError):
+        sources = ''
     return prompts.research_prompt(
         date_str=date_str, week_label=week_label, week_range=week_range,
         official_prices=headline_prices_for_prompt(tp), fx=fx_text, base_rates=rates_text,
-        links=links_text, materials=materials_for_prompt(materials), news=news_text)
+        links=links_text, materials=materials_for_prompt(materials), news=news_text,
+        professional_sources=sources)
 
 
 def build_prompt(date_str: str, week_label: str, week_range: str, targets: dict, tp: dict,
@@ -1172,6 +1181,7 @@ def main():
         "taiwan_prices": taiwan_prices,
         **analysis,
     }
+    output['suggested_questions'] = make_suggestions(output)
 
     HISTORY_DIR.mkdir(parents=True, exist_ok=True)
     Path("data/latest.json").write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")

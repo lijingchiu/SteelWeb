@@ -42,6 +42,19 @@ def build():
             docs.append(entry)
             for term in terms(doc['name'] + '\n' + text):
                 postings[term].append(identifier)
+    knowledge = json.loads((ROOT / 'data/engineering-knowledge/index.json').read_text(encoding='utf-8'))
+    cards_by_id = {card['id']: card for card in knowledge['cards']}
+    for card in knowledge['cards']:
+        identifier = len(docs)
+        related = [edge['relationship'] for edge in knowledge['connections'] if card['id'] in (edge['from'], edge['to'])]
+        docs.append({'name': card['title'], 'path': '', 'category': card['field'], 'bytes': 0,
+                     'knowledge': {'id': card['id'], 'url': card['url'], 'summary': card['summary'], 'related': related, 'checkpoints': card['checkpoints'],
+                                   'organization': card['organization'], 'kind': card['kind'],
+                                   'reviewed': card['reviewed']}})
+        related_titles = [cards_by_id[edge['to'] if edge['from'] == card['id'] else edge['from']]['title']
+                          for edge in knowledge['connections'] if card['id'] in (edge['from'], edge['to'])]
+        for term in terms(card['title'] + '\n' + card['field'] + '\n' + ' '.join(card['keywords']) + '\n' + card['summary'] + '\n' + ' '.join(related_titles) + '\n' + ' '.join(card['checkpoints'])):
+            postings[term].append(identifier)
     result = {'version': 1, 'docs': docs, 'terms': dict(postings)}
     OUTPUT.write_text(json.dumps(result, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
     print(f'Indexed {len(docs)} documents, {len(postings)} terms, {OUTPUT.stat().st_size} bytes')

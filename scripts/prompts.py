@@ -30,7 +30,8 @@ WRITING_RULES = """<writing_rules>
 
 
 def research_prompt(*, date_str: str, week_label: str, week_range: str, official_prices: str,
-                    fx: str, base_rates: str, links: str, materials: str, news: str) -> str:
+                    fx: str, base_rates: str, links: str, materials: str, news: str,
+                    professional_sources: str = '') -> str:
     return f"""<role_and_objective>
 你是台灣鋼鐵與營建材料市場的研究員。今天（{date_str}，台灣時間）的任務只有「查證事實、比對報導、核對推理鏈」，不用做預測。
 另一位分析師會完全依照你的研究底稿預測{week_label}（{week_range}）行情與下一期官方月均價，所以正確比篇幅重要：寧可少寫，也不能寫錯。
@@ -55,12 +56,14 @@ def research_prompt(*, date_str: str, week_label: str, week_range: str, official
 8. 反傾銷與貿易：台灣對進口鋼品的課稅、其他國家對台灣鋼品的措施、中國出口政策。
 9. 美元兌新台幣走勢對進口原料成本的影響。
 10. 依 <verified_links> 核對推理鏈：歷史上連動明顯的那幾條，查證「這個月有沒有正在發生」（例如本月豐興廢鋼週盤是否已調整、國際廢鋼報價是否已反映到台灣）。
+11. 若營建需求、工地、材料標準或安全議題與 <professional_sources> 相關，可用其官方來源作為進一步查證入口；不要為填充報告而額外引入無關主題。
 </topics>
 
 <source_rules>
 - 優先順序：鋼廠或政府的正式公告、交易所與官方統計 > 主要財經媒體（經濟日報、工商時報、鉅亨網、MoneyDJ、Reuters）> 產業資訊網（SteelOrbis、Argus、Fastmarkets、Mysteel、SMM）> 其他網站。內容農場、轉貼站與來路不明的部落格不要用。
 - 台灣的事情優先找中文來源，國際行情優先找英文或中國大陸的產業來源。
 - 新聞要同時比對「報導日期」和「事件發生日期」，避免把舊消息當成新消息。
+- 專業知識索引是查詢線索，不是已查證的當日事實。須實際查閱來源、確認日期及適用版本後才能引用；不能查閱時不要把索引描述當作查證結果。
 </source_rules>
 
 <cross_check_rules>
@@ -125,6 +128,9 @@ def research_prompt(*, date_str: str, week_label: str, week_range: str, official
 <verified_links>
 {links}
 </verified_links>
+<professional_sources>
+{professional_sources or '（無可用的專業來源索引）'}
+</professional_sources>
 <materials>
 {materials}
 </materials>

@@ -52,6 +52,16 @@ require('../assets/reference-search.js');
   const rules = await api.search('建築物耐震設計規範', ['耐震', '設計規範']);
   assert(rules.some(x => x.name.includes('100年7月')));
   assert(rules.every(x => x.note.includes('來源') || x.note.includes('查閱')));
+  for (const [question, expected] of [
+    ['山坡地水土保持計畫', 'swc-'],
+    ['大地工程土壤液化如何評估', 'geo-'],
+    ['鋼結構銲接螺栓施工檢驗', 'steel-'],
+    ['建築物耐震設計規範', 'civil-seismic'],
+  ]) {
+    const results = await api.search(question, [question]);
+    const item = results.find(x => x.knowledge && x.knowledge.id.startsWith(expected));
+    assert(item && item.href.startsWith('https://') && item.excerpt && item.note.includes('來源'));
+  }
   const county = await api.search('非都市土地使用分區彰化縣', ['非都市', '使用分區', '彰化縣']);
   assert(county[0].name.includes('彰化縣'));
   assert.deepEqual(await api.search('zz9q8x7y6w', ['zz9q8x7y6w']), []);

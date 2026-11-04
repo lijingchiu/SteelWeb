@@ -1,7 +1,7 @@
 // Search the separately maintained reference archive without treating its
 // historical, extracted or OCR text as verified current legislation.
 (function (global) {
-  const INDEX = 'data/laws/reference-archive/search-index.json?v=20261104g';
+  const INDEX = 'data/laws/reference-archive/search-index.json?v=20261104h';
   const MAX_DOCUMENT_BYTES = 3000000;
   let indexPromise;
   let snapshotsPromise;
@@ -28,7 +28,7 @@
     return indexPromise;
   }
 
-  function rank(index, question, terms) {
+  function rank(index, question, terms, group = 'all') {
     const tokens = [...new Set([...grams((terms || []).join(' ')), ...grams(question)])];
     const hits = new Map();
     const useful = tokens.filter(t => index.terms[t] && index.terms[t].length < index.docs.length * 0.8);
@@ -37,7 +37,7 @@
       const weight = Math.log(1 + index.docs.length / ids.length);
       for (const id of ids) {
         const doc = index.docs[id];
-        if (!doc || doc.name === 'README') continue;
+        if (!doc || doc.name === 'README' || (group === 'knowledge' && !doc.knowledge) || (group === 'archive' && doc.knowledge)) continue;
         const item = hits.get(id) || { id, score: 0, matches: 0 };
         item.matches++;
         item.score += weight * (doc.name.toLowerCase().includes(token) ? 2.5 : 1);
@@ -156,11 +156,21 @@
   async function search(question, terms = []) {
     try {
       const index = await loadIndex();
-      const results = await Promise.all(rank(index, question, terms).map(async doc => {
+      const candidates = [...rank(index, question, terms, 'archive'), ...rank(index, question, terms, 'knowledge').slice(0, 2)];
+      const results = await Promise.all(candidates.map(async doc => {
+        if (doc.knowledge) {
+          const k = doc.knowledge;
+          try {
+            const u = new URL(k.url);
+            if (u.protocol !== 'https:') return null;
+            return { ...doc, href: u.href, excerpt: [k.summary, '實務查核方向：' + (k.checkpoints || []).join('；'), ...(k.related || []).slice(0, 2)].join('\n'),
+              note: `專業知識來源：${k.organization}（${k.kind}），整理日期 ${k.reviewed}；摘要為查詢線索，請查核原文與適用版本。` };
+          } catch (_) { return null; }
+        }
         const href = safePath(doc.path);
         if (doc.bytes > MAX_DOCUMENT_BYTES) return { ...doc, href, excerpt: '', note: '檔案較大，請開啟來源檔查閱。' };
         try {
-          const response = await fetch(`${href}?v=20261104g`);
+          const response = await fetch(`${href}?v=20261104h`);
           if (!response.ok) throw new Error('not available');
           const text = await response.text();
           // Link-only records are deliberately distinguished from source text:
@@ -183,7 +193,7 @@
       }));
       // Several entries may describe the same official map. Show it only once.
       const seen = new Set();
-      return results.filter(r => { if (seen.has(r.href)) return false; seen.add(r.href); return true; });
+      return results.filter(r => { if (!r || seen.has(r.href)) return false; seen.add(r.href); return true; });
     } catch (_) { return []; }
   }
   global.SteelReferenceSearch = { search, rank, grams, snippet, parseCsv, parseTable, liveTable };
