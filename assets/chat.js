@@ -26,7 +26,7 @@
   };
   const SUGGESTIONS = ['最新鋼筋與廢鋼行情有什麼變化？', '網站如何看待鋼材後續走勢？', '水泥和砂石最近的物價指數如何？', '鋼價波動時，工程合約的物價調整要注意什麼？'];
 
-  const state = { history: [], busy: false, context: null, sections: [], contextDate: null, contextAt: 0, files: [], abort: null, nextQuestion: "", nextQuestionSecond: "", conversationId: null, nextVersion: 0, nextAbort: null };
+  const state = { history: [], busy: false, context: null, sections: [], contextDate: null, contextAt: 0, files: [], selections: [], abort: null, nextQuestion: "", nextQuestionSecond: "", conversationId: null, nextVersion: 0, nextAbort: null };
 
   // ── Key storage ──
   function getKey() { try { return localStorage.getItem(OAI_KEY) || ''; } catch (_) { return ''; } }
@@ -697,6 +697,13 @@
     $('chat-file').value = '';
   }
 
+  function updateSelections() {
+    const box = $('chat-quotes'), list = $('chat-quotes-list');
+    if (!box || !list) return;
+    box.hidden = !state.selections.length;
+    list.innerHTML = state.selections.map((s, i) => `<div class="chat-quote"><span>${escHtml(s.file ? `圖片：${s.label || '網站圖表'}` : s.text)}</span><button type="button" data-quote-index="${i}" aria-label="移除第 ${i + 1} 則引用">×</button></div>`).join('');
+  }
+
   const DEFAULT_CHAT_PLACEHOLDER = '問鋼價、行情或營建問題…';
   function updateNextSuggestion() {
     const input = $('chat-input'), button = $('chat-next-suggestion'), secondButton = $('chat-next-suggestion-2');
@@ -792,8 +799,11 @@
   }
 
   async function ask(raw) {
-    const files = state.files.slice();
-    const question = String(raw || '').trim() || (files.length ? '請說明附件的內容。' : '');
+    const selections = state.selections.slice();
+    const files = [...state.files, ...selections.filter(s => s.file).map(s => s.file)];
+    const typed = String(raw || '').trim();
+    const quotes = selections.filter(s => s.text).map((s, i) => `引用 ${i + 1}：${s.text}`).join('\n\n');
+    const question = quotes ? `${quotes}\n\n問題：${typed || '請說明上述內容。'}` : typed || (files.length ? '請說明附件的內容。' : '');
     if (!question || state.busy) return;
     if (!getKey()) { showView(); return; }
     resetNextSuggestion();
@@ -830,6 +840,7 @@
         } else attachments = await window.SteelAttachments.prepare(files);
         state.files = []; updateAttachments();
       }
+      state.selections = []; updateSelections();
       const earlier = state.history.filter(h => h.role === 'user').slice(-2).map(h => h.text);
       const urls = window.SteelChatWeb ? window.SteelChatWeb.extractUrls(question) : [];
       let pages = [];
@@ -1454,6 +1465,29 @@
 
   function init() {
     if (!$('chat-panel')) return;
+    document.addEventListener('steel:ask-selection', e => {
+      const detail = e.detail || {};
+      if (state.busy) { detail.error = '助理正在回答，請稍後再試。'; return; }
+      const total = state.selections.reduce((n, s) => n + (s.text || '').length, 0) + (detail.text || '').length;
+      if (total > 1800) { detail.error = '引用文字合計請勿超過 1800 字；可先傳送或移除部分內容。'; return; }
+      if (detail.file) {
+        const issue = window.SteelAttachments.validate([detail.file]);
+        if (issue) { detail.error = issue; return; }
+      }
+      state.selections.push({text: detail.text || '', file: detail.file || null, label: detail.label || ''});
+      updateSelections();
+      const question = String(detail.question || '').trim();
+      if (question) $('chat-input').value = [$('chat-input').value.trim(), question].filter(Boolean).join('\n');
+      autoGrow(); updateNextSuggestion();
+      showHistory(false);
+      openChat();
+      detail.accepted = true;
+    });
+    $('chat-quotes-list').addEventListener('click', e => {
+      const button = e.target.closest('[data-quote-index]');
+      if (!button || state.busy) return;
+      state.selections.splice(Number(button.dataset.quoteIndex), 1); updateSelections();
+    });
     initChatResize();
     importKeyFromHash();
     if (window.visualViewport) {
@@ -1573,7 +1607,7 @@
       if (state.abort) state.abort.abort();
       if (voice.active || voice.starting) stopVoice();
       state.history = []; state.conversationId = null; resetNextSuggestion();
-      state.files = []; updateAttachments(); showHistory(false);
+      state.files = []; state.selections = []; updateAttachments(); updateSelections(); showHistory(false);
       renderSuggestions();
     });
   }
