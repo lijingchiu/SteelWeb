@@ -701,7 +701,7 @@
     const box = $('chat-quotes'), list = $('chat-quotes-list');
     if (!box || !list) return;
     box.hidden = !state.selections.length;
-    list.innerHTML = state.selections.map((s, i) => `<div class="chat-quote"><span>${escHtml(s.file ? `圖片：${s.label || '網站圖表'}` : s.text)}</span><button type="button" data-quote-index="${i}" aria-label="移除第 ${i + 1} 則引用">×</button></div>`).join('');
+    list.innerHTML = state.selections.map((s, i) => `<div class="chat-quote"><div class="chat-quote-content"><span>${escHtml(s.file ? `圖片：${s.label || '網站圖表'}` : s.text)}</span><div class="chat-quote-question-row"><span id="chat-quote-summary-${i}" class="chat-quote-summary">${escHtml(s.question || '尚未輸入專屬問題')}</span><button type="button" class="chat-quote-edit" data-quote-edit="${i}" aria-expanded="false" aria-controls="chat-quote-question-${i}">${s.question ? '編輯問題' : '新增問題'} ✎</button></div><textarea id="chat-quote-question-${i}" data-quote-question="${i}" aria-label="第 ${i + 1} 段的專屬問題" rows="2" maxlength="900" placeholder="輸入這段專屬的問題" hidden>${escHtml(s.question || '')}</textarea></div><button type="button" class="chat-quote-remove" data-quote-index="${i}" aria-label="移除第 ${i + 1} 則引用">×</button></div>`).join('');
   }
 
   const DEFAULT_CHAT_PLACEHOLDER = '問鋼價、行情或營建問題…';
@@ -802,8 +802,8 @@
     const selections = state.selections.slice();
     const files = [...state.files, ...selections.filter(s => s.file).map(s => s.file)];
     const typed = String(raw || '').trim();
-    const quotes = selections.filter(s => s.text).map((s, i) => `引用 ${i + 1}：${s.text}`).join('\n\n');
-    const question = quotes ? `${quotes}\n\n問題：${typed || '請說明上述內容。'}` : typed || (files.length ? '請說明附件的內容。' : '');
+    const quotes = selections.map((s, i) => `引用 ${i + 1}：${s.text || `圖片「${s.label || '網站圖表'}」（附件檔名：${s.file?.name || '圖片'}）`}\n此引用的問題：${s.question || '請說明此內容。'}`).join('\n\n');
+    const question = quotes ? `${quotes}${typed ? `\n\n整體補充問題：${typed}` : ''}` : typed || (files.length ? '請說明附件的內容。' : '');
     if (!question || state.busy) return;
     if (!getKey()) { showView(); return; }
     resetNextSuggestion();
@@ -813,8 +813,8 @@
       addMsg('bot', escHtml(`問題請精簡在 ${MAX_QUESTION} 字以內，再問一次。`), 'chat-note');
       return;
     }
-    const quotePreview = selections.filter(s => s.text).map((s, i) => `引用 ${i + 1}：${s.text.length > 100 ? s.text.slice(0, 100) + '…' : s.text}`).join('\n');
-    const userDisplay = [quotePreview, typed || (!quotes ? question : '請說明上述內容。'), files.length ? '附件：' + files.map(f => f.name).join('、') : ''].filter(Boolean).join('\n');
+    const quotePreview = selections.map((s, i) => { const label = s.text || `圖片：${s.label || '網站圖表'}`; return `引用 ${i + 1}：${label.length > 100 ? label.slice(0, 100) + '…' : label}${s.question ? `\n問題：${s.question}` : ''}`; }).join('\n');
+    const userDisplay = [quotePreview, typed || (!quotes ? question : ''), files.length ? '附件：' + files.map(f => f.name).join('、') : ''].filter(Boolean).join('\n');
     addMsg('user', escHtml(userDisplay));
     $('chat-input').value = '';
     autoGrow();
@@ -1474,19 +1474,33 @@
         const issue = window.SteelAttachments.validate([detail.file]);
         if (issue) { detail.error = issue; return; }
       }
-      state.selections.push({text: detail.text || '', file: detail.file || null, label: detail.label || ''});
+      state.selections.push({text: detail.text || '', file: detail.file || null, label: detail.label || '', question: String(detail.question || '').trim()});
       updateSelections();
-      const question = String(detail.question || '').trim();
-      if (question) $('chat-input').value = [$('chat-input').value.trim(), question].filter(Boolean).join('\n');
       autoGrow(); updateNextSuggestion();
       showHistory(false);
       openChat();
       detail.accepted = true;
     });
     $('chat-quotes-list').addEventListener('click', e => {
+      const edit = e.target.closest('[data-quote-edit]');
+      if (edit && !state.busy) {
+        const textarea = $(`chat-quote-question-${edit.dataset.quoteEdit}`);
+        if (!textarea) return;
+        textarea.hidden = !textarea.hidden;
+        edit.setAttribute('aria-expanded', String(!textarea.hidden));
+        if (!textarea.hidden) textarea.focus();
+        return;
+      }
       const button = e.target.closest('[data-quote-index]');
       if (!button || state.busy) return;
       state.selections.splice(Number(button.dataset.quoteIndex), 1); updateSelections();
+    });
+    $('chat-quotes-list').addEventListener('input', e => {
+      const index = e.target.dataset.quoteQuestion;
+      if (index === undefined || !state.selections[Number(index)]) return;
+      state.selections[Number(index)].question = e.target.value;
+      const summary = $(`chat-quote-summary-${index}`);
+      if (summary) summary.textContent = e.target.value.trim() || '尚未輸入專屬問題';
     });
     initChatResize();
     importKeyFromHash();

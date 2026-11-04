@@ -29,7 +29,7 @@ async function runScenario(readable, inScope, selections = []) {
     if (String(target).includes('/v1/responses')) {
       const body = JSON.parse(options.body);
       if (body.instructions.includes('預測使用者可能')) return {ok:true,json:async()=>({output_text:JSON.stringify({question:'鋼筋成本有什麼影響？'})})};
-      if (!body.stream) { sequence.push('scope'); assert(body.input.includes('報導鋼筋價格變化')); if (selections.length) for (const item of selections) assert(body.input.includes(item.text)); return { ok: true, json: async () => ({ output_text: JSON.stringify({ in_scope: inScope, laws: [], terms: [] }) }) }; }
+      if (!body.stream) { sequence.push('scope'); assert(body.input.includes('報導鋼筋價格變化')); if (selections.length) for (const item of selections) { assert(body.input.includes(item.text)); if (item.question) assert(body.input.includes(item.text + '\n此引用的問題：' + item.question)); } return { ok: true, json: async () => ({ output_text: JSON.stringify({ in_scope: inScope, laws: [], terms: [] }) }) }; }
       sequence.push('answer'); assert(body.input.at(-1).content.includes('報導鋼筋價格變化'));
       assert(body.instructions.includes('電子報獨有內容'));
       assert(body.instructions.includes('圖表「鋼筋」：26/10：18500'));
@@ -43,7 +43,17 @@ async function runScenario(readable, inScope, selections = []) {
   const context = { window, document, navigator: window.navigator, location: { hash: '' }, localStorage: { getItem: () => 'sk-test' }, fetch, console, URL, AbortController, TextDecoder, TextEncoder, Date, setTimeout, clearTimeout, requestAnimationFrame: fn => fn() };
   vm.runInNewContext(fs.readFileSync(require.resolve('../assets/chat.js'), 'utf8'), context);
   for (const selection of selections) { const detail = {...selection}; handlers['steel:ask-selection']({detail}); assert.equal(detail.accepted, true); }
-  if (selections.length) { assert.deepEqual(sequence, [], 'staging must not call the assistant'); assert(elem('chat-quotes-list').innerHTML.includes(selections[0].text)); }
+  if (selections.length) {
+    assert.deepEqual(sequence, [], 'staging must not call the assistant');
+    assert(elem('chat-quotes-list').innerHTML.includes(selections[0].text));
+    assert.equal(elem('chat-input').value, '', 'individual questions must stay with their own quote');
+    const edit = {dataset:{quoteEdit:'0'},setAttribute(){}};
+    const field = elem('chat-quote-question-0'); field.hidden=true;
+    elem('chat-quotes-list').handlers.click({target:{closest:q => q === '[data-quote-edit]' ? edit : null}});
+    assert.equal(field.hidden,false, 'edit opens the correct question');
+    field.dataset.quoteQuestion='0'; field.value='修改後：鋼筋為什麼漲？';
+    elem('chat-quotes-list').handlers.input({target:field}); selections[0].question=field.value;
+  }
   elem('chat-input').value = url + ' 這篇說什麼？';
   elem('chat-form').handlers.submit({ submitter: elem('chat-send'), preventDefault() {} });
   for (let i = 0; i < 50 && elem('chat-send').disabled !== false; i++) await new Promise(r => setTimeout(r, 2));
@@ -60,7 +70,7 @@ async function runScenario(readable, inScope, selections = []) {
   const no = await runScenario(false, false);
   assert.deepEqual(no.sequence, ['read']);
   assert(no.html.includes('無法確認這個連結的文章內容'));
-  const staged = await runScenario(true, true, [{text:'第一段鋼筋報價'.repeat(600) + '結尾資料'}, {text:'第二段廢鋼行情'}]);
+  const staged = await runScenario(true, true, [{text:'第一段鋼筋報價'.repeat(600) + '結尾資料', question:'鋼筋為什麼漲？'}, {text:'第二段廢鋼行情', question:'廢鋼有什麼風險？'}]);
   assert.deepEqual(staged.sequence, ['read', 'scope', 'answer']);
   console.log('Chat integration: read before scope, linked source citations, off-topic and unavailable pages passed.');
 })().catch(e => { console.error(e); process.exitCode = 1; });
