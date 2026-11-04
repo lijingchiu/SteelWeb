@@ -18,8 +18,6 @@
       if (!file.size || (k === 'video' ? file.size > MAX_VIDEO : file.size >= MAX_FILE))
         return `「${file.name}」為空或超過大小限制（影片最多 300 MB，其他檔案須小於 50 MB）。`;
     }
-    const documents = files.filter(f => kind(f) === 'document').reduce((sum, f) => sum + f.size, 0);
-    if (documents >= MAX_FILE) return '單次傳送的文件合計須小於 50 MB；請拆成多次傳送。';
     return '';
   }
   function readData(file) {
@@ -111,5 +109,25 @@
     }
     return parts;
   }
-  global.SteelAttachments = { kind, validate, prepare };
+  function needsBatches(files) {
+    return files.filter(f => kind(f) === 'document').reduce((sum, f) => sum + f.size, 0) >= MAX_FILE;
+  }
+  async function prepareBatches(files, analyze, onProgress = () => {}) {
+    const problem = validate(files); if (problem) throw new Error(problem);
+    const results = [], failures = [];
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i]; onProgress(i + 1, files.length, file.name);
+      try {
+        const parts = await prepare([file]);
+        const summary = await analyze(parts, file, i);
+        if (!String(summary || '').trim()) throw new Error('沒有取得可用的讀取結果');
+        results.push({index: i + 1, name: file.name, summary});
+      } catch (e) {
+        if (e.badKey || e.stopBatch || e.name === 'AbortError' || e instanceof TypeError) throw e;
+        failures.push({index: i + 1, name: file.name, reason: String(e.message || '讀取失敗').slice(0,120)});
+      }
+    }
+    return {results, failures};
+  }
+  global.SteelAttachments = { kind, validate, prepare, needsBatches, prepareBatches };
 })(typeof window === 'undefined' ? globalThis : window);

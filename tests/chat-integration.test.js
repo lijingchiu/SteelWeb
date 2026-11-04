@@ -28,6 +28,7 @@ async function runScenario(readable, inScope) {
     if (String(target).includes('data/report.json')) return { ok: true, json: async () => ({ date: '2026-11-03', file: 'reports/test.pptx', title: '電子報獨有標題', slides: 1, content: { date: '2026-11-03', file: 'reports/test.pptx', pages: [{page: 1, text: ['電子報獨有內容'], charts: [{name: '鋼筋', points: [{category: '26/10', value: '18500'}]}]}] } }) };
     if (String(target).includes('/v1/responses')) {
       const body = JSON.parse(options.body);
+      if (body.instructions.includes('預測使用者可能')) return {ok:true,json:async()=>({output_text:JSON.stringify({question:'鋼筋成本有什麼影響？'})})};
       if (!body.stream) { sequence.push('scope'); assert(body.input.includes('報導鋼筋價格變化')); return { ok: true, json: async () => ({ output_text: JSON.stringify({ in_scope: inScope, laws: [], terms: [] }) }) }; }
       sequence.push('answer'); assert(body.input.at(-1).content.includes('報導鋼筋價格變化'));
       assert(body.instructions.includes('電子報獨有內容'));

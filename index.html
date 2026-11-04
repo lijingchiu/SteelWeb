@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261104i">
+  <link rel="stylesheet" href="assets/style.css?v=20261104n">
 </head>
 <body>
 
@@ -526,8 +526,9 @@
       <p class="chat-attachment-message" id="chat-attachment-message" role="status" aria-live="polite"></p>
       <div class="chat-attach-menu" id="chat-attach-menu" hidden>
         <button type="button" id="chat-choose-file">選擇圖片、影片或文件</button>
-        <span>影片單檔最多 300 MB；其他單檔及每次文件合計須小於 50 MB</span>
+        <span>影片單檔最多 300 MB；其他單檔須小於 50 MB，多份文件會自動分批</span>
       </div>
+      <button type="button" class="chat-next-suggestion" id="chat-next-suggestion" hidden></button>
       <form class="chat-form" id="chat-form">
         <input type="file" id="chat-file" accept=".png,.jpg,.jpeg,.webp,.gif,.heic,.heif,.mp4,.mov,.m4v,.webm,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.tsv,.txt" multiple hidden>
         <button type="button" class="chat-attach" id="chat-attach" aria-label="加入附件" aria-expanded="false" aria-controls="chat-attach-menu" title="加入附件">
@@ -556,7 +557,7 @@
   <script src="assets/chat-web.js?v=20261104c"></script>
   <script src="assets/vendor/jszip.min.js?v=3.10.1"></script>
   <script src="assets/office-visuals.js?v=20261104m"></script>
-  <script src="assets/chat-attachments.js?v=20261104m"></script>
-  <script src="assets/chat.js?v=20261104m"></script>
+  <script src="assets/chat-attachments.js?v=20261104n"></script>
+  <script src="assets/chat.js?v=20261104n"></script>
 </body>
 </html>

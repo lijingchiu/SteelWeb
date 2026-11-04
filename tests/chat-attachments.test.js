@@ -15,7 +15,9 @@ assert.equal(attachments.validate([file('影片.mp4', 300 * 1024 * 1024)]), '');
 assert.match(attachments.validate([file('影片.mp4', 300 * 1024 * 1024 + 1)]), /限制/);
 assert.equal(attachments.validate(Array(12).fill(file('照片.png'))), '');
 assert.equal(attachments.validate([file('a.pdf', 25_000_000), file('b.docx', 24_999_999)]), '');
-assert.match(attachments.validate([file('a.pdf', 25_000_000), file('b.docx', 25_000_000)]), /合計/);
+assert.equal(attachments.validate([file('a.pdf', 25_000_000), file('b.docx', 25_000_000)]), '');
+assert.equal(attachments.needsBatches([file('a.pdf', 25_000_000), file('b.docx', 25_000_000)]), true);
+assert.equal(attachments.needsBatches([file('a.pdf', 25_000_000), file('b.docx', 24_999_999)]), false);
 assert.equal(attachments.validate([file('工程.pdf'), file('施工.mp4')]), '');
 
 async function scenario(inScope) {
@@ -37,7 +39,9 @@ async function scenario(inScope) {
     if (String(target).includes('data/latest.json')) return {ok:true,json:async()=>({date:'2026-11-04'})};
     if (String(target).includes('data/')) return {ok:false};
     if (String(target).includes('/v1/responses')) {
-      const body = JSON.parse(options.body); sent.push(body);
+      const body = JSON.parse(options.body);
+      if (body.instructions.includes('預測使用者可能')) return {ok:true,json:async()=>({output_text:JSON.stringify({question:'鋼材成本如何變化？'})})};
+      sent.push(body);
       if (!body.stream) return {ok:true,json:async()=>({output_text:JSON.stringify({in_scope:inScope,laws:[],terms:[]})})};
       let done = false; const bytes = new TextEncoder().encode('data: '+JSON.stringify({type:'response.output_text.delta',delta:'這份工程文件說明鋼材。'})+'\n\n');
       return {ok:true,body:{getReader:()=>({async read(){if(done)return {done:true};done=true;return {done:false,value:bytes};}})}};

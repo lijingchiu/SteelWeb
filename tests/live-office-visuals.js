@@ -21,7 +21,7 @@ const cases = [
         const b=req.postDataJSON(), input=Array.isArray(b.input) ? b.input : [];
         const all=input.flatMap(x=>Array.isArray(x.content)?x.content:[]);
         const text=all.filter(p=>p.type==='input_text').map(p=>p.text).join('\n');
-        observed.push({stream:!!b.stream, images:all.filter(p=>p.type==='input_image').length,
+        observed.push({stream:!!b.stream, batch: String(b.instructions || '').includes('文件證據擷取器'), images:all.filter(p=>p.type==='input_image').length,
           hasFile:all.some(p=>p.type==='input_file'), fileCount:all.filter(p=>p.type==='input_file').length, text});
       } catch (_) { /* requests without this structure are irrelevant */ }
     });
@@ -46,6 +46,13 @@ const cases = [
       assert(answer.toUpperCase().includes(c.mark),`${c.ext}: image marker missing from answer: ${answer.slice(0,500)}`);
       for (const v of c.values) assert(answer.includes(v),`${c.ext}: chart value ${v} missing from answer: ${answer.slice(0,500)}`);
       console.log(`${c.ext}: real assistant read image ${c.mark} and chart values ${c.values.join(', ')}.`);
+      if (c.ext === 'docx') {
+        await page.waitForFunction(() => document.querySelector('#chat-input').placeholder.includes('按 Tab'),null,{timeout:45000});
+        await page.locator('#chat-input').press('Tab');
+        assert((await page.locator('#chat-input').inputValue()).length >= 4,'desktop Tab did not insert suggestion');
+        assert.equal(await page.locator('.chat-msg.chat-user').count(),1,'desktop Tab unexpectedly sent a question');
+        console.log('Desktop suggestion: Tab filled the input without sending.');
+      }
       await page.locator('#chat-new').click();
     }
     const begin=observed.length;
@@ -89,6 +96,32 @@ const cases = [
     }
     assert(sizeAnswer.toUpperCase().includes('PDF274'),`large multi-upload: PDF marker missing: ${sizeAnswer.slice(0,500)}`);
     console.log('Large upload case: five attachments, 49 MB PDF and 300 MiB video were processed by the real assistant.');
+    await page.locator('#chat-new').click();
+    await page.setViewportSize({width:390,height:844});
+    const batchBegin=observed.length;
+    const [batchChooser]=await Promise.all([page.waitForEvent('filechooser'),page.locator('#chat-choose-file').click()]);
+    await batchChooser.setFiles(['/tmp/steel-attachment-test/batch-a.pdf','/tmp/steel-attachment-test/batch-b.pdf']);
+    const batchSelected=await page.locator('#chat-attachment-list').innerText();
+    assert(batchSelected.includes('batch-a.pdf')&&batchSelected.includes('batch-b.pdf'),'two documents exceeding 50 MB were not selected');
+    await page.locator('#chat-input').fill('請比較兩份鋼筋報價文件：A 與 B 各為每公噸多少元，兩者相差多少元？請逐一標明檔名。');
+    await page.locator('#chat-send').click();
+    await page.waitForFunction(() => !document.querySelector('#chat-send').disabled,null,{timeout:300000});
+    const batchAnswer=(await page.locator('.chat-msg.chat-bot').last().innerText()).replace(/,/g,'');
+    const batchRequests=observed.slice(batchBegin).filter(r=>r.batch);
+    assert.equal(batchRequests.length,2,'expected two separate extraction requests');
+    assert(batchRequests.every(r=>r.fileCount===1),'each extraction must contain only one document');
+    assert(batchAnswer.includes('12500')&&batchAnswer.includes('22700')&&batchAnswer.includes('10200'),`batched comparison missing values: ${batchAnswer.slice(0,800)}`);
+    assert(batchAnswer.includes('batch-a')&&batchAnswer.includes('batch-b'),'batched answer must identify both files');
+    assert(batchAnswer.includes('分批擷取的摘要'),'batched answer must disclose summary limitation');
+    console.log('Batch case: two 26 MB PDFs were read separately and accurately compared.');
+    await page.locator('#chat-next-suggestion').waitFor({state:'visible',timeout:45000});
+    const nextText=await page.locator('#chat-next-suggestion').innerText();
+    const beforeCount=await page.locator('.chat-msg.chat-user').count();
+    await page.locator('#chat-next-suggestion').click();
+    assert((await page.locator('#chat-input').inputValue()).length>=4,'mobile suggestion did not fill the input');
+    assert.equal(await page.locator('.chat-msg.chat-user').count(),beforeCount,'mobile suggestion unexpectedly sent a question');
+    assert(nextText.includes('建議：'),'mobile suggestion missing label');
+    console.log('Mobile suggestion: tap filled the input without sending.');
     // Read-only outcomes: all supplied documents are synthetic and non-sensitive.
   } finally { await browser.close(); }
 })().catch(e=>{console.error(String(e.message || e).replaceAll(key,'[redacted]'));process.exitCode=1;});
