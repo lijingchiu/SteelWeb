@@ -497,6 +497,8 @@
   }
 
   function showView() {
+    // Remove the subtitle from pages restored from an older cached document.
+    document.querySelector('#chat-panel .chat-subtitle')?.remove();
     const hasKey = !!getKey();
     $('chat-setup').hidden = hasKey;
     $('chat-main').hidden = !hasKey;

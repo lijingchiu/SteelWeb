@@ -5,6 +5,7 @@ require('../assets/chat-web.js');
 
 function simulate(mobile) {
   let keyReads = 0;
+  let subtitleRemoved = false;
   const elements = new Map();
   function element(id) {
     if (!elements.has(id)) elements.set(id, {
@@ -15,12 +16,12 @@ function simulate(mobile) {
     });
     return elements.get(id);
   }
-  const document = { readyState: 'complete', getElementById: element, addEventListener() {}, body: { classList: { add() {}, remove() {} } } };
+  const document = { readyState: 'complete', getElementById: element, querySelector(selector) { return selector === '#chat-panel .chat-subtitle' ? { remove() { subtitleRemoved = true; } } : null; }, addEventListener() {}, body: { classList: { add() {}, remove() {} } } };
   const win = { SteelChatWeb: global.SteelChatWeb, navigator: {}, matchMedia: () => ({ matches: mobile }) };
   const context = { window: win, document, navigator: win.navigator, location: { hash: '' },
     localStorage: { getItem() { keyReads++; return ''; } }, console, URL, AbortController, Date, setTimeout, clearTimeout };
   vm.runInNewContext(fs.readFileSync(require.resolve('../assets/chat.js'), 'utf8'), context);
-  return { element, get reads() { return keyReads; } };
+  return { element, get reads() { return keyReads; }, get subtitleRemoved() { return subtitleRemoved; } };
 }
 const mobile = simulate(true);
 mobile.element('chat-input').value = '第一行';
@@ -32,6 +33,7 @@ mobile.element('chat-form').handlers.submit({ submitter: null, preventDefault() 
 assert.equal(mobile.reads, 0, 'implicit form submission must not send on mobile');
 mobile.element('chat-form').handlers.submit({ submitter: mobile.element('chat-send'), preventDefault() {} });
 assert(mobile.reads > 0, 'send button must reach the send handler');
+assert(mobile.subtitleRemoved, 'opening the assistant removes an old cached subtitle');
 const desktop = simulate(false);
 desktop.element('chat-input').value = '測試';
 let shiftPrevented = false;

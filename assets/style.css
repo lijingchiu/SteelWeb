@@ -1634,7 +1634,7 @@ body.brief-open .chat-fab { opacity: 0; pointer-events: none; transform: scale(0
   border-bottom: 1px solid var(--line);
 }
 .chat-title { font-family: var(--font-serif); font-size: 17px; font-weight: 600; letter-spacing: 0.04em; }
-.chat-subtitle { margin-top: 2px; font-size: 11px; color: var(--muted); letter-spacing: 0.04em; }
+.chat-subtitle { display: none; }
 .chat-actions, #chat-key-menu { display: flex; align-items: center; gap: 2px; }
 #chat-key-menu[hidden] { display: none; }
 .chat-icon-btn {
