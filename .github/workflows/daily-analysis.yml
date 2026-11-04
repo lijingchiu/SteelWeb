@@ -6,6 +6,11 @@ on:
     # started 2-3.5 hours late every day. Notifications are scheduled for the
     # delivery time in notify-config.json, so they still arrive at a fixed time.
     - cron: '17 21 * * *'
+    # Backup slots: GitHub often starts scheduled runs hours late or drops them.
+    # A later slot does nothing when today's analysis already exists.
+    - cron: '43 19 * * *'
+    - cron: '23 22 * * *'
+    - cron: '47 23 * * *'
   # Pushing a change to this file on main runs the analysis immediately.
   push:
     branches: [main]
