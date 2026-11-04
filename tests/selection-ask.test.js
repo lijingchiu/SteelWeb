@@ -42,11 +42,14 @@ vm.runInNewContext(fs.readFileSync(require.resolve('../assets/selection-ask.js')
   assert.equal(form.hidden,true); assert.equal(element('selection-ask-trigger').hidden,false); element('selection-ask-trigger').handlers.click(); await form.handlers.submit({preventDefault(){}});
   assert.equal(staged.file.type,'image/png'); assert.equal(staged.label,'價格走勢圖'); assert.equal(submissions,2);
   handlers['steel:selection-update']({detail:{ids:[staged.id]}}); assert(markers[0].removed); assert.equal(markers[1].textContent,'1');
-  window.innerWidth=390; window.innerHeight=800; element('selection-ask-trigger').offsetHeight=44;
+  window.innerWidth=390; window.innerHeight=800; element('selection-ask-trigger').offsetHeight=44; element('selection-ask-trigger').offsetWidth=110;
+  element('chat-fab').getBoundingClientRect = () => ({left:320,top:660,width:54,height:54});
   selectionRect={left:20,right:370,top:300,bottom:340,width:350,height:40};
   selection.isCollapsed=false; selectionText='原始選取內容';
   handlers.pointerup({target:{}}); await new Promise(r=>setTimeout(r,130));
-  assert(parseInt(element('selection-ask-trigger').style.top,10) >= selectionRect.bottom + 64, 'mobile button avoids the selection and nearby system menu');
+  const trigger = element('selection-ask-trigger');
+  assert.equal(parseInt(trigger.style.left,10),198,'mobile button is 12px left of the assistant');
+  assert.equal(parseInt(trigger.style.top,10),665,'mobile button is vertically centered with the assistant');
   const beforeTouch=clearCount;
   handlers.pointerdown({target:{},pointerType:'touch'});
   assert.equal(clearCount,beforeTouch,'touching a selection handle must not clear the selection');
@@ -56,7 +59,7 @@ vm.runInNewContext(fs.readFileSync(require.resolve('../assets/selection-ask.js')
   assert.equal(element('selection-ask-trigger').hidden,false);
   selectionRect={left:20,right:370,top:730,bottom:770,width:350,height:40};
   handlers['selectionchange'](); await new Promise(r=>setTimeout(r,250));
-  assert(parseInt(element('selection-ask-trigger').style.top,10) + 44 <= selectionRect.top - 64, 'near the bottom the button moves away from the system menu');
+  assert.equal(parseInt(trigger.style.top,10),665,'mobile button stays next to the assistant as selection changes');
   selectionText='最後調整後的選取';
   element('selection-ask-trigger').handlers.pointerdown();
   element('selection-ask-trigger').handlers.click();

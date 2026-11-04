@@ -57,15 +57,19 @@
     const mobile = window.matchMedia?.('(hover: none) and (pointer: coarse)').matches || window.innerWidth <= 768;
     let x = Math.max(left + 12, Math.min(anchor.left, left + viewWidth - width - 12));
     let y = Math.max(top + 12, Math.min(anchor.bottom + 10, top + height - popup.offsetHeight - 12));
-    if (form.hidden && mobile && current?.text) {
-      // The system menu has no web-visible bounds. Reserve space above and
-      // below the selection and place the button at a viewport edge instead.
-      const gap = 64, upper = top + 12, lower = top + height - popup.offsetHeight - 12;
-      if (lower >= anchor.bottom + gap) y = lower;
-      else if (upper + popup.offsetHeight <= anchor.top - gap) y = upper;
-      else if (anchor.left - left >= width + 24) { x = left + 12; y = Math.max(upper, Math.min(anchor.top, lower)); }
-      else if (left + viewWidth - anchor.right >= width + 24) { x = left + viewWidth - width - 12; y = Math.max(upper, Math.min(anchor.top, lower)); }
-      else y = (anchor.top - top > top + height - anchor.bottom) ? upper : lower;
+    if (form.hidden && mobile) {
+      const fab = document.getElementById('chat-fab')?.getBoundingClientRect?.();
+      if (fab && fab.width && fab.height) {
+        const gap = 12;
+        if (fab.left - width - gap >= left + 12) {
+          x = fab.left - width - gap;
+          y = Math.max(top + 12, Math.min(fab.top + (fab.height - popup.offsetHeight) / 2, top + height - popup.offsetHeight - 12));
+        } else {
+          // Extremely narrow screens cannot fit both controls side by side.
+          x = left + 12;
+          y = Math.max(top + 12, fab.top - popup.offsetHeight - gap);
+        }
+      }
     }
     popup.style.left = `${x}px`;
     popup.style.top = `${y}px`;
