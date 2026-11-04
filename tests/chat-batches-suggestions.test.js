@@ -18,7 +18,7 @@ async function run(mobile, withFiles, failSuggestion=false) {
     if(String(target).includes('data/latest.json'))return {ok:true,json:async()=>({date:'2026-11-04'})};
     if(String(target).includes('data/'))return {ok:false};
     const b=JSON.parse(options.body);
-    if(b.instructions.includes('預測使用者可能')) return failSuggestion ? {ok:false,status:503} : {ok:true,json:async()=>({output_text:JSON.stringify({question:'這對鋼筋採購成本有何影響？'})})};
+    if(b.instructions.includes('預測使用者可能')) return failSuggestion ? {ok:false,status:503} : {ok:true,json:async()=>({output_text:JSON.stringify({questions:['這對鋼筋採購成本有何影響？','未來應關注哪些價格因素？']})})};
     if(b.instructions.includes('文件證據擷取器')){
       requests.push({type:'batch',body:b});
       const parts=b.input[0].content, f=parts.find(p=>p.type==='input_file');
@@ -36,7 +36,7 @@ async function run(mobile, withFiles, failSuggestion=false) {
   if(withFiles) elem('chat-file').handlers.change({target:{files:[{name:'a.pdf',size:26_000_000},{name:'b.pdf',size:26_000_000},{name:'broken.pdf',size:2}]}});
   elem('chat-input').value='比較文件的鋼筋價格';
   elem('chat-form').handlers.submit({submitter:elem('chat-send'),preventDefault(){}});
-  for(let i=0;i<200 && (elem('chat-send').disabled!==false || !elem('chat-input').placeholder?.includes('建議'));i++)await new Promise(r=>setTimeout(r,2));
+  for(let i=0;i<200 && (elem('chat-send').disabled!==false || !elem('chat-next-suggestion').textContent);i++)await new Promise(r=>setTimeout(r,2));
   return {elem,requests,messages};
 }
 (async()=>{
@@ -51,9 +51,17 @@ async function run(mobile, withFiles, failSuggestion=false) {
   assert(html.includes('未能讀取')&&html.includes('broken.pdf'));
   assert(html.includes('分批擷取的摘要'));
   assert.equal(mobile.elem('chat-next-suggestion').hidden,false);
+  assert.equal(mobile.elem('chat-input').placeholder,'問鋼價、行情或營建問題…');
+  assert.equal(mobile.elem('chat-next-suggestion-2').hidden,false);
+  assert.equal(mobile.elem('chat-next-suggestion-2').textContent,'建議：未來應關注哪些價格因素？');
   mobile.elem('chat-next-suggestion').handlers.click();
   assert.equal(mobile.elem('chat-input').value,'這對鋼筋採購成本有何影響？');
   assert.equal(mobile.elem('chat-next-suggestion').hidden,true);
+  const mobileSecond=await run(true,false);
+  mobileSecond.elem('chat-next-suggestion-2').handlers.click();
+  assert.equal(mobileSecond.elem('chat-input').value,'未來應關注哪些價格因素？');
+  assert.equal(mobileSecond.elem('chat-next-suggestion').hidden,true);
+  assert.equal(mobileSecond.elem('chat-next-suggestion-2').hidden,true);
   const desktop=await run(false,false); let prevented=false;
   assert(desktop.elem('chat-input').placeholder.includes('按 Tab'));
   assert.equal(desktop.elem('chat-next-suggestion').hidden,true);
@@ -65,5 +73,6 @@ async function run(mobile, withFiles, failSuggestion=false) {
   const fallback=await run(true,false,true);
   assert.equal(fallback.elem('chat-next-suggestion').hidden,false);
   assert(fallback.elem('chat-next-suggestion').textContent.includes('資料有哪些重點'));
+  assert.equal(fallback.elem('chat-next-suggestion-2').hidden,false);
   console.log('Batched evidence, partial failure reporting, mobile suggestion, fallback and desktop Tab passed.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
