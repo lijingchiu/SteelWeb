@@ -7,7 +7,7 @@
   const input = document.getElementById('selection-ask-input');
   const status = document.getElementById('selection-ask-status');
   const submit = document.getElementById('selection-ask-send');
-  let current = null, timer, hold, start, anchor;
+  let current = null, timer, hold, start, anchor, touchGesture = null, preserveAfterScroll = false;
   const marks = new Map();
   function positionMarks() {
     for (const mark of marks.values()) {
@@ -35,7 +35,15 @@
     positionMarks();
   }
   document.addEventListener('steel:selection-update', e => refreshMarks(e.detail.ids));
-  window.addEventListener('scroll', positionMarks, {passive:true, capture:true});
+  window.addEventListener('scroll', () => {
+    positionMarks();
+    if (form.hidden && current?.text) {
+      preserveAfterScroll = true;
+      if (touchGesture) touchGesture.scrolled = true;
+      trigger.hidden = false;
+      position();
+    }
+  }, {passive:true, capture:true});
   window.addEventListener('resize', positionMarks);
   const excluded = node => {
     const el = node?.nodeType === 1 ? node : node?.parentElement;
@@ -44,6 +52,7 @@
   const hide = (clearSelection = true) => {
     clearTimeout(timer); clearTimeout(hold);
     form.hidden = true; trigger.hidden = true; current = null; anchor = null; status.textContent = '';
+    touchGesture = null; preserveAfterScroll = false;
     if (clearSelection) window.getSelection()?.removeAllRanges();
   };
   function position() {
@@ -108,13 +117,18 @@
   function inspectSelection() {
     if (!form.hidden) return;
     const selected = selectedText();
-    if (!selected) { if (current?.text) hide(false); return; }
+    if (!selected) { if (current?.text && !touchGesture && !preserveAfterScroll) hide(false); return; }
     show(selected, selected.range.getBoundingClientRect());
   }
   document.addEventListener('selectionchange', () => { clearTimeout(timer); timer = setTimeout(inspectSelection, 220); });
   document.addEventListener('pointerup', e => {
     clearTimeout(hold); start = null;
     if (form.contains(e.target) || trigger.contains(e.target)) return;
+    if (touchGesture && e.pointerType === 'touch') {
+      if (touchGesture.scrolled) preserveAfterScroll = true;
+      else preserveAfterScroll = false;
+      touchGesture = null;
+    }
     clearTimeout(timer); timer = setTimeout(inspectSelection, 100);
   });
   const imageTarget = target => {
@@ -135,6 +149,7 @@
       // Native touch selection handles can send pointer events to the page.
       // Never clear the selection while the user might be adjusting them.
       const adjustingText = e.pointerType === 'touch' && form.hidden && !!current?.text;
+      if (adjustingText) touchGesture = {x:e.clientX, y:e.clientY, scrolled:false};
       if (!adjustingText) hide();
     }
     clearTimeout(hold);
@@ -142,10 +157,12 @@
     if (el) { start = {x:e.clientX, y:e.clientY}; hold = setTimeout(() => selectImage(el), 650); }
   });
   document.addEventListener('pointermove', e => {
+    if (touchGesture && (Math.abs(e.clientX - touchGesture.x) > 8 || Math.abs(e.clientY - touchGesture.y) > 8)) touchGesture.scrolled = true;
     if (start && (Math.abs(e.clientX - start.x) > 12 || Math.abs(e.clientY - start.y) > 12)) { clearTimeout(hold); start = null; }
   });
   document.addEventListener('pointercancel', () => {
     clearTimeout(hold); start = null;
+    if (touchGesture) { preserveAfterScroll = true; touchGesture = null; }
     if (form.hidden) { clearTimeout(timer); timer = setTimeout(inspectSelection, 100); }
   });
   document.getElementById('selection-ask-close').addEventListener('click', hide);

@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
-const handlers = {}, elements = {};
+const handlers = {}, windowHandlers = {}, elements = {};
 function element(id) {
   return elements[id] ||= {id, hidden:true, style:{}, offsetHeight:200, value:'', textContent:'', disabled:false, handlers:{},
     addEventListener(type, fn) {this.handlers[type]=fn;}, contains(node) {return node === this;}, focus() {}};
@@ -14,7 +14,7 @@ let staged, submissions=0, editId, markers=[];
 const document = {activeElement:null,getElementById:element, addEventListener(type,fn){handlers[type]=fn;}, body:{appendChild(){}},
   createElement(){const button={style:{},hidden:false,handlers:{},addEventListener(t,fn){this.handlers[t]=fn;},setAttribute(){},remove(){this.removed=true;}}; markers.push(button); return button;},
   dispatchEvent(event){if(event.type==='steel:edit-selection') { editId=event.detail.id; return; } submissions++; staged=event.detail; event.detail.accepted=true;}};
-const window = {innerWidth:1000,innerHeight:700,getSelection:()=>selection,addEventListener(){}};
+const window = {innerWidth:1000,innerHeight:700,getSelection:()=>selection,addEventListener(type,fn){windowHandlers[type]=fn;}};
 class CustomEvent {constructor(type, options){this.type=type;this.detail=options.detail;}}
 class File {constructor(parts,name,options){this.name=name;this.type=options.type;this.size=parts[0].size;}}
 const context={document,window,location:{href:'https://example.com/'},CustomEvent,File,URL,Date,setTimeout,clearTimeout,
@@ -56,6 +56,10 @@ vm.runInNewContext(fs.readFileSync(require.resolve('../assets/selection-ask.js')
   assert.equal(selection.isCollapsed,false);
   assert.equal(trigger.hidden,false,'the button remains visible as scrolling begins');
   handlers.pointermove({clientX:30,clientY:200}); handlers.pointercancel();
+  selection.isCollapsed=true; windowHandlers.scroll(); handlers['selectionchange']();
+  await new Promise(r=>setTimeout(r,250));
+  assert.equal(trigger.hidden,false,'transiently unavailable selection during scrolling must not hide the button');
+  selection.isCollapsed=false;
   await new Promise(r=>setTimeout(r,130));
   assert.equal(trigger.hidden,false,'the button remains visible after a scroll cancellation while text is selected');
   selectionText='調整藍點之後的完整選取'; handlers['selectionchange']();
@@ -69,6 +73,13 @@ vm.runInNewContext(fs.readFileSync(require.resolve('../assets/selection-ask.js')
   element('selection-ask-trigger').handlers.click();
   await form.handlers.submit({preventDefault(){}});
   assert.equal(staged.text,'最後調整後的選取','the latest selection is staged even before the debounce completes');
+  selection.isCollapsed=false; handlers['selectionchange'](); await new Promise(r=>setTimeout(r,250));
+  handlers.pointerdown({target:{},pointerType:'touch',clientX:20,clientY:20});
+  handlers.pointercancel(); selection.isCollapsed=true; handlers['selectionchange'](); await new Promise(r=>setTimeout(r,250));
+  assert.equal(trigger.hidden,false,'scrolling retains the last selection temporarily');
+  handlers.pointerdown({target:{},pointerType:'touch',clientX:20,clientY:20});
+  handlers.pointerup({target:{},pointerType:'touch'}); await new Promise(r=>setTimeout(r,130));
+  assert.equal(trigger.hidden,true,'a later tap after the selection is cleared dismisses the button');
   selection.isCollapsed=false; handlers['selectionchange'](); await new Promise(r=>setTimeout(r,250));
   assert.equal(trigger.hidden,false);
   selection.isCollapsed=true; handlers['selectionchange'](); await new Promise(r=>setTimeout(r,250));
