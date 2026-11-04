@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261104p">
+  <link rel="stylesheet" href="assets/style.css?v=20261104q">
 </head>
 <body>
 
@@ -136,18 +136,22 @@
     </div>
 
     <aside class="hero-right">
-      <div class="feat-tag">TODAY'S FOCUS · 焦點報價</div>
-      <div class="feat-name">豐興鋼筋盤價</div>
-      <div class="feat-spec">Fengxing Rebar · 元 / 公噸</div>
-      <div class="feat-price-row">
-        <span class="feat-currency">NT$</span>
-        <span class="feat-price" id="feat-current">-</span>
+      <div class="feat-header">
+        <div class="feat-tag">TODAY'S FOCUS · 焦點報價</div>
+        <div class="feat-controls" id="feat-controls" hidden>
+          <button type="button" id="feat-toggle" aria-label="暫停輪播">暫停</button>
+          <button type="button" id="feat-next" aria-label="下一項報價">下一項 ↑</button>
+        </div>
       </div>
-      <div class="feat-change-row">
-        <span id="feat-change">-</span>
-        <span class="feat-change-note">vs. 上月</span>
+      <div class="feat-viewport" id="feat-viewport" aria-label="焦點報價">
+        <div class="feat-slide is-active">
+          <div class="feat-name">豐興鋼筋盤價</div>
+          <div class="feat-spec">Fengxing Rebar · 元 / 公噸</div>
+          <div class="feat-price-row"><span class="feat-currency">NT$</span><span class="feat-price">-</span></div>
+          <div class="feat-change-row"><span class="price-change">-</span><span class="feat-change-note">vs. 上月</span></div>
+          <div class="feat-month">-</div>
+        </div>
       </div>
-      <div class="feat-month" id="feat-month">-</div>
     </aside>
   </section>
 
@@ -560,7 +564,7 @@
     </div>
   </section>
 
-  <script src="assets/app.js?v=20261104p"></script>
+  <script src="assets/app.js?v=20261104q"></script>
   <script src="assets/reference-search.js?v=20261104h"></script>
   <script src="assets/chat-web.js?v=20261104c"></script>
   <script src="assets/vendor/jszip.min.js?v=3.10.1"></script>

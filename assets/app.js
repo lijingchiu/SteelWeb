@@ -446,15 +446,70 @@ function drawChart() {
   });
 }
 
+let _featuredTimer = null;
+let _featuredPaused = false;
+
 function populateFeatured(data) {
+  const viewport = document.getElementById('feat-viewport');
+  const controls = document.getElementById('feat-controls');
+  const toggle = document.getElementById('feat-toggle');
+  const next = document.getElementById('feat-next');
+  if (!viewport || !controls || !toggle || !next) return;
+  if (_featuredTimer) clearInterval(_featuredTimer);
   const tp = data.taiwan_prices || {};
-  const rebar = tp.fengxing_rebar_price || {};
-  const cur = document.getElementById('feat-current');
-  const chg = document.getElementById('feat-change');
-  const mon = document.getElementById('feat-month');
-  if (cur) cur.textContent = rebar.value != null ? fmt(rebar.value) : '-';
-  if (chg) setChange(chg, rebar.mom_change, rebar.unit || '元', 0);
-  if (mon) mon.textContent = rebar.month ? `DATA · ${rebar.month}` : '-';
+  const products = [
+    ['fengxing_rebar_price', '豐興鋼筋盤價', 'Fengxing Rebar', 0],
+    ['north_scrap_price', '北部廢鋼大盤收購價', 'N. Taiwan Scrap', 2],
+    ['billet_price', '小鋼胚中級出廠價', 'Billet Ex-Factory', 0],
+    ['h_beam_price', '東鋼 H 型鋼流通價', 'H-Beam Circulation', 0],
+    ['csc_wire_rod_price', '中鋼棒線盤價', 'CSC Wire Rod', 0],
+  ].filter(([key]) => typeof tp[key]?.value === 'number' && Number.isFinite(tp[key].value));
+  if (!products.length) { controls.hidden = true; return; }
+  viewport.textContent = '';
+  const slides = products.map(([key, name, english, decimals], index) => {
+    const item = tp[key];
+    const slide = document.createElement('div');
+    slide.className = 'feat-slide' + (index === 0 ? ' is-active' : '');
+    slide.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
+    slide.innerHTML = `<div class="feat-name"></div><div class="feat-spec"></div>
+      <div class="feat-price-row"><span class="feat-currency">NT$</span><span class="feat-price"></span></div>
+      <div class="feat-change-row"><span class="feat-change"></span><span class="feat-change-note">vs. 上月</span></div>
+      <div class="feat-month"></div>`;
+    slide.querySelector('.feat-name').textContent = name;
+    slide.querySelector('.feat-spec').textContent = `${english} · ${item.unit || '元'}`;
+    slide.querySelector('.feat-price').textContent = fmt(item.value, decimals === 0 ? undefined : decimals);
+    setChange(slide.querySelector('.feat-change'), item.mom_change, item.unit || '元', decimals);
+    slide.querySelector('.feat-month').textContent = item.month ? `DATA · ${item.month}` : '資料月份：-';
+    viewport.appendChild(slide);
+    return slide;
+  });
+  controls.hidden = slides.length < 2;
+  if (slides.length < 2) return;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  _featuredPaused = reducedMotion.matches;
+  let current = 0;
+  const renderToggle = () => {
+    toggle.textContent = _featuredPaused ? '播放' : '暫停';
+    toggle.setAttribute('aria-label', _featuredPaused ? '播放輪播' : '暫停輪播');
+  };
+  const advance = () => {
+    slides.forEach(slide => slide.classList.remove('is-exiting', 'is-animated'));
+    const old = slides[current];
+    old.classList.remove('is-active');
+    old.classList.add('is-exiting');
+    old.setAttribute('aria-hidden', 'true');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('is-active', 'is-animated');
+    slides[current].setAttribute('aria-hidden', 'false');
+  };
+  const restart = () => {
+    if (_featuredTimer) clearInterval(_featuredTimer);
+    _featuredTimer = _featuredPaused ? null : setInterval(() => { if (!document.hidden) advance(); }, 6000);
+  };
+  toggle.onclick = () => { _featuredPaused = !_featuredPaused; renderToggle(); restart(); };
+  next.onclick = () => { advance(); restart(); };
+  renderToggle();
+  restart();
 }
 
 function populateTicker(data) {

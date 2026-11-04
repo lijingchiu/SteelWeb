@@ -335,6 +335,20 @@ button { font-family: inherit; }
   border-bottom: 1px solid var(--line);
 }
 
+.feat-header { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.feat-controls { display: flex; gap: 12px; flex-shrink: 0; }
+.feat-controls[hidden] { display: none; }
+.feat-controls button { border: 0; padding: 4px 0; background: transparent; color: var(--muted); font: inherit; font-size: 11px; cursor: pointer; }
+.feat-controls button:hover, .feat-controls button:focus-visible { color: var(--copper); }
+.feat-viewport { display: grid; overflow: hidden; }
+.feat-slide { grid-area: 1 / 1; visibility: hidden; }
+.feat-slide.is-active, .feat-slide.is-exiting { visibility: visible; }
+.feat-slide.is-active { z-index: 1; }
+.feat-slide.is-animated { animation: feat-in 0.65s ease both; }
+.feat-slide.is-exiting { animation: feat-out 0.65s ease both; }
+@keyframes feat-in { from { opacity: 0; transform: translateY(100%); } to { opacity: 1; transform: translateY(0); } }
+@keyframes feat-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-100%); visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .feat-slide.is-animated, .feat-slide.is-exiting { animation-duration: 0.001s; } }
 .feat-tag {
   font-size: 10px;
   letter-spacing: 0.3em;
@@ -1402,6 +1416,8 @@ a.fc-sum-row:hover { background: rgba(var(--copper-rgb), 0.04); }
 
   .hero { padding-top: 36px; padding-bottom: 36px; }
   .title { font-size: 48px; }
+  .hero-right { padding: 24px 16px 28px; }
+  .feat-tag { letter-spacing: 0.2em; }
   .feat-price { font-size: 44px; }
   .h2 { font-size: 26px; }
 
