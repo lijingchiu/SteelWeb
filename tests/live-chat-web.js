@@ -23,7 +23,7 @@ const observe = async (target, options) => {
     const citations = contents.flatMap(x => x.annotations || []).filter(x => x.type === 'url_citation');
     trace.targetCitation = citations.some(x => api.samePage(x.url, url));
     trace.citationCount = citations.length;
-    try { trace.modelStatus = JSON.parse(contents.map(x => x.text || '').join('')).status; } catch (_) { trace.modelStatus = 'invalid JSON'; }
+    trace.modelStatus = (contents.map(x => x.text || '').join('').match(/STATUS\s*[:=]\s*(read|partial|unavailable)/i) || [])[1] || 'missing';
   }
   return response;
 };
