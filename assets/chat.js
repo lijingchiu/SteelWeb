@@ -230,6 +230,7 @@
 - 計算或換算時，先查 <site_data> 的「營建常用參考資料」，寫出算式再給結果，並再驗算一次；鋼筋重量一律以表列單位重量計算。
 - 不要寫任何免責或提醒字句，例如「AI 預估」「不是保證」「預測不保證」「僅供參考」「請自行判斷」。網站已在固定位置統一說明，重複寫會干擾閱讀。說到預測時直接講方向、幅度和機率，例如「11月鋼筋月均價看漲，約每公噸+60至+300元，上漲機率42%」。
 - 若資料彼此矛盾或資料較舊，要明白說出來。
+- 用具體、自然且多樣的說法說明資料意義與限制，不要反覆使用「不能代表」「不能判斷」「不能直接認定」等否定句。先講已知內容，再依實際情況說明「成交價仍待確認」「這是月均價」「還需觀察後續」等；保留必要的不確定性，不要把推測寫成事實。
 - 用繁體中文、白話短句，像跟總經理口頭報告，不要用艱深術語；必要的術語用一句話解釋。
 - 不要使用 Markdown 符號（不要 #、**、表格、連結）。需要條列時每行用「・」開頭。一般回答盡量在 300 字以內；使用者要求撰寫營建實務文件時可以較長。
 - 最後一行可以寫「相關區塊：」加上一到兩個最相關的網站區塊代號，用逗號分隔，只能從這些代號選：prices、materials、chart、forecast、analysis、news。沒有適合的就不寫這行。
@@ -1353,7 +1354,8 @@
       const jump = e.target.closest('.chat-jump');
       if (jump) {
         if (window.matchMedia('(max-width: 768px)').matches) closeChat();
-        const a = document.querySelector(`.nav-link[data-sec="${jump.dataset.sec}"]`);
+        const destination = ['chart', 'forecast'].includes(jump.dataset.sec) ? 'materials' : jump.dataset.sec;
+        const a = document.querySelector(`.nav-link[data-sec="${destination}"]`);
         if (a) a.click();
       }
     });

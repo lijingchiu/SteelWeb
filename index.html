@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261104x">
+  <link rel="stylesheet" href="assets/style.css?v=20261104y">
 </head>
 <body>
 
@@ -64,8 +64,6 @@
     <nav class="nav-wrap" aria-label="Primary">
       <a class="nav-link" href="#prices" data-sec="prices">報價</a>
       <a class="nav-link" href="#materials" data-sec="materials">行情</a>
-      <a class="nav-link" href="#chart" data-sec="chart">走勢</a>
-      <a class="nav-link" href="#forecast" data-sec="forecast">預測</a>
       <a class="nav-link" href="#analysis" data-sec="analysis">分析</a>
       <a class="nav-link" href="#news" data-sec="news">新聞</a>
       <a class="nav-link" href="#subscribe" data-sec="subscribe">訂閱</a>
@@ -92,14 +90,6 @@
     <a class="tab" href="#materials" data-sec="materials">
       <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="1.5"/><path d="M3.5 9.3h17M3.5 14.6h17M9.5 4v16"/></svg>
       <span>行情</span>
-    </a>
-    <a class="tab" href="#chart" data-sec="chart">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 19.5h17"/><path d="M4.5 15.5l4.5-5 3.5 3 6.5-8"/></svg>
-      <span>走勢</span>
-    </a>
-    <a class="tab" href="#forecast" data-sec="forecast">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
-      <span>預測</span>
     </a>
     <a class="tab" href="#analysis" data-sec="analysis">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8.5L19 8v12.5H6z"/><path d="M14 3.5V8.5h5M9 12.5h7M9 16h5"/></svg>
@@ -329,62 +319,13 @@
       <div class="table-footnote" id="mat-sources">
         資料來源：台灣金屬行情網、行政院主計總處、臺北市／新北市／臺中市政府主計處（政府資料開放授權條款）、World Bank Commodity Price Data（CC BY 4.0）、臺灣證券交易所 OpenAPI。標示「過期」的品項代表來源暫時無法連線，沿用前次資料。
       </div>
-    <details class="mat-research" id="forecast">
-      <summary>查看五項鋼材預測研究與歷史命中率</summary>
-      <div class="section-head">
-        <div>
-          <div class="kicker">§ 04 · PRICE OUTLOOK</div>
-          <h2 class="h2">盤價走勢預測</h2>
-        </div>
-        <div class="section-meta" id="forecast-date">-</div>
-      </div>
-
-      <div class="fc-summary-wrap" id="fc-summary"></div>
-      <div class="fc-accuracy" id="fc-accuracy"></div>
-      <div class="forecast-grid" id="fc-grid">
-        <p class="fc-reason">預測資料將於下次分析執行後產生</p>
-      </div>
-      <div class="fc-card fc-overall">
-        <div class="fc-head">
-          <div>
-            <div class="fc-name">綜合推論依據</div>
-            <div class="fc-sub">Reasoning Basis · 時事 × 國際市場 × 原物料供需</div>
-          </div>
-        </div>
-        <p class="fc-reason" id="fc-overall-basis">預測資料將於下次分析執行後產生</p>
-        <div class="fc-research" id="fc-research"></div>
-        <div class="fc-cites" id="fc-cites"></div>
-      </div>
-
-      <div class="table-footnote">「本週／下週」預測市場實際成交行情；「下一期月均價」預測台灣金屬行情網下一次公布的月均價，公布後會自動計分。預測由 AI 依新聞、國際行情與原物料資料推論，僅供參考，不構成交易建議。</div>
-    </details>
-
-    </section>
-
-    <!-- § 02 Chart -->
-    <section class="section section-chart" id="chart" data-fade>
-      <div class="section-head">
-        <div>
-          <div class="kicker">§ 03 · PRICE TREND</div>
-          <h2 class="h2">近期價格走勢</h2>
-        </div>
-        <div class="chart-legend">
-          <span class="legend-dot" style="background:var(--chart-1)"></span><span>小鋼胚</span>
-          <span class="legend-dot" style="background:var(--chart-2)"></span><span>鋼筋</span>
-          <span class="legend-dot" style="background:var(--chart-3)"></span><span>H型鋼</span>
-          <span class="legend-dot" style="background:var(--chart-4)"></span><span>棒線</span>
-        </div>
-      </div>
-      <div class="chart-wrapper">
-        <canvas id="price-chart"></canvas>
-      </div>
     </section>
 
     <!-- § 05 Market Analysis -->
     <section class="section section-analysis" id="analysis" data-fade>
       <div class="section-head">
         <div>
-          <div class="kicker">§ 05 · MARKET ANALYSIS</div>
+          <div class="kicker">§ 03 · MARKET ANALYSIS</div>
           <h2 class="h2">市場深度分析</h2>
         </div>
       </div>
@@ -417,7 +358,7 @@
     <section class="section section-news" id="news" data-fade>
       <div class="section-head">
         <div>
-          <div class="kicker">§ 06 · MARKET NOTES</div>
+          <div class="kicker">§ 04 · MARKET NOTES</div>
           <h2 class="h2">本日參考新聞</h2>
         </div>
         <div class="section-meta news-sources">
@@ -436,7 +377,7 @@
   <section class="section section-subscribe in" id="subscribe">
     <div class="section-head">
       <div>
-        <div class="kicker">§ 07 · DAILY BRIEFING</div>
+        <div class="kicker">§ 05 · DAILY BRIEFING</div>
         <h2 class="h2">訂閱每日快報</h2>
       </div>
       <div class="section-meta" id="sub-time">週一至週五早上 7 點自動送達</div>
@@ -574,12 +515,12 @@
   </section>
 
   <script src="assets/material-forecast.js?v=1"></script>
-  <script src="assets/app.js?v=20261104x"></script>
+  <script src="assets/app.js?v=20261104y"></script>
   <script src="assets/reference-search.js?v=20261104h"></script>
   <script src="assets/chat-web.js?v=20261104c"></script>
   <script src="assets/vendor/jszip.min.js?v=3.10.1"></script>
   <script src="assets/office-visuals.js?v=20261104m"></script>
   <script src="assets/chat-attachments.js?v=20261104n"></script>
-  <script src="assets/chat.js?v=20261104o"></script>
+  <script src="assets/chat.js?v=20261104p"></script>
 </body>
 </html>

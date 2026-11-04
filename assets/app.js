@@ -19,7 +19,6 @@ forceScrollTop();
 const TREND_LABELS = { up: '上漲', down: '下跌', stable: '持平' };
 const CONF_LABELS = { high: '信心度：高', medium: '信心度：中', low: '信心度：低' };
 
-let priceChart = null;
 
 // Model-written text sometimes carries citation markup like "([site](https://...))";
 // links belong in the source lists, so drop them from prose.
@@ -222,6 +221,20 @@ function scrollToEl(el, flash = true) {
 
 function goToAnchor(anchor, search) {
   _userInteracted = true;
+  const legacyItem = typeof anchor === 'string' && anchor.startsWith('fc-') ? anchor.slice(3) : null;
+  if (legacyItem || anchor === 'forecast' || anchor === 'chart') {
+    anchor = 'materials';
+    if (legacyItem && matState.data?.items?.some(it => it.id === legacyItem)) {
+      const item = matState.data.items.find(it => it.id === legacyItem);
+      matState.q = ''; matState.group = 'all'; matState.freq = 'all';
+      matState.expanded.add(item.group); matState.openItems.add(item.id);
+      const input = document.getElementById('mat-search');
+      if (input) input.value = '';
+      populateMaterials(matState.data);
+      const detail = [...document.querySelectorAll('.mat-detail')].find(el => el.dataset.id === legacyItem);
+      if (detail) { detail.closest('.section')?.classList.add('in'); requestAnimationFrame(() => requestAnimationFrame(() => scrollToEl(detail))); return; }
+    }
+  }
   if (anchor === 'materials' && search) {
     const input = document.getElementById('mat-search');
     if (input) {
@@ -401,8 +414,6 @@ function populateMeta(data) {
   }
 }
 
-let chartSeries = null;
-
 function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
@@ -411,84 +422,6 @@ function cssVar(name) {
 function tint(hex, alpha) {
   const m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
   return m ? `rgba(${parseInt(m[1], 16)}, ${parseInt(m[2], 16)}, ${parseInt(m[3], 16)}, ${alpha})` : hex;
-}
-
-async function buildChart(latestData) {
-  const canvas = document.getElementById('price-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
-
-  let months = [], billetVals = [], rebarVals = [], hbeamVals = [], wirerodVals = [];
-
-  try {
-    const chartRes = await fetch('data/chart-data.json?t=' + Date.now());
-    if (chartRes.ok) {
-      const cd = await chartRes.json();
-      months = cd.months || [];
-      billetVals = cd.billet_price || [];
-      rebarVals = cd.fengxing_rebar_price || [];
-      hbeamVals = cd.h_beam_price || [];
-      wirerodVals = cd.csc_wire_rod_price || [];
-    }
-  } catch (_) {}
-
-  if (months.length === 0 && latestData) {
-    const tp = latestData.taiwan_prices || {};
-    const m = tp.data_month || latestData.date || '本月';
-    months = [m];
-    billetVals = [tp.billet_price?.value ?? null];
-    rebarVals = [tp.fengxing_rebar_price?.value ?? null];
-    hbeamVals = [tp.h_beam_price?.value ?? null];
-    wirerodVals = [tp.csc_wire_rod_price?.value ?? null];
-  }
-
-  chartSeries = { months, billetVals, rebarVals, hbeamVals, wirerodVals };
-  drawChart();
-}
-
-function drawChart() {
-  const canvas = document.getElementById('price-chart');
-  if (!canvas || !chartSeries || typeof Chart === 'undefined') return;
-  const ctx = canvas.getContext('2d');
-  const { months, billetVals, rebarVals, hbeamVals, wirerodVals } = chartSeries;
-  const c = [1, 2, 3, 4].map(i => cssVar(`--chart-${i}`));
-  const muted = cssVar('--muted');
-  const grid = cssVar('--chart-grid');
-  const line = (label, data, color) => ({
-    label, data, borderColor: color, backgroundColor: tint(color, 0.07), pointBackgroundColor: color,
-    pointRadius: 3, pointHoverRadius: 5, tension: 0.35, borderWidth: 1.5, fill: true,
-  });
-
-  if (priceChart) priceChart.destroy();
-  Chart.defaults.color = muted;
-  Chart.defaults.borderColor = grid;
-  priceChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: months,
-      datasets: [
-        line('小鋼胚', billetVals, c[0]),
-        line('鋼筋', rebarVals, c[1]),
-        line('H型鋼', hbeamVals, c[2]),
-        line('棒線', wirerodVals, c[3]),
-      ],
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: cssVar('--tooltip-bg'), borderColor: cssVar('--line'), borderWidth: 1,
-          titleColor: cssVar('--ink'), bodyColor: muted,
-          callbacks: { label(item) { return ` ${item.dataset.label}：${item.parsed.y?.toLocaleString('zh-TW') ?? '-'} 元/噸`; } },
-        },
-      },
-      scales: {
-        x: { grid: { color: grid }, ticks: { maxRotation: 45, font: { size: 11 }, color: muted } },
-        y: { grid: { color: grid }, ticks: { font: { size: 11 }, color: muted, callback: v => v.toLocaleString('zh-TW') } },
-      },
-    },
-  });
 }
 
 let _featuredTimer = null;
@@ -630,13 +563,6 @@ function populateTicker(data, materials) {
   };
 }
 
-const FC_ITEMS = [
-  { key: 'north_scrap_price',    name: '北部廢鋼大盤收購價', sub: 'N. Taiwan Scrap' },
-  { key: 'billet_price',         name: '小鋼胚中級出廠價',   sub: 'Billet Ex-Factory' },
-  { key: 'fengxing_rebar_price', name: '豐興鋼筋盤價',       sub: 'Fengxing Rebar' },
-  { key: 'h_beam_price',         name: '東鋼H型鋼流通價',    sub: 'H-Beam Circulation' },
-  { key: 'csc_wire_rod_price',   name: '中鋼棒線盤價',       sub: 'CSC Wire Rod' },
-];
 const DIR_LABELS = { up: '看漲', down: '看跌', stable: '持平' };
 
 const DIR_ARROWS = { up: '▲', down: '▼', stable: '◆' };
@@ -688,88 +614,6 @@ function fcBlock(label, f, extra = '') {
     </div>`;
 }
 
-function fcSummary(pf, weekLabel) {
-  const monthHead = (Object.values(pf.targets || {})[0] || {}).target_month;
-  const weekHead = `${weekLabel}行情`;
-  const monthLabel = monthHead ? `${monthHead} 月均價` : '下一期月均價';
-  const rows = FC_ITEMS.map(({ key, name }) => {
-    const f = pf.items[key] || {};
-    const cell = (g, cls, label) => `<div class="fc-sum-cell ${cls}" data-label="${esc(label)}">${fcBadge(g)}<span class="fc-sum-est">${esc(g?.change_estimate || '-')}</span></div>`;
-    return `<a class="fc-sum-row" href="#fc-${key}">
-        <span class="fc-sum-name">${esc(name)}</span>
-        ${cell(f.week, 'fc-sum-week', weekHead)}${cell(f.next_month, 'fc-sum-month', monthLabel)}
-      </a>`;
-  }).join('');
-  return `<div class="fc-summary">
-      <div class="fc-sum-row fc-sum-head">
-        <span class="fc-sum-name">品項</span>
-        <span class="fc-sum-cell">${esc(weekHead)}</span>
-        <span class="fc-sum-cell">${esc(monthLabel)}</span>
-      </div>
-      ${rows}
-    </div>`;
-}
-
-// Two independent columns (cards 1,3,5 | 2,4) so opening or closing a card only moves
-// the cards below it in the same column. On phones the columns dissolve and the
-// inline order restores 1-5.
-function fcColumns(cards) {
-  const left = cards.filter((_, i) => i % 2 === 0).join('');
-  const right = cards.filter((_, i) => i % 2 === 1).join('');
-  return `<div class="fc-col">${left}</div><div class="fc-col">${right}</div>`;
-}
-
-function populateForecast(data) {
-  const grid = document.getElementById('fc-grid');
-  const dateEl = document.getElementById('forecast-date');
-  const summary = document.getElementById('fc-summary');
-  const pf = data.price_forecast;
-  const legacy = data.tomorrow_forecast;
-  if (!grid) return;
-
-  if (pf && pf.items) {
-    const weekLabel = pf.week_label || '本週';
-    if (dateEl) dateEl.textContent = `${weekLabel} ${pf.week_range || ''} · 發布於 ${data.date || '-'}`;
-    if (summary) summary.innerHTML = fcSummary(pf, weekLabel);
-    const factsById = Object.fromEntries(((data.research || {}).facts || []).map(x => [x.id, x]));
-    grid.innerHTML = fcColumns(FC_ITEMS.map(({ key, name, sub }, i) => {
-      const f = pf.items[key] || {};
-      const tgt = (pf.targets || {})[key];
-      const monthLabel = tgt ? `下一期月均價 ${tgt.target_month}` : '下一期月均價';
-      const note = f.revision_note
-        ? `<details class="fc-why fc-note-wrap"${fcWide() ? ' open' : ''}><summary>與前次預測比較</summary><div class="fc-note">${esc(plain(f.revision_note))}</div></details>`
-        : '';
-      return `<div class="fc-card" id="fc-${key}" style="order:${i}">
-          <div class="fc-head"><div><div class="fc-name">${name}</div><div class="fc-sub">${sub}</div></div></div>
-          ${fcBlock(`${weekLabel}行情 ${pf.week_range || ''}`, f.week)}
-          ${fcBlock(monthLabel, f.next_month, fcScenarios(f.next_month, f.ensemble))}
-          ${fcRisk(f, factsById)}
-          ${note}
-        </div>`;
-    }));
-  } else if (legacy) {
-    if (dateEl) dateEl.textContent = `發布於 ${data.date || '-'}`;
-    grid.innerHTML = fcColumns(FC_ITEMS.map(({ key, name, sub }, i) => `<div class="fc-card" style="order:${i}">
-        <div class="fc-head"><div><div class="fc-name">${name}</div><div class="fc-sub">${sub}</div></div></div>
-        ${fcBlock('短期行情', legacy[key])}
-      </div>`));
-  }
-
-  const overall = document.getElementById('fc-overall-basis');
-  if (overall) overall.textContent = plain((pf || legacy || {}).overall_basis) || '預測資料將於下次分析執行後產生';
-  const research = document.getElementById('fc-research');
-  if (research) research.innerHTML = researchHtml(data.research);
-
-  const cites = document.getElementById('fc-cites');
-  if (cites) {
-    const list = Array.isArray(data.web_citations) ? data.web_citations : [];
-    cites.innerHTML = list.length
-      ? `<details class="fc-why"${fcWide() ? ' open' : ''}><summary>AI 搜尋引用來源（${list.length}）</summary><div class="fc-cites-list">` +
-        list.map(c => `<a href="${safeUrl(c.url)}" target="_blank" rel="noopener">${esc(c.title)}</a>`).join('') + '</div></details>'
-      : '';
-  }
-}
-
 function factLine(fx) {
   const n = fx.source_count || (fx.sources || []).length;
   const links = (fx.sources || []).map(s => `<a href="${safeUrl(s.url)}" target="_blank" rel="noopener">${esc(s.title || '來源')}</a>`).join('、');
@@ -816,25 +660,9 @@ function researchHtml(r) {
   return `<details class="fc-why"><summary>研究底稿：查了哪些消息、怎麼判斷</summary>${parts.join('')}</details>`;
 }
 
-function populateAccuracy(acc) {
-  const el = document.getElementById('fc-accuracy');
-  if (!el || !acc) return;
-  const o = acc.overall || {};
-  const pct = o.total ? Math.round(o.hits / o.total * 100) : null;
-  const items = Object.values(acc.per_item || {}).filter(v => v.total)
-    .map(v => `<span class="fc-acc-item">${esc(v.name)} ${v.hits}/${v.total}</span>`).join('');
-  el.innerHTML = `<div class="fc-acc-main">
-      <span class="fc-acc-label">月均價方向命中率</span>
-      <span class="fc-acc-value">${pct === null ? '累積中' : pct + '%'}</span>
-      <span class="fc-acc-detail">${o.total ? `${o.hits}/${o.total} 次預測已驗證` : `${acc.pending || 0} 筆預測等待官方月均價公布`}</span>
-    </div>
-    ${items ? `<div class="fc-acc-items">${items}</div>` : ''}
-    <div class="fc-acc-method">${esc(acc.method || '')}</div>`;
-}
-
 // ── Construction materials ────────────────────────────────
 
-const matState = { q: '', group: 'all', freq: 'all', data: null, analysis: null, outlooks: null, expanded: new Set(), openItems: new Set(), charts: [] };
+const matState = { q: '', group: 'all', freq: 'all', data: null, analysis: null, accuracy: null, outlooks: null, expanded: new Set(), openItems: new Set(), charts: [] };
 const MAT_PREVIEW = 6;
 const MAT_QUIET_REGIONS = new Set(['全國', '國際', '臺灣']);
 
@@ -924,10 +752,13 @@ function materialForecast(it) {
   const checked = forecast && target && target.baseline_month === it.period && Number(target.baseline_value) === Number(it.value) && !it.stale;
   if (checked && (forecast.week || forecast.next_month)) {
     const facts = Object.fromEntries((analysis.research?.facts || []).map(x => [x.id, x]));
+    const past = matState.accuracy?.per_item?.[it.id];
+    const accuracy = past?.total ? `<p class="mat-model-note">歷史月均價方向命中：${esc(past.hits)} / ${esc(past.total)} 次（${Math.round(past.hits / past.total * 100)}%）</p>` : '';
+    const revision = forecast.revision_note ? `<details class="fc-why"><summary>與前次預測比較</summary><p class="fc-reason">${esc(plain(forecast.revision_note))}</p></details>` : '';
     return `<div class="mat-forecast-head">AI 研究預測 · 發布於 ${esc(analysis.date || '-')}</div>
       ${forecast.week ? fcBlock(`${analysis.price_forecast.week_label || '本週'}行情 ${analysis.price_forecast.week_range || ''}`, forecast.week) : ''}
       ${forecast.next_month ? fcBlock(`下一期月均價 ${target.target_month || ''}`, forecast.next_month, fcScenarios(forecast.next_month, forecast.ensemble)) : ''}
-      ${fcRisk(forecast, facts)}`;
+      ${fcRisk(forecast, facts)}${revision}${accuracy}${researchHtml(analysis.research)}`;
   }
   const researched = matState.outlooks?.items?.[it.id];
   const generated = Date.parse(matState.outlooks?.generated_at || '');
@@ -1102,7 +933,6 @@ async function loadData() {
     populateTicker(data, null);
     populateExchange(data);
     populateAnalysis(data);
-    populateForecast(data);
     populateNews(data);
     populateTopStories(data);
     const [materials, accuracy, report, outlooks] = await Promise.all([
@@ -1111,11 +941,12 @@ async function loadData() {
     populateTicker(data, materials);
     populateReport(report, data);
     matState.analysis = data;
+    matState.accuracy = accuracy;
     matState.outlooks = outlooks;
     populateMaterials(materials);
-    populateAccuracy(accuracy);
+    const oldHash = decodeURIComponent(location.hash.slice(1));
+    if (oldHash === 'chart' || oldHash === 'forecast' || oldHash.startsWith('fc-')) goToAnchor(oldHash);
     maybeOpenBriefingFromPush(data);
-    try { await buildChart(data); } catch (e) { console.error('Chart failed:', e); }
   } catch (err) {
     console.error('Failed to load data:', err);
     const area = document.getElementById('content-area');
@@ -1130,7 +961,7 @@ async function loadData() {
 
 // ── Section navigation: smooth in-page jumps and the current-section highlight ──
 
-const NAV_SECTIONS = ['prices', 'materials', 'forecast', 'chart', 'analysis', 'news', 'subscribe'];
+const NAV_SECTIONS = ['prices', 'materials', 'analysis', 'news', 'subscribe'];
 
 function setActiveSection(id) {
   document.querySelectorAll('.tab[data-sec], .nav-link[data-sec]').forEach(a => {
@@ -1160,6 +991,9 @@ function initNav() {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
     const id = decodeURIComponent(a.getAttribute('href').slice(1));
+    if (id === 'chart' || id === 'forecast' || id.startsWith('fc-')) {
+      e.preventDefault(); goToAnchor(id); return;
+    }
     const target = id && document.getElementById(id);
     if (!target) return;
     e.preventDefault();
@@ -1229,7 +1063,6 @@ function applyTheme(choice) {
     b.setAttribute('aria-checked', String(b.dataset.themeChoice === choice)));
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute('content', cssVar('--cream') || '#e3e3e8');
-  drawChart();
   matState.charts.forEach(chart => chart.destroy());
   matState.charts = [];
   document.querySelectorAll('.mat-detail[open]').forEach(drawMaterialChart);

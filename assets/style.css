@@ -1538,7 +1538,7 @@ a.fc-sum-row:hover { background: rgba(var(--copper-rgb), 0.04); }
     left: 0; right: 0; bottom: 0;
     z-index: 150;
     display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     padding: 0 max(4px, env(safe-area-inset-left)) env(safe-area-inset-bottom) max(4px, env(safe-area-inset-right));
     background: var(--cream);
     border-top: 1px solid var(--line);
