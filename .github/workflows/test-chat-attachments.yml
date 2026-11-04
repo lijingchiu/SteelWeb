@@ -6,6 +6,10 @@ on:
         description: Test newsletter PDF conversion and Pages publication only
         type: boolean
         default: false
+      research_ids:
+        description: Optional comma-separated material IDs
+        type: string
+        required: false
       research_only:
         description: Test material outlook research only
         type: boolean
@@ -98,6 +102,7 @@ jobs:
       - name: Research materials with real web sources
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MATERIAL_RESEARCH_IDS: ${{ inputs.research_ids }}
         run: python scripts/material_research.py
       - uses: actions/upload-artifact@v4
         with:
