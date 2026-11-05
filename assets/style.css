@@ -922,7 +922,7 @@ body.brief-open { overflow: hidden; }
 .section, .fc-card { scroll-margin-top: 96px; }
 .brief-flash { animation: brief-flash 2.4s ease; }
 @keyframes brief-flash {
-  0%, 30% { background-color: rgba(var(--ink-rgb), 0.08); }
+  0%, 30% { background-color: rgba(var(--ink-rgb), 0.14); }
   100% { background-color: transparent; }
 }
 @keyframes brief-fade { from { opacity: 0; } to { opacity: 1; } }
