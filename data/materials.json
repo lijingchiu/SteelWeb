@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-05T23:48:54.272015+08:00",
+ "updated_at": "2026-11-05T23:51:57.323894+08:00",
  "groups": [
   {
    "id": "tw_steel",
@@ -12174,6 +12174,13 @@
    "query": "水泥 價格"
   },
   {
+   "title": "中國國家統計局10月製造業PMI降至49.3，非製造業PMI回落至49.7",
+   "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOS2tjLWctTzBFaFUwdTBwRDV3aE9nM2RyQ1o2QUN5V2ZlZ0pWbml3Vm1TWUZfVlhGcFFoNWF4Y0FZRkJNLWtHcFVKZnplbnRkUU9Mb0RSWFlFdVdVNlJSWGYyZ2x1MmQ0LU5JLVRqZjdHem1sWkpLZjdWVDIwNVBqYnRWRDh0WDhsU0JoRWFOX2x4Wi01NnUybUlnd3lpSUVDdjJKdm5PY1JPOE5JeG1uLUpRVEZrT0JxVjM3dFNxMHVYa3dfbjVueG9DcVJPQnkxT19sUzhCTno1a1hJMVNzSWd5cWRVNW83dWc?oc=5",
+   "source": "www.tmgm.com",
+   "date": "2026-11-02",
+   "query": "鐵礦砂 價格"
+  },
+  {
    "title": "傳澳總理訪中聚焦鐵礦砂談判- 日報",
    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9LM0k2bXloUDhKcXBzTVp0cTZqNFczTWw2MklVVUJiM1YxVVh3V2tCTnA0ZEZqMUtfTFRVUzU3em5YQ2N1WVZqYjY4Z3BCXzlnS0hGd0xJNzZZS1VhMl9J?oc=5",
    "source": "工商時報",
@@ -12205,13 +12212,6 @@
    "title": "鐵礦砂價格下跌與成本攀升 巴西淡水河谷第三季獲利重摔53%",
    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5OUEhtT3BmNjF0MWczcVo1LTU0TzhzZUt0VEppUUtzeDEyemhuS1lEQ2JHeFlsYWVPcFJGTFotMy1hUkw2QTV4SU85eENDN1J0MUpzaldHX095U0t5amV0a0FvNlZsdw?oc=5",
    "source": "民視財經網",
-   "date": "2026-10-30",
-   "query": "鐵礦砂 價格"
-  },
-  {
-   "title": "討論牆 | 鐵礦砂價格下跌與成本攀升 巴西淡水河谷第三季獲利重摔53%",
-   "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBsd2lodHFxUUtWQXhQWjhsQ3V6TXg1OEhSU290cjZCRWlWQnpzdmExNEpZcVB2RWxlVl9kZUtrMEs3Zk9CUGVTOUhkS2R3QXhlMTBCNzlJLTlsVXlCMmJudWRtbmw?oc=5",
-   "source": "LINE TODAY",
    "date": "2026-10-30",
    "query": "鐵礦砂 價格"
   },
@@ -12347,31 +12347,31 @@
    "source": "台灣金屬行情網",
    "ok": true,
    "items": 14,
-   "seconds": 12.2
+   "seconds": 9.9
   },
   {
    "source": "行政院主計總處",
    "ok": true,
    "items": 29,
-   "seconds": 1.8
+   "seconds": 1.9
   },
   {
    "source": "地方主計處",
    "ok": true,
    "items": 19,
-   "seconds": 8.0
+   "seconds": 7.2
   },
   {
    "source": "World Bank",
    "ok": true,
    "items": 18,
-   "seconds": 0.5
+   "seconds": 0.6
   },
   {
    "source": "臺灣證券交易所",
    "ok": true,
    "items": 16,
-   "seconds": 1.1
+   "seconds": 1.3
   },
   {
    "source": "Google 新聞",
