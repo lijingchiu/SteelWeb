@@ -16,7 +16,6 @@ function forceScrollTop() {
 }
 forceScrollTop();
 
-const TREND_LABELS = { up: '上漲', down: '下跌', stable: '持平' };
 const CONF_LABELS = { high: '信心度：高', medium: '信心度：中', low: '信心度：低' };
 
 
@@ -53,23 +52,6 @@ function fmtChange(n, decimals) {
   return `${sign}${n.toLocaleString('zh-TW')}`;
 }
 
-function trendFromChange(change) {
-  if (typeof change !== 'number') return 'stable';
-  if (change > 0) return 'up';
-  if (change < 0) return 'down';
-  return 'stable';
-}
-
-function setTrend(badgeId, barId, trend) {
-  const badge = document.getElementById(badgeId);
-  const bar = document.getElementById(barId);
-  if (!badge || !bar) return;
-  badge.textContent = TREND_LABELS[trend] || trend;
-  badge.className = `trend-badge ${trend}`;
-  bar.className = `trend-bar-fill ${trend}`;
-  bar.style.width = trend === 'up' ? '75%' : trend === 'down' ? '25%' : '50%';
-}
-
 function setChange(el, changeAmt, unit, decimals) {
   if (!el) return;
   // Toggle classes instead of replacing className: the table cells carry
@@ -80,57 +62,6 @@ function setChange(el, changeAmt, unit, decimals) {
   const cls = changeAmt > 0 ? 'up' : changeAmt < 0 ? 'down' : 'stable';
   el.textContent = fmtChange(changeAmt, decimals) + ' ' + (unit || '元');
   el.classList.add(cls);
-}
-
-function setDataMonth(el, monthStr) {
-  if (!el) return;
-  el.textContent = monthStr ? `資料月份：${monthStr}` : '資料月份：-';
-}
-
-function populatePrices(data) {
-  const tp = data.taiwan_prices || {};
-
-  function fillCard(key, prefix, decimals) {
-    const item = tp[key] || {};
-    const cur = document.getElementById(`${prefix}-current`);
-    const chg = document.getElementById(`${prefix}-change`);
-    const monthEl = document.getElementById(`${prefix}-month`);
-    const val = item.value;
-    const mom = item.mom_change;
-    const unit = item.unit || '元';
-    const trend = trendFromChange(mom);
-
-    if (cur) cur.textContent = (val !== null && val !== undefined) ? fmt(val, decimals) : '-';
-    setChange(chg, mom, unit, decimals);
-    setDataMonth(monthEl, item.month);
-    setTrend(`${prefix}-trend-badge`, `${prefix}-trend-bar`, trend);
-  }
-
-  fillCard('crude_steel_production', 'production', 1);
-  fillCard('north_scrap_price', 'scrap', 2);
-  fillCard('billet_price', 'billet');
-  fillCard('fengxing_rebar_price', 'rebar');
-  fillCard('h_beam_price', 'hbeam');
-  fillCard('csc_wire_rod_price', 'wirerod');
-}
-
-function populateExchange(data) {
-  const ex = data.exchange_rate || {};
-  const rate = document.getElementById('exchange-rate');
-  const impact = document.getElementById('exchange-impact');
-  const source = document.getElementById('exchange-source');
-  const val = typeof ex.usd_twd === 'number' ? ex.usd_twd : ex.usd_twd_estimate;
-  if (rate) rate.textContent = typeof val === 'number' ? val.toFixed(2) : '-';
-  if (impact) impact.textContent = ex.impact_on_steel || '-';
-  if (source) {
-    if (ex.source) {
-      const buySell = (typeof ex.spot_buy === 'number' && typeof ex.spot_sell === 'number')
-        ? ` · 即期買 ${ex.spot_buy.toFixed(2)} / 賣 ${ex.spot_sell.toFixed(2)}` : '';
-      source.textContent = `來源：${ex.source}${buySell}`;
-    } else {
-      source.textContent = '';
-    }
-  }
 }
 
 let _headlineTimer = null;
@@ -221,6 +152,10 @@ function scrollToEl(el, flash = true) {
 
 function goToAnchor(anchor, search) {
   _userInteracted = true;
+  if (anchor === 'prices') {
+    anchor = 'materials';
+    resetMaterialFilters('tw_steel');
+  }
   const legacyItem = typeof anchor === 'string' && anchor.startsWith('fc-') ? anchor.slice(3) : null;
   if (legacyItem || anchor === 'forecast' || anchor === 'chart') {
     anchor = 'materials';
@@ -666,6 +601,13 @@ const matState = { q: '', group: 'all', freq: 'all', data: null, analysis: null,
 const MAT_PREVIEW = 6;
 const MAT_QUIET_REGIONS = new Set(['全國', '國際', '臺灣']);
 
+function resetMaterialFilters(group = 'all') {
+  matState.q = ''; matState.group = group; matState.freq = 'all';
+  const input = document.getElementById('mat-search');
+  if (input) input.value = '';
+  if (matState.data) populateMaterials(matState.data);
+}
+
 function fmtValue(v) {
   if (typeof v !== 'number') return '-';
   const abs = Math.abs(v);
@@ -675,6 +617,28 @@ function fmtValue(v) {
 
 function fmtHistory(v) {
   return typeof v === 'number' && Number.isFinite(v) ? v.toLocaleString('zh-TW', { maximumFractionDigits: 4 }) : '-';
+}
+
+function materialMonthlyChange(it) {
+  if (it.freq !== '月' || typeof it.change !== 'number' || !Number.isFinite(it.change)) return '';
+  const sign = it.change > 0 ? '+' : '';
+  return `較前月 ${sign}${fmtHistory(it.change)} ${it.unit || ''}`.trim();
+}
+
+function materialExchangeDetails(it, data) {
+  if (it.id !== 'fx_usd_twd') return '';
+  const ex = data?.exchange_rate;
+  if (!ex) return '';
+  const fields = [];
+  if (Number.isFinite(ex.spot_buy)) fields.push(`即期買入 ${ex.spot_buy.toFixed(2)}`);
+  if (Number.isFinite(ex.spot_sell)) fields.push(`即期賣出 ${ex.spot_sell.toFixed(2)}`);
+  let when = '';
+  const stamp = Date.parse(ex.fetched_at || '');
+  if (Number.isFinite(stamp)) when = new Date(stamp).toLocaleString('zh-TW', {timeZone:'Asia/Taipei', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hour12:false});
+  const meta = [ex.source, when ? `取得時間 ${when}` : '取得時間未標示'].filter(Boolean).join(' · ');
+  const quote = fields.length ? `<p class="mat-exchange-quote">${esc(fields.join('／'))} 新台幣／美元${Number.isFinite(ex.usd_twd) ? ` · 參考匯率 ${esc(ex.usd_twd.toFixed(2))}` : ''}</p><p class="mat-model-note">${esc(meta)}</p>` : '';
+  const impact = ex.impact_on_steel ? `<p class="mat-exchange-impact">${esc(plain(ex.impact_on_steel))}</p>` : '';
+  return quote || impact ? `<div class="mat-exchange-details"><strong>銀行匯率與鋼材觀察</strong>${quote}${impact}</div>` : '';
 }
 
 function sparkline(history) {
@@ -791,6 +755,7 @@ function matRow(it, groupsById, withHeader) {
   const cls = pct === null ? 'stable' : pct > 0 ? 'up' : pct < 0 ? 'down' : 'stable';
   const arrow = pct === null ? '' : pct > 0 ? '▲' : pct < 0 ? '▼' : '—';
   const chg = pct === null ? '-' : `${arrow} ${Math.abs(pct).toFixed(2)}%`;
+  const absolute = materialMonthlyChange(it);
   const region = it.region && !MAT_QUIET_REGIONS.has(it.region) && !it.name.includes(it.region) ? `<span class="mat-tag">${esc(it.region)}</span>` : '';
   const stale = it.stale ? '<span class="mat-tag mat-stale">過期</span>' : '';
   return `${header}<details class="mat-detail" data-id="${esc(it.id)}"${matState.openItems.has(it.id) ? ' open' : ''}>
@@ -798,10 +763,11 @@ function matRow(it, groupsById, withHeader) {
       <span class="mat-name">${esc(it.name)}${region}${stale}<span class="mat-expand-hint">展開預測與走勢 ▾</span></span>
       <span class="mat-spark">${sparkline(it.history)}</span>
       <span class="mat-value">${fmtValue(it.value)}<span class="mat-unit">${esc(it.unit)}</span></span>
-      <span class="mat-chg price-change ${cls}">${chg}</span>
+      <span class="mat-chg price-change ${cls}">${chg}${absolute ? `<span class="mat-absolute-change">${esc(absolute)}</span>` : ''}</span>
       <span class="mat-meta"><span class="mat-freq">${esc(it.freq)}</span>${esc(it.period)} · ${esc(it.source)}</span>
     </summary>
     <div class="mat-detail-content">
+      ${materialExchangeDetails(it, matState.analysis)}
       <div class="mat-chart-title">歷史走勢 <span>按住並拖曳查看各期數值</span></div>
       <div class="mat-chart-box"><canvas aria-label="${esc(it.name)}歷史走勢圖" role="img"></canvas></div>
       <div class="mat-detail-forecast">${materialForecast(it)}</div>
@@ -840,6 +806,7 @@ function chipRow(el, options, key) {
     matState[key] = b.dataset.v;
     el.querySelectorAll('.mat-chip').forEach(c => c.classList.toggle('active', c === b));
     renderMaterials();
+    setActiveSection(currentSection());
   };
 }
 
@@ -929,9 +896,7 @@ async function loadData() {
     const data = await res.json();
     populateMeta(data);
     populateHeadline(data);
-    populatePrices(data);
     populateTicker(data, null);
-    populateExchange(data);
     populateAnalysis(data);
     populateNews(data);
     populateTopStories(data);
@@ -945,7 +910,7 @@ async function loadData() {
     matState.outlooks = outlooks;
     populateMaterials(materials);
     const oldHash = decodeURIComponent(location.hash.slice(1));
-    if (oldHash === 'chart' || oldHash === 'forecast' || oldHash.startsWith('fc-')) goToAnchor(oldHash);
+    if (oldHash === 'prices' || oldHash === 'chart' || oldHash === 'forecast' || oldHash.startsWith('fc-')) goToAnchor(oldHash);
     maybeOpenBriefingFromPush(data);
   } catch (err) {
     console.error('Failed to load data:', err);
@@ -961,7 +926,7 @@ async function loadData() {
 
 // ── Section navigation: smooth in-page jumps and the current-section highlight ──
 
-const NAV_SECTIONS = ['prices', 'materials', 'analysis', 'news', 'subscribe'];
+const NAV_SECTIONS = ['materials', 'analysis', 'news', 'subscribe'];
 
 function setActiveSection(id) {
   document.querySelectorAll('.tab[data-sec], .nav-link[data-sec]').forEach(a => {
@@ -982,7 +947,7 @@ function currentSection() {
     if (el && el.getBoundingClientRect().top <= line) current = id;
   }
   const atBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4;
-  return atBottom ? NAV_SECTIONS[NAV_SECTIONS.length - 1] : current;
+  return atBottom ? NAV_SECTIONS[NAV_SECTIONS.length - 1] : current === 'materials' && matState.group === 'tw_steel' ? 'prices' : current;
 }
 
 function initNav() {
@@ -991,9 +956,10 @@ function initNav() {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
     const id = decodeURIComponent(a.getAttribute('href').slice(1));
-    if (id === 'chart' || id === 'forecast' || id.startsWith('fc-')) {
-      e.preventDefault(); goToAnchor(id); return;
+    if (id === 'prices' || id === 'chart' || id === 'forecast' || id.startsWith('fc-')) {
+      e.preventDefault(); goToAnchor(id); if (id === 'prices') setActiveSection('prices'); return;
     }
+    if (id === 'materials' && a.dataset.sec === 'materials') resetMaterialFilters();
     const target = id && document.getElementById(id);
     if (!target) return;
     e.preventDefault();

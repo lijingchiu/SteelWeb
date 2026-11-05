@@ -783,6 +783,11 @@ button { font-family: inherit; }
 }
 .mat-unit { font-family: var(--font-sans); font-size: 10px; color: var(--muted); margin-left: 6px; }
 .mat-chg { text-align: right; }
+.mat-absolute-change { display:block; margin-top:3px; color:var(--muted); font-family:var(--font-sans); font-size:11px; line-height:1.4; }
+.mat-exchange-details { margin-bottom:18px; padding:12px 14px; border:1px solid var(--line); border-radius:10px; background:rgba(var(--ink-rgb),.035); }
+.mat-exchange-details strong { color:var(--ink); font-size:13px; }
+.mat-exchange-quote { margin-top:6px; color:var(--ink); font-size:13px; line-height:1.6; }
+.mat-exchange-impact { margin-top:6px; color:var(--muted); font-size:12px; line-height:1.7; }
 .mat-meta { font-size: 11px; color: var(--muted); line-height: 1.6; text-align: right; }
 .mat-meta a { color: var(--copper); margin-left: 8px; }
 .mat-freq {

@@ -24,7 +24,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="鋼市快報">
   <meta name="theme-color" content="#2a1f17">
-  <link rel="stylesheet" href="assets/style.css?v=20261105as">
+  <link rel="stylesheet" href="assets/style.css?v=20261105at">
 </head>
 <body>
 
@@ -161,148 +161,11 @@
   <!-- Main content area -->
   <div id="content-area">
 
-    <!-- § 01 Price Table -->
-    <section class="section section-table" id="prices" data-fade>
-      <div class="section-head">
-        <div>
-          <div class="kicker">§ 01 · TODAY'S QUOTES</div>
-          <h2 class="h2">全項鋼材報價</h2>
-        </div>
-        <div class="section-meta">
-          資料來源：<a href="https://chart.metaltrade.tw/ste/domestic/13/" target="_blank" rel="noopener">台灣金屬行情網 ↗</a>
-        </div>
-      </div>
-
-      <!-- Exchange Rate -->
-      <div class="exchange-row">
-        <span class="exchange-label">USD / TWD</span>
-        <span class="exchange-value" id="exchange-rate">-</span>
-        <span class="exchange-sep">·</span>
-        <span class="exchange-impact" id="exchange-impact">-</span>
-        <span class="exchange-source" id="exchange-source"></span>
-      </div>
-
-      <div class="table">
-        <div class="thead">
-          <span class="td col-no">№</span>
-          <span class="td col-prod">品名</span>
-          <span class="td col-unit">單位</span>
-          <span class="td col-price">報價</span>
-          <span class="td col-chg">月增</span>
-          <span class="td col-badge">趨勢</span>
-        </div>
-
-        <!-- Row 01: 臺灣粗鋼產量 -->
-        <div class="tr" id="card-production" data-row style="transition-delay:0ms">
-          <span class="td col-no">01</span>
-          <span class="td col-prod">
-            <span class="prod-name">臺灣粗鋼產量</span>
-            <span class="prod-sub">Crude Steel Production</span>
-          </span>
-          <span class="td col-unit">萬噸</span>
-          <span class="td col-price" id="production-current">-</span>
-          <span class="td col-chg" id="production-change">-</span>
-          <span class="td col-badge">
-            <span class="trend-badge" id="production-trend-badge">-</span>
-            <div class="trend-bar-track"><div class="trend-bar-fill" id="production-trend-bar"></div></div>
-          </span>
-          <div style="display:none" id="production-month"></div>
-        </div>
-
-        <!-- Row 02: 北部廢鋼大盤收購價 -->
-        <div class="tr" id="card-scrap" data-row style="transition-delay:60ms">
-          <span class="td col-no">02</span>
-          <span class="td col-prod">
-            <span class="prod-name">北部廢鋼大盤收購價</span>
-            <span class="prod-sub">N. Taiwan Scrap Purchase</span>
-          </span>
-          <span class="td col-unit">元 / 公斤</span>
-          <span class="td col-price" id="scrap-current">-</span>
-          <span class="td col-chg" id="scrap-change">-</span>
-          <span class="td col-badge">
-            <span class="trend-badge" id="scrap-trend-badge">-</span>
-            <div class="trend-bar-track"><div class="trend-bar-fill" id="scrap-trend-bar"></div></div>
-          </span>
-          <div style="display:none" id="scrap-month"></div>
-        </div>
-
-        <!-- Row 03: 小鋼胚中級出廠價 -->
-        <div class="tr" id="card-billet" data-row style="transition-delay:120ms">
-          <span class="td col-no">03</span>
-          <span class="td col-prod">
-            <span class="prod-name">小鋼胚中級出廠價</span>
-            <span class="prod-sub">Billet Ex-Factory</span>
-          </span>
-          <span class="td col-unit">元 / 公噸</span>
-          <span class="td col-price" id="billet-current">-</span>
-          <span class="td col-chg" id="billet-change">-</span>
-          <span class="td col-badge">
-            <span class="trend-badge" id="billet-trend-badge">-</span>
-            <div class="trend-bar-track"><div class="trend-bar-fill" id="billet-trend-bar"></div></div>
-          </span>
-          <div style="display:none" id="billet-month"></div>
-        </div>
-
-        <!-- Row 04: 豐興鋼筋盤價 -->
-        <div class="tr" id="card-rebar" data-row style="transition-delay:180ms">
-          <span class="td col-no">04</span>
-          <span class="td col-prod">
-            <span class="prod-name">豐興鋼筋盤價</span>
-            <span class="prod-sub">Fengxing Rebar</span>
-          </span>
-          <span class="td col-unit">元 / 公噸</span>
-          <span class="td col-price" id="rebar-current">-</span>
-          <span class="td col-chg" id="rebar-change">-</span>
-          <span class="td col-badge">
-            <span class="trend-badge" id="rebar-trend-badge">-</span>
-            <div class="trend-bar-track"><div class="trend-bar-fill" id="rebar-trend-bar"></div></div>
-          </span>
-          <div style="display:none" id="rebar-month"></div>
-        </div>
-
-        <!-- Row 05: 東鋼H型鋼流通價 -->
-        <div class="tr" id="card-hbeam" data-row style="transition-delay:240ms">
-          <span class="td col-no">05</span>
-          <span class="td col-prod">
-            <span class="prod-name">東鋼H型鋼流通價</span>
-            <span class="prod-sub">H-Beam Circulation</span>
-          </span>
-          <span class="td col-unit">元 / 公噸</span>
-          <span class="td col-price" id="hbeam-current">-</span>
-          <span class="td col-chg" id="hbeam-change">-</span>
-          <span class="td col-badge">
-            <span class="trend-badge" id="hbeam-trend-badge">-</span>
-            <div class="trend-bar-track"><div class="trend-bar-fill" id="hbeam-trend-bar"></div></div>
-          </span>
-          <div style="display:none" id="hbeam-month"></div>
-        </div>
-
-        <!-- Row 06: 中鋼棒線盤價 -->
-        <div class="tr" id="card-wirerod" data-row style="transition-delay:300ms">
-          <span class="td col-no">06</span>
-          <span class="td col-prod">
-            <span class="prod-name">中鋼棒線盤價</span>
-            <span class="prod-sub">CSC Wire Rod</span>
-          </span>
-          <span class="td col-unit">元 / 公噸</span>
-          <span class="td col-price" id="wirerod-current">-</span>
-          <span class="td col-chg" id="wirerod-change">-</span>
-          <span class="td col-badge">
-            <span class="trend-badge" id="wirerod-trend-badge">-</span>
-            <div class="trend-bar-track"><div class="trend-bar-fill" id="wirerod-trend-bar"></div></div>
-          </span>
-          <div style="display:none" id="wirerod-month"></div>
-        </div>
-      </div>
-
-      <div class="table-footnote">本表為月度參考價格 · 資料來源：台灣金屬行情網</div>
-    </section>
-
-    <!-- § 02 Construction materials -->
+    <!-- § 01 Construction materials -->
     <section class="section section-materials" id="materials" data-fade>
       <div class="section-head">
         <div>
-          <div class="kicker">§ 02 · CONSTRUCTION MATERIALS</div>
+          <div class="kicker">§ 01 · CONSTRUCTION MATERIALS</div>
           <h2 class="h2">營建材料行情</h2>
         </div>
         <div class="section-meta" id="mat-updated">載入中</div>
@@ -556,7 +419,7 @@
   </section>
 
   <script src="assets/material-forecast.js?v=1"></script>
-  <script src="assets/app.js?v=20261104y"></script>
+  <script src="assets/app.js?v=20261105a"></script>
   <script src="assets/reference-search.js?v=20261104j"></script>
   <script src="assets/chat-web.js?v=20261105d"></script>
   <script src="assets/vendor/jszip.min.js?v=3.10.1"></script>
