@@ -5,6 +5,7 @@ import { targetAt, ready, check } from './worker.mjs';
 test('targets weekdays in Taipei, including the evening before', () => {
   assert.deepEqual(targetAt(new Date('2026-11-08T15:53:00Z')), {date:'2026-11-09', hour:23, minute:53});
   assert.equal(targetAt(new Date('2026-11-06T15:53:00Z')), null);
+  assert.equal(targetAt(new Date('2026-11-08T23:10:00Z')), null);
   assert.equal(targetAt(new Date('2026-11-09T00:00:00Z')), null);
 });
 test('completion requires both notifications and every current report', () => {

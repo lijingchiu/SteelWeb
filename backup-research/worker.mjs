@@ -7,7 +7,7 @@ export function targetAt(date) {
   const local = new Date(date.getTime() + 8 * 3600_000);
   const hour = local.getUTCHours(), minute = local.getUTCMinutes();
   if (hour === 23 && minute >= 50) local.setUTCDate(local.getUTCDate() + 1);
-  else if (hour >= 8 || hour === 23) return null;
+  else if (hour > 7 || (hour === 7 && minute > 0) || hour === 23) return null;
   const day = local.getUTCDay();
   if (day === 0 || day === 6) return null;
   return { date: local.toISOString().slice(0, 10), hour, minute };
