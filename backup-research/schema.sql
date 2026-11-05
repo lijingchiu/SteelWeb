@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS watchdog_locks (key TEXT PRIMARY KEY, expires INTEGER NOT NULL);

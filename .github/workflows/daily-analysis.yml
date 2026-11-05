@@ -16,6 +16,11 @@ on:
         description: 'Force re-run even if data already exists today'
         required: false
         default: 'true'
+      backup:
+        description: 'Run a scheduled backup check without forcing research'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -35,7 +40,7 @@ jobs:
       - uses: actions/checkout@v4
       - id: check
         env:
-          EVENT_NAME: ${{ github.event_name }}
+          EVENT_NAME: ${{ github.event_name == 'workflow_dispatch' && inputs.backup && 'schedule' || github.event_name }}
         run: |
           echo "target=$(python3 scripts/daily_schedule.py target)" >> "$GITHUB_OUTPUT"
           if [ "$EVENT_NAME" = "schedule" ]; then
@@ -77,6 +82,7 @@ jobs:
           DATE="$RESEARCH_DATE"
           echo "today=$DATE" >> $GITHUB_OUTPUT
           FORCE="${{ inputs.force_run }}"
+          if [ "${{ inputs.backup }}" = "true" ]; then FORCE=false; fi
           if [ "${{ github.event_name }}" = "push" ]; then FORCE=true; fi
           if [ "$(python scripts/daily_schedule.py analysis)" = "true" ] && [ "$FORCE" != "true" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT

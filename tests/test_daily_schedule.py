@@ -76,6 +76,17 @@ class ScheduleTest(unittest.TestCase):
                 self.assertEqual(email.call_args.args[-1], expected)
                 self.assertEqual(json.loads(state.read_text())['email']['date'], '2026-11-09')
 
+    def test_subscriber_delivery_uses_stable_separate_idempotency_keys(self):
+        response = unittest.mock.Mock(status_code=200, text='ok')
+        response.json.return_value = {'id': 'same-id'}
+        with patch.object(notify.requests, 'post', return_value=response) as post:
+            key = '7cb8fc4a-23e2-56f2-a5b0-5e758fb24ba2'
+            push = {'title': 'title', 'text': 'text', 'url': 'https://example.com', 'idempotency_key': key}
+            notify.send_push('app', 'secret', push, None)
+            self.assertEqual(post.call_args.kwargs['json']['idempotency_key'], key)
+            notify.send_email('secret', {'subject': 'subject', 'body': 'body', 'idempotency_key': key}, None)
+            self.assertEqual(post.call_args.kwargs['headers']['X-Idempotency-Key'], key)
+
     def test_state_requires_today_valid_files_and_both_notifications(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

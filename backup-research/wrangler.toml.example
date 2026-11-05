@@ -1,0 +1,14 @@
+name = "steel-research-watchdog"
+main = "worker.mjs"
+compatibility_date = "2026-11-05"
+
+[triggers]
+crons = ["*/15 * * * *", "53 15 * * 0-4"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "steel-research-watchdog"
+database_id = "REPLACE_WITH_CREATED_DATABASE_ID"
+
+[vars]
+ALERT_TO = "REPLACE_WITH_ALERT_RECIPIENT"

@@ -18,6 +18,8 @@ import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+import uuid
+
 import requests
 
 TW_TZ = timezone(timedelta(hours=8))
@@ -234,6 +236,8 @@ def send_push(app_id: str, key: str, push: dict, at: datetime | None) -> dict:
         "url": push["url"],
         "chrome_web_icon": push["url"].split("?")[0] + "assets/icon-192.png",
     }
+    if push.get("idempotency_key"):
+        body["idempotency_key"] = push["idempotency_key"]
     if push.get("subtitle"):
         body["subtitle"] = {"en": push["subtitle"], "zh-Hant": push["subtitle"]}
     if at:
@@ -254,10 +258,10 @@ def send_email(key: str, email: dict, at: datetime | None) -> dict:
         body.update(status="scheduled", publish_date=at.isoformat())
     else:
         body["status"] = "about_to_send"
-    r = requests.post(BUTTONDOWN_URL, json=body, timeout=30, headers={
-        "Authorization": f"Token {key}",
-        "X-Buttondown-Live-Dangerously": "true",
-    })
+    headers = {"Authorization": f"Token {key}", "X-Buttondown-Live-Dangerously": "true"}
+    if email.get("idempotency_key"):
+        headers["X-Idempotency-Key"] = email["idempotency_key"]
+    r = requests.post(BUTTONDOWN_URL, json=body, timeout=30, headers=headers)
     log(f"Buttondown HTTP {r.status_code}: {r.text[:300]}")
     r.raise_for_status()
     return {"id": r.json().get("id"), "scheduled": at.isoformat() if at else None}
@@ -291,14 +295,18 @@ def main(now: datetime | None = None) -> int:
             continue
         try:
             if ch == "push":
-                result = send_push(public_id, key, build_push(d, site_url), at)
+                push = build_push(d, site_url)
+                push["idempotency_key"] = str(uuid.uuid5(uuid.NAMESPACE_URL, f"https://lijingchiu.github.io/SteelWeb/daily/{today}/push"))
+                result = send_push(public_id, key, push, at)
             else:
                 report = load_json(REPORT_PATH, {})
                 if not local_report_ready(report, today):
                     raise RuntimeError('今日 PPTX 或 PDF 尚未完成或檔案校驗不符；暫不寄出郵件。')
                 if os.environ.get('REPORT_PUBLIC_READY') != 'true':
                     raise RuntimeError('兩種電子報尚未確認公開可下載；暫不寄出郵件。')
-                result = send_email(key, build_email(d, load_json(MATERIALS_PATH, {}), site_url, report), at)
+                email = build_email(d, load_json(MATERIALS_PATH, {}), site_url, report)
+                email["idempotency_key"] = str(uuid.uuid5(uuid.NAMESPACE_URL, f"https://lijingchiu.github.io/SteelWeb/daily/{today}/email"))
+                result = send_email(key, email, at)
             state[ch] = {"date": today, "sent_at": now.isoformat(), **result}
             log(f"{ch}: OK {result}")
         except Exception as e:
