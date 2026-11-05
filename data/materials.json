@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-05T06:14:29.682710+08:00",
+ "updated_at": "2026-11-05T23:48:54.272015+08:00",
  "groups": [
   {
    "id": "tw_steel",
@@ -2345,21 +2345,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 120.26,
-   "period": "2026-09",
-   "prev": 119.48,
-   "prev_period": "2026-08",
-   "change": 0.78,
-   "change_pct": 0.653,
+   "value": 120.5,
+   "period": "2026-10",
+   "prev": 120.26,
+   "prev_period": "2026-09",
+   "change": 0.24,
+   "change_pct": 0.2,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     109.48
-    ],
     [
      "2023-11",
      109.38
@@ -2499,6 +2495,10 @@
     [
      "2026-09",
      120.26
+    ],
+    [
+     "2026-10",
+     120.5
     ]
    ],
    "stale": false
@@ -2509,21 +2509,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 118.45,
-   "period": "2026-09",
-   "prev": 117.84,
-   "prev_period": "2026-08",
-   "change": 0.61,
-   "change_pct": 0.518,
+   "value": 118.79,
+   "period": "2026-10",
+   "prev": 118.45,
+   "prev_period": "2026-09",
+   "change": 0.34,
+   "change_pct": 0.287,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     109.58
-    ],
     [
      "2023-11",
      109.26
@@ -2663,6 +2659,10 @@
     [
      "2026-09",
      118.45
+    ],
+    [
+     "2026-10",
+     118.79
     ]
    ],
    "stale": false
@@ -2673,21 +2673,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 123.0,
-   "period": "2026-09",
-   "prev": 123.24,
-   "prev_period": "2026-08",
-   "change": -0.24,
-   "change_pct": -0.195,
+   "value": 122.97,
+   "period": "2026-10",
+   "prev": 123.0,
+   "prev_period": "2026-09",
+   "change": -0.03,
+   "change_pct": -0.024,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     121.31
-    ],
     [
      "2023-11",
      121.35
@@ -2827,6 +2823,10 @@
     [
      "2026-09",
      123.0
+    ],
+    [
+     "2026-10",
+     122.97
     ]
    ],
    "stale": false
@@ -2837,21 +2837,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 107.06,
-   "period": "2026-09",
+   "value": 107.1,
+   "period": "2026-10",
    "prev": 107.06,
-   "prev_period": "2026-08",
-   "change": 0.0,
-   "change_pct": 0.0,
+   "prev_period": "2026-09",
+   "change": 0.04,
+   "change_pct": 0.037,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     106.11
-    ],
     [
      "2023-11",
      106.57
@@ -2991,6 +2987,10 @@
     [
      "2026-09",
      107.06
+    ],
+    [
+     "2026-10",
+     107.1
     ]
    ],
    "stale": false
@@ -3002,20 +3002,16 @@
    "region": "全國",
    "unit": "指數",
    "value": 113.37,
-   "period": "2026-09",
-   "prev": 113.35,
-   "prev_period": "2026-08",
-   "change": 0.02,
-   "change_pct": 0.018,
+   "period": "2026-10",
+   "prev": 113.37,
+   "prev_period": "2026-09",
+   "change": 0.0,
+   "change_pct": 0.0,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     110.39
-    ],
     [
      "2023-11",
      110.39
@@ -3155,6 +3151,10 @@
     [
      "2026-09",
      113.37
+    ],
+    [
+     "2026-10",
+     113.37
     ]
    ],
    "stale": false
@@ -3165,21 +3165,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 101.44,
-   "period": "2026-09",
-   "prev": 100.93,
-   "prev_period": "2026-08",
-   "change": 0.51,
-   "change_pct": 0.505,
+   "value": 102.23,
+   "period": "2026-10",
+   "prev": 101.44,
+   "prev_period": "2026-09",
+   "change": 0.79,
+   "change_pct": 0.779,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     99.99
-    ],
     [
      "2023-11",
      99.49
@@ -3319,6 +3315,10 @@
     [
      "2026-09",
      101.44
+    ],
+    [
+     "2026-10",
+     102.23
     ]
    ],
    "stale": false
@@ -3329,21 +3329,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 105.95,
-   "period": "2026-09",
-   "prev": 105.86,
-   "prev_period": "2026-08",
-   "change": 0.09,
-   "change_pct": 0.085,
+   "value": 105.94,
+   "period": "2026-10",
+   "prev": 105.95,
+   "prev_period": "2026-09",
+   "change": -0.01,
+   "change_pct": -0.009,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     106.48
-    ],
     [
      "2023-11",
      106.43
@@ -3483,6 +3479,10 @@
     [
      "2026-09",
      105.95
+    ],
+    [
+     "2026-10",
+     105.94
     ]
    ],
    "stale": false
@@ -3493,21 +3493,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 122.13,
-   "period": "2026-09",
-   "prev": 121.68,
-   "prev_period": "2026-08",
-   "change": 0.45,
-   "change_pct": 0.37,
+   "value": 122.6,
+   "period": "2026-10",
+   "prev": 122.13,
+   "prev_period": "2026-09",
+   "change": 0.47,
+   "change_pct": 0.385,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     101.14
-    ],
     [
      "2023-11",
      99.09
@@ -3647,6 +3643,10 @@
     [
      "2026-09",
      122.13
+    ],
+    [
+     "2026-10",
+     122.6
     ]
    ],
    "stale": false
@@ -3658,9 +3658,9 @@
    "region": "全國",
    "unit": "指數",
    "value": 110.88,
-   "period": "2026-09",
+   "period": "2026-10",
    "prev": 110.88,
-   "prev_period": "2026-08",
+   "prev_period": "2026-09",
    "change": 0.0,
    "change_pct": 0.0,
    "freq": "月",
@@ -3668,10 +3668,6 @@
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     106.07
-    ],
     [
      "2023-11",
      106.33
@@ -3811,6 +3807,10 @@
     [
      "2026-09",
      110.88
+    ],
+    [
+     "2026-10",
+     110.88
     ]
    ],
    "stale": false
@@ -3821,21 +3821,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 143.48,
-   "period": "2026-09",
-   "prev": 141.09,
-   "prev_period": "2026-08",
-   "change": 2.39,
-   "change_pct": 1.694,
+   "value": 143.87,
+   "period": "2026-10",
+   "prev": 143.48,
+   "prev_period": "2026-09",
+   "change": 0.39,
+   "change_pct": 0.272,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     113.77
-    ],
     [
      "2023-11",
      113.25
@@ -3975,6 +3971,10 @@
     [
      "2026-09",
      143.48
+    ],
+    [
+     "2026-10",
+     143.87
     ]
    ],
    "stale": false
@@ -3985,21 +3985,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 141.62,
-   "period": "2026-09",
-   "prev": 140.48,
-   "prev_period": "2026-08",
-   "change": 1.14,
-   "change_pct": 0.812,
+   "value": 143.78,
+   "period": "2026-10",
+   "prev": 141.62,
+   "prev_period": "2026-09",
+   "change": 2.16,
+   "change_pct": 1.525,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     117.82
-    ],
     [
      "2023-11",
      117.82
@@ -4139,6 +4135,10 @@
     [
      "2026-09",
      141.62
+    ],
+    [
+     "2026-10",
+     143.78
     ]
    ],
    "stale": false
@@ -4149,21 +4149,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 126.26,
-   "period": "2026-09",
-   "prev": 126.28,
-   "prev_period": "2026-08",
-   "change": -0.02,
-   "change_pct": -0.016,
+   "value": 125.38,
+   "period": "2026-10",
+   "prev": 126.26,
+   "prev_period": "2026-09",
+   "change": -0.88,
+   "change_pct": -0.697,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     113.25
-    ],
     [
      "2023-11",
      113.11
@@ -4303,6 +4299,10 @@
     [
      "2026-09",
      126.26
+    ],
+    [
+     "2026-10",
+     125.38
     ]
    ],
    "stale": false
@@ -4313,21 +4313,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 123.9,
-   "period": "2026-09",
-   "prev": 122.79,
-   "prev_period": "2026-08",
-   "change": 1.11,
-   "change_pct": 0.904,
+   "value": 123.96,
+   "period": "2026-10",
+   "prev": 123.9,
+   "prev_period": "2026-09",
+   "change": 0.06,
+   "change_pct": 0.048,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     109.43
-    ],
     [
      "2023-11",
      109.75
@@ -4467,6 +4463,10 @@
     [
      "2026-09",
      123.9
+    ],
+    [
+     "2026-10",
+     123.96
     ]
    ],
    "stale": false
@@ -4477,21 +4477,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 125.3,
-   "period": "2026-09",
-   "prev": 123.75,
-   "prev_period": "2026-08",
-   "change": 1.55,
-   "change_pct": 1.253,
+   "value": 125.4,
+   "period": "2026-10",
+   "prev": 125.3,
+   "prev_period": "2026-09",
+   "change": 0.1,
+   "change_pct": 0.08,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     108.78
-    ],
     [
      "2023-11",
      109.15
@@ -4631,6 +4627,10 @@
     [
      "2026-09",
      125.3
+    ],
+    [
+     "2026-10",
+     125.4
     ]
    ],
    "stale": false
@@ -4641,21 +4641,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 120.44,
-   "period": "2026-09",
-   "prev": 120.37,
-   "prev_period": "2026-08",
-   "change": 0.07,
-   "change_pct": 0.058,
+   "value": 120.39,
+   "period": "2026-10",
+   "prev": 120.44,
+   "prev_period": "2026-09",
+   "change": -0.05,
+   "change_pct": -0.042,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     110.78
-    ],
     [
      "2023-11",
      110.98
@@ -4795,6 +4791,10 @@
     [
      "2026-09",
      120.44
+    ],
+    [
+     "2026-10",
+     120.39
     ]
    ],
    "stale": false
@@ -4805,21 +4805,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 116.86,
-   "period": "2026-09",
-   "prev": 116.28,
-   "prev_period": "2026-08",
-   "change": 0.58,
-   "change_pct": 0.499,
+   "value": 117.09,
+   "period": "2026-10",
+   "prev": 116.86,
+   "prev_period": "2026-09",
+   "change": 0.23,
+   "change_pct": 0.197,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     108.62
-    ],
     [
      "2023-11",
      108.51
@@ -4959,6 +4955,10 @@
     [
      "2026-09",
      116.86
+    ],
+    [
+     "2026-10",
+     117.09
     ]
    ],
    "stale": false
@@ -4969,21 +4969,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 115.01,
-   "period": "2026-09",
-   "prev": 114.49,
-   "prev_period": "2026-08",
-   "change": 0.52,
-   "change_pct": 0.454,
+   "value": 115.34,
+   "period": "2026-10",
+   "prev": 115.01,
+   "prev_period": "2026-09",
+   "change": 0.33,
+   "change_pct": 0.287,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     108.23
-    ],
     [
      "2023-11",
      107.9
@@ -5123,6 +5119,10 @@
     [
      "2026-09",
      115.01
+    ],
+    [
+     "2026-10",
+     115.34
     ]
    ],
    "stale": false
@@ -5133,21 +5133,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 120.29,
-   "period": "2026-09",
-   "prev": 119.61,
-   "prev_period": "2026-08",
-   "change": 0.68,
-   "change_pct": 0.569,
+   "value": 120.35,
+   "period": "2026-10",
+   "prev": 120.29,
+   "prev_period": "2026-09",
+   "change": 0.06,
+   "change_pct": 0.05,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     109.41
-    ],
     [
      "2023-11",
      109.69
@@ -5287,6 +5283,10 @@
     [
      "2026-09",
      120.29
+    ],
+    [
+     "2026-10",
+     120.35
     ]
    ],
    "stale": false
@@ -5297,21 +5297,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 117.5,
-   "period": "2026-09",
-   "prev": 116.85,
-   "prev_period": "2026-08",
-   "change": 0.65,
-   "change_pct": 0.556,
+   "value": 117.69,
+   "period": "2026-10",
+   "prev": 117.5,
+   "prev_period": "2026-09",
+   "change": 0.19,
+   "change_pct": 0.162,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     108.97
-    ],
     [
      "2023-11",
      108.85
@@ -5451,6 +5447,10 @@
     [
      "2026-09",
      117.5
+    ],
+    [
+     "2026-10",
+     117.69
     ]
    ],
    "stale": false
@@ -5461,21 +5461,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 115.09,
-   "period": "2026-09",
-   "prev": 114.6,
-   "prev_period": "2026-08",
-   "change": 0.49,
-   "change_pct": 0.428,
+   "value": 115.35,
+   "period": "2026-10",
+   "prev": 115.09,
+   "prev_period": "2026-09",
+   "change": 0.26,
+   "change_pct": 0.226,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     107.35
-    ],
     [
      "2023-11",
      107.24
@@ -5615,6 +5611,10 @@
     [
      "2026-09",
      115.09
+    ],
+    [
+     "2026-10",
+     115.35
     ]
    ],
    "stale": false
@@ -5625,21 +5625,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 115.69,
-   "period": "2026-09",
-   "prev": 115.3,
-   "prev_period": "2026-08",
-   "change": 0.39,
-   "change_pct": 0.338,
+   "value": 116.04,
+   "period": "2026-10",
+   "prev": 115.69,
+   "prev_period": "2026-09",
+   "change": 0.35,
+   "change_pct": 0.303,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     108.05
-    ],
     [
      "2023-11",
      107.97
@@ -5779,6 +5775,10 @@
     [
      "2026-09",
      115.69
+    ],
+    [
+     "2026-10",
+     116.04
     ]
    ],
    "stale": false
@@ -5789,21 +5789,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 124.6,
-   "period": "2026-09",
-   "prev": 123.57,
-   "prev_period": "2026-08",
-   "change": 1.03,
-   "change_pct": 0.834,
+   "value": 124.86,
+   "period": "2026-10",
+   "prev": 124.6,
+   "prev_period": "2026-09",
+   "change": 0.26,
+   "change_pct": 0.209,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     110.72
-    ],
     [
      "2023-11",
      110.63
@@ -5943,6 +5939,10 @@
     [
      "2026-09",
      124.6
+    ],
+    [
+     "2026-10",
+     124.86
     ]
    ],
    "stale": false
@@ -5953,21 +5953,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 122.72,
-   "period": "2026-09",
-   "prev": 122.0,
-   "prev_period": "2026-08",
-   "change": 0.72,
-   "change_pct": 0.59,
+   "value": 123.08,
+   "period": "2026-10",
+   "prev": 122.72,
+   "prev_period": "2026-09",
+   "change": 0.36,
+   "change_pct": 0.293,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     111.41
-    ],
     [
      "2023-11",
      111.09
@@ -6107,6 +6103,10 @@
     [
      "2026-09",
      122.72
+    ],
+    [
+     "2026-10",
+     123.08
     ]
    ],
    "stale": false
@@ -6117,21 +6117,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 128.62,
-   "period": "2026-09",
-   "prev": 126.95,
-   "prev_period": "2026-08",
-   "change": 1.67,
-   "change_pct": 1.315,
+   "value": 128.68,
+   "period": "2026-10",
+   "prev": 128.62,
+   "prev_period": "2026-09",
+   "change": 0.06,
+   "change_pct": 0.047,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     109.44
-    ],
     [
      "2023-11",
      109.81
@@ -6271,6 +6267,10 @@
     [
      "2026-09",
      128.62
+    ],
+    [
+     "2026-10",
+     128.68
     ]
    ],
    "stale": false
@@ -6281,21 +6281,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 120.85,
-   "period": "2026-09",
-   "prev": 120.22,
-   "prev_period": "2026-08",
-   "change": 0.63,
-   "change_pct": 0.524,
+   "value": 121.26,
+   "period": "2026-10",
+   "prev": 120.85,
+   "prev_period": "2026-09",
+   "change": 0.41,
+   "change_pct": 0.339,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     110.1
-    ],
     [
      "2023-11",
      110.07
@@ -6435,6 +6431,10 @@
     [
      "2026-09",
      120.85
+    ],
+    [
+     "2026-10",
+     121.26
     ]
    ],
    "stale": false
@@ -6445,21 +6445,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 116.28,
-   "period": "2026-09",
-   "prev": 115.56,
-   "prev_period": "2026-08",
-   "change": 0.72,
-   "change_pct": 0.623,
+   "value": 116.62,
+   "period": "2026-10",
+   "prev": 116.28,
+   "prev_period": "2026-09",
+   "change": 0.34,
+   "change_pct": 0.292,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     107.94
-    ],
     [
      "2023-11",
      107.93
@@ -6599,6 +6595,10 @@
     [
      "2026-09",
      116.28
+    ],
+    [
+     "2026-10",
+     116.62
     ]
    ],
    "stale": false
@@ -6609,21 +6609,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 125.96,
-   "period": "2026-09",
-   "prev": 124.84,
-   "prev_period": "2026-08",
-   "change": 1.12,
-   "change_pct": 0.897,
+   "value": 126.32,
+   "period": "2026-10",
+   "prev": 125.96,
+   "prev_period": "2026-09",
+   "change": 0.36,
+   "change_pct": 0.286,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     109.61
-    ],
     [
      "2023-11",
      109.48
@@ -6763,6 +6759,10 @@
     [
      "2026-09",
      125.96
+    ],
+    [
+     "2026-10",
+     126.32
     ]
    ],
    "stale": false
@@ -6773,21 +6773,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 121.95,
-   "period": "2026-09",
-   "prev": 121.44,
-   "prev_period": "2026-08",
-   "change": 0.51,
-   "change_pct": 0.42,
+   "value": 122.21,
+   "period": "2026-10",
+   "prev": 121.95,
+   "prev_period": "2026-09",
+   "change": 0.26,
+   "change_pct": 0.213,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     110.75
-    ],
     [
      "2023-11",
      110.73
@@ -6927,6 +6923,10 @@
     [
      "2026-09",
      121.95
+    ],
+    [
+     "2026-10",
+     122.21
     ]
    ],
    "stale": false
@@ -6937,21 +6937,17 @@
    "group": "cci_national",
    "region": "全國",
    "unit": "指數",
-   "value": 118.03,
-   "period": "2026-09",
-   "prev": 117.7,
-   "prev_period": "2026-08",
-   "change": 0.33,
-   "change_pct": 0.28,
+   "value": 118.26,
+   "period": "2026-10",
+   "prev": 118.03,
+   "prev_period": "2026-09",
+   "change": 0.23,
+   "change_pct": 0.195,
    "freq": "月",
    "source": "行政院主計總處",
    "source_url": "https://ws.dgbas.gov.tw/001/Upload/461/relfile/11525/230553/pr0501a1m.xml",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     112.02
-    ],
     [
      "2023-11",
      112.01
@@ -7091,6 +7087,10 @@
     [
      "2026-09",
      118.03
+    ],
+    [
+     "2026-10",
+     118.26
     ]
    ],
    "stale": false
@@ -7101,21 +7101,17 @@
    "group": "cci_local",
    "region": "臺北市",
    "unit": "指數",
-   "value": 117.7,
-   "period": "2026-09",
-   "prev": 117.23,
-   "prev_period": "2026-08",
-   "change": 0.47,
-   "change_pct": 0.401,
+   "value": 117.91,
+   "period": "2026-10",
+   "prev": 117.7,
+   "prev_period": "2026-09",
+   "change": 0.21,
+   "change_pct": 0.178,
    "freq": "月",
    "source": "臺北市政府主計處",
    "source_url": "https://tsis.dbas.gov.taipei/statis/webMain.aspx?sys=220&ymf=9201&kind=21&type=0&funid=a04004101&cycle=1&outmode=12&compmode=0&outkind=1&deflst=2&nzo=1",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     110.03
-    ],
     [
      "2023-11",
      109.7
@@ -7255,6 +7251,10 @@
     [
      "2026-09",
      117.7
+    ],
+    [
+     "2026-10",
+     117.91
     ]
    ],
    "stale": false
@@ -7265,21 +7265,17 @@
    "group": "cci_local",
    "region": "臺北市",
    "unit": "指數",
-   "value": 119.21,
-   "period": "2026-09",
-   "prev": 118.49,
-   "prev_period": "2026-08",
-   "change": 0.72,
-   "change_pct": 0.608,
+   "value": 119.54,
+   "period": "2026-10",
+   "prev": 119.21,
+   "prev_period": "2026-09",
+   "change": 0.33,
+   "change_pct": 0.277,
    "freq": "月",
    "source": "臺北市政府主計處",
    "source_url": "https://tsis.dbas.gov.taipei/statis/webMain.aspx?sys=220&ymf=9201&kind=21&type=0&funid=a04004101&cycle=1&outmode=12&compmode=0&outkind=1&deflst=2&nzo=1",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     109.62
-    ],
     [
      "2023-11",
      109.08
@@ -7419,6 +7415,10 @@
     [
      "2026-09",
      119.21
+    ],
+    [
+     "2026-10",
+     119.54
     ]
    ],
    "stale": false
@@ -7430,9 +7430,9 @@
    "region": "臺北市",
    "unit": "指數",
    "value": 115.17,
-   "period": "2026-09",
+   "period": "2026-10",
    "prev": 115.17,
-   "prev_period": "2026-08",
+   "prev_period": "2026-09",
    "change": 0.0,
    "change_pct": 0.0,
    "freq": "月",
@@ -7440,10 +7440,6 @@
    "source_url": "https://tsis.dbas.gov.taipei/statis/webMain.aspx?sys=220&ymf=9201&kind=21&type=0&funid=a04004101&cycle=1&outmode=12&compmode=0&outkind=1&deflst=2&nzo=1",
    "note": "",
    "history": [
-    [
-     "2023-10",
-     110.99
-    ],
     [
      "2023-11",
      111.06
@@ -7582,6 +7578,10 @@
     ],
     [
      "2026-09",
+     115.17
+    ],
+    [
+     "2026-10",
      115.17
     ]
    ],
@@ -11309,12 +11309,12 @@
    "group": "fx",
    "region": "臺灣",
    "unit": "新台幣/美元",
-   "value": 32.84,
+   "value": 32.89,
    "period": "2026-11-05",
    "prev": 32.84,
    "prev_period": "2026-11-04",
-   "change": 0.0,
-   "change_pct": 0.0,
+   "change": 0.05,
+   "change_pct": 0.152,
    "freq": "日",
    "source": "國泰世華銀行",
    "source_url": "https://accessibility.cathaybk.com.tw/exchange-rate-search.aspx",
@@ -11338,7 +11338,7 @@
     ],
     [
      "2026-11-05",
-     32.84
+     32.89
     ]
    ],
    "stale": false
@@ -11922,6 +11922,104 @@
  ],
  "news_feed": [
   {
+   "title": "中鋼12月盤價小漲 穩定供應鏈購料成本擴大接單",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9GbXNtc1N2aXQ5MVU3TGl5amJKYUlQRDNzbkZOdDA3UWxfZ3huS3cwUUlsLW9qT2hXcXhpbmYxTmxEbnp5MjhGcGhwT3pYYVE?oc=5",
+   "source": "鉅亨網",
+   "date": "2026-11-05",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "反映市場行情，中鋼12月月盤小幅調漲 | MoneyDJ理財網",
+   "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBUZWZ4a0JwRlpDdjNRcFdYc2lCY056c2gwNC1mbE5VTGRoNWVnbXFVUWpmeXFNejBnWWJwVUNTelEwTy1WS2RxLUNzQXNsb0NKM2Q3cVlR?oc=5",
+   "source": "LINE TODAY",
+   "date": "2026-11-05",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "外銷接單升溫、新台幣走貶 中鋼12月盤價全面小漲300元",
+   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9ycFpNaVMzUWVpWmtHSmFQNVNqRGgxWG1iYjFkSEtPMGdBbjYzUjRPQ3dxUXVYNlRfdUhPN3NBVGNfaU92WEVRa3hLOXBPT1V1XzdUNEVlLU9xZ3JrbzhN0gFkQVVfeXFMTWQ5T2k2NFYxV2Z3SVhlU1FfNnp2V05WeVRYeEdta2toR2tXanJGcmdmUnFHNldqenUwY25SNWllZ1pNYy1jT2t3NGlqa3I2cUFBRXpzdDhOS0xJZUtmQllaTFVITQ?oc=5",
+   "source": "自由財經",
+   "date": "2026-11-05",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "中鋼12月盤價拉尾盤 每公噸小漲300元",
+   "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPd25VeGFvbFBJajk4Q3ppQXJKV01WaEt4N1JKZFQzeXFlZnFHV1RyOGwwcHBOWXZOZkkwNXQxc2VyWm5UX3N0aVNFU1JiY0xjb2pnRXg5WG9SQzRnRmx6Y25uU2RPUFlLaFBkbDZwUXhZZVkyZUZaZEpMalJtWGgxb21BN2dCVC1USVdpVktLaGxMaDd6eHFPNTBKN21LbXVPVGhNc0RQckRwamJIdF9heXJ5cnUxSjYySVFTaEZnWTdFS1pSSllTTkhBSWlaTjJlbWVhZ0FRdXl2QTZmVFh4bFdsTWEzU2VSUExkX0hYWGNpWE5tOXVkVlBudEVqY3dVcklF?oc=5",
+   "source": "Yahoo新聞",
+   "date": "2026-11-05",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "中鋼最新12月盤價連三漲、每公噸調高300元鋼市正能量穩中帶堅| 產業綜合| 產經",
+   "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5WZ01XVC1LMHV5V0l2NjJLSEMtRm4zc01fYjkzajVQa1U0NlIyVG1OMWtBWXFGakFpS0h5dW9pMG1rcTBGX19CSkNpTzR4ZTk3Y3VZcmdVeldnWDdnWENTR25Ybm80NjVRRnhhb3owalVHb3o4NHlRdVhhWQ?oc=5",
+   "source": "UDN",
+   "date": "2026-11-05",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "中鋼鋼板下季接單看旺",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5UM1JZaWZtc3VrRXZlcDdfdHpibXU0akFFQ0dYQVV6cGp6LUtYWllHcHRuQ2lDcVc0UHlIMnJSUWZWd0NGRWR5ZTQ3OUl0dGZ3R0dPU24tRHZZZ9IBX0FVX3lxTFBYQkR5aWlQckxteTNPNUdzMDRDLThIdkZRY3NUTmJBTi1VZjN5dDFVM0lHQXVSVkpFQnhSRl9KV0lVdk05OFdsVzlXaXc1YmhGVXF4QXUtdUFTVmhBZEZB?oc=5",
+   "source": "經濟日報",
+   "date": "2026-11-05",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "全球鋼市穩中有升 中鋼12月盤價小幅調漲",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE4zQ1hzVTFFVzZDNGx2dmFxb3RsaFFYY3ZPQU9hbmdYXzNDUDRNNEdOUDFRNVZTVXVQU3dRcm9JcGNzY244OU9Za05pQzRWbE1QSkE?oc=5",
+   "source": "蕃新聞",
+   "date": "2026-11-05",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "2002 中鋼- 中鋼12月盤價小漲穩定供應鏈購料成本擴大接單- 股市爆料同學會",
+   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5hWnY2YWtQSTA1aUlpRFdCUlo1TllldGZ0cmF0dnhydlpicW1aOEU3dm5kYkZxUGZJVG9hdDFjM3U0WnI1Ri1sZlR2SEdhMG45b3ZmcDdLVFI?oc=5",
+   "source": "CMoney",
+   "date": "2026-11-05",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "中鋼最新12月盤價連三漲、每公噸調高300元 鋼市正能量穩中帶堅",
+   "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBka25sbGNYNlBxZklhOGpRVXowdE9yUDVTWVhXaTZabl92U1JyNWdLa29rcFpsVkFsdnFabzJzdFFoNmpLNDI2d2p5MXE?oc=5",
+   "source": "聚財網",
+   "date": "2026-11-05",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "個股：反映市場行情，中鋼(2002)12月盤價各項鋼品小漲300元/噸",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOMV9JaExWRnVfM2dJeEJWamJLaHZjWkhZbnNmRXlfSVRWX2dSS1ZnVFhxR0NrX3RVVnY1eTB5Wmd2cUxZOE5MbWc5ZFpjcTRqcnpwT0UyTXIyc2pyekhWdUNMLWc0dHR5dk1Yd1FramItMjNTVEtwRmNNQzFQd3JBTG1GeUczSHNn?oc=5",
+   "source": "富聯網",
+   "date": "2026-11-05",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "《DJ社論》碳有價時代，基礎工業需要公平競爭的新規則",
+   "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNejJyUlBaaTNtaHNlVEg2RFlNWWRLYk0yN3RIV1kwaXlpVmJONGtlcWF2RzRqRTcyLTM3dm1ieVhfak5fS242cUdqNzBWemV4ZG9lTkp4bjJFaGk1SEJRZm1CUHh6RlVLVDRKX0YyUjRzc0VsSDhJNWdjaXVKSzBGN2pnc0E5UzA0TGVtYjdEendOaHlrYTFRWlpxUW9KY2c?oc=5",
+   "source": "MoneyDJ",
+   "date": "2026-11-05",
+   "query": "水泥 價格"
+  },
+  {
+   "title": "台灣水泥 | 1101.TW 股價走勢與即時報價",
+   "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5XRi1DWDFBUGRrZWotNUFwN19fM0hTTGFMb1J5TjVJV1BWMFFwc3RiTENPeXBkX0NvUGFXejE2UU16OGVVRm0wTWRZSGs4dHhoemZrMQ?oc=5",
+   "source": "BigGo 財經",
+   "date": "2026-11-05",
+   "query": "水泥 價格"
+  },
+  {
+   "title": "管理室就能寄件！全家攜手智生活推「社區取」 四種服務、價格曝",
+   "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE54RnVpQ3Z1Z0xfdmwxSDBRLXF2TTIwWGNObkw0aWp0bmw2Sko1V1pLWk00Q2cwM0Uxa0NpT0g0dnlMTDlSb184RFRJX21pZw?oc=5",
+   "source": "TVBS新聞網",
+   "date": "2026-11-05",
+   "query": "砂石 價格"
+  },
+  {
+   "title": "為領補助先噴2萬！國旅延長業者不挺 揭「團費反變貴」真相",
+   "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5WM1RSYS16NWxVV2NjMjdmdXJiWnA1eldZWTk5WTRZZEp5b1J0VnF6RXBoVVYyb01ja2ZNRDkwRVJrSG45T1ViVU9XcElJUQ?oc=5",
+   "source": "TVBS新聞網",
+   "date": "2026-11-05",
+   "query": "砂石 價格"
+  },
+  {
    "title": "中鋼12月盤價平盤機率高- 日報",
    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5RYW12OVc4aFVTb0xMN2x2NkJ4VnFKR04xQS1JeEFnSXlaaHJHWG92VXhqMHZGa25YMFBIRmxaMEV0MWdhTzB5RndJREJDZGdRVmhCOUZfVG9WbC0wQTFN?oc=5",
    "source": "工商時報",
@@ -11937,50 +12035,22 @@
   },
   {
    "title": "台泥、中鋼 押逾五個月",
-   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQSXY3TGtNdHYwMTZPRzJQSmZqMWxvWE4tQU9ILXBSOGRTUjZQRE1UUktHVkwtTEZJblpWY2NFMFp5c0hGVU00Sy15dkh4V2l1OHZRdjlMbzQzZmZ5THJVSjdQTEpGWC1wMC1YaXl0eXl5R29TSTMyaFliZTZFNERlZtIBX0FVX3lxTE5VVFlKYmtLa2FLSk1lV3lfc0liNS1SaHMxMTR2YmdJYXJpbG1oYTg0bzRacG1rQjY2TUl2U2lkMjBiWGU2dnlNS2I4dU1BcUpOdkJGT25PdlpJb1RJbk5J?oc=5",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE4wT3NJM2ZkRnJZTnZQbnNzcVRFZlUzcWcxdGEzQm1nM2p6aFJ6aGtfcGwwdllOb1BHWkNra3NKdjBBTGpsODdtQ3BEYUdDNHFyZTgxT1JpX1BvZ9IBX0FVX3lxTE5VVFlKYmtLa2FLSk1lV3lfc0liNS1SaHMxMTR2YmdJYXJpbG1oYTg0bzRacG1rQjY2TUl2U2lkMjBiWGU2dnlNS2I4dU1BcUpOdkJGT25PdlpJb1RJbk5J?oc=5",
    "source": "經濟日報",
    "date": "2026-11-04",
-   "query": "中鋼 盤價"
-  },
-  {
-   "title": "中鋼鋼板供不應求 今年訂單滿載、明年首季接單看旺",
-   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1JR2FKYUdTUkpJb2N5VlZpajdlRDc3b1czYVc1dWxnNG04TDNXQ2Uwd0hYYTh0RUE5THRNVGFzQUhJSWJqbTBNTzVUNnZDZ1JhUVVsTDFfeFUxQdIBX0FVX3lxTE1TUWh1XzBaTG51ZlFleGdJU0hiS3N3X0hRTVZpUF9sbG1JbHJjNFNzYkQ2LTlYSDIwUndvQUtycWcyUFJQSzI0aG1BY2NpRTlZTWkyY3h3aUVnMjVUS1lR?oc=5",
-   "source": "經濟日報",
-   "date": "2026-11-04",
-   "query": "中鋼 盤價"
-  },
-  {
-   "title": "鷹材料公司創2026財年第二季度營收新高 作者 Investing.com - Investing.com 香港 - 股市報價& 財經新聞",
-   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9PeS03YlZ4dWs5OElmYk5vYkctdFZkU0txS1RTYmFiSnB3UFVnbEItQldjUnN3VzJwTEJrQUxVRWRYeXRiSkQ2NTlzMWxmTTR2dklWNUo2Qlp5WFpqV2t5VG00U0pOb1lUdVQwcWFJdw?oc=5",
-   "source": "Investing.com 香港 - 股市報價&amp; 財經新聞",
-   "date": "2026-11-04",
-   "query": "水泥 價格"
-  },
-  {
-   "title": "海德堡材料第三季度業績電話會議：股價因增長強勁而大漲8.27% 作者 Investing.com - Investing.com 香港 - 股市報價& 財經新聞",
-   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1DS0JzR2ZjOWlkYXQzX3YwNXhMMnF6eHRhalIxZUlPbktLeU5pQlZzakJaT3U5elpvanpRRWRKQTZiNXNUSTI2MUUyVmk2T0VFb2tnWER1UWxZd2RZUWlLaGVzOWlQcXc2QS1iZ1l6cw?oc=5",
-   "source": "Investing.com 香港 - 股市報價&amp; 財經新聞",
-   "date": "2026-11-04",
-   "query": "水泥 價格"
-  },
-  {
-   "title": "Atlas Energy Solutions公佈2026年第三季度財報，每股收益遜於預期 作者 Investing.com - Investing.com 香港 - 股市報價& 財經新聞",
-   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1hTkpNTmk0S0t0Y1QxdlhMWWk0bHlUUDc0RnV6UGx5YXN0SG1ReEUtU2F2QVlrTDdJbUwyNEFtM1p1aHhsQm5xYVQ0YWxIMjJPRVFGVzVMdnU3RmJPTGFZLUg2QnR4VURzYVM4bEdCNA?oc=5",
-   "source": "Investing.com 香港 - 股市報價&amp; 財經新聞",
-   "date": "2026-11-04",
-   "query": "砂石 價格"
-  },
-  {
-   "title": "【12:00 即時新聞】中鋼(2002)平盤整理，市場聚焦12月新盤價走勢",
-   "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWWY0Vld4ajB2cFUzWlR6aEpOVlctRVViUGdrUW9Wa2dIRTZONzJMZlM4WF9SNFNPNC1WdVl6WjdzUWtFSUVweVB6ZXg1cnA5X0pTaVo4c0xQMDJEdTdwOGNLYW1qbVVobFl5WWN3aUhiNUtNbE9OWi14MGo1eTdPV3ZYaVV0NFJyQ0dLTWhR?oc=5",
-   "source": "CMoney投資網誌",
-   "date": "2026-11-03",
    "query": "中鋼 盤價"
   },
   {
    "title": "鋼鐵業走出谷底 中鋼新目標價",
    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9GU3UyRndrX3BwdzJCenNwSWdlalNjOW9yQ1lYc2FWS0Fld1VCMFFrWUl1Q0ctbkpndE9UeVE5VmNhdXkwNmlqOERLVQ?oc=5",
-   "source": "三立新聞",
+   "source": "三立新聞網SETN.com",
+   "date": "2026-11-03",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "【12:00 即時新聞】中鋼(2002)平盤整理，市場聚焦12月新盤價走勢",
+   "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWWY0Vld4ajB2cFUzWlR6aEpOVlctRVViUGdrUW9Wa2dIRTZONzJMZlM4WF9SNFNPNC1WdVl6WjdzUWtFSUVweVB6ZXg1cnA5X0pTaVo4c0xQMDJEdTdwOGNLYW1qbVVobFl5WWN3aUhiNUtNbE9OWi14MGo1eTdPV3ZYaVV0NFJyQ0dLTWhR?oc=5",
+   "source": "CMoney投資網誌",
    "date": "2026-11-03",
    "query": "中鋼 盤價"
   },
@@ -11999,16 +12069,16 @@
    "query": "鐵礦砂 價格"
   },
   {
-   "title": "豐興廢鋼、鋼筋、型鋼3大產品 11月初全面開平盤",
-   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNYjZWQkRDcEpfdFVhRXZyZkhVa1BvdWxqNDJpNUVZekNMeFNNU2lyLUZOVTNFdC1pdGJWZjE2bGg5ZWZjckt2X3BVSUR3SGJkU25YaDFYeWtJMEdWODNLZzVWeDZJd2RVSEloZ3FkZGJsTnFMc0ZsNGdBZHQwZm9PSmRB?oc=5",
-   "source": "壹蘋新聞網",
+   "title": "原料行情持穩、下游買氣緩 豐興本周盤價轉平盤｜新聞快訊｜豐雲學堂",
+   "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1rLVhYeGJFYkdWYnhFTWNpSndmTzJDTEtwSmZOTkpzNVRXVWRFbFlIdUVOem1rVzlVOUJFeTJMWmVyWDl6YzgzNk1RbzV0LUpzLVJDVk1YdC1IaHpiaFlTVkFocktnakNTbmd4V3ZwNUJkQ095WUE?oc=5",
+   "source": "永豐金證券",
    "date": "2026-11-02",
    "query": "豐興 鋼筋 盤價"
   },
   {
-   "title": "原料行情持穩、下游買氣緩 豐興本周盤價轉平盤｜新聞快訊｜豐雲學堂",
-   "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1rLVhYeGJFYkdWYnhFTWNpSndmTzJDTEtwSmZOTkpzNVRXVWRFbFlIdUVOem1rVzlVOUJFeTJMWmVyWDl6YzgzNk1RbzV0LUpzLVJDVk1YdC1IaHpiaFlTVkFocktnakNTbmd4V3ZwNUJkQ095WUE?oc=5",
-   "source": "永豐金證券",
+   "title": "豐興廢鋼、鋼筋、型鋼3大產品 11月初全面開平盤",
+   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNYjZWQkRDcEpfdFVhRXZyZkhVa1BvdWxqNDJpNUVZekNMeFNNU2lyLUZOVTNFdC1pdGJWZjE2bGg5ZWZjckt2X3BVSUR3SGJkU25YaDFYeWtJMEdWODNLZzVWeDZJd2RVSEloZ3FkZGJsTnFMc0ZsNGdBZHQwZm9PSmRB?oc=5",
+   "source": "壹蘋新聞網",
    "date": "2026-11-02",
    "query": "豐興 鋼筋 盤價"
   },
@@ -12076,13 +12146,6 @@
    "query": "中鋼 盤價"
   },
   {
-   "title": "越南和發11月鋼價平盤展現抗跌韌性中鋼、新光鋼樂見| 產業綜合| 產經",
-   "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE95OTZDaGNNRjBFSmUxekh1aTBCaWluU0JGSFBqclBxWnZIbFV1dG1GZ2w2M1FtWmM0MWxVUXhHaWRzUjdXeW5QV1dDOTRFNDg0T3JIdEhicG8zYkdjRWw0NkZOM2txQTZTd2VTdWdjWnlvSGM?oc=5",
-   "source": "UDN",
-   "date": "2026-11-02",
-   "query": "中鋼 盤價"
-  },
-  {
    "title": "《商情》終端需求平淡 土耳其廢鋼破碎料價連3平",
    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOaXRZY1gxWnZzeHNqZ1hLV2NXYmZOYi0xcTZvamdTZnY1bTVFSXpzTFhzSF9fQzR5bUljYy1FcVpIWnZlTlI5QUo2anVSdW1aNFhrUkMtNHhENEFtdzAyS1NENU4zRlRMallTUm9oZm5xM1J1ZERRMi1hSEl0TzBxcmxBU29QUHQ0?oc=5",
    "source": "富聯網",
@@ -12090,8 +12153,8 @@
    "query": "廢鋼 價格"
   },
   {
-   "title": "研報掘金｜中郵證券：海螺水泥Q3盈利承壓明顯，期待價格觸底回升",
-   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5hbGVjOFlXZzYzMkpDXzRHY19OTlpoWkhiUmtoczRwQ3hjNDZNd21IQVRZN3k2YjliU2ZJNDZ2MzFWWFNyeVllcHpYZFdyWWhFV0ZGTTdDekNBWU1LU1RTTms4eDFjTk5fTkE?oc=5",
+   "title": "研報掘金｜平安證券：維持海螺水泥“推薦”評級，業績加速築底，分紅回購慷慨",
+   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE05YW1xNldncGM5aUlaVEJpOHdCM2tUT0NPQWVqdWN0QkRLblktcnAxaGhLTThlUGplbVdwUU5qTzE5MDJvM0F6UG0xby1wbmdnS3dyeHM3NlAzS01IakUwaWhTVnROdUZUVFE?oc=5",
    "source": "TradingView",
    "date": "2026-11-02",
    "query": "水泥 價格"
@@ -12104,18 +12167,11 @@
    "query": "水泥 價格"
   },
   {
-   "title": "研報掘金｜平安證券：維持海螺水泥“推薦”評級，業績加速築底，分紅回購慷慨",
-   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE05YW1xNldncGM5aUlaVEJpOHdCM2tUT0NPQWVqdWN0QkRLblktcnAxaGhLTThlUGplbVdwUU5qTzE5MDJvM0F6UG0xby1wbmdnS3dyeHM3NlAzS01IakUwaWhTVnROdUZUVFE?oc=5",
+   "title": "研報掘金｜中郵證券：海螺水泥Q3盈利承壓明顯，期待價格觸底回升",
+   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9tYmNLNkpxMndmN05uSnczWXFXNHpWLUxHS3RhU01fdjdCYllNbUVrcHpkYktBMDBxcTdPdVFsQXV2R0k1LTRZVTIzVVZwRVBtX1dMdWpITUF0N3FYbGp6OEhYNy11RUxxZlE?oc=5",
    "source": "TradingView",
    "date": "2026-11-02",
    "query": "水泥 價格"
-  },
-  {
-   "title": "盤中速報 - 永固-KY(5546)股價殺至跌停，跌停價11.85元，成交200張",
-   "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1XMlRiQ2FURTFpekpxbnNKS2U4SEZNZzF6bmNZU3NIdFV0N2JmY3NxYU1ZZ3hfWUM3dFBiY0tmZXhYWTdxanpteEw0NXdEaFR3QXRFcldLQWJ1SWd6RWx4cFlrMk8?oc=5",
-   "source": "TradingView",
-   "date": "2026-11-02",
-   "query": "預拌混凝土 價格"
   },
   {
    "title": "傳澳總理訪中聚焦鐵礦砂談判- 日報",
@@ -12139,13 +12195,6 @@
    "query": "東和鋼鐵 型鋼"
   },
   {
-   "title": "【13:18 即時新聞】亞泥(1102)盤中小漲，主力與法人買盤續成焦點",
-   "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOT2h5OGUyWUZ5VjlTRjBoclRaakY2U0FPdldHR3laOVJiRUJ3bDF4WTc5RFFqbzhqTUxMUlJSME1pWFZFaFFZeXNBV3B3RUJYVC1fVnpaenJzS2tqQXFKS2prTW14NFd6RDQxLV84VXlYVzQwQVR0OWVNdU9uNWVmQVRtSnJpYXRxb0x1anpn?oc=5",
-   "source": "CMoney投資網誌",
-   "date": "2026-10-30",
-   "query": "水泥 價格"
-  },
-  {
    "title": "【Vulcan Materials 2026年第三季法說會】美國Vulcan Materials無懼4,000萬美元柴油成本衝擊，EBITDA達7.07億美元、利潤率提升20個基點；看好中高個位數漲價，庫藏股加速回購",
    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9MMzV6UGswX0lBdWMyRDRYd1Q4ei1ST1UzUjk0UkNZV3FNTWF2WlRhcHg2VkdiMUhsVjNvRWFVU0RZY3N1eS1TQjhXdUJxaFpQekJBT0R0dXBtek5SUk5iNg?oc=5",
    "source": "BigGo 財經",
@@ -12160,9 +12209,23 @@
    "query": "鐵礦砂 價格"
   },
   {
+   "title": "討論牆 | 鐵礦砂價格下跌與成本攀升 巴西淡水河谷第三季獲利重摔53%",
+   "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBsd2lodHFxUUtWQXhQWjhsQ3V6TXg1OEhSU290cjZCRWlWQnpzdmExNEpZcVB2RWxlVl9kZUtrMEs3Zk9CUGVTOUhkS2R3QXhlMTBCNzlJLTlsVXlCMmJudWRtbmw?oc=5",
+   "source": "LINE TODAY",
+   "date": "2026-10-30",
+   "query": "鐵礦砂 價格"
+  },
+  {
    "title": "港股異動| 西部水泥(02233)早盤漲近4% 埃塞俄比亞水泥價格回暖公司海外業務開始貢獻盈利作者智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
    "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBQSmQ2SWxnMjMxYmRRTmRGTU9rMkNRbFpxR0xPS2VJMnZXWG1maEIyNTVHdlVPWVZzWm1IazRqdXF2eWJYRzhJNGxfSndEN2xjdzRSczVkSjVEV1gyVTdKbkJQOG83VUxHVUdFM2xNdGs?oc=5",
    "source": "Investing.com 香港 - 股市報價&amp; 財經新聞",
+   "date": "2026-10-29",
+   "query": "水泥 價格"
+  },
+  {
+   "title": "中金：下調華潤建材科技(01313)目標價40%至1.33港元 維持「跑贏行業」評級 看好盈利逐步修復",
+   "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPVEhyaXBralo0X2JieGdYN21nVmh5VXRaREVUczg1YUpuRW1fc0Z4enlJeXgxbUJNS1d2UHZZa2dqdnRjdXBkak11amFqUVFLQ00wR0tCeUdnSk1TdEo0MjhmaTViVWJpWFlQNUg0NTQyVUplYUEyYXVzQy1zTEozcUUybWk4SmQzdUVSTndLcXpWMlNaR3F4S1VNRzBVdmc0M0tzQnFjX1Y5bkMzUHRFVlNDbVNQM2wwRkx2LUFB?oc=5",
+   "source": "Moomoo",
    "date": "2026-10-29",
    "query": "水泥 價格"
   },
@@ -12230,20 +12293,6 @@
    "query": "中鋼 盤價"
   },
   {
-   "title": "中鋼9月稅前盈餘月減19% 前三季賺43億元",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1fS2Ffb0k1SUtmMVFBX3hNaWpsbm5NZFJIeDZfcGtFYWdyMXFKNk5yM1VTVHUzeW5DUFhMMDhsTUNtR1ZSOFJtWGRyV0lRb0U?oc=5",
-   "source": "鉅亨網",
-   "date": "2026-10-27",
-   "query": "中鋼 盤價"
-  },
-  {
-   "title": "中鋼前三季賺43億元 9月營業利益月減4成",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE16Y1BJRWpsdTZXSVhrdlFJRWV4NjVfbWpHWHZqN1J1M2E3ZjB4T2RrMTFQS2YtRzVnT0VPcnJlODJkNXN1Y0FEeVRabTJQRUlqZUFrZEIzTTlLU1k1RFVn0gFkQVVfeXFMUEVMRlhaRzI0czBLTzJ4RVJKU3dVc3o4MFg4b2RmVGFUMTVyVXprMVNNS3NYNTdFZW4tMnN0Y1ZCNms1NUVZZi05YVhGQWNiOWtvMUl2VmJwdjVmX3B5QnIxUWkwSA?oc=5",
-   "source": "自由財經",
-   "date": "2026-10-27",
-   "query": "中鋼 盤價"
-  },
-  {
    "title": "亞洲鋼市供需收緊帶動盤價連兩月調漲，中鋼前三季虧轉盈！-財經焦點情報站",
    "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPVlpaSkhjVkNINzFXbnRBdGtJVjZ4azdVdEJoZTV4NHZHR1VKcl9qcHh1WG5TZXQwWWFsYmFwWl9UeXdBSUlqc1BxV0N4YVZjMXRYTTR4RXRveTh4RXFFT05mbXc1S0JMYTFOSGluY2o5aTkwNU5IWmRPNld2ejFDbFJB?oc=5",
    "source": "CMoney投資網誌",
@@ -12290,56 +12339,7 @@
    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBNelV1S2xPMVVoNlZNTWxnUkp5RE9GOG5lcUVKNV9NLUtrdkV6SzV6Qmw5NmZwblBMdkZrc291dzNJSC03OWlPTG5aZFQxMGpDeXZERkI5ai1kd9IBX0FVX3lxTE8wWVd4aE9ZOWN6dDA0WXVYdDRIeFpTelN3T2dCX0w0MjhZZzlXNmloLV8yYnNLX3AyZkhEdWFnczlMNnVuYThWSlVtaHl2WnRHamhZV3JrS01pTUJwUVlJ?oc=5",
    "source": "經濟日報",
    "date": "2026-10-24",
-   "query": "鋼筋 價格"
-  },
-  {
-   "title": "熱門股》避險買盤湧入 台泥創波段新高",
-   "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9SYmZtdUdxU1BtM0c5NE5pdi1DU3NkRTM4NFdOVVdEdkhRekd1RWduUEZxeEo4Qm14YWpzakx2cWR6ejRRSmRVNnNUbjdGVERhUmJpQ2ln0gFbQVVfeXFMUFBZQVJ5MGxJdXBlUGQtNEd5TFVIX3ZvU0RMNVVMV3preFNPSnU3VjdPV29jaFhlS2kyY3g0VzQxVE4tVGZESlZJVlM4M0ZKYVNLU1ZmVG5KRU5EQQ?oc=5",
-   "source": "自由財經",
-   "date": "2026-10-23",
-   "query": "水泥 價格"
-  },
-  {
-   "title": "豐興 前三季獲利逆揚",
-   "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9wUnpHVk03MDBZRUxjZVdUTXlnX1Buc3c2MVFfSW1nS2tFSVVrRE9PdnAzVzRJTmk2R0I1YUJUa2JFYTlobkxSRk8zbm0zWjRjc1U4ZTdlbUgwVEpzRDR4M0lOaXBlbEgtSlJZ?oc=5",
-   "source": "中時新聞網",
-   "date": "2026-10-22",
-   "query": "豐興 鋼筋 盤價"
-  },
-  {
-   "title": "《鋼鐵股》豐興前3季獲利成長9.6% 11月12日法說會前抗跌",
-   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOUmowbkdsY1hYMlFCMWVLdXV1a0Vmc2ZnMlA4OWFZOVV6Wkl0cVNObFVNTDItdS1xU001VTJSWm1Ubl9GbGo3WDMySEltdHU2N2xkRGM3eDNwZXZBMWZYOURTWTBvU2tmdEdCalZ0YlpoX2p1LUo3Z0VlY292MnBSbkc4dzBmWTNH?oc=5",
-   "source": "富聯網",
-   "date": "2026-10-22",
-   "query": "豐興 鋼筋 盤價"
-  },
-  {
-   "title": "個股：科技廠房建廠需求強勁帶動，東和鋼鐵(2006)2027年案量充沛、動能續航",
-   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQU0hmcmV5MHFrN2J5dXh4Nm9KM05uTFo1djh6YkV6TGVnVXhmaEVMbnVJbHBhaGV6MFlLSmgzSjdMOHdBOGw4Y2RvMnRLdEpuQWhXSEZzX0xGMVZrTE1OaHdpQ1VQSThvc3M2aElDcm13Y0YxQk50SGpWV0pXUTJCOEg0Y3d1Y01C?oc=5",
-   "source": "富聯網",
-   "date": "2026-10-22",
-   "query": "東和鋼鐵 型鋼"
-  },
-  {
-   "title": "台泥、長榮 押逾四個月 | 權證特區 | 證券",
-   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBiODNlWk9fVFNUN0Fzd1RlMC1oME91dFowSVFwSmpRQ3hrU0ZydzNfR1RTdUtDNEJDZmthNGV3MGV4aXhoUVA4QUsyVzg4REtGbDlFd1ZTaVM5QQ?oc=5",
-   "source": "經濟日報",
-   "date": "2026-10-22",
-   "query": "水泥 價格"
-  },
-  {
-   "title": "焦點股》台泥：歐洲佈局效益浮現 股價緩步上漲",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1DVm54czBtcEhObGRtRFhlUGhuLVFGU0tOQWViWE1uQ3FzbkxNVEZNcWRnakQxaXFuamlKYkZzWWdQbGdZMEFHRmZOZkoyNDB6WTVrTDVNU2RDTl9BMDFZ0gFkQVVfeXFMTkRCTE5qSVN5dFlwWDRkSzFHbklMYlFIOUQ5NjVZQUtsdnhub1hTZWNnREFJWjdtR0V2bnVGV0l6aDVXaEYzWHVUY0N6Y2RRNzRVQTVrcFUyYWFtWEtDT2JiVWhlYQ?oc=5",
-   "source": "自由財經",
-   "date": "2026-10-22",
-   "query": "水泥 價格"
-  },
-  {
-   "title": "台泥（1101）股價預測：台泥（1101）可以買嗎？",
-   "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQMDFhN0h4eFJPeFVZT01nb0RFR1hXdXh1T2lLY0Q0MkttRmdhTmFCc185Qm9OUnlxeTZPNHJySTJnZ19KRElPOW5UaG1EQzJNQU9tOE9fMklUYy1DcWxCUjdLTzRSVkNlR25pNGZSeTdfT0d6czA2bmxjbUp5cEgzejJWVzRmOENNalVpTDB1WFVQUGhaVDFQSUhFeWhFNlNBV2hRQzQ5dENEeUQ2RF9IZjZSREZiOURKbDNTRkNuOUE?oc=5",
-   "source": "TOP1markets",
-   "date": "2026-10-22",
-   "query": "水泥 價格"
+   "query": "鐵礦砂 價格"
   }
  ],
  "sources_status": [
@@ -12347,31 +12347,31 @@
    "source": "台灣金屬行情網",
    "ok": true,
    "items": 14,
-   "seconds": 11.7
+   "seconds": 12.2
   },
   {
    "source": "行政院主計總處",
    "ok": true,
    "items": 29,
-   "seconds": 1.9
+   "seconds": 1.8
   },
   {
    "source": "地方主計處",
    "ok": true,
    "items": 19,
-   "seconds": 9.3
+   "seconds": 8.0
   },
   {
    "source": "World Bank",
    "ok": true,
    "items": 18,
-   "seconds": 0.7
+   "seconds": 0.5
   },
   {
    "source": "臺灣證券交易所",
    "ok": true,
    "items": 16,
-   "seconds": 1.6
+   "seconds": 1.1
   },
   {
    "source": "Google 新聞",
