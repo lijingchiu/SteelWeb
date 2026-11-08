@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-06T23:23:44.937178+08:00",
+ "updated_at": "2026-11-08T23:51:56.051178+08:00",
  "groups": [
   {
    "id": "tw_steel",
@@ -11310,11 +11310,11 @@
    "region": "臺灣",
    "unit": "新台幣/美元",
    "value": 32.79,
-   "period": "2026-11-06",
-   "prev": 32.89,
-   "prev_period": "2026-11-05",
-   "change": -0.1,
-   "change_pct": -0.304,
+   "period": "2026-11-08",
+   "prev": 32.79,
+   "prev_period": "2026-11-06",
+   "change": 0.0,
+   "change_pct": 0.0,
    "freq": "日",
    "source": "國泰世華銀行",
    "source_url": "https://accessibility.cathaybk.com.tw/exchange-rate-search.aspx",
@@ -11343,6 +11343,10 @@
     [
      "2026-11-06",
      32.79
+    ],
+    [
+     "2026-11-08",
+     32.79
     ]
    ],
    "stale": false
@@ -11353,12 +11357,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 18.95,
-   "period": "2026-11-05",
-   "prev": 19.15,
+   "value": 18.55,
+   "period": "2026-11-06",
+   "prev": 18.95,
    "prev_period": null,
-   "change": -0.2,
-   "change_pct": -1.044,
+   "change": -0.4,
+   "change_pct": -2.111,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11383,6 +11387,10 @@
     [
      "2026-11-05",
      18.95
+    ],
+    [
+     "2026-11-06",
+     18.55
     ]
    ],
    "stale": false
@@ -11393,12 +11401,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 85.9,
-   "period": "2026-11-05",
-   "prev": 89.7,
+   "value": 84.3,
+   "period": "2026-11-06",
+   "prev": 85.9,
    "prev_period": null,
-   "change": -3.8,
-   "change_pct": -4.236,
+   "change": -1.6,
+   "change_pct": -1.863,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11423,6 +11431,10 @@
     [
      "2026-11-05",
      85.9
+    ],
+    [
+     "2026-11-06",
+     84.3
     ]
    ],
    "stale": false
@@ -11433,12 +11445,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 6.68,
-   "period": "2026-11-05",
-   "prev": 6.8,
+   "value": 6.38,
+   "period": "2026-11-06",
+   "prev": 6.68,
    "prev_period": null,
-   "change": -0.12,
-   "change_pct": -1.765,
+   "change": -0.3,
+   "change_pct": -4.491,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11463,6 +11475,10 @@
     [
      "2026-11-05",
      6.68
+    ],
+    [
+     "2026-11-06",
+     6.38
     ]
    ],
    "stale": false
@@ -11473,12 +11489,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 15.2,
-   "period": "2026-11-05",
-   "prev": 15.7,
+   "value": 14.65,
+   "period": "2026-11-06",
+   "prev": 15.2,
    "prev_period": null,
-   "change": -0.5,
-   "change_pct": -3.185,
+   "change": -0.55,
+   "change_pct": -3.618,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11503,6 +11519,10 @@
     [
      "2026-11-05",
      15.2
+    ],
+    [
+     "2026-11-06",
+     14.65
     ]
    ],
    "stale": false
@@ -11513,12 +11533,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 63.4,
-   "period": "2026-11-05",
+   "value": 62.9,
+   "period": "2026-11-06",
    "prev": 63.4,
    "prev_period": null,
-   "change": 0.0,
-   "change_pct": 0.0,
+   "change": -0.5,
+   "change_pct": -0.789,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11543,6 +11563,10 @@
     [
      "2026-11-05",
      63.4
+    ],
+    [
+     "2026-11-06",
+     62.9
     ]
    ],
    "stale": false
@@ -11553,12 +11577,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 14.9,
-   "period": "2026-11-05",
-   "prev": 15.05,
+   "value": 14.6,
+   "period": "2026-11-06",
+   "prev": 14.9,
    "prev_period": null,
-   "change": -0.15,
-   "change_pct": -0.997,
+   "change": -0.3,
+   "change_pct": -2.013,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11583,6 +11607,10 @@
     [
      "2026-11-05",
      14.9
+    ],
+    [
+     "2026-11-06",
+     14.6
     ]
    ],
    "stale": false
@@ -11593,12 +11621,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 47.75,
-   "period": "2026-11-05",
-   "prev": 48.7,
+   "value": 45.7,
+   "period": "2026-11-06",
+   "prev": 47.75,
    "prev_period": null,
-   "change": -0.95,
-   "change_pct": -1.951,
+   "change": -2.05,
+   "change_pct": -4.293,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11623,6 +11651,10 @@
     [
      "2026-11-05",
      47.75
+    ],
+    [
+     "2026-11-06",
+     45.7
     ]
    ],
    "stale": false
@@ -11633,12 +11665,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 44.5,
-   "period": "2026-11-05",
-   "prev": 45.55,
+   "value": 43.05,
+   "period": "2026-11-06",
+   "prev": 44.5,
    "prev_period": null,
-   "change": -1.05,
-   "change_pct": -2.305,
+   "change": -1.45,
+   "change_pct": -3.258,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11663,6 +11695,10 @@
     [
      "2026-11-05",
      44.5
+    ],
+    [
+     "2026-11-06",
+     43.05
     ]
    ],
    "stale": false
@@ -11673,12 +11709,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 79.5,
-   "period": "2026-11-05",
-   "prev": 81.7,
+   "value": 75.7,
+   "period": "2026-11-06",
+   "prev": 79.5,
    "prev_period": null,
-   "change": -2.2,
-   "change_pct": -2.693,
+   "change": -3.8,
+   "change_pct": -4.78,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11703,6 +11739,10 @@
     [
      "2026-11-05",
      79.5
+    ],
+    [
+     "2026-11-06",
+     75.7
     ]
    ],
    "stale": false
@@ -11713,12 +11753,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 27.2,
-   "period": "2026-11-05",
-   "prev": 27.25,
+   "value": 26.75,
+   "period": "2026-11-06",
+   "prev": 27.2,
    "prev_period": null,
-   "change": -0.05,
-   "change_pct": -0.183,
+   "change": -0.45,
+   "change_pct": -1.654,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11743,6 +11783,10 @@
     [
      "2026-11-05",
      27.2
+    ],
+    [
+     "2026-11-06",
+     26.75
     ]
    ],
    "stale": false
@@ -11753,12 +11797,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 37.25,
-   "period": "2026-11-05",
-   "prev": 36.9,
+   "value": 36.55,
+   "period": "2026-11-06",
+   "prev": 37.25,
    "prev_period": null,
-   "change": 0.35,
-   "change_pct": 0.949,
+   "change": -0.7,
+   "change_pct": -1.879,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11783,6 +11827,10 @@
     [
      "2026-11-05",
      37.25
+    ],
+    [
+     "2026-11-06",
+     36.55
     ]
    ],
    "stale": false
@@ -11793,12 +11841,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 13.45,
-   "period": "2026-11-05",
-   "prev": 13.4,
+   "value": 13.35,
+   "period": "2026-11-06",
+   "prev": 13.45,
    "prev_period": null,
-   "change": 0.05,
-   "change_pct": 0.373,
+   "change": -0.1,
+   "change_pct": -0.743,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11823,6 +11871,10 @@
     [
      "2026-11-05",
      13.45
+    ],
+    [
+     "2026-11-06",
+     13.35
     ]
    ],
    "stale": false
@@ -11833,12 +11885,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 26.5,
-   "period": "2026-11-05",
-   "prev": 26.55,
+   "value": 26.15,
+   "period": "2026-11-06",
+   "prev": 26.5,
    "prev_period": null,
-   "change": -0.05,
-   "change_pct": -0.188,
+   "change": -0.35,
+   "change_pct": -1.321,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11863,6 +11915,10 @@
     [
      "2026-11-05",
      26.5
+    ],
+    [
+     "2026-11-06",
+     26.15
     ]
    ],
    "stale": false
@@ -11873,12 +11929,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 10.75,
-   "period": "2026-11-05",
+   "value": 10.7,
+   "period": "2026-11-06",
    "prev": 10.75,
    "prev_period": null,
-   "change": 0.0,
-   "change_pct": 0.0,
+   "change": -0.05,
+   "change_pct": -0.465,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11903,6 +11959,10 @@
     [
      "2026-11-05",
      10.75
+    ],
+    [
+     "2026-11-06",
+     10.7
     ]
    ],
    "stale": false
@@ -11914,7 +11974,7 @@
    "region": "臺灣",
    "unit": "元/股",
    "value": 12.85,
-   "period": "2026-11-05",
+   "period": "2026-11-06",
    "prev": 12.85,
    "prev_period": null,
    "change": 0.0,
@@ -11943,6 +12003,10 @@
     [
      "2026-11-05",
      12.85
+    ],
+    [
+     "2026-11-06",
+     12.85
     ]
    ],
    "stale": false
@@ -11953,12 +12017,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 14.45,
-   "period": "2026-11-05",
-   "prev": 15.15,
+   "value": 14.2,
+   "period": "2026-11-06",
+   "prev": 14.45,
    "prev_period": null,
-   "change": -0.7,
-   "change_pct": -4.62,
+   "change": -0.25,
+   "change_pct": -1.73,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11983,12 +12047,51 @@
     [
      "2026-11-05",
      14.45
+    ],
+    [
+     "2026-11-06",
+     14.2
     ]
    ],
    "stale": false
   }
  ],
  "news_feed": [
+  {
+   "title": "社區專家／站前商圈＋愛河景觀 永義房屋朱弘鈞推「國泰頤河」全新3房",
+   "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBxTGEzWG1zaWVxbTdTWWZ3RVRqV2pQWk9jYV9ndE1xWHpNYWc4QTVwRmJoQmJ4cnJtcFFKLVNtdDNVSmZlaW1sdw?oc=5",
+   "source": "5168實價登錄比價王",
+   "date": "2026-11-08",
+   "query": "鋼筋 價格"
+  },
+  {
+   "title": "甯漢豪：樓宇維修支援及服務局初期將聘用約90人",
+   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBEYkloRklFa01NWG5JWUhOZDBlYjkzRE9aVktLaWFDMElKTHNkRWhITlNvRnRxY2lnRkxKQXY1bUVscXV2OFNZUWZGZ3dlZnFrdVJXU0MwbVpnVFRUcGhCdjRkUXBxTGdHSS1wNVlRYw?oc=5",
+   "source": "RTHK News",
+   "date": "2026-11-08",
+   "query": "鋼筋 價格"
+  },
+  {
+   "title": "王品３大品牌「寶可夢聯名」登場！免費送皮卡丘周邊，19間主題店一覽",
+   "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBqRXRIUC1ySnQzOXBPMzByLTBvM0llY3U3TVdrRFdZbVppUm9WUDZ0MTVvcmtadlZsenI0YkVJVEVoRERFcHd2SXFGMjlBNHRjc29fVw?oc=5",
+   "source": "食尚玩家",
+   "date": "2026-11-08",
+   "query": "砂石 價格"
+  },
+  {
+   "title": "《產業》三重利多 鋼廠明年開門紅",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQR1RvN3UxNTQyc3kxWVNTa2kwSERVTmpiVUxHczV0TC1XeDFRU1JPQUhPZEF1Vm9DUURScEhOLWExaG54NWpCSDN3TDlpbWdfSW9mWEJLM3BKRG9rQzJJeVlfUl9Kd1E4LW81VVdpVWdYallVSWVsZUhxc1lkYXRLRnFaY25Xakpu?oc=5",
+   "source": "富聯網",
+   "date": "2026-11-08",
+   "query": "鐵礦砂 價格"
+  },
+  {
+   "title": "128萬股東心寒！中鋼12月盤淡季小漲仍被踹一腳老牌投顧最新目標價、EPS一次看- 上市櫃",
+   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9ack45Zm1mWUpEZjFwWU1IWUhvNmpQRWRPSUdZd2VvOWc1dmwweGt3d0JWSU0wVzA0UlFKY2tmWExUc0NzQnd0S0kzZENUVUl0Q0tIQW5qYV9xTmFCU3RtTXdiYmRsLW1wQWc?oc=5",
+   "source": "旺得富理財網",
+   "date": "2026-11-07",
+   "query": "中鋼 盤價"
+  },
   {
    "title": "市況保溫中鋼12月盤價小漲- 日報",
    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE8zQnJiUmdtQm43OTBSQTE1dnQ1WDhUWkhTTkp0T3phTHRyNVIzLXU4VElBNmxGMm14TTVSTXh6NldhdDd1NmlNQ25FNzhvRVJHR0FXNkFyNHAtUElxSUV3?oc=5",
@@ -12004,8 +12107,15 @@
    "query": "中鋼 盤價"
   },
   {
+   "title": "中鋼公司十二月份盤價小幅調漲",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1fQVlqVzZNYjJMZUlLX2s0SG9aNlA3RWpfX3d0ZXJ4bUJkMWtuOEMyX0M0b0Q1eTB3ZmJqNzFaRmNOX0dGcjg0cWtBMU12R003cnc?oc=5",
+   "source": "蕃新聞",
+   "date": "2026-11-06",
+   "query": "中鋼 盤價"
+  },
+  {
    "title": "中鋼擬投資逾10億　推動固態氧化物燃料電池及碳捕捉與利用",
-   "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBJSVVPZ0Q3UlNvbUZyclBjSm9mNUpCX1hxOE10MDQ5YjQxSFVSM1RsWUZDTGVnNWN6cEJTSXZoSnNJeTRDaFIxR2hsb19COGtUak9xakhRYjVBYzI0bllFNXQ4WndmTG5MN3lnbTB5WEx3blF30gFfQVVfeXFMUEZONjh4VkVha0ExUWpneG95VUlsYWJjcG5ucjh4bHFhb1l1anZKdHprQ3hsNHI0YnpZeUNZQzdRb09zbmYyUm5oSHBRMVZTeENwWkNWanpvNi1JMW1YNHc?oc=5",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBmdHFLZnl1UC1WcW11SV92SEZNWXAyeTB6aTNSQm9rc2xESWdqZ3ZYTlAwcXJNLUNNZVRGX1djV2trSWJHS3Qwc25BOEFwYWVSanNNbGtwVVpkQdIBX0FVX3lxTFBGTjY4eFZFYWtBMVFqZ3hveVVJbGFiY3BubnI4eGxxYW9ZdWp2SnR6a0N4bDRyNGJ6WXlDWUM3UW9Pc25mMlJuaEhwUTFWU3hDcFpDVmp6bzYtSTFtWDR3?oc=5",
    "source": "經濟日報",
    "date": "2026-11-06",
    "query": "中鋼 盤價"
@@ -12032,16 +12142,23 @@
    "query": "中鋼 盤價"
   },
   {
+   "title": "中鋼連兩季賺錢！前三季 EPS 轉正至0.05元 Q4月盤連三漲助攻 全年拚虧轉盈",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE13LXZCcXVSLTk4Tl8ySUVOcTZDeG1ELUpfMHN5cU1lMTVFOHZSOXBQTTVRRXVXeFE5WTc1XzNRZlA0SmJ5M2J4ZlNBSzRTeHNvRHM2U2FPVUpTd9IBX0FVX3lxTFBkY3ltZWpQQjByMXF6ZmhpOU1KR0Fyc1FQeTRZTHZKR0V4U19fT3ZTQWVDY2RuUmFNdF9jV19fV1NsYThWQlBudWJmSVluaWlXUFVqNmd5Nm9Qc3ZPa3Bn?oc=5",
+   "source": "經濟日報",
+   "date": "2026-11-06",
+   "query": "中鋼 盤價"
+  },
+  {
    "title": "【生活特輯】從工廠到街區！高雄國際鋼雕藝術節四大單元探索港都鋼鐵文化",
-   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9uSzlCeTJIX25UbV9WTGtRSi13UUMzX1dMZjhibnlMc05kUWtYblNHQWhjcHpyLXppRWhVQUQwWUZNM2JEd0tjLWxiSGROeElGSzBqaVpUbHpHQ1XSAVtBVV95cUxPbks5QnkySF9uVG1fVkxrUUotd1FDM19XTGY4Ym55THNOZFFrWG5TR0FoY3B6ci16aUVoVUFEMFlGTTNiRHdLYy1sYkhkTnhJRkswamlaVGx6R0NV?oc=5",
+   "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE80RFB4dHFWR2pQWFdJVGEzY29oS3BjakZpcld2YndYTGtIVW0zLW9iOVYxWnlpWU9td2VQdURLRGg4SUEyMEhpQ0lHbmpaZ2dQZjRZckx30gFbQVVfeXFMT25LOUJ5MkhfblRtX1ZMa1FKLXdRQzNfV0xmOGJueUxzTmRRa1huU0dBaGNwenItemlFaFVBRDBZRk0zYkR3S2MtbGJIZE54SUZLMGppWlRsekdDVQ?oc=5",
    "source": "鏡新聞",
    "date": "2026-11-06",
    "query": "東和鋼鐵 型鋼"
   },
   {
    "title": "台中市10月營造工程物價指數上漲0.11%",
-   "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOd1RhYUJfMVFQaGpnVWJRdnpnZlYyaFFtemZ6LWRVbVpNSkxJcXBtbGcya19acUpFYmZkS3Y3STMydlFVelRSMncxenBGMmtCTWlqcDloQWtSbjgyclh3NVlTaFVTWkhjTGUyZjhJNmppUFB0R2FyYm5mQnRxemw0S2ZtdDhJSGVkMXQ2bmFJMURaR1hNTVl1NTAzd2UtajZ3SHhLU29LWXBQdVRlOGE3RTRZOW9fN2E3WWNBeW9UQmZQNmpOZ18wU0d6Y0t6VmhqLTdBUHY1cnpKR05GRFRxekotTHJCSTI5aFNCM05OcVpPTTB5OUE?oc=5",
-   "source": "Life 生活網",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5fUHIyLVlqTXZUVE9OVTVqMEszcW5KYzVYU2phTFl0Um1oTXY5QVpoeklVMVNTLTV1NVUtbFA4YkJxYXI0cTgxNGo1OFc1b0VxT3c?oc=5",
+   "source": "蕃新聞",
    "date": "2026-11-06",
    "query": "鋼筋 價格"
   },
@@ -12067,6 +12184,13 @@
    "query": "中鋼 盤價"
   },
   {
+   "title": "中鋼12月盤價拉尾盤 每公噸小漲300元",
+   "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPd25VeGFvbFBJajk4Q3ppQXJKV01WaEt4N1JKZFQzeXFlZnFHV1RyOGwwcHBOWXZOZkkwNXQxc2VyWm5UX3N0aVNFU1JiY0xjb2pnRXg5WG9SQzRnRmx6Y25uU2RPUFlLaFBkbDZwUXhZZVkyZUZaZEpMalJtWGgxb21BN2dCVC1USVdpVktLaGxMaDd6eHFPNTBKN21LbXVPVGhNc0RQckRwamJIdF9heXJ5cnUxSjYySVFTaEZnWTdFS1pSSllTTkhBSWlaTjJlbWVhZ0FRdXl2QTZmVFh4bFdsTWEzU2VSUExkX0hYWGNpWE5tOXVkVlBudEVqY3dVcklF?oc=5",
+   "source": "Yahoo新聞",
+   "date": "2026-11-05",
+   "query": "中鋼 盤價"
+  },
+  {
    "title": "反映市場行情，中鋼12月月盤小幅調漲- 新聞",
    "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPRXlHS0N4STB6WV9Va085SWc5YUlaQ20xY0ZDRmpBTWRfeTlvcUFRVXRWeUc5QVFlMi12Rjk2Mm1rZnNXY25sbllZZmFsUTFmbEtmWDN6SDFOa1c1ZUxiZ2FDb3lQc0V2VTE0REJQeUFvRFIwdkV1VDR6M0tPb29hWkdwZzMtSEo2QmllY25QS1JmQQ?oc=5",
    "source": "MoneyDJ",
@@ -12082,20 +12206,13 @@
   },
   {
    "title": "中鋼最新12月盤價連三漲、每公噸調高300元 鋼市正能量穩中帶堅",
-   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxObHh2SU41RU1Zb0NDMEc5am5zVm0xRERnSlhkVm9zZnVaMWZGNlR0SW5WN2l3ZVR3SDg3cVRkUjN3cU02ZXBRYmlacThxVnZSQkUtWGdOY3ppY1hqUmNJQnpCMlpaZ3JMd2s4RnNtQW42QVA3YUxUd2FHZzFpdFlfaNIBX0FVX3lxTFBuQm9pSFY0ekZTV3c5dDB5bXFvU0RpeUJJUm1yWFN4dzVRVkg3UjQ1QzNZZVdwRHFMaEhndHpHbTd4SFNtMWhOcXBRWml5NTRROFJ3ZmVGZ1p3QVpPVnZR?oc=5",
-   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5JTjRpQlNJRDdlSUZEMmZVMFVtaXVNMTNiZC1ZLTBFaWY1SFhFSEpuZTdwaHBuYnlqSHNxXzJNcDVPMV8tRkVsaUtRb3hKbG1z0gFWQVVfeXFMTzJreUo1a0Via3RlUm5pWjA1Rkp5Rl9SWnpsejVyQWtjUXRMUEFLVnJCVXB0SXNUbFVKUnBnMlpfanFLN004Zk1ack1mYXFnaTFBd2lQSlE?oc=5",
+   "source": "UDN",
    "date": "2026-11-05",
    "query": "中鋼 盤價"
   },
   {
-   "title": "中鋼12月盤價拉尾盤 每公噸小漲300元",
-   "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPd25VeGFvbFBJajk4Q3ppQXJKV01WaEt4N1JKZFQzeXFlZnFHV1RyOGwwcHBOWXZOZkkwNXQxc2VyWm5UX3N0aVNFU1JiY0xjb2pnRXg5WG9SQzRnRmx6Y25uU2RPUFlLaFBkbDZwUXhZZVkyZUZaZEpMalJtWGgxb21BN2dCVC1USVdpVktLaGxMaDd6eHFPNTBKN21LbXVPVGhNc0RQckRwamJIdF9heXJ5cnUxSjYySVFTaEZnWTdFS1pSSllTTkhBSWlaTjJlbWVhZ0FRdXl2QTZmVFh4bFdsTWEzU2VSUExkX0hYWGNpWE5tOXVkVlBudEVqY3dVcklF?oc=5",
-   "source": "Yahoo新聞",
-   "date": "2026-11-05",
-   "query": "中鋼 盤價"
-  },
-  {
-   "title": "中鋼鋼板下季接單看旺",
+   "title": "中鋼鋼板訂單滿載 明年首季預期供不應求",
    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5UM1JZaWZtc3VrRXZlcDdfdHpibXU0akFFQ0dYQVV6cGp6LUtYWllHcHRuQ2lDcVc0UHlIMnJSUWZWd0NGRWR5ZTQ3OUl0dGZ3R0dPU24tRHZZZ9IBX0FVX3lxTFBYQkR5aWlQckxteTNPNUdzMDRDLThIdkZRY3NUTmJBTi1VZjN5dDFVM0lHQXVSVkpFQnhSRl9KV0lVdk05OFdsVzlXaXc1YmhGVXF4QXUtdUFTVmhBZEZB?oc=5",
    "source": "經濟日報",
    "date": "2026-11-05",
@@ -12121,6 +12238,13 @@
    "source": "富聯網",
    "date": "2026-11-05",
    "query": "中鋼 盤價"
+  },
+  {
+   "title": "沛波鋼鐵股份有限公司",
+   "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNVHJOUldteEdRaEMzM1dGWGpLNGVMZnNkQTl3RFNuTmZXcmpBaXA4U3JIVjJXdExBRDNmR01GaEZyaHRYRjQzZi02c0Z0MDNPZzVfajZtaFlsMFE4aTV1M2lweTE0T1pXNGdsbTU1WmJ0bTkyaFdCNV9Sbnlnc1BuUWhrZFMyMlJWQ2ttdXdhcnVUMVM1STVV?oc=5",
+   "source": "MoneyDJ",
+   "date": "2026-11-05",
+   "query": "東和鋼鐵 型鋼"
   },
   {
    "title": "《DJ社論》碳有價時代，基礎工業需要公平競爭的新規則",
@@ -12151,6 +12275,13 @@
    "query": "砂石 價格"
   },
   {
+   "title": "中鋼12月盤價平盤機率高- 日報",
+   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5RYW12OVc4aFVTb0xMN2x2NkJ4VnFKR04xQS1JeEFnSXlaaHJHWG92VXhqMHZGa25YMFBIRmxaMEV0MWdhTzB5RndJREJDZGdRVmhCOUZfVG9WbC0wQTFN?oc=5",
+   "source": "工商時報",
+   "date": "2026-11-04",
+   "query": "中鋼 盤價"
+  },
+  {
    "title": "中鋼12月盤價 平盤機率高",
    "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBRM3U2Q0t2OWUtS2xlYm9EaE1CTWxabE9MRGE5YUg2M3VIbEQydHBnMFNvclhtRVBZdVRPa3VYN3JxdjBBMTJlVTI5QVVyaktsaUdLT3N3U0tacDFrYVF6bENnNUhBRlRnLW8w?oc=5",
    "source": "中時新聞網",
@@ -12158,9 +12289,9 @@
    "query": "中鋼 盤價"
   },
   {
-   "title": "中鋼12月盤價平盤機率高- 日報",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5RYW12OVc4aFVTb0xMN2x2NkJ4VnFKR04xQS1JeEFnSXlaaHJHWG92VXhqMHZGa25YMFBIRmxaMEV0MWdhTzB5RndJREJDZGdRVmhCOUZfVG9WbC0wQTFN?oc=5",
-   "source": "工商時報",
+   "title": "中鋼鋼板供不應求 今年訂單滿載、明年首季接單看旺",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1JR2FKYUdTUkpJb2N5VlZpajdlRDc3b1czYVc1dWxnNG04TDNXQ2Uwd0hYYTh0RUE5THRNVGFzQUhJSWJqbTBNTzVUNnZDZ1JhUVVsTDFfeFUxQdIBX0FVX3lxTE1TUWh1XzBaTG51ZlFleGdJU0hiS3N3X0hRTVZpUF9sbG1JbHJjNFNzYkQ2LTlYSDIwUndvQUtycWcyUFJQSzI0aG1BY2NpRTlZTWkyY3h3aUVnMjVUS1lR?oc=5",
+   "source": "經濟日報",
    "date": "2026-11-04",
    "query": "中鋼 盤價"
   },
@@ -12170,13 +12301,6 @@
    "source": "經濟日報",
    "date": "2026-11-04",
    "query": "中鋼 盤價"
-  },
-  {
-   "title": "鷹材料公司創2026財年第二季度營收新高 作者 Investing.com - Investing.com 香港 - 股市報價& 財經新聞",
-   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9PeS03YlZ4dWs5OElmYk5vYkctdFZkU0txS1RTYmFiSnB3UFVnbEItQldjUnN3VzJwTEJrQUxVRWRYeXRiSkQ2NTlzMWxmTTR2dklWNUo2Qlp5WFpqV2t5VG00U0pOb1lUdVQwcWFJdw?oc=5",
-   "source": "Investing.com 香港 - 股市報價&amp; 財經新聞",
-   "date": "2026-11-04",
-   "query": "水泥 價格"
   },
   {
    "title": "這顆石頭好貴！民眾直接開卡車來搬亂撿的代價最高五百萬| 生活",
@@ -12200,6 +12324,13 @@
    "query": "中鋼 盤價"
   },
   {
+   "title": "房市殺價戰開打！6成建案偷偷讓利 屋主砍價15%急賣轉進股市",
+   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5Lek82SDZ2ei1adlJLQWJreXBFWTBuWlF5QzJSR1p6UEV2aUEzWEZ0NC1wTkZnLTQyTDVHWUxHQ3dCQVFxUFJnUTU2eTQ0RlBP?oc=5",
+   "source": "自由時報",
+   "date": "2026-11-03",
+   "query": "鋼筋 價格"
+  },
+  {
    "title": "鐵礦砂｜陸鋼市需求疲弱、原料供給增 鋼鐵業面臨去庫存壓力",
    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE04eHBLN01RWHoyQWZlblN6Q1pEOUFrQUw4UDRHUVRTU3RPUmFPV1pVZmxreGlqTTc1a1lZYTFyaEF0Mmd2N3hnUVhQdmNkdUJaTHFKSVln?oc=5",
    "source": "優分析UAnalyze",
@@ -12207,16 +12338,16 @@
    "query": "鐵礦砂 價格"
   },
   {
-   "title": "豐興廢鋼、鋼筋、型鋼3大產品 11月初全面開平盤",
-   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNYjZWQkRDcEpfdFVhRXZyZkhVa1BvdWxqNDJpNUVZekNMeFNNU2lyLUZOVTNFdC1pdGJWZjE2bGg5ZWZjckt2X3BVSUR3SGJkU25YaDFYeWtJMEdWODNLZzVWeDZJd2RVSEloZ3FkZGJsTnFMc0ZsNGdBZHQwZm9PSmRB?oc=5",
-   "source": "壹蘋新聞網",
+   "title": "原料行情持穩、下游買氣緩 豐興本周盤價轉平盤｜新聞快訊｜豐雲學堂",
+   "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1rLVhYeGJFYkdWYnhFTWNpSndmTzJDTEtwSmZOTkpzNVRXVWRFbFlIdUVOem1rVzlVOUJFeTJMWmVyWDl6YzgzNk1RbzV0LUpzLVJDVk1YdC1IaHpiaFlTVkFocktnakNTbmd4V3ZwNUJkQ095WUE?oc=5",
+   "source": "永豐金證券",
    "date": "2026-11-02",
    "query": "豐興 鋼筋 盤價"
   },
   {
-   "title": "原料行情持穩、下游買氣緩 豐興本周盤價轉平盤｜新聞快訊｜豐雲學堂",
-   "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1rLVhYeGJFYkdWYnhFTWNpSndmTzJDTEtwSmZOTkpzNVRXVWRFbFlIdUVOem1rVzlVOUJFeTJMWmVyWDl6YzgzNk1RbzV0LUpzLVJDVk1YdC1IaHpiaFlTVkFocktnakNTbmd4V3ZwNUJkQ095WUE?oc=5",
-   "source": "永豐金證券",
+   "title": "豐興廢鋼、鋼筋、型鋼3大產品 11月初全面開平盤",
+   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNYjZWQkRDcEpfdFVhRXZyZkhVa1BvdWxqNDJpNUVZekNMeFNNU2lyLUZOVTNFdC1pdGJWZjE2bGg5ZWZjckt2X3BVSUR3SGJkU25YaDFYeWtJMEdWODNLZzVWeDZJd2RVSEloZ3FkZGJsTnFMc0ZsNGdBZHQwZm9PSmRB?oc=5",
+   "source": "壹蘋新聞網",
    "date": "2026-11-02",
    "query": "豐興 鋼筋 盤價"
   },
@@ -12242,13 +12373,6 @@
    "query": "豐興 鋼筋 盤價"
   },
   {
-   "title": "國際廢鋼走勢持平 豐興.威致本周報價開平盤",
-   "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxNQWphRmNGTVhRb3hncnIyTlpYbDNGRjdEbzRrcFF2S2I1Yks5Ymc5UHd2VmZjbHBFSkhDOVhBZkxSdkFHd00wdE9vSk5pVlA5RVlJZ0JSSTVoOWJPNjF2Z2c5TVQzaTNhWjdRRnJWQjNtclg0dVJHLTIzb09qanZuNGgyLUY4R0FaNkgzeFdCeFJsa09td3J5Sk15bVFNRldYd2VfUXpiWHZNOEN2anA2MnhLQldHRFRXelotU1ZWWlB1QkhlMVZ4SHZORExQekVIY2ZIcGsyc3dQSEM5djhPOUoteUU4NV9rX2Y5M05Fb05YQVAtZXdTYXVpR3hscEFyWmRqdU81OHB5bjBNOHhIVlZuazFCOFlHbjFKR2pGVUJic19Nb096emJUdnlKUkMzaVh0bDdIZHlxOGRhQ3VFTDZB?oc=5",
-   "source": "Yahoo股市",
-   "date": "2026-11-02",
-   "query": "豐興 鋼筋 盤價"
-  },
-  {
    "title": "買盤平穩，豐興本週三大產品開平盤 | MoneyDJ理財網",
    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9OTmZibURxMW9TSkNNWEc2RUFGWVMtUnJzY0liaUE0b2VKSnU5YmRMTFRDWGlsSXpPTDRCYXplRTQzelVET1Q4WUMtdTlpOGtoZW9URHV3?oc=5",
    "source": "LINE TODAY",
@@ -12263,9 +12387,16 @@
    "query": "豐興 鋼筋 盤價"
   },
   {
+   "title": "國際廢鋼走勢持平 豐興.威致本周報價開平盤",
+   "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxNQWphRmNGTVhRb3hncnIyTlpYbDNGRjdEbzRrcFF2S2I1Yks5Ymc5UHd2VmZjbHBFSkhDOVhBZkxSdkFHd00wdE9vSk5pVlA5RVlJZ0JSSTVoOWJPNjF2Z2c5TVQzaTNhWjdRRnJWQjNtclg0dVJHLTIzb09qanZuNGgyLUY4R0FaNkgzeFdCeFJsa09td3J5Sk15bVFNRldYd2VfUXpiWHZNOEN2anA2MnhLQldHRFRXelotU1ZWWlB1QkhlMVZ4SHZORExQekVIY2ZIcGsyc3dQSEM5djhPOUoteUU4NV9rX2Y5M05Fb05YQVAtZXdTYXVpR3hscEFyWmRqdU81OHB5bjBNOHhIVlZuazFCOFlHbjFKR2pGVUJic19Nb096emJUdnlKUkMzaVh0bDdIZHlxOGRhQ3VFTDZB?oc=5",
+   "source": "Yahoo股市",
+   "date": "2026-11-02",
+   "query": "豐興 鋼筋 盤價"
+  },
+  {
    "title": "中鋼盤價有望連三漲",
-   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBsNXQteFFKNW9od3h3R0RuR1RDYkVfb3RjR0pNdXJVeFQzakN2c0ZDSDlVcDU1dTVNRWtxaW02bDUybEYwWENlQ3Y0SVZrWGlU0gFWQVVfeXFMT2FfZFR5WlhEMFZXZjVzaUVxQ2RnTmlhUTFTWGNQci1XVjVzV0twM1JKN2RLWHlzYTB5bkdtZk03Z3RsQmVYVURUMHNqdlZKT2M4RUloYlE?oc=5",
-   "source": "UDN",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5lbXY1T2tETGRQVWtveUF5MVR6aVdsQldxZ1lmdXBZS3VsaUJHb3ZYakM4V0lwSl92b0FiMi1ReWMyRWpRZjdUQ1JZSWphdDF1bDRVeEozZG1uZ9IBX0FVX3lxTE5Pck5COGo4bE0xNFNEblRTcUJlaVplZkRvSllqYnhTdFVYbUcxSi1MQ0Z3dzBLdkxEbW84c3JZdnFQMDY2Z0l3b2UyU0ZDemdLbnQxTmdaaUtpaG9VWW5J?oc=5",
+   "source": "經濟日報",
    "date": "2026-11-02",
    "query": "中鋼 盤價"
   },
@@ -12277,23 +12408,9 @@
    "query": "中鋼 盤價"
   },
   {
-   "title": "《商情》終端需求平淡 土耳其廢鋼破碎料價連3平",
-   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOaXRZY1gxWnZzeHNqZ1hLV2NXYmZOYi0xcTZvamdTZnY1bTVFSXpzTFhzSF9fQzR5bUljYy1FcVpIWnZlTlI5QUo2anVSdW1aNFhrUkMtNHhENEFtdzAyS1NENU4zRlRMallTUm9oZm5xM1J1ZERRMi1hSEl0TzBxcmxBU29QUHQ0?oc=5",
-   "source": "富聯網",
-   "date": "2026-11-02",
-   "query": "廢鋼 價格"
-  },
-  {
    "title": "研報掘金｜平安證券：維持海螺水泥“推薦”評級，業績加速築底，分紅回購慷慨",
    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE05YW1xNldncGM5aUlaVEJpOHdCM2tUT0NPQWVqdWN0QkRLblktcnAxaGhLTThlUGplbVdwUU5qTzE5MDJvM0F6UG0xby1wbmdnS3dyeHM3NlAzS01IakUwaWhTVnROdUZUVFE?oc=5",
    "source": "TradingView",
-   "date": "2026-11-02",
-   "query": "水泥 價格"
-  },
-  {
-   "title": "水泥雙雄業績出爐 3月合併營收月增逾4成",
-   "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNSEFPREsxOXBRY1ZDb2ozSFR5cFN2RlRUbjBGY3FzSzdXQ09PNzlvMTBoR1lQVnVMWVZReXI4aHYzbkxyNmRHS2xUZERkU0FzMWE2enI3aTUzVDRGWHdGMTN5eHFRVlFoRjM3dF94SmNHeGtGQ3pYUEVtOFliMENfYmpZNUtmWWVjUUE?oc=5",
-   "source": "PChome Online 新聞",
    "date": "2026-11-02",
    "query": "水泥 價格"
   },
@@ -12333,6 +12450,13 @@
    "query": "東和鋼鐵 型鋼"
   },
   {
+   "title": "西部水泥 | 2233.HK 股價走勢與即時報價",
+   "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE92OHJMWlRSUUwxQXltNThfZDVxeUpLWGFZYTlEYkxkR3VJOERpVVVpbVBoN3NkQ0d6aXNkanJvU21HYkNYZFc2R1E2d3YxbkUxTk9ITw?oc=5",
+   "source": "BigGo 財經",
+   "date": "2026-10-30",
+   "query": "水泥 價格"
+  },
+  {
    "title": "【Vulcan Materials 2026年第三季法說會】美國Vulcan Materials無懼4,000萬美元柴油成本衝擊，EBITDA達7.07億美元、利潤率提升20個基點；看好中高個位數漲價，庫藏股加速回購",
    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9MMzV6UGswX0lBdWMyRDRYd1Q4ei1ST1UzUjk0UkNZV3FNTWF2WlRhcHg2VkdiMUhsVjNvRWFVU0RZY3N1eS1TQjhXdUJxaFpQekJBT0R0dXBtek5SUk5iNg?oc=5",
    "source": "BigGo 財經",
@@ -12347,67 +12471,11 @@
    "query": "鐵礦砂 價格"
   },
   {
-   "title": "討論牆 | 鐵礦砂價格下跌與成本攀升 巴西淡水河谷第三季獲利重摔53%",
-   "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBsd2lodHFxUUtWQXhQWjhsQ3V6TXg1OEhSU290cjZCRWlWQnpzdmExNEpZcVB2RWxlVl9kZUtrMEs3Zk9CUGVTOUhkS2R3QXhlMTBCNzlJLTlsVXlCMmJudWRtbmw?oc=5",
-   "source": "LINE TODAY",
-   "date": "2026-10-30",
-   "query": "鐵礦砂 價格"
-  },
-  {
    "title": "原料成本上漲壓力增 華新11月盤價全系列開平盤",
-   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9oV3dfbTRXVXdfZmV2eF9DbXExcVlXM3BDeVRwWlViU2NjQmV5bEl2TFl4SnlmMlhDZnZmRnppUGt2OW9BODRzMTkzQUY0QUVY0gFWQVVfeXFMUHVLeWQ2UzloVmk1UmFqOGhhR0dNMVBfSlBoV21vSUNmRVRFbzN3S0Qta1QyTy1nRzlNS2R5Si1DYktkbGRfRmdySWxlNDZtQ05mOXotRVE?oc=5",
-   "source": "UDN",
-   "date": "2026-10-29",
-   "query": "中鋼 盤價"
-  },
-  {
-   "title": "港股異動| 西部水泥(02233)早盤漲近4% 埃塞俄比亞水泥價格回暖公司海外業務開始貢獻盈利作者智通財經 - Investing.com 香港 - 股市報價& 財經新聞",
-   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBQSmQ2SWxnMjMxYmRRTmRGTU9rMkNRbFpxR0xPS2VJMnZXWG1maEIyNTVHdlVPWVZzWm1IazRqdXF2eWJYRzhJNGxfSndEN2xjdzRSczVkSjVEV1gyVTdKbkJQOG83VUxHVUdFM2xNdGs?oc=5",
-   "source": "Investing.com 香港 - 股市報價&amp; 財經新聞",
-   "date": "2026-10-29",
-   "query": "水泥 價格"
-  },
-  {
-   "title": "散裝海岬型船行情反彈，日租金站回3萬美元- 新聞",
-   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPc1NYUGF1N01aRDc0SHhxSHVncDNsT285d2hNcnljcHh1TjZ5N3c4YTBZV1JicFM0TnQtSDBlV08wbE54MDFOcEx5aW5pcTM1LWFNX3dsS1V1eHFBZFh5N1BhWHpXdGJyc082a1p4YklGRUR4VW8tTnd6c2tEVE1rMUs0NTVFX0ZpTWtvMEVCMDhwQQ?oc=5",
-   "source": "MoneyDJ",
-   "date": "2026-10-29",
-   "query": "鐵礦砂 價格"
-  },
-  {
-   "title": "豐興調漲鋼筋價",
-   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE0tWU92WlRna1dZbVFWOEpyWEZjSEQ1M1Atd0s3TlRYSkFmMHZxQjdLR09jQzc1WmZsYTJFQU9GVU9GUUtvcjlvVWpSYVlSdXlHMGEyRDNISHFUZ9IBX0FVX3lxTFBlWndzNUVLV1J2S1NBTkdrQm1ieWJ0S3BSdjR6eXBBYkl1QVB1QWRXaUphaEZwYzdLUGw4Qmo2TXBhOUxXb0tJOXh1bFF0V05tODhYa0M1NGI3a0x3d3RF?oc=5",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIblU4LU5SbktOOGZES3ZDZlNTUnFycExsVGx1ZGo0TmJqYmp5bFRBZFdWMkphUEJ0b0IyZXBRMUVlS1JKTWltV1RFZW52d1VOY3hnWk94UU5yUdIBX0FVX3lxTE1ySmZCa2xWSVRHNXFaUW91OEluME5GMkVqS3B0M19ERDlrclhiNnJaTnJZR2l4N1g3OVB1UHlmVEtJSXJuNDRIRUZXWl9tNmNoSmdaY3dZU3VROUExeUxZ?oc=5",
    "source": "經濟日報",
-   "date": "2026-10-28",
-   "query": "豐興 鋼筋 盤價"
-  },
-  {
-   "title": "中鋼9月獲利翻正轉型出2招今年「盈」面大- 日報",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9UQ0RpdHpZMzlWTG9felAwRk1Nb29RRlQxbVhfU2Jtenc5bDVOeGtJT2RscDdMNlZ6c21mcVRKcjZVb3doaU1TMU41SjRoTzRxYnJTNlFIX1B1TEhjU193?oc=5",
-   "source": "工商時報",
-   "date": "2026-10-28",
-   "query": "中鋼 盤價"
-  },
-  {
-   "title": "豐興廢鋼上周變盤調漲 本周鋼筋、型鋼基價跟進開漲盤",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5LWEpBWUZWeUVncE5EYTNIMEtBdG9wM1QyZXpzcktUNDA2aVp5ME55UEg4TGszQnY1aHRILVNfWkFHRVVjMkU0NnhvM09WSzQ?oc=5",
-   "source": "鉅亨網",
-   "date": "2026-10-27",
-   "query": "豐興 鋼筋 盤價"
-  },
-  {
-   "title": "成本上升，豐興調漲鋼筋、型鋼價格- 新聞",
-   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQbWphQ19NNXdVZjBLYURaTWxRSmZQeENCSXpqMVBDZnk1T1gtS2hudks0bTJBdXR4S3VfVkVxcG5vZEM2RTdDUHlyaEVobXNJenNVY3JQZHZhSUNJbWJhOE9sT01qMTRreERtQzcwTFcwTnV0RUlfU0xZVnR6VVhTbEdfYURzMGhzVkxCTGRvUFNHdw?oc=5",
-   "source": "MoneyDJ",
-   "date": "2026-10-27",
-   "query": "豐興 鋼筋 盤價"
-  },
-  {
-   "title": "豐興鋼筋每公噸漲200元 打破連續四周平盤走勢",
-   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE4yXzlYcjNUaTJzZzZzaWtaRlA5ako4V3JFTlhSX1J2YzRtWWNrRTBmbEpxTk1sWkJmR1pPMmpXbmMxSzZGX3NZS1ZGYTBHMjNwME9WRV8zXzFDd9IBX0FVX3lxTE9xNVphWnllQjVGZjJFX3NjUzZpS3ZrV1ZxYmdpcnhmM09MSFJPbzVsSXZaQjJMNzd6WHRYQ3Z6N2oxRDBYcUpQMml5RHdGSzlYNGl1dVRjeDg2UzN6VFN3?oc=5",
-   "source": "經濟日報",
-   "date": "2026-10-27",
-   "query": "豐興 鋼筋 盤價"
+   "date": "2026-10-29",
+   "query": "鋼筋 價格"
   }
  ],
  "sources_status": [
@@ -12415,31 +12483,31 @@
    "source": "台灣金屬行情網",
    "ok": true,
    "items": 14,
-   "seconds": 13.0
+   "seconds": 12.5
   },
   {
    "source": "行政院主計總處",
    "ok": true,
    "items": 29,
-   "seconds": 2.0
+   "seconds": 2.3
   },
   {
    "source": "地方主計處",
    "ok": true,
    "items": 19,
-   "seconds": 14.9
+   "seconds": 10.7
   },
   {
    "source": "World Bank",
    "ok": true,
    "items": 18,
-   "seconds": 0.6
+   "seconds": 0.7
   },
   {
    "source": "臺灣證券交易所",
    "ok": true,
    "items": 16,
-   "seconds": 1.7
+   "seconds": 1.9
   },
   {
    "source": "Google 新聞",
