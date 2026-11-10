@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-10T23:47:34.289512+08:00",
+ "updated_at": "2026-11-10T23:52:11.076918+08:00",
  "groups": [
   {
    "id": "tw_steel",
@@ -12144,13 +12144,6 @@
    "query": "中鋼 盤價"
   },
   {
-   "title": "售價連七周上漲水泥概念股活跳跳| 台股證券",
-   "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE5Pb3d1UkE3bjVvT2JYMHZKTTNkWDh2UE9fM1d0N0g4WEZjWDhUbUd6NXVaMzhpTERGWm1zV1U1UEdtSHdf?oc=5",
-   "source": "三立新聞",
-   "date": "2026-11-10",
-   "query": "水泥 價格"
-  },
-  {
    "title": "亞泥營收／10月54.3億元、年減6.9% 大陸水泥價格上漲支撐營運表現",
    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1taUQ1bzIzWHBjdERPVDJkUHlPQV9xZTFIWEpoOUJjZnpoWFdjaWpaWGZRVVRUekhuU0s3Vy03M0RwMTRMYUVIc2EyT1hhRFJ6dkpVZ1F1eXdyZ9IBX0FVX3lxTE4tTzB4d2NzSnlxZ1Z0RU40SFU0QXM3UkV4RUtlSlNFbTRYNDFsdWJ0eGVzVV9fWW1BRjExekxjWHNpY3dHcXJmZ0k1bmIyY2dLeXhBaWZ1Ri04cWZ5dWdR?oc=5",
    "source": "經濟日報",
@@ -12331,6 +12324,13 @@
    "source": "BigGo 財經",
    "date": "2026-11-07",
    "query": "中鋼 盤價"
+  },
+  {
+   "title": "售價連七周上漲水泥概念股活跳跳| 台股證券",
+   "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE5Pb3d1UkE3bjVvT2JYMHZKTTNkWDh2UE9fM1d0N0g4WEZjWDhUbUd6NXVaMzhpTERGWm1zV1U1UEdtSHdf?oc=5",
+   "source": "三立新聞網SETN.com",
+   "date": "2026-11-07",
+   "query": "水泥 價格"
   },
   {
    "title": "南港千億豪宅　土方承包商倒廢土被逮",
@@ -12555,31 +12555,31 @@
    "source": "台灣金屬行情網",
    "ok": true,
    "items": 14,
-   "seconds": 9.9
+   "seconds": 11.0
   },
   {
    "source": "行政院主計總處",
    "ok": true,
    "items": 29,
-   "seconds": 1.7
+   "seconds": 2.3
   },
   {
    "source": "地方主計處",
    "ok": true,
    "items": 19,
-   "seconds": 8.6
+   "seconds": 8.4
   },
   {
    "source": "World Bank",
    "ok": true,
    "items": 18,
-   "seconds": 0.5
+   "seconds": 0.7
   },
   {
    "source": "臺灣證券交易所",
    "ok": true,
    "items": 16,
-   "seconds": 1.5
+   "seconds": 2.2
   },
   {
    "source": "Google 新聞",
