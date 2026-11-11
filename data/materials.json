@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-11T23:38:30.287436+08:00",
+ "updated_at": "2026-11-12T00:56:20.784660+08:00",
  "groups": [
   {
    "id": "tw_steel",
@@ -11310,9 +11310,9 @@
    "region": "臺灣",
    "unit": "新台幣/美元",
    "value": 32.88,
-   "period": "2026-11-11",
+   "period": "2026-11-12",
    "prev": 32.88,
-   "prev_period": "2026-11-10",
+   "prev_period": "2026-11-11",
    "change": 0.0,
    "change_pct": 0.0,
    "freq": "日",
@@ -11358,6 +11358,10 @@
     ],
     [
      "2026-11-11",
+     32.88
+    ],
+    [
+     "2026-11-12",
      32.88
     ]
    ],
@@ -12275,13 +12279,6 @@
    "query": "水泥 價格"
   },
   {
-   "title": "水泥雙雄營收出爐！台泥10月營收163.57億元 亞泥54.31億元",
-   "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9sckt3enR5VzBOV094aXZxaGRTQUlkdGE0SGFPUWpCZFhLNzJPRXEwSWtnTmpZUXlkdEtNU2NqWEF3anRVaTN6Z2trbkhwYTZKM1ZGRmlFeVcyM3lSUG1wMU5kTzPSAWRBVV95cUxPbHJLd3p0eVcwTldPeGl2cWhkU0FJZHRhNEhhT1FqQmRYSzcyT0VxMElrZ05qWVF5ZHRLTVNjalhBd2p0VWkzemdra25IcGE2SjNWRkZpRXlXMjN5UlBtcDFOZE8z?oc=5",
-   "source": "自由財經",
-   "date": "2026-11-10",
-   "query": "水泥 價格"
-  },
-  {
    "title": "台泥10月營收163.57億元創同期新高，年增17.83%；亞泥54.31億元、年減6.9%",
    "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE0xZThfY2xDSjYxMGFSQkpnajMySmFFZzZzdTNZYUNqakRobWV4Sk9DT08yei0xUzFiZk9OZnNDTmFlU3FJMDdrYU5XTVBzem43WlBFZmx0NVhoOTE1RGVjaXlRNkFYeUdkbUIyX3VCYzhFVVpVaEExakR3?oc=5",
    "source": "BigGo 財經",
@@ -12289,9 +12286,9 @@
    "query": "水泥 價格"
   },
   {
-   "title": "台泥營收／10月163.57億元 年增17.83% 水泥、新能源營收同步成長 | 經濟日報",
-   "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE4tb1FSRDk5QlNGTlJHdGV1T3VnemEyaHIteWRpWVhqLVVFRUJoWE9FT2pvWVRMbm9GRlNFVndyamQxNHE4S25OVmswSjhiZHV4ekJ3bmFB?oc=5",
-   "source": "LINE TODAY",
+   "title": "水泥雙雄營收出爐！台泥10月營收163.57億元 亞泥54.31億元",
+   "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9sckt3enR5VzBOV094aXZxaGRTQUlkdGE0SGFPUWpCZFhLNzJPRXEwSWtnTmpZUXlkdEtNU2NqWEF3anRVaTN6Z2trbkhwYTZKM1ZGRmlFeVcyM3lSUG1wMU5kTzPSAWRBVV95cUxPbHJLd3p0eVcwTldPeGl2cWhkU0FJZHRhNEhhT1FqQmRYSzcyT0VxMElrZ05qWVF5ZHRLTVNjalhBd2p0VWkzemdra25IcGE2SjNWRkZpRXlXMjN5UlBtcDFOZE8z?oc=5",
+   "source": "自由財經",
    "date": "2026-11-10",
    "query": "水泥 價格"
   },
@@ -12353,7 +12350,7 @@
   },
   {
    "title": "個股：小鋼胚報價回落，豐興(2015)、威致(2028)本週鋼筋報價下調200元",
-   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOcmVoMUFXNDRhYmhpSTJWLW1uU0Y4NDdXQlIwcHplVGxzUlFsWnlNWWktV0pyWW9wdVBJd1ZFbUNUeHk1X1AwcHNLMjFZcFR6VmlIZ2xQNC1NS3dRcFFFUmZ2WTJJRFpLb19KemdZbzBEZ3BoUG1PY1NYX19lNWRQY1h3SE5zMnA3?oc=5",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPZzU5NW9BRzJQQkdQZEZ6X2NpWmRXUDVzTTdxVzJMM0FfMWJSSUtsajhJZ2pFMnZZRmdrZFJobnRfaXdhTUU1R3hBZUt0c2R6SDNJc2h2eFFPVGoyWVVYRlNydTE0aUhvc09ybkFDSDROUE92NjRkdmpOSG1ueXZOXzBLQTB3OXBS?oc=5",
    "source": "富聯網",
    "date": "2026-11-09",
    "query": "豐興 鋼筋 盤價"
@@ -12464,23 +12461,16 @@
    "query": "中鋼 盤價"
   },
   {
-   "title": "市況保溫中鋼12月盤價小漲- 產業特刊- 工商時報",
-   "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1ZSVF2NXJ4bjJOMDNlNmlmMXB4QjNOQlRWcEg3Nkd1Z1FDYkdpampfYmZidDRGTGJ3UWJLVmtQS0VKSXplUmRubWl5bkZDblR3TkZockVtMFBnU0lIdWpjdWQ2NUVVX29PQVRN?oc=5",
-   "source": "中時新聞網",
-   "date": "2026-11-06",
-   "query": "中鋼 盤價"
-  },
-  {
-   "title": "中鋼連兩季賺錢！前三季 EPS 轉正至0.05元 Q4月盤連三漲助攻 全年拚虧轉盈",
-   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE13LXZCcXVSLTk4Tl8ySUVOcTZDeG1ELUpfMHN5cU1lMTVFOHZSOXBQTTVRRXVXeFE5WTc1XzNRZlA0SmJ5M2J4ZlNBSzRTeHNvRHM2U2FPVUpTd9IBX0FVX3lxTFBkY3ltZWpQQjByMXF6ZmhpOU1KR0Fyc1FQeTRZTHZKR0V4U19fT3ZTQWVDY2RuUmFNdF9jV19fV1NsYThWQlBudWJmSVluaWlXUFVqNmd5Nm9Qc3ZPa3Bn?oc=5",
-   "source": "經濟日報",
-   "date": "2026-11-06",
-   "query": "中鋼 盤價"
-  },
-  {
    "title": "中鋼公司十二月份盤價小幅調漲",
    "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1fQVlqVzZNYjJMZUlLX2s0SG9aNlA3RWpfX3d0ZXJ4bUJkMWtuOEMyX0M0b0Q1eTB3ZmJqNzFaRmNOX0dGcjg0cWtBMU12R003cnc?oc=5",
    "source": "蕃新聞",
+   "date": "2026-11-06",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "市況保溫中鋼12月盤價小漲- 產業特刊- 工商時報",
+   "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1ZSVF2NXJ4bjJOMDNlNmlmMXB4QjNOQlRWcEg3Nkd1Z1FDYkdpampfYmZidDRGTGJ3UWJLVmtQS0VKSXplUmRubWl5bkZDblR3TkZockVtMFBnU0lIdWpjdWQ2NUVVX29PQVRN?oc=5",
+   "source": "中時新聞網",
    "date": "2026-11-06",
    "query": "中鋼 盤價"
   },
@@ -12502,6 +12492,13 @@
    "title": "【即時新聞】最新公布！中鋼第3季財報出爐，單季獲利11.21億元連兩季賺錢",
    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNalVnUVM1U24zLWV0eEw5OXRZQl9IVUhYcktoWjhQcHhOLWNrcU1WT2ZncXRzbFU3OGRRUUN4UGNrZ1A2VjhtMjVGUU1YM0w4cDBYaU5nRGdQR0NwYXZlMGprUjlkS1NDQmprY25PS3p0bWNuZ1lHWnYwajU4X05OZjFyZUVIMEdUVkMwQ2dzR3g?oc=5",
    "source": "CMoney投資網誌",
+   "date": "2026-11-06",
+   "query": "中鋼 盤價"
+  },
+  {
+   "title": "中鋼連兩季賺錢！前三季 EPS 轉正至0.05元 Q4月盤連三漲助攻 全年拚虧轉盈",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE13LXZCcXVSLTk4Tl8ySUVOcTZDeG1ELUpfMHN5cU1lMTVFOHZSOXBQTTVRRXVXeFE5WTc1XzNRZlA0SmJ5M2J4ZlNBSzRTeHNvRHM2U2FPVUpTd9IBX0FVX3lxTFBkY3ltZWpQQjByMXF6ZmhpOU1KR0Fyc1FQeTRZTHZKR0V4U19fT3ZTQWVDY2RuUmFNdF9jV19fV1NsYThWQlBudWJmSVluaWlXUFVqNmd5Nm9Qc3ZPa3Bn?oc=5",
+   "source": "經濟日報",
    "date": "2026-11-06",
    "query": "中鋼 盤價"
   },
@@ -12616,6 +12613,13 @@
    "source": "優分析UAnalyze",
    "date": "2026-11-03",
    "query": "鐵礦砂 價格"
+  },
+  {
+   "title": "原料行情持穩、下游買氣緩 豐興本周盤價轉平盤｜新聞快訊｜豐雲學堂",
+   "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1rLVhYeGJFYkdWYnhFTWNpSndmTzJDTEtwSmZOTkpzNVRXVWRFbFlIdUVOem1rVzlVOUJFeTJMWmVyWDl6YzgzNk1RbzV0LUpzLVJDVk1YdC1IaHpiaFlTVkFocktnakNTbmd4V3ZwNUJkQ095WUE?oc=5",
+   "source": "永豐金證券",
+   "date": "2026-11-02",
+   "query": "豐興 鋼筋 盤價"
   }
  ],
  "sources_status": [
@@ -12623,31 +12627,31 @@
    "source": "台灣金屬行情網",
    "ok": true,
    "items": 14,
-   "seconds": 10.9
+   "seconds": 11.7
   },
   {
    "source": "行政院主計總處",
    "ok": true,
    "items": 29,
-   "seconds": 2.5
+   "seconds": 2.2
   },
   {
    "source": "地方主計處",
    "ok": true,
    "items": 19,
-   "seconds": 11.1
+   "seconds": 9.3
   },
   {
    "source": "World Bank",
    "ok": true,
    "items": 18,
-   "seconds": 0.6
+   "seconds": 0.7
   },
   {
    "source": "臺灣證券交易所",
    "ok": true,
    "items": 16,
-   "seconds": 1.7
+   "seconds": 1.2
   },
   {
    "source": "Google 新聞",
