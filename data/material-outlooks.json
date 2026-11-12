@@ -1,23 +1,23 @@
 {
-  "generated_at": "2026-11-12T01:06:34.513319+08:00",
+  "generated_at": "2026-11-13T00:02:28.136092+08:00",
   "model": "gpt-6.1-terra",
-  "research_date": "2026-11-12",
+  "research_date": "2026-11-13",
   "source_age_limit_days": 60,
-  "materials_updated_at": "2026-11-12T00:56:20.784660+08:00",
+  "materials_updated_at": "2026-11-12T23:51:55.462465+08:00",
   "total_items": 97,
-  "covered_items": 94,
+  "covered_items": 97,
   "failed_batches": 0,
   "items": {
     "mt_world_crude": {
       "direction": "uncertain",
-      "reason": "世界鋼鐵協會於2026年10月23日公布，9月全球70個申報經濟體粗鋼產量為14240萬公噸，年減0.2%。目前資料顯示，月產量從5月的15790萬公噸降至9月的14240萬公噸；但9月比8月少一天，換算日均產量反而上升。10月天數增加可能推升月總量，各地生產變化則可能抵銷此效應，下一期方向尚不明朗。",
-      "risk": "若主要產鋼地區日均產量回升，10月月總量可能增加；若減產幅度足夠大，也可能續降。全球數據涵蓋70個申報經濟體，並非所有產鋼地區。",
+      "reason": "世界鋼鐵協會公布，2026年9月其統計的70個國家及地區粗鋼產量為14,240萬公噸。目前資料顯示，月產量自5月的15,790萬公噸降至9月；但按各月天數換算，9月日均產量高於8月。推論上，若日均產出維持，10月多一天可能支撐月總量回升；各地後續產出仍有變數，方向未明。",
+      "risk": "若主要產鋼地區日均產量下降，可能抵銷10月多一天的影響，使月總量續降；反之亦可能回升。",
       "sources": [
         {
           "title": "September 2026 crude steel production",
           "url": "https://worldsteel.org/media/press-releases/2026/september-2026-crude-steel-production/",
           "published": "2026-10-23",
-          "fact": "世界鋼鐵協會公布，2026年9月70個申報經濟體粗鋼產量為14240萬公噸，年減0.2%。"
+          "fact": "2026年9月，向世界鋼鐵協會申報的70個國家及地區粗鋼產量合計14,240萬公噸，較2025年9月下降0.2%。"
         }
       ],
       "baseline_period": "2026-09",
@@ -27,20 +27,20 @@
     },
     "mt_china_crude": {
       "direction": "uncertain",
-      "reason": "蘭格鋼鐵研究中心報導，中鋼協統計的重點大中型鋼企2026年10月粗鋼日均產量較9月降2.3%，10月下旬進一步下降。目前資料顯示，全國月產量從5月的8440萬公噸降至9月的7360萬公噸。推論上，重點企業減產可能壓低10月全國產量，但10月比9月多一天，且重點企業與全國統計範圍不同，月總量方向仍待確認。",
-      "risk": "若其他企業增產或增加的一天足以抵銷日均減幅，全國月產量可能回升；若全國日均產量降幅更大，月總量也可能續降。",
+      "reason": "中鋼協估計，2026年10月下旬中國大陸粗鋼日產量較中旬下降7%。目前資料顯示，月產量自5月的8,440萬公噸降至9月的7,360萬公噸；推論上，下旬減產可能壓低10月產出，但10月有31天，且旬度估計仍須與全月正式統計核對，方向未明。",
+      "risk": "若10月上、中旬產出較高，或非重點企業產量變動與估計不同，加上月份天數增加，10月總產量可能持平或回升。",
       "sources": [
         {
-          "title": "兰格微观：钢市能否在“供需双弱”中寻求平衡？",
-          "url": "https://finance.sina.com.cn/money/future/indu/2026-11-09/doc-iniycfne3380127.shtml",
+          "title": "China late-Oct daily crude steel output falls",
+          "url": "https://en.sxcoal.com/news/detail/2119612413529743362",
           "published": "2026-11-09",
-          "fact": "報導引述中國鋼鐵工業協會資料：2026年10月重點大中型鋼企粗鋼日均產量為186.4萬公噸，較9月降2.3%；10月下旬降至176.0萬公噸。"
+          "fact": "報導引述中鋼協估計，2026年10月21日至31日中國大陸粗鋼日產量為226萬公噸，較10月中旬下降7%；此為旬度估計。"
         },
         {
-          "title": "Industrial Production Operation in September 2026",
-          "url": "https://www.stats.gov.cn/english/PressRelease/202610/t20261020_1965665.html",
-          "published": "2026-10-20",
-          "fact": "中國國家統計局公布，2026年9月粗鋼產量為7359萬公噸，年增0.1%；目前資料的7360萬公噸為較粗略的數值。"
+          "title": "September 2026 crude steel production",
+          "url": "https://worldsteel.org/media/press-releases/2026/september-2026-crude-steel-production/",
+          "published": "2026-10-23",
+          "fact": "世界鋼鐵協會公布，2026年9月中國大陸粗鋼產量為7,360萬公噸，較2025年9月增加0.1%。"
         }
       ],
       "baseline_period": "2026-09",
@@ -48,67 +48,16 @@
       "unit": "萬公噸",
       "frequency": "月"
     },
-    "fengxing_rebar_price": {
-      "direction": "down",
-      "reason": "豐興11月9日將鋼筋週盤基價每公噸調降200元至18,300元，並指出國際小鋼胚行情略回落、南部鋼筋市場承壓。目前資料顯示，10月月均盤價為18,500元，高於9月的18,300元。若11月後續週盤維持較低水準，月均盤價可能回落；週盤與月均價仍須分開觀察。",
-      "risk": "11月尚未結束，後續若需求回升或成本上漲，鋼廠可能重新調價，使月均價跌幅縮小或轉向。",
-      "sources": [
-        {
-          "title": "國際小鋼胚行情回落 豐興鋼筋近3個月來首度下跌",
-          "url": "https://m.cnyes.com/news/id/6653057?utm_source=openai",
-          "published": "2026-11-09",
-          "fact": "豐興於2026年11月9日開出週盤，鋼筋基價每公噸下跌200元至18,300元。"
-        }
-      ],
-      "baseline_period": "2026-10",
-      "baseline_value": 18500.0,
-      "unit": "元/公噸",
-      "frequency": "月"
-    },
-    "h_beam_price": {
-      "direction": "uncertain",
-      "reason": "東鋼通知客戶，10月H型鋼盤價每公噸調漲500元。目前資料顯示，流通月均價由9月的37,500元升至10月的38,500元。廠商調價可能支撐流通行情，但10月均價已反映當月市況，現有資料不足以確認11月是否延續上漲。",
-      "risk": "若工程需求持續、經銷商進一步反映成本，流通價可能續升；若買盤轉弱或先前漲幅消化不足，也可能持平或回落。11月實際流通行情仍待確認。",
-      "sources": [
-        {
-          "title": "東鋼10月H型鋼上漲 一改連續平盤走勢",
-          "url": "https://udn.com/news/story/7241/9786490?utm_source=openai",
-          "published": "2026-09-30",
-          "fact": "報導指出，東鋼通知客戶，2026年10月H型鋼盤價每公噸上漲500元，其他尺寸加價維持不變。"
-        }
-      ],
-      "baseline_period": "2026-10",
-      "baseline_value": 38500.0,
-      "unit": "元/公噸",
-      "frequency": "月"
-    },
-    "csc_wire_rod_price": {
-      "direction": "stable",
-      "reason": "中鋼9月4日公布第四季棒線盤價持平，適用期間涵蓋11月。目前資料的月均盤價自7月至10月均為每公噸28,350元。據此推估，下一期月均盤價偏向持平；仍需留意統計規格及實際資料更新。",
-      "risk": "若適用盤價或統計納入的規格、交易條件出現變化，下一期數值可能不同；第四季公告盤價也不等於每筆實際成交價。",
-      "sources": [
-        {
-          "title": "2026 年 9 月台灣鋼棒進口市場分析",
-          "url": "https://www.double-steel.com/zh/news/0fd0deae-f9a1-46f1-99df-48203fac72d5?utm_source=openai",
-          "published": "2026-10-12",
-          "fact": "報導指出，中鋼於2026年9月4日公布第四季棒線盤價平盤，結束先前連續兩季各調漲每公噸1,000元的走勢。"
-        }
-      ],
-      "baseline_period": "2026-10",
-      "baseline_value": 28350.0,
-      "unit": "元/公噸",
-      "frequency": "月"
-    },
     "cci_tw_00": {
       "direction": "up",
-      "reason": "臺北市2026年10月營造工程物價總指數較上月上漲0.18%，材料類上漲0.28%。目前的全國總指數則由7月119.14升至10月120.50。若材料漲勢延續，推估11月全國總指數偏上；臺北市數據屬地區指數，仍須觀察全國材料與勞務變動。",
-      "risk": "若材料漲幅縮小或勞務指數下跌，全國總指數可能持平或回落。",
+      "reason": "臺中市政府公布，2026年10月臺中營造工程物價總指數月升0.11%。目前資料顯示，全國總指數由8月119.48升至10月120.50。推論：若近期材料與勞務價格漲勢延續，11月全國總指數可能續升；臺中數據的地域範圍與全國不同。",
+      "risk": "臺中勞務類指數10月月跌0.11%；若全國材料或勞務價格轉弱，總指數也可能持平或下跌。",
       "sources": [
         {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=61D456768E73CD92&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "臺北市2026年10月營造工程物價總指數較9月上漲0.18%，材料類指數上漲0.28%。"
+          "title": "10月營造物價指數較上月上漲0.11% 較上年同月上漲10.61%",
+          "url": "https://www.taichung.gov.tw/3408792/post",
+          "published": "2026-11-06",
+          "fact": "臺中市2026年10月營造工程物價總指數為125.05，較9月上漲0.11%；這是地區指數。"
         }
       ],
       "baseline_period": "2026-10",
@@ -118,14 +67,14 @@
     },
     "cci_tw_01": {
       "direction": "up",
-      "reason": "臺北市2026年10月營造工程材料類指數月增0.28%，主因金屬製品類上漲。目前的全國材料類指數由7月117.70升至10月118.79；若漲勢延續，11月偏上。地區與全國涵蓋範圍不同，後續仍需確認全國各材料類變動。",
-      "risk": "金屬或其他材料類若轉跌，可能抵銷漲幅，使全國材料類指數持平或下跌。",
+      "reason": "臺中市政府指出，2026年10月臺中營造工程材料類指數月升0.25%，鋼筋及變壓器價格上漲是主要因素。目前的全國材料類指數由8月117.84升至10月118.79。推論：若相關材料價格漲勢持續，11月全國材料類指數可能續升；臺中資料僅反映當地指數。",
+      "risk": "材料類涵蓋多項產品；若其他材料下跌抵銷漲勢，下一期可能持平或下跌。",
       "sources": [
         {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=61D456768E73CD92&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "臺北市2026年10月營造工程材料類指數較9月上漲0.28%，其中金屬製品類上漲0.85%。"
+          "title": "10月營造物價指數較上月上漲0.11% 較上年同月上漲10.61%",
+          "url": "https://www.taichung.gov.tw/3408792/post",
+          "published": "2026-11-06",
+          "fact": "臺中市2026年10月材料類指數較9月上漲0.25%，市府指出鋼筋與變壓器價格上漲為主要因素。"
         }
       ],
       "baseline_period": "2026-10",
@@ -135,14 +84,14 @@
     },
     "cci_tw_02": {
       "direction": "uncertain",
-      "reason": "新北市2026年10月營造工程水泥及其製品類指數月跌0.45%；目前的全國指數則由5月123.56逐月降至10月122.97，但最後一個月僅降0.03點。近期資料顯示弱勢，惟新北市是地區指數，且全國跌幅已縮小，11月方向仍不明朗。",
-      "risk": "若全國跌勢延續，指數可能再降；若其他地區或品項回升，也可能持平或上漲。",
+      "reason": "報導整理主計總處資料指出，2026年9月全國水泥及其製品類指數為123.00，較8月下降0.19%。目前資料顯示10月續降至122.97，但降幅縮小。推論：近期偏弱走勢尚在，惟缺少足以確認11月延續下跌的最新產品價格資訊。",
+      "risk": "若預拌混凝土或其他納入項目價格回升，下一期指數可能止跌；反之亦可能續降。",
       "sources": [
         {
-          "title": "新北市115年10月份物價指數",
-          "url": "https://www.ntpc.gov.tw/ch/home.jsp?dataserno=2982774788475c42a3a488c2345f6150&id=e8ca970cde5c00e1",
-          "published": "2026-11-05",
-          "fact": "新北市2026年10月營造工程水泥及其製品類指數較9月下跌0.45%。"
+          "title": "工種成本月報：塑膠年增18.14% 水泥減0.79% 工資9.29%",
+          "url": "https://news.org.tw/trade-cost-monthly-sep-2026-cci-subcategories-by-trade/",
+          "published": "2026-10-20",
+          "fact": "報導依主計總處資料整理，2026年9月水泥及其製品類指數為123.00，較8月下降0.19%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -152,14 +101,14 @@
     },
     "cci_tw_03": {
       "direction": "uncertain",
-      "reason": "臺北市政府新聞稿附表顯示，2026年10月該市砂石及級配類指數較上月上漲0.25%。目前的全國指數7月至9月均為107.06，10月升至107.10；全國近期變動很小，臺北市數據可供參考，但不足以確定11月全國方向。",
-      "risk": "若其他地區指數上升，可能帶動全國續漲；若需求或供應變動使指數回落，也可能轉跌。",
+      "reason": "報導整理主計總處資料顯示，2026年9月全國砂石及級配類指數為107.06，與8月持平。目前資料的10月值為107.10，略高於9月。推論：近期指數波動小，但小幅回升是否延續，仍待11月資料確認。",
+      "risk": "若砂石及級配相關價格續升，指數可能上漲；若漲勢消退或價格回落，也可能持平或下跌。",
       "sources": [
         {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=61D456768E73CD92&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "新聞稿附表3顯示，臺北市2026年10月營造工程砂石及級配類指數為110.49，較9月上漲0.25%。"
+          "title": "工種成本月報：塑膠年增18.14% 水泥減0.79% 工資9.29%",
+          "url": "https://news.org.tw/trade-cost-monthly-sep-2026-cci-subcategories-by-trade/",
+          "published": "2026-10-20",
+          "fact": "報導依主計總處資料整理，2026年9月砂石及級配類指數為107.06，與8月持平。"
         }
       ],
       "baseline_period": "2026-10",
@@ -169,14 +118,14 @@
     },
     "cci_tw_04": {
       "direction": "uncertain",
-      "reason": "臺北市政府新聞稿附表顯示，2026年10月該市磚瓦瓷類指數與上月持平。目前的全國指數9月與10月均為113.37，此前數月緩升；近期資料顯示變動有限，但尚無足夠線索確認11月會持平或重新變動。",
-      "risk": "若各地磚瓦瓷相關品項調漲或調降，全國指數可能離開近期水平。",
+      "reason": "報導整理主計總處資料顯示，2026年9月全國磚瓦瓷類指數為113.37，較8月微升。目前資料顯示10月仍為113.37。推論：近期指數接近持平，但現有資料不足以確認11月是否續持平或轉向。",
+      "risk": "若磚、瓦或瓷類納入項目的價格出現變動，下一期指數可能上升或下降。",
       "sources": [
         {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=61D456768E73CD92&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "新聞稿附表3顯示，臺北市2026年10月營造工程磚瓦瓷類指數為117.19，較9月持平。"
+          "title": "工種成本月報：塑膠年增18.14% 水泥減0.79% 工資9.29%",
+          "url": "https://news.org.tw/trade-cost-monthly-sep-2026-cci-subcategories-by-trade/",
+          "published": "2026-10-20",
+          "fact": "報導依主計總處資料整理，2026年9月磚瓦瓷類指數為113.37，較8月上升0.02%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -186,14 +135,14 @@
     },
     "cci_tw_05": {
       "direction": "up",
-      "reason": "臺北市2026年10月營造工程金屬製品類指數月增0.85%，市府指出與國際鋼材價格上漲有關。目前的全國金屬製品類指數由8月100.93升至10月102.23；若鋼材上漲影響持續，推估11月全國指數偏上。臺北市指數與全國涵蓋範圍不同。",
-      "risk": "鋼材漲勢若反轉，或其他金屬製品項目下跌，全國指數可能持平或回落。",
+      "reason": "臺中市政府指出，2026年10月臺中金屬製品類指數月升0.75%，主要受鋼筋價格上漲帶動。目前的全國指數由8月100.93升至10月102.23。推論：若鋼筋等相關價格續強，11月全國金屬製品類指數可能續升；臺中指數的涵蓋範圍限於當地。",
+      "risk": "鋼筋或其他金屬製品價格若回落，可能抵銷先前漲勢；全國走勢也可能與臺中不同。",
       "sources": [
         {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=61D456768E73CD92&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "臺北市2026年10月營造工程金屬製品類指數較9月上漲0.85%；市府指出受國際鋼材價格上漲影響。"
+          "title": "10月營造物價指數較上月上漲0.11% 較上年同月上漲10.61%",
+          "url": "https://www.taichung.gov.tw/3408792/post",
+          "published": "2026-11-06",
+          "fact": "臺中市2026年10月金屬製品類指數較9月上漲0.75%，市府指出主因為鋼筋價格上漲。"
         }
       ],
       "baseline_period": "2026-10",
@@ -203,14 +152,14 @@
     },
     "cci_tw_06": {
       "direction": "uncertain",
-      "reason": "臺北市政府新聞稿附表顯示，2026年10月該市木材及其製品類指數較上月持平。目前的全國指數9月為105.95、10月為105.94，近兩期變動甚小；地區數據與近期全國走勢尚不足以確定11月方向。",
-      "risk": "若木材或製品價格出現新的漲跌，全國指數可能上升或下降；各地成交情況仍待確認。",
+      "reason": "報導整理主計總處資料顯示，2026年9月全國木材及其製品類指數為105.95，較8月微升。目前資料的10月值為105.94，略低於9月。推論：近期變動幅度很小，尚無充分證據辨明11月方向。",
+      "risk": "若木材及製品相關價格續跌，指數可能下行；若報價回升，也可能止跌或上漲。",
       "sources": [
         {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=61D456768E73CD92&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "新聞稿附表3顯示，臺北市2026年10月營造工程木材及其製品類指數為107.54，較9月持平。"
+          "title": "工種成本月報：塑膠年增18.14% 水泥減0.79% 工資9.29%",
+          "url": "https://news.org.tw/trade-cost-monthly-sep-2026-cci-subcategories-by-trade/",
+          "published": "2026-10-20",
+          "fact": "報導依主計總處資料整理，2026年9月木材及其製品類指數為105.95，較8月上升0.09%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -219,15 +168,15 @@
       "frequency": "月"
     },
     "cci_tw_07": {
-      "direction": "up",
-      "reason": "臺北市政府新聞稿附表顯示，2026年10月該市塑膠製品類指數月增0.56%。目前的全國指數由7月119.12升至10月122.60，連續三個月上升；若近期漲勢延續，推估11月偏上。臺北市數據是地區指數，實際全國後續變動仍待公布。",
-      "risk": "若塑膠製品價格漲勢減弱或轉跌，全國指數可能持平或回落。",
+      "direction": "uncertain",
+      "reason": "報導整理主計總處資料顯示，2026年9月全國塑膠製品類指數為122.13，較8月上升0.37%。目前資料顯示10月續升至122.60，但7月曾降至119.12。推論：近期有回升趨勢，惟波動曾反轉，11月方向仍待確認。",
+      "risk": "若塑膠製品相關價格續升，指數可能上漲；若漲勢消退或價格回落，也可能持平或下跌。",
       "sources": [
         {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=61D456768E73CD92&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "新聞稿附表3顯示，臺北市2026年10月營造工程塑膠製品類指數為118.97，較9月上漲0.56%。"
+          "title": "工種成本月報：塑膠年增18.14% 水泥減0.79% 工資9.29%",
+          "url": "https://news.org.tw/trade-cost-monthly-sep-2026-cci-subcategories-by-trade/",
+          "published": "2026-10-20",
+          "fact": "報導依主計總處資料整理，2026年9月塑膠製品類指數為122.13，較8月上升0.37%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -235,16 +184,90 @@
       "unit": "指數",
       "frequency": "月"
     },
+    "billet_price": {
+      "direction": "uncertain",
+      "reason": "財訊快報11月9日報導，近期亞洲小鋼胚市場報價稍有回落，可能對台灣小鋼胚出廠價形成壓力。目前資料顯示，中級小鋼胚月均出廠價由9月每公噸16,050元升至10月16,075元。亞洲報價的規格與國內中級出廠價口徑未確認，因此11月月均價方向仍待觀察。",
+      "risk": "國內供需及出廠報價可能與亞洲市場走勢不同；若國內成本或買盤增強，月均價仍可能上升。",
+      "sources": [
+        {
+          "title": "個股：小鋼胚報價回落，豐興(2015)、威致(2028)本週鋼筋報價下調200元",
+          "url": "https://ww2.money-link.com.tw/RealtimeNews/NewsContent.aspx?pu=News_0002_2&sn=2441056002&utm_source=openai",
+          "published": "2026-11-09",
+          "fact": "報導指出近期亞洲小鋼胚市場報價稍有回落；報導未列出回落的確切日期，也未確認該報價是台灣中級小鋼胚出廠價。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 16075.0,
+      "unit": "元/公噸",
+      "frequency": "月"
+    },
+    "fengxing_rebar_price": {
+      "direction": "down",
+      "reason": "豐興11月9日將當週鋼筋基價每公噸調降200元至18,300元；公司指出國際小鋼胚價格稍有回落，南部鋼筋價格與中部存在落差。目前資料顯示，鋼筋月均盤價由9月18,300元升至10月18,500元；若較低週盤延續，可能使11月均價低於10月。",
+      "risk": "11月9日是單週盤價，若後續週盤回升或維持較高水準，11月均價未必下跌。",
+      "sources": [
+        {
+          "title": "價格存落差，豐興鋼筋調降每噸200元",
+          "url": "https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=60955d8a-cafa-45ba-8a35-9cd63ee93877&c=MB080000&utm_source=openai",
+          "published": "2026-11-09",
+          "fact": "豐興於2026年11月9日開出當週盤價，鋼筋每公噸調降200元至18,300元；公司提及小鋼胚國際價格稍有回落及南、中部市場價格落差。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 18500.0,
+      "unit": "元/公噸",
+      "frequency": "月"
+    },
+    "h_beam_price": {
+      "direction": "uncertain",
+      "reason": "東鋼通知客戶，10月H型鋼盤價每公噸上漲500元，結束先前連續多月平盤。目前資料中的流通月均價也由9月37,500元升至10月38,500元。這顯示10月已有漲勢，但廠商盤價與流通價口徑不同，且尚缺可確認11月流通行情的證據，下一期方向列為uncertain。",
+      "risk": "若漲價持續傳導且工程需求穩定，11月流通均價可能續升；反之，若買盤轉弱或議價增加，也可能持平或下跌。",
+      "sources": [
+        {
+          "title": "東鋼10月H型鋼上漲 一改連續平盤走勢",
+          "url": "https://udn.com/news/story/7241/9786490?utm_source=openai",
+          "published": "2026-09-30",
+          "fact": "報導於2026年9月30日發布，指出東鋼通知客戶10月H型鋼盤價每公噸上漲500元，其他尺寸加價不變。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 38500.0,
+      "unit": "元/公噸",
+      "frequency": "月"
+    },
+    "csc_wire_rod_price": {
+      "direction": "stable",
+      "reason": "双享鋼鐵9月14日報導，中鋼第四季棒線開平盤後，再推出特定規格低碳盤元專案。目前資料顯示，中鋼棒線月均盤價7月至10月均為每公噸28,350元。第四季平盤與歷史持平相互呼應，11月均價以穩定看待；專案價格適用特定規格，與一般盤價應分開觀察。",
+      "risk": "若後續適用盤價、統計規格或計價條件有變，11月數值仍可能變動；專案實際成交情況亦待確認。",
+      "sources": [
+        {
+          "title": "双享鋼鐵週報｜2026 第38週（2026/09/14）",
+          "url": "https://www.double-steel.com/zh/news/57a29e0e-8502-4706-ac41-c49f38d89c51?utm_source=openai",
+          "published": "2026-09-14",
+          "fact": "週報指出，中鋼第四季棒線開平盤後，推出適用1018、1022材質及5.5至8毫米尺寸的低碳盤元專案；文中未列專案推出的確切日期。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 28350.0,
+      "unit": "元/公噸",
+      "frequency": "月"
+    },
     "mt_cis_billet": {
       "direction": "up",
-      "reason": "Platts將11月6日獨立國協小鋼胚黑海FOB出口評估價列為每公噸480美元，並報導運輸路線轉移使黑海貨源減少。目前資料在9月1日至10月16日均為464美元。推論：貨源受限及較高的後續評估價，為下次數值上行提供線索；但Platts與目前資料的編製口徑可能不同，評估價也不是已確認成交價。",
-      "risk": "黑海運輸若恢復或買氣轉弱，價格可能持平或下跌；另須確認目前系列是否正常發布及其評估方式。",
+      "reason": "Platts對獨立國協黑海小鋼胚的11月6日離岸價評估為每公噸480美元；目前歷史資料在9月1日至10月16日均為464美元。近期評估較目前值高，推論下一期偏向上升；但不同資料來源的規格及評估方法可能不同。Platts亦說明，缺乏黑海直接報價時，會參考土耳其到岸價扣除運費，因此近期數值是評估價，不必然是黑海實際成交價。",
+      "risk": "若土耳其進口需求或參考價格轉弱，評估價可能回落；黑海交易稀少及來源方法差異也可能使下一期與此研判不同。",
       "sources": [
         {
           "title": "Russia shifts steel exports to Baltic ports from Black Sea in 2026",
-          "url": "https://www.spglobal.com/energy/en/news-research/latest-news/metals/111026-russia-shifts-steel-exports-to-baltic-ports-from-black-sea-in-2026",
+          "url": "https://www.spglobal.com/energy/en/news-research/latest-news/metals/111026-russia-shifts-steel-exports-to-baltic-ports-from-black-sea-in-2026?utm_source=openai",
           "published": "2026-11-10",
-          "fact": "Platts評估11月6日獨立國協小鋼胚出口價為每公噸480美元FOB黑海；報導指出俄羅斯鋼材出口轉往波羅的海港口。"
+          "fact": "Platts在2026年11月6日評估獨立國協小鋼胚黑海離岸價為每公噸480美元。"
+        },
+        {
+          "title": "Platts clarifies Billet FOB Black Sea Export assessment criteria amid trade flows disruption",
+          "url": "https://www.spglobal.com/energy/en/pricing-benchmarks/our-methodology/subscriber-notes/110626-platts-clarifies-billet-fob-black-sea-export-assessment-criteria-amid-trade-flows-disruption?utm_source=openai",
+          "published": "2026-11-06",
+          "fact": "Platts於2026年11月6日說明，缺乏可觀察黑海小鋼胚離岸報價時，現以土耳其到岸價扣除每公噸35美元運費推算等值價格。"
         }
       ],
       "baseline_period": "2026-10-16",
@@ -252,33 +275,16 @@
       "unit": "美元/公噸",
       "frequency": "週"
     },
-    "mt_cis_slab": {
-      "direction": "uncertain",
-      "reason": "GMK報導，10月黑海扁鋼胚市場因海運限制而幾乎停擺，供應商正考慮其他路線。目前資料在9月1日至10月16日均為每公噸486美元。推論：航運受阻可能限縮供應，但市場缺乏正常交易，也使下次評估方向更不明朗。",
-      "risk": "若航運或交易恢復，實際供需可能帶動價格上漲或下跌；目前也需確認目前系列的發布狀態。",
-      "sources": [
-        {
-          "title": "Black Sea slab market froze in October due to logistics constraints",
-          "url": "https://gmk.center/en/news/black-sea-slab-market-froze-in-october-due-to-logistics-constraints/?category=infrastructure",
-          "published": "2026-11-01",
-          "fact": "報導指出2026年10月黑海扁鋼胚市場受海運限制而幾乎停擺，俄羅斯供應商考慮經波羅的海及北方港口運輸。"
-        }
-      ],
-      "baseline_period": "2026-10-16",
-      "baseline_value": 486.0,
-      "unit": "美元/公噸",
-      "frequency": "週"
-    },
     "mt_vn_hrc_import": {
       "direction": "uncertain",
-      "reason": "SMM報導，2026年上半年越南自台灣進口熱軋鋼捲42萬公噸，年增24.2%；日本與韓國也是替代供應來源。目前價格由9月18日每公噸572.5美元降至10月23日的550美元，最後兩筆持平。推論：台日韓貨源有需求，但這些進口量資料較早，且不足以確認近期報價與成交變化，下次方向仍待觀察。",
-      "risk": "若越南買盤增強或台日韓供應收緊，價格可能回升；若國內供應增加或進口競爭加劇，價格也可能續跌。",
+      "reason": "SMM於10月16日報導，台灣熱軋鋼捲對越南的11月至12月裝船報價多為每公噸560至570美元到岸，少量為550美元；日本報價約550美元，但未核實成交。目前資料從9月18日的572.5美元降至10月23日的550美元，最近兩筆持平。推論低價競爭及買氣偏弱可能延續壓力，但報價較早且涵蓋的產地與規格不完全相同，下一期方向尚不明確。",
+      "risk": "若台日韓供應商調漲且買方接受，價格可能反彈；若其他產地低價供應持續或需求疲弱，也可能再跌。實際成交價及韓國貨源近況仍待確認。",
       "sources": [
         {
-          "title": "[SMM Analysis] Hoa Phat’s record HRC sales reshape Vietnam’s self-sufficiency and China’s export flows",
-          "url": "https://news.metal.com/newscontent/OB7A4AFYH3DLZX6PASNMDUVPVKMULNA47M3ZSYA-smm-analysis-hoa-phats-record-hrc-sales-reshape-vietnams-self-sufficiency-and-chinas-export-flows",
-          "published": "2026-10-20",
-          "fact": "SMM稱2026年上半年越南自台灣進口熱軋鋼捲42萬公噸、年增24.2%；報導亦將日本、韓國列為替代供應來源。"
+          "title": "[SMM Steel] Vietnam HRC Import Prices Stable as Indonesian Supply Remains Competitive",
+          "url": "https://news.metal.com/newscontent/WV646OR2YQ7U72VZPZV4DATMPFBNYEAHTTOVKQQ-smm-steel-vietnam-hrc-import-prices-stable-as-indonesian-supply-remains-competitive?utm_source=openai",
+          "published": "2026-10-16",
+          "fact": "2026年10月16日的市場報導列出台灣及日本熱軋鋼捲對越南報價，並指出日本報價尚無核實成交、買興偏弱。"
         }
       ],
       "baseline_period": "2026-10-23",
@@ -288,14 +294,14 @@
     },
     "mt_cis_hrc": {
       "direction": "uncertain",
-      "reason": "SMM稱10月16日至23日黑海熱軋鋼捲出口名義報價持平於每公噸515美元FOB，且此前數週沒有公開成交。目前資料在9月1日至10月16日均為510美元。推論：報價大致平穩，但缺少成交使價格訊號偏弱，暫不宜據此選定下次方向。",
-      "risk": "運輸受阻可能推高報價；若需求疲弱或賣方為促成交讓價，價格也可能下跌。不同機構評估口徑及目前系列是否持續發布均需確認。",
+      "reason": "Platts於11月6日就黑海熱軋鋼捲離岸評估是否仍反映區域市場、以及是否需要替代出口地評估徵求意見；其公告同時指出黑海現貨活動缺乏可觀察資訊。目前歷史資料在9月1日至10月16日均為每公噸510美元。交易與評估依據仍待釐清，因此下一期方向不明。",
+      "risk": "若可觀察交易恢復且供應偏緊，價格可能上升；若需求疲弱或替代供應增加，則可能下跌。不同機構的評估是否持續發布及採用何種方法，也會影響比較。",
       "sources": [
         {
-          "title": "[SMM Global HRC Weekly Review] EU Quota-Reset Clearance Race Builds; China and India Lead Asian Quotes Lower",
-          "url": "https://news.metal.com/newscontent/UL2GI5KVCFDTDHMKWBX36U4JFIYY6GBICZ4TWPY-smm-global-hrc-weekly-review-eu-quota-reset-clearance-race-builds-china-and-india-lead-asian-quotes-lower",
-          "published": "2026-10-23",
-          "fact": "SMM稱10月16日至23日黑海熱軋鋼捲出口名義報價持平於每公噸515美元FOB，前數週無公開成交。"
+          "title": "Platts clarifies Billet FOB Black Sea Export assessment criteria amid trade flows disruption",
+          "url": "https://www.spglobal.com/energy/en/pricing-benchmarks/our-methodology/subscriber-notes/110626-platts-clarifies-billet-fob-black-sea-export-assessment-criteria-amid-trade-flows-disruption?utm_source=openai",
+          "published": "2026-11-06",
+          "fact": "Platts於2026年11月6日就黑海熱軋鋼捲等離岸評估的市場相關性及替代出口地評估徵求意見，並指出黑海現貨活動缺乏可觀察資訊。"
         }
       ],
       "baseline_period": "2026-10-16",
@@ -305,20 +311,14 @@
     },
     "mt_seu_rebar": {
       "direction": "uncertain",
-      "reason": "SteelOrbis經EUROMETAL轉載的報導稱，11月9日義大利鋼筋出口FOB要價約每公噸620歐元，週增10至20歐元，但出口銷量下降。目前美元系列由9月23日的711.35625美元降至10月28日的697.19375美元。推論：近期義大利要價上調可能形成支撐，但要價尚待成交驗證，且美元系列仍受匯率與地區涵蓋範圍影響。",
-      "risk": "若買方接受較高要價，價格可能上升；若出口訂單持續疲弱或匯率變動，美元計價數值可能持平或下跌。",
+      "reason": "SteelOrbis經EUROMETAL於10月26日報導，西班牙鋼筋出口離岸報價每公噸645至650歐元，較前期大致持平。目前南歐出口資料則由9月23日的711.35625美元降至10月28日的697.19375美元。西班牙報價提供部分市場線索，但不是整個南歐的成交價；資料涵蓋範圍及幣別不同，下一期方向尚不明確。",
+      "risk": "能源及物流成本可能支撐出口報價；反之，若終端需求疲弱或競爭性進口增加，出口價格仍可能下行。歐元與美元匯率變動也會影響美元計價結果。",
       "sources": [
-        {
-          "title": "Italian longs producers maintain firm prices, but market fails to respond",
-          "url": "https://eurometal.net/2026/11/09/",
-          "published": "2026-11-09",
-          "fact": "SteelOrbis報導，當週義大利鋼筋出口FOB要價約每公噸620歐元、週增10至20歐元；報導同時指出出口銷量下降。"
-        },
         {
           "title": "European longs producers firmer on prices, but demand remains selective",
           "url": "https://eurometal.net/european-longs-producers-firmer-on-prices-but-demand-remains-selective/",
           "published": "2026-10-26",
-          "fact": "SteelOrbis報導，當週西班牙鋼筋出口報價約每公噸645至650歐元FOB，整體較前期持平。"
+          "fact": "報導指出，當週西班牙鋼筋出口報價為每公噸645至650歐元FOB，較此前大致持平；歐洲買方採購仍偏謹慎。"
         }
       ],
       "baseline_period": "2026-10-28",
@@ -327,15 +327,21 @@
       "frequency": "週"
     },
     "mt_tr_rebar": {
-      "direction": "down",
-      "reason": "SMM報導，截至11月6日的當週土耳其鋼筋出口評估價持平於每公噸605美元FOB，並報有600及607美元的出口成交；目前系列10月8日至22日均為617.5美元。推論：較低的近期評估與成交顯示下次數值有下行壓力，但來源與目前系列的規格或評估口徑可能不同。",
-      "risk": "SMM同時報導廢鋼採購增加；若成本走強或買盤改善，鋼廠可能提高出口報價，使價格持平或回升。",
+      "direction": "uncertain",
+      "reason": "SteelRadar報導，11月6日土耳其鋼筋出口報價約每公噸605美元FOB，並有不同港口的11月裝船銷售。目前資料從9月17日的625美元降至10月22日的617.5美元，最後三筆持平。近期報價低於目前值，但來源及規格可能不同；再考量後續報導顯示土耳其長材出口價格出現上調，下一期鋼筋出口評估方向仍待確認。",
+      "risk": "若供應疑慮促使買方接受較高鋼筋出口報價，價格可能回升；若海外買氣仍弱，近期報價壓力可能延續。長材整體調價幅度及鋼筋實際成交情況需要分開觀察。",
       "sources": [
         {
-          "title": "[SMM Türkiye Weekly Review] Restocking and firmer scrap lift rebar, while EU quotas keep HRC stalled",
-          "url": "https://news.metal.com/newscontent/104209702-smm-t%C3%BCrkiye-weekly-review-restocking-and-firmer-scrap-lift-rebar-while-eu-quotas-keep-hrc-stalled",
-          "published": "2026-11-06",
-          "fact": "SMM稱截至11月6日的當週土耳其鋼筋出口評估價為每公噸605美元FOB，並報有600及607美元FOB成交，均為11月裝運。"
+          "title": "Georgia’s steel market faces import pressure as domestic producers struggle with rising costs",
+          "url": "https://www.steelradar.com/en/haber/georgias-steel-market-faces-import-pressure-as-domestic-producers-struggle-with-rising-costs/?utm_source=openai",
+          "published": "2026-11-08",
+          "fact": "報導稱2026年11月6日土耳其鋼筋出口報價約每公噸605美元FOB，並報導İskenderun與Marmara的11月裝船銷售。"
+        },
+        {
+          "title": "Turkey raises local and export longs prices by $5-10/mt, mainly amid supply concerns",
+          "url": "https://www.steelorbis.com/steel-prices/steel-prices-market-analyses/longs-and-billet/turkey-raises-local-and-export-longs-prices-by-5-10mt-mainly-amid-supply-concerns-1490295.htm",
+          "published": "2026-11-11",
+          "fact": "SteelOrbis於2026年11月11日報導土耳其國內及出口長材價格上調，主要涉及供應疑慮；公開摘要未完整列出各品項細節。"
         }
       ],
       "baseline_period": "2026-10-22",
@@ -343,33 +349,16 @@
       "unit": "美元/公噸",
       "frequency": "週"
     },
-    "cci_tw_08": {
-      "direction": "stable",
-      "reason": "臺北市2026年10月油漆塗裝類指數較上月持平。目前的全國資料則顯示，該指數8月至10月均為110.88。兩者都呈現近期平穩，推論全國下一期較可能持平；臺北市資料僅供區域參考。",
-      "risk": "若11月受查塗裝材料報價出現變動，全國指數仍可能上漲或下跌。",
-      "sources": [
-        {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=1268BF9711D80C72&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "新聞稿附件表3顯示，2026年10月臺北市油漆塗裝類指數為106.12，較上月持平。"
-        }
-      ],
-      "baseline_period": "2026-10",
-      "baseline_value": 110.88,
-      "unit": "指數",
-      "frequency": "月"
-    },
     "cci_tw_09": {
       "direction": "up",
-      "reason": "臺中市2026年10月機電設備類指數較上月上漲0.20%，市府指出與變壓器價格上漲有關。目前的全國指數則由5月138.41逐月升至10月143.87；若設備報價漲勢延續，下一期全國指數可能續升。臺中數據是地區指數。",
-      "risk": "全國指數10月增幅已較9月縮小；若設備報價轉穩或回落，下一期可能持平或下跌。",
+      "reason": "臺中市政府公布，2026年10月當地機電設備類指數月增0.20%，主因變壓器價格上漲。目前資料中，全國指數由5月的138.41逐月升至10月的143.87。兩項資料顯示近期仍有上行壓力，推估下一期全國指數偏上；臺中數據屬區域指數。",
+      "risk": "若配電設備報價回落或其他設備價格走弱，全國指數可能持平或下降；臺中走勢也可能與全國不同。",
       "sources": [
         {
-          "title": "115年10月份臺中市物價指數概況",
-          "url": "https://www.taichung.gov.tw/3407774/post",
-          "published": "2026-11-05",
-          "fact": "2026年10月臺中市機電設備類指數月漲0.20%；市府指出，變壓器價格月漲2.78%是原因之一。"
+          "title": "10月營造物價指數較上月上漲0.11% 較上年同月上漲10.61%",
+          "url": "https://www.taichung.gov.tw/3408792/post",
+          "published": "2026-11-06",
+          "fact": "臺中市2026年10月機電設備類指數較上月漲0.20%；市府指出，變壓器價格漲2.78%是推升原因。"
         }
       ],
       "baseline_period": "2026-10",
@@ -377,33 +366,16 @@
       "unit": "指數",
       "frequency": "月"
     },
-    "cci_tw_10": {
-      "direction": "uncertain",
-      "reason": "臺北市2026年10月瀝青及其製品類指數較上月持平；目前的全國指數同期則由9月141.62升至10月143.78，且5月以來逐月上升。全國近期漲勢可能延續，但臺北市的平穩顯示區域變化不一，現有資料不足以確定下一期方向。",
-      "risk": "若全國受查品項報價續升，指數可能上漲；若漲勢停歇或報價回落，也可能持平或下跌。",
-      "sources": [
-        {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=1268BF9711D80C72&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "新聞稿附件表3顯示，2026年10月臺北市瀝青及其製品類指數為124.09，較上月持平。"
-        }
-      ],
-      "baseline_period": "2026-10",
-      "baseline_value": 143.78,
-      "unit": "指數",
-      "frequency": "月"
-    },
     "cci_tw_11": {
       "direction": "uncertain",
-      "reason": "臺北市2026年10月營造工程物價的雜項類指數較上月下跌0.64%。目前的全國雜項類指數也由9月126.26降至10月125.38。若受查雜項報價繼續回落，下一期可能再跌，但目前尚缺足夠證據確認跌勢會持續。",
-      "risk": "雜項涵蓋多種品項，若部分報價回升或其他品項跌幅縮小，全國指數可能持平或反彈。",
+      "reason": "臺北市2026年10月營造工程雜項類指數較上月下跌0.64%。目前資料顯示，全國雜項類指數由9月的126.26降至10月的125.38，兩者同月均走低；但現有資料尚不足以確認跌勢是否延續至下一期。",
+      "risk": "雜項涵蓋多種品項，若其中價格回升，全國指數可能反彈；臺北市的變化也未必與全國同步。",
       "sources": [
         {
           "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=1268BF9711D80C72&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
+          "url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
           "published": "2026-11-05",
-          "fact": "臺北市政府指出，2026年10月營造工程物價指數中的雜項類較上月下跌0.64%。"
+          "fact": "臺北市2026年10月營造工程物價材料分類中的雜項類較上月下降0.64%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -413,14 +385,14 @@
     },
     "cci_tw_12": {
       "direction": "uncertain",
-      "reason": "臺中市2026年10月營造工程勞務類指數較上月下跌0.11%，主因是機具設備租金類指數下降。目前的全國勞務類指數則從5月120.81升至10月123.96，但10月僅較9月增加0.06點。全國漲勢已趨緩，地區走勢亦有差異，下一期方向仍待觀察。",
-      "risk": "若工資繼續上升，全國勞務類指數可能續漲；若租金或工資項目回落，也可能轉跌。",
+      "reason": "臺中市2026年10月勞務類指數月減0.11%，市府歸因於機具設備租金類指數下跌。目前的全國勞務類指數則由5月的120.81逐月升至10月的123.96，但10月僅較9月增加0.06點。區域與全國近期表現不同，下一期方向仍待觀察。",
+      "risk": "若工資持續上升，全國指數可能再漲；若租金或其他勞務報價下跌，也可能轉弱。",
       "sources": [
         {
-          "title": "115年10月份臺中市物價指數概況",
-          "url": "https://www.taichung.gov.tw/3407774/post",
-          "published": "2026-11-05",
-          "fact": "2026年10月臺中市營造工程勞務類指數月跌0.11%，市府指出主因為機具設備租金類指數下跌。"
+          "title": "10月營造物價指數較上月上漲0.11% 較上年同月上漲10.61%",
+          "url": "https://www.taichung.gov.tw/3408792/post",
+          "published": "2026-11-06",
+          "fact": "臺中市2026年10月營造工程勞務類指數較上月跌0.11%，市府指出主因為機具設備租金類指數下跌。"
         }
       ],
       "baseline_period": "2026-10",
@@ -430,14 +402,14 @@
     },
     "cci_tw_13": {
       "direction": "uncertain",
-      "reason": "臺北市2026年10月營造工程工資類指數較上月持平。目前的全國工資類指數由5月121.12逐月升至10月125.40，但10月僅比9月增加0.10點。全國上升趨勢若延續，下一期可能再漲；惟增幅縮小，尚不足以確認方向。",
-      "risk": "不同地區及工種的受查報價可能分化；若漲勢恢復或工資項目回落，下一期可能上漲或下跌。",
+      "reason": "臺中市2026年10月營造工程工資類指數較上年同月上漲20.96%。目前的全國工資類指數由5月的121.12升至10月的125.40，但10月較9月僅增0.10點。臺中年增數據顯示過去一年的變化，下一期全國月變動仍需確認。",
+      "risk": "工資報價若繼續調升，指數可能上漲；若調薪趨緩或部分工種報價回落，也可能持平或下降。",
       "sources": [
         {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=1268BF9711D80C72&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "新聞稿附件表3顯示，2026年10月臺北市營造工程工資類指數為114.58，較上月持平。"
+          "title": "10月營造物價指數較上月上漲0.11% 較上年同月上漲10.61%",
+          "url": "https://www.taichung.gov.tw/3408792/post",
+          "published": "2026-11-06",
+          "fact": "臺中市2026年10月營造工程工資類指數較上年同月上漲20.96%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -447,14 +419,14 @@
     },
     "cci_tw_14": {
       "direction": "uncertain",
-      "reason": "臺中市2026年10月機具設備租金類指數較上月下跌0.39%。目前的全國指數同期由9月120.44降至120.39，8月至10月在狹窄範圍內波動。近期回落可能延續，但全國變動幅度小，仍需觀察下一期報價。",
-      "risk": "若機具租賃報價回升，全國指數可能反彈；若報價大致不變，則可能持平。",
+      "reason": "臺中市政府指出，2026年10月當地機具設備租金類指數下跌，帶動勞務類指數月減。目前資料中，全國機具設備租金類指數由9月的120.44降至10月的120.39，7月至10月則大致在120.37至120.44間小幅波動；下一期是否續跌尚無充分依據。",
+      "risk": "若設備租賃需求或報價回升，全國指數可能反彈；反之也可能繼續下跌。臺中數據反映的是地方情況。",
       "sources": [
         {
-          "title": "115年10月份臺中市物價指數概況",
-          "url": "https://www.taichung.gov.tw/3407774/post",
-          "published": "2026-11-05",
-          "fact": "2026年10月臺中市機具設備租金類指數較上月下跌0.39%。"
+          "title": "10月營造物價指數較上月上漲0.11% 較上年同月上漲10.61%",
+          "url": "https://www.taichung.gov.tw/3408792/post",
+          "published": "2026-11-06",
+          "fact": "臺中市政府指出，2026年10月當地營造工程機具設備租金類指數較上月下跌；新聞稿未列出其月跌幅。"
         }
       ],
       "baseline_period": "2026-10",
@@ -463,15 +435,15 @@
       "frequency": "月"
     },
     "cci_tw_15": {
-      "direction": "uncertain",
-      "reason": "臺北市2026年10月建築工程類指數較上月上漲0.19%。目前的全國建築工程指數則由7月116.05連升至10月117.09。若材料及勞務指數的漲勢延續，全國下一期可能續升；不過臺北市是地區資料，尚不足以確認全國方向。",
-      "risk": "若全國建築工程所用材料或勞務指數回落，可能抵銷其他項目的漲幅，使總指數持平或下跌。",
+      "direction": "up",
+      "reason": "臺北市2026年10月建築工程類指數較上月漲0.19%。目前的全國建築工程指數由6月的116.16小降至7月的116.05後，連三月上升至10月的117.09。近期區域與全國資料均顯示上行，推估下一期全國指數偏上。",
+      "risk": "若建築工程材料或勞務指數回落，漲勢可能中止；臺北市指數僅涵蓋當地，不能視為全國下一期結果。",
       "sources": [
         {
           "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=1268BF9711D80C72&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
+          "url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
           "published": "2026-11-05",
-          "fact": "2026年10月臺北市建築工程類指數為116.27，較上月上漲0.19%。"
+          "fact": "臺北市2026年10月建築工程類指數為116.27，較上月上漲0.19%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -479,186 +451,16 @@
       "unit": "指數",
       "frequency": "月"
     },
-    "cci_tw_26": {
-      "direction": "uncertain",
-      "reason": "報導引述主計總處資料，2026年9月下水道工程物價指數較上年同月上升10.15%。目前的月度資料顯示，指數由9月的125.96升至10月的126.32。推論：若相關材料與勞務價格維持升勢，11月指數可能續升；但目前缺少足以確認11月方向的該項新資料。",
-      "risk": "若下水道工程相關材料或勞務價格回落，11月指數可能持平或下跌；9月年增率也無法預示下一個月的變動。",
-      "sources": [
-        {
-          "title": "9月營造工程物價指數120.26年增7.29% 工資類漲9.29%",
-          "url": "https://ainews24.info/2026/10/17/construction-cost-index-sep-2026-120-26/",
-          "published": "2026-10-17",
-          "fact": "報導引述主計總處資料，2026年9月下水道工程物價指數較上年同月上升10.15%。"
-        }
-      ],
-      "baseline_period": "2026-10",
-      "baseline_value": 126.32,
-      "unit": "指數",
-      "frequency": "月"
-    },
-    "cci_tw_28": {
-      "direction": "uncertain",
-      "reason": "報導引述主計總處資料，2026年9月治水工程物價指數較上年同月上升3.70%。目前的月度資料顯示，指數由9月的118.03升至10月的118.26。推論：若相關材料與勞務價格繼續上升，11月指數可能續漲；惟現有資訊不足以確認下一期方向。",
-      "risk": "治水工程相關材料或勞務價格若回落，可能抵銷先前漲勢，使11月指數持平或下跌；仍需觀察最新查價結果。",
-      "sources": [
-        {
-          "title": "9月營造工程物價指數120.26年增7.29% 工資類漲9.29%",
-          "url": "https://ainews24.info/2026/10/17/construction-cost-index-sep-2026-120-26/",
-          "published": "2026-10-17",
-          "fact": "報導引述主計總處資料，2026年9月治水工程物價指數較上年同月上升3.70%。"
-        }
-      ],
-      "baseline_period": "2026-10",
-      "baseline_value": 118.26,
-      "unit": "指數",
-      "frequency": "月"
-    },
-    "cci_tpe_總指數": {
-      "direction": "up",
-      "reason": "臺北市政府公布，2026年10月營造工程物價總指數為117.91，月增0.18%；其中材料類上漲，勞務類持平。目前資料顯示總指數自7月至10月連續上升。推論：若材料漲勢延續，下一期11月指數偏向上升。",
-      "risk": "10月漲幅已有部分被材料項目下跌抵銷；若材料回落或勞務費用下調，總指數可能持平或下跌。",
-      "sources": [
-        {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "2026年10月臺北市營造工程物價總指數為117.91，較9月上漲0.18%；材料類月增0.28%，勞務類持平。"
-        }
-      ],
-      "baseline_period": "2026-10",
-      "baseline_value": 117.91,
-      "unit": "指數",
-      "frequency": "月"
-    },
-    "cci_tpe_材料類": {
-      "direction": "up",
-      "reason": "臺北市政府公布，2026年10月營造工程材料類指數月增0.28%，主要受到金屬製品類上漲帶動。目前資料中，材料類指數由7月118.32升至10月119.54。推論：若金屬製品漲勢延續，下一期11月材料類指數偏向上升。",
-      "risk": "10月雜項材料下跌已抵銷部分漲幅；金屬製品後續若回落，指數可能持平或下降。",
-      "sources": [
-        {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "2026年10月臺北市營造工程材料類指數月增0.28%；金屬製品類上漲0.85%，雜項類下跌0.64%。"
-        }
-      ],
-      "baseline_period": "2026-10",
-      "baseline_value": 119.54,
-      "unit": "指數",
-      "frequency": "月"
-    },
-    "cci_tpe_勞務類": {
-      "direction": "stable",
-      "reason": "臺北市政府公布，2026年10月營造工程勞務類指數較上月持平。目前資料顯示8月至10月均為115.17。推論：近期調整有限，下一期11月暫看持平。",
-      "risk": "10月勞務類指數仍較上年同月上漲1.82%；若工資或機具設備租金再調整，11月指數可能偏離持平。",
-      "sources": [
-        {
-          "title": "115年10月臺北市物價變動概況",
-          "url": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
-          "published": "2026-11-05",
-          "fact": "2026年10月臺北市營造工程勞務類指數月比持平、年增1.82%；年增主要反映工資及機具設備租金上漲。"
-        }
-      ],
-      "baseline_period": "2026-10",
-      "baseline_value": 115.17,
-      "unit": "指數",
-      "frequency": "月"
-    },
-    "cci_ntpc_total": {
-      "direction": "uncertain",
-      "reason": "新北市政府已於2026年11月5日公布10月營造工程物價總指數121.18，高於目前資料的9月120.97；10月金屬製品及工資類上漲，水泥及其製品類下跌。10月數據已公布，因此下一期研判改看11月。推論：各項漲跌互抵，現有資訊不足以確認11月方向。",
-      "risk": "若金屬製品及工資漲勢延續，指數可能上升；若水泥等項目跌幅擴大，則可能持平或下跌。",
-      "sources": [
-        {
-          "title": "新北市115年10月份物價指數",
-          "url": "https://www.ntpc.gov.tw/ch/home.jsp?dataserno=202611040034&id=28",
-          "published": "2026-11-05",
-          "fact": "2026年10月新北市營造工程物價總指數為121.18，官方公布月增0.21%；金屬製品類及工資類上漲，水泥及其製品類下跌。"
-        }
-      ],
-      "baseline_period": "2026-09",
-      "baseline_value": 120.97,
-      "unit": "指數",
-      "frequency": "月"
-    },
-    "cci_txg_00": {
-      "direction": "uncertain",
-      "reason": "臺中市政府已公布2026年10月營造工程物價總指數125.05，高於目前資料的9月124.90691；10月材料類上漲，但勞務類下跌。10月數據已公布，下一期改看11月。推論：10月總指數仍上升，但漲幅較9月縮小，後續方向尚不明朗。",
-      "risk": "材料漲勢若延續，總指數可能續升；若勞務或材料類跌幅擴大，則可能下跌。",
-      "sources": [
-        {
-          "title": "115年10月份臺中市物價指數概況",
-          "url": "https://www.taichung.gov.tw/3407774/post",
-          "published": "2026-11-05",
-          "fact": "2026年10月臺中市營造工程物價總指數為125.05，月增0.11%；材料類月增0.25%，勞務類月減0.11%。"
-        }
-      ],
-      "baseline_period": "2026-09",
-      "baseline_value": 124.90691,
-      "unit": "指數",
-      "frequency": "月"
-    },
-    "cci_txg_01": {
-      "direction": "up",
-      "reason": "臺中市政府公布，2026年10月營造工程材料類指數為119.11，月增0.25%；目前的9月資料為118.819642。10月數據已公布，下一期改看11月。推論：金屬製品及機電設備帶動材料類連續上升，若漲勢延續，11月指數偏向上升。",
-      "risk": "10月材料類漲幅較9月縮小；若金屬製品或機電設備回落，指數可能持平或下跌。",
-      "sources": [
-        {
-          "title": "115年10月份臺中市物價指數概況",
-          "url": "https://www.taichung.gov.tw/3407774/post",
-          "published": "2026-11-05",
-          "fact": "2026年10月臺中市材料類指數月增0.25%，主因金屬製品及機電設備類上漲；附表所列材料類指數為119.11。"
-        }
-      ],
-      "baseline_period": "2026-09",
-      "baseline_value": 118.819642,
-      "unit": "指數",
-      "frequency": "月"
-    },
-    "cci_txg_02": {
-      "direction": "down",
-      "reason": "臺中市政府附表顯示，2026年10月水泥及其製品類指數為121.94，較9月微跌0.02%；目前資料顯示該指數自3月至9月逐步下降。10月數據已公布，下一期改看11月。推論：若近期緩跌趨勢持續，11月指數偏向下行。",
-      "risk": "10月跌幅很小；若水泥製品或預拌混凝土價格回穩、上調，指數可能持平或反升。指數不等同個別成交價。",
-      "sources": [
-        {
-          "title": "115年10月份臺中市物價指數概況",
-          "url": "https://www.taichung.gov.tw/3407774/post",
-          "published": "2026-11-05",
-          "fact": "該公告附件附表顯示，2026年10月臺中市水泥及其製品類指數為121.94，月減0.02%，年減3.13%。"
-        }
-      ],
-      "baseline_period": "2026-09",
-      "baseline_value": 121.972052,
-      "unit": "指數",
-      "frequency": "月"
-    },
-    "cci_txg_03": {
-      "direction": "stable",
-      "reason": "臺中市政府附表顯示，2026年10月砂石及級配類指數為104.94，月比持平；目前資料中3月至9月均為104.936569。10月數據已公布，下一期改看11月。推論：基於近期指數持續持平，11月暫看持平。",
-      "risk": "近期指數平穩不代表所有交易價格不變；若後續查價項目出現調整，11月指數仍可能上漲或下跌。",
-      "sources": [
-        {
-          "title": "115年10月份臺中市物價指數概況",
-          "url": "https://www.taichung.gov.tw/3407774/post",
-          "published": "2026-11-05",
-          "fact": "該公告附件附表顯示，2026年10月臺中市砂石及級配類指數為104.94，月比及年比均持平。"
-        }
-      ],
-      "baseline_period": "2026-09",
-      "baseline_value": 104.936569,
-      "unit": "指數",
-      "frequency": "月"
-    },
     "cci_tw_16": {
       "direction": "uncertain",
-      "reason": "報導引述主計總處資料，2026年9月建築工程材料類指數年增6.60%。目前資料顯示，該指數由9月115.01升至10月115.34。近期仍有上升動能，但目前缺少足以確認11月走勢的新訊號。",
-      "risk": "若材料價格漲勢延續，指數可能再升；若報價回落，則可能持平或下降。",
+      "reason": "報導引用主計總處資料指出，2026年9月全國建築工程材料類指數年增6.60%。目前資料顯示，該指數由9月115.01升至10月115.34。近期升勢顯示材料成本仍有上行壓力，但9月的年增資料與10月指數尚不足以確定11月方向。",
+      "risk": "若後續材料報價回落，11月指數可能持平或下降；近期統計也可能修正。",
       "sources": [
         {
           "title": "9月營造工程物價指數120.26年增7.29% 工資類漲9.29%",
-          "url": "https://ainews24.info/2026/10/17/construction-cost-index-sep-2026-120-26/",
+          "url": "https://ainews24.info/2026/10/17/construction-cost-index-sep-2026-120-26/?utm_source=openai",
           "published": "2026-10-17",
-          "fact": "報導引述主計總處資料：2026年9月建築工程材料類指數較上年同月上漲6.60%。"
+          "fact": "報導整理主計總處資料，2026年9月建築工程材料類指數較上年同月上漲6.60%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -668,14 +470,14 @@
     },
     "cci_tw_17": {
       "direction": "uncertain",
-      "reason": "報導引述主計總處資料，2026年9月建築工程勞務類指數年增4.77%。目前資料顯示，指數由5月118.06逐月升至10月120.35，但10月較9月僅增加0.06點。上升趨勢仍在，下一期是否延續尚待觀察。",
-      "risk": "若工資或機具租金續升，指數可能上漲；若漲勢停歇或租金下降，指數也可能持平或回落。",
+      "reason": "報導引用主計總處資料指出，2026年9月全國建築工程勞務類指數年增4.77%。目前資料顯示，該指數由5月118.06逐月升至10月120.35，但10月僅比9月增加0.06點。先前累積漲勢可能延續，最近一個月的增幅縮小則使11月方向仍待觀察。",
+      "risk": "若工資或機具租金續漲，指數可能再升；若報價持平或回落，指數也可能持平或下降。",
       "sources": [
         {
           "title": "9月營造工程物價指數120.26年增7.29% 工資類漲9.29%",
-          "url": "https://ainews24.info/2026/10/17/construction-cost-index-sep-2026-120-26/",
+          "url": "https://ainews24.info/2026/10/17/construction-cost-index-sep-2026-120-26/?utm_source=openai",
           "published": "2026-10-17",
-          "fact": "報導引述主計總處資料：2026年9月建築工程勞務類指數較上年同月上漲4.77%。"
+          "fact": "報導整理主計總處資料，2026年9月建築工程勞務類指數較上年同月上漲4.77%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -685,14 +487,14 @@
     },
     "cci_tw_18": {
       "direction": "uncertain",
-      "reason": "報導整理主計總處資料，2026年9月鋼筋混凝土工程總指數為117.50。目前資料顯示10月升至117.69，且8月至10月連續上升；不過，這些已公布數據尚不足以確認11月方向。",
-      "risk": "若材料與勞務成本續漲，指數可能上升；若相關投入價格回落，指數可能持平或下降。",
+      "reason": "報導整理主計總處資料，2026年9月鋼筋混凝土工程總指數為117.50，年增5.82%。目前資料顯示10月升至117.69，且8月至10月連續上升；這可能延續至11月，但現有資料缺少足以確認下期變動的新線索。",
+      "risk": "材料與勞務價格若轉弱，指數可能持平或下降；工程總指數反映多項投入，並非鋼筋成交價。",
       "sources": [
         {
           "title": "鋼筋進場先對標識 未過檢進入市場罰20萬至200萬 銷售者也受罰",
-          "url": "https://news.org.tw/rebar-inspection-mark-check-commodity-inspection-act-fine-2026/",
+          "url": "https://n.yam.com/Article/20261024606407",
           "published": "2026-10-24",
-          "fact": "報導整理主計總處資料：2026年9月鋼筋混凝土工程總指數為117.50，較上年同月上漲5.82%。"
+          "fact": "報導引用主計總處資料，2026年9月鋼筋混凝土工程總指數為117.50，較上年同月上升5.82%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -702,14 +504,14 @@
     },
     "cci_tw_19": {
       "direction": "uncertain",
-      "reason": "報導整理主計總處資料，2026年9月鋼骨鋼筋混凝土工程總指數為115.09。目前資料顯示10月升至115.35，近期走勢偏升；11月材料與勞務價格的綜合變化仍需確認。",
-      "risk": "若相關成本持續增加，指數可能續升；鋼材或其他投入價格回落則可能抵銷漲勢。",
+      "reason": "報導整理主計總處資料，2026年9月鋼骨鋼筋混凝土工程總指數為115.09，年增6.02%。目前資料顯示該指數10月升至115.35，延續8月以來的升勢；不過11月材料及勞務報價如何變動仍待公布，方向暫列不確定。",
+      "risk": "若結構材料或勞務報價回落，指數可能轉平或下降；過去連續上升也可能持續。",
       "sources": [
         {
           "title": "鋼筋進場先對標識 未過檢進入市場罰20萬至200萬 銷售者也受罰",
-          "url": "https://news.org.tw/rebar-inspection-mark-check-commodity-inspection-act-fine-2026/",
+          "url": "https://n.yam.com/Article/20261024606407",
           "published": "2026-10-24",
-          "fact": "報導整理主計總處資料：2026年9月鋼骨鋼筋混凝土工程總指數為115.09，較上年同月上漲6.02%。"
+          "fact": "報導引用主計總處資料，2026年9月鋼骨鋼筋混凝土工程總指數為115.09，較上年同月上升6.02%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -719,14 +521,14 @@
     },
     "cci_tw_20": {
       "direction": "uncertain",
-      "reason": "報導整理主計總處資料，2026年9月鋼骨構造工程總指數為115.69。目前資料顯示10月升至116.04，延續8月以來的升勢；但後續鋼材與其他投入價格如何變動仍待確認。",
-      "risk": "若成本漲勢延續，指數可能上升；若鋼材或其他成本下跌，指數可能持平或回落。",
+      "reason": "報導整理主計總處資料，2026年9月鋼骨構造工程總指數為115.69，年增6.20%。目前資料顯示10月升至116.04，為連續第三個月上升。這提供延續漲勢的線索，但11月鋼材及其他工程投入的變化尚待確認。",
+      "risk": "若鋼材或其他投入報價轉跌，總指數可能持平或下降；工程總指數並非型鋼成交價。",
       "sources": [
         {
           "title": "鋼筋進場先對標識 未過檢進入市場罰20萬至200萬 銷售者也受罰",
-          "url": "https://news.org.tw/rebar-inspection-mark-check-commodity-inspection-act-fine-2026/",
+          "url": "https://n.yam.com/Article/20261024606407",
           "published": "2026-10-24",
-          "fact": "報導整理主計總處資料：2026年9月鋼骨構造工程總指數為115.69，較上年同月上漲6.20%。"
+          "fact": "報導引用主計總處資料，2026年9月鋼骨構造工程總指數為115.69，較上年同月上升6.20%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -736,14 +538,14 @@
     },
     "cci_tw_21": {
       "direction": "uncertain",
-      "reason": "報導引述主計總處資料，2026年9月土木工程總指數為124.60。目前資料顯示，指數由5月122.53逐月升至10月124.86。雖然近期持續上漲，下一期材料與勞務的合計變化仍有不確定性。",
-      "risk": "若材料和勞務價格續升，總指數可能上漲；任一部分回落也可能使漲勢減弱或逆轉。",
+      "reason": "報導引用主計總處資料指出，2026年9月全國土木工程總指數為124.60，年增8.88%。目前資料顯示10月升至124.86，且5月至10月逐月上升；若成本壓力延續，11月可能再升，但目前尚無充分資料確認。",
+      "risk": "材料與勞務價格若回落或維持不變，下期總指數可能下降或持平；近期數值亦可能修正。",
       "sources": [
         {
           "title": "9月營造工程物價指數120.26年增7.29% 工資類漲9.29%",
-          "url": "https://ainews24.info/2026/10/17/construction-cost-index-sep-2026-120-26/",
+          "url": "https://ainews24.info/2026/10/17/construction-cost-index-sep-2026-120-26/?utm_source=openai",
           "published": "2026-10-17",
-          "fact": "報導引述主計總處資料：2026年9月土木工程總指數為124.60，較上年同月上漲8.88%。"
+          "fact": "報導整理主計總處資料，2026年9月土木工程總指數為124.60，較上年同月上漲8.88%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -753,14 +555,14 @@
     },
     "cci_tw_23": {
       "direction": "uncertain",
-      "reason": "報導引述主計總處資料，2026年9月土木工程勞務類指數年增10.61%。目前資料顯示，該指數由5月124.41逐月升至10月128.68，但10月僅較9月增加0.06點。近期升勢放緩，11月方向仍待觀察。",
-      "risk": "若工資或機具租金繼續上漲，指數可能再升；若相關報價持平或下降，指數可能停止上升或回落。",
+      "reason": "報導引用主計總處資料指出，2026年9月全國土木工程勞務類指數年增10.61%。目前資料顯示，該指數由5月124.41逐月升至10月128.68，但10月較9月僅增加0.06點。先前漲勢可能延續，最近增幅縮小則使11月方向仍不明朗。",
+      "risk": "若工資或機具租金續漲，指數可能上升；若報價持平或回落，指數可能持平或下降。",
       "sources": [
         {
           "title": "9月營造工程物價指數120.26年增7.29% 工資類漲9.29%",
-          "url": "https://ainews24.info/2026/10/17/construction-cost-index-sep-2026-120-26/",
+          "url": "https://ainews24.info/2026/10/17/construction-cost-index-sep-2026-120-26/?utm_source=openai",
           "published": "2026-10-17",
-          "fact": "報導引述主計總處資料：2026年9月土木工程勞務類指數較上年同月上漲10.61%。"
+          "fact": "報導整理主計總處資料，2026年9月土木工程勞務類指數較上年同月上漲10.61%。"
         }
       ],
       "baseline_period": "2026-10",
@@ -768,16 +570,203 @@
       "unit": "指數",
       "frequency": "月"
     },
-    "cci_txg_04": {
+    "cci_tpe_總指數": {
+      "direction": "up",
+      "reason": "臺北市主計處公布，2026年10月營造工程物價總指數為117.91，月增0.18%；材料類指數月增0.28%，勞務類持平。目前資料顯示總指數自7月至10月連續上升。推論若材料端漲勢延續，11月總指數可能續升；這是指數方向，並非個別材料成交價。",
+      "risk": "10月已有部分材料項目下跌，若材料漲勢減弱或勞務指數轉跌，總指數可能持平或下滑。",
+      "sources": [
+        {
+          "title": "115年10月臺北市物價變動概況",
+          "url": "https://dbas.gov.taipei/News_Content.aspx?n=61D456768E73CD92&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
+          "published": "2026-11-05",
+          "fact": "2026年10月臺北市營造工程物價總指數為117.91，月增0.18%；材料類月增0.28%，勞務類持平。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 117.91,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_tpe_材料類": {
+      "direction": "up",
+      "reason": "臺北市主計處指出，2026年10月材料類指數月增0.28%，主因金屬製品類受國際鋼材價格上漲影響；雜項類下跌則抵銷部分漲幅。目前指數由7月118.32升至10月119.54。推論若金屬製品類的上漲延續，11月材料類指數可能續升。",
+      "risk": "金屬製品類若回落，或其他材料類別跌幅擴大，材料類指數可能持平或下跌；個別材料實際成交價仍待確認。",
+      "sources": [
+        {
+          "title": "115年10月臺北市物價變動概況",
+          "url": "https://dbas.gov.taipei/News_Content.aspx?n=61D456768E73CD92&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
+          "published": "2026-11-05",
+          "fact": "2026年10月臺北市營造工程物價材料類指數月增0.28%；金屬製品類上漲0.85%，雜項類下跌0.64%。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 119.54,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_tpe_勞務類": {
       "direction": "stable",
-      "reason": "臺中市主計處公布，2026年10月磚瓦瓷類營造工程物價指數為109.59，月減0.02%。目前資料中，6月至8月均為109.650271，9月微降至109.6123。近期變動幅度小，推測11月可能大致持平；這是分類指數，實際成交價仍待確認。",
-      "risk": "若11月受查項目價格出現較大調整，指數可能偏離近期的平緩走勢。",
+      "reason": "臺北市主計處公布，2026年10月營造工程物價勞務類指數較上月無漲跌。目前資料顯示8月至10月均為115.17。推論若工資及機具設備租金的調查結果延續近期狀態，11月指數可能持平。",
+      "risk": "若工資或機具設備租金調整，指數可能改變方向；連續持平並不保證下一期維持不變。",
+      "sources": [
+        {
+          "title": "115年10月臺北市物價變動概況",
+          "url": "https://dbas.gov.taipei/News_Content.aspx?n=61D456768E73CD92&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
+          "published": "2026-11-05",
+          "fact": "2026年10月臺北市營造工程物價勞務類指數較上月持平，較上年同月上漲1.82%。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 115.17,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_ntpc_total": {
+      "direction": "uncertain",
+      "reason": "目前資料的2026年9月新北市營造工程物價總指數為120.97；新北市主計處其後公布10月已升至121.18，月增0.21%，主因金屬製品類及工資類上漲，水泥及其製品類下跌則抵銷部分漲幅。10月已公布，因此下一次研判對象為11月。近期分項漲跌互見，尚不足以確認總指數續漲。",
+      "risk": "若金屬製品或工資漲勢延續，總指數可能續升；若水泥類跌勢擴大或其他分項轉跌，也可能持平或下滑。",
+      "sources": [
+        {
+          "title": "新北市115年10月份物價指數",
+          "url": "https://www.ntpc.gov.tw/ch/home.jsp?dataserno=2982774788475c42a3a488c2345f6150&id=e8ca970cde5c00e1",
+          "published": "2026-11-05",
+          "fact": "2026年10月新北市營造工程物價指數為121.18，月增0.21%；金屬製品類及工資類分別月增0.89%及0.33%，水泥及其製品類月跌0.45%。"
+        }
+      ],
+      "baseline_period": "2026-09",
+      "baseline_value": 120.97,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_txg_00": {
+      "direction": "uncertain",
+      "reason": "臺中市主計處公布，2026年10月營造工程物價總指數為125.05，月增0.11%；材料類上漲0.25%，勞務類下跌0.11%。目前資料中的9月數值為124.90691，10月已公布，下一次研判對象為11月。推論材料與勞務走勢相反，且總指數10月漲幅收斂，續漲或轉跌仍待觀察。",
+      "risk": "若材料類上漲延續且勞務跌幅縮小，總指數可能續升；若勞務跌幅擴大或材料轉跌，總指數可能回落。",
+      "sources": [
+        {
+          "title": "115年10月份臺中市物價指數概況",
+          "url": "https://cdn.www.taichung.gov.tw/8868/8872/9971/3407774",
+          "published": "2026-11-05",
+          "fact": "2026年10月臺中市營造工程物價總指數為125.05，月增0.11%；材料類月增0.25%，勞務類月跌0.11%。"
+        }
+      ],
+      "baseline_period": "2026-09",
+      "baseline_value": 124.90691,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_txg_01": {
+      "direction": "up",
+      "reason": "臺中市主計處公布，2026年10月材料類指數月增0.25%，主因鋼筋及變壓器價格上漲帶動相關分項。目前資料顯示9月材料類指數為118.819642，較8月上升；10月資料已公布，下一次研判對象為11月。推論若這些分項漲勢延續，材料類指數可能續升。",
+      "risk": "10月漲幅已有所放緩；若鋼筋、變壓器或其他材料項目回落，材料類指數可能持平或下跌。",
+      "sources": [
+        {
+          "title": "115年10月份臺中市物價指數概況",
+          "url": "https://cdn.www.taichung.gov.tw/8868/8872/9971/3407774",
+          "published": "2026-11-05",
+          "fact": "2026年10月臺中市營造工程物價材料類指數月增0.25%；主計處指出鋼筋及變壓器價格分別上漲1.19%及2.78%。"
+        }
+      ],
+      "baseline_period": "2026-09",
+      "baseline_value": 118.819642,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_txg_02": {
+      "direction": "uncertain",
+      "reason": "臺中市主計處公布，2026年10月水泥及其製品類指數較上年同月下跌3.13%。目前資料顯示該類指數從6月123.336893降至9月121.972052。10月數據已公布，但所引新聞稿僅提供該類年增率，未說明10月月變動；因此11月是否延續先前月跌走勢仍有待確認。",
+      "risk": "若此前月跌趨勢延續，11月指數可能下滑；若分項價格回穩或回升，也可能持平或上漲。年跌幅本身無法說明下一個月的變化。",
+      "sources": [
+        {
+          "title": "115年10月份臺中市物價指數概況",
+          "url": "https://cdn.www.taichung.gov.tw/8868/8872/9971/3407774",
+          "published": "2026-11-05",
+          "fact": "2026年10月臺中市營造工程物價水泥及其製品類指數較上年同月下跌3.13%。"
+        }
+      ],
+      "baseline_period": "2026-09",
+      "baseline_value": 121.972052,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_tw_24": {
+      "direction": "uncertain",
+      "reason": "中央社報導，國道1號五堵至汐止拓寬工程於10月27日流標，報導提及原料與人力因素。目前的公路工程指數由9月120.85升至10月121.26。推論上，工料壓力可能支撐指數，但單一標案尚不足以確認11月全國指數方向。",
+      "risk": "若工料價格續漲，指數可能延續升勢；若相關投入價格回落，也可能持平或下跌。",
+      "sources": [
+        {
+          "title": "國1五堵汐止段拓寬11月再招標 卓榮泰盼116年動工",
+          "url": "https://www.cna.com.tw/news/ahel/202610310155.aspx",
+          "published": "2026-10-31",
+          "fact": "報導指出，國道1號五堵至汐止拓寬工程於2026年10月27日流標，並提及公共工程原料與人力因素；當時預計11月再招標。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 121.26,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_tw_25": {
+      "direction": "uncertain",
+      "reason": "臺中市政府表示，瓦磘橋拓寬改建所屬的第一期橋梁標已於9月開工。目前的橋梁工程指數由9月116.28升至10月116.62。施工可能帶來工料需求，但個案開工資訊未提供全國橋梁工程投入價格的最新變化，11月方向仍待觀察。",
+      "risk": "橋梁工程工料若繼續漲價，指數可能上升；若價格轉弱或持平，近期升勢也可能中斷。",
+      "sources": [
+        {
+          "title": "斥資逾93億元打造中科聯外新動脈！西屯區漢翔路延伸至東大路橋梁工程開工",
+          "url": "https://cleaner.epb.taichung.gov.tw/newsmain.aspx?n_id=25554",
+          "published": "2026-09-29",
+          "fact": "臺中市政府表示，漢翔路延伸工程的第一期橋梁標於2026年9月開工，辦理既有瓦磘橋拓寬改建。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 116.62,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_tw_26": {
+      "direction": "uncertain",
+      "reason": "新北市政府表示，新莊污水下水道分管及用戶接管工程於9月初決標。目前的下水道工程指數由9月125.96升至10月126.32。該工程後續施工可能形成管線與勞務需求；不過，決標消息沒有顯示全國下水道工料價格接下來的變化。",
+      "risk": "若管材或勞務價格上漲，指數可能續升；若價格回落或其他投入項目抵銷漲幅，指數也可能持平或下跌。",
+      "sources": [
+        {
+          "title": "新莊污水工程再邁大步！1.3萬戶告別抽水肥迎向新生活",
+          "url": "https://www.wrs.ntpc.gov.tw/home.jsp?act=be4f48068b2b0031&dataserno=49b1e67037b186bf64f02490b2c1b5f6&id=Mjg%3D",
+          "published": "2026-10-13",
+          "fact": "新北市政府水利局指出，新莊地區污水下水道第二期後續工程第十二標於2026年9月初決標，內容包括分管及用戶接管。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 126.32,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_tw_28": {
+      "direction": "uncertain",
+      "reason": "中央社10月29日報導，水利署將持續趕辦馬太鞍溪防洪工程；光復堤段高規格堤防及第二道防線工程已於6月開工。目前的治水工程指數由9月118.03升至10月118.26。持續施工可能支撐工料需求，但報導未提供治水工程投入價格的最新變化。",
+      "risk": "若治水工程相關工料價格續漲，指數可能上升；若投入價格回落或工程需求減弱，也可能持平或下跌。",
+      "sources": [
+        {
+          "title": "馬太鞍溪災後復建持續推進 水利署：加速第二道防線工程",
+          "url": "https://www.cna.com.tw/news/afe/202610290385.aspx",
+          "published": "2026-10-29",
+          "fact": "水利署表示，光復堤段高規格堤防及第二道防線工程於2026年6月開工，後續將持續趕辦防洪與河道疏濬工程。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 118.26,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_txg_04": {
+      "direction": "uncertain",
+      "reason": "臺中市主計處公布，2026年10月磚瓦瓷類指數為109.59，月跌0.02%。目前資料顯示9月為109.6123，略低於6至8月。近期變動幅度很小，11月是否續跌仍需觀察。",
+      "risk": "若報價回穩或上調，11月指數可能持平或回升；現有資料未說明各品項後續報價變化。",
       "sources": [
         {
           "title": "115年10月份臺中市物價指數概況",
           "url": "https://www.taichung.gov.tw/3407774/post",
           "published": "2026-11-05",
-          "fact": "新聞稿附件附表3顯示，2026年10月磚瓦瓷類指數為109.59，較9月下跌0.02%。"
+          "fact": "公告附件附表3、4列出2026年10月磚瓦瓷類指數為109.59，較9月下跌0.02%。"
         }
       ],
       "baseline_period": "2026-09",
@@ -787,14 +776,14 @@
     },
     "cci_txg_05": {
       "direction": "up",
-      "reason": "臺中市主計處公布，2026年10月金屬製品類指數為102.83，月增0.75%；主計處指出，當月鋼筋價格上漲1.19%帶動該類指數。目前資料中，指數由8月的101.630269回升至9月的102.067234。若鋼筋漲勢延續，推測11月指數仍有上升可能。",
-      "risk": "鋼筋價格可能回落，其他金屬製品的變動也可能抵銷漲幅；11月指數仍待公布。",
+      "reason": "臺中市主計處公布，2026年10月金屬製品類指數月漲0.75%，其中鋼筋價格月漲1.19%。目前資料的9月指數為102.067234，較8月回升；若鋼筋漲勢延續，11月指數可能續升。",
+      "risk": "鋼筋及其他金屬製品報價若回落，或漲幅未延續，11月指數可能持平或下跌。10月數據是分類指數及其調查結果，實際個別成交價仍有差異。",
       "sources": [
         {
           "title": "115年10月份臺中市物價指數概況",
           "url": "https://www.taichung.gov.tw/3407774/post",
           "published": "2026-11-05",
-          "fact": "主計處指出，2026年10月鋼筋價格月漲1.19%，帶動金屬製品類指數月漲0.75%；附件附表3列示該類指數為102.83。"
+          "fact": "主計處指出2026年10月鋼筋價格較上月上漲1.19%，帶動金屬製品類指數上漲0.75%；附件所列該類指數為102.83。"
         }
       ],
       "baseline_period": "2026-09",
@@ -804,14 +793,14 @@
     },
     "cci_txg_06": {
       "direction": "stable",
-      "reason": "臺中市主計處公布，2026年10月木材及其製品類指數為102.94，月增率為0.00%。目前資料顯示，7月至9月均為102.937068。近期指數持平，推測11月可能延續穩定；公布數值為指數，並非單一木材成交價。",
-      "risk": "後續木材或製品受查價格若有調整，11月指數仍可能上漲或下跌。",
+      "reason": "臺中市主計處公布，2026年10月木材及其製品類指數為102.94，月比持平。目前資料中7至9月均為102.937068；若報價延續近期狀態，11月指數可能持穩。",
+      "risk": "近期持平不保證後續報價不變；木材或製品價格調整仍可能使11月指數上升或下跌。",
       "sources": [
         {
           "title": "115年10月份臺中市物價指數概況",
           "url": "https://www.taichung.gov.tw/3407774/post",
           "published": "2026-11-05",
-          "fact": "新聞稿附件附表3顯示，2026年10月木材及其製品類指數為102.94，月增率為0.00%。"
+          "fact": "公告附件附表3顯示，2026年10月木材及其製品類指數為102.94，月變動率為0.00%。"
         }
       ],
       "baseline_period": "2026-09",
@@ -821,14 +810,14 @@
     },
     "cci_txg_07": {
       "direction": "up",
-      "reason": "臺中市主計處公布，2026年10月塑膠製品類指數為124.72，月增0.60%。目前資料顯示，指數由7月的122.006236升至9月的123.973759。若近期受查價格的上升趨勢持續，推測11月指數可能再升；目前資料未說明10月各品項的漲價原因。",
-      "risk": "近期月增幅可能放緩或轉負，塑膠製品各品項價格也可能走勢不同。",
+      "reason": "臺中市主計處公布，2026年10月塑膠製品類指數為124.72，月漲0.60%。目前資料顯示指數由7月的122.006236升至9月的123.973759；若近期升勢延續，11月可能再上升。",
+      "risk": "10月指數未揭示11月各項塑膠製品報價；若報價回落或先前漲勢停歇，指數可能下跌或持平。",
       "sources": [
         {
           "title": "115年10月份臺中市物價指數概況",
           "url": "https://www.taichung.gov.tw/3407774/post",
           "published": "2026-11-05",
-          "fact": "新聞稿附件附表3顯示，2026年10月塑膠製品類指數為124.72，較9月上漲0.60%。"
+          "fact": "公告附件附表3、4顯示，2026年10月塑膠製品類指數為124.72，較9月上漲0.60%。"
         }
       ],
       "baseline_period": "2026-09",
@@ -838,14 +827,14 @@
     },
     "cci_txg_08": {
       "direction": "stable",
-      "reason": "臺中市主計處公布，2026年10月油漆塗裝類指數為105.57，月增率為0.00%。目前資料中，6月至9月均為105.570641。近期持平提供11月大致穩定的線索，但後續受查價格仍需觀察。",
-      "risk": "油漆或相關塗裝品項價格若在11月調整，指數可能改變方向。",
+      "reason": "臺中市主計處公布，2026年10月油漆塗裝類指數為105.57，月比持平。目前資料中6至9月均為105.570641；依近期延續的平穩走勢，11月暫估持穩。",
+      "risk": "油漆及塗裝相關報價若調整，11月指數仍可能出現漲跌；目前尚無來源確認下期報價。",
       "sources": [
         {
           "title": "115年10月份臺中市物價指數概況",
           "url": "https://www.taichung.gov.tw/3407774/post",
           "published": "2026-11-05",
-          "fact": "新聞稿附件附表3顯示，2026年10月油漆塗裝類指數為105.57，月增率為0.00%。"
+          "fact": "公告附件附表3顯示，2026年10月油漆塗裝類指數為105.57，月變動率為0.00%。"
         }
       ],
       "baseline_period": "2026-09",
@@ -855,14 +844,14 @@
     },
     "cci_txg_09": {
       "direction": "up",
-      "reason": "臺中市主計處公布，2026年10月機電設備類指數為144.33，月增0.20%；主計處指出，當月變壓器價格上漲2.78%推升該類指數。目前資料顯示，指數由8月的139.721665升至9月的144.042181。若相關設備價格漲勢延續，推測11月指數可能續升，但10月月增幅已較9月收斂。",
-      "risk": "變壓器價格可能回穩或下跌，其他機電設備價格變化也會影響分類指數。",
+      "reason": "臺中市主計處公布，2026年10月機電設備類指數月漲0.20%，其中變壓器價格月漲2.78%。目前資料顯示9月指數由8月的139.721665升至144.042181；若設備漲價影響延續，11月指數可能續升。",
+      "risk": "10月漲幅已較9月明顯縮小；若變壓器或其他設備報價轉弱，11月指數可能持平或回落。分類指數與個別設備成交價仍有差異。",
       "sources": [
         {
           "title": "115年10月份臺中市物價指數概況",
           "url": "https://www.taichung.gov.tw/3407774/post",
           "published": "2026-11-05",
-          "fact": "主計處指出，2026年10月變壓器價格月漲2.78%，推升機電設備類指數0.20%；附件附表3列示該類指數為144.33。"
+          "fact": "主計處指出2026年10月變壓器價格較上月上漲2.78%，帶動機電設備類指數上漲0.20%；附件所列該類指數為144.33。"
         }
       ],
       "baseline_period": "2026-09",
@@ -872,14 +861,14 @@
     },
     "cci_txg_10": {
       "direction": "up",
-      "reason": "臺中市主計處公布，2026年10月瀝青及其製品類指數為139.69，月增0.49%。目前資料顯示，指數由7月的134.610117升至9月的139.006371。若受查價格延續近期升勢，推測11月指數可能上升；10月漲幅較前兩個月收斂，原因仍待查證。",
-      "risk": "漲勢可能繼續放緩或反轉；分類指數的變動也有賴各受查品項價格。",
+      "reason": "臺中市主計處公布，2026年10月瀝青及其製品類指數為139.69，月漲0.49%。目前資料顯示該指數由6月的134.445538逐步升至9月的139.006371；若近期升勢延續，11月可能上升。",
+      "risk": "10月月增率較9月的1.45%放緩；若瀝青及製品報價回落或停止上調，11月指數可能持平或下跌。指數不是單一材料的成交價格。",
       "sources": [
         {
           "title": "115年10月份臺中市物價指數概況",
           "url": "https://www.taichung.gov.tw/3407774/post",
           "published": "2026-11-05",
-          "fact": "新聞稿附件附表3及附表4顯示，2026年10月瀝青及其製品類指數為139.69，月增0.49%；8月及9月月增率分別為1.79%及1.45%。"
+          "fact": "公告附件附表3、4顯示，2026年10月瀝青及其製品類指數為139.69，較9月上漲0.49%；9月月增率為1.45%。"
         }
       ],
       "baseline_period": "2026-09",
@@ -888,15 +877,15 @@
       "frequency": "月"
     },
     "cci_txg_11": {
-      "direction": "uncertain",
-      "reason": "臺中市主計處公布，2026年10月營造工程物價的雜項類指數為120.37，月減0.69%。目前資料顯示，8月及9月分別為121.259826及121.197355，先前已有小幅下滑。10月跌幅擴大，顯示指數承壓，但資料未說明該類各品項的變動原因，暫以方向不明看待11月。",
-      "risk": "若下跌的受查品項持續調降，指數可能續跌；若價格回穩或其他品項上漲，也可能持平或回升。",
+      "direction": "down",
+      "reason": "臺中市主計處公布，2026年10月營造工程材料雜項類指數為120.37，月跌0.69%。目前資料顯示該指數由7月的121.294578降至9月的121.197355；若近期下行延續，11月可能再跌。",
+      "risk": "雜項類涵蓋多個品項，附件未說明10月下跌的個別原因；若其組成項目報價回升，11月指數可能持平或反彈。",
       "sources": [
         {
           "title": "115年10月份臺中市物價指數概況",
           "url": "https://www.taichung.gov.tw/3407774/post",
           "published": "2026-11-05",
-          "fact": "新聞稿附件附表3顯示，2026年10月營造工程物價雜項類指數為120.37，較9月下跌0.69%。"
+          "fact": "公告附件的營造工程物價指數附表3、4顯示，2026年10月材料雜項類指數為120.37，較9月下跌0.69%。"
         }
       ],
       "baseline_period": "2026-09",
@@ -906,14 +895,14 @@
     },
     "cci_txg_12": {
       "direction": "uncertain",
-      "reason": "臺中市2026年10月營造工程勞務類指數月跌0.11%，主因機具設備租金類指數下跌；但目前資料顯示，勞務類指數由8月的131.522933升至9月的136.87923。10月資料已公布，下一次研判對象是11月指數；近期月變動轉弱，是否延續仍待觀察。",
-      "risk": "若工資類指數再度上升，勞務類可能回升；若機具租金續跌，也可能繼續下滑。",
+      "reason": "臺中市政府2026年11月6日公布，10月營造工程勞務類指數較上月下跌0.11%，主因是機具設備租金類指數下跌；這是指數變動，不是個別勞務成交價。目前資料中，勞務類指數由6月127.101232升至9月136.87923。推論上，先前上升與10月轉跌的訊號不同，11月方向仍不明朗；11月資料預計12月8日公布。",
+      "risk": "若機具租金跌勢延續，勞務類指數可能續跌；若工資或租金回升，也可能轉漲。實際變動仍需等待11月統計。",
       "sources": [
         {
-          "title": "台中市10月營造工程物價指數上漲0.11%",
-          "url": "https://n.yam.com/article/20261106715875",
+          "title": "10月營造物價指數較上月上漲0.11% 較上年同月上漲10.61%",
+          "url": "https://www.taichung.gov.tw/3408792/post",
           "published": "2026-11-06",
-          "fact": "報導指出，2026年10月臺中市營造工程勞務類指數較上月下跌0.11%，主因機具設備租金類指數下跌。"
+          "fact": "臺中市2026年10月營造工程勞務類指數月跌0.11%，主因為機具設備租金類指數下跌；11月物價指數變動分析預計於2026年12月8日發布。"
         }
       ],
       "baseline_period": "2026-09",
@@ -923,20 +912,20 @@
     },
     "cci_txg_13": {
       "direction": "uncertain",
-      "reason": "臺中市主計處指出，2026年9月廢土處理價格上漲，帶動營造工程工資類指數月升5.79%；10月工資類指數則較上年同月上漲20.96%。目前資料中，工資類指數由8月的132.511334升至9月的140.182657。10月年增顯示指數高於去年同期，但不足以推知11月的月變動方向。",
-      "risk": "若廢土處理或其他查價項目續漲，指數可能上升；若相關項目回落，指數也可能下跌。",
+      "reason": "臺中市政府公布，2026年10月營造工程工資類指數較上年同月上漲20.96%；9月則因廢土處理價上漲，工資類指數較上月上漲5.79%。目前資料的工資類指數由6月126.178612升至9月140.182657。推論上，先前漲勢顯示工資類指數有上行壓力，但10月年增率並未提供11月的月變動方向，因此研判不確定。",
+      "risk": "若廢土處理價格或其他工資類項目繼續上漲，11月指數可能走高；若相關價格回落或持平，指數也可能下跌或持平。",
       "sources": [
         {
-          "title": "9月消費者物價指數較上月上漲0.48% 較上年同月上漲2.56%",
-          "url": "https://www.taichung.gov.tw/3387820/post",
-          "published": "2026-10-08",
-          "fact": "臺中市政府指出，2026年9月廢土處理價格月漲22.44%，帶動營造工程工資類指數月漲5.79%。"
+          "title": "10月營造物價指數較上月上漲0.11% 較上年同月上漲10.61%",
+          "url": "https://www.taichung.gov.tw/3408792/post",
+          "published": "2026-11-06",
+          "fact": "臺中市2026年10月營造工程工資類指數較2025年10月上漲20.96%。"
         },
         {
-          "title": "10月營造物價指數較上月上漲0.11% 較上年同月上漲10.61%",
-          "url": "https://www.taichung.gov.tw/3408792/post?utm_source=openai",
-          "published": "2026-11-06",
-          "fact": "臺中市政府公布，2026年10月營造工程工資類指數較上年同月上漲20.96%。"
+          "title": "115年9月份臺中市物價指數概況",
+          "url": "https://www.taichung.gov.tw/3387260/post",
+          "published": "2026-10-07",
+          "fact": "2026年9月廢土處理價格較上月上漲22.44%，帶動臺中市營造工程工資類指數月漲5.79%。"
         }
       ],
       "baseline_period": "2026-09",
@@ -946,20 +935,14 @@
     },
     "cci_txg_14": {
       "direction": "uncertain",
-      "reason": "臺中市2026年10月營造工程機具設備租金類指數較上月下跌，但較上年同月上漲7.11%。目前資料顯示，該指數6至8月均為128.781937，9月微降至128.781753。10月的月跌顯示短期走弱，幅度及11月是否持續仍待後續資料確認。",
-      "risk": "若機具租金跌勢延續，11月指數可能再降；若租金回升，也可能持平或上漲。",
+      "reason": "臺中市政府2026年11月6日公布，10月營造工程機具設備租金類指數較上月下跌，但較上年同月上漲7.11%。目前資料中，該指數6月至8月均為128.781937，9月微降至128.781753。推論上，10月下跌顯示短期有走弱訊號，但先前數月大致持平，尚不足以確認11月會延續跌勢；這些數字是指數而非個別機具租金報價。",
+      "risk": "若機具租金調降持續，11月指數可能再跌；若租金止跌或部分設備租金回升，指數可能持平或上漲。",
       "sources": [
         {
-          "title": "台中市10月營造工程物價指數上漲0.11%",
-          "url": "https://n.yam.com/article/20261106715875",
-          "published": "2026-11-06",
-          "fact": "報導指出，2026年10月臺中市營造工程機具設備租金類指數較上月下跌，並帶動勞務類指數下滑。"
-        },
-        {
           "title": "10月營造物價指數較上月上漲0.11% 較上年同月上漲10.61%",
-          "url": "https://www.taichung.gov.tw/3408792/post?utm_source=openai",
+          "url": "https://www.taichung.gov.tw/3408792/post",
           "published": "2026-11-06",
-          "fact": "臺中市政府公布，2026年10月營造工程機具設備租金類指數較上年同月上漲7.11%。"
+          "fact": "臺中市2026年10月營造工程機具設備租金類指數較9月下跌，較2025年10月上漲7.11%。"
         }
       ],
       "baseline_period": "2026-09",
@@ -968,32 +951,32 @@
       "frequency": "月"
     },
     "fx_usd_twd": {
-      "direction": "uncertain",
-      "reason": "中央社報導，11月11日台北外匯市場新台幣兌美元收32.860元，較前一交易日升值0.005元；交易員認為外資匯出壓力尚未完全消退。目前資料則顯示美元兌新台幣由11月6日的32.79升至11月12日的32.88，且11月10日至12日連續三筆均為32.88。兩組資料的11月11日數值不同，報價口徑與時間仍待確認。外資若續匯出，可能推升美元兌新台幣匯率，但近期持平與盤中波動並存，下一次公布方向不明。",
-      "risk": "若外資匯出減緩、出口商拋售美元或央行調節，美元兌新台幣可能下跌；若美元走強或外資匯出增加，匯率也可能上升。",
+      "direction": "up",
+      "reason": "中央社報導，11月12日台北外匯市場美元兌新台幣收32.889元，較前日上升0.029元；報導指出午後外資加大匯出力道，美元走強也對新台幣形成壓力。 目前資料則由11月6日的32.79升至11月12日的32.91。推論若美元需求與外資匯出壓力持續，下一次公布的美元兌新台幣數值可能上升。目前數值與新聞所載銀行間收盤價不同，報價來源及時間仍待確認。",
+      "risk": "11月12日出口商拋匯及央行調節使新台幣貶幅收斂；若後續美元賣盤增加或外資轉為匯入，美元兌新台幣可能下跌。",
       "sources": [
         {
-          "title": "台股連3漲收復44000點 新台幣升勢乏力收32.86元",
-          "url": "https://www.cna.com.tw/news/afe/202611110283.aspx",
-          "published": "2026-11-11",
-          "fact": "報導指出，11月11日新台幣兌美元收32.860元、升值0.005元；交易員認為外資匯出壓力尚未完全消退。"
+          "title": "Fed官員放鷹與外資匯出 新台幣再逼33元收32.889元",
+          "url": "https://www.cna.com.tw/news/afe/202611120298.aspx",
+          "published": "2026-11-12",
+          "fact": "中央社報導，2026年11月12日美元兌新台幣銀行間收盤為32.889元，較前日上升0.029元；午後外資加大匯出，出口商拋匯及央行調節使新台幣貶幅收斂。"
         }
       ],
       "baseline_period": "2026-11-12",
-      "baseline_value": 32.88,
+      "baseline_value": 32.91,
       "unit": "新台幣/美元",
       "frequency": "日"
     },
     "wb_sawnwood_my": {
       "direction": "uncertain",
-      "reason": "世界銀行11月3日公布的資料顯示，馬來西亞製材10月月均價為每立方公尺724.3美元，較9月的731.3美元下降，連續兩個月回落。 目前歷史資料顯示，該價格此前也曾在5月至8月間漲跌交替。推論：近期回落可能延續至下一期，但僅憑月均價變化，尚缺乏足夠證據確認方向；此系列是特定規格製材的英國到岸基準，台灣實際成交價仍待確認。",
-      "risk": "若後續需求或供應條件改變，價格可能止跌或反彈；目前缺少足以確認下一期變化的近期資訊。",
+      "reason": "世界銀行11月3日公布的資料顯示，馬來西亞深紅色梅蘭蒂製材月均參考價由8月每立方公尺737.9美元，降至9月731.3美元及10月724.3美元。連續兩個月下跌，可能使11月均價延續弱勢；但近期價格變化本身不足以確認下一期方向。這項參考價採英國港口成本加運費條件，台灣實際成交價仍待確認。",
+      "risk": "若後續需求轉強或供應收緊，11月均價可能止跌或回升；目前缺少足以確認該規格最新供需變化的證據。",
       "sources": [
         {
           "title": "World Bank Commodities Price Data (The Pink Sheet)",
-          "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Pink-Sheet-November-2026.pdf?utm_source=openai",
+          "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Pink-Sheet-November-2026.pdf",
           "published": "2026-11-03",
-          "fact": "世界銀行公布2026年10月東南亞製材月均價為每立方公尺724.3美元，9月為731.3美元。"
+          "fact": "世界銀行公布2026年10月東南亞製材月均價為每立方公尺724.3美元，9月為731.3美元；規格說明為馬來西亞深紅色seraya／meranti製材。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1003,14 +986,14 @@
     },
     "wb_plywood": {
       "direction": "uncertain",
-      "reason": "世界銀行11月3日公布的資料顯示，合板10月月均價為每張345.8美分，低於9月的349.1美分。 目前歷史資料顯示，價格在7月至9月連續上升後於10月回落。推論：10月跌勢可能延續，也可能只是先前漲勢中的回調，目前證據不足以選定方向；此系列為特定規格合板的東京批發基準，台灣實際成交價仍待確認。",
-      "risk": "若後續供需轉強，價格可能回升；若需求轉弱或供應增加，跌勢也可能延續，目前仍須觀察。",
+      "reason": "世界銀行11月3日公布的合板資料顯示，月均參考價由8月每張343.8美分升至9月349.1美分，10月回落至345.8美分。最新回落可能延續至11月，但此前兩個月曾上漲，現有證據不足以確認方向。該系列是特定規格合板的東京現貨批發月均價，台灣實際成交價仍待確認。",
+      "risk": "若東京市場對該規格合板的需求改善或供應轉緊，11月均價可能回升；若需求持續疲弱，也可能進一步下跌。",
       "sources": [
         {
           "title": "World Bank Commodities Price Data (The Pink Sheet)",
-          "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Pink-Sheet-November-2026.pdf?utm_source=openai",
+          "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Pink-Sheet-November-2026.pdf",
           "published": "2026-11-03",
-          "fact": "世界銀行公布2026年10月合板月均價為每張345.8美分，9月為349.1美分。"
+          "fact": "世界銀行公布2026年10月合板月均價為每張345.8美分，9月為349.1美分；其規格為非洲及東南亞產Lauan三夾板，採東京現貨批發價格。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1020,14 +1003,14 @@
     },
     "wb_iron_ore": {
       "direction": "uncertain",
-      "reason": "路透11月10日報導，中國唐山、邯鄲自11月9日起啟動污染應急措施；截至11月5日，鋼廠日均鐵水產量連續第四週下降。目前資料的鐵礦砂CFR現貨月度價格由9月97.7降至10月90.8。推論：煉鐵活動減弱可能壓抑鐵礦需求，但報導中的期貨與鐵水產量，仍需配合11月現貨月均價觀察，方向暫列不確定。",
-      "risk": "若限產解除後鋼廠補庫，現貨月均價可能回升；若需求持續疲弱，則可能續跌。",
+      "reason": "路透報導，中國唐山、邯鄲自11月9日起實施重污染應急措施；截至11月5日，受調查鋼廠日均鐵水產量已連降四週。供應目前的鐵礦砂資料中，10月月價為90.8，低於9月的97.7。推論上，鋼廠限產可能壓抑礦砂需求，但11月9日新加坡12月期貨報價仍高於10月月價，兩者期間與交易形式不同，下一次月資料方向尚不明朗。",
+      "risk": "若限產延續，鐵礦砂月價可能下跌；若鋼廠復產或海運供應收縮，價格也可能回升。期貨報價與CFR現貨月價仍有差異。",
       "sources": [
         {
           "title": "Iron ore falls as China pollution curbs fuel demand worries",
-          "url": "https://www.brecorder.com/news/40448191?utm_source=openai",
+          "url": "https://www.brecorder.com/news/amp/40448191",
           "published": "2026-11-10",
-          "fact": "報導指出中國鋼鐵產區11月9日起啟動污染應急措施；截至11月5日，鋼廠日均鐵水產量連降四週。報導另列鐵礦期貨價格，並非CFR現貨月均價。"
+          "fact": "路透報導唐山、邯鄲自11月9日起採取應急措施；截至11月5日，受調查鋼廠日均鐵水產量為231萬噸。11月9日新加坡12月鐵礦砂期貨盤中為每噸92.5美元。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1036,15 +1019,15 @@
       "frequency": "月"
     },
     "wb_coal_au": {
-      "direction": "uncertain",
-      "reason": "11月3日的產業報導指出，截至10月30日，澳洲紐卡索6,000大卡動力煤價格較前週大致持平，中國買家詢價減少。目前月度資料則從8月135.2升至9月147.1、10月152.3美元／公噸。推論：近期詢價轉弱可能限制漲勢，但單週報價尚不足以確定下一個月均價方向。",
-      "risk": "可供即期出售的高熱值貨源偏少，若亞洲買盤回升，價格可能續漲；若買方持續觀望，也可能轉跌。",
+      "direction": "down",
+      "reason": "印尼煤礦協會轉載的報導指出，紐卡索煤炭合約11月6日收於每噸141.10美元，低於10月底的152.45美元。目前資料顯示澳洲動力煤月價從9月147.1升至10月152.3美元。推論上，11月初合約回落若持續，可能使下一次月價低於10月；目前報價只涵蓋部分月份。",
+      "risk": "若亞洲冬季需求增強或澳洲出口供應受阻，合約可能反彈。單日合約收盤價與整月參考價的統計範圍不同。",
       "sources": [
         {
-          "title": "Weekly: Int'l thermal coal market stays rangebound as buyers, sellers dig in",
-          "url": "https://apbi-icma.org/media-article/weekly-int-l-thermal-coal-market-stays-rangebound-as-buyers-sellers-dig-in",
-          "published": "2026-11-03",
-          "fact": "報導稱截至10月30日，紐卡索6,000大卡煤價較前週大致持平，澳洲高熱值即期貨源不多，而中國詢價減少。"
+          "title": "Harga Batu Bara dan Minyak Dunia Kompak Melemah, Pasar Energi Tertekan",
+          "url": "https://apbi-icma.org/id/media-article/harga-batu-bara-dan-minyak-dunia-kompak-melemah-pasar-energi-tertekan",
+          "published": "2026-11-09",
+          "fact": "報導指出，紐卡索煤炭合約從10月底每噸152.45美元，降至11月6日收盤的141.10美元。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1054,14 +1037,14 @@
     },
     "wb_coal_za": {
       "direction": "uncertain",
-      "reason": "S&P Global報導，南非煤炭鐵路因停電於10月10日中斷，通往理查茲灣煤炭碼頭的服務於10月11日恢復；受訪市場人士預期此事故對價格影響有限。目前南非動力煤月度價格由8月96.8升至9月98.2、10月100.0美元／公噸。推論：運輸風險與印度買盤可能提供支撐，但短暫事故不足以確立下一期漲勢。",
-      "risk": "若鐵路再度受阻或印度需求增強，價格可能上行；若運輸順暢且買盤減弱，月均價可能回落。報導另列的5,500大卡報價與目前序列規格不同，應分開看待。",
+      "reason": "印尼煤礦協會轉載的市場週報指出，截至10月30日，理查茲灣6,000大卡動力煤FOB報價約每噸130美元，較前週略降。目前的南非動力煤月價則從9月98.2升至10月100.0美元。兩組資料的觀察期間及報價口徑不同，且週報未提供11月完整走勢；目前難以從中推定下一次月價方向。",
+      "risk": "若賣方報價維持堅挺、買盤增加，月價可能續升；若需求轉弱或出口供應增加，也可能回落。實際成交及11月報價仍待確認。",
       "sources": [
         {
-          "title": "Transnet force majeure unlikely to impact South African thermal coal prices",
-          "url": "https://www.spglobal.com/energy/en/news-research/latest-news/coal/101326-transnet-force-majeure-unlikely-to-impact-south-african-thermal-coal-prices",
-          "published": "2026-10-13",
-          "fact": "Transnet表示，停電影響煤炭鐵路運輸，理查茲灣煤炭碼頭服務於10月11日恢復；報導並描述印度對南非煤的買盤及市場人士對事故影響有限的看法。"
+          "title": "Weekly: Int'l thermal coal market stays rangebound as buyers, sellers dig in",
+          "url": "https://apbi-icma.org/media-article/weekly-int-l-thermal-coal-market-stays-rangebound-as-buyers-sellers-dig-in",
+          "published": "2026-11-03",
+          "fact": "週報稱，截至10月30日，南非理查茲灣6,000大卡動力煤FOB報價約每噸130美元，較前週略降；南非礦商則因柴油成本上升維持較高報價。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1071,14 +1054,14 @@
     },
     "wb_copper": {
       "direction": "down",
-      "reason": "路透11月10日報導，中國10月銅精礦進口年減11%，中國現貨供應偏緊；同日LME三個月期銅報價低於目前的10月銅月度價格。目前資料中，銅由9月14,474升至10月14,508美元／公噸。推論：若11月後續報價多維持在報導當日水準附近，下一期月均價偏向下降；期貨單日價格與月均價仍有口徑及時間差異。",
-      "risk": "中國精礦和精銅供應緊張可能推升後續價格，使整月均價反而上升；11月其餘交易日走勢尚待觀察。",
+      "reason": "國際銅業協會澳洲分會指出，LME銅官方現貨價由10月29日每噸14,560美元降至11月10日的13,992美元。目前月資料則從9月14,474升至10月14,508美元。推論上，若11月現貨價格持續低於10月月價，下一次月價可能下跌；11月10日只是單日觀察。",
+      "risk": "報告亦指出11月11日銅價反彈；若後續供應受限或買盤回升，整月均價可能收復跌幅。",
       "sources": [
         {
-          "title": "Copper edges up as tech rebound, lower oil lift risk appetite",
-          "url": "https://www.brecorder.com/news/40448239/",
-          "published": "2026-11-10",
-          "fact": "報導援引海關資料稱，中國10月銅精礦進口年減11%；11月10日0300 GMT，LME三個月期銅報13,939美元／公噸。"
+          "title": "Copper Weekly Brief — to 12 November 2026",
+          "url": "https://copper.com.au/news/mining/copper-weekly-brief-to-12-november-2026/",
+          "published": "2026-11-12",
+          "fact": "報告列出LME銅官方現貨價：10月29日每噸14,560美元，11月10日為13,992美元；並稱銅價於11月11日反彈。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1087,15 +1070,15 @@
       "frequency": "月"
     },
     "wb_aluminum": {
-      "direction": "uncertain",
-      "reason": "路透11月10日報導，中國2026年前10個月鋁及鋁製品出口年增18%，當日LME三個月期鋁下跌；同時，LME可用鋁庫存處於低位。目前資料顯示鋁價由9月3,283降至10月3,061美元／公噸。推論：出口增加可能緩解供應壓力，但低庫存也可能支撐價格，下一期月均價方向尚不明朗。",
-      "risk": "若中東供應恢復或其他產能增加，鋁價可能續跌；若供應再受干擾，低庫存可能放大上漲。",
+      "direction": "down",
+      "reason": "路透報導，中國2026年前10個月鋁及鋁製品出口年增18%，11月10日LME三個月期鋁盤中下跌。目前鋁月價由9月每噸3,283美元降至10月3,061美元。推論上，出口增加與中東供應恢復若持續，可能對下一次月價形成壓力；期貨盤中價與月價並非同一統計期間。",
+      "risk": "路透同時指出LME可用鋁庫存偏低；若中東供應再受干擾或需求增強，價格可能反彈。",
       "sources": [
         {
           "title": "Aluminium falls on higher Chinese exports and hopes for Middle East de-escalation",
-          "url": "https://www.brecorder.com/news/40448262/aluminium-falls-on-higher-chinese-exports-and-hopes-for-middle-east-de-escalation",
+          "url": "https://www.brecorder.com/news/40448262/",
           "published": "2026-11-10",
-          "fact": "中國海關資料顯示2026年前10個月鋁及鋁製品出口年增18%；報導同時指出，11月10日LME可用鋁庫存為207,525公噸。"
+          "fact": "路透引述中國海關資料稱，2026年前10個月鋁及鋁製品出口年增18%；11月10日LME三個月期鋁盤中跌至每噸3,031.50美元。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1105,14 +1088,20 @@
     },
     "wb_zinc": {
       "direction": "uncertain",
-      "reason": "路透10月28日報導，鋅礦供應下降使冶煉加工費走低，並促使部分精煉產出削減。目前鋅月度價格由9月4,021降至10月3,818美元／公噸。推論：精礦緊張可能支撐鋅價，但它對11月月均價的影響幅度及持續時間尚待確認。",
-      "risk": "若精礦供應改善或中國精煉鋅出口增加，價格可能續跌；若冶煉減產擴大，則可能反彈。",
+      "reason": "鋅生產商Nexa在10月29日公布的第三季報告中表示，鋅精礦短缺持續限制精煉金屬供應；另一份鋅市場報告指出，LME鋅庫存由10月30日至11月6日下降。目前月資料顯示鋅價由9月每噸4,021美元降至10月3,818美元。推論上，原料及庫存偏緊可能支撐價格，但近期價格已回落，下一次月價方向仍有分歧。",
+      "risk": "精礦供應改善或終端需求疲弱可能使價格續跌；若冶煉供應受限加劇，則可能回升。庫存變化還需結合實際供需觀察。",
       "sources": [
         {
-          "title": "Zinc hits highest in nearly a month on supply fears",
-          "url": "https://www.brecorder.com/news/40446332/zinc-hits-highest-in-nearly-a-month-on-supply-fears",
-          "published": "2026-10-28",
-          "fact": "報導指出10月28日LME三個月期鋅走高，並描述鋅礦供應下降、加工費走低及精煉產出削減；同時提到中國出口曾緩解海外短缺。"
+          "title": "Nexa Reports Third Quarter 2026 Results",
+          "url": "https://www.sec.gov/Archives/edgar/data/1713930/000129281426005048/ex99-1.htm",
+          "published": "2026-10-29",
+          "fact": "Nexa表示，2026年第三季全球鋅精礦短缺持續，並限制精煉鋅供應；其報告涵蓋截至9月30日的季度。"
+        },
+        {
+          "title": "Zinc market in early November 2026: LME stocks fall nearly 9%",
+          "url": "https://vcdc.com.vn/industry-news/zinc-market-in-early-november-2026-lme-stocks-fall-nearly-9-prices-still-edge-lower",
+          "published": "2026-11-09",
+          "fact": "報告引述LME資料，鋅庫存由10月30日的161,275噸降至11月6日的146,875噸；同期價格並未隨庫存下降而持續上漲。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1121,15 +1110,15 @@
       "frequency": "月"
     },
     "wb_nickel": {
-      "direction": "down",
-      "reason": "印尼官員11月2日表示，全球鎳供應超過需求，並提出進一步調降2027年鎳礦配額的可能性。目前鎳月度價格由8月16,751降至9月16,324、10月15,436美元／公噸。推論：若供應過剩持續，可能延續月均價的下行壓力；配額調整目前仍屬政策訊號，並非已實現減產。",
-      "risk": "若業者減產或未來配額收緊的預期迅速影響市場，鎳價可能反彈；政策落實時間和幅度仍待確認。",
+      "direction": "up",
+      "reason": "路透報導，印尼森林事務工作小組11月5日表示將對涉森林區違規的鎳礦交易相關企業採取行動，當日LME三個月期鎳盤中升至每噸16,375美元。目前月資料顯示鎳價從9月16,324降至10月15,436美元。推論上，市場對礦石供應的疑慮若持續，可能推升下一次月價；期貨盤中價不等於月均價。",
+      "risk": "若執法對實際礦石供應和精煉產量影響有限，或需求轉弱，鎳價可能再次下跌。",
       "sources": [
         {
-          "title": "Indonesia signals further nickel ore quota cuts as global surplus weighs on prices",
-          "url": "https://www.spglobal.com/energy/en/news-research/latest-news/metals/110226-indonesia-signals-further-nickel-ore-quota-cuts-as-global-surplus-weighs-on-prices",
-          "published": "2026-11-02",
-          "fact": "印尼部長11月2日表示全球鎳供應超過需求，並釋出進一步調降2027年鎳礦生產配額的訊號；報導未稱該配額削減已完成。"
+          "title": "Nickel price leaps to 5-week high on Indonesian crackdown; copper hits 3-month low",
+          "url": "https://www.kitco.com/news/off-the-wire/2026-11-05/nickel-price-leaps-5-week-high-indonesian-crackdown-copper-hits-3",
+          "published": "2026-11-05",
+          "fact": "11月5日路透報導印尼森林事務工作小組擬對相關企業採取行動；當日LME三個月期鎳盤中報每噸16,375美元。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1138,15 +1127,15 @@
       "frequency": "月"
     },
     "wb_lead": {
-      "direction": "uncertain",
-      "reason": "國際鉛鋅研究組織10月19日預測，2026年全球精煉鉛供應將超過需求9萬公噸。目前鉛月度價格由8月1,855升至9月1,873，10月再降至1,860美元／公噸。推論：預估供過於求可能限制漲幅，但全年供需預測與近期月均價變化不足以確定下一期方向。",
-      "risk": "若實際需求強於預期或精煉供應受阻，價格可能上升；若過剩擴大，則可能下跌。研究組織數字是預測，並非已完成的全年結果。",
+      "direction": "down",
+      "reason": "金屬貿易商Grillo公布的LME鉛資料顯示，11月11日現貨結算價為每噸1,845美元，低於11月2日的1,869.50美元。目前月資料中，10月為1,860美元，略低於9月的1,873美元。推論上，若11月現貨價格延續月初弱勢，下一次月價可能下降；目前仍只有部分月份的日資料。",
+      "risk": "Grillo資料亦顯示LME鉛庫存從11月2日至10日下降；若可用供應繼續收縮或需求回升，月價可能反彈。",
       "sources": [
         {
-          "title": "ILZSG Session/Forecasts: Lead Outlook for 2026 and 2027",
-          "url": "https://www.ilzsg.org/wp-content/uploads/3.PRESS%20RELEASES/ILZSG%20October%202026%20Press%20Release.pdf?outputType=chromeless",
-          "published": "2026-10-19",
-          "fact": "國際鉛鋅研究組織在10月19日新聞稿中，預測2026年全球精煉鉛供應超過需求9萬公噸；該預測經10月15日至16日會議討論。"
+          "title": "LME-Lead",
+          "url": "https://www.grillohandel.de/en/handelsprogramm/course-detail/lead",
+          "published": "2026-11-12",
+          "fact": "頁面於11月12日更新，列出11月2日LME鉛現貨結算價每噸1,869.50美元、11月11日1,845美元；庫存由11月2日310,900噸降至11月10日292,125噸。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1154,16 +1143,294 @@
       "unit": "美元/公噸",
       "frequency": "月"
     },
+    "twse_2002": {
+      "direction": "uncertain",
+      "reason": "中鋼2026年10月合併營收年增30.98%，可能支撐市場對營運的期待。目前股價資料顯示，11月4日至11日由19.15元降至18.8元，但最後兩日回升；營收成長與短期反彈能否延續至下一交易日，仍需觀察。",
+      "risk": "若買盤延續，股價可能上漲；若市場認為營收成長已反映，或賣壓增加，也可能回落。營收並非獲利數字。",
+      "sources": [
+        {
+          "title": "中鋼 115年10月營收320.40億、年增30.98%",
+          "url": "https://m.moneydj.com/f1a.aspx?a=52F235B0-EE5F-4886-B6A5-6B6F210862FC&utm_source=openai",
+          "published": "2026-11-10",
+          "fact": "報導指出，中鋼2026年10月營收為320.40億元，較去年同期增加30.98%。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 18.8,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_2006": {
+      "direction": "uncertain",
+      "reason": "東和鋼鐵2026年10月營收年增20.39%，可能有助市場評價營運表現。目前股價資料顯示，11月6日收84.3元後連三日回升，11月11日收86.4元，仍低於11月4日的89.7元；下一交易日方向尚不明朗。",
+      "risk": "營收成長若持續獲買盤支持，股價可能續漲；近期反彈也可能遭遇賣壓，營收本身未說明當月獲利。",
+      "sources": [
+        {
+          "title": "東和鋼鐵 115年10月營收55.39億、年增20.39%",
+          "url": "https://m.moneydj.com/f1a.aspx?a=1DEE3AD0-6FAD-4FD3-B607-315413459C54&utm_source=openai",
+          "published": "2026-11-05",
+          "fact": "報導指出，東和鋼鐵2026年10月營收為55.39億元，較去年同期增加20.39%。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 86.4,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_2007": {
+      "direction": "uncertain",
+      "reason": "燁興2026年10月營收年增45.04%，但1至10月累計營收年減15.04%；前三季則虧損7.67億元。目前股價資料顯示，11月4日至11日由6.8元降至6.33元。單月成長可能改善市場期待，但累計營收與虧損仍是壓力，下一交易日方向不明。",
+      "risk": "若市場重視單月營收回升，股價可能反彈；若虧損或賣壓持續受到關注，也可能再跌。",
+      "sources": [
+        {
+          "title": "燁興 115年10月營收4.10億、年增45.04%",
+          "url": "https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=c65ff17b-d338-4649-ab94-7b8609f8e32b&c=MB06&utm_source=openai",
+          "published": "2026-11-09",
+          "fact": "報導指出，燁興2026年10月營收4.10億元、年增45.04%；1至10月累計營收年減15.04%。"
+        },
+        {
+          "title": "燁興前三季虧損7.67億元，每股稅後 -1.45元",
+          "url": "https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=cef57a09-a2db-4773-b6cb-a0331050977b&utm_source=openai",
+          "published": "2026-11-04",
+          "fact": "燁興董事會於2026年11月4日通過第三季財報；2026年前三季歸屬母公司淨損約7.67億元。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 6.33,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_2014": {
+      "direction": "uncertain",
+      "reason": "中鴻2026年10月營收年增59.25%，公司說明主因為產品銷量及售價較去年同期增加，可能改善市場對營運的看法。目前股價資料顯示，11月4日至11日由15.7元降至15.1元，最後兩日持平；營收改善對下一交易日股價的影響仍待觀察。",
+      "risk": "營收成長可能帶來買盤，但1至10月累計營收仍年減，且市場可能已消化相關消息。",
+      "sources": [
+        {
+          "title": "中鴻 115年10月營收20.80億、年增59.25%",
+          "url": "https://m.moneydj.com/f1a.aspx?a=A4E53C7B-60E7-4314-B97D-24D943B24286&utm_source=openai",
+          "published": "2026-11-06",
+          "fact": "報導指出，中鴻2026年10月營收20.80億元、年增59.25%；公司說明產品銷量及售價均較去年同期增加。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 15.1,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_2015": {
+      "direction": "uncertain",
+      "reason": "豐興2026年10月營收年增13.67%，但公告的當月自結稅前損益低於去年同期，營收與獲利訊號並不一致。目前股價資料顯示，11月4日至11日由63.4元降至62.2元，最後一日小幅回升；下一交易日方向尚待確認。",
+      "risk": "若市場重視營收成長，股價可能回升；若更關注獲利下降，則可能承壓。當月損益為未經會計師查核的自結數。",
+      "sources": [
+        {
+          "title": "豐興115年10月份合併自結損益",
+          "url": "https://tw.stock.yahoo.com/quote/2015/announcement?utm_source=openai",
+          "published": "2026-11-06",
+          "fact": "豐興於2026年11月6日公告，10月合併營收24.07億元；自結稅前損益約1.09億元，低於去年同期約2.33億元。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 62.2,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_2023": {
+      "direction": "uncertain",
+      "reason": "燁輝2026年10月營收年增7.14%，但1至10月累計營收年減4.80%。目前股價資料顯示，11月4日至11日由15.05元連續降至14.1元；單月成長可能提供支撐，但短期賣壓是否消退仍待確認。",
+      "risk": "若市場看重單月營收成長，股價可能反彈；若累計營收下滑或近期賣壓持續受關注，也可能續跌。",
+      "sources": [
+        {
+          "title": "燁輝 115年10月營收58.58億、年增7.14%",
+          "url": "https://m.moneydj.com/f1a.aspx?a=B3E9D640-E68E-449A-ABA1-61E0E81DECD0&utm_source=openai",
+          "published": "2026-11-09",
+          "fact": "報導指出，燁輝2026年10月營收58.58億元、年增7.14%；1至10月累計營收年減4.80%。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 14.1,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_2027": {
+      "direction": "uncertain",
+      "reason": "大成鋼2026年10月營收年增44.80%，可能支撐市場對營運成長的期待。目前股價資料顯示，11月6日收45.7元後連三日上漲，11月11日收50.1元；反彈能否在下一交易日延續，仍有不確定性。",
+      "risk": "營收成長若持續受到重視，股價可能續漲；也可能因近期漲幅或市場預期改變而回落。營收不等於獲利。",
+      "sources": [
+        {
+          "title": "大成鋼 115年10月營收133.11億、年增44.80%",
+          "url": "https://m.moneydj.com/f1a.aspx?a=B65F2DFE-C745-42D0-B464-9F1AD7028D3B&utm_source=openai",
+          "published": "2026-11-06",
+          "fact": "報導指出，大成鋼2026年10月營收133.11億元，較去年同期增加44.80%。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 50.1,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_2031": {
+      "direction": "uncertain",
+      "reason": "新光鋼2026年10月營收年增56.19%，公司說明與國內需求增加、出貨強勁有關，可能支撐市場對營運的期待。目前股價資料顯示，11月9日收43元，11月10日至11日收44.4元；反彈後下一交易日走向仍待觀察。",
+      "risk": "若出貨動能改善持續受到重視，股價可能上漲；若相關利多已反映或市場賣壓增加，也可能回落。",
+      "sources": [
+        {
+          "title": "新光鋼 115年10月營收17.74億、年增56.19%",
+          "url": "https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=22a7559a-2390-46ed-82a4-a2b4c63ce2d4&utm_source=openai",
+          "published": "2026-11-09",
+          "fact": "報導指出，新光鋼2026年10月營收17.74億元、年增56.19%；公司表示成長主因為國內需求增加、出貨強勁。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 44.4,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_9958": {
+      "direction": "uncertain",
+      "reason": "世紀鋼2026年10月合併營收年增41.93%；目前股價資料顯示，11月4日至11日由81.7元跌至73.1元。營收成長可能支撐市場信心，但近期股價走弱，兩項資料不足以確定下一交易日方向。",
+      "risk": "若市場重視營收成長，股價可能反彈；若賣壓持續，也可能續跌。營收不等於獲利，後續仍需觀察。",
+      "sources": [
+        {
+          "title": "〖公告〗世紀鋼 2026年10月合併營收16.31億元 年增41.93%",
+          "url": "https://tw.stock.yahoo.com/news/%E5%85%AC%E5%91%8A-%E4%B8%96%E7%B4%80%E9%8B%BC-2026%E5%B9%B410%E6%9C%88%E5%90%88%E4%BD%B5%E7%87%9F%E6%94%B616-31%E5%84%84%E5%85%83-%E5%B9%B4%E5%A2%9E41-081425854.html?utm_source=openai",
+          "published": "2026-11-06",
+          "fact": "中央社轉載公告：世紀鋼2026年10月合併營收約16.31億元，年增41.93%。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 73.1,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_1101": {
+      "direction": "uncertain",
+      "reason": "台泥2026年10月營收月增14.21%、年增17.83%；目前股價資料顯示，11月6日至11日由26.75元回升至27.7元。營收成長可能支持股價，但短期反彈能否延續仍待確認。",
+      "risk": "營收增長可能帶動買盤，也可能已反映在股價中；獲利表現與市場買賣力道都會影響後續走勢。",
+      "sources": [
+        {
+          "title": "2026年10月上市櫃公司營收一覽表",
+          "url": "https://www.skis.com.tw/Doc/Report/insights/insights_20261111_082628.pdf",
+          "published": "2026-11-11",
+          "fact": "新光證券11月11日資料列出台泥2026年10月營收163.57億元，月增14.21%、年增17.83%。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 27.7,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_1102": {
+      "direction": "uncertain",
+      "reason": "亞泥2026年10月營收月減19.18%、年減6.90%；目前股價資料顯示，11月4日至11日由36.9元降至36.55元。營收下降可能壓抑信心，但股價已經歷波動，下一交易日方向仍不明確。",
+      "risk": "市場可能進一步反映營收下滑，也可能認為相關資訊已反映而出現反彈；單月營收未涵蓋獲利變化。",
+      "sources": [
+        {
+          "title": "2026年10月上市櫃公司營收一覽表",
+          "url": "https://www.skis.com.tw/Doc/Report/insights/insights_20261111_082628.pdf",
+          "published": "2026-11-11",
+          "fact": "新光證券11月11日資料列出亞泥2026年10月營收54.31億元，月減19.18%、年減6.90%。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 36.55,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_1103": {
+      "direction": "uncertain",
+      "reason": "嘉泥2026年10月營收月減6.13%、年減5.22%；目前股價資料顯示，11月4日至11日介於13.3至13.45元。營收下滑可能使買盤審慎，但近期股價波動有限，尚不足以推定下一交易日方向。",
+      "risk": "若市場更重視營收衰退，股價可能走弱；若賣壓有限或出現買盤，也可能持穩或回升。",
+      "sources": [
+        {
+          "title": "2026年10月上市櫃公司營收一覽表",
+          "url": "https://www.skis.com.tw/Doc/Report/insights/insights_20261111_082628.pdf",
+          "published": "2026-11-11",
+          "fact": "新光證券11月11日資料列出嘉泥2026年10月營收約2.34億元，月減6.13%、年減5.22%。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 13.3,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_1104": {
+      "direction": "uncertain",
+      "reason": "環泥2026年10月營收月增4.17%，但年減11.23%；目前股價資料顯示，11月4日至11日由26.55元降至25.85元。月增與年減傳遞不同訊號，近期跌勢也不足以確定下一交易日會延續。",
+      "risk": "年減可能繼續壓抑信心；另一方面，月增或跌後買盤可能支撐股價。",
+      "sources": [
+        {
+          "title": "2026年10月上市櫃公司營收一覽表",
+          "url": "https://www.skis.com.tw/Doc/Report/insights/insights_20261111_082628.pdf",
+          "published": "2026-11-11",
+          "fact": "新光證券11月11日資料列出環泥2026年10月營收約6.42億元，月增4.17%、年減11.23%。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 25.85,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_1108": {
+      "direction": "uncertain",
+      "reason": "幸福2026年10月營收月增3.13%、年減4.48%；目前股價資料顯示，11月10日收10.6元，11月11日回升至10.65元。月營收的月增與年減方向不同，加上單日反彈，仍需觀察下一交易日買賣力道。",
+      "risk": "若市場重視年減，股價可能承壓；若月增改善信心或買盤增加，則可能上行。",
+      "sources": [
+        {
+          "title": "2026年10月上市櫃公司營收一覽表",
+          "url": "https://www.skis.com.tw/Doc/Report/insights/insights_20261111_082628.pdf",
+          "published": "2026-11-11",
+          "fact": "新光證券11月11日資料列出幸福2026年10月營收約3.11億元，月增3.13%、年減4.48%。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 10.65,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_1109": {
+      "direction": "uncertain",
+      "reason": "信大2026年10月營收月減5.92%、年減18.64%；目前股價資料顯示，11月9日至11日由13元降至12.7元。營收下滑可能使市場審慎，但現有資料不足以確認賣壓是否延續。",
+      "risk": "股價可能續受營收衰退影響，也可能因賣壓減輕而反彈；後續仍需觀察公司獲利及交易情況。",
+      "sources": [
+        {
+          "title": "2026年10月上市櫃公司營收一覽表",
+          "url": "https://www.skis.com.tw/Doc/Report/insights/insights_20261111_082628.pdf",
+          "published": "2026-11-11",
+          "fact": "新光證券11月11日資料列出信大2026年10月營收約2.65億元，月減5.92%、年減18.64%。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 12.7,
+      "unit": "元/股",
+      "frequency": "日"
+    },
+    "twse_1110": {
+      "direction": "uncertain",
+      "reason": "東泥2026年10月營收月增50.50%、年增12.46%；目前股價資料顯示，11月10日收13.55元，11月11日回升至13.95元，但仍低於11月4日的15.15元。營收成長可能支持信心，惟近期股價先跌後升，下一交易日方向仍待確認。",
+      "risk": "若市場看重營收成長，反彈可能延續；若先前跌勢反映其他因素，股價也可能再度走弱。單月營收的成長是否持續仍需觀察。",
+      "sources": [
+        {
+          "title": "2026年10月上市櫃公司營收一覽表",
+          "url": "https://www.skis.com.tw/Doc/Report/insights/insights_20261111_082628.pdf",
+          "published": "2026-11-11",
+          "fact": "新光證券11月11日資料列出東泥2026年10月營收約2.96億元，月增50.50%、年增12.46%。"
+        }
+      ],
+      "baseline_period": "2026-11-11",
+      "baseline_value": 13.95,
+      "unit": "元/股",
+      "frequency": "日"
+    },
     "wb_tin": {
       "direction": "down",
-      "reason": "資料顯示，錫月均價由9月每公噸53,712美元降至10月的51,696美元。LME Insight報導，11月2日至6日當週錫價下跌，週末收於46,467美元。若11月後續價格維持較低水準，推論下次月均價偏向下跌；單週價格仍需與全月均價分開看。",
-      "risk": "同週LME錫庫存減少，若供應偏緊或需求回升，價格可能反彈。",
+      "reason": "資料：LME 錫在11月2日至6日當週下跌4.9%；目前月資料也由9月的53,712降至10月的51,696美元／公噸。推論：若11月的低價延續，下一期月均價偏向下跌，但週收盤價與月均價的統計期間不同。",
+      "risk": "同期LME錫庫存減少，且週末價格自低點反彈；供應收緊或需求回升可能推高後續價格。",
       "sources": [
         {
           "title": "The LME Weekly Review: 2 – 6 November 2026",
           "url": "https://www.lmeinsight.com/the-lme-weekly-review-2-6-november-2026/",
           "published": "2026-11-10",
-          "fact": "11月2日至6日當週錫價下跌4.9%，週末為每公噸46,467美元；LME錫庫存減少145公噸至3,885公噸。"
+          "fact": "報告指出，11月2日至6日當週錫價下跌4.9%，LME錫庫存減少145公噸。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1173,14 +1440,14 @@
     },
     "wb_brent": {
       "direction": "down",
-      "reason": "資料顯示，布蘭特原油月均價由9月每桶116.8美元升至10月125.0美元。美國能源資訊署指出，布蘭特現貨價於11月4日跌破100美元；若較低現貨價持續，推論11月均價偏向回落。這是單日現貨價格與月均價的比較。",
-      "risk": "若中東運輸再受干擾或油價於月內反彈，11月均價可能高於目前推論。",
+      "reason": "資料：11月10日布蘭特原油期貨收低；目前月均價則由9月116.8升至10月125.0美元／桶。推論：近期期貨跌勢若持續，11月月均價有下行壓力；期貨收盤價與月均現貨資料口徑不同。",
+      "risk": "中東供應或航運再受干擾，可能使價格反彈；月底前的價格走勢仍會影響整月平均。",
       "sources": [
         {
-          "title": "Short-Term Energy Outlook, November 2026",
-          "url": "https://www.eia.gov/outlooks/steo/archives/nov26.pdf",
+          "title": "PFL Petroleum — Market Daily",
+          "url": "https://pflpetroleum.com/reports/wp-content/uploads/2026/11/Petroleum_Daily11102026.pdf",
           "published": "2026-11-10",
-          "fact": "能源資訊署指出，布蘭特現貨價於2026年11月4日跌破每桶100美元；其報告亦指出10月中東石油出口略增。"
+          "fact": "報告記載，11月10日布蘭特原油期貨收於每桶91.49美元，較前一交易日下跌1.08美元。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1190,14 +1457,14 @@
     },
     "wb_wti": {
       "direction": "down",
-      "reason": "資料顯示，WTI月均價從9月每桶96.9美元小升至10月97.7美元。Kiplinger報導11月4日近月WTI期貨下跌至88.67美元；若後續現貨價格也維持疲弱，推論11月均價偏向下跌。期貨與現貨月均價的期間及報價口徑不同。",
-      "risk": "期貨跌幅未必完整反映現貨，若供應受阻或需求改善，月均價仍可能持平或上升。",
+      "reason": "資料：11月10日WTI期貨連續第二個交易日下跌；目前月均價由9月96.9小升至10月97.7美元／桶。推論：若近期弱勢延續，下一期月均價偏向下跌。期貨單日收盤價與月均現貨價格仍有口徑差異。",
+      "risk": "原油供應中斷、需求回升或月底前反彈，都可能改變月均價方向。",
       "sources": [
         {
-          "title": "Dow Rallies 1,569 Points on Midterm Relief: Stock Market Today",
-          "url": "https://www.kiplinger.com/investing/stocks/dow-rallies-1-570-points-on-midterm-relief-stock-market-today",
-          "published": "2026-11-04",
-          "fact": "報導記載11月4日近月WTI原油期貨下跌7.7%，至每桶88.67美元。"
+          "title": "PFL Petroleum — Market Daily",
+          "url": "https://pflpetroleum.com/reports/wp-content/uploads/2026/11/Petroleum_Daily11102026.pdf",
+          "published": "2026-11-10",
+          "fact": "報告指出，11月10日WTI原油期貨收於每桶86.04美元，較前一交易日下跌0.81美元。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1206,15 +1473,15 @@
       "frequency": "月"
     },
     "wb_dubai": {
-      "direction": "uncertain",
-      "reason": "世界銀行11月3日公布的資料顯示，杜拜原油月均價由9月每桶93.3美元升至10月102.7美元。近期查得的正式資料確認了上漲，但沒有足夠的11月杜拜原油同口徑價格資訊支持下一期方向。",
-      "risk": "若中東供應或運輸狀況改變，杜拜原油可能上漲或回落；後續仍需觀察該品項報價。",
+      "direction": "down",
+      "reason": "資料：巴基斯坦石油與天然氣監管機關列出的杜拜原油價格，從10月30日每桶118.70美元降至11月10日87.82美元；目前10月月均價則由9月93.3升至102.7美元。推論：若11月低價持續，下一期月均價偏向下跌；單日報價與月均價的採價口徑仍須留意。",
+      "risk": "中東供應或航運干擾可能推升後續報價；11月尚未結束，月均價仍可能改變。",
       "sources": [
         {
-          "title": "World Bank Commodities Price Data (The Pink Sheet)",
-          "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Pink-Sheet-November-2026.pdf",
-          "published": "2026-11-03",
-          "fact": "2026年9月及10月杜拜原油月均價分別為每桶93.3及102.7美元。"
+          "title": "atif shb master price predictor.xlsx",
+          "url": "https://ogra.org.pk/index.php/download/18122?lang=en",
+          "published": "2026-11-10",
+          "fact": "監管機關表格列示杜拜原油10月30日為每桶118.70美元、11月10日為87.82美元。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1223,15 +1490,21 @@
       "frequency": "月"
     },
     "wb_ng_us": {
-      "direction": "down",
-      "reason": "資料顯示，美國天然氣月均價由9月每百萬英熱單位2.95美元微升至10月2.96美元。美國能源資訊署11月10日表示，11月初較暖，並上修月底庫存預測；推論供暖需求壓力減輕，下一期價格偏向下跌。庫存數字是預測，尚待實際資料確認。",
-      "risk": "若11月後半轉冷、產量下降或液化天然氣出口需求增加，價格可能回升。",
+      "direction": "uncertain",
+      "reason": "資料：美國能源資訊署因11月初天氣溫暖而上修冬季天然氣庫存展望，並下修11月至翌年3月的Henry Hub現貨均價預測；目前月均價則由9月2.95微升至10月2.96美元／百萬英熱單位。另一方面，11月10日天然氣期貨上漲。推論：庫存展望帶來下行壓力，但期貨與跨冬季預測給出的訊號不足以確定11月月均價方向。",
+      "risk": "若後續天氣轉冷或需求增強，現貨可能上漲；若溫暖天氣與較高庫存延續，價格也可能走低。",
       "sources": [
         {
           "title": "EIA raises November natural gas storage forecast after warm start to month",
           "url": "https://www.eia.gov/pressroom/releases/press594.php",
           "published": "2026-11-10",
-          "fact": "能源資訊署因11月初天氣較暖，預測11月底美國天然氣庫存較其10月預測增加近700億立方英尺。"
+          "fact": "EIA於11月10日表示，11月初較溫暖使其上修冬季美國天然氣庫存展望，並下修11月至翌年3月Henry Hub現貨均價預測。"
+        },
+        {
+          "title": "PFL Petroleum — Market Daily",
+          "url": "https://pflpetroleum.com/reports/wp-content/uploads/2026/11/Petroleum_Daily11102026.pdf",
+          "published": "2026-11-10",
+          "fact": "報告所列天然氣期貨11月10日收盤上漲；這是期貨報價，與Henry Hub月均現貨價格不同。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1241,14 +1514,20 @@
     },
     "wb_ng_eu": {
       "direction": "uncertain",
-      "reason": "資料顯示，歐洲天然氣月均價由9月每百萬英熱單位25.42美元升至10月28.50美元。Kpler指出，TTF近月合約在10月28日至11月4日下跌，但歐盟庫存也在下降。價格回落與冬季供應壓力並存，11月全月均價方向仍不明朗。",
-      "risk": "若天氣轉冷或供應不足，價格可能反彈；若運輸風險緩解或需求減弱，則可能續跌。",
+      "reason": "資料：荷蘭TTF近月天然氣期貨11月10日觸及一個月低點，11月11日又上漲；目前歐洲天然氣月均價則由9月25.42升至10月28.5美元／百萬英熱單位。推論：近期回落可能減輕月均價壓力，但反彈及期貨與月均資料的口徑差異，使下一期方向仍不明確。",
+      "risk": "冬季低溫、庫存偏低或供應中斷可能推升價格；若供應改善或需求減弱，價格也可能繼續回落。",
       "sources": [
         {
-          "title": "TTF to rise on cooling temperatures, early storage withdrawals, as Indian power demand supports Asian LNG prices",
-          "url": "https://cn.kpler.com/blog/ttf-to-rise-on-cooling-temperatures-early-storage-withdrawals-as-indian-power-demand-supports-asian-lng-prices",
-          "published": "2026-11-05",
-          "fact": "TTF近月合約由10月28日每百萬英熱單位32.86美元降至11月4日29.09美元；截至11月3日，歐盟地下天然氣庫存充填率為74.1%。"
+          "title": "European gas prices hit 1-month lows as Trump pauses Iran strikes",
+          "url": "https://finance.yahoo.com/energy/articles/european-gas-prices-hit-1-110210007.html?utm_source=openai",
+          "published": "2026-11-10",
+          "fact": "報導指出，11月10日荷蘭TTF近月天然氣期貨盤中跌至約每兆瓦時82歐元，觸及一個月低點。"
+        },
+        {
+          "title": "Global Markets Monitor — November 11, 2026",
+          "url": "https://www.imfconnect.org/content/dam/imf/News%20and%20Generic%20Content/GMM/archive/GMM%20November%2011%2C%202026.pdf?utm_source=openai",
+          "published": "2026-11-11",
+          "fact": "市場簡報記載，荷蘭TTF近月天然氣期貨11月11日上漲，並提到LNG進口及荷姆茲海峽供應風險。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1258,20 +1537,14 @@
     },
     "wb_lng_jp": {
       "direction": "uncertain",
-      "reason": "資料顯示，日本LNG進口月均價由9月每百萬英熱單位16.26美元升至10月16.59美元；世界銀行註明最近兩個月均價為估計值。Kpler指出，截至11月1日日本電力業者LNG庫存較前週下降，可能增加補庫需求；但進口均價受合約組成及時滯影響，下一期方向仍待確認。",
-      "risk": "補庫與供應中斷可能推升價格；需求偏弱或到貨改善則可能壓低價格，且近期估計值可能修訂。",
+      "reason": "資料：東京瓦斯執行長11月5日表示，冬季天氣、庫存消耗及地緣情勢可能推升現貨LNG價格；報導同時指出11月4日東北亞JKM現貨評估價下跌。目前日本LNG月均價由9月16.26升至10月16.59美元／百萬英熱單位。推論：現貨及油價可能影響後續採購，但日本進口價格包含不同合約與計價時滯，下一期方向仍待確認。",
+      "risk": "若高價現貨與原油連動合約逐步反映，月均價可能續升；若現貨回落或合約反映時間較長，也可能持平或下跌。",
       "sources": [
         {
-          "title": "TTF to rise on cooling temperatures, early storage withdrawals, as Indian power demand supports Asian LNG prices",
-          "url": "https://cn.kpler.com/blog/ttf-to-rise-on-cooling-temperatures-early-storage-withdrawals-as-indian-power-demand-supports-asian-lng-prices",
+          "title": "Spot LNG price may rise further toward winter on weather, geopolitical risks: Tokyo Gas CEO",
+          "url": "https://www.spglobal.com/energy/en/news-research/latest-news/lng/110526-spot-lng-price-may-rise-further-toward-winter-on-weather-geopolitical-risks-tokyo-gas-ceo",
           "published": "2026-11-05",
-          "fact": "截至11月1日，日本電力業者LNG庫存較前週減少11%，至192萬公噸。"
-        },
-        {
-          "title": "World Bank Commodities Price Data (The Pink Sheet)",
-          "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Pink-Sheet-November-2026.pdf",
-          "published": "2026-11-03",
-          "fact": "2026年9月及10月日本LNG進口月均價分別為每百萬英熱單位16.26及16.59美元；該系列最近兩個月均價為估計值。"
+          "fact": "東京瓦斯執行長11月5日談及冬季LNG現貨價格上行風險；Platts對12月交付東北亞的JKM評估價則在11月4日下跌。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1281,14 +1554,14 @@
     },
     "wb_logs_my": {
       "direction": "uncertain",
-      "reason": "世界銀行11月3日資料顯示，馬來西亞砂拉越美蘭蒂原木在東京的進口商售價月均值，由9月每立方公尺190.3美元降至10月188.5美元。這是特定品種與市場的報價；目前缺少足夠的11月同口徑資訊，下一期方向仍待確認。",
-      "risk": "若日本買方需求增強或原木供應收緊，價格可能反彈；需求疲弱則可能延續跌勢。",
+      "reason": "資料：國際熱帶木材組織11月11日就馬來西亞砂拉越上巴南森林採伐議題發布聲明；目前馬來西亞原木月資料則由9月190.3降至10月188.5美元／立方公尺。推論：採伐與森林管理值得追蹤，但該聲明沒有提供此原木價格或可量化的供應變化，現有證據不足以研判下一期方向。",
+      "risk": "若相關產地供應收緊，價格可能上升；若需求走弱或供應增加，價格可能續跌。上巴南議題對此報價所涵蓋原木的實際影響仍待確認。",
       "sources": [
         {
-          "title": "World Bank Commodities Price Data (The Pink Sheet)",
-          "url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Pink-Sheet-November-2026.pdf",
-          "published": "2026-11-03",
-          "fact": "2026年9月及10月東南亞原木月均價分別為每立方公尺190.3及188.5美元；系列定義為馬來西亞砂拉越美蘭蒂原木在東京的進口商售價。"
+          "title": "ITTO Statement in Response to NGO Press Release on the Upper Baram Forest Area (UBFA) Project",
+          "url": "https://www.itto.int/news_releases/id%3D3447?utm_source=openai",
+          "published": "2026-11-11",
+          "fact": "國際熱帶木材組織11月11日回應民間團體11月9日提出的砂拉越上巴南森林採伐議題；聲明未列出原木成交價格。"
         }
       ],
       "baseline_period": "2026-10",
@@ -1296,322 +1569,33 @@
       "unit": "美元/立方公尺",
       "frequency": "月"
     },
-    "twse_9958": {
-      "direction": "down",
-      "reason": "資料：世紀鋼10月營收年增41.93%；目前股價由11月3日81.9元降至11月10日76元。下一個交易日11月11日已收73.1元，較11月10日下跌，方向為實際結果而非預測。 推論：營收年增可能支撐營運信心，但不足以確定當日股價變動的原因。",
-      "risk": "營收較前月下降，後續獲利與市場對營運的評價仍待觀察；股價也可能反彈。",
-      "sources": [
-        {
-          "title": "世紀鋼10月營收16.31億元年增41.93% 1—10月達175.08億元",
-          "url": "https://news.cnyes.com/news/id/6651123",
-          "published": "2026-11-06",
-          "fact": "報導刊於11月6日；世紀鋼2026年10月營收16.31億元，年增41.93%。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 76.0,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_1101": {
-      "direction": "up",
-      "reason": "資料：台泥10月合併營收163.57億元，年增17.83%；目前股價11月10日為27.3元，下一交易日11月11日收27.7元，實際上漲。 推論：營收成長可能有助支撐市場信心，但無法據此歸因當日漲幅。",
-      "risk": "營收增長不等同獲利增長；若市場轉而關注成本或獲利，後續股價可能下跌。",
-      "sources": [
-        {
-          "title": "台泥個股公告：2026年10月合併營收163.57億元",
-          "url": "https://tw.finance.yahoo.com/quote/1101.TW/announcement",
-          "published": "2026-11-10",
-          "fact": "中央社公告資料日期為11月10日；台泥10月合併營收163.57億元，年增17.83%。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 27.3,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_1102": {
-      "direction": "down",
-      "reason": "資料：亞泥11月11日公布第三季稅後純益年減34.52%，前三季則年增17.66%；目前股價11月10日為36.6元，11月11日收36.55元，實際小跌。 推論：季度獲利下滑可能影響後續市場評價，但該財報報導發布於台灣時間11月11日盤後，不宜用來解釋當日收盤漲跌。",
-      "risk": "前三季獲利仍年增，若市場更重視累計表現或轉投資收益，後續股價可能回升。",
-      "sources": [
-        {
-          "title": "亞泥前三季EPS 2.86元 轉投資遠鼎租賃由遠銀國際租賃換股合併",
-          "url": "https://hk.finance.yahoo.com/news/%E4%BA%9E%E6%B3%A5%E5%89%8D%E4%B8%89%E5%AD%A3eps-2-86%E5%85%83-%E8%BD%89%E6%8A%95%E8%B3%87%E9%81%A0%E9%BC%8E%E7%A7%9F%E8%B3%83%E7%94%B1%E9%81%A0%E9%8A%80%E5%9C%8B%E9%9A%9B%E7%A7%9F%E8%B3%83%E6%8F%9B%E8%82%A1%E5%90%88%E4%BD%B5-121039729.html",
-          "published": "2026-11-11",
-          "fact": "鉅亨網11月11日報導，亞泥當日公布第三季稅後純益24.82億元、年減34.52%；前三季稅後純益95.13億元、年增17.66%。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 36.6,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_1103": {
-      "direction": "stable",
-      "reason": "資料：嘉泥10月營收年減5.22%；目前股價由11月3日13.55元降至11月10日13.3元，11月11日收13.3元，較前日持平。 推論：營收年減可能使市場對營運保持審慎，但單月營收不足以解釋當日股價持平。",
-      "risk": "若後續營收或獲利改善，股價可能上漲；若營運壓力延續，也可能下跌。",
-      "sources": [
-        {
-          "title": "嘉泥：115年10月營業收入為2.34億元，年減5.22%",
-          "url": "https://www.nstock.tw/news/article_m?id=562295",
-          "published": "2026-11-10",
-          "fact": "11月10日發布的公司營收資料顯示，嘉泥2026年10月營收2.34億元，年減5.22%。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 13.3,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_1104": {
-      "direction": "down",
-      "reason": "資料：環泥10月合併營收年減11.23%；目前股價11月10日為26.2元，11月11日收25.85元，實際下跌。 推論：營收年減可能影響市場對營運的看法，惟當日股價下跌的具體原因仍需更多證據。",
-      "risk": "若後續營收或獲利改善，市場評價可能轉強，股價也可能反彈。",
-      "sources": [
-        {
-          "title": "環泥個股公告：2026年10月合併營收6.42億元",
-          "url": "https://tw.stock.yahoo.com/quote/1104.TW/announcement",
-          "published": "2026-11-10",
-          "fact": "中央社公告資料日期為11月10日；環泥2026年10月合併營收6.42億元，年減11.23%。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 26.2,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_1108": {
-      "direction": "up",
-      "reason": "資料：幸福10月合併營收年減4.48%；目前股價11月10日為10.6元，11月11日收10.65元，實際小漲。 推論：營收年減可能限制市場信心，但當日股價仍上漲，不能將單月營收視為唯一影響因素。",
-      "risk": "若營收衰退持續或獲利轉弱，後續股價可能回落；仍需觀察公司後續財務資料。",
-      "sources": [
-        {
-          "title": "幸福個股公告：2026年10月合併營收",
-          "url": "https://tw.stock.yahoo.com/quote/1108/announcement",
-          "published": "2026-11-09",
-          "fact": "中央社公告資料日期為11月9日；幸福2026年10月合併營收3.11億元，年減4.48%。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 10.6,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_1109": {
-      "direction": "down",
-      "reason": "資料：信大10月合併營收年減18.64%；目前股價11月10日為12.85元，11月11日收12.7元，實際下跌。 推論：營收年減可能使市場對營運前景較審慎，但尚無證據將當日跌幅歸因於該公告。",
-      "risk": "若營收衰退收斂或獲利改善，後續股價可能反彈。",
-      "sources": [
-        {
-          "title": "信大2026年10月合併營收2.65億元",
-          "url": "https://tw.stock.yahoo.com/quote/1109.TW/technical-analysis",
-          "published": "2026-11-10",
-          "fact": "中央社公告資料日期為11月10日；信大2026年10月合併營收2.65億元，年減18.64%。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 12.85,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_1110": {
-      "direction": "up",
-      "reason": "資料：東泥10月合併營收年增12.46%；目前股價由11月3日15元降至11月10日13.55元，11月11日收13.95元，較前日實際上漲。 推論：單月營收成長可能支撐信心，但僅憑營收資料無法確定反彈原因。",
-      "risk": "前10月累計營收仍年減；若後續營運未改善，股價可能再度回落。",
-      "sources": [
-        {
-          "title": "東泥2026年10月合併營收2.96億元 年增12.46%",
-          "url": "https://tw.stock.yahoo.com/news/%E5%85%AC%E5%91%8A-%E6%9D%B1%E6%B3%A5-2026%E5%B9%B410%E6%9C%88%E5%90%88%E4%BD%B5%E7%87%9F%E6%94%B62-96%E5%84%84%E5%85%83-%E5%B9%B4%E5%A2%9E12-062315889.html",
-          "published": "2026-11-10",
-          "fact": "中央社11月10日發布的公告資料顯示，東泥10月合併營收2.96億元、年增12.46%；前10月累計營收年減8.94%。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 13.55,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_2002": {
+    "mt_cis_slab": {
       "direction": "uncertain",
-      "reason": "中鋼11月10日公布10月合併營收320.4億元，年增30.98%。目前股價由11月3日19.35元降至10日18.65元；其後11日收於18.80元，已高於目前資料的最後一期。 推論：營收增長可能支撐市場信心，但股價已反映部分消息，下一交易日方向仍不明確。",
-      "risk": "若營收改善超出市場預期，股價可能續漲；若獲利表現或市場情緒轉弱，也可能回落。",
+      "reason": "GMK Center於2026-11-01報導，10月黑海扁鋼胚市場因海運限制而幾乎停擺；俄羅斯供應商正考慮改經波羅的海及北方港口，但轉運面臨成本和裝船困難。資料顯示，目前的2026-09-01至2026-10-16六筆紀錄均為每公噸486美元。推論上，運輸受阻可能限制供給，但市場交易稀少，現有證據不足以研判下一公布期價格方向；實際成交價及資料是否更新仍待確認。",
+      "risk": "若航運恢復且買方需求偏弱，價格可能承壓；若供應持續受限，也可能支撐報價。交易不足時，下一筆資料亦可能維持原值或無法更新。",
       "sources": [
         {
-          "title": "中鋼10月營收年月雙增 攀近兩年半來新高",
-          "url": "https://tw.stock.yahoo.com/news/%E4%B8%AD%E9%8B%BC10%E6%9C%88%E7%87%9F%E6%94%B6%E5%B9%B4%E6%9C%88%E9%9B%99%E5%A2%9E-%E6%94%80%E8%BF%91%E5%85%A9%E5%B9%B4%E5%8D%8A%E4%BE%86%E6%96%B0%E9%AB%98-012100765.html",
-          "published": "2026-11-11",
-          "fact": "MoneyDJ報導，中鋼於2026年11月10日公布10月合併營收約320億元，月增3.35%、年增30.98%。"
+          "title": "Black Sea slab market froze in October due to logistics constraints",
+          "url": "https://gmk.center/en/news/black-sea-slab-market-froze-in-october-due-to-logistics-constraints/?category=infrastructure&utm_source=openai",
+          "published": "2026-11-01",
+          "fact": "報導指出，2026年10月黑海扁鋼胚市場因海運限制而幾乎停擺；貨物轉往俄羅斯西北港口的物流成本較黑海港口高約每公噸30美元，且貨物集結與租船面臨困難。"
         }
       ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 18.65,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_2006": {
-      "direction": "uncertain",
-      "reason": "東和鋼鐵10月合併營收55.39億元，年增20.39%。目前股價由11月3日89.6元降至10日85.2元；11日收於86.4元。 推論：營收成長與股價近期反彈可能提供支撐，但不足以釐清下一交易日的買賣力道。",
-      "risk": "營收成長若帶動獲利預期，股價可能上漲；反之，市場若更重視成本或整體行情，股價可能下跌。",
-      "sources": [
-        {
-          "title": "公告：東和鋼鐵2026年10月合併營收55.39億元 年增20.39%",
-          "url": "https://tw.stock.yahoo.com/news/%E5%85%AC%E5%91%8A-%E6%9D%B1%E5%92%8C%E9%8B%BC%E9%90%B5-2026%E5%B9%B410%E6%9C%88%E5%90%88%E4%BD%B5%E7%87%9F%E6%94%B655-39%E5%84%84%E5%85%83-%E5%B9%B4%E5%A2%9E20-095250432.html",
-          "published": "2026-11-05",
-          "fact": "中央社轉載公司公告：2026年10月合併營收55.39億元，較去年同月增加20.39%。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 85.2,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_2007": {
-      "direction": "uncertain",
-      "reason": "燁興10月合併營收4.10億元，年增45.04%，但前十月累計營收年減15.04%。目前股價由11月3日6.80元降至10日6.36元，11日續收6.33元。 推論：單月營收改善可能提振信心，但累計營收仍減及股價走弱，使下一交易日方向不明。",
-      "risk": "若後續營運改善獲市場重視，股價可能反彈；若虧損或賣壓持續，也可能再跌。",
-      "sources": [
-        {
-          "title": "燁興115年10月營收4.10億、年增45.04%",
-          "url": "https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=c65ff17b-d338-4649-ab94-7b8609f8e32b&c=MB06",
-          "published": "2026-11-09",
-          "fact": "報導列出燁興2026年10月營收4.10億元、年增45.04%；2026年前十月累計營收年減15.04%。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 6.36,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_2014": {
-      "direction": "uncertain",
-      "reason": "中鴻10月營收20.80億元，年增59.25%；公司說明銷量及售價均較去年同期增加。目前股價由11月3日16.00元降至10日15.10元，11日收於15.10元。 推論：營收增長可能支撐評價，但股價近期下跌後持平，下一交易日方向仍待觀察。",
-      "risk": "若市場看好銷量與售價改善，股價可能回升；若投資人更關注累計營收年減或獲利變化，股價可能走弱。",
-      "sources": [
-        {
-          "title": "中鴻115年10月營收20.80億、年增59.25%",
-          "url": "https://m.moneydj.com/f1a.aspx?a=A4E53C7B-60E7-4314-B97D-24D943B24286",
-          "published": "2026-11-06",
-          "fact": "中鴻2026年10月營收年增59.25%；報導引述公司說明，產品銷量及售價均較去年同期增加。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 15.1,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_2015": {
-      "direction": "uncertain",
-      "reason": "豐興11月9日開出的當週鋼筋基價每噸調降200元，廢鋼與型鋼基價持平；這是公司盤價變動。目前股價由11月3日63.9元降至10日62.1元，11日收於62.2元。 推論：鋼筋降價可能壓抑營運預期，但成本及實際銷售情況仍需觀察，下一交易日股價方向不明。",
-      "risk": "若降價有助出貨或成本同步下降，股價可能上漲；若需求偏弱或價差縮小，股價也可能下跌。",
-      "sources": [
-        {
-          "title": "國際小鋼胚行情回落 豐興鋼筋近3個月來首度下跌",
-          "url": "https://m.cnyes.com/news/id/6653057",
-          "published": "2026-11-09",
-          "fact": "豐興於2026年11月9日開出當週盤價，鋼筋基價每噸下調200元。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 62.1,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_2023": {
-      "direction": "uncertain",
-      "reason": "燁輝10月營收58.58億元，年增7.14%，但前十月累計營收年減4.80%。目前股價由11月3日14.85元降至10日14.40元；11日收於14.35元。 推論：單月營收成長可能帶來支撐，但近期股價仍偏弱，難以預先確定下一交易日方向。",
-      "risk": "若單月成長延續並改善獲利預期，股價可能反彈；若累計營收疲弱或賣壓持續，股價可能續跌。",
-      "sources": [
-        {
-          "title": "燁輝115年10月營收58.58億、年增7.14%",
-          "url": "https://m.moneydj.com/f1a.aspx?a=B3E9D640-E68E-449A-ABA1-61E0E81DECD0",
-          "published": "2026-11-09",
-          "fact": "燁輝2026年10月營收58.58億元，年增7.14%；前十月累計營收年減4.80%。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 14.4,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_2027": {
-      "direction": "uncertain",
-      "reason": "大成鋼10月營收133.11億元，年增44.8%。目前股價由11月6日45.7元反彈至10日48.7元，11日續收50.1元。 推論：營收成長可能支持市場信心，但股價已連續反彈，下一交易日能否延續仍有不確定性。",
-      "risk": "若營收動能與獲利預期持續改善，股價可能再漲；若市場獲利了結或成長不及預期，也可能回落。",
-      "sources": [
-        {
-          "title": "營收速報：大成鋼10月營收133.11億元年增率高達44.8%",
-          "url": "https://m.cnyes.com/news/id/6650432",
-          "published": "2026-11-06",
-          "fact": "大成鋼於2026年11月6日公告，10月營收133.11億元，年增44.8%、月增7.37%。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 48.7,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "twse_2031": {
-      "direction": "uncertain",
-      "reason": "新光鋼10月合併營收約17.7億元，年增56%；公司指出成長主要來自國內需求增加及出貨強勁。目前股價由11月9日43.0元回升至10日44.4元，11日收於44.4元。 推論：出貨改善可能支撐市場信心，但股價反彈後持平，下一交易日仍需觀察。",
-      "risk": "若出貨動能延續，股價可能上漲；若需求轉弱或市場重新評估獲利，股價可能下跌。",
-      "sources": [
-        {
-          "title": "新光鋼營收／10月年增56％ 前三季大賺21億元、EPS 6.59元 成長動能強",
-          "url": "https://money.udn.com/money/story/5710/9867396?from=udnamp-referralnews_ch1001artbottom",
-          "published": "2026-11-09",
-          "fact": "新光鋼於2026年11月9日公布10月合併營收約17.7億元、年增56%；公司表示主因是國內需求增加、出貨強勁。"
-        }
-      ],
-      "baseline_period": "2026-11-10",
-      "baseline_value": 44.4,
-      "unit": "元/股",
-      "frequency": "日"
-    },
-    "north_scrap_price": {
-      "direction": "uncertain",
-      "reason": "時報新聞報導，豐興2026年11月9日開出的廢鋼收購價為每公噸10,100元，較前週持平。這是單一鋼廠的基價，與北部大盤月均價的統計範圍不同。 目前資料顯示，北部廢鋼大盤收購價由7月每公斤9.6元回升至10月10.3元。推論上，鋼廠收購價持平可能減緩北部價格上漲動能，但現有資料不足以確定11月月均價方向。",
-      "risk": "若北部收料競爭加劇，月均價仍可能上漲；若供應增加或鋼廠需求轉弱，也可能下跌。北部實際收購行情及11月完整月均價仍待確認。",
-      "sources": [
-        {
-          "title": "《鋼鐵股》豐興鋼筋跌200元 廢鋼、型鋼雙持平",
-          "url": "https://ww2.money-link.com.tw/RealtimeNews/NewsContent.aspx?PU=0010&SN=6353645001&utm_source=openai",
-          "published": "2026-11-09",
-          "fact": "2026年11月9日，豐興本週廢鋼收購基價持平，牌價為每公噸10,100元；這是鋼廠牌價，並非北部大盤月均價。"
-        }
-      ],
-      "baseline_period": "2026-10",
-      "baseline_value": 10.3,
-      "unit": "元/公斤",
-      "frequency": "月"
-    },
-    "billet_price": {
-      "direction": "uncertain",
-      "reason": "豐興表示，近期小鋼胚國際行情略有回落；2026年11月9日該公司同時調降鋼筋基價。國際小鋼胚行情與台灣中級小鋼胚出廠月均價的市場範圍不同。 目前資料顯示，國內中級小鋼胚出廠價由8月每公噸15,460元回升至10月16,075元。推論上，國際行情回落可能對國內出廠價形成壓力，但傳導幅度及11月均價方向尚不明確。",
-      "risk": "若國內供應偏緊或成本支撐價格，月均價可能持平或上漲；若弱勢行情持續傳導，也可能下跌。後續仍需觀察國內實際出廠報價與完整月均價。",
-      "sources": [
-        {
-          "title": "《鋼鐵股》豐興鋼筋跌200元 廢鋼、型鋼雙持平",
-          "url": "https://ww2.money-link.com.tw/RealtimeNews/NewsContent.aspx?PU=0010&SN=6353645001&utm_source=openai",
-          "published": "2026-11-09",
-          "fact": "2026年11月9日報導引述豐興協理指出，近期小鋼胚國際價格稍有回落；報導未提供台灣中級小鋼胚出廠價。"
-        }
-      ],
-      "baseline_period": "2026-10",
-      "baseline_value": 16075.0,
-      "unit": "元/公噸",
-      "frequency": "月"
+      "baseline_period": "2026-10-16",
+      "baseline_value": 486.0,
+      "unit": "美元/公噸",
+      "frequency": "週"
     },
     "crude_steel_production": {
       "direction": "uncertain",
-      "reason": "2026年11月9日報導指出，中鋼規劃最遲於2029年第一季除役一號高爐，調整後的粗鋼年產能預計為880萬公噸；這是長期產能規劃，並非當月實際產量。目前資料顯示，臺灣粗鋼月產量由2026年5月的169.0599萬公噸，連續下降至8月的146.6611萬公噸。近期報導反映未來產能調整方向，但不足以推知下一公布期的產量變化，因此方向列為uncertain。",
-      "risk": "若鋼廠接單或稼動率回升，下一期產量可能反彈；若需求轉弱或設備檢修增加，也可能續降。中鋼的規劃僅涉及單一企業，除役時間與對短期產量的影響仍須觀察。",
+      "reason": "金屬中心2026年9月刊指出，臺灣6月粗鋼產量為164.6萬公噸，並認為國內需求回升力道有限。另據10月1日報導，中鋼與中龍9月合計出貨104.1萬公噸，較8月增加，其中包含部分遞延出貨。目前的資料顯示，全臺粗鋼產量由5月169.0599萬公噸連續降至8月146.6611萬公噸。推論上，出貨回升可能支撐後續生產，但出貨與當月粗鋼產量的範圍及時間不同；目前對下一筆資料，即9月產量的方向研判為不確定。",
+      "risk": "若新增訂單帶動鋼廠提高產量，9月可能回升；若需求偏弱、庫存消化或設備調整使生產受限，則可能續降。9月較8月少一天，月產量比較也須留意工作天數差異。",
       "sources": [
         {
-          "title": "中鋼拚轉型1》去年虧35億、今年拚翻身 中鋼關高爐能救獲利？",
-          "url": "https://www.peoplenews.tw/articles/economic-news/65998",
-          "published": "2026-11-09",
-          "fact": "報導引述中鋼年報及法說會資料：公司規劃最遲於2029年第一季除役一號高爐，產能調整後粗鋼年產能預計為880萬公噸；報導未指出該規劃的決議日期。"
+          "title": "中鋼、中龍9月出貨衝到104萬公噸 創2年8個月新高",
+          "url": "https://pinview.com.tw/News/63298.html",
+          "published": "2026-10-01",
+          "fact": "報導引用中鋼統計，2026年9月中鋼與中龍合計出貨104.1萬公噸，高於8月的83.1萬公噸；9月外銷出貨包含前月順延部分。此數字是兩家公司出貨量，含鋼胚。"
         }
       ],
       "baseline_period": "2026-08",
@@ -1619,20 +1603,117 @@
       "unit": "萬公噸",
       "frequency": "月"
     },
-    "cci_tw_22": {
+    "cci_tw_27": {
       "direction": "uncertain",
-      "reason": "臺北市政府公布，2026年10月土木工程材料類指數為123.85，較9月上漲0.21%；這是臺北市指數。目前的全國資料則由7月的121.73連升至10月的123.08。兩組資料顯示近期材料指數有上行跡象，但地區與全國涵蓋範圍不同，對下一期全國指數的方向研判仍屬不確定。",
-      "risk": "若材料報價續漲，全國指數可能延續升勢；若部分材料價格回落，也可能持平或下跌。臺北市變化幅度與全國不同，後續仍需觀察全國查價結果。",
+      "reason": "台水與苗栗縣政府於2026年10月21日簽署泰安淨水場新建及下游管線工程合作備忘錄；若後續推進施工，可能形成自來水工程材料與勞務需求，但近期對價格指數的影響尚待觀察。目前資料顯示，自來水工程總指數由2026年5月的120.60升至10月的122.21，10月較9月增加0.26點。這是工程物價指數，而非單一材料成交價；近期工程消息與既有走勢仍不足以支持對11月方向的明確研判。",
+      "risk": "若相關材料或勞務價格持續上升，11月指數可能續漲；若價格持平或回落，也可能持平或下降。泰安案仍在合作規劃階段，實際發包、施工時間及對指數的影響有待確認。",
+      "sources": [
+        {
+          "title": "台水公司與苗栗縣政府簽署MOU 攜手打造泰安淨水場提高偏鄉供水普及率",
+          "url": "https://ncsd.ndc.gov.tw/Fore/News_detail/8e8b781c-cc1f-4cc0-a151-ec767aeb3883?utm_source=openai",
+          "published": "2026-10-21",
+          "fact": "台灣自來水公司與苗栗縣政府於2026年10月21日簽署泰安淨水場新建及下游管線工程合作備忘錄。"
+        },
+        {
+          "title": "臺北自來水事業處115年11月2日停水訊息",
+          "url": "https://www.cna.com.tw/postwrite/chi/448736?utm_source=openai",
+          "published": "2026-11-02",
+          "fact": "臺北自來水事業處公告，新北市永和區管網改善工程預定於2026年11月3日至6日進行，施工期間部分地區停水。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 122.21,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "north_scrap_price": {
+      "direction": "uncertain",
+      "reason": "資料顯示，北部廢鋼大盤收購月均價由2026年7月每公斤9.6元回升至10月的10.3元。11月9日豐興廢鋼收購價維持平盤，每公噸10,100元；這是單一鋼廠牌價，與北部大盤月均價的統計範圍不同。推論上，鋼廠收購價持平可能減弱北部廢鋼價格的上漲動能，但目前缺少足夠的11月北部大盤報價，下一期月均價方向仍不明朗。",
+      "risk": "若北部廢鋼供應收緊或收購需求增加，月均價可能續漲；若需求轉弱或收購價下調，也可能回落。11月全月實際收購行情仍待確認。",
+      "sources": [
+        {
+          "title": "台灣廢鋼市場的成本與交期挑戰：HMS1廢鋼動態分析",
+          "url": "https://emetals.tw/news/285",
+          "published": "2026-11-06",
+          "fact": "文章以AI整理，指出2026年10月北部廢鋼大盤收購月均價為每公斤10.3元、月增1.0%；其所列金屬量價平台亦顯示相同數據。"
+        },
+        {
+          "title": "國際小鋼胚行情回落 豐興鋼筋近3個月來首度下跌",
+          "url": "https://m.cnyes.com/news/id/6653057",
+          "published": "2026-11-09",
+          "fact": "2026年11月9日豐興開出的當週廢鋼收購價維持每公噸10,100元；這是鋼廠牌價，並非北部大盤月均價。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 10.3,
+      "unit": "元/公斤",
+      "frequency": "月"
+    },
+    "cci_tw_08": {
+      "direction": "stable",
+      "reason": "臺北市2026年10月油漆塗裝類指數為106.12，較9月持平。目前的全國資料中，8月至10月皆為110.88。兩組資料的地區範圍不同，但近期均呈平穩；據此推估全國11月指數可能持平。",
+      "risk": "臺北市指數僅反映當地查價情況；若其他地區報價或查價品項變動，全國指數仍可能上升或下降。",
       "sources": [
         {
           "title": "115年10月臺北市物價變動概況",
-          "url": "https://dbas.gov.taipei/News_Content.aspx?n=61D456768E73CD92&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
+          "url": "https://dbas.gov.taipei/News_Content.aspx?n=1268BF9711D80C72&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
           "published": "2026-11-05",
-          "fact": "新聞稿附件表4顯示，2026年10月臺北市土木工程材料類指數為123.85，較上月上漲0.21%。"
+          "fact": "新聞稿附件表3顯示，2026年10月臺北市油漆塗裝類指數為106.12，月增率為0.00%。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 110.88,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_tw_10": {
+      "direction": "uncertain",
+      "reason": "臺北市2026年10月瀝青及其製品類指數為124.09，較9月持平。目前的全國資料則由8月140.48升至9月141.62、10月143.78。全國近期持續上升，但臺北市最新月變動已持平；兩地訊號不同，11月全國指數方向仍待確認。",
+      "risk": "若全國其他地區報價延續先前漲勢，指數可能續升；若報價轉穩或回落，也可能持平或下降。",
+      "sources": [
+        {
+          "title": "115年10月臺北市物價變動概況",
+          "url": "https://dbas.gov.taipei/News_Content.aspx?n=1268BF9711D80C72&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
+          "published": "2026-11-05",
+          "fact": "新聞稿附件表3顯示，2026年10月臺北市瀝青及其製品類指數為124.09，月增率為0.00%。"
+        }
+      ],
+      "baseline_period": "2026-10",
+      "baseline_value": 143.78,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_tw_22": {
+      "direction": "up",
+      "reason": "臺北市2026年10月土木工程材料類指數為123.85，較9月上升0.21%。目前的全國資料也由8月122.00升至9月122.72、10月123.08。兩者範圍不同，但近期均有上升，據此推估全國11月指數可能續升。",
+      "risk": "臺北市與全國的查價範圍及權數不同；若其他地區或材料品項報價回落，全國指數可能持平或下降。",
+      "sources": [
+        {
+          "title": "115年10月臺北市物價變動概況",
+          "url": "https://dbas.gov.taipei/News_Content.aspx?n=1268BF9711D80C72&s=E054DE89E2E65240&sms=72544237BBE4C5F6",
+          "published": "2026-11-05",
+          "fact": "新聞稿附件表4顯示，2026年10月臺北市土木工程材料類指數為123.85，較上月上升0.21%。"
         }
       ],
       "baseline_period": "2026-10",
       "baseline_value": 123.08,
+      "unit": "指數",
+      "frequency": "月"
+    },
+    "cci_txg_03": {
+      "direction": "stable",
+      "reason": "資料：臺中市主計處公布，2026年10月砂石及級配類指數為104.94，較9月持平；目前的3月及6月至9月數值也均為104.936569。推論：近期指數延續平穩，研判下一期2026年11月指數持平。此為地區物價指數，實際成交價仍需另行確認。",
+      "risk": "若砂石供應、運輸成本或需求出現變化，11月指數可能上漲或下跌；已公布資料亦可能修正。",
+      "sources": [
+        {
+          "title": "115年10月份臺中市物價指數概況",
+          "url": "https://www.taichung.gov.tw/3407774/post",
+          "published": "2026-11-05",
+          "fact": "公告附件附表3顯示，2026年10月臺中市砂石及級配類指數為104.94，月增率及年增率均為0.00%；附表4列示5月至10月的月變動。"
+        }
+      ],
+      "baseline_period": "2026-09",
+      "baseline_value": 104.936569,
       "unit": "指數",
       "frequency": "月"
     }
