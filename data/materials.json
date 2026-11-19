@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-19T23:51:50.647087+08:00",
+ "updated_at": "2026-11-20T00:48:32.028159+08:00",
  "groups": [
   {
    "id": "tw_steel",
@@ -11310,11 +11310,11 @@
    "region": "臺灣",
    "unit": "新台幣/美元",
    "value": 32.95,
-   "period": "2026-11-19",
-   "prev": 32.97,
-   "prev_period": "2026-11-18",
-   "change": -0.02,
-   "change_pct": -0.061,
+   "period": "2026-11-20",
+   "prev": 32.95,
+   "prev_period": "2026-11-19",
+   "change": 0.0,
+   "change_pct": 0.0,
    "freq": "日",
    "source": "國泰世華銀行",
    "source_url": "https://accessibility.cathaybk.com.tw/exchange-rate-search.aspx",
@@ -11386,6 +11386,10 @@
     ],
     [
      "2026-11-19",
+     32.95
+    ],
+    [
+     "2026-11-20",
      32.95
     ]
    ],
@@ -12722,16 +12726,16 @@
    "query": "豐興 鋼筋 盤價"
   },
   {
-   "title": "鋼筋新盤價持平機率大",
-   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5JZkVLNmVSVTA5ZTk0UDVyZVcwdHkwR3NTWllsWXdURWF0cGpxdHJYdFhwVHJOZW80eHVDd1FQYjV6Nm8xUXZrNGVGdktlb1pXRU9LdjZBZVkzUdIBX0FVX3lxTE1mNmVFQl9kcVd1MnVwZmx6akJwWHByMk9WZGZfWVFTeUk5MTlXOFRTS2tkMzBsdWJrRWNmS1Z2blRtMGhwTUt6Y1NaZTB4WFBONXZXTlRtOXg3cXBfRktN?oc=5",
-   "source": "經濟日報",
+   "title": "豐興今開出本周盤價 廢鋼、鋼筋、型鋼均平盤",
+   "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBKQzFMYTFUblQxQmxMRjNrREV3djFuei1LeUhwSXI1Z0RmOUZudjRxcjhTRG1fRGV1WHRBaFg5cHFVd1lKX0xzWkJkZFprVGk1RGd6b2UzT0pycUJvcmtpRjJsQjh2cGVBcGJfWVE0eUdkVjRMX2RwMWlGRFLSAVZBVV95cUxPUS1jTG1CWnNhYnpIU0NMbVZiVWwxZEtERWtlMHlaczY2RTNKRHlOTlJ6STZ5eC15S0tGTy1ndUZtd2VDQ2c1Sk9ZdXpJd3JIOGdSVUxNUQ?oc=5",
+   "source": "UDN",
    "date": "2026-11-16",
    "query": "豐興 鋼筋 盤價"
   },
   {
-   "title": "豐興今開出本周盤價 廢鋼、鋼筋、型鋼均平盤",
-   "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBKQzFMYTFUblQxQmxMRjNrREV3djFuei1LeUhwSXI1Z0RmOUZudjRxcjhTRG1fRGV1WHRBaFg5cHFVd1lKX0xzWkJkZFprVGk1RGd6b2UzT0pycUJvcmtpRjJsQjh2cGVBcGJfWVE0eUdkVjRMX2RwMWlGRFLSAVZBVV95cUxPUS1jTG1CWnNhYnpIU0NMbVZiVWwxZEtERWtlMHlaczY2RTNKRHlOTlJ6STZ5eC15S0tGTy1ndUZtd2VDQ2c1Sk9ZdXpJd3JIOGdSVUxNUQ?oc=5",
-   "source": "UDN",
+   "title": "鋼筋新盤價持平機率大",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5JZkVLNmVSVTA5ZTk0UDVyZVcwdHkwR3NTWllsWXdURWF0cGpxdHJYdFhwVHJOZW80eHVDd1FQYjV6Nm8xUXZrNGVGdktlb1pXRU9LdjZBZVkzUdIBX0FVX3lxTE1mNmVFQl9kcVd1MnVwZmx6akJwWHByMk9WZGZfWVFTeUk5MTlXOFRTS2tkMzBsdWJrRWNmS1Z2blRtMGhwTUt6Y1NaZTB4WFBONXZXTlRtOXg3cXBfRktN?oc=5",
+   "source": "經濟日報",
    "date": "2026-11-16",
    "query": "豐興 鋼筋 盤價"
   },
@@ -13035,19 +13039,19 @@
    "source": "台灣金屬行情網",
    "ok": true,
    "items": 14,
-   "seconds": 11.8
+   "seconds": 11.7
   },
   {
    "source": "行政院主計總處",
    "ok": true,
    "items": 29,
-   "seconds": 2.5
+   "seconds": 2.9
   },
   {
    "source": "地方主計處",
    "ok": true,
    "items": 19,
-   "seconds": 11.3
+   "seconds": 10.7
   },
   {
    "source": "World Bank",
@@ -13059,7 +13063,7 @@
    "source": "臺灣證券交易所",
    "ok": true,
    "items": 16,
-   "seconds": 1.8
+   "seconds": 1.6
   },
   {
    "source": "Google 新聞",
