@@ -322,16 +322,22 @@ def fetch_dgbas_cci(session) -> list[dict]:
     return items
 
 
+TAIPEI_CCI_LABELS = {
+    "總指數": "臺北市 · 總指數",
+    "材料類指數": "臺北市 · 材料類",
+    "勞務類指數": "臺北市 · 勞務類",
+}
+
+
 def parse_taipei_cci(csv_text: str) -> dict[str, list[tuple[str, float]]]:
     import csv
     rows = list(csv.reader(io.StringIO(csv_text)))
     if not rows:
         return {}
     header = rows[0]
-    wanted = {"總指數": "臺北市 · 總指數", "材料類指數": "臺北市 · 材料類", "勞務類指數": "臺北市 · 勞務類"}
     cols = {}
     for i, h in enumerate(header):
-        for key, label in wanted.items():
+        for key, label in TAIPEI_CCI_LABELS.items():
             if h.endswith("/" + key):
                 cols[label] = i
     out: dict[str, list] = {label: [] for label in cols}
@@ -370,50 +376,97 @@ def parse_taichung_cci(records: list[dict]) -> dict[str, list[tuple[str, float]]
     return out
 
 
-def fetch_local_cci(session) -> list[dict]:
-    items, errors = [], []
-    try:
-        r = _get(session, TAIPEI_CCI_URL)
-        for label, hist in parse_taipei_cci(r.content.decode("utf-8-sig", "replace")).items():
-            it = make_item(id=f"cci_tpe_{label.split(' · ')[1]}", name=label, group="cci_local", unit="指數",
-                           history=hist, source="臺北市政府主計處", source_url=TAIPEI_CCI_URL,
-                           region="臺北市", freq="月")
-            if it:
-                items.append(it)
-    except Exception as e:
-        errors.append(f"臺北市: {e}")
-    try:
-        r = _get(session, NTPC_CCI_URL)
-        it = make_item(id="cci_ntpc_total", name="新北市 · 總指數", group="cci_local", unit="指數",
-                       history=parse_ntpc_cci(r.content.decode("utf-8-sig", "replace")),
-                       source="新北市政府主計處", source_url=NTPC_CCI_URL, region="新北市", freq="月")
+def fetch_taipei_cci(session) -> list[dict]:
+    r = _get(session, TAIPEI_CCI_URL)
+    items = []
+    for label, hist in parse_taipei_cci(r.content.decode("utf-8-sig", "replace")).items():
+        it = make_item(id=f"cci_tpe_{label.split(' · ')[1]}", name=label, group="cci_local", unit="指數",
+                       history=hist, source="臺北市政府主計處", source_url=TAIPEI_CCI_URL,
+                       region="臺北市", freq="月")
         if it:
             items.append(it)
-    except Exception as e:
-        errors.append(f"新北市: {e}")
-    try:
-        meta = _get(session, TAICHUNG_DATASET_API).json().get("result", {})
-        records = []
-        for d in meta.get("distribution") or []:
-            u = d.get("resourceDownloadUrl")
-            if u and (d.get("resourceFormat") or "").upper() == "JSON":
-                try:
-                    records.extend(_get(session, u, timeout=60).json())
-                except Exception as e:
-                    errors.append(f"臺中市 resource: {e}")
-        for i, (label, hist) in enumerate(parse_taichung_cci(records).items()):
-            it = make_item(id=f"cci_txg_{i:02d}", name=label, group="cci_local", unit="指數",
-                           history=hist, source="臺中市政府主計處",
-                           source_url="https://data.gov.tw/dataset/167838", region="臺中市", freq="月")
-            if it:
-                items.append(it)
-    except Exception as e:
-        errors.append(f"臺中市: {e}")
-    if errors:
-        log(f"  local CCI partial errors: {errors}")
-    if not items:
-        raise RuntimeError("; ".join(errors) or "no local CCI items")
     return items
+
+
+def fetch_ntpc_cci(session) -> list[dict]:
+    r = _get(session, NTPC_CCI_URL)
+    it = make_item(id="cci_ntpc_total", name="新北市 · 總指數", group="cci_local", unit="指數",
+                   history=parse_ntpc_cci(r.content.decode("utf-8-sig", "replace")),
+                   source="新北市政府主計處", source_url=NTPC_CCI_URL, region="新北市", freq="月")
+    return [it] if it else []
+
+
+def fetch_taichung_cci(session, previous: dict) -> list[dict]:
+    meta = _get(session, TAICHUNG_DATASET_API).json().get("result", {})
+    records, errors, fetched = [], [], 0
+    for d in meta.get("distribution") or []:
+        u = d.get("resourceDownloadUrl")
+        if u and (d.get("resourceFormat") or "").upper() == "JSON":
+            try:
+                records.extend(_get(session, u, timeout=60).json())
+                fetched += 1
+            except Exception as e:
+                errors.append(str(e))
+    if errors:
+        log(f"  臺中市 resource errors: {errors}")
+    if not fetched and errors:
+        raise RuntimeError("; ".join(errors))
+    # The upstream ordering can change when a series is missing. Keep existing
+    # IDs tied to their labels, including IDs reserved for stale rows.
+    ids = {it["name"]: it["id"] for it in previous.values()}
+    reserved = set(previous)
+    items = []
+    for label, hist in parse_taichung_cci(records).items():
+        if label not in ids:
+            i = 0
+            while f"cci_txg_{i:02d}" in reserved:
+                i += 1
+            ids[label] = f"cci_txg_{i:02d}"
+            reserved.add(ids[label])
+        it = make_item(id=ids[label], name=label, group="cci_local", unit="指數",
+                       history=hist, source="臺中市政府主計處",
+                       source_url="https://data.gov.tw/dataset/167838", region="臺中市", freq="月")
+        if it:
+            items.append(it)
+    return items
+
+
+def fetch_local_cci(session, prev_items: dict) -> tuple[list[dict], list[dict]]:
+    """Refresh cities independently, retaining each missing series with its old date."""
+    cities = [
+        ("臺北市", fetch_taipei_cci, {f"cci_tpe_{name.split(' · ')[1]}" for name in TAIPEI_CCI_LABELS.values()}),
+        ("新北市", fetch_ntpc_cci, {"cci_ntpc_total"}),
+        ("臺中市", None, set()),
+    ]
+    items, statuses = [], []
+    for city, fetch, expected in cities:
+        t0 = time.time()
+        previous = {key: it for key, it in prev_items.items()
+                    if it.get("group") == "cci_local" and it.get("region") == city}
+        got, error = [], ""
+        try:
+            got = fetch(session) if fetch else fetch_taichung_cci(session, previous)
+            if not got:
+                error = "no local CCI items parsed"
+        except Exception as e:
+            error = str(e) or type(e).__name__
+        fresh_ids = {it["id"] for it in got}
+        missing = sorted((expected | previous.keys()) - fresh_ids)
+        carried = [dict(previous[key], stale=True) for key in missing if key in previous]
+        items.extend(got)
+        items.extend(carried)
+        state = {"source": f"{city}政府主計處", "ok": bool(got) and not missing and not error,
+                 "items": len(got) + len(carried), "fresh_items": len(got), "stale_items": len(carried),
+                 "seconds": round(time.time() - t0, 1)}
+        if missing:
+            state["missing_series"] = missing
+        if error:
+            state["error"] = error[:200]
+        statuses.append(state)
+        log(f"  {state['source']}: {len(got)} fresh, {len(carried)} stale"
+            + (f"; missing {', '.join(missing)}" if missing else "")
+            + (f"; {state['error']}" if error else ""))
+    return items, statuses
 
 
 # ── World Bank Pink Sheet ──────────────────────────────────
@@ -580,6 +633,11 @@ def build_materials(fx: dict | None = None) -> dict:
     ]
     items, status = [], []
     for name, fn, groups in fetchers:
+        if fn is fetch_local_cci:
+            local_items, local_status = fn(session, prev_items)
+            items.extend(local_items)
+            status.extend(local_status)
+            continue
         t0 = time.time()
         try:
             got = fn(session)
