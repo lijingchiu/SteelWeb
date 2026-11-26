@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-26T02:13:15.282090+08:00",
+ "updated_at": "2026-11-26T07:49:52.059555+08:00",
  "groups": [
   {
    "id": "tw_steel",
@@ -7096,17 +7096,17 @@
    "stale": false
   },
   {
-   "id": "cci_tpe_勞務類",
-   "name": "臺北市 · 勞務類",
+   "id": "cci_tpe_總指數",
+   "name": "臺北市 · 總指數",
    "group": "cci_local",
    "region": "臺北市",
    "unit": "指數",
-   "value": 115.17,
+   "value": 117.91,
    "period": "2026-10",
-   "prev": 115.17,
+   "prev": 117.7,
    "prev_period": "2026-09",
-   "change": 0.0,
-   "change_pct": 0.0,
+   "change": 0.21,
+   "change_pct": 0.178,
    "freq": "月",
    "source": "臺北市政府主計處",
    "source_url": "https://tsis.dbas.gov.taipei/statis/webMain.aspx?sys=220&ymf=9201&kind=21&type=0&funid=a04004101&cycle=1&outmode=12&compmode=0&outkind=1&deflst=2&nzo=1",
@@ -7114,150 +7114,150 @@
    "history": [
     [
      "2023-11",
-     111.06
+     109.7
     ],
     [
      "2023-12",
-     111.11
+     110.08
     ],
     [
      "2024-01",
-     111.12
+     110.42
     ],
     [
      "2024-02",
-     111.12
+     110.53
     ],
     [
      "2024-03",
-     110.82
+     110.25
     ],
     [
      "2024-04",
-     110.82
+     110.54
     ],
     [
      "2024-05",
-     110.95
+     110.99
     ],
     [
      "2024-06",
-     110.95
+     111.0
     ],
     [
      "2024-07",
-     110.95
+     111.01
     ],
     [
      "2024-08",
-     110.95
+     110.71
     ],
     [
      "2024-09",
-     110.95
+     110.49
     ],
     [
      "2024-10",
-     111.24
+     110.66
     ],
     [
      "2024-11",
-     112.03
+     111.19
     ],
     [
      "2024-12",
-     112.03
+     110.87
     ],
     [
      "2025-01",
-     111.9
+     110.77
     ],
     [
      "2025-02",
-     112.61
+     111.24
     ],
     [
      "2025-03",
-     112.73
+     111.72
     ],
     [
      "2025-04",
-     112.78
+     111.6
     ],
     [
      "2025-05",
-     113.11
+     111.31
     ],
     [
      "2025-06",
-     113.11
+     111.12
     ],
     [
      "2025-07",
-     113.11
+     110.91
     ],
     [
      "2025-08",
-     113.11
+     111.32
     ],
     [
      "2025-09",
-     113.11
+     111.16
     ],
     [
      "2025-10",
-     113.11
+     111.07
     ],
     [
      "2025-11",
-     113.11
+     111.22
     ],
     [
      "2025-12",
-     113.11
+     111.35
     ],
     [
      "2026-01",
-     113.64
+     112.59
     ],
     [
      "2026-02",
-     113.67
+     113.53
     ],
     [
      "2026-03",
-     113.79
+     114.37
     ],
     [
      "2026-04",
-     113.87
+     116.08
     ],
     [
      "2026-05",
-     113.91
+     116.53
     ],
     [
      "2026-06",
-     114.85
+     117.36
     ],
     [
      "2026-07",
-     114.85
+     117.01
     ],
     [
      "2026-08",
-     115.17
+     117.23
     ],
     [
      "2026-09",
-     115.17
+     117.7
     ],
     [
      "2026-10",
-     115.17
+     117.91
     ]
    ],
-   "stale": true
+   "stale": false
   },
   {
    "id": "cci_tpe_材料類",
@@ -7421,20 +7421,20 @@
      119.54
     ]
    ],
-   "stale": true
+   "stale": false
   },
   {
-   "id": "cci_tpe_總指數",
-   "name": "臺北市 · 總指數",
+   "id": "cci_tpe_勞務類",
+   "name": "臺北市 · 勞務類",
    "group": "cci_local",
    "region": "臺北市",
    "unit": "指數",
-   "value": 117.91,
+   "value": 115.17,
    "period": "2026-10",
-   "prev": 117.7,
+   "prev": 115.17,
    "prev_period": "2026-09",
-   "change": 0.21,
-   "change_pct": 0.178,
+   "change": 0.0,
+   "change_pct": 0.0,
    "freq": "月",
    "source": "臺北市政府主計處",
    "source_url": "https://tsis.dbas.gov.taipei/statis/webMain.aspx?sys=220&ymf=9201&kind=21&type=0&funid=a04004101&cycle=1&outmode=12&compmode=0&outkind=1&deflst=2&nzo=1",
@@ -7442,150 +7442,150 @@
    "history": [
     [
      "2023-11",
-     109.7
+     111.06
     ],
     [
      "2023-12",
-     110.08
+     111.11
     ],
     [
      "2024-01",
-     110.42
-    ],
-    [
-     "2024-02",
-     110.53
-    ],
-    [
-     "2024-03",
-     110.25
-    ],
-    [
-     "2024-04",
-     110.54
-    ],
-    [
-     "2024-05",
-     110.99
-    ],
-    [
-     "2024-06",
-     111.0
-    ],
-    [
-     "2024-07",
-     111.01
-    ],
-    [
-     "2024-08",
-     110.71
-    ],
-    [
-     "2024-09",
-     110.49
-    ],
-    [
-     "2024-10",
-     110.66
-    ],
-    [
-     "2024-11",
-     111.19
-    ],
-    [
-     "2024-12",
-     110.87
-    ],
-    [
-     "2025-01",
-     110.77
-    ],
-    [
-     "2025-02",
-     111.24
-    ],
-    [
-     "2025-03",
-     111.72
-    ],
-    [
-     "2025-04",
-     111.6
-    ],
-    [
-     "2025-05",
-     111.31
-    ],
-    [
-     "2025-06",
      111.12
     ],
     [
+     "2024-02",
+     111.12
+    ],
+    [
+     "2024-03",
+     110.82
+    ],
+    [
+     "2024-04",
+     110.82
+    ],
+    [
+     "2024-05",
+     110.95
+    ],
+    [
+     "2024-06",
+     110.95
+    ],
+    [
+     "2024-07",
+     110.95
+    ],
+    [
+     "2024-08",
+     110.95
+    ],
+    [
+     "2024-09",
+     110.95
+    ],
+    [
+     "2024-10",
+     111.24
+    ],
+    [
+     "2024-11",
+     112.03
+    ],
+    [
+     "2024-12",
+     112.03
+    ],
+    [
+     "2025-01",
+     111.9
+    ],
+    [
+     "2025-02",
+     112.61
+    ],
+    [
+     "2025-03",
+     112.73
+    ],
+    [
+     "2025-04",
+     112.78
+    ],
+    [
+     "2025-05",
+     113.11
+    ],
+    [
+     "2025-06",
+     113.11
+    ],
+    [
      "2025-07",
-     110.91
+     113.11
     ],
     [
      "2025-08",
-     111.32
+     113.11
     ],
     [
      "2025-09",
-     111.16
+     113.11
     ],
     [
      "2025-10",
-     111.07
+     113.11
     ],
     [
      "2025-11",
-     111.22
+     113.11
     ],
     [
      "2025-12",
-     111.35
+     113.11
     ],
     [
      "2026-01",
-     112.59
+     113.64
     ],
     [
      "2026-02",
-     113.53
+     113.67
     ],
     [
      "2026-03",
-     114.37
+     113.79
     ],
     [
      "2026-04",
-     116.08
+     113.87
     ],
     [
      "2026-05",
-     116.53
+     113.91
     ],
     [
      "2026-06",
-     117.36
+     114.85
     ],
     [
      "2026-07",
-     117.01
+     114.85
     ],
     [
      "2026-08",
-     117.23
+     115.17
     ],
     [
      "2026-09",
-     117.7
+     115.17
     ],
     [
      "2026-10",
-     117.91
+     115.17
     ]
    ],
-   "stale": true
+   "stale": false
   },
   {
    "id": "cci_ntpc_total",
@@ -11425,12 +11425,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 17.55,
-   "period": "2026-11-24",
-   "prev": 16.85,
+   "value": 17.1,
+   "period": "2026-11-25",
+   "prev": 17.55,
    "prev_period": null,
-   "change": 0.7,
-   "change_pct": 4.154,
+   "change": -0.45,
+   "change_pct": -2.564,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11507,6 +11507,10 @@
     [
      "2026-11-24",
      17.55
+    ],
+    [
+     "2026-11-25",
+     17.1
     ]
    ],
    "stale": false
@@ -11517,12 +11521,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 83.5,
-   "period": "2026-11-24",
-   "prev": 79.3,
+   "value": 80.8,
+   "period": "2026-11-25",
+   "prev": 83.5,
    "prev_period": null,
-   "change": 4.2,
-   "change_pct": 5.296,
+   "change": -2.7,
+   "change_pct": -3.234,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11599,6 +11603,10 @@
     [
      "2026-11-24",
      83.5
+    ],
+    [
+     "2026-11-25",
+     80.8
     ]
    ],
    "stale": false
@@ -11609,12 +11617,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 5.91,
-   "period": "2026-11-24",
-   "prev": 5.45,
+   "value": 5.49,
+   "period": "2026-11-25",
+   "prev": 5.91,
    "prev_period": null,
-   "change": 0.46,
-   "change_pct": 8.44,
+   "change": -0.42,
+   "change_pct": -7.107,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11691,6 +11699,10 @@
     [
      "2026-11-24",
      5.91
+    ],
+    [
+     "2026-11-25",
+     5.49
     ]
    ],
    "stale": false
@@ -11701,12 +11713,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 13.65,
-   "period": "2026-11-24",
-   "prev": 13.0,
+   "value": 12.95,
+   "period": "2026-11-25",
+   "prev": 13.65,
    "prev_period": null,
-   "change": 0.65,
-   "change_pct": 5.0,
+   "change": -0.7,
+   "change_pct": -5.128,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11783,6 +11795,10 @@
     [
      "2026-11-24",
      13.65
+    ],
+    [
+     "2026-11-25",
+     12.95
     ]
    ],
    "stale": false
@@ -11793,12 +11809,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 62.6,
-   "period": "2026-11-24",
-   "prev": 61.3,
+   "value": 62.7,
+   "period": "2026-11-25",
+   "prev": 62.6,
    "prev_period": null,
-   "change": 1.3,
-   "change_pct": 2.121,
+   "change": 0.1,
+   "change_pct": 0.16,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11875,6 +11891,10 @@
     [
      "2026-11-24",
      62.6
+    ],
+    [
+     "2026-11-25",
+     62.7
     ]
    ],
    "stale": false
@@ -11885,12 +11905,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 14.05,
-   "period": "2026-11-24",
-   "prev": 13.65,
+   "value": 13.75,
+   "period": "2026-11-25",
+   "prev": 14.05,
    "prev_period": null,
-   "change": 0.4,
-   "change_pct": 2.93,
+   "change": -0.3,
+   "change_pct": -2.135,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -11967,6 +11987,10 @@
     [
      "2026-11-24",
      14.05
+    ],
+    [
+     "2026-11-25",
+     13.75
     ]
    ],
    "stale": false
@@ -11977,12 +12001,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 48.15,
-   "period": "2026-11-24",
-   "prev": 44.75,
+   "value": 43.7,
+   "period": "2026-11-25",
+   "prev": 48.15,
    "prev_period": null,
-   "change": 3.4,
-   "change_pct": 7.598,
+   "change": -4.45,
+   "change_pct": -9.242,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -12059,6 +12083,10 @@
     [
      "2026-11-24",
      48.15
+    ],
+    [
+     "2026-11-25",
+     43.7
     ]
    ],
    "stale": false
@@ -12069,12 +12097,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 41.3,
-   "period": "2026-11-24",
-   "prev": 39.35,
+   "value": 39.8,
+   "period": "2026-11-25",
+   "prev": 41.3,
    "prev_period": null,
-   "change": 1.95,
-   "change_pct": 4.956,
+   "change": -1.5,
+   "change_pct": -3.632,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -12151,6 +12179,10 @@
     [
      "2026-11-24",
      41.3
+    ],
+    [
+     "2026-11-25",
+     39.8
     ]
    ],
    "stale": false
@@ -12161,12 +12193,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 57.2,
-   "period": "2026-11-24",
-   "prev": 52.0,
+   "value": 53.8,
+   "period": "2026-11-25",
+   "prev": 57.2,
    "prev_period": null,
-   "change": 5.2,
-   "change_pct": 10.0,
+   "change": -3.4,
+   "change_pct": -5.944,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -12243,6 +12275,10 @@
     [
      "2026-11-24",
      57.2
+    ],
+    [
+     "2026-11-25",
+     53.8
     ]
    ],
    "stale": false
@@ -12253,12 +12289,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 25.2,
-   "period": "2026-11-24",
-   "prev": 24.4,
+   "value": 24.4,
+   "period": "2026-11-25",
+   "prev": 25.2,
    "prev_period": null,
-   "change": 0.8,
-   "change_pct": 3.279,
+   "change": -0.8,
+   "change_pct": -3.175,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -12335,6 +12371,10 @@
     [
      "2026-11-24",
      25.2
+    ],
+    [
+     "2026-11-25",
+     24.4
     ]
    ],
    "stale": false
@@ -12345,12 +12385,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 33.65,
-   "period": "2026-11-24",
-   "prev": 32.2,
+   "value": 33.0,
+   "period": "2026-11-25",
+   "prev": 33.65,
    "prev_period": null,
-   "change": 1.45,
-   "change_pct": 4.503,
+   "change": -0.65,
+   "change_pct": -1.932,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -12427,6 +12467,10 @@
     [
      "2026-11-24",
      33.65
+    ],
+    [
+     "2026-11-25",
+     33.0
     ]
    ],
    "stale": false
@@ -12437,12 +12481,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 12.6,
-   "period": "2026-11-24",
-   "prev": 12.15,
+   "value": 12.2,
+   "period": "2026-11-25",
+   "prev": 12.6,
    "prev_period": null,
-   "change": 0.45,
-   "change_pct": 3.704,
+   "change": -0.4,
+   "change_pct": -3.175,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -12519,6 +12563,10 @@
     [
      "2026-11-24",
      12.6
+    ],
+    [
+     "2026-11-25",
+     12.2
     ]
    ],
    "stale": false
@@ -12529,12 +12577,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 25.6,
-   "period": "2026-11-24",
-   "prev": 24.2,
+   "value": 24.9,
+   "period": "2026-11-25",
+   "prev": 25.6,
    "prev_period": null,
-   "change": 1.4,
-   "change_pct": 5.785,
+   "change": -0.7,
+   "change_pct": -2.734,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -12611,6 +12659,10 @@
     [
      "2026-11-24",
      25.6
+    ],
+    [
+     "2026-11-25",
+     24.9
     ]
    ],
    "stale": false
@@ -12621,12 +12673,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 9.78,
-   "period": "2026-11-24",
-   "prev": 9.36,
+   "value": 9.8,
+   "period": "2026-11-25",
+   "prev": 9.78,
    "prev_period": null,
-   "change": 0.42,
-   "change_pct": 4.487,
+   "change": 0.02,
+   "change_pct": 0.204,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -12703,6 +12755,10 @@
     [
      "2026-11-24",
      9.78
+    ],
+    [
+     "2026-11-25",
+     9.8
     ]
    ],
    "stale": false
@@ -12713,12 +12769,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 12.2,
-   "period": "2026-11-24",
-   "prev": 11.75,
+   "value": 11.85,
+   "period": "2026-11-25",
+   "prev": 12.2,
    "prev_period": null,
-   "change": 0.45,
-   "change_pct": 3.83,
+   "change": -0.35,
+   "change_pct": -2.869,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -12795,6 +12851,10 @@
     [
      "2026-11-24",
      12.2
+    ],
+    [
+     "2026-11-25",
+     11.85
     ]
    ],
    "stale": false
@@ -12805,12 +12865,12 @@
    "group": "stocks",
    "region": "臺灣",
    "unit": "元/股",
-   "value": 13.9,
-   "period": "2026-11-24",
-   "prev": 13.5,
+   "value": 13.4,
+   "period": "2026-11-25",
+   "prev": 13.9,
    "prev_period": null,
-   "change": 0.4,
-   "change_pct": 2.963,
+   "change": -0.5,
+   "change_pct": -3.597,
    "freq": "日",
    "source": "臺灣證券交易所",
    "source_url": "https://openapi.twse.com.tw/",
@@ -12887,6 +12947,10 @@
     [
      "2026-11-24",
      13.9
+    ],
+    [
+     "2026-11-25",
+     13.4
     ]
    ],
    "stale": false
@@ -13319,27 +13383,21 @@
    "source": "台灣金屬行情網",
    "ok": true,
    "items": 14,
-   "seconds": 13.5
+   "seconds": 9.6
   },
   {
    "source": "行政院主計總處",
    "ok": true,
    "items": 29,
-   "seconds": 2.8
+   "seconds": 2.7
   },
   {
    "source": "臺北市政府主計處",
-   "ok": false,
+   "ok": true,
    "items": 3,
-   "fresh_items": 0,
-   "stale_items": 3,
-   "seconds": 84.3,
-   "missing_series": [
-    "cci_tpe_勞務類",
-    "cci_tpe_材料類",
-    "cci_tpe_總指數"
-   ],
-   "error": "HTTPSConnectionPool(host='tsis.dbas.gov.taipei', port=443): Read timed out. (read timeout=40)"
+   "fresh_items": 3,
+   "stale_items": 0,
+   "seconds": 0.8
   },
   {
    "source": "新北市政府主計處",
@@ -13347,7 +13405,7 @@
    "items": 1,
    "fresh_items": 1,
    "stale_items": 0,
-   "seconds": 1.5
+   "seconds": 1.2
   },
   {
    "source": "臺中市政府主計處",
@@ -13355,23 +13413,23 @@
    "items": 15,
    "fresh_items": 15,
    "stale_items": 0,
-   "seconds": 10.0
+   "seconds": 6.8
   },
   {
    "source": "World Bank",
    "ok": true,
    "items": 18,
-   "seconds": 0.5
+   "seconds": 0.4
   },
   {
    "source": "臺灣證券交易所",
    "ok": true,
    "items": 16,
-   "seconds": 1.5
+   "seconds": 0.9
   },
   {
    "source": "Google 新聞",
-   "ok": true,
+   "ok": false,
    "items": 60
   }
  ]
